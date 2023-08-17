@@ -18,7 +18,7 @@ function replacePlanetsImages() {
                     'https://i.imgur.com/W5YogBX.png', 'https://i.imgur.com/DGBzdwA.png'];
 
 
-    const imgIdPattern = /\/([\d]+)\./;
+    const imgIdPattern = /\/(\d+)\./;
     const replaceImage = function (img) {
         const [,id] = img.src.match(imgIdPattern);
         img.src = images[id % images.length];
@@ -31,12 +31,8 @@ function replacePlanetsImages() {
     }
 }
 
-// change default 1 planet / row display to 2 planets / row
-function displayPlanetsAsGrid() {
-
-}
-
 (function() {
     replacePlanetsImages();
-    displayPlanetsAsGrid();
+
+    document.body.prepend(document.createElement('app-root'));
 })();
