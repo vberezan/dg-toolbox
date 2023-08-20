@@ -33,7 +33,7 @@ function replacePlanetsImages() {
 
 function prepareAngularEnvironment() {
     let style = document.createElement('link');
-    style.href = 'https://cdn.jsdelivr.net/gh/vberezan/dg-toolbox/angular/toolbox-app/dist/toolbox-app/styles.f18e8384b6974220.css';
+    style.href = 'https://cdn.jsdelivr.net/gh/vberezan/dg-toolbox/angular/toolbox-app/dist/toolbox-app/styles.53797446567d94e9.css';
     style.rel = 'stylesheet';
     document.head.appendChild(style);
 
@@ -47,13 +47,8 @@ function prepareAngularEnvironment() {
     polyfills.type = 'module';
     document.head.appendChild(polyfills);
 
-    let vendors = document.createElement('script');
-    vendors.src = 'https://cdn.jsdelivr.net/gh/vberezan/dg-toolbox/angular/toolbox-app/dist/toolbox-app/scripts.54fdf11ae4150e9a.js';
-    vendors.type = 'module';
-    document.head.appendChild(vendors);
-
     let main = document.createElement('script');
-    main.src = 'https://cdn.jsdelivr.net/gh/vberezan/dg-toolbox/angular/toolbox-app/dist/toolbox-app/main.530357755e59ba01.js';
+    main.src = 'https://cdn.jsdelivr.net/gh/vberezan/dg-toolbox/angular/toolbox-app/dist/toolbox-app/main.b2b9a664b150a22b.js';
     main.type = 'module';
     document.head.appendChild(main);
 }
