@@ -1,5 +1,7 @@
-/* main theme fixes */
-
 #content {
   width: 944px !important;
+}
+
+#contentBox #available {
+  width: 552px !important;
 }
