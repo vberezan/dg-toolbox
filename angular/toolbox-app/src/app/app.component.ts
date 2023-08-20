@@ -13,6 +13,7 @@ export class AppComponent implements OnInit {
     console.log('------------------------ Main Features: ------------------------');
     console.log('----- 1. Fix styling glitches ----------------------------------');
     console.log('----- 2. Provide a modern alternative to the game header  ------');
+    console.log('----- 2. Provide a modern alternative to the game header  ------');
     console.log('----------------------------------------------------------------');
   }
 
