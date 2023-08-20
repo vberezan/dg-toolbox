@@ -1,4 +1,5 @@
-import {AfterViewInit, Component, ElementRef, ViewChild} from '@angular/core';
+import {AfterViewInit, Component, Inject, Renderer2} from '@angular/core';
+import {DOCUMENT} from "@angular/common";
 
 @Component({
     selector: 'dg-toolbox-stats-panel',
@@ -6,9 +7,11 @@ import {AfterViewInit, Component, ElementRef, ViewChild} from '@angular/core';
     styleUrls: ['./stats-panel.component.css']
 })
 export class StatsPanelComponent implements AfterViewInit {
-    @ViewChild("#planetList", {static: false}) element: ElementRef;
+    constructor(@Inject(DOCUMENT) private document: any) {
+
+    }
 
     ngAfterViewInit(): void {
-        console.log(this.element.nativeElement)
+        console.log(this.document.querySelector('[id=planetList]'))
     }
 }
