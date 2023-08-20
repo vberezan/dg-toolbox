@@ -1,24 +1,21 @@
 import {NgModule} from '@angular/core';
 import {BrowserModule} from '@angular/platform-browser';
 
-import {AppComponent} from './app.component';
-import {NavbarModule} from "./modules/navbar/navbar.module";
 import {RouterLink, RouterLinkActive} from "@angular/router";
 import {TranslateModule} from "@ngx-translate/core";
+import {PlanetsOverallStatsModule} from "./modules/planets-overall-stats/planets-overall-stats.module";
+import {StatsPanelComponent} from "./modules/planets-overall-stats/component/stats-panel/stats-panel.component";
 
 @NgModule({
-  declarations: [
-    AppComponent
-  ],
   imports: [
     BrowserModule,
-    NavbarModule,
     RouterLink,
     RouterLinkActive,
-    TranslateModule
+    TranslateModule,
+    PlanetsOverallStatsModule
   ],
   providers: [],
-  bootstrap: [AppComponent]
+  bootstrap: [StatsPanelComponent]
 })
 export class AppModule {
   constructor() {
