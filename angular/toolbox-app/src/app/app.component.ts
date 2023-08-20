@@ -7,9 +7,13 @@ import {Component, OnInit} from '@angular/core';
 })
 export class AppComponent implements OnInit {
   ngOnInit(): void {
-    console.log('------------------------------------------------')
-    console.log('----- DarkGalaxy Toolbox v0.1 Beta enabled -----');
-    console.log('------------------------------------------------')
+    console.log('----------------------------------------------------------------');
+    console.log('------------- DarkGalaxy Toolbox v0.1 Beta enabled -------------');
+    console.log('----------------------------------------------------------------');
+    console.log('------------------------ Main Features: ------------------------');
+    console.log('----- 1. Fix styling glitches ----------------------------------');
+    console.log('----- 2. Provide a modern alternative to the game header  ------');
+    console.log('----------------------------------------------------------------');
   }
 
 }
