@@ -6,7 +6,7 @@ import {AfterViewInit, Component, ElementRef, ViewChild} from '@angular/core';
     styleUrls: ['./stats-panel.component.css']
 })
 export class StatsPanelComponent implements AfterViewInit {
-    @ViewChild("testView", {static: false}) element: ElementRef;
+    @ViewChild("#planetList", {static: false}) element: ElementRef;
 
     ngAfterViewInit(): void {
         console.log(this.element.nativeElement)

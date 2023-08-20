@@ -54,7 +54,7 @@ function prepareAngularEnvironment() {
 }
 
 function preparePlanetsStats() {
-    document.getElementById('planetList').prepend(document.createElement('dg-toolbox-stats-panel'))
+    document.getElementById('planetList').prepend(document.createElement('dg-toolbox-stats-panel'));
 }
 
 (function() {
