@@ -8,7 +8,7 @@ import {Component, OnInit} from '@angular/core';
 export class AppComponent implements OnInit {
   ngOnInit(): void {
     console.log('----------------------------------------------------------------');
-    console.log('------------- DarkGalaxy Toolbox v0.1 Beta enabled -------------');
+    console.log('---------------------- DarkGalaxy Toolbox ----------------------');
     console.log('----------------------------------------------------------------');
     console.log('------------------------ Main Features: ------------------------');
     console.log('----- 1. Fix styling glitches ----------------------------------');
