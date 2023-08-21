@@ -24,7 +24,7 @@ export class StatsPanelComponent implements AfterViewInit, OnInit {
     }
 
     generateRandom(): number {
-        return  Math.floor(1000000) * Math.random();
+        return Math.floor(100000 * Math.random());
     }
 
     private extractStats(planets: PlanetSummary[]): StatsPanel  {
