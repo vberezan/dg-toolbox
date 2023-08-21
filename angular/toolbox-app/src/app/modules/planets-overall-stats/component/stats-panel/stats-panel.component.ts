@@ -69,8 +69,6 @@ export class StatsPanelComponent implements AfterViewInit, OnInit {
             })
         })
 
-        stats.resourceTotals.delete("0");
-
         return stats;
     }
 

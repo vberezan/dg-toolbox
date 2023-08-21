@@ -1,13 +1,17 @@
+.dgt-stats-totals-table th {
+    min-width: 50px;
+}
+
 .resource > img.dgt-resource-img {
     float: left;
+}
+
+.dgt-resource {
+    height: 13px !important;
 }
 
 .resource > span.dgt-value {
     float: left;
     margin-left: 2px;
-    line-height: 18px;
-}
-
-span, td, tr, th {
-    color: #fff;
+    line-height: 16px;
 }
