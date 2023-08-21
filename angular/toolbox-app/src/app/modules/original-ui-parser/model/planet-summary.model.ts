@@ -1,4 +1,5 @@
 import {Resource} from "./resource.model";
+import {Population} from "./population.model";
 
 export class PlanetSummary {
 
@@ -7,6 +8,8 @@ export class PlanetSummary {
     private _resources: Resource[];
     private _ground: number;
     private _orbit: number;
+    private _worker: Population;
+    private _soldier: Population;
 
 
     constructor(name: string, resources: Resource[], ground: number, orbit: number, location: string[]) {
@@ -17,6 +20,23 @@ export class PlanetSummary {
         this._orbit = orbit;
     }
 
+
+    get worker(): Population {
+        return this._worker;
+    }
+
+    set worker(value: Population) {
+        this._worker = value;
+    }
+
+
+    get soldier(): Population {
+        return this._soldier;
+    }
+
+    set soldier(value: Population) {
+        this._soldier = value;
+    }
 
     get location(): string[] {
         return this._location;

@@ -27,7 +27,7 @@
 }
 
 .resource > span.dgt-value {
-    float: left;
+    float: right;
     margin-left: 3px;
     line-height: 16px;
 }

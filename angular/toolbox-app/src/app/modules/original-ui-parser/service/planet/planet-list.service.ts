@@ -20,15 +20,14 @@ export class PlanetListService {
             summary.forEach((value) => {
 
                 let parts: string[] = value.textContent.split(/\s+/);
-                let resource: Resource = new Resource(
-                    value.parentElement.className.split(/\s+/)[2],
-                    parseInt(parts[0].replace(/,/g, '')),
-                    parseInt(parts[1].substring(1, parts[1].length - 1).replace(/,/g, '')),
-                    parseInt(parts[2].replace(/,/g, ''))
-                );
+                let resource: Resource = new Resource();
+
+                resource.name = value.parentElement.className.split(/\s+/)[2],
+                resource.quantity = parseInt(parts[0].replace(/,/g, '')),
+                resource.abundance = parseInt(parts[1].substring(1, parts[1].length - 1).replace(/,/g, '')),
+                resource.production = parseInt(parts[2].replace(/,/g, ''))
 
                 resources.push(resource);
-                ``
             });
 
             let name: string = planet.querySelectorAll('.planetName > a')[0].innerHTML;
@@ -36,7 +35,9 @@ export class PlanetListService {
             let orbit = parseInt(planet.querySelectorAll('.planetName')[0].nextElementSibling.querySelector('span').innerText);
             let ground = parseInt(planet.querySelectorAll('.planetName')[0].nextElementSibling.nextElementSibling.querySelector('span').innerText);
 
-            summaries.push(new PlanetSummary(name, resources, ground, orbit, location));
+            let planetSummary: PlanetSummary = new PlanetSummary(name, resources, ground, orbit, location);
+
+            summaries.push(planetSummary);
 
         });
 
