@@ -18,13 +18,11 @@ import {StatsPanelComponent} from "./modules/planets-list-stats/component/stats-
     bootstrap: [StatsPanelComponent]
 })
 export class AppModule {
-    // constructor() {
-    //     console.log('----------------------------------------------------------------');
-    //     console.log('---------------------- DarkGalaxy Toolbox ----------------------');
-    //     console.log('----------------------------------------------------------------');
-    //     console.log('------------------------ Main Features: ------------------------');
-    //     console.log('----- 1. Fix styling glitches ----------------------------------');
-    //     console.log('----- 2. Provide a modern alternative to the game navbar  ------');
-    //     console.log('----------------------------------------------------------------');
-    // }
+    constructor() {
+        console.log("%cDarkGalaxy Toolbox", "font-size: 14px");
+        console.log('%c• fix styling glitches (new)', "font-size: 10px; color: #C81E2C;");
+        console.log('%c• planets list statistics:', "font-size: 10px;");
+        console.log('%c• total resources', "font-size: 10px; margin-left: 25px;");
+        console.log('%c• per galaxy resources (new)', "font-size: 10px; margin-left: 25px; color: #C81E2C;");
+    }
 }

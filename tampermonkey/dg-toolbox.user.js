@@ -49,7 +49,7 @@ function prepareAngularEnvironment() {
     document.head.appendChild(polyfills);
 
     let main = document.createElement('script');
-    main.src = 'https://cdn.jsdelivr.net/gh/vberezan/dg-toolbox/angular/toolbox-app/dist/toolbox-app/main.47efd79a7214e6da.js';
+    main.src = 'https://cdn.jsdelivr.net/gh/vberezan/dg-toolbox/angular/toolbox-app/dist/toolbox-app/main.24ec09cd57ddc5fb.js';
     main.type = 'module';
     document.head.appendChild(main);
 }
