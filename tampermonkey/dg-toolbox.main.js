@@ -1,8 +1,9 @@
 // ==UserScript==
 // @name	     DG Toolbox v0.1 Beta
 // @namespace    dg-toolbox
-// @downloadURL  https://cdn.jsdelivr.net/gh/vberezan/dg-toolbox/main/tampermonkey/dg-toolbox.main.js
-// @updateURL    https://cdn.jsdelivr.net/gh/vberezan/dg-toolbox/main/tampermonkey/dg-toolbox.main.js
+// @homepage     https://github.com/vberezan/dg-toolbox
+// @downloadURL  https://raw.githubusercontent.com/vberezan/dg-toolbox/main/tampermonkey/dg-toolbox.main.js
+// @updateURL    https://raw.githubusercontent.com/vberezan/dg-toolbox/main/tampermonkey/dg-toolbox.main.js
 // @version      0.1.1
 // @description  Revamp DarkGalaxy UI and some additional crafts. All of this to combine the classical DG experience with the modern web experience. This toolbox is supported only by modern browsers.
 // @match        https://*.darkgalaxy.com
@@ -10,7 +11,6 @@
 // @copyright    2023 Vlad Berezan
 // @grant        GM_xmlhttpRequest
 // ==/UserScript==
-
 
 // change default images with cooler ones
 function replacePlanetsImages() {
