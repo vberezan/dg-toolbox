@@ -1,5 +1,5 @@
-import {Resource} from "./base/resource.model";
-import {Population} from "./base/population.model";
+import {Resource} from "../common/resource.model";
+import {Population} from "../common/population.model";
 
 export class PlanetSummary {
     private _location: string[];
@@ -7,8 +7,8 @@ export class PlanetSummary {
     private _resources: Resource[] = [];
     private _ground: number = 0;
     private _orbit: number = 0;
-    private _worker: Population = new Population();
-    private _soldier: Population = new Population();
+    private _workers: Population = new Population();
+    private _soldiers: Population = new Population();
 
 
     get location(): string[] {
@@ -51,19 +51,19 @@ export class PlanetSummary {
         this._orbit = value;
     }
 
-    get worker(): Population {
-        return this._worker;
+    get workers(): Population {
+        return this._workers;
     }
 
-    set worker(value: Population) {
-        this._worker = value;
+    set workers(value: Population) {
+        this._workers = value;
     }
 
-    get soldier(): Population {
-        return this._soldier;
+    get soldiers(): Population {
+        return this._soldiers;
     }
 
-    set soldier(value: Population) {
-        this._soldier = value;
+    set soldiers(value: Population) {
+        this._soldiers = value;
     }
 }

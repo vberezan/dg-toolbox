@@ -1,9 +1,9 @@
 import {Pipe, PipeTransform} from '@angular/core';
 
 @Pipe({
-  name: 'galaxyName'
+  name: 'galaxyNameFormatter'
 })
-export class GalaxyNamePipe implements PipeTransform {
+export class GalaxyNameFormatterPipe implements PipeTransform {
 
   transform(value: String): string {
     switch (value) {

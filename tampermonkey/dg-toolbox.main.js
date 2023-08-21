@@ -1,6 +1,8 @@
 // ==UserScript==
 // @name	     DG Toolbox v0.1 Beta
-// @namespace    dgtb
+// @namespace    dg-toolbox
+// @downloadURL  https://cdn.jsdelivr.net/gh/vberezan/dg-toolbox/main/tampermonkey/dg-toolbox.main.js
+// @updateURL    https://cdn.jsdelivr.net/gh/vberezan/dg-toolbox/main/tampermonkey/dg-toolbox.main.js
 // @version      0.1.1
 // @description  Revamp DarkGalaxy UI and some additional crafts. All of this to combine the classical DG experience with the modern web experience. This toolbox is supported only by modern browsers.
 // @match        https://*.darkgalaxy.com
@@ -9,18 +11,17 @@
 // @grant        GM_xmlhttpRequest
 // ==/UserScript==
 
-// Theme related changes
 
 // change default images with cooler ones
 function replacePlanetsImages() {
     const images = ['https://i.imgur.com/j1zNxcQ.png', 'https://i.imgur.com/6MgxGGq.png', 'https://i.imgur.com/oAbNyce.png', 'https://i.imgur.com/3qLpUXw.png', 'https://i.imgur.com/v7okzfK.png',
-        'https://i.imgur.com/J6tgFgr.png', 'https://i.imgur.com/IlR9Gu5.png', 'https://i.imgur.com/K3Ql8bd.png', 'https://i.imgur.com/ylW5li6.png', 'https://i.imgur.com/uBnJ3NC.png',
+        'https://i.imgur.com/J6tgFgr.png', 'https://i.imgur.com/IlR9Gu5.png', 'https://i.imgur.com/K3Ql8bd.png', 'https://i.imgur.com/ylW5li6.png','https://i.imgur.com/uBnJ3NC.png',
         'https://i.imgur.com/W5YogBX.png', 'https://i.imgur.com/DGBzdwA.png'];
 
 
     const imgIdPattern = /\/([\d]+)\./;
     const replaceImage = function (img, size) {
-        const [, id] = img.src.match(imgIdPattern);
+        const [,id] = img.src.match(imgIdPattern);
         img.src = images[id % images.length];
     };
 
@@ -48,7 +49,7 @@ function prepareAngularEnvironment() {
     document.head.appendChild(polyfills);
 
     let main = document.createElement('script');
-    main.src = 'https://cdn.jsdelivr.net/gh/vberezan/dg-toolbox/angular/toolbox-app/dist/toolbox-app/main.b2b9a664b150a22b.js';
+    main.src = 'https://cdn.jsdelivr.net/gh/vberezan/dg-toolbox/angular/toolbox-app/dist/toolbox-app/main.47efd79a7214e6da.js';
     main.type = 'module';
     document.head.appendChild(main);
 }
@@ -57,7 +58,7 @@ function preparePlanetsStats() {
     document.getElementById('planetList').prepend(document.createElement('dg-toolbox-stats-panel'));
 }
 
-(function () {
+(function() {
     replacePlanetsImages();
     prepareAngularEnvironment();
     preparePlanetsStats();

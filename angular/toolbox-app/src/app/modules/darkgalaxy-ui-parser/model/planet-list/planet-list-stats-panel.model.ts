@@ -1,4 +1,4 @@
-import {PlanetStats} from "./stats/planet-stats.model";
+import {PlanetStats} from "./planet-list-planet-stats.model";
 
 export class StatsPanel {
     private _stats: Map<String, PlanetStats> = new Map<String, PlanetStats>();

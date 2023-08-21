@@ -1,5 +1,5 @@
-import {ResourceStats} from "./resource-stats.model";
-import {PopulationStats} from "./population-stats.model";
+import {ResourceStats} from "./planet-list-resource-stats.model";
+import {PopulationStats} from "./planet-list-population-stats.model";
 
 export class PlanetStats {
     private _resources: ResourceStats = new ResourceStats();

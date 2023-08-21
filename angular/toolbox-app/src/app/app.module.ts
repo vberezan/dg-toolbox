@@ -3,8 +3,8 @@ import {BrowserModule} from '@angular/platform-browser';
 
 import {RouterLink, RouterLinkActive} from "@angular/router";
 import {TranslateModule} from "@ngx-translate/core";
-import {PlanetsOverallStatsModule} from "./modules/planets-overall-stats/planets-overall-stats.module";
-import {StatsPanelComponent} from "./modules/planets-overall-stats/component/stats-panel/stats-panel.component";
+import {PlanetsListStatsModule} from "./modules/planets-list-stats/planets-list-stats.module";
+import {StatsPanelComponent} from "./modules/planets-list-stats/component/stats-panel/stats-panel.component";
 
 @NgModule({
     imports: [
@@ -12,7 +12,7 @@ import {StatsPanelComponent} from "./modules/planets-overall-stats/component/sta
         RouterLink,
         RouterLinkActive,
         TranslateModule,
-        PlanetsOverallStatsModule
+        PlanetsListStatsModule
     ],
     providers: [],
     bootstrap: [StatsPanelComponent]
