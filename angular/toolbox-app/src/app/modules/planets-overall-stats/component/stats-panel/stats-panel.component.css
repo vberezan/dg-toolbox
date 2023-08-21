@@ -1,3 +1,5 @@
-div > p {
-    color: #fff;
+.resource > span.value {
+    float: left;
+    margin-left: 2px;
+    line-height: 18px;
 }
