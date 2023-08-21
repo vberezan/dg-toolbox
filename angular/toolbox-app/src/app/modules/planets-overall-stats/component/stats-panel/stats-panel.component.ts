@@ -14,7 +14,6 @@ import {ResourceTotals} from "../../../original-ui-parser/model/stats-panel/reso
 export class StatsPanelComponent implements AfterViewInit, OnInit {
     private uiAPI: DarkGalaxyAPIService = inject(DarkGalaxyAPIService);
     protected stats: StatsPanel;
-
     ngOnInit() {
         let planets: PlanetSummary[] = this.uiAPI.planetsSummaries();
         this.stats = this.extractStats(planets);
@@ -22,6 +21,10 @@ export class StatsPanelComponent implements AfterViewInit, OnInit {
     }
 
     ngAfterViewInit(): void {
+    }
+
+    generateRandom(): number {
+        return  Math.floor(1000000) * Math.random();
     }
 
     private extractStats(planets: PlanetSummary[]): StatsPanel  {
