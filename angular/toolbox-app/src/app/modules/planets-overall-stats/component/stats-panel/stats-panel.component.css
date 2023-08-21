@@ -1,4 +1,8 @@
-.resource > span.value {
+.resource > img.dgt-resource-img {
+    float: left;
+}
+
+.resource > span.dgt-value {
     float: left;
     margin-left: 2px;
     line-height: 18px;
