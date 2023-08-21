@@ -16,15 +16,20 @@
     line-height: 20px;
 }
 
-.dgt-stats-totals-table td.dgt-padding-xs {
+.dgt-stats-totals-table td.dgt-padding-right-xs {
     padding-right: 10px;
 }
 
-.dgt-stats-totals-table td.dgt-padding-xl {
-    padding-right: 30px;
+.dgt-stats-totals-table td.dgt-padding-right-xl {
+    padding-right: 10px;
+    border-right: 1px solid #ffffff;
 }
 
-.dgt-stats-totals-table td.no-padding {
+.dgt-stats-totals-table td.dgt-padding-left-xs {
+    padding-left: 10px;
+}
+
+.dgt-stats-totals-table td.dgt-no-padding-right {
     padding-right: 0 !important;
 }
 
