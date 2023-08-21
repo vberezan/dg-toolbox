@@ -1,4 +1,4 @@
-export class StatsPanel {
+export class ResourceTotals {
     private _totalGround: number = 0;
     private _totalOrbit: number = 0;
     private _totalMetal: number = 0;
