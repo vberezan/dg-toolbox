@@ -1,5 +1,5 @@
 // ==UserScript==
-// @name	     DG Toolbox
+// @name         DarkGalaxy Toolbox
 // @version      0.0.1.alpha
 // @namespace    dg-toolbox
 // @homepage     https://github.com/vberezan/dg-toolbox
