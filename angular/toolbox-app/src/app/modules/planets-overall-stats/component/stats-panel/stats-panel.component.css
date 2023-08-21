@@ -1,3 +1,10 @@
+.dgt-stats-totals-table,
+.dgt-stats-totals-table th,
+.dgt-stats-totals-table td,
+.dgt-stats-totals-table tr {
+    border-collapse: collapse;
+}
+
 .dgt-stats-totals-table th {
     min-width: 50px;
 }
