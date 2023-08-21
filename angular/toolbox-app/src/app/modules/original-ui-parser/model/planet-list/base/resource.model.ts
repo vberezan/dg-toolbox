@@ -4,7 +4,6 @@ export class Resource {
     private _abundance: number = 0;
     private _production: number = 0;
 
-
     get name(): string {
         return this._name;
     }

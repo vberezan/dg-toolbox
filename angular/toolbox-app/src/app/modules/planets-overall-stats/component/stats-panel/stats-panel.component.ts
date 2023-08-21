@@ -1,26 +1,22 @@
-import {AfterViewInit, Component, inject, Inject, OnInit} from '@angular/core';
-import {DOCUMENT} from "@angular/common";
+import {Component, inject, OnInit} from '@angular/core';
 import {DarkGalaxyAPIService} from "../../../original-ui-parser/service/dark-galaxy-api.service";
-import {PlanetSummary} from "../../../original-ui-parser/model/planet-summary.model";
-import {StatsPanel} from "../../../original-ui-parser/model/stats-panel/stats-panel.model";
-import {Resource} from "../../../original-ui-parser/model/resource.model";
-import {ResourceTotals} from "../../../original-ui-parser/model/stats-panel/resource-totals.model";
+import {PlanetSummary} from "../../../original-ui-parser/model/planet-list/planet-summary.model";
+import {StatsPanel} from "../../../original-ui-parser/model/planet-list/stats-panel/stats-panel.model";
+import {Resource} from "../../../original-ui-parser/model/planet-list/base/resource.model";
+import {ResourceStats} from "../../../original-ui-parser/model/planet-list/stats-panel/stats/resource-stats.model";
+import {PlanetStats} from "../../../original-ui-parser/model/planet-list/stats-panel/stats/planet-stats.model";
 
 @Component({
     selector: 'dg-toolbox-stats-panel',
     templateUrl: './stats-panel.component.html',
     styleUrls: ['./stats-panel.component.css']
 })
-export class StatsPanelComponent implements AfterViewInit, OnInit {
+export class StatsPanelComponent implements OnInit {
     private uiAPI: DarkGalaxyAPIService = inject(DarkGalaxyAPIService);
-    protected stats: StatsPanel;
+    protected statsPanel: StatsPanel;
     ngOnInit() {
         let planets: PlanetSummary[] = this.uiAPI.planetsSummaries();
-        this.stats = this.extractStats(planets);
-        console.log(this.stats);
-    }
-
-    ngAfterViewInit(): void {
+        this.statsPanel = this.extractStats(planets);
     }
 
     generateRandom(): number {
@@ -28,43 +24,50 @@ export class StatsPanelComponent implements AfterViewInit, OnInit {
     }
 
     private extractStats(planets: PlanetSummary[]): StatsPanel  {
-        let stats: StatsPanel = new StatsPanel();
-        stats.resourceTotals.set('all', new ResourceTotals());
+        let statsPanel: StatsPanel = new StatsPanel();
+        statsPanel.stats.set('all', new PlanetStats());
 
         planets.forEach((planet : PlanetSummary) => {
-            if (!stats.resourceTotals.has(planet.location[0])) {
-                stats.resourceTotals.set(planet.location[0], new ResourceTotals());
+            if (!statsPanel.stats.has(planet.location[0])) {
+                statsPanel.stats.set(planet.location[0], new PlanetStats());
             }
 
-            stats.resourceTotals.get('all').totalGround += planet.ground;
-            stats.resourceTotals.get(planet.location[0]).totalGround += planet.ground;
+            statsPanel.stats.get('all').workers.total += planet.worker.currentNumber;
+            statsPanel.stats.get(planet.location[0]).workers.total += planet.worker.currentNumber;
+            statsPanel.stats.get('all').workers.maximum += planet.worker.maximumNumber;
+            statsPanel.stats.get(planet.location[0]).workers.maximum += planet.worker.maximumNumber;
+            statsPanel.stats.get('all').soldiers.total += planet.soldier.currentNumber;
+            statsPanel.stats.get(planet.location[0]).soldiers.total += planet.soldier.currentNumber;
 
-            stats.resourceTotals.get('all').totalOrbit += planet.orbit;
-            stats.resourceTotals.get(planet.location[0]).totalOrbit += planet.orbit;
+            statsPanel.stats.get('all').resources.ground += planet.ground;
+            statsPanel.stats.get(planet.location[0]).resources.ground += planet.ground;
+
+            statsPanel.stats.get('all').resources.orbit += planet.orbit;
+            statsPanel.stats.get(planet.location[0]).resources.orbit += planet.orbit;
 
             planet.resources.forEach((resource : Resource) => {
                 switch (resource.name) {
                     case 'metal': {
-                        stats.resourceTotals.get('all').totalMetal += resource.quantity;
-                        stats.resourceTotals.get(planet.location[0]).totalMetal += resource.quantity;
+                        statsPanel.stats.get('all').resources.metal += resource.quantity;
+                        statsPanel.stats.get(planet.location[0]).resources.metal += resource.quantity;
 
                         break;
                     }
                     case 'mineral': {
-                        stats.resourceTotals.get('all').totalMineral += resource.quantity;
-                        stats.resourceTotals.get(planet.location[0]).totalMineral += resource.quantity;
+                        statsPanel.stats.get('all').resources.mineral += resource.quantity;
+                        statsPanel.stats.get(planet.location[0]).resources.mineral += resource.quantity;
 
                         break;
                     }
                     case 'food': {
-                        stats.resourceTotals.get('all').totalFood += resource.quantity;
-                        stats.resourceTotals.get(planet.location[0]).totalFood += resource.quantity;
+                        statsPanel.stats.get('all').resources.food += resource.quantity;
+                        statsPanel.stats.get(planet.location[0]).resources.food += resource.quantity;
 
                         break;
                     }
                     case 'energy': {
-                        stats.resourceTotals.get('all').totalEnergy += resource.quantity;
-                        stats.resourceTotals.get(planet.location[0]).totalEnergy += resource.quantity;
+                        statsPanel.stats.get('all').resources.energy += resource.quantity;
+                        statsPanel.stats.get(planet.location[0]).resources.energy += resource.quantity;
 
                         break;
                     }
@@ -72,7 +75,7 @@ export class StatsPanelComponent implements AfterViewInit, OnInit {
             })
         })
 
-        return stats;
+        return statsPanel;
     }
 
 }
