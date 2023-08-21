@@ -17,6 +17,10 @@
     padding-right: 10px;
 }
 
+.dgt-stats-totals-table td.no-padding {
+    padding-right: 0 !important;
+}
+
 .resource > img.dgt-resource-img {
     float: left;
 }
@@ -34,6 +38,7 @@
 
 .dgt-resource-td.left span.dgt-value {
     float: left !important;
+    padding-top: 2px;
 }
 
 .dgt-stats-panel {
