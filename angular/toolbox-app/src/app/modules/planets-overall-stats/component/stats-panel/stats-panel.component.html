@@ -3,28 +3,40 @@
         <table class="dgt-stats-totals-table">
             <tr *ngFor="let row of stats.resourceTotals | keyvalue">
                 <th>{{row.key | galaxyName}}</th>
-                <td class="dgt-resource-td">
+                <td class="dgt-resource-td medium">
                     <div class="dgt-resource resource metal">
                         <img class="dgt-resource-img" src="/images/units/small/metal.gif" title="Metal" width="17" height="17">
                         <span class="dgt-value">{{row.value.totalMetal | number:'1.0':'en-US'}}</span>
                     </div>
                 </td>
-                <td class="dgt-resource-td">
+                <td class="dgt-resource-td medium">
                     <div class="dgt-resource resource mineral">
                         <img class="dgt-resource-img" src="/images/units/small/mineral.gif" title="Mineral" width="17" height="17">
                         <span class="dgt-value">{{row.value.totalMineral | number:'1.0':'en-US'}}</span>
                     </div>
                 </td>
-                <td class="dgt-resource-td">
+                <td class="dgt-resource-td medium">
                     <div class="dgt-resource resource food">
                         <img class="dgt-resource-img" src="/images/units/small/food.gif" title="Food" width="17" height="17">
                         <span class="dgt-value">{{row.value.totalFood | number:'1.0':'en-US'}}</span>
                     </div>
                 </td>
-                <td class="dgt-resource-td">
+                <td class="dgt-resource-td medium">
                     <div class="dgt-resource resource energy">
                         <img class="dgt-resource-img" src="/images/units/small/energy.gif" title="Energy" width="17" height="17">
                         <span class="dgt-value">{{row.value.totalEnergy | number:'1.0':'en-US'}}</span>
+                    </div>
+                </td>
+                <td class="dgt-resource-td small">
+                    <div class="dgt-resource resource orbit">
+                        <img class="dgt-resource-img" src="/images/units/small/ground.gif" title="Ground" width="17" height="17">
+                        <span class="dgt-value">{{row.value.totalGround | number:'1.0':'en-US'}}</span>
+                    </div>
+                </td>
+                <td class="dgt-resource-td small">
+                    <div class="dgt-resource resource ground">
+                        <img class="dgt-resource-img" src="/images/units/small/orbit.gif" title="Orbit" width="17" height="17">
+                        <span class="dgt-value">{{row.value.totalOrbit | number:'1.0':'en-US'}}</span>
                     </div>
                 </td>
             </tr>
