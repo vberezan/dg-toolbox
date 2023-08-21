@@ -9,6 +9,12 @@
 
 .dgt-stats-totals-table th {
     min-width: 50px;
+    line-height: 20px;
+}
+
+.dgt-stats-totals-table td {
+    min-width: 100px;
+    line-height: 20px;
 }
 
 .resource > img.dgt-resource-img {
