@@ -23,7 +23,7 @@
 .dgt-stats-totals-table th.dgt-padding-right-xl,
 .dgt-stats-totals-table td.dgt-padding-right-xl {
     padding-right: 10px;
-    border-right: 2px solid rgba(0, 0, 0, 0.35)
+    border-right: 2px solid rgba(0, 0, 0, 0.35);
 }
 
 .dgt-stats-totals-table td.dgt-padding-left-xs {
