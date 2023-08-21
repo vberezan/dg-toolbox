@@ -12,17 +12,9 @@
     line-height: 20px;
 }
 
-.dgt-stats-totals-table th {
+.dgt-stats-totals-table td {
     line-height: 20px;
-}
-
-.dgt-stats-totals-table td.small {
-    min-width: 30px;
-}
-
-
-.dgt-stats-totals-table td.medium {
-    min-width: 100px;
+    padding-right: 10px;
 }
 
 .resource > img.dgt-resource-img {
