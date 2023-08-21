@@ -5,6 +5,7 @@ import {RouterLink, RouterLinkActive} from "@angular/router";
 import {TranslateModule} from "@ngx-translate/core";
 import {PlanetsListStatsModule} from "./modules/planets-list-stats/planets-list-stats.module";
 import {StatsPanelComponent} from "./modules/planets-list-stats/component/stats-panel/stats-panel.component";
+import {MenuComponent} from "./modules/navbar/component/menu-replacement/menu.component";
 
 @NgModule({
     imports: [
@@ -15,7 +16,7 @@ import {StatsPanelComponent} from "./modules/planets-list-stats/component/stats-
         PlanetsListStatsModule
     ],
     providers: [],
-    bootstrap: [StatsPanelComponent]
+    bootstrap: [StatsPanelComponent, MenuComponent]
 })
 export class AppModule {
     constructor() {

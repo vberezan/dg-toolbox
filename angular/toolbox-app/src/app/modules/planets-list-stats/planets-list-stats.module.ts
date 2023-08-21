@@ -9,12 +9,12 @@ import {GalaxyNameFormatterPipe} from './pipe/galaxy-name-formatter.pipe';
         StatsPanelComponent,
         GalaxyNameFormatterPipe
     ],
-    exports: [
-        StatsPanelComponent
-    ],
     imports: [
         CommonModule,
         BrowserModule
+    ],
+    exports: [
+        StatsPanelComponent
     ]
 })
 export class PlanetsListStatsModule {

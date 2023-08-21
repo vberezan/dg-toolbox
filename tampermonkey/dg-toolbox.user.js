@@ -50,7 +50,7 @@ function prepareAngularEnvironment() {
     document.head.appendChild(polyfills);
 
     let main = document.createElement('script');
-    main.src = 'https://cdn.jsdelivr.net/gh/vberezan/dg-toolbox/angular/toolbox-app/dist/toolbox-app/main.a763d8025c954d15.js';
+    main.src = 'https://cdn.jsdelivr.net/gh/vberezan/dg-toolbox/angular/toolbox-app/dist/toolbox-app/main.e69398c2c78e4614.js';
     main.type = 'module';
     document.head.appendChild(main);
 }
@@ -59,8 +59,13 @@ function preparePlanetsStats() {
     document.getElementById('planetList').prepend(document.createElement('dg-toolbox-stats-panel'));
 }
 
+function prepareNavbarReplacement() {
+    document.getElementById('content').prepend(document.createElement('dg-toolbox-navbar'));
+}
+
 (function() {
     replacePlanetsImages();
     prepareAngularEnvironment();
+    prepareNavbarReplacement();
     preparePlanetsStats();
 })();
