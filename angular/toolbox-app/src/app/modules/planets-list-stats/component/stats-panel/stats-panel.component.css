@@ -14,7 +14,14 @@
 
 .dgt-stats-totals-table td {
     line-height: 20px;
+}
+
+.dgt-stats-totals-table td.dgt-padding-xs {
     padding-right: 10px;
+}
+
+.dgt-stats-totals-table td.dgt-padding-xl {
+    padding-right: 30px;
 }
 
 .dgt-stats-totals-table td.no-padding {
