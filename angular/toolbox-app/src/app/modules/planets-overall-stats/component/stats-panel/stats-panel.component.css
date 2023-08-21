@@ -32,6 +32,10 @@
     line-height: 16px;
 }
 
+.dgt-resource-td.left span.dgt-value {
+    float: left !important;
+}
+
 .dgt-stats-panel {
     padding: 5px !important;
 }
