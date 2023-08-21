@@ -3,6 +3,9 @@
 .dgt-stats-totals-table td,
 .dgt-stats-totals-table tr {
     border-collapse: collapse;
+    display: block;
+    margin: 0;
+    padding: 0;
 }
 
 .dgt-stats-totals-table th {
@@ -14,7 +17,8 @@
 }
 
 .dgt-resource {
-    height: 13px !important;
+    height: 17px !important;
+    padding: 0;
 }
 
 .resource > span.dgt-value {
