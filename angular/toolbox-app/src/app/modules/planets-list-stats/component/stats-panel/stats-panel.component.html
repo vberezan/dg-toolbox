@@ -2,8 +2,8 @@
     <div class="dgt-stats-totals">
         <table class="dgt-stats-totals-table">
             <tr *ngFor="let row of panel.stats | keyvalue">
-                <th>{{row.key | galaxyNameFormatter}}</th>
-                <td class="dgt-resource-td medium dgt-padding-right-xs">
+                <th class="dgt-padding-right-xl">{{row.key | galaxyNameFormatter}}</th>
+                <td class="dgt-resource-td medium dgt-padding-right-xs dgt-padding-left-xs">
                     <div class="dgt-resource resource metal">
                         <img class="dgt-resource-img" src="/images/units/small/metal.gif" title="Metal" width="17" height="17">
                         <span class="dgt-value">{{row.value.resources.metal | number:'1.0':'en-US'}}</span>

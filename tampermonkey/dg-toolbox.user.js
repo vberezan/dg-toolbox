@@ -3,7 +3,7 @@
 // @version      0.0.1.alpha
 // @namespace    dg-toolbox
 // @homepage     https://github.com/vberezan/dg-toolbox
-// @supportURL     https://github.com/vberezan/dg-toolbox
+// @supportURL   https://github.com/vberezan/dg-toolbox
 // @downloadURL  https://raw.githubusercontent.com/vberezan/dg-toolbox/main/tampermonkey/dg-toolbox.user.js
 // @updateURL    https://raw.githubusercontent.com/vberezan/dg-toolbox/main/tampermonkey/dg-toolbox.user.js
 // @description  Revamp DarkGalaxy UI and some additional crafts. All of this to combine the classical DG experience with the modern web experience. This toolbox is supported only by modern browsers.
@@ -14,6 +14,7 @@
 // ==/UserScript==
 
 // change default images with cooler ones
+/ change default images with cooler ones
 function replacePlanetsImages() {
     const images = ['https://i.imgur.com/j1zNxcQ.png', 'https://i.imgur.com/6MgxGGq.png', 'https://i.imgur.com/oAbNyce.png', 'https://i.imgur.com/3qLpUXw.png', 'https://i.imgur.com/v7okzfK.png',
         'https://i.imgur.com/J6tgFgr.png', 'https://i.imgur.com/IlR9Gu5.png', 'https://i.imgur.com/K3Ql8bd.png', 'https://i.imgur.com/ylW5li6.png','https://i.imgur.com/uBnJ3NC.png',
@@ -50,7 +51,7 @@ function prepareAngularEnvironment() {
     document.head.appendChild(polyfills);
 
     let main = document.createElement('script');
-    main.src = 'https://cdn.jsdelivr.net/gh/vberezan/dg-toolbox/angular/toolbox-app/dist/toolbox-app/main.c8c724f9583b0f2b.js';
+    main.src = 'https://cdn.jsdelivr.net/gh/vberezan/dg-toolbox/angular/toolbox-app/dist/toolbox-app/main.14c648b64356376d.js';
     main.type = 'module';
     document.head.appendChild(main);
 }
