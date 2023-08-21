@@ -1,20 +1,90 @@
-<div>
-    <div class="resource metal">
-        <img class="dgt-resource-img" src="/images/units/small/metal.gif" title="Metal" width="17" height="17">
-        <span class="dgt-value">{{stats.totalMetal | number:'1.0':'en-US'}}</span>
+<div class="dgt-stats-panel">
+    <div class="dgt-stats-totals">
+        <table>
+            <tr>
+                <th>Total</th>
+                <td>
+                    <div class="resource metal">
+                        <img class="dgt-resource-img" src="/images/units/small/metal.gif" title="Metal" width="17" height="17">
+                        <span class="dgt-value">{{stats.totalMetal | number:'1.0':'en-US'}}</span>
+                    </div>
+                </td>
+                <td>
+                    <div class="resource mineral">
+                        <img class="dgt-resource-img" src="/images/units/small/mineral.gif" title="Mineral" width="17" height="17">
+                        <span class="dgt-value">{{stats.totalMineral | number:'1.0':'en-US'}}</span>
+                    </div>
+                </td>
+                <td>
+                    <div class="resource food">
+                        <img class="dgt-resource-img" src="/images/units/small/food.gif" title="Food" width="17" height="17">
+                        <span class="dgt-value">{{stats.totalFood | number:'1.0':'en-US'}}</span>
+                    </div>
+                </td>
+                <td>
+                    <div class="resource energy">
+                        <img class="dgt-resource-img" src="/images/units/small/energy.gif" title="Energy" width="17" height="17">
+                        <span class="dgt-value">{{stats.totalEnergy | number:'1.0':'en-US'}}</span>
+                    </div>
+                </td>
+            </tr>
+
+            <tr>
+                <th>G1</th>
+                <td>
+                    <div class="resource metal">
+                        <img class="dgt-resource-img" src="/images/units/small/metal.gif" title="Metal" width="17" height="17">
+                        <span class="dgt-value">{{stats.totalMetal | number:'1.0':'en-US'}}</span>
+                    </div>
+                </td>
+                <td>
+                    <div class="resource mineral">
+                        <img class="dgt-resource-img" src="/images/units/small/mineral.gif" title="Mineral" width="17" height="17">
+                        <span class="dgt-value">{{stats.totalMineral | number:'1.0':'en-US'}}</span>
+                    </div>
+                </td>
+                <td>
+                    <div class="resource food">
+                        <img class="dgt-resource-img" src="/images/units/small/food.gif" title="Food" width="17" height="17">
+                        <span class="dgt-value">{{stats.totalFood | number:'1.0':'en-US'}}</span>
+                    </div>
+                </td>
+                <td>
+                    <div class="resource energy">
+                        <img class="dgt-resource-img" src="/images/units/small/energy.gif" title="Energy" width="17" height="17">
+                        <span class="dgt-value">{{stats.totalEnergy | number:'1.0':'en-US'}}</span>
+                    </div>
+                </td>
+            </tr>
+
+            <tr>
+                <th>G13</th>
+                <td>
+                    <div class="resource metal">
+                        <img class="dgt-resource-img" src="/images/units/small/metal.gif" title="Metal" width="17" height="17">
+                        <span class="dgt-value">{{stats.totalMetal | number:'1.0':'en-US'}}</span>
+                    </div>
+                </td>
+                <td>
+                    <div class="resource mineral">
+                        <img class="dgt-resource-img" src="/images/units/small/mineral.gif" title="Mineral" width="17" height="17">
+                        <span class="dgt-value">{{stats.totalMineral | number:'1.0':'en-US'}}</span>
+                    </div>
+                </td>
+                <td>
+                    <div class="resource food">
+                        <img class="dgt-resource-img" src="/images/units/small/food.gif" title="Food" width="17" height="17">
+                        <span class="dgt-value">{{stats.totalFood | number:'1.0':'en-US'}}</span>
+                    </div>
+                </td>
+                <td>
+                    <div class="resource energy">
+                        <img class="dgt-resource-img" src="/images/units/small/energy.gif" title="Energy" width="17" height="17">
+                        <span class="dgt-value">{{stats.totalEnergy | number:'1.0':'en-US'}}</span>
+                    </div>
+                </td>
+            </tr>
+        </table>
     </div>
-    <div class="resource mineral">
-        <img class="dgt-resource-img" src="/images/units/small/mineral.gif" title="Mineral" width="17" height="17">
-        <span class="dgt-value">{{stats.totalMineral | number:'1.0':'en-US'}}</span>
-    </div>
-    <div class="resource food">
-        <img class="dgt-resource-img" src="/images/units/small/food.gif" title="Food" width="17" height="17">
-        <span class="dgt-value">{{stats.totalFood | number:'1.0':'en-US'}}</span>
-    </div>
-    <div class="resource energy">
-        <img class="dgt-resource-img" src="/images/units/small/energy.gif" title="Energy" width="17" height="17">
-        <span class="dgt-value">{{stats.totalEnergy | number:'1.0':'en-US'}}</span>
-    </div>
-    <p>Total Ground: {{stats.totalGround}}</p>
-    <p>Total Orbit: {{stats.totalOrbit}}</p>
+
 </div>
