@@ -1,4 +1,4 @@
-import {AfterViewInit, Component, inject, Inject} from '@angular/core';
+import {AfterViewInit, Component, inject, Inject, OnInit} from '@angular/core';
 import {DOCUMENT} from "@angular/common";
 import {DarkGalaxyAPIService} from "../../../original-ui-parser/service/dark-galaxy-api.service";
 import {PlanetSummary} from "../../../original-ui-parser/model/planet-summary.model";
@@ -10,16 +10,17 @@ import {Resource} from "../../../original-ui-parser/model/resource.model";
     templateUrl: './stats-panel.component.html',
     styleUrls: ['./stats-panel.component.css']
 })
-export class StatsPanelComponent implements AfterViewInit {
+export class StatsPanelComponent implements AfterViewInit, OnInit {
     private uiAPI: DarkGalaxyAPIService = inject(DarkGalaxyAPIService);
     protected stats: StatsPanel;
 
-    ngAfterViewInit(): void {
+    ngOnInit() {
         let planets: PlanetSummary[] = this.uiAPI.planetsSummaries();
-
         this.stats = this.extractStats(planets);
         console.log(this.stats);
+    }
 
+    ngAfterViewInit(): void {
     }
 
     private extractStats(planets: PlanetSummary[]): StatsPanel  {
