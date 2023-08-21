@@ -36,8 +36,7 @@
     line-height: 16px;
 }
 
-.dgt-resource-td.left span.dgt-value {
-    float: left !important;
+.dgt-resource-td.dgt-resource-no-image span.dgt-value {
     padding-top: 2px;
 }
 
