@@ -10,10 +10,10 @@
 .dgt-navbar-tab a {
     display: block;
     padding-left: 30px;
-    padding-top: 6px;
+    padding-top: 0;
     font-family: DarkGalaxy, sans-serif;
     font-size: 25px;
-    line-height: 25px;
-    height: 36px;
+    line-height: 40px;
+    height: 40px;
     color: #eee;
 }

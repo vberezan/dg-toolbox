@@ -2,7 +2,6 @@ import {NgModule} from '@angular/core';
 import {BrowserModule} from '@angular/platform-browser';
 
 import {RouterLink, RouterLinkActive} from "@angular/router";
-import {TranslateModule} from "@ngx-translate/core";
 import {PlanetsListStatsModule} from "./modules/planets-list-stats/planets-list-stats.module";
 import {StatsPanelComponent} from "./modules/planets-list-stats/component/stats-panel/stats-panel.component";
 import {MenuComponent} from "./modules/navbar/component/menu-replacement/menu.component";
@@ -12,7 +11,6 @@ import {MenuComponent} from "./modules/navbar/component/menu-replacement/menu.co
         BrowserModule,
         RouterLink,
         RouterLinkActive,
-        TranslateModule,
         PlanetsListStatsModule
     ],
     providers: [],
