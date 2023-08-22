@@ -26,8 +26,9 @@ export class PlanetListService {
 
                 resource.name = value.parentElement.className.split(/\s+/)[2];
                 resource.quantity = parseInt(resourceParts[0].replace(/,/g, ''));
-                resource.abundance = parseInt(resourceParts[1].substring(1, resourceParts[1].length - 1).replace(/,/g, ''));
-                resource.production = parseInt(resourceParts[2].replace(/,/g, ''));
+                resource.production = parseInt(resourceParts[1].substring(1, resourceParts[1].length - 1).replace(/,/g, ''));
+                resource.abundance = parseInt(resourceParts[2].replace(/,/g, ''));
+
                 resources.push(resource);
             });
             planetSummary.resources = resources;
