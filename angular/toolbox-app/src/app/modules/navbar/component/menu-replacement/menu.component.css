@@ -7,12 +7,14 @@
     list-style-type: none;
     padding: 0 !important;
     display: flex;
+    border: 1px solid #7a7a7a;
 }
 
 .dgt-navbar-tab {
     float: left;
     flex: auto;
-    background: rgba(75, 75, 75, 0.6);
+    background: rgba(75, 75, 75, 1);
+    text-align: center;
 }
 
 .dgt-navbar-tab fa-icon {
