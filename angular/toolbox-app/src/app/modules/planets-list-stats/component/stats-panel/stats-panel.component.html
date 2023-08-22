@@ -1,7 +1,7 @@
 <div class="dgt-stats-panel">
     <div class="dgt-stats-totals">
         <table class="dgt-stats-totals-table">
-            <tr *ngFor="let row of panel.stats | keyvalue; index as i;" [ngClass]="{'dgt-stats-totals-last-row': i == panel.stats.size,'dgt-padding-bottom-xs': i == (panel.stats.size - 1)}">
+            <tr *ngFor="let row of panel.stats | keyvalue; index as i;" [ngClass]="{'dgt-stats-totals-last-row': i == (panel.stats.size-1),'dgt-padding-bottom-xs': i == (panel.stats.size - 2)}">
                 <th class="dgt-padding-right-xl">{{row.key | galaxyNameFormatter}}</th>
                 <td class="dgt-resource-td medium dgt-padding-right-xs dgt-padding-left-xs">
                     <div class="dgt-resource resource metal">
