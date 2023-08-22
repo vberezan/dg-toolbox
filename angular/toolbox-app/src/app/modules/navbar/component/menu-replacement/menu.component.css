@@ -11,6 +11,9 @@
     float: left;
     min-width: 100px;
     background: rgba(75, 75, 75, 0.6);
+}
+
+.dgt-navbar-tab fa-icon {
     color: #eee;
 }
 
@@ -24,4 +27,5 @@
 
 .dgt-navbar-tab-link {
     width: 100%;
+    display: block;
 }
