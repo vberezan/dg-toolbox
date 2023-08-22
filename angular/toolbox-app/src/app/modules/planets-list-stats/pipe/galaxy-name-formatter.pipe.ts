@@ -9,7 +9,7 @@ export class GalaxyNameFormatterPipe implements PipeTransform {
     switch (value) {
       case 'all': return 'Total';
       case '0' : return 'Home'
-      default: return 'G' + value;
+      default: return 'G' + ('0' + value).slice(-2);
     }
   }
 

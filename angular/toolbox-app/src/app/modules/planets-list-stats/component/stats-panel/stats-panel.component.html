@@ -51,16 +51,10 @@
                     </div>
                 </td>
                 <td [ngClass]="{'dgt-padding-bottom-xs': i == (panel.stats.size - 2)}"
-                    class="dgt-resource-td medium dgt-no-padding-right dgt-padding-left-xs">
+                    class="dgt-resource-td medium dgt-padding-right-xs dgt-padding-left-xs">
                     <div class="dgt-resource resource worker">
                         <img class="dgt-resource-img" src="/images/units/small/worker.png" title="Worker" width="17" height="17">
                         <span class="dgt-value">{{row.value.workers.total | number:'1.0':'en-US'}} /</span>
-                    </div>
-                </td>
-                <td [ngClass]="{'dgt-padding-bottom-xs': i == (panel.stats.size - 2)}"
-                    class="dgt-resource-td medium dgt-resource-no-image dgt-padding-right-xs">
-                    <div class="dgt-resource resource worker">
-                        <span class="dgt-value">{{row.value.workers.maximum | number:'1.0':'en-US'}}</span>
                     </div>
                 </td>
 
