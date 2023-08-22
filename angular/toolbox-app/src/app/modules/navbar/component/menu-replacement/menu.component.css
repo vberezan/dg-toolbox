@@ -5,11 +5,13 @@
 
 .dgt-navbar-tab-container {
     list-style-type: none;
+    padding: 0 !important;
+    display: flex;
 }
 
 .dgt-navbar-tab {
     float: left;
-    min-width: 100px;
+    flex: auto;
     background: rgba(75, 75, 75, 0.6);
 }
 
