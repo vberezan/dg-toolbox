@@ -13,6 +13,7 @@ import {
     faTableCells as fasTableCells
 } from "@fortawesome/free-solid-svg-icons";
 import {RouterLink, RouterLinkActive} from "@angular/router";
+import {ApplicationRoutingModule} from "../application-routing/application-routing.module";
 
 @NgModule({
     declarations: [
@@ -23,7 +24,8 @@ import {RouterLink, RouterLinkActive} from "@angular/router";
         BrowserModule,
         FontAwesomeModule,
         RouterLinkActive,
-        RouterLink
+        RouterLink,
+        ApplicationRoutingModule
     ],
     exports: [
         MenuComponent

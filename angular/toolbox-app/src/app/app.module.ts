@@ -1,7 +1,7 @@
 import {NgModule} from '@angular/core';
 import {BrowserModule} from '@angular/platform-browser';
 
-import {RouterLink, RouterLinkActive, RouterModule} from "@angular/router";
+import {RouterLink, RouterLinkActive} from "@angular/router";
 import {PlanetsListStatsModule} from "./modules/planets-list-stats/planets-list-stats.module";
 import {StatsPanelComponent} from "./modules/planets-list-stats/component/stats-panel/stats-panel.component";
 import {MenuComponent} from "./modules/navbar/component/menu-replacement/menu.component";
@@ -15,8 +15,7 @@ import {FontAwesomeModule} from '@fortawesome/angular-fontawesome';
         RouterLinkActive,
         NavbarModule,
         PlanetsListStatsModule,
-        FontAwesomeModule,
-        RouterModule.forRoot([])
+        FontAwesomeModule
     ],
     providers: [],
     bootstrap: [StatsPanelComponent, MenuComponent]
