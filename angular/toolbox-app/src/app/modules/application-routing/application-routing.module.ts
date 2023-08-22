@@ -1,6 +1,7 @@
 import {NgModule} from '@angular/core';
 import {ActivatedRouteSnapshot, RouterModule, RouterStateSnapshot, Routes} from "@angular/router";
 import {MenuComponent} from "../navbar/component/menu-replacement/menu.component";
+import {StatsPanelComponent} from "../planets-list-stats/component/stats-panel/stats-panel.component";
 
 
 const routes: Routes = [{
@@ -54,6 +55,10 @@ const routes: Routes = [{
             }
         }
     ]
+}, {
+    path: '', children: [{
+        path: 'planets', component: StatsPanelComponent
+    }]
 }];
 
 @NgModule({
