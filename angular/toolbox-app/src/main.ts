@@ -1,8 +1,12 @@
 import {platformBrowserDynamic} from '@angular/platform-browser-dynamic';
+import {NavbarModule} from "./app/modules/navbar/navbar.module";
+import {PlanetsListStatsModule} from "./app/modules/planets-list-stats/planets-list-stats.module";
 
-import {AppModule} from './app/app.module';
+const platform = platformBrowserDynamic();
 
+platform.bootstrapModule(NavbarModule).catch(err => console.error(err));
 
-platformBrowserDynamic()
-    .bootstrapModule(AppModule)
-    .catch(err => console.error(err));
+if (window.location.pathname == '/planets') {
+    platform.bootstrapModule(PlanetsListStatsModule).catch(err => console.error(err));
+}
+

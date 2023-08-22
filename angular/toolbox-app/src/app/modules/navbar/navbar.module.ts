@@ -1,5 +1,4 @@
 import {NgModule} from '@angular/core';
-import {CommonModule} from '@angular/common';
 import {MenuComponent} from './component/menu-replacement/menu.component';
 import {FaIconLibrary, FontAwesomeModule} from "@fortawesome/angular-fontawesome";
 import {BrowserModule} from "@angular/platform-browser";
@@ -13,23 +12,21 @@ import {
     faTableCells as fasTableCells
 } from "@fortawesome/free-solid-svg-icons";
 import {RouterLink, RouterLinkActive} from "@angular/router";
-import {ApplicationRoutingModule} from "../application-routing/application-routing.module";
+import {ActiveTabDirective} from './directive/active-tab.directive';
 
 @NgModule({
     declarations: [
-        MenuComponent
+        MenuComponent,
+        ActiveTabDirective
     ],
     imports: [
-        CommonModule,
         BrowserModule,
         FontAwesomeModule,
         RouterLinkActive,
-        RouterLink,
-        ApplicationRoutingModule
+        RouterLink
     ],
-    exports: [
-        MenuComponent
-    ]
+    exports: [MenuComponent],
+    bootstrap: [MenuComponent]
 })
 export class NavbarModule {
     constructor(library: FaIconLibrary) {

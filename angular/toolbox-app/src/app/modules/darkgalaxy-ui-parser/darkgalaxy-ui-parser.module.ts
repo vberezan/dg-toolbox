@@ -11,9 +11,7 @@ import {PlanetListService} from "./service/planet-list/planet-list.service";
         PlanetListService,
         DarkgalaxyApiService
     ],
-    imports: [
-        CommonModule
-    ]
+    imports: [CommonModule]
 })
 export class DarkgalaxyUiParserModule {
 }

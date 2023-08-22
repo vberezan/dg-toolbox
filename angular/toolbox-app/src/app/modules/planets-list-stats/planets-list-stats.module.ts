@@ -1,26 +1,26 @@
 import {NgModule} from '@angular/core';
-import {CommonModule, DecimalPipe} from '@angular/common';
+import {DecimalPipe} from '@angular/common';
 import {StatsPanelComponent} from './component/stats-panel/stats-panel.component';
-import {BrowserModule} from "@angular/platform-browser";
 import {GalaxyNameFormatterPipe} from './pipe/galaxy-name-formatter.pipe';
-import { ResourceProductionFormatterPipe } from './pipe/resource-production-formatter.pipe';
+import {ResourceProductionFormatterPipe} from './pipe/resource-production-formatter.pipe';
+import {RouterLink, RouterLinkActive, RouterModule} from "@angular/router";
+import {BrowserModule} from "@angular/platform-browser";
 
 @NgModule({
+    imports: [
+        BrowserModule,
+        RouterLink,
+        RouterLinkActive,
+        RouterModule
+    ],
     declarations: [
         StatsPanelComponent,
         GalaxyNameFormatterPipe,
-        ResourceProductionFormatterPipe
+        ResourceProductionFormatterPipe,
     ],
-    providers: [
-      DecimalPipe
-    ],
-    imports: [
-        CommonModule,
-        BrowserModule
-    ],
-    exports: [
-        StatsPanelComponent
-    ]
+    providers: [DecimalPipe],
+    exports: [StatsPanelComponent],
+    bootstrap: [StatsPanelComponent]
 })
 export class PlanetsListStatsModule {
 }

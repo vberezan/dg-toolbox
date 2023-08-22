@@ -1,24 +1,9 @@
 import {NgModule} from '@angular/core';
-import {BrowserModule} from '@angular/platform-browser';
-
-import {RouterLink, RouterLinkActive} from "@angular/router";
-import {PlanetsListStatsModule} from "./modules/planets-list-stats/planets-list-stats.module";
-import {StatsPanelComponent} from "./modules/planets-list-stats/component/stats-panel/stats-panel.component";
-import {MenuComponent} from "./modules/navbar/component/menu-replacement/menu.component";
-import {NavbarModule} from "./modules/navbar/navbar.module";
-import {FontAwesomeModule} from '@fortawesome/angular-fontawesome';
 
 @NgModule({
-    imports: [
-        BrowserModule,
-        RouterLink,
-        RouterLinkActive,
-        NavbarModule,
-        PlanetsListStatsModule,
-        FontAwesomeModule
-    ],
+    imports: [],
     providers: [],
-    bootstrap: [StatsPanelComponent, MenuComponent]
+    bootstrap: []
 })
 export class AppModule {
     constructor() {

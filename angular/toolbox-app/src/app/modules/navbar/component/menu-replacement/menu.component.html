@@ -1,43 +1,43 @@
 <div class="dgt-navbar">
     <ul class="dgt-navbar-tab-container">
-        <li routerLinkActive="active" [routerLinkActiveOptions]="{exact:true}" class="dgt-navbar-tab">
-            <a [routerLink]="['/']" class="dgt-navbar-tab-link">
+        <li [tabName]="'home'" dgtActiveTab class="dgt-navbar-tab">
+            <a href="/" class="dgt-navbar-tab-link">
                 <fa-icon [icon]="['fas','house-chimney']"></fa-icon>
                 <span class="dgt-navbar-tab-text">home</span>
             </a>
         </li>
-        <li routerLinkActive="active" [routerLinkActiveOptions]="{exact:true}" class="dgt-navbar-tab">
-            <a [routerLink]="['/planets']" class="dgt-navbar-tab-link">
+        <li [tabName]="'planets'" dgtActiveTab class="dgt-navbar-tab">
+            <a href="/planets" class="dgt-navbar-tab-link">
                 <fa-icon [icon]="['fas','earth-americas']"></fa-icon>
                 <span class="dgt-navbar-tab-text">planets</span>
             </a>
         </li>
-        <li routerLinkActive="active" [routerLinkActiveOptions]="{exact:true}" class="dgt-navbar-tab">
-            <a [routerLink]="['/radar']" class="dgt-navbar-tab-link">
+        <li [tabName]="'radar'" dgtActiveTab class="dgt-navbar-tab">
+            <a href="/radar" class="dgt-navbar-tab-link">
                 <fa-icon [icon]="['fas','satellite-dish']"></fa-icon>
                 <span class="dgt-navbar-tab-text">radar</span>
             </a>
         </li>
-        <li routerLinkActive="active" [routerLinkActiveOptions]="{exact:true}" class="dgt-navbar-tab">
-            <a [routerLink]="['/fleets']" class="dgt-navbar-tab-link">
+        <li [tabName]="'fleets'" dgtActiveTab class="dgt-navbar-tab">
+            <a href="/fleets" class="dgt-navbar-tab-link">
                 <fa-icon [icon]="['fas','shuttle-space']"></fa-icon>
                 <span class="dgt-navbar-tab-text">fleets</span>
             </a>
         </li>
-        <li routerLinkActive="active" [routerLinkActiveOptions]="{exact:true}" class="dgt-navbar-tab">
-            <a [routerLink]="['/navigation']" class="dgt-navbar-tab-link">
+        <li [tabName]="'navigation'" dgtActiveTab class="dgt-navbar-tab">
+            <a href="/navigation" class="dgt-navbar-tab-link">
                 <fa-icon [icon]="['fas','table-cells']"></fa-icon>
                 <span class="dgt-navbar-tab-text">navigation</span>
             </a>
         </li>
-        <li routerLinkActive="active" [routerLinkActiveOptions]="{exact:true}" class="dgt-navbar-tab">
-            <a [routerLink]="['/research']" class="dgt-navbar-tab-link">
+        <li [tabName]="'research'" dgtActiveTab class="dgt-navbar-tab">
+            <a href="/research" class="dgt-navbar-tab-link">
                 <fa-icon [icon]="['fas','flask-vial']"></fa-icon>
                 <span class="dgt-navbar-tab-text">research</span>
             </a>
         </li>
-        <li routerLinkActive="active" [routerLinkActiveOptions]="{exact:true}" class="dgt-navbar-tab">
-            <a [routerLink]="['/alliances']" class="dgt-navbar-tab-link">
+        <li [tabName]="'alliances'" dgtActiveTab class="dgt-navbar-tab">
+            <a href="/alliances" class="dgt-navbar-tab-link">
                 <fa-icon [icon]="['fas','hand-fist']"></fa-icon>
                 <span class="dgt-navbar-tab-text">alliances</span>
             </a>
