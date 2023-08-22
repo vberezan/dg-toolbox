@@ -61,6 +61,10 @@ const routes: Routes = [{
     providers: [{
         provide: 'externalUrlRedirectResolver',
         useValue: (route: ActivatedRouteSnapshot, state: RouterStateSnapshot) => {
+            console.log(window.location.pathname);
+            console.log((route.data as any).externalUrl)
+
+
             if (window.location.pathname != (route.data as any).externalUrl) {
                 window.location.href = (route.data as any).externalUrl;
             }
