@@ -3,8 +3,7 @@ import {CommonModule} from '@angular/common';
 import {MenuComponent} from './component/menu-replacement/menu.component';
 import {FaIconLibrary, FontAwesomeModule} from "@fortawesome/angular-fontawesome";
 import {BrowserModule} from "@angular/platform-browser";
-import {faHouseChimney as fasHouseChimney} from "@fortawesome/free-solid-svg-icons";
-import {faEarthAmericas as fasEarthAmericas} from "@fortawesome/free-solid-svg-icons";
+import {faEarthAmericas as fasEarthAmericas, faHouseChimney as fasHouseChimney} from "@fortawesome/free-solid-svg-icons";
 
 
 @NgModule({
