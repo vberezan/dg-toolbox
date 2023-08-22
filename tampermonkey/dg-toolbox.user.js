@@ -33,7 +33,9 @@ function replacePlanetsImages() {
     }
 }
 
-function prepareAngularEnvironment() {
+///////////
+
+function setUpNgZone() {
     let style = document.createElement('link');
     style.href = 'https://cdn.jsdelivr.net/gh/vberezan/dg-toolbox/angular/toolbox-app/dist/toolbox-app/styles.53797446567d94e9.css';
     style.rel = 'stylesheet';
@@ -50,22 +52,29 @@ function prepareAngularEnvironment() {
     document.head.appendChild(polyfills);
 
     let main = document.createElement('script');
-    main.src = 'https://cdn.jsdelivr.net/gh/vberezan/dg-toolbox/angular/toolbox-app/dist/toolbox-app/main.4908924467caab9a.js';
+    main.src = 'https://cdn.jsdelivr.net/gh/vberezan/dg-toolbox/angular/toolbox-app/dist/toolbox-app/main.49a5b5f9d51f701e.js';
     main.type = 'module';
     document.head.appendChild(main);
 }
 
-function preparePlanetsStats() {
-    document.getElementById('planetList').prepend(document.createElement('dg-toolbox-stats-panel'));
+
+function setUpNavbarReplacement() {
+    if (document.getElementById('content')) {
+        document.getElementById('content').prepend(document.createElement('dg-toolbox-navbar'));
+        document.getElementById('tabpanel').remove();
+    }
 }
 
-function prepareNavbarReplacement() {
-    document.getElementById('content').prepend(document.createElement('dg-toolbox-navbar'));
+function setUpPlanetsListStats() {
+    if (document.getElementById('planetList')) {
+        document.getElementById('planetList').prepend(document.createElement('dg-toolbox-stats-panel'));
+    }
 }
 
 (function() {
     replacePlanetsImages();
-    prepareAngularEnvironment();
-    prepareNavbarReplacement();
-    preparePlanetsStats();
+
+    setUpNgZone();
+    setUpNavbarReplacement();
+    setUpPlanetsListStats();
 })();

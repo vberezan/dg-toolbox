@@ -1,3 +1,7 @@
+body {
+    visibility: hidden;
+}
+
 #content {
     width: 944px !important;
 }
