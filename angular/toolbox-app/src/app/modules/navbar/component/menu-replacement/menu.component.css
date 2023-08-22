@@ -17,6 +17,11 @@
     text-align: center;
 }
 
+.dgt-navbar-tab.active,
+.dgt-navbar-tab:hover {
+    background: rgba(53, 49, 49, 1);
+}
+
 .dgt-navbar-tab fa-icon {
     color: #eee;
     font-size: 15px;
