@@ -6,7 +6,7 @@ const platform = platformBrowserDynamic();
 
 platform.bootstrapModule(NavbarModule).catch(err => console.error(err));
 
-if (window.location.pathname == '/planets') {
+if (window.location.pathname.split(/\//g)[1] === 'planets') {
     platform.bootstrapModule(PlanetsListStatsModule).catch(err => console.error(err));
 }
 
