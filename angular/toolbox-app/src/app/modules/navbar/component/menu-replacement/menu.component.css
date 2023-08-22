@@ -17,14 +17,18 @@
 
 .dgt-navbar-tab fa-icon {
     color: #eee;
+    font-size: 15px;
+    margin-right: 3px;
+    display: inline-flex;
 }
 
 .dgt-navbar-tab-text {
     font-family: DarkGalaxy, sans-serif;
-    font-size: 25px;
-    line-height: 25px;
+    font-size: 20px;
+    line-height: 40px;
     color: #eee;
     text-transform: uppercase;
+    display: inline-flex;
 }
 
 .dgt-navbar-tab-link {
