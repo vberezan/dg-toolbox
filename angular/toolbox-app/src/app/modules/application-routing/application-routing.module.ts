@@ -10,7 +10,7 @@ const routes: Routes = [{
                 url: 'externalUrlRedirectResolver'
             },
             data: {
-                externalUrl: '/planets'
+                externalUrl: '/planets/'
             }
         },
         {
@@ -18,7 +18,7 @@ const routes: Routes = [{
                 url: 'externalUrlRedirectResolver'
             },
             data: {
-                externalUrl: '/radar'
+                externalUrl: '/radar/'
             }
         },
         {
@@ -26,7 +26,7 @@ const routes: Routes = [{
                 url: 'externalUrlRedirectResolver'
             },
             data: {
-                externalUrl: '/fleets'
+                externalUrl: '/fleets/'
             }
         },
         {
@@ -34,7 +34,7 @@ const routes: Routes = [{
                 url: 'externalUrlRedirectResolver'
             },
             data: {
-                externalUrl: '/navigation'
+                externalUrl: '/navigation/'
             }
         },
         {
@@ -42,7 +42,7 @@ const routes: Routes = [{
                 url: 'externalUrlRedirectResolver'
             },
             data: {
-                externalUrl: '/research'
+                externalUrl: '/research/'
             }
         },
         {
@@ -50,7 +50,7 @@ const routes: Routes = [{
                 url: 'externalUrlRedirectResolver'
             },
             data: {
-                externalUrl: '/alliances'
+                externalUrl: '/alliances/'
             }
         }
     ]
