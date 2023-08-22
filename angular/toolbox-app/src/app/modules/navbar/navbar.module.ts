@@ -3,9 +3,15 @@ import {CommonModule} from '@angular/common';
 import {MenuComponent} from './component/menu-replacement/menu.component';
 import {FaIconLibrary, FontAwesomeModule} from "@fortawesome/angular-fontawesome";
 import {BrowserModule} from "@angular/platform-browser";
-import {faHouseChimney as fasHouseChimney} from "@fortawesome/free-solid-svg-icons";
-import {faEarthAmericas as fasEarthAmericas} from "@fortawesome/free-solid-svg-icons";
-
+import {
+    faEarthAmericas as fasEarthAmericas,
+    faFlaskVial as fasFlaskVial,
+    faHandFist as fasHandFist,
+    faHouseChimney as fasHouseChimney,
+    faSatelliteDish as fasSatelliteDish,
+    faShuttleSpace as fasShuttleSpace,
+    faTableCells as fasTableCells
+} from "@fortawesome/free-solid-svg-icons";
 
 @NgModule({
     declarations: [
@@ -22,6 +28,6 @@ import {faEarthAmericas as fasEarthAmericas} from "@fortawesome/free-solid-svg-i
 })
 export class NavbarModule {
     constructor(library: FaIconLibrary) {
-        library.addIcons(fasHouseChimney, fasEarthAmericas);
+        library.addIcons(fasHouseChimney, fasEarthAmericas, fasSatelliteDish, fasShuttleSpace, fasTableCells, fasFlaskVial, fasHandFist);
     }
 }
