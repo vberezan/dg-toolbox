@@ -10,6 +10,7 @@
 // @match        https://*.darkgalaxy.com
 // @match        https://*.darkgalaxy.com/*
 // @author       Vlad Berezan
+// @run-at       document-start
 // @grant        GM_xmlhttpRequest
 // ==/UserScript==
 
@@ -72,11 +73,13 @@ function setUpPlanetsListStats() {
 }
 
 (function() {
-    document.body.style.visibility = 'hidden';
+    document.addEventListener("DOMContentLoaded", function(event) {
+        document.body.style.visibility = 'hidden';
 
-    setUpNgZone();
-    setUpNavbarReplacement();
-    setUpPlanetsListStats();
+        setUpNgZone();
+        setUpNavbarReplacement();
+        setUpPlanetsListStats();
 
-    replacePlanetsImages();
+        replacePlanetsImages();
+    });
 })();
