@@ -8,6 +8,8 @@
     padding: 0 !important;
     display: flex;
     border: 1px solid #7a7a7a;
+    border-top-left-radius: 10px;
+    border-top-right-radius: 10px;
 }
 
 .dgt-navbar-tab {
@@ -15,6 +17,16 @@
     flex: auto;
     background: rgba(75, 75, 75, 1);
     text-align: center;
+}
+
+.dgt-navbar-tab:first-child,
+.dgt-navbar-tab:first-child .dgt-navbar-tab-link {
+    border-top-left-radius: 10px;
+}
+
+.dgt-navbar-tab:last-child,
+.dgt-navbar-tab:last-child .dgt-navbar-tab-link {
+    border-top-right-radius: 10px;
 }
 
 .dgt-navbar-tab.active,
