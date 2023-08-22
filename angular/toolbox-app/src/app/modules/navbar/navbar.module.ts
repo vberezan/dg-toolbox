@@ -12,6 +12,7 @@ import {
     faShuttleSpace as fasShuttleSpace,
     faTableCells as fasTableCells
 } from "@fortawesome/free-solid-svg-icons";
+import {RouterLinkActive} from "@angular/router";
 
 @NgModule({
     declarations: [
@@ -20,7 +21,8 @@ import {
     imports: [
         CommonModule,
         BrowserModule,
-        FontAwesomeModule
+        FontAwesomeModule,
+        RouterLinkActive
     ],
     exports: [
         MenuComponent
