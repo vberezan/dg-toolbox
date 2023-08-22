@@ -36,26 +36,34 @@ export class StatsPanelService {
       planetSummary.resources.forEach((resource : Resource) => {
         switch (resource.name) {
           case 'metal': {
-            panel.stats.get('all').resources.metal += resource.quantity;
-            panel.stats.get(planetSummary.location[0]).resources.metal += resource.quantity;
+            panel.stats.get('all').resources.metalQuantity += resource.quantity;
+            panel.stats.get('all').resources.metalProduction += resource.production;
+            panel.stats.get(planetSummary.location[0]).resources.metalQuantity += resource.quantity;
+            panel.stats.get(planetSummary.location[0]).resources.metalProduction += resource.production;
 
             break;
           }
           case 'mineral': {
-            panel.stats.get('all').resources.mineral += resource.quantity;
-            panel.stats.get(planetSummary.location[0]).resources.mineral += resource.quantity;
+            panel.stats.get('all').resources.mineralQuantity += resource.quantity;
+            panel.stats.get('all').resources.mineralProduction += resource.production;
+            panel.stats.get(planetSummary.location[0]).resources.mineralQuantity += resource.quantity;
+            panel.stats.get(planetSummary.location[0]).resources.mineralProduction += resource.production;
 
             break;
           }
           case 'food': {
-            panel.stats.get('all').resources.food += resource.quantity;
-            panel.stats.get(planetSummary.location[0]).resources.food += resource.quantity;
+            panel.stats.get('all').resources.foodQuantity += resource.quantity;
+            panel.stats.get('all').resources.foodProduction += resource.production;
+            panel.stats.get(planetSummary.location[0]).resources.foodQuantity += resource.quantity;
+            panel.stats.get(planetSummary.location[0]).resources.foodProduction += resource.production;
 
             break;
           }
           case 'energy': {
-            panel.stats.get('all').resources.energy += resource.quantity;
-            panel.stats.get(planetSummary.location[0]).resources.energy += resource.quantity;
+            panel.stats.get('all').resources.energyQuantity += resource.quantity;
+            panel.stats.get('all').resources.energyProduction += resource.production;
+            panel.stats.get(planetSummary.location[0]).resources.energyQuantity += resource.quantity;
+            panel.stats.get(planetSummary.location[0]).resources.energyProduction += resource.production;
 
             break;
           }

@@ -30,7 +30,7 @@
 }
 
 .dgt-padding-bottom-xs {
-    padding-bottom: 2px;
+    padding-bottom: 2px !important;
 }
 
 .dgt-stats-totals-table td.dgt-padding-left-xs {
