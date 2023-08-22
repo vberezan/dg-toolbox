@@ -1,56 +1,56 @@
 <div class="dgt-stats-panel">
     <div class="dgt-stats-totals">
         <table class="dgt-stats-totals-table">
-            <tr *ngFor="let row of panel.stats | keyvalue; index as i;" [ngClass]="{'dgt-stats-totals-last-row': i == (panel.stats.size-1),'dgt-padding-bottom-xs': i == (panel.stats.size - 2)}">
-                <th class="dgt-padding-right-xl">{{row.key | galaxyNameFormatter}}</th>
-                <td class="dgt-resource-td medium dgt-padding-right-xs dgt-padding-left-xs">
+            <tr *ngFor="let row of panel.stats | keyvalue; index as i;" [ngClass]="{'dgt-stats-totals-last-row': i == (panel.stats.size-1)}">
+                <th [ngClass]="{'dgt-padding-bottom-xs': i == (panel.stats.size - 2)}" class="dgt-padding-right-xl">{{row.key | galaxyNameFormatter}}</th>
+                <td [ngClass]="{'dgt-padding-bottom-xs': i == (panel.stats.size - 2)}" class="dgt-resource-td medium dgt-padding-right-xs dgt-padding-left-xs">
                     <div class="dgt-resource resource metal">
                         <img class="dgt-resource-img" src="/images/units/small/metal.gif" title="Metal" width="17" height="17">
                         <span class="dgt-value">{{row.value.resources.metal | number:'1.0':'en-US'}}</span>
                     </div>
                 </td>
-                <td class="dgt-resource-td medium dgt-padding-right-xs">
+                <td [ngClass]="{'dgt-padding-bottom-xs': i == (panel.stats.size - 2)}" class="dgt-resource-td medium dgt-padding-right-xs">
                     <div class="dgt-resource resource mineral">
                         <img class="dgt-resource-img" src="/images/units/small/mineral.gif" title="Mineral" width="17" height="17">
                         <span class="dgt-value">{{row.value.resources.mineral | number:'1.0':'en-US'}}</span>
                     </div>
                 </td>
-                <td class="dgt-resource-td medium dgt-padding-right-xs">
+                <td [ngClass]="{'dgt-padding-bottom-xs': i == (panel.stats.size - 2)}" class="dgt-resource-td medium dgt-padding-right-xs">
                     <div class="dgt-resource resource food">
                         <img class="dgt-resource-img" src="/images/units/small/food.gif" title="Food" width="17" height="17">
                         <span class="dgt-value">{{row.value.resources.food | number:'1.0':'en-US'}}</span>
                     </div>
                 </td>
-                <td class="dgt-resource-td medium dgt-padding-right-xl">
+                <td [ngClass]="{'dgt-padding-bottom-xs': i == (panel.stats.size - 2)}" class="dgt-resource-td medium dgt-padding-right-xl">
                     <div class="dgt-resource resource energy">
                         <img class="dgt-resource-img" src="/images/units/small/energy.gif" title="Energy" width="17" height="17">
                         <span class="dgt-value">{{row.value.resources.energy | number:'1.0':'en-US'}}</span>
                     </div>
                 </td>
-                <td class="dgt-resource-td small dgt-padding-left-xs dgt-padding-right-xs">
+                <td [ngClass]="{'dgt-padding-bottom-xs': i == (panel.stats.size - 2)}" class="dgt-resource-td small dgt-padding-left-xs dgt-padding-right-xs">
                     <div class="dgt-resource resource ground">
                         <img class="dgt-resource-img" src="/images/units/small/ground.gif" title="Ground" width="17" height="17">
                         <span class="dgt-value">{{row.value.resources.ground | number:'1.0':'en-US'}}</span>
                     </div>
                 </td>
-                <td class="dgt-resource-td small dgt-padding-right-xl">
+                <td [ngClass]="{'dgt-padding-bottom-xs': i == (panel.stats.size - 2)}" class="dgt-resource-td small dgt-padding-right-xl">
                     <div class="dgt-resource resource orbit">
                         <img class="dgt-resource-img" src="/images/units/small/orbit.gif" title="Orbit" width="17" height="17">
                         <span class="dgt-value">{{row.value.resources.orbit | number:'1.0':'en-US'}}</span>
                     </div>
                 </td>
-                <td class="dgt-resource-td medium dgt-no-padding-right dgt-padding-left-xs">
+                <td [ngClass]="{'dgt-padding-bottom-xs': i == (panel.stats.size - 2)}" class="dgt-resource-td medium dgt-no-padding-right dgt-padding-left-xs">
                     <div class="dgt-resource resource worker">
                         <img class="dgt-resource-img" src="/images/units/small/worker.png" title="Worker" width="17" height="17">
                         <span class="dgt-value">{{row.value.workers.total | number:'1.0':'en-US'}} /</span>
                     </div>
                 </td>
-                <td class="dgt-resource-td medium dgt-resource-no-image dgt-padding-right-xs">
+                <td [ngClass]="{'dgt-padding-bottom-xs': i == (panel.stats.size - 2)}" class="dgt-resource-td medium dgt-resource-no-image dgt-padding-right-xs">
                     <div class="dgt-resource resource worker">
                         <span class="dgt-value">{{row.value.workers.maximum | number:'1.0':'en-US'}}</span>
                     </div>
                 </td>
-                <td class="dgt-resource-td medium dgt-padding-right-xs">
+                <td [ngClass]="{'dgt-padding-bottom-xs': i == (panel.stats.size - 2)}" class="dgt-resource-td medium dgt-padding-right-xs">
                     <div class="dgt-resource resource soldier">
                         <img class="dgt-resource-img" src="/images/units/small/soldier.png" title="Soldier" width="17" height="17">
                         <span class="dgt-value">{{row.value.soldiers.total | number:'1.0':'en-US'}}</span>
