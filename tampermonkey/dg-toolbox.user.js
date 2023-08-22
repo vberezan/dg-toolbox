@@ -37,7 +37,7 @@ function replacePlanetsImages() {
 
 function setUpNgZone() {
     let style = document.createElement('link');
-    style.href = 'https://cdn.jsdelivr.net/gh/vberezan/dg-toolbox/angular/toolbox-app/dist/toolbox-app/styles.53797446567d94e9.css';
+    style.href = 'https://cdn.jsdelivr.net/gh/vberezan/dg-toolbox/angular/toolbox-app/dist/toolbox-app/styles.954df3b53ce5ab5a.css';
     style.rel = 'stylesheet';
     document.head.appendChild(style);
 
@@ -52,7 +52,7 @@ function setUpNgZone() {
     document.head.appendChild(polyfills);
 
     let main = document.createElement('script');
-    main.src = 'https://cdn.jsdelivr.net/gh/vberezan/dg-toolbox/angular/toolbox-app/dist/toolbox-app/main.49a5b5f9d51f701e.js';
+    main.src = 'https://cdn.jsdelivr.net/gh/vberezan/dg-toolbox/angular/toolbox-app/dist/toolbox-app/main.450fd1b85456d844.js';
     main.type = 'module';
     document.head.appendChild(main);
 }
@@ -72,9 +72,11 @@ function setUpPlanetsListStats() {
 }
 
 (function() {
-    replacePlanetsImages();
+    document.body.style.visibility = 'hidden';
 
     setUpNgZone();
     setUpNavbarReplacement();
     setUpPlanetsListStats();
+
+    replacePlanetsImages();
 })();
