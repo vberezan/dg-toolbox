@@ -8,54 +8,54 @@
                     class="dgt-padding-right-xl">{{row.key | galaxyNameFormatter}}</th>
 
                 <td [ngClass]="{'dgt-padding-bottom-xs': i == (panel.stats.size - 2)}"
-                    class="dgt-resource-td medium dgt-padding-right-xs dgt-padding-left-xs">
+                    class="dgt-resource-td medium dgt-padding-right-xxs dgt-padding-left-xs">
                     <div class="dgt-resource resource metal">
                         <img class="dgt-resource-img" src="/images/units/small/metal.gif" title="Metal" width="17" height="17">
                         <span class="dgt-value">{{row.value.resources.metalQuantity | number:'1.0':'en-US'}}</span>
                     </div>
                 </td>
                 <td [ngClass]="{'dgt-padding-bottom-xs': i == (panel.stats.size - 2)}"
-                    class="dgt-resource-td medium dgt-resource-no-image dgt-padding-right-xs">
+                    class="dgt-resource-td medium dgt-padding-right-xs">
                     <div class="dgt-resource resource metal">
                         <span class="dgt-value">{{row.value.resources.metalProduction | resourceProductionFormatter}}</span>
                     </div>
                 </td>
 
-                <td [ngClass]="{'dgt-padding-bottom-xs': i == (panel.stats.size - 2)}" class="dgt-resource-td medium dgt-padding-right-xs">
+                <td [ngClass]="{'dgt-padding-bottom-xs': i == (panel.stats.size - 2)}" class="dgt-resource-td medium dgt-padding-right-xxs">
                     <div class="dgt-resource resource mineral">
                         <img class="dgt-resource-img" src="/images/units/small/mineral.gif" title="Mineral" width="17" height="17">
                         <span class="dgt-value">{{row.value.resources.mineralQuantity | number:'1.0':'en-US'}}</span>
                     </div>
                 </td>
                 <td [ngClass]="{'dgt-padding-bottom-xs': i == (panel.stats.size - 2)}"
-                    class="dgt-resource-td medium dgt-resource-no-image dgt-padding-right-xs">
-                    <div class="dgt-resource resource metal">
+                    class="dgt-resource-td medium dgt-padding-right-xs">
+                    <div class="dgt-resource resource mineral">
                         <span class="dgt-value">{{row.value.resources.mineralProduction | resourceProductionFormatter}}</span>
                     </div>
                 </td>
 
-                <td [ngClass]="{'dgt-padding-bottom-xs': i == (panel.stats.size - 2)}" class="dgt-resource-td medium dgt-padding-right-xs">
+                <td [ngClass]="{'dgt-padding-bottom-xs': i == (panel.stats.size - 2)}" class="dgt-resource-td medium dgt-padding-right-xxs">
                     <div class="dgt-resource resource food">
                         <img class="dgt-resource-img" src="/images/units/small/food.gif" title="Food" width="17" height="17">
                         <span class="dgt-value">{{row.value.resources.foodQuantity | number:'1.0':'en-US'}}</span>
                     </div>
                 </td>
                 <td [ngClass]="{'dgt-padding-bottom-xs': i == (panel.stats.size - 2)}"
-                    class="dgt-resource-td medium dgt-resource-no-image dgt-padding-right-xs">
-                    <div class="dgt-resource resource metal">
+                    class="dgt-resource-td medium dgt-padding-right-xs">
+                    <div class="dgt-resource resource food">
                         <span class="dgt-value">{{row.value.resources.foodProduction | resourceProductionFormatter}}</span>
                     </div>
                 </td>
 
-                <td [ngClass]="{'dgt-padding-bottom-xs': i == (panel.stats.size - 2)}" class="dgt-resource-td medium dgt-padding-right-xl">
+                <td [ngClass]="{'dgt-padding-bottom-xs': i == (panel.stats.size - 2)}" class="dgt-resource-td medium dgt-padding-right-xxs">
                     <div class="dgt-resource resource energy">
                         <img class="dgt-resource-img" src="/images/units/small/energy.gif" title="Energy" width="17" height="17">
                         <span class="dgt-value">{{row.value.resources.energyQuantity | number:'1.0':'en-US'}}</span>
                     </div>
                 </td>
                 <td [ngClass]="{'dgt-padding-bottom-xs': i == (panel.stats.size - 2)}"
-                    class="dgt-resource-td medium dgt-resource-no-image dgt-padding-right-xs">
-                    <div class="dgt-resource resource metal">
+                    class="dgt-resource-td medium dgt-padding-right-xl">
+                    <div class="dgt-resource resource energy">
                         <span class="dgt-value">{{row.value.resources.energyProduction | resourceProductionFormatter}}</span>
                     </div>
                 </td>
@@ -82,7 +82,7 @@
                 <!--                    </div>-->
                 <!--                </td>-->
                 <!--                <td [ngClass]="{'dgt-padding-bottom-xs': i == (panel.stats.size - 2)}"-->
-                <!--                    class="dgt-resource-td medium dgt-resource-no-image dgt-padding-right-xs">-->
+                <!--                    class="dgt-resource-td medium dgt-padding-right-xs">-->
                 <!--                    <div class="dgt-resource resource worker">-->
                 <!--                        <span class="dgt-value">{{row.value.workers.maximum | number:'1.0':'en-US'}}</span>-->
                 <!--                    </div>-->

@@ -19,6 +19,10 @@
     padding-right: 10px;
 }
 
+.dgt-stats-totals-table td.dgt-padding-right-xxs {
+    padding-right: 2px;
+}
+
 .dgt-stats-totals-table th.dgt-padding-right-xl,
 .dgt-stats-totals-table td.dgt-padding-right-xl {
     padding-right: 10px;
@@ -54,10 +58,6 @@
     float: right;
     margin-left: 3px;
     line-height: 16px;
-}
-
-.dgt-resource-td.dgt-resource-no-image span.dgt-value {
-    padding-top: 2px;
 }
 
 .dgt-stats-panel {
