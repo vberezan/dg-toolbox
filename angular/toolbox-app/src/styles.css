@@ -43,8 +43,8 @@ body {
 
 #planetList > #planetList .opacDarkBackground > .planetImage,
 #planetList > #planetList .opacDarkBackground > .planetImage img {
-    height: 87px;
-    width: 87px;
+    height: 86px;
+    width: 86px;
     float: left;
 }
 
@@ -83,11 +83,17 @@ body {
 #planetList .planetHeadSection {
     padding-right: 0;
     float: left;
-    width: calc(100% - 92px);
+    width: calc(100% - 86px);
 }
 
 #planetList .opacDarkBackground > .planetHeadSection:nth-child(2) {
     padding-top: 0;
+}
+
+#planetList .opacDarkBackground > .planetHeadSection:nth-child(5),
+#planetList .opacDarkBackground > .planetHeadSection:nth-child(6),
+#planetList .opacDarkBackground > .planetHeadSection:nth-child(7) {
+    width: 100% !important;
 }
 
 #planetList .planetHeadSection:last-child {
