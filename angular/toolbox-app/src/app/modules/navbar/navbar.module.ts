@@ -2,7 +2,6 @@ import {NgModule} from '@angular/core';
 import {MenuComponent} from './component/menu-replacement/menu.component';
 import {FontAwesomeModule} from "@fortawesome/angular-fontawesome";
 import {BrowserModule} from "@angular/platform-browser";
-import {RouterLink, RouterLinkActive} from "@angular/router";
 import {ActiveTabDirective} from './directive/active-tab.directive';
 
 @NgModule({
@@ -12,9 +11,7 @@ import {ActiveTabDirective} from './directive/active-tab.directive';
     ],
     imports: [
         BrowserModule,
-        FontAwesomeModule,
-        RouterLinkActive,
-        RouterLink
+        FontAwesomeModule
     ],
     exports: [MenuComponent],
     bootstrap: [MenuComponent]
