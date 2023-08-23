@@ -34,11 +34,19 @@ function replacePlanetsImages() {
     }
 }
 
+function applyCustomStyling() {
+    document.querySelectorAll('#planetList > #planetList').forEach((planet) => {
+        if (planet.querySelectorAll('.planetHeadSection').length > 3) {
+            planet.querySelector('.planetImage').classList.add('dgt-no-bottom-radius');
+        }
+    });
+}
+
 ///////////
 
 function setUpNgZone() {
     let style = document.createElement('link');
-    style.href = 'https://cdn.jsdelivr.net/gh/vberezan/dg-toolbox/angular/toolbox-app/dist/toolbox-app/styles.e7436d70aa65bb3e.css';
+    style.href = 'https://cdn.jsdelivr.net/gh/vberezan/dg-toolbox/angular/toolbox-app/dist/toolbox-app/styles.a6f7026282657790.css';
     style.rel = 'stylesheet';
     document.head.appendChild(style);
 
@@ -80,6 +88,7 @@ function setUpPlanetsListStats() {
         setUpNavbarReplacement();
         setUpPlanetsListStats();
 
+        applyCustomStyling();
         replacePlanetsImages();
     });
 })();

@@ -27,8 +27,8 @@ body {
     border-top-right-radius: 10px;
 }
 
-#planetList > #planetList .opacDarkBackground > .planetImage,
-#planetList > #planetList .opacDarkBackground > .planetImage > img {
+#planetList > #planetList .opacDarkBackground > .planetImage:not(.dgt-no-bottom-radius),
+#planetList > #planetList .opacDarkBackground > .planetImage:not(.dgt-no-bottom-radius) > img {
     border-bottom-left-radius: 10px;
     border-top-left-radius: 10px;
     height: 84px;
