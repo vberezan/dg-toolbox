@@ -7,7 +7,8 @@ import {
     faCoins as fasCoins,
     faSatellite as fasSatellite,
     faUtensils as fasUtensils,
-    faTreeCity as fasTreeCity
+    faTreeCity as fasTreeCity,
+    faPersonRifle as fasPersonRifle
 } from "@fortawesome/free-solid-svg-icons";
 import {faGem as farGem} from "@fortawesome/free-regular-svg-icons";
 
@@ -21,7 +22,7 @@ export class StatsPanelComponent implements OnInit {
     protected panel: StatsPanel;
 
     constructor(library: FaIconLibrary) {
-        library.addIcons(farGem, fasUtensils, fasCoins, fasBolt, fasSatellite, fasTreeCity);
+        library.addIcons(farGem, fasUtensils, fasCoins, fasBolt, fasSatellite, fasTreeCity, fasPersonRifle);
     }
 
     ngOnInit() {

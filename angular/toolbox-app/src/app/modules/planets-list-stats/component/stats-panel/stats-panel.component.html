@@ -23,7 +23,7 @@
 
                 <td [ngClass]="{'dgt-padding-bottom-xs': i == (panel.stats.size - 2)}" class="dgt-resource-td medium dgt-padding-right-xxs">
                     <div class="dgt-resource resource mineral">
-                        <fa-icon [icon]="['far','gem']" style="color: #ff5656"></fa-icon>
+                        <fa-icon [icon]="['far','gem']" style="color: #ff8484"></fa-icon>
                         <span class="dgt-value">{{row.value.resources.mineralQuantity | number:'1.0':'en-US'}}</span>
                     </div>
                 </td>
@@ -77,7 +77,7 @@
 
                 <td [ngClass]="{'dgt-padding-bottom-xs': i == (panel.stats.size - 2)}" class="dgt-resource-td medium dgt-padding-right-xs dgt-padding-left-xs">
                     <div class="dgt-resource resource soldier">
-                        <img class="dgt-resource-img" src="/images/units/small/soldier.png" title="Soldier" width="17" height="17">
+                        <fa-icon [icon]="['fas','person-rifle']" style="color: #d23a3a"></fa-icon>
                         <span class="dgt-value">{{row.value.soldiers.total | number:'1.0':'en-US'}}</span>
                     </div>
                 </td>
