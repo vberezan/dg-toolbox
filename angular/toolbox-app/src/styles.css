@@ -4,7 +4,7 @@ body {
 }
 
 .paddingMid {
-    padding: 1px !important;
+    padding: 0 !important;
 }
 
 .opacBackground {
@@ -16,7 +16,7 @@ body {
 }
 
 .seperatorSmall {
-    margin-bottom: 1px !important;
+    margin-bottom: 0 !important;
 }
 
 #content {
@@ -25,6 +25,10 @@ body {
 
 #contentBox #available {
     width: 552px !important;
+}
+
+.resource {
+    height: 16px !important;
 }
 
 #planetList > #planetList:last-child .opacDarkBackground,
@@ -57,4 +61,8 @@ body {
 
 #planetList > #planetList .opacDarkBackground {
     border-radius: 13px;
+}
+
+#planetList .planetImage {
+    margin-right: 1px !important;
 }
