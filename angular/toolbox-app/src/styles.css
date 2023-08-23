@@ -15,6 +15,10 @@ body {
     color: #0CA1E1 !important;
 }
 
+.metal {
+    color: #CCCCCC !important;
+}
+
 #contentBox>div.opacBackground.padding {
     padding: 8px !important;
 }

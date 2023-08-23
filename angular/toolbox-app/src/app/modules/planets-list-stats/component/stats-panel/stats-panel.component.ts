@@ -8,9 +8,9 @@ import {
     faSatellite as fasSatellite,
     faUtensils as fasUtensils,
     faTreeCity as fasTreeCity,
-    faPersonRifle as fasPersonRifle
+    faPersonRifle as fasPersonRifle,
+    faCubesStacked as fasCubesStacked
 } from "@fortawesome/free-solid-svg-icons";
-import {faGem as farGem} from "@fortawesome/free-regular-svg-icons";
 
 @Component({
     selector: 'dg-toolbox-stats-panel',
@@ -22,7 +22,7 @@ export class StatsPanelComponent implements OnInit {
     protected panel: StatsPanel;
 
     constructor(library: FaIconLibrary) {
-        library.addIcons(farGem, fasUtensils, fasCoins, fasBolt, fasSatellite, fasTreeCity, fasPersonRifle);
+        library.addIcons(fasCubesStacked, fasUtensils, fasCoins, fasBolt, fasSatellite, fasTreeCity, fasPersonRifle);
     }
 
     ngOnInit() {
