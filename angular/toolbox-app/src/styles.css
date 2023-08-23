@@ -2,6 +2,22 @@ body {
     visibility: hidden;
 }
 
+.paddingMid {
+    padding: 2px !important;
+}
+
+.opacBackground {
+    background: rgb(75, 75, 75) !important;
+}
+
+.lightBorder {
+    border: 1px solid rgb(75, 75, 75) !important;
+}
+
+.seperatorSmall {
+    margin-bottom: 1px !important;
+}
+
 #content {
     width: 944px !important;
 }
@@ -39,5 +55,5 @@ body {
 }
 
 #planetList > #planetList .opacDarkBackground {
-    border-radius: 10px;
+    border-radius: 13px;
 }
