@@ -39,10 +39,14 @@ body {
 #planetList > #planetList:last-child .opacDarkBackground,
 #fleetList,
 #fleetList > div:last-child,
-#contentBox,
-#contentBox > .opacBackground {
+#contentBox {
     border-bottom-left-radius: 5px;
     border-bottom-right-radius: 5px;
+}
+
+#contentBox > .opacBackground {
+  border-bottom-left-radius: 10px;
+  border-bottom-right-radius: 10px;
 }
 
 #planetList > #planetList .opacBackground {
@@ -66,7 +70,7 @@ body {
 }
 
 #planetList > #planetList .resource fa-icon {
-    font-size: 14px;
+    font-size: 12px;
 }
 
 #planetList > #planetList .opacDarkBackground > .planetImage,

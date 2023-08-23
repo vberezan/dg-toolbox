@@ -36,12 +36,18 @@
 
 .dgt-navbar-tab fa-icon {
     color: #eee;
-    font-size: 14px;
+    font-size: 24px;
     margin-right: 5px;
-    display: inline-flex;
+    display: block;
+    width: auto;
+    margin-top: 3px;
+    float: left;
+    padding-left: 36px;
+    margin-left: 18%;
 }
 
 .dgt-navbar-tab-text {
+    float: left;
     font-family: DarkGalaxy, sans-serif;
     font-size: 20px;
     line-height: 40px;
