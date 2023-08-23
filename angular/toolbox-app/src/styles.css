@@ -4,7 +4,7 @@ body {
 }
 
 .paddingMid {
-    padding: 2px !important;
+    padding: 1px !important;
 }
 
 .opacBackground {
@@ -16,7 +16,7 @@ body {
 }
 
 .seperatorSmall {
-    margin-bottom: 2px !important;
+    margin-bottom: 1px !important;
 }
 
 #content {
