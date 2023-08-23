@@ -12,7 +12,7 @@ body {
 }
 
 #planetList .paddingMid {
-    padding: 1px !important;
+    padding: 0 !important;
 }
 
 #planetList > #planetList:last-child .opacDarkBackground,
@@ -29,20 +29,20 @@ body {
 }
 
 #planetList .lightBorder {
-    border: 2px solid rgb(75, 75, 75) !important;
+    border: none;
 }
 
 #planetList .seperatorSmall {
-    margin-bottom: 1px !important;
+    margin-bottom: 0 !important;
 }
 
 #planetList .resource {
-    height: 16px !important;
+    height: 20px !important;
 }
 
 #planetList > #planetList .opacDarkBackground > .planetImage,
 #planetList > #planetList .opacDarkBackground > .planetImage img {
-    height: 82px;
+    height: 92px;
 }
 
 #planetList > #planetList .opacDarkBackground > .planetHeadSection:last-child > .opacBackground {
@@ -64,5 +64,17 @@ body {
 }
 
 #planetList .planetImage {
-    margin-right: 1px !important;
+    margin-right: 0 !important;
+}
+
+#planetList .planetHeadSection {
+    padding-right: 5px;
+}
+
+#planetList .planetHeadSection:first-child {
+    padding-top: 5px;
+}
+
+#planetList .planetHeadSection:last-child {
+    padding-bottom: 5px;
 }
