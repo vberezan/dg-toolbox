@@ -11,11 +11,11 @@ import {Resource} from "../../../darkgalaxy-ui-parser/model/common/resource.mode
 export class StatsPanelService {
   private dgAPI: DarkgalaxyApiService = inject(DarkgalaxyApiService);
 
-  public extractStats(): StatsPanel  {
+  public extractStats(): StatsPanel {
     let panel: StatsPanel = new StatsPanel();
     panel.stats.set('all', new PlanetStats());
 
-    this.dgAPI.planetsSummaries().forEach((planetSummary : PlanetSummary) => {
+    this.dgAPI.planetsSummaries().forEach((planetSummary: PlanetSummary) => {
       if (!panel.stats.has(planetSummary.location[0])) {
         panel.stats.set(planetSummary.location[0], new PlanetStats());
       }
@@ -33,7 +33,7 @@ export class StatsPanelService {
       panel.stats.get('all').resources.orbit += planetSummary.orbit;
       panel.stats.get(planetSummary.location[0]).resources.orbit += planetSummary.orbit;
 
-      planetSummary.resources.forEach((resource : Resource) => {
+      planetSummary.resources.forEach((resource: Resource) => {
         switch (resource.name) {
           case 'metal': {
             panel.stats.get('all').resources.metalQuantity += resource.quantity;

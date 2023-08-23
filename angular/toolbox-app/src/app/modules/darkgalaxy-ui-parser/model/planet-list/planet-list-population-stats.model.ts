@@ -1,29 +1,31 @@
 export class PopulationStats {
-    private _total: number = 0;
-    private _available: number = 0;
-    private _maximum: number = 0;
+  private _total: number = 0;
 
-    get total(): number {
-        return this._total;
-    }
+  get total(): number {
+    return this._total;
+  }
 
-    set total(value: number) {
-        this._total = value;
-    }
+  set total(value: number) {
+    this._total = value;
+  }
 
-    get available(): number {
-        return this._available;
-    }
+  private _available: number = 0;
 
-    set available(value: number) {
-        this._available = value;
-    }
+  get available(): number {
+    return this._available;
+  }
 
-    get maximum(): number {
-        return this._maximum;
-    }
+  set available(value: number) {
+    this._available = value;
+  }
 
-    set maximum(value: number) {
-        this._maximum = value;
-    }
+  private _maximum: number = 0;
+
+  get maximum(): number {
+    return this._maximum;
+  }
+
+  set maximum(value: number) {
+    this._maximum = value;
+  }
 }

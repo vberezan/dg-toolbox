@@ -1,93 +1,101 @@
 export class ResourceStats {
-    private _ground: number = 0;
-    private _orbit: number = 0;
-    private _metalQuantity: number = 0;
-    private _mineralQuantity: number = 0;
-    private _foodQuantity: number = 0;
-    private _energyQuantity: number = 0;
-    private _metalProduction: number = 0;
-    private _mineralProduction: number = 0;
-    private _foodProduction: number = 0;
-    private _energyProduction: number = 0;
+  private _ground: number = 0;
 
+  get ground(): number {
+    return this._ground;
+  }
 
-    get ground(): number {
-        return this._ground;
-    }
+  set ground(value: number) {
+    this._ground = value;
+  }
 
-    set ground(value: number) {
-        this._ground = value;
-    }
+  private _orbit: number = 0;
 
-    get orbit(): number {
-        return this._orbit;
-    }
+  get orbit(): number {
+    return this._orbit;
+  }
 
-    set orbit(value: number) {
-        this._orbit = value;
-    }
+  set orbit(value: number) {
+    this._orbit = value;
+  }
 
-    get metalQuantity(): number {
-        return this._metalQuantity;
-    }
+  private _metalQuantity: number = 0;
 
-    set metalQuantity(value: number) {
-        this._metalQuantity = value;
-    }
+  get metalQuantity(): number {
+    return this._metalQuantity;
+  }
 
-    get mineralQuantity(): number {
-        return this._mineralQuantity;
-    }
+  set metalQuantity(value: number) {
+    this._metalQuantity = value;
+  }
 
-    set mineralQuantity(value: number) {
-        this._mineralQuantity = value;
-    }
+  private _mineralQuantity: number = 0;
 
-    get foodQuantity(): number {
-        return this._foodQuantity;
-    }
+  get mineralQuantity(): number {
+    return this._mineralQuantity;
+  }
 
-    set foodQuantity(value: number) {
-        this._foodQuantity = value;
-    }
+  set mineralQuantity(value: number) {
+    this._mineralQuantity = value;
+  }
 
-    get energyQuantity(): number {
-        return this._energyQuantity;
-    }
+  private _foodQuantity: number = 0;
 
-    set energyQuantity(value: number) {
-        this._energyQuantity = value;
-    }
+  get foodQuantity(): number {
+    return this._foodQuantity;
+  }
 
-    get metalProduction(): number {
-        return this._metalProduction;
-    }
+  set foodQuantity(value: number) {
+    this._foodQuantity = value;
+  }
 
-    set metalProduction(value: number) {
-        this._metalProduction = value;
-    }
+  private _energyQuantity: number = 0;
 
-    get mineralProduction(): number {
-        return this._mineralProduction;
-    }
+  get energyQuantity(): number {
+    return this._energyQuantity;
+  }
 
-    set mineralProduction(value: number) {
-        this._mineralProduction = value;
-    }
+  set energyQuantity(value: number) {
+    this._energyQuantity = value;
+  }
 
-    get foodProduction(): number {
-        return this._foodProduction;
-    }
+  private _metalProduction: number = 0;
 
-    set foodProduction(value: number) {
-        this._foodProduction = value;
-    }
+  get metalProduction(): number {
+    return this._metalProduction;
+  }
 
-    get energyProduction(): number {
-        return this._energyProduction;
-    }
+  set metalProduction(value: number) {
+    this._metalProduction = value;
+  }
 
-    set energyProduction(value: number) {
-        this._energyProduction = value;
-    }
+  private _mineralProduction: number = 0;
+
+  get mineralProduction(): number {
+    return this._mineralProduction;
+  }
+
+  set mineralProduction(value: number) {
+    this._mineralProduction = value;
+  }
+
+  private _foodProduction: number = 0;
+
+  get foodProduction(): number {
+    return this._foodProduction;
+  }
+
+  set foodProduction(value: number) {
+    this._foodProduction = value;
+  }
+
+  private _energyProduction: number = 0;
+
+  get energyProduction(): number {
+    return this._energyProduction;
+  }
+
+  set energyProduction(value: number) {
+    this._energyProduction = value;
+  }
 }

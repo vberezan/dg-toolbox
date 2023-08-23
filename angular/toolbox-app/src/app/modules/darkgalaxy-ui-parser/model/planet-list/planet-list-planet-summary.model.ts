@@ -2,68 +2,73 @@ import {Resource} from "../common/resource.model";
 import {Population} from "../common/population.model";
 
 export class PlanetSummary {
-    private _location: string[];
-    private _name: string;
-    private _resources: Resource[] = [];
-    private _ground: number = 0;
-    private _orbit: number = 0;
-    private _workers: Population = new Population();
-    private _soldiers: Population = new Population();
+  private _location: string[];
 
+  get location(): string[] {
+    return this._location;
+  }
 
-    get location(): string[] {
-        return this._location;
-    }
+  set location(value: string[]) {
+    this._location = value;
+  }
 
-    set location(value: string[]) {
-        this._location = value;
-    }
+  private _name: string;
 
-    get name(): string {
-        return this._name;
-    }
+  get name(): string {
+    return this._name;
+  }
 
-    set name(value: string) {
-        this._name = value;
-    }
+  set name(value: string) {
+    this._name = value;
+  }
 
-    get resources(): Resource[] {
-        return this._resources;
-    }
+  private _resources: Resource[] = [];
 
-    set resources(value: Resource[]) {
-        this._resources = value;
-    }
+  get resources(): Resource[] {
+    return this._resources;
+  }
 
-    get ground(): number {
-        return this._ground;
-    }
+  set resources(value: Resource[]) {
+    this._resources = value;
+  }
 
-    set ground(value: number) {
-        this._ground = value;
-    }
+  private _ground: number = 0;
 
-    get orbit(): number {
-        return this._orbit;
-    }
+  get ground(): number {
+    return this._ground;
+  }
 
-    set orbit(value: number) {
-        this._orbit = value;
-    }
+  set ground(value: number) {
+    this._ground = value;
+  }
 
-    get workers(): Population {
-        return this._workers;
-    }
+  private _orbit: number = 0;
 
-    set workers(value: Population) {
-        this._workers = value;
-    }
+  get orbit(): number {
+    return this._orbit;
+  }
 
-    get soldiers(): Population {
-        return this._soldiers;
-    }
+  set orbit(value: number) {
+    this._orbit = value;
+  }
 
-    set soldiers(value: Population) {
-        this._soldiers = value;
-    }
+  private _workers: Population = new Population();
+
+  get workers(): Population {
+    return this._workers;
+  }
+
+  set workers(value: Population) {
+    this._workers = value;
+  }
+
+  private _soldiers: Population = new Population();
+
+  get soldiers(): Population {
+    return this._soldiers;
+  }
+
+  set soldiers(value: Population) {
+    this._soldiers = value;
+  }
 }

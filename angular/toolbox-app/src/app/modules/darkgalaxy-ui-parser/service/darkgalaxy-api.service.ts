@@ -3,13 +3,13 @@ import {PlanetListService} from "./planet-list/planet-list.service";
 import {PlanetSummary} from "../model/planet-list/planet-list-planet-summary.model";
 
 @Injectable({
-    providedIn: 'root'
+  providedIn: 'root'
 })
 export class DarkgalaxyApiService {
 
-    private planetListService : PlanetListService = inject(PlanetListService);
+  private planetListService: PlanetListService = inject(PlanetListService);
 
-    planetsSummaries(): PlanetSummary[] {
-        return this.planetListService.extractPlanetsSummaries();
-    }
+  planetsSummaries(): PlanetSummary[] {
+    return this.planetListService.extractPlanetsSummaries();
+  }
 }

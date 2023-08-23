@@ -1,62 +1,62 @@
 .dgt-navbar {
-    display: inline-table;
-    width: 100%;
+  display: inline-table;
+  width: 100%;
 }
 
 .dgt-navbar-tab-container {
-    list-style-type: none;
-    padding: 0 !important;
-    display: flex;
-    border: 1px solid #7a7a7a;
-    border-top-left-radius: 10px;
-    border-top-right-radius: 10px;
+  list-style-type: none;
+  padding: 0 !important;
+  display: flex;
+  border: 1px solid #7a7a7a;
+  border-top-left-radius: 10px;
+  border-top-right-radius: 10px;
 }
 
 .dgt-navbar-tab {
-    float: left;
-    flex: auto;
-    background: rgba(75, 75, 75, 1);
-    text-align: center;
+  float: left;
+  flex: auto;
+  background: rgba(75, 75, 75, 1);
+  text-align: center;
 }
 
 .dgt-navbar-tab:first-child,
 .dgt-navbar-tab:first-child .dgt-navbar-tab-link {
-    border-top-left-radius: 10px;
+  border-top-left-radius: 10px;
 }
 
 .dgt-navbar-tab:last-child,
 .dgt-navbar-tab:last-child .dgt-navbar-tab-link {
-    border-top-right-radius: 10px;
+  border-top-right-radius: 10px;
 }
 
 .dgt-navbar-tab.active,
 .dgt-navbar-tab:hover {
-    background: rgba(53, 49, 49, 1);
+  background: rgba(53, 49, 49, 1);
 }
 
 .dgt-navbar-tab fa-icon {
-    color: #eee;
-    font-size: 24px;
-    margin-right: 5px;
-    display: block;
-    width: auto;
-    margin-top: 4px;
-    float: left;
-    margin-left: 18%;
+  color: #eee;
+  font-size: 24px;
+  padding-right: 5px;
+  display: block;
+  width: auto;
+  padding-top: 4px;
+  float: left;
+  padding-left: 18%;
 }
 
 .dgt-navbar-tab-text {
-    float: left;
-    font-family: DarkGalaxy, sans-serif;
-    font-size: 20px;
-    line-height: 40px;
-    color: #eee;
-    text-transform: uppercase;
-    display: inline-flex;
-    text-shadow: -1px -1px 0 #000, 1px -1px 0 #000, -1px 1px 0 #000, 1px 1px 0 #000;
+  float: left;
+  font-family: DarkGalaxy, sans-serif;
+  font-size: 20px;
+  line-height: 40px;
+  color: #eee;
+  text-transform: uppercase;
+  display: inline-flex;
+  text-shadow: -1px -1px 0 #000, 1px -1px 0 #000, -1px 1px 0 #000, 1px 1px 0 #000;
 }
 
 .dgt-navbar-tab-link {
-    width: 100%;
-    display: block;
+  width: 100%;
+  display: block;
 }

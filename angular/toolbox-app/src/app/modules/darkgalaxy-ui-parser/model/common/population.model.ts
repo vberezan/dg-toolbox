@@ -1,30 +1,31 @@
 export class Population {
-    private _available: number = 0;
-    private _currentNumber: number = 0;
-    private _maximumNumber: number = 0;
+  private _available: number = 0;
 
+  get available(): number {
+    return this._available;
+  }
 
-    get available(): number {
-        return this._available;
-    }
+  set available(value: number) {
+    this._available = value;
+  }
 
-    set available(value: number) {
-        this._available = value;
-    }
+  private _currentNumber: number = 0;
 
-    get currentNumber(): number {
-        return this._currentNumber;
-    }
+  get currentNumber(): number {
+    return this._currentNumber;
+  }
 
-    set currentNumber(value: number) {
-        this._currentNumber = value;
-    }
+  set currentNumber(value: number) {
+    this._currentNumber = value;
+  }
 
-    get maximumNumber(): number {
-        return this._maximumNumber;
-    }
+  private _maximumNumber: number = 0;
 
-    set maximumNumber(value: number) {
-        this._maximumNumber = value;
-    }
+  get maximumNumber(): number {
+    return this._maximumNumber;
+  }
+
+  set maximumNumber(value: number) {
+    this._maximumNumber = value;
+  }
 }

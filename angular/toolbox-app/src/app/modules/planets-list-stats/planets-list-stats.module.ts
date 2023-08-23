@@ -7,18 +7,18 @@ import {ResourceProductionFormatterPipe} from './pipe/resource-production-format
 import {BrowserModule} from "@angular/platform-browser";
 
 @NgModule({
-    imports: [
-        BrowserModule,
-        FontAwesomeModule
-    ],
-    declarations: [
-        StatsPanelComponent,
-        GalaxyNameFormatterPipe,
-        ResourceProductionFormatterPipe,
-    ],
-    providers: [DecimalPipe],
-    exports: [StatsPanelComponent],
-    bootstrap: [StatsPanelComponent]
+  imports: [
+    BrowserModule,
+    FontAwesomeModule
+  ],
+  declarations: [
+    StatsPanelComponent,
+    GalaxyNameFormatterPipe,
+    ResourceProductionFormatterPipe,
+  ],
+  providers: [DecimalPipe],
+  exports: [StatsPanelComponent],
+  bootstrap: [StatsPanelComponent]
 })
 export class PlanetsListStatsModule {
 }

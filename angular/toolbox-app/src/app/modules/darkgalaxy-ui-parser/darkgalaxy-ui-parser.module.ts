@@ -5,13 +5,13 @@ import {PlanetListService} from "./service/planet-list/planet-list.service";
 
 
 @NgModule({
-    declarations: [],
-    exports: [],
-    providers: [
-        PlanetListService,
-        DarkgalaxyApiService
-    ],
-    imports: [CommonModule]
+  declarations: [],
+  exports: [],
+  providers: [
+    PlanetListService,
+    DarkgalaxyApiService
+  ],
+  imports: [CommonModule]
 })
 export class DarkgalaxyUiParserModule {
 }

@@ -3,30 +3,30 @@ import {StatsPanel} from "../../../darkgalaxy-ui-parser/model/planet-list/planet
 import {StatsPanelService} from "../../service/stats-panel/stats-panel.service";
 import {FaIconLibrary} from "@fortawesome/angular-fontawesome";
 import {
-    faBolt as fasBolt,
-    faCoins as fasCoins,
-    faSatellite as fasSatellite,
-    faCarrot as fasCarrot,
-    faTreeCity as fasTreeCity,
-    faPersonRifle as fasPersonRifle,
-    faCubesStacked as fasCubesStacked
+  faBolt as fasBolt,
+  faCarrot as fasCarrot,
+  faCoins as fasCoins,
+  faCubesStacked as fasCubesStacked,
+  faPersonRifle as fasPersonRifle,
+  faSatellite as fasSatellite,
+  faTreeCity as fasTreeCity
 } from "@fortawesome/free-solid-svg-icons";
 
 @Component({
-    selector: 'dg-toolbox-stats-panel',
-    templateUrl: './stats-panel.component.html',
-    styleUrls: ['./stats-panel.component.css']
+  selector: 'dg-toolbox-stats-panel',
+  templateUrl: './stats-panel.component.html',
+  styleUrls: ['./stats-panel.component.css']
 })
 export class StatsPanelComponent implements OnInit {
-    private statsPanelService: StatsPanelService = inject(StatsPanelService);
-    protected panel: StatsPanel;
+  protected panel: StatsPanel;
+  private statsPanelService: StatsPanelService = inject(StatsPanelService);
 
-    constructor(library: FaIconLibrary) {
-        library.addIcons(fasCubesStacked, fasCarrot, fasCoins, fasBolt, fasSatellite, fasTreeCity, fasPersonRifle);
-    }
+  constructor(library: FaIconLibrary) {
+    library.addIcons(fasCubesStacked, fasCarrot, fasCoins, fasBolt, fasSatellite, fasTreeCity, fasPersonRifle);
+  }
 
-    ngOnInit() {
-        this.panel = this.statsPanelService.extractStats();
-    }
+  ngOnInit() {
+    this.panel = this.statsPanelService.extractStats();
+  }
 
 }

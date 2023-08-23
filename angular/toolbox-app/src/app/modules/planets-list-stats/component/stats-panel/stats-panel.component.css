@@ -2,68 +2,68 @@
 .dgt-stats-totals-table th,
 .dgt-stats-totals-table td,
 .dgt-stats-totals-table tr {
-    border-collapse: collapse;
-    margin: 0;
-    padding: 0;
+  border-collapse: collapse;
+  margin: 0;
+  padding: 0;
 }
 
 .dgt-stats-totals-table th {
-    line-height: 20px;
+  line-height: 20px;
 }
 
 .dgt-stats-totals-table td {
-    line-height: 20px;
+  line-height: 20px;
 }
 
 .dgt-stats-totals-table td.dgt-padding-right-xs {
-    padding-right: 10px;
+  padding-right: 10px;
 }
 
 .dgt-stats-totals-table td.dgt-padding-right-xxs {
-    padding-right: 2px;
+  padding-right: 2px;
 }
 
 .dgt-stats-totals-table th.dgt-padding-right-xl,
 .dgt-stats-totals-table td.dgt-padding-right-xl {
-    padding-right: 10px;
-    border-right: 2px solid rgba(0, 0, 0, 0.25);
+  padding-right: 10px;
+  border-right: 2px solid rgba(0, 0, 0, 0.25);
 }
 
 .dgt-stats-totals-last-row {
-    border-top: 2px solid rgba(0, 0, 0, 0.25);
+  border-top: 2px solid rgba(0, 0, 0, 0.25);
 }
 
 .dgt-padding-bottom-xs {
-    padding-bottom: 2px !important;
+  padding-bottom: 2px !important;
 }
 
 .dgt-stats-totals-table td.dgt-padding-left-xs {
-    padding-left: 10px;
+  padding-left: 10px;
 }
 
 .dgt-stats-totals-table td.dgt-no-padding-right {
-    padding-right: 0 !important;
+  padding-right: 0 !important;
 }
 
 .resource > img.dgt-resource-img {
-    float: left;
+  float: left;
 }
 
 .dgt-resource {
-    height: 20px !important;
-    padding: 0;
+  height: 20px !important;
+  padding: 0;
 }
 
 .resource > span.dgt-value {
-    float: right;
-    padding-left: 4px;
-    line-height: 20px;
+  float: right;
+  padding-left: 4px;
+  line-height: 20px;
 }
 
 .dgt-stats-panel {
-    padding: 5px !important;
+  padding: 5px !important;
 }
 
 .dgt-resource fa-icon {
-    font-size: 14px !important;
+  font-size: 14px !important;
 }
