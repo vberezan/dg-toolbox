@@ -22,6 +22,6 @@ import {BrowserModule} from "@angular/platform-browser";
 })
 export class PlanetsListStatsModule implements OnInit{
   ngOnInit(): void {
-    console.log("%cDGT planet lists stats installed!", "font-size: 12px");
+    console.log("%cDGT - Planet lists stats installed!", "font-size: 12px");
   }
 }

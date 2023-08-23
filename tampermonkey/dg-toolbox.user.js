@@ -130,7 +130,7 @@ function setUpNgZone() {
     document.head.appendChild(polyfills);
 
     let main = document.createElement('script');
-    main.src = 'https://cdn.jsdelivr.net/gh/vberezan/dg-toolbox/angular/toolbox-app/dist/toolbox-app/main.f0cae6e1c08e3859.js';
+    main.src = 'https://cdn.jsdelivr.net/gh/vberezan/dg-toolbox/angular/toolbox-app/dist/toolbox-app/main.1e244b5437ec63c9.js';
     main.type = 'module';
     document.head.appendChild(main);
 }
@@ -158,10 +158,10 @@ function setUpPlanetsListStats() {
         setUpPlanetsListStats();
 
         applyCustomStyling();
-        console.log("%cDGT custom styling applied!", "font-size: 12px");
+        console.log("%cDGT - Custom styling applied!", "font-size: 12px");
         replaceIcons();
-        console.log("%cDGT icons replaced!", "font-size: 12px");
+        console.log("%cDGT - Icons replaced!", "font-size: 12px");
         replacePlanetsImages();
-        console.log("%cDGT planets images replaced!", "font-size: 12px");
+        console.log("%cDGT - Planets images replaced!", "font-size: 12px");
     });
 })();

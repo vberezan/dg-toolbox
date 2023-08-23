@@ -18,7 +18,7 @@ import {ActiveTabDirective} from './directive/active-tab.directive';
 })
 export class NavbarModule implements OnInit{
   ngOnInit(): void {
-    console.log("%cDGT navigation menu replacement installed!", "font-size: 12px");
+    console.log("%cDGT - Navigation menu replacement installed!", "font-size: 12px");
   }
 
 }
