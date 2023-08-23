@@ -19,7 +19,8 @@ body {
     border-bottom-right-radius: 10px;
 }
 
-#planetList > #planetList .opacDarkBackground > .planetImage {
+#planetList > #planetList .opacDarkBackground > .planetImage,
+#planetList > #planetList .opacDarkBackground > .planetImage > img {
     height: 84px;
 }
 
