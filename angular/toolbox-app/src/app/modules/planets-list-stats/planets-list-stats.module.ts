@@ -5,13 +5,15 @@ import {GalaxyNameFormatterPipe} from './pipe/galaxy-name-formatter.pipe';
 import {ResourceProductionFormatterPipe} from './pipe/resource-production-formatter.pipe';
 import {RouterLink, RouterLinkActive, RouterModule} from "@angular/router";
 import {BrowserModule} from "@angular/platform-browser";
+import {FontAwesomeModule} from "@fortawesome/angular-fontawesome";
 
 @NgModule({
     imports: [
         BrowserModule,
         RouterLink,
         RouterLinkActive,
-        RouterModule
+        RouterModule,
+        FontAwesomeModule
     ],
     declarations: [
         StatsPanelComponent,
