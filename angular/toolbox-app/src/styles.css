@@ -76,12 +76,21 @@ body {
     float: left;
 }
 
+
 #planetList > #planetList .opacDarkBackground > .planetHeadSection:last-child > .opacBackground {
     border-bottom-right-radius: 5px;
 }
 
 #planetList > #planetList .opacDarkBackground > .planetHeadSection.nameRow > .opacBackground {
     border-top-right-radius: 5px;
+}
+
+#planetList > #planetList .opacDarkBackground > .planetHeadSection.nameRow > .opacBackground .coords fa-icon {
+    padding-left: 5px;
+}
+
+#planetList > #planetList .opacDarkBackground > .planetHeadSection.nameRow > .opacBackground:nth-child(3) {
+    padding-right: 10px !important;
 }
 
 #planetList > #planetList .opacDarkBackground > .planetImage {
@@ -140,7 +149,8 @@ body {
     margin-top: 0 !important;
 }
 
-
+#planetList > #planetList .resourceLine .metal fa-icon,
+#planetList > #planetList .left.resource a,
 #planetList > #planetList .coords span,
 #planetList > #planetList .resource span {
     padding-left: 5px;
