@@ -61,6 +61,10 @@ body {
     height: 20px !important;
 }
 
+#planetList > #planetList .resource fa-icon {
+    font-size: 14px;
+}
+
 #planetList > #planetList .opacDarkBackground > .planetImage,
 #planetList > #planetList .opacDarkBackground > .planetImage img {
     height: 80px;

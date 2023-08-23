@@ -7,7 +7,8 @@ import {
     faHouseChimney as fasHouseChimney,
     faSatelliteDish as fasSatelliteDish,
     faJetFighterUp as fasJetFighterUp,
-    faChessBoard as fasChessBoard
+    faChessBoard as fasChessBoard,
+    faPersonDigging as fasPersonDigging
 } from "@fortawesome/free-solid-svg-icons";
 
 @Component({
@@ -19,7 +20,7 @@ export class MenuComponent implements AfterViewInit {
     private renderer: Renderer2 = inject(Renderer2);
 
     constructor(library: FaIconLibrary) {
-        library.addIcons(fasHouseChimney, fasEarthAmericas, fasSatelliteDish, fasJetFighterUp, fasChessBoard, fasFlaskVial, fasHandFist);
+        library.addIcons(fasHouseChimney, fasEarthAmericas, fasSatelliteDish, fasJetFighterUp, fasChessBoard, fasFlaskVial, fasHandFist, fasPersonDigging);
     }
 
     ngAfterViewInit(): void {
