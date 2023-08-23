@@ -1,3 +1,4 @@
+/* Override game rules section */
 body {
     visibility: hidden;
 }
@@ -15,7 +16,7 @@ body {
 }
 
 .seperatorSmall {
-    margin-bottom: 0px !important;
+    margin-bottom: 2px !important;
 }
 
 #content {
