@@ -38,7 +38,7 @@ function replacePlanetsImages() {
 
 function setUpNgZone() {
     let style = document.createElement('link');
-    style.href = 'https://cdn.jsdelivr.net/gh/vberezan/dg-toolbox/angular/toolbox-app/dist/toolbox-app/styles.0af697b2f02f2af6.css';
+    style.href = 'https://cdn.jsdelivr.net/gh/vberezan/dg-toolbox/angular/toolbox-app/dist/toolbox-app/styles.e7436d70aa65bb3e.css';
     style.rel = 'stylesheet';
     document.head.appendChild(style);
 
