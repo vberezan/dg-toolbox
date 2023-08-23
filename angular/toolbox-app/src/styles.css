@@ -58,6 +58,10 @@ body {
 }
 
 #planetList > #planetList .resource {
+    font-style: normal !important;
+}
+
+#planetList > #planetList .resource {
     height: 20px !important;
 }
 
