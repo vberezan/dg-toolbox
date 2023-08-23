@@ -9,7 +9,7 @@ export class ResourceProductionFormatterPipe implements PipeTransform {
     private decimalPipe: DecimalPipe = inject(DecimalPipe);
 
     transform(value: number): string {
-        return ' (+' + this.decimalPipe.transform(value, '1.0', 'en_US') + ')';
+        return ' [+' + this.decimalPipe.transform(value, '1.0', 'en_US') + ']';
     }
 
 }

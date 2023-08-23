@@ -2,7 +2,13 @@ import {Component, inject, OnInit} from '@angular/core';
 import {StatsPanel} from "../../../darkgalaxy-ui-parser/model/planet-list/planet-list-stats-panel.model";
 import {StatsPanelService} from "../../service/stats-panel/stats-panel.service";
 import {FaIconLibrary} from "@fortawesome/angular-fontawesome";
-import {faBolt as fasBolt, faCoins as fasCoins, faUtensils as fasUtensils} from "@fortawesome/free-solid-svg-icons";
+import {
+    faBolt as fasBolt,
+    faCoins as fasCoins,
+    faSatellite as fasSatellite,
+    faUtensils as fasUtensils,
+    faTreeCity as fasTreeCity
+} from "@fortawesome/free-solid-svg-icons";
 import {faGem as farGem} from "@fortawesome/free-regular-svg-icons";
 
 @Component({
@@ -15,7 +21,7 @@ export class StatsPanelComponent implements OnInit {
     protected panel: StatsPanel;
 
     constructor(library: FaIconLibrary) {
-        library.addIcons(farGem, fasUtensils, fasCoins, fasBolt);
+        library.addIcons(farGem, fasUtensils, fasCoins, fasBolt, fasSatellite, fasTreeCity);
     }
 
     ngOnInit() {

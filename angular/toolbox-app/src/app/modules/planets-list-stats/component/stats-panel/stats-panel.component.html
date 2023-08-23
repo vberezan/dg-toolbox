@@ -63,14 +63,14 @@
                 <td [ngClass]="{'dgt-padding-bottom-xs': i == (panel.stats.size - 2)}"
                     class="dgt-resource-td small dgt-padding-left-xs dgt-padding-right-xs">
                     <div class="dgt-resource resource ground">
-                        <img class="dgt-resource-img" src="/images/units/small/ground.gif" title="Ground" width="17" height="17">
+                        <fa-icon [icon]="['fas','tree-city']" style="color: #eee"></fa-icon>
                         <span class="dgt-value">{{row.value.resources.ground | number:'1.0':'en-US'}}</span>
                     </div>
                 </td>
 
                 <td [ngClass]="{'dgt-padding-bottom-xs': i == (panel.stats.size - 2)}" class="dgt-resource-td small dgt-padding-right-xl">
                     <div class="dgt-resource resource orbit">
-                        <img class="dgt-resource-img" src="/images/units/small/orbit.gif" title="Orbit" width="17" height="17">
+                        <fa-icon [icon]="['fas','satellite']" style="color: #eee"></fa-icon>
                         <span class="dgt-value">{{row.value.resources.orbit | number:'1.0':'en-US'}}</span>
                     </div>
                 </td>

@@ -50,14 +50,14 @@
 }
 
 .dgt-resource {
-    height: 17px !important;
+    height: 20px !important;
     padding: 0;
 }
 
 .resource > span.dgt-value {
     float: right;
     padding-left: 5px;
-    line-height: 16px;
+    line-height: 20px;
 }
 
 .dgt-stats-panel {
