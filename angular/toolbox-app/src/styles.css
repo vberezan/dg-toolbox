@@ -15,7 +15,7 @@ body {
 }
 
 .seperatorSmall {
-    margin-bottom: 1px !important;
+    margin-bottom: 0px !important;
 }
 
 #content {
@@ -37,7 +37,7 @@ body {
 
 #planetList > #planetList .opacDarkBackground > .planetImage,
 #planetList > #planetList .opacDarkBackground > .planetImage img {
-    height: 84px;
+    height: 82px;
 }
 
 #planetList > #planetList .opacDarkBackground > .planetHeadSection:last-child > .opacBackground {
