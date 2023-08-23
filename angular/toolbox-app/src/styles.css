@@ -3,7 +3,7 @@ body {
     visibility: hidden;
 }
 
-div.opacBackground.padding {
+#contentBox>div.opacBackground.padding {
     padding: 8px !important;
 }
 
