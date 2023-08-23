@@ -10,7 +10,7 @@
                 <td [ngClass]="{'dgt-padding-bottom-xs': i == (panel.stats.size - 2)}"
                     class="dgt-resource-td medium dgt-padding-right-xxs dgt-padding-left-xs">
                     <div class="dgt-resource resource metal">
-                        <fa-icon [icon]="['fas','coins']" style="color: #ccc"></fa-icon>
+                        <fa-icon [icon]="['fas','coins']" [style]="{color: '#ccc'}"></fa-icon>
                         <span class="dgt-value">{{row.value.resources.metalQuantity | number:'1.0':'en-US'}}</span>
                     </div>
                 </td>
@@ -23,7 +23,7 @@
 
                 <td [ngClass]="{'dgt-padding-bottom-xs': i == (panel.stats.size - 2)}" class="dgt-resource-td medium dgt-padding-right-xxs">
                     <div class="dgt-resource resource mineral">
-                        <fa-icon [icon]="['fas','cubes-stacked']" style="color: #ff8484"></fa-icon>
+                        <fa-icon [icon]="['fas','cubes-stacked']" [style]="{color: '#ff8484'}"></fa-icon>
                         <span class="dgt-value">{{row.value.resources.mineralQuantity | number:'1.0':'en-US'}}</span>
                     </div>
                 </td>
@@ -36,7 +36,7 @@
 
                 <td [ngClass]="{'dgt-padding-bottom-xs': i == (panel.stats.size - 2)}" class="dgt-resource-td medium dgt-padding-right-xxs">
                     <div class="dgt-resource resource food">
-                        <fa-icon [icon]="['fas','carrot']" style="color: #7bbd1a"></fa-icon>
+                        <fa-icon [icon]="['fas','carrot']" [style]="{color: '#7bbd1a'}"></fa-icon>
                         <span class="dgt-value">{{row.value.resources.foodQuantity | number:'1.0':'en-US'}}</span>
                     </div>
                 </td>
@@ -49,7 +49,7 @@
 
                 <td [ngClass]="{'dgt-padding-bottom-xs': i == (panel.stats.size - 2)}" class="dgt-resource-td medium dgt-padding-right-xxs">
                     <div class="dgt-resource resource energy">
-                        <fa-icon [icon]="['fas','bolt']" style="color: #0ca1e1"></fa-icon>
+                        <fa-icon [icon]="['fas','bolt']" [style]="{color: '#0ca1e1'}"></fa-icon>
                         <span class="dgt-value">{{row.value.resources.energyQuantity | number:'1.0':'en-US'}}</span>
                     </div>
                 </td>
@@ -63,21 +63,21 @@
                 <td [ngClass]="{'dgt-padding-bottom-xs': i == (panel.stats.size - 2)}"
                     class="dgt-resource-td small dgt-padding-left-xs dgt-padding-right-xs">
                     <div class="dgt-resource resource ground">
-                        <fa-icon [icon]="['fas','tree-city']" style="color: #fff"></fa-icon>
+                        <fa-icon [icon]="['fas','tree-city']" [style]="{color: '#fff'}"></fa-icon>
                         <span class="dgt-value">{{row.value.resources.ground | number:'1.0':'en-US'}}</span>
                     </div>
                 </td>
 
                 <td [ngClass]="{'dgt-padding-bottom-xs': i == (panel.stats.size - 2)}" class="dgt-resource-td small dgt-padding-right-xl">
                     <div class="dgt-resource resource orbit">
-                        <fa-icon [icon]="['fas','satellite']" style="color: #fff"></fa-icon>
+                        <fa-icon [icon]="['fas','satellite']" [style]="{color: '#fff'}"></fa-icon>
                         <span class="dgt-value">{{row.value.resources.orbit | number:'1.0':'en-US'}}</span>
                     </div>
                 </td>
 
                 <td [ngClass]="{'dgt-padding-bottom-xs': i == (panel.stats.size - 2)}" class="dgt-resource-td medium dgt-padding-right-xs dgt-padding-left-xs">
                     <div class="dgt-resource resource soldier">
-                        <fa-icon [icon]="['fas','person-rifle']" style="color: #d23a3a"></fa-icon>
+                        <fa-icon [icon]="['fas','person-rifle']" [style]="{color: '#d23a3a'}"></fa-icon>
                         <span class="dgt-value">{{row.value.soldiers.total | number:'1.0':'en-US'}}</span>
                     </div>
                 </td>
