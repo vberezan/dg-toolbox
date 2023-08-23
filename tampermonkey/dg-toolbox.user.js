@@ -110,7 +110,7 @@ function applyCustomStyling() {
 ///////////
 function setUpNgZone() {
     let style = document.createElement('link');
-    style.href = 'https://cdn.jsdelivr.net/gh/vberezan/dg-toolbox/angular/toolbox-app/dist/toolbox-app/styles.a4e892daa49dab2c.css';
+    style.href = 'https://cdn.jsdelivr.net/gh/vberezan/dg-toolbox/angular/toolbox-app/dist/toolbox-app/styles.b5faa0a74dd07b6f.css';
     style.rel = 'stylesheet';
     document.head.appendChild(style);
 

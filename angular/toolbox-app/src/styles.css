@@ -19,8 +19,8 @@ body {
     color: #CCCCCC !important;
 }
 
-#contentBox>div.opacBackground.padding {
-    padding: 8px !important;
+#contentBox > div.opacBackground.padding > #planetList {
+    padding: 4px !important;
 }
 
 #content {
