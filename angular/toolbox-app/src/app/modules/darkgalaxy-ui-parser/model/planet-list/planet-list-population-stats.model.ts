@@ -1,5 +1,7 @@
 export class PopulationStats {
   private _total: number = 0;
+  private _available: number = 0;
+  private _maximum: number = 0;
 
   get total(): number {
     return this._total;
@@ -9,8 +11,6 @@ export class PopulationStats {
     this._total = value;
   }
 
-  private _available: number = 0;
-
   get available(): number {
     return this._available;
   }
@@ -18,8 +18,6 @@ export class PopulationStats {
   set available(value: number) {
     this._available = value;
   }
-
-  private _maximum: number = 0;
 
   get maximum(): number {
     return this._maximum;

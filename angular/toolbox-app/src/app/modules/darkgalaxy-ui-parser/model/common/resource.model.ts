@@ -1,5 +1,8 @@
 export class Resource {
   private _name: string;
+  private _abundance: number = 0;
+  private _production: number = 0;
+  private _quantity: number = 0;
 
   get name(): string {
     return this._name;
@@ -9,8 +12,6 @@ export class Resource {
     this._name = value;
   }
 
-  private _quantity: number = 0;
-
   get quantity(): number {
     return this._quantity;
   }
@@ -19,8 +20,6 @@ export class Resource {
     this._quantity = value;
   }
 
-  private _abundance: number = 0;
-
   get abundance(): number {
     return this._abundance;
   }
@@ -28,8 +27,6 @@ export class Resource {
   set abundance(value: number) {
     this._abundance = value;
   }
-
-  private _production: number = 0;
 
   get production(): number {
     return this._production;

@@ -1,5 +1,7 @@
 export class Population {
   private _available: number = 0;
+  private _currentNumber: number = 0;
+  private _maximumNumber: number = 0;
 
   get available(): number {
     return this._available;
@@ -9,8 +11,6 @@ export class Population {
     this._available = value;
   }
 
-  private _currentNumber: number = 0;
-
   get currentNumber(): number {
     return this._currentNumber;
   }
@@ -18,8 +18,6 @@ export class Population {
   set currentNumber(value: number) {
     this._currentNumber = value;
   }
-
-  private _maximumNumber: number = 0;
 
   get maximumNumber(): number {
     return this._maximumNumber;

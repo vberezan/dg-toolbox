@@ -1,5 +1,14 @@
 export class ResourceStats {
   private _ground: number = 0;
+  private _orbit: number = 0;
+  private _metalQuantity: number = 0;
+  private _mineralQuantity: number = 0;
+  private _foodQuantity: number = 0;
+  private _energyQuantity: number = 0;
+  private _metalProduction: number = 0;
+  private _mineralProduction: number = 0;
+  private _foodProduction: number = 0;
+  private _energyProduction: number = 0;
 
   get ground(): number {
     return this._ground;
@@ -9,8 +18,6 @@ export class ResourceStats {
     this._ground = value;
   }
 
-  private _orbit: number = 0;
-
   get orbit(): number {
     return this._orbit;
   }
@@ -18,8 +25,6 @@ export class ResourceStats {
   set orbit(value: number) {
     this._orbit = value;
   }
-
-  private _metalQuantity: number = 0;
 
   get metalQuantity(): number {
     return this._metalQuantity;
@@ -29,8 +34,6 @@ export class ResourceStats {
     this._metalQuantity = value;
   }
 
-  private _mineralQuantity: number = 0;
-
   get mineralQuantity(): number {
     return this._mineralQuantity;
   }
@@ -38,8 +41,6 @@ export class ResourceStats {
   set mineralQuantity(value: number) {
     this._mineralQuantity = value;
   }
-
-  private _foodQuantity: number = 0;
 
   get foodQuantity(): number {
     return this._foodQuantity;
@@ -49,8 +50,6 @@ export class ResourceStats {
     this._foodQuantity = value;
   }
 
-  private _energyQuantity: number = 0;
-
   get energyQuantity(): number {
     return this._energyQuantity;
   }
@@ -58,8 +57,6 @@ export class ResourceStats {
   set energyQuantity(value: number) {
     this._energyQuantity = value;
   }
-
-  private _metalProduction: number = 0;
 
   get metalProduction(): number {
     return this._metalProduction;
@@ -69,8 +66,6 @@ export class ResourceStats {
     this._metalProduction = value;
   }
 
-  private _mineralProduction: number = 0;
-
   get mineralProduction(): number {
     return this._mineralProduction;
   }
@@ -79,8 +74,6 @@ export class ResourceStats {
     this._mineralProduction = value;
   }
 
-  private _foodProduction: number = 0;
-
   get foodProduction(): number {
     return this._foodProduction;
   }
@@ -88,8 +81,6 @@ export class ResourceStats {
   set foodProduction(value: number) {
     this._foodProduction = value;
   }
-
-  private _energyProduction: number = 0;
 
   get energyProduction(): number {
     return this._energyProduction;
