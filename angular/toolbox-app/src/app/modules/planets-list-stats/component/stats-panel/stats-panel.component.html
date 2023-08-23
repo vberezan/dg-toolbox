@@ -36,7 +36,7 @@
 
                 <td [ngClass]="{'dgt-padding-bottom-xs': i == (panel.stats.size - 2)}" class="dgt-resource-td medium dgt-padding-right-xxs">
                     <div class="dgt-resource resource food">
-                        <fa-icon [icon]="['fas','wheat-awn']" style="color: #7bbd1a"></fa-icon>
+                        <fa-icon [icon]="['fas','utensils']" style="color: #7bbd1a"></fa-icon>
                         <span class="dgt-value">{{row.value.resources.foodQuantity | number:'1.0':'en-US'}}</span>
                     </div>
                 </td>
@@ -49,7 +49,7 @@
 
                 <td [ngClass]="{'dgt-padding-bottom-xs': i == (panel.stats.size - 2)}" class="dgt-resource-td medium dgt-padding-right-xxs">
                     <div class="dgt-resource resource energy">
-                        <fa-icon [icon]="['fas','circle-radiation']" style="color: #0ca1e1"></fa-icon>
+                        <fa-icon [icon]="['fas','bolt']" style="color: #0ca1e1"></fa-icon>
                         <span class="dgt-value">{{row.value.resources.energyQuantity | number:'1.0':'en-US'}}</span>
                     </div>
                 </td>
