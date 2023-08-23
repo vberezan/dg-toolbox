@@ -2,7 +2,8 @@ import {Component, inject, OnInit} from '@angular/core';
 import {StatsPanel} from "../../../darkgalaxy-ui-parser/model/planet-list/planet-list-stats-panel.model";
 import {StatsPanelService} from "../../service/stats-panel/stats-panel.service";
 import {FaIconLibrary} from "@fortawesome/angular-fontawesome";
-import {faGem as fasGem} from "@fortawesome/free-solid-svg-icons";
+import {faCircleRadiation as fasCircleRadiation, faCoins as fasCoins, faWheatAwn as fasWheatAwn} from "@fortawesome/free-solid-svg-icons";
+import {faGem as farGem} from "@fortawesome/free-regular-svg-icons";
 
 @Component({
     selector: 'dg-toolbox-stats-panel',
@@ -14,7 +15,7 @@ export class StatsPanelComponent implements OnInit {
     protected panel: StatsPanel;
 
     constructor(library: FaIconLibrary) {
-        library.addIcons(fasGem);
+        library.addIcons(farGem, fasWheatAwn, fasCoins, fasCircleRadiation);
     }
 
     ngOnInit() {
