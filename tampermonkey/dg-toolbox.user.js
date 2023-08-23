@@ -130,7 +130,7 @@ function setUpNgZone() {
     document.head.appendChild(polyfills);
 
     let main = document.createElement('script');
-    main.src = 'https://cdn.jsdelivr.net/gh/vberezan/dg-toolbox/angular/toolbox-app/dist/toolbox-app/main.1e244b5437ec63c9.js';
+    main.src = 'https://cdn.jsdelivr.net/gh/vberezan/dg-toolbox/angular/toolbox-app/dist/toolbox-app/main.4fca9f0453e60508.js';
     main.type = 'module';
     document.head.appendChild(main);
 }

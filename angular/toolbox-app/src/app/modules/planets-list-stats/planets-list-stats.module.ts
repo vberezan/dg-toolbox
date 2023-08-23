@@ -20,8 +20,8 @@ import {BrowserModule} from "@angular/platform-browser";
   exports: [StatsPanelComponent],
   bootstrap: [StatsPanelComponent]
 })
-export class PlanetsListStatsModule implements OnInit{
-  ngOnInit(): void {
+export class PlanetsListStatsModule {
+  constructor() {
     console.log("%cDGT - Planet lists stats installed!", "font-size: 12px");
   }
 }
