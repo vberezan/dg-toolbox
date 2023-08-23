@@ -47,8 +47,8 @@ div.opacBackground.padding {
 
 #planetList > #planetList .opacDarkBackground > .planetImage,
 #planetList > #planetList .opacDarkBackground > .planetImage img {
-    height: 86px;
-    width: 86px;
+    height: 90px;
+    width: 90px;
     float: left;
 }
 
@@ -87,7 +87,7 @@ div.opacBackground.padding {
 #planetList .planetHeadSection {
     padding-right: 0;
     float: left;
-    width: calc(100% - 86px);
+    width: calc(100% - 90px);
     height: 30px !important;
 }
 
