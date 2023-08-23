@@ -3,6 +3,18 @@ body {
     visibility: hidden;
 }
 
+.mineral {
+    color: #FF5656 !important;
+}
+
+.food {
+    color: #7BBD1A !important;
+}
+
+.energy {
+    color: #0CA1E1 !important;
+}
+
 #contentBox>div.opacBackground.padding {
     padding: 8px !important;
 }
@@ -99,6 +111,7 @@ body {
 #planetList .opacDarkBackground > .planetHeadSection:nth-child(6),
 #planetList .opacDarkBackground > .planetHeadSection:nth-child(7) {
     width: 100% !important;
+    height: 24px !important;
 }
 
 #planetList .fleetList {
@@ -113,6 +126,10 @@ body {
 #planetList #planetList .resource {
     padding: 5px !important;
     margin-top: 0 !important;
+}
+
+#planetList #planetList .resource span {
+    padding-left: 2px;
 }
 
 #planetList .resourceLine .resource {
