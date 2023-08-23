@@ -19,6 +19,10 @@ body {
     border-bottom-right-radius: 10px;
 }
 
+#planetList > #planetList .opacDarkBackground > .planetImage {
+    height: 84px;
+}
+
 #planetList > #planetList .opacDarkBackground > .planetHeadSection:last-child > .opacBackground {
     border-bottom-right-radius: 10px;
 }
@@ -31,7 +35,6 @@ body {
 #planetList > #planetList .opacDarkBackground > .planetImage:not(.dgt-no-bottom-radius) > img {
     border-bottom-left-radius: 10px;
     border-top-left-radius: 10px;
-    height: 84px;
 }
 
 #planetList > #planetList .opacDarkBackground {

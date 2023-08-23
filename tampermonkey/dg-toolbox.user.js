@@ -36,6 +36,9 @@ function replacePlanetsImages() {
 
 function applyCustomStyling() {
     document.querySelectorAll('#planetList > #planetList').forEach((planet) => {
+        planet.querySelector('.planetImage img').setAttribute('width', 84);
+        planet.querySelector('.planetImage img').setAttribute('height', 84);
+
         if (planet.querySelectorAll('.planetHeadSection').length > 3) {
             planet.querySelector('.planetImage').classList.add('dgt-no-bottom-radius');
         }
@@ -46,7 +49,7 @@ function applyCustomStyling() {
 
 function setUpNgZone() {
     let style = document.createElement('link');
-    style.href = 'https://cdn.jsdelivr.net/gh/vberezan/dg-toolbox/angular/toolbox-app/dist/toolbox-app/styles.a6f7026282657790.css';
+    style.href = 'https://cdn.jsdelivr.net/gh/vberezan/dg-toolbox/angular/toolbox-app/dist/toolbox-app/styles.595c51ef617c9e08.css';
     style.rel = 'stylesheet';
     document.head.appendChild(style);
 
