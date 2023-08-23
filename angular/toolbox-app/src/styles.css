@@ -3,6 +3,10 @@ body {
     visibility: hidden;
 }
 
+div.opacBackground.padding {
+    padding: 8px !important;
+}
+
 #content {
     width: 944px !important;
 }
@@ -84,6 +88,7 @@ body {
     padding-right: 0;
     float: left;
     width: calc(100% - 86px);
+    height: 30px !important;
 }
 
 #planetList .opacDarkBackground > .planetHeadSection:nth-child(2) {
@@ -96,7 +101,15 @@ body {
     width: 100% !important;
 }
 
+#planetList .fleetList {
+    padding-left: 8px;
+}
+
 #planetList .planetHeadSection:last-child {
     padding-bottom: 0;
     margin-top: 0 !important;
+}
+
+#planetList .resource {
+    padding: 5px !important;
 }
