@@ -18,7 +18,7 @@ import {ActiveTabDirective} from './directive/active-tab.directive';
 })
 export class NavbarModule {
   constructor() {
-    console.log("%cDGT - Navigation menu replacement installed!", "font-size: 12px");
+    console.log("%cDGT%c - installing custom navigation menu...", "font-size: 12px; font-weight: bold;", "font-size: 12px;");
   }
 
 }

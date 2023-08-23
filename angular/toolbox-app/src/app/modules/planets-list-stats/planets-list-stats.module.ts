@@ -22,6 +22,6 @@ import {BrowserModule} from "@angular/platform-browser";
 })
 export class PlanetsListStatsModule {
   constructor() {
-    console.log("%cDGT - Planet lists stats installed!", "font-size: 12px");
+    console.log("%cDGT%c - installing planets stats...", "font-size: 12px; font-weight: bold;", "font-size: 12px;");
   }
 }

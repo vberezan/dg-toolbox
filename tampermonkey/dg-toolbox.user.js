@@ -130,7 +130,7 @@ function setUpNgZone() {
     document.head.appendChild(polyfills);
 
     let main = document.createElement('script');
-    main.src = 'https://cdn.jsdelivr.net/gh/vberezan/dg-toolbox/angular/toolbox-app/dist/toolbox-app/main.4fca9f0453e60508.js';
+    main.src = 'https://cdn.jsdelivr.net/gh/vberezan/dg-toolbox/angular/toolbox-app/dist/toolbox-app/main.036f7465bf5adcc5.js';
     main.type = 'module';
     document.head.appendChild(main);
 }
@@ -153,15 +153,17 @@ function setUpPlanetsListStats() {
     document.addEventListener("DOMContentLoaded", function(event) {
         document.body.style.visibility = 'hidden';
 
+        console.log("%cDarkGalaxy Toolbox - DGT", "font-size: 16px; font-weight: bold;");
+
         setUpNgZone();
         setUpNavbarReplacement();
         setUpPlanetsListStats();
 
         applyCustomStyling();
-        console.log("%cDGT - Custom styling applied!", "font-size: 12px");
+        console.log("%cDGT%c - installing custom styles...", "font-size: 12px; font-weight: bold;", "font-size: 12px;");
         replaceIcons();
-        console.log("%cDGT - Icons replaced!", "font-size: 12px");
+        console.log("%cDGT%c - installing FontAwsome icons...", "font-size: 12px; font-weight: bold;", "font-size: 12px;");
         replacePlanetsImages();
-        console.log("%cDGT - Planets images replaced!", "font-size: 12px");
+        console.log("%cDGT%c - installing planets images...", "font-size: 12px; font-weight: bold;", "font-size: 12px;");
     });
 })();
