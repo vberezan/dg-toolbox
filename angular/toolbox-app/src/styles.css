@@ -113,5 +113,8 @@ div.opacBackground.padding {
 #planetList #planetList .resource {
     padding: 5px !important;
     margin-top: 0 !important;
+}
+
+#planetList .resourceLine .resource {
     width: calc(25% - 15px) !important;
 }
