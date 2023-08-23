@@ -38,12 +38,12 @@ body {
 
 #planetList > #planetList:last-child .opacDarkBackground,
 #fleetList,
-#fleetList > div:last-child,
-#contentBox {
+#fleetList > div:last-child {
   border-bottom-left-radius: 5px;
   border-bottom-right-radius: 5px;
 }
 
+#contentBox,
 #contentBox > .opacBackground {
   border-bottom-left-radius: 10px;
   border-bottom-right-radius: 10px;

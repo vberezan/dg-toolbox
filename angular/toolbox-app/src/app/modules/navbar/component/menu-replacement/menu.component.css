@@ -1,5 +1,5 @@
 .dgt-navbar {
-  display: inline-table;
+  display: block;
   width: 100%;
 }
 
@@ -8,6 +8,7 @@
   padding: 0 !important;
   display: flex;
   border: 1px solid #7a7a7a;
+  border-bottom: 0 !important;
   border-top-left-radius: 10px;
   border-top-right-radius: 10px;
 }
