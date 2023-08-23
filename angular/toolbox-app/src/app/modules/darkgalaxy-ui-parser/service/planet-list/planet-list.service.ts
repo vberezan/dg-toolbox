@@ -7,7 +7,6 @@ import {Resource} from "../../model/common/resource.model";
   providedIn: 'root'
 })
 export class PlanetListService {
-
   private document: any = inject(DOCUMENT);
 
   extractPlanetsSummaries(): PlanetSummary[] {

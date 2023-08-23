@@ -1,4 +1,4 @@
-import {NgModule} from '@angular/core';
+import {NgModule, OnInit} from '@angular/core';
 import {DecimalPipe} from '@angular/common';
 import {StatsPanelComponent} from './component/stats-panel/stats-panel.component';
 import {FontAwesomeModule} from "@fortawesome/angular-fontawesome";
@@ -20,5 +20,8 @@ import {BrowserModule} from "@angular/platform-browser";
   exports: [StatsPanelComponent],
   bootstrap: [StatsPanelComponent]
 })
-export class PlanetsListStatsModule {
+export class PlanetsListStatsModule implements OnInit{
+  ngOnInit(): void {
+    console.log("%cDGT planet lists stats installed!", "font-size: 12px");
+  }
 }

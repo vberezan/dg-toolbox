@@ -1,4 +1,4 @@
-import {NgModule} from '@angular/core';
+import {NgModule, OnInit} from '@angular/core';
 import {MenuComponent} from './component/menu-replacement/menu.component';
 import {FontAwesomeModule} from "@fortawesome/angular-fontawesome";
 import {BrowserModule} from "@angular/platform-browser";
@@ -16,5 +16,9 @@ import {ActiveTabDirective} from './directive/active-tab.directive';
   exports: [MenuComponent],
   bootstrap: [MenuComponent]
 })
-export class NavbarModule {
+export class NavbarModule implements OnInit{
+  ngOnInit(): void {
+    console.log("%cDGT navigation menu replacement installed!", "font-size: 12px");
+  }
+
 }
