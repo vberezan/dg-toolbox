@@ -18,12 +18,16 @@ export class PlanetScanExtractorService implements DataExtractor {
   extract(): PlanetScanEvent {
     // -- no scan
     if (this.document.querySelectorAll('#contentBox #planetHeader').length <= 1) {
+      console.log("RETURN NULL");
+
       return null;
     }
 
     let planetScan: PlanetScan = new PlanetScan();
     let base: Element = this.document.querySelectorAll('#contentBox #planetHeader')[1];
     let scanType: ScanType;
+
+    console.log(base.querySelectorAll('.planetHeadSection .resource > span'));
 
     switch (base.querySelectorAll('.planetHeadSection .resource > span').length) {
       case 5: {
@@ -42,7 +46,6 @@ export class PlanetScanExtractorService implements DataExtractor {
     }
 
     let result = new PlanetScanEvent(planetScan, scanType);
-
 
     if (scanType === ScanType.RESOURCE || scanType === ScanType.SURFACE) {
       result.planetScan.orbit = parseInt(base.querySelectorAll('.planetHeadSection .resource > span')[0].textContent);
@@ -78,6 +81,8 @@ export class PlanetScanExtractorService implements DataExtractor {
 
       result.planetScan.soldiers = parseInt(base.querySelectorAll('.planetHeadSection .resource > span')[2].textContent.replace(/,/g, ''));
     }
+
+    console.log(result);
 
     return result;
   }

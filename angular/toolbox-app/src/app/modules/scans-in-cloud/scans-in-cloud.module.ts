@@ -6,6 +6,7 @@ import {DarkgalaxyUiParserModule} from "../darkgalaxy-ui-parser/darkgalaxy-ui-pa
 import {AngularFireModule} from "@angular/fire/compat";
 import {environment} from "../../../environments/environment";
 import {AngularFirestoreModule} from "@angular/fire/compat/firestore";
+import {ScansService} from "./service/scans.service";
 
 
 @NgModule({
@@ -19,7 +20,8 @@ import {AngularFirestoreModule} from "@angular/fire/compat/firestore";
     AngularFirestoreModule
   ],
   providers: [
-    DarkgalaxyApiService
+    DarkgalaxyApiService,
+    ScansService
   ],
   bootstrap: [ScansPanelComponent]
 })

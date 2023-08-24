@@ -5,18 +5,24 @@ import {FontAwesomeModule} from "@fortawesome/angular-fontawesome";
 import {GalaxyNameFormatterPipe} from './pipe/galaxy-name-formatter.pipe';
 import {ResourceProductionFormatterPipe} from './pipe/resource-production-formatter.pipe';
 import {BrowserModule} from "@angular/platform-browser";
+import {DarkgalaxyUiParserModule} from "../darkgalaxy-ui-parser/darkgalaxy-ui-parser.module";
+import {StatsPanelService} from "./service/stats-panel/stats-panel.service";
 
 @NgModule({
   imports: [
     BrowserModule,
-    FontAwesomeModule
+    FontAwesomeModule,
+    DarkgalaxyUiParserModule,
   ],
   declarations: [
     StatsPanelComponent,
     GalaxyNameFormatterPipe,
     ResourceProductionFormatterPipe,
   ],
-  providers: [DecimalPipe],
+  providers: [
+    DecimalPipe,
+    StatsPanelService
+  ],
   exports: [StatsPanelComponent],
   bootstrap: [StatsPanelComponent]
 })
