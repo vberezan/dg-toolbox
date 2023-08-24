@@ -56,7 +56,7 @@ export class ScansService {
 
       this.firestore.collection('scans')
         .doc(items.docs[0].id)
-        .set(JSON.parse(JSON.stringify(dbScan)));
+        .set(dbScan);
     });
   }
 
