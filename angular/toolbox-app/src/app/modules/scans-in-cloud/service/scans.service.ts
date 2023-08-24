@@ -19,7 +19,7 @@ export class ScansService {
 
   updateScan(scanEvent: PlanetScanEvent): void {
     this.firestore.collection<PlanetScan>('scans', ref => ref
-      .where('_location', '==', scanEvent.planetScan.location)
+      .where('location', '==', scanEvent.planetScan.location)
       .limit(1)
     ).get().subscribe((items) => {
       let dbScan: PlanetScan =
