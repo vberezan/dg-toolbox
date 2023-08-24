@@ -52,6 +52,8 @@ export class ScansService {
         dbScan.ground = scanEvent.planetScan.ground;
       }
 
+      console.log(dbScan);
+
       this.firestore.collection('scans')
         .doc(items.docs[0].id)
         .set(JSON.parse(JSON.stringify(dbScan)));
