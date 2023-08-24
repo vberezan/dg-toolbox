@@ -31,7 +31,7 @@ export class ScansService {
       }
 
       if (scanEvent.type == ScanType.RESOURCE) {
-        console.log("db scan: " + dbScan);
+        console.log("db scan: " + JSON.stringify(dbScan));
 
         if (dbScan.resources.length > 0) {
           dbScan.resources.forEach((dbResource: Resource, index) => {
