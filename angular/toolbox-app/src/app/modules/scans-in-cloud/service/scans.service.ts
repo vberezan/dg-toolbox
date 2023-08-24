@@ -27,12 +27,6 @@ export class ScansService {
           return entry.doc.data();
         })[0]);
 
-      console.log(dbScan);
-      console.log(dbScan.ground);
-      console.log(dbScan.workers);
-      console.log(dbScan.resources);
-
-
       if (scanEvent.type == ScanType.FLEET) {
         dbScan.fleet = scanEvent.planetScan.fleet;
       }

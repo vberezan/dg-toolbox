@@ -16,17 +16,25 @@
 
 // change default images with cooler ones
 function replacePlanetsImages() {
-    const images = ['https://i.imgur.com/7emDo7u.png', 'https://i.imgur.com/h645Sbz.png', 'https://i.imgur.com/jhDgAcf.png', 'https://i.imgur.com/hPmLTR0.png', 'https://i.imgur.com/sxNM2IU.png',
+    const images = [
+        'https://i.imgur.com/7emDo7u.png', 'https://i.imgur.com/h645Sbz.png', 'https://i.imgur.com/jhDgAcf.png', 'https://i.imgur.com/hPmLTR0.png', 'https://i.imgur.com/sxNM2IU.png',
         'https://i.imgur.com/bBaVWvQ.png', 'https://i.imgur.com/X3AAaY8.png', 'https://i.imgur.com/4pf1Tju.png', 'https://i.imgur.com/IGzscND.png', 'https://i.imgur.com/xMtcWah.png',
         'https://i.imgur.com/DFtD4vX.png', 'https://i.imgur.com/brVnILl.png', 'https://i.imgur.com/TzTNSTy.png', 'https://i.imgur.com/QxAY3M7.png', 'https://i.imgur.com/HOkGrou.png',
         'https://i.imgur.com/ohkn0L3.png', 'https://i.imgur.com/cToV8VJ.png', 'https://i.imgur.com/6t8hPGr.png', 'https://i.imgur.com/7h7NOT4.png', 'https://i.imgur.com/vb0X7Ps.png',
-        'https://i.imgur.com/a6X4pJs.png'];
+        'https://i.imgur.com/a6X4pJs.png', 'https://i.imgur.com/HnEtjvk.png', 'https://i.imgur.com/SVJscff.png', 'https://i.imgur.com/BWRsjql.png', 'https://i.imgur.com/st8RPjI.png',
+        'https://i.imgur.com/z0jUerc.png', 'https://i.imgur.com/x9hcGDC.png', 'https://i.imgur.com/XrQ9CUA.png', 'https://i.imgur.com/QqOjXY9.png', 'https://i.imgur.com/y0X6gqm.png',
+        'https://i.imgur.com/AXYzFQH.png', 'https://i.imgur.com/3lA6hpV.png', 'https://i.imgur.com/dnyDoql.png', 'https://i.imgur.com/2tGXfQS.png', 'https://i.imgur.com/3cEusRW.png',
+        'https://i.imgur.com/DObtztm.png', 'https://i.imgur.com/XDePZDB.png', 'https://i.imgur.com/ISLm7xG.png', 'https://i.imgur.com/adl759C.png', 'https://i.imgur.com/1BDs4cu.png',
+        'https://i.imgur.com/NDpaU0U.png', 'https://i.imgur.com/nOwnoFN.png', 'https://i.imgur.com/lwHfvbV.png', 'https://i.imgur.com/c0N2U9t.png', 'https://i.imgur.com/a5V22XU.png',
+        'https://i.imgur.com/HdJHwHM.png', 'https://i.imgur.com/5mqo2Gj.png', 'https://i.imgur.com/t1KAgBM.png', 'https://i.imgur.com/VahvzeQ.png', 'https://i.imgur.com/TEItueF.png',
+        'https://i.imgur.com/FBepye3.png'
+    ];
 
 
     const imgIdPattern = /\/([\d]+)\./;
     const replaceImage = function (img) {
         const [,id] = img.src.match(imgIdPattern);
-        img.src = images[id % images.length];
+        img.src = images[id];
     };
 
     if (location.href.match(/planet\/[0-9]+/)) { // on single planet overview use big image
@@ -115,22 +123,22 @@ function applyCustomStyling() {
 ///////////
 function setUpNgZone() {
     let style = document.createElement('link');
-    style.href = 'https://cdn.jsdelivr.net/gh/vberezan/dg-toolbox/angular/toolbox-app/dist/toolbox-app/styles.c4d7191baef4f35d.css';
+    style.href = 'https://cdn.jsdelivr.net/gh/vberezan/dg-toolbox/angular/toolbox-app/dist/toolbox-app/styles.85aa89c891a4a951.css';
     style.rel = 'stylesheet';
     document.head.appendChild(style);
 
     let runtime = document.createElement('script');
-    runtime.src = 'https://cdn.jsdelivr.net/gh/vberezan/dg-toolbox/angular/toolbox-app/dist/toolbox-app/runtime.7f7a1c1514cf4fd2.js';
+    runtime.src = 'https://cdn.jsdelivr.net/gh/vberezan/dg-toolbox/angular/toolbox-app/dist/toolbox-app/runtime.79543c56c927dd9a.js';
     runtime.type = 'module';
     document.head.appendChild(runtime);
 
     let polyfills = document.createElement('script');
-    polyfills.src = 'https://cdn.jsdelivr.net/gh/vberezan/dg-toolbox/angular/toolbox-app/dist/toolbox-app/polyfills.8e8b88e65f8eb80f.js';
+    polyfills.src = 'https://cdn.jsdelivr.net/gh/vberezan/dg-toolbox/angular/toolbox-app/dist/toolbox-app/polyfills.fccd34e7614ee531.js';
     polyfills.type = 'module';
     document.head.appendChild(polyfills);
 
     let main = document.createElement('script');
-    main.src = 'https://cdn.jsdelivr.net/gh/vberezan/dg-toolbox/angular/toolbox-app/dist/toolbox-app/main.5e901dcf4cbe2220.js';
+    main.src = 'https://cdn.jsdelivr.net/gh/vberezan/dg-toolbox/angular/toolbox-app/dist/toolbox-app/main.745f0c3f476c7716.js';
     main.type = 'module';
     document.head.appendChild(main);
 }
@@ -138,26 +146,34 @@ function setUpNgZone() {
 
 function setUpNavbarReplacement() {
     if (document.getElementById('content')) {
-        document.getElementById('content').prepend(document.createElement('dg-toolbox-navbar'));
+        document.getElementById('content').prepend(document.createElement('dgt-navbar'));
         document.getElementById('tabpanel').remove();
     }
 }
 
 function setUpPlanetsListStats() {
     if (document.getElementById('planetList')) {
-        document.getElementById('planetList').prepend(document.createElement('dg-toolbox-stats-panel'));
+        document.getElementById('planetList').prepend(document.createElement('dgt-stats-panel'));
     }
+}
+
+function setUpScansInCloud(windowURL) {
+    if(windowURL[1] === 'planet' && (windowURL.length === 5 && windowURL[3]) === 'comms') {
+        document.querySelector('.opacDarkBackground form').parentElement.append(document.createElement('dgt-scans-panel'));
+    };
 }
 
 (function() {
     document.addEventListener("DOMContentLoaded", function(event) {
         document.body.style.visibility = 'hidden';
+        let windowURL = window.location.pathname.split(/\//g);
 
         console.log("%cDarkGalaxy Toolbox - DGT", "font-size: 16px; font-weight: bold;");
 
-        setUpNgZone();
         setUpNavbarReplacement();
         setUpPlanetsListStats();
+        setUpScansInCloud(windowURL);
+        setUpNgZone();
 
         applyCustomStyling();
         console.log("%cDGT%c - installing custom styles...", "font-size: 12px; font-weight: bold;", "font-size: 12px;");
