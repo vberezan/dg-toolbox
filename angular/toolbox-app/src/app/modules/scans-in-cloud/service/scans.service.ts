@@ -22,14 +22,12 @@ export class ScansService {
       .where('_location', '==', scanEvent.planetScan.location)
       .limit(1)
     ).get().subscribe((items) => {
-      let dbScan: PlanetScan = JSON.parse(
-        JSON.stringify(
-          items.docChanges().map(entry => {
-            return entry.doc.data() as PlanetScan;
-          })[0]
-        )
-      );
+      let dbScan: PlanetScan =
+        Object.assign(new PlanetScan(), items.docChanges().map(entry => {
+          return entry.doc.data();
+        })[0]);
 
+      console.log(dbScan);
       console.log(dbScan.ground);
       console.log(dbScan.workers);
       console.log(dbScan.resources);
