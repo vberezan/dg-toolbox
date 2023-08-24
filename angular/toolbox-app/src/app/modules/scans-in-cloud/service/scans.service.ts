@@ -26,6 +26,11 @@ export class ScansService {
         return entry.doc.data() as PlanetScan;
       })[0];
 
+      console.log(dbScan.ground);
+      console.log(dbScan.workers);
+      console.log(dbScan.resources);
+
+
       if (scanEvent.type == ScanType.FLEET) {
         dbScan.fleet = scanEvent.planetScan.fleet;
       }
@@ -33,8 +38,6 @@ export class ScansService {
       if (scanEvent.type == ScanType.RESOURCE) {
 
         if (dbScan.resources.length > 0) {
-          console.log(dbScan.resources);
-
           dbScan.resources.forEach((dbResource: Resource, index) => {
             dbResource.abundance = scanEvent.planetScan.resources[index].abundance;
           });
