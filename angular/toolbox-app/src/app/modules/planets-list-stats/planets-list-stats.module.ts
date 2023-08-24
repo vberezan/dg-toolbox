@@ -1,15 +1,17 @@
-import {NgModule, OnInit} from '@angular/core';
+import {NgModule} from '@angular/core';
 import {DecimalPipe} from '@angular/common';
 import {StatsPanelComponent} from './component/stats-panel/stats-panel.component';
 import {FontAwesomeModule} from "@fortawesome/angular-fontawesome";
 import {GalaxyNameFormatterPipe} from './pipe/galaxy-name-formatter.pipe';
 import {ResourceProductionFormatterPipe} from './pipe/resource-production-formatter.pipe';
 import {BrowserModule} from "@angular/platform-browser";
+import {DarkgalaxyUiParserModule} from "../darkgalaxy-ui-parser/darkgalaxy-ui-parser.module";
 
 @NgModule({
   imports: [
     BrowserModule,
-    FontAwesomeModule
+    FontAwesomeModule,
+    DarkgalaxyUiParserModule
   ],
   declarations: [
     StatsPanelComponent,

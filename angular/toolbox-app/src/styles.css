@@ -1,6 +1,7 @@
 /* Override game rules section */
 body {
   visibility: hidden;
+  color: #fff;
 }
 
 .mineral {

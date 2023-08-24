@@ -1,15 +1,23 @@
 import {inject, Injectable} from '@angular/core';
-import {PlanetListService} from "./planet-list/planet-list.service";
+import {PlanetListExtractorService} from "./planet-list.extractor.service";
 import {PlanetSummary} from "../model/planet-list/planet-list-planet-summary.model";
+import {PlanetScan} from "../../scans-in-cloud/model/planet-scan.model";
+import {PlanetScanExtractorService} from "./planet-scan.extractor.service";
+import {PlanetScanEvent} from "../../scans-in-cloud/model/planet-scan-event.model";
 
 @Injectable({
-  providedIn: 'root'
+  providedIn: 'platform'
 })
 export class DarkgalaxyApiService {
 
-  private planetListService: PlanetListService = inject(PlanetListService);
+  private planetListExtractor: PlanetListExtractorService = inject(PlanetListExtractorService);
+  private planetScanExtractor: PlanetScanExtractorService = inject(PlanetScanExtractorService);
 
   planetsSummaries(): PlanetSummary[] {
-    return this.planetListService.extractPlanetsSummaries();
+    return this.planetListExtractor.extract();
+  }
+
+  planetScan(): PlanetScanEvent {
+    return this.planetScanExtractor.extract();
   }
 }

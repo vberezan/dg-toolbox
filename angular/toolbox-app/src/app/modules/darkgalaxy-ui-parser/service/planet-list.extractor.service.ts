@@ -1,18 +1,21 @@
 import {inject, Injectable} from '@angular/core';
 import {DOCUMENT} from "@angular/common";
-import {PlanetSummary} from "../../model/planet-list/planet-list-planet-summary.model";
-import {Resource} from "../../model/common/resource.model";
+import {PlanetSummary} from "../model/planet-list/planet-list-planet-summary.model";
+import {Resource} from "../../../model/resource.model";
+import {DataExtractor} from "./data-extractor";
 
 @Injectable({
-  providedIn: 'root'
+  providedIn: 'platform'
 })
-export class PlanetListService {
+export class PlanetListExtractorService implements DataExtractor {
   private document: any = inject(DOCUMENT);
 
-  extractPlanetsSummaries(): PlanetSummary[] {
-    let planetsSummaries: PlanetSummary[] = [];
+  // FIXME: use textContent instead of innerHTML
 
-    this.document.querySelectorAll('#planetList > #planetList').forEach((planet: Document) => {
+  extract(): PlanetSummary[] {
+    let result: PlanetSummary[] = [];
+
+    this.document.querySelectorAll('#planetList > #planetList').forEach((planet: Element) => {
       let planetSummary: PlanetSummary = new PlanetSummary();
 
       // -- set resources data
@@ -24,7 +27,7 @@ export class PlanetListService {
         let resource: Resource = new Resource();
 
         resource.name = value.parentElement.className.split(/\s+/)[2];
-        resource.quantity = parseInt(resourceParts[0].replace(/,/g, ''));
+        resource.stored = parseInt(resourceParts[0].replace(/,/g, ''));
         resource.production = parseInt(resourceParts[1].substring(1, resourceParts[1].length - 1).replace(/,/g, ''));
         resource.abundance = parseInt(resourceParts[2].replace(/,/g, ''));
 
@@ -44,9 +47,9 @@ export class PlanetListService {
       planetSummary.orbit = parseInt(planet.querySelectorAll('.planetHeadSection .resource span')[0].innerHTML);
       planetSummary.ground = parseInt(planet.querySelectorAll('.planetHeadSection .resource span')[1].innerHTML);
 
-      planetsSummaries.push(planetSummary);
+      result.push(planetSummary);
     });
 
-    return planetsSummaries;
+    return result;
   }
 }

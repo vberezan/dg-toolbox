@@ -13,7 +13,7 @@ import {
 } from "@fortawesome/free-solid-svg-icons";
 
 @Component({
-  selector: 'dg-toolbox-stats-panel',
+  selector: 'dgt-stats-panel',
   templateUrl: './stats-panel.component.html',
   styleUrls: ['./stats-panel.component.css']
 })

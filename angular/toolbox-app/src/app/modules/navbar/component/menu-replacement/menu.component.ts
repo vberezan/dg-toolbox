@@ -11,7 +11,7 @@ import {
 } from "@fortawesome/free-solid-svg-icons";
 
 @Component({
-  selector: 'dg-toolbox-navbar',
+  selector: 'dgt-navbar',
   templateUrl: './menu.component.html',
   styleUrls: ['./menu.component.css']
 })

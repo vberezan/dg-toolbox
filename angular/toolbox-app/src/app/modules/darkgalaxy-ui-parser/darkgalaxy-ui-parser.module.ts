@@ -1,14 +1,16 @@
 import {NgModule} from '@angular/core';
 import {CommonModule} from '@angular/common';
 import {DarkgalaxyApiService} from "./service/darkgalaxy-api.service";
-import {PlanetListService} from "./service/planet-list/planet-list.service";
+import {PlanetListExtractorService} from "./service/planet-list.extractor.service";
+import {PlanetScanExtractorService} from "./service/planet-scan.extractor.service";
 
 
 @NgModule({
   declarations: [],
   exports: [],
   providers: [
-    PlanetListService,
+    PlanetListExtractorService,
+    PlanetScanExtractorService,
     DarkgalaxyApiService
   ],
   imports: [CommonModule]

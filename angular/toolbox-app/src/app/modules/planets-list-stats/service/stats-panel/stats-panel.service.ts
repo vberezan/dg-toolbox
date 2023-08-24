@@ -3,7 +3,7 @@ import {DarkgalaxyApiService} from "../../../darkgalaxy-ui-parser/service/darkga
 import {PlanetSummary} from "../../../darkgalaxy-ui-parser/model/planet-list/planet-list-planet-summary.model";
 import {StatsPanel} from "../../../darkgalaxy-ui-parser/model/planet-list/planet-list-stats-panel.model";
 import {PlanetStats} from "../../../darkgalaxy-ui-parser/model/planet-list/planet-list-planet-stats.model";
-import {Resource} from "../../../darkgalaxy-ui-parser/model/common/resource.model";
+import {Resource} from "../../../../model/resource.model";
 
 @Injectable({
   providedIn: 'root'
@@ -36,33 +36,33 @@ export class StatsPanelService {
       planetSummary.resources.forEach((resource: Resource) => {
         switch (resource.name) {
           case 'metal': {
-            panel.stats.get('all').resources.metalQuantity += resource.quantity;
+            panel.stats.get('all').resources.metalStored += resource.stored;
             panel.stats.get('all').resources.metalProduction += resource.production;
-            panel.stats.get(planetSummary.location[0]).resources.metalQuantity += resource.quantity;
+            panel.stats.get(planetSummary.location[0]).resources.metalStored += resource.stored;
             panel.stats.get(planetSummary.location[0]).resources.metalProduction += resource.production;
 
             break;
           }
           case 'mineral': {
-            panel.stats.get('all').resources.mineralQuantity += resource.quantity;
+            panel.stats.get('all').resources.mineralStored += resource.stored;
             panel.stats.get('all').resources.mineralProduction += resource.production;
-            panel.stats.get(planetSummary.location[0]).resources.mineralQuantity += resource.quantity;
+            panel.stats.get(planetSummary.location[0]).resources.mineralStored += resource.stored;
             panel.stats.get(planetSummary.location[0]).resources.mineralProduction += resource.production;
 
             break;
           }
           case 'food': {
-            panel.stats.get('all').resources.foodQuantity += resource.quantity;
+            panel.stats.get('all').resources.foodStored += resource.stored;
             panel.stats.get('all').resources.foodProduction += resource.production;
-            panel.stats.get(planetSummary.location[0]).resources.foodQuantity += resource.quantity;
+            panel.stats.get(planetSummary.location[0]).resources.foodStored += resource.stored;
             panel.stats.get(planetSummary.location[0]).resources.foodProduction += resource.production;
 
             break;
           }
           case 'energy': {
-            panel.stats.get('all').resources.energyQuantity += resource.quantity;
+            panel.stats.get('all').resources.energyStored += resource.stored;
             panel.stats.get('all').resources.energyProduction += resource.production;
-            panel.stats.get(planetSummary.location[0]).resources.energyQuantity += resource.quantity;
+            panel.stats.get(planetSummary.location[0]).resources.energyStored += resource.stored;
             panel.stats.get(planetSummary.location[0]).resources.energyProduction += resource.production;
 
             break;

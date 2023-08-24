@@ -1,10 +1,10 @@
 export class ResourceStats {
   private _ground: number = 0;
   private _orbit: number = 0;
-  private _metalQuantity: number = 0;
-  private _mineralQuantity: number = 0;
-  private _foodQuantity: number = 0;
-  private _energyQuantity: number = 0;
+  private _metalStored: number = 0;
+  private _mineralStored: number = 0;
+  private _foodStored: number = 0;
+  private _energyStored: number = 0;
   private _metalProduction: number = 0;
   private _mineralProduction: number = 0;
   private _foodProduction: number = 0;
@@ -26,36 +26,36 @@ export class ResourceStats {
     this._orbit = value;
   }
 
-  get metalQuantity(): number {
-    return this._metalQuantity;
+  get metalStored(): number {
+    return this._metalStored;
   }
 
-  set metalQuantity(value: number) {
-    this._metalQuantity = value;
+  set metalStored(value: number) {
+    this._metalStored = value;
   }
 
-  get mineralQuantity(): number {
-    return this._mineralQuantity;
+  get mineralStored(): number {
+    return this._mineralStored;
   }
 
-  set mineralQuantity(value: number) {
-    this._mineralQuantity = value;
+  set mineralStored(value: number) {
+    this._mineralStored = value;
   }
 
-  get foodQuantity(): number {
-    return this._foodQuantity;
+  get foodStored(): number {
+    return this._foodStored;
   }
 
-  set foodQuantity(value: number) {
-    this._foodQuantity = value;
+  set foodStored(value: number) {
+    this._foodStored = value;
   }
 
-  get energyQuantity(): number {
-    return this._energyQuantity;
+  get energyStored(): number {
+    return this._energyStored;
   }
 
-  set energyQuantity(value: number) {
-    this._energyQuantity = value;
+  set energyStored(value: number) {
+    this._energyStored = value;
   }
 
   get metalProduction(): number {

@@ -2,7 +2,7 @@ export class Resource {
   private _name: string;
   private _abundance: number = 0;
   private _production: number = 0;
-  private _quantity: number = 0;
+  private _stored: number = 0;
 
   get name(): string {
     return this._name;
@@ -12,12 +12,12 @@ export class Resource {
     this._name = value;
   }
 
-  get quantity(): number {
-    return this._quantity;
+  get stored(): number {
+    return this._stored;
   }
 
-  set quantity(value: number) {
-    this._quantity = value;
+  set stored(value: number) {
+    this._stored = value;
   }
 
   get abundance(): number {
