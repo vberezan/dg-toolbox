@@ -18,8 +18,6 @@ export class PlanetScanExtractorService implements DataExtractor {
   extract(): PlanetScanEvent {
     // -- no scan
     if (this.document.querySelectorAll('#contentBox #planetHeader').length <= 1) {
-      console.log("RETURN NULL");
-
       return null;
     }
 
@@ -27,14 +25,12 @@ export class PlanetScanExtractorService implements DataExtractor {
     let base: Element = this.document.querySelectorAll('#contentBox #planetHeader')[1];
     let scanType: ScanType;
 
-    console.log(base.querySelectorAll('.planetHeadSection .resource > span'));
-
     switch (base.querySelectorAll('.planetHeadSection .resource > span').length) {
       case 5: {
         scanType = ScanType.SURFACE;
         break;
       }
-      case 3: {
+      case 2: {
         scanType = ScanType.RESOURCE;
         break;
       }
@@ -48,16 +44,16 @@ export class PlanetScanExtractorService implements DataExtractor {
     let result = new PlanetScanEvent(planetScan, scanType);
 
     if (scanType === ScanType.RESOURCE || scanType === ScanType.SURFACE) {
-      result.planetScan.orbit = parseInt(base.querySelectorAll('.planetHeadSection .resource > span')[0].textContent);
-      result.planetScan.ground = parseInt(base.querySelectorAll('.planetHeadSection .resource > span')[1].textContent);
-      result.planetScan.location = base.querySelectorAll('.planetHeadSection .coords')[0].textContent.replace(/\s+/,'');
+      result.planetScan.orbit = parseInt(base.querySelectorAll('.planetHeadSection .resource > span')[0].textContent.trim());
+      result.planetScan.ground = parseInt(base.querySelectorAll('.planetHeadSection .resource > span')[1].textContent.trim());
+      result.planetScan.location = base.querySelectorAll('.planetHeadSection .coords')[0].textContent.trim().replace(/\s+/,'');
 
     }
 
     if (scanType === ScanType.RESOURCE) {
       base.querySelectorAll('.planetHeadSection .resourceRow:nth-child(2) > .data:not(:first-child)').forEach((abundance: Element) => {
         let resource: Resource = new Resource();
-        resource.abundance = parseInt(abundance.textContent);
+        resource.abundance = parseInt(abundance.textContent.trim());
 
         result.planetScan.resources.push(resource);
       });
@@ -66,23 +62,21 @@ export class PlanetScanExtractorService implements DataExtractor {
     if (scanType === ScanType.SURFACE) {
       base.querySelectorAll('.planetHeadSection .resourceRow:nth-child(2) > .data:not(:first-child)').forEach((production: Element) => {
         let resource: Resource = new Resource();
-        resource.stored = parseInt(production.textContent.replace(/,/g, ''));
+        resource.stored = parseInt(production.textContent.trim().replace(/,/g, ''));
 
         result.planetScan.resources.push(resource);
       });
 
       base.querySelectorAll('.planetHeadSection .resourceRow:nth-child(3) > .data:not(:first-child)').forEach((abundance: Element, index: number) => {
-        result.planetScan.resources[index].abundance = parseInt(abundance.textContent);
+        result.planetScan.resources[index].abundance = parseInt(abundance.textContent.trim());
       });
 
-      result.planetScan.workers.currentNumber = parseInt(base.querySelectorAll('.planetHeadSection .resource > span')[3].textContent.split(/\//g)[0].replace(/,/g, ''));
-      result.planetScan.workers.maximumNumber = parseInt(base.querySelectorAll('.planetHeadSection .resource > span')[3].textContent.split(/\//g)[1].replace(/,/g, ''));
-      result.planetScan.workers.available = parseInt(base.querySelectorAll('.planetHeadSection .resource > span')[4].textContent.split(/\s+/)[0].replace(/[(,]/g, ''));
+      result.planetScan.workers.currentNumber = parseInt(base.querySelectorAll('.planetHeadSection .resource > span')[3].textContent.trim().split(/\//g)[0].replace(/,/g, ''));
+      result.planetScan.workers.maximumNumber = parseInt(base.querySelectorAll('.planetHeadSection .resource > span')[3].textContent.trim().split(/\//g)[1].replace(/,/g, ''));
+      result.planetScan.workers.available = parseInt(base.querySelectorAll('.planetHeadSection .resource > span')[4].textContent.trim().split(/\s+/)[0].replace(/[(,]/g, ''));
 
-      result.planetScan.soldiers = parseInt(base.querySelectorAll('.planetHeadSection .resource > span')[2].textContent.replace(/,/g, ''));
+      result.planetScan.soldiers = parseInt(base.querySelectorAll('.planetHeadSection .resource > span')[2].textContent.trim().replace(/,/g, ''));
     }
-
-    console.log(result);
 
     return result;
   }
