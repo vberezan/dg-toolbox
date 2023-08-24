@@ -35,4 +35,13 @@ export class Resource {
   set production(value: number) {
     this._production = value;
   }
+
+  toJSON() {
+    return {
+      name: this.name,
+      abundance: this.abundance,
+      production: this.production,
+      stored: this.stored
+    }
+  }
 }

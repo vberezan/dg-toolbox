@@ -26,4 +26,12 @@ export class Population {
   set maximumNumber(value: number) {
     this._maximumNumber = value;
   }
+
+  toJSON() {
+    return {
+      available: this.available,
+      currentNumber: this.currentNumber,
+      maximumNumber: this.maximumNumber
+    }
+  }
 }

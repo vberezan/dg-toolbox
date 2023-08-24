@@ -76,4 +76,17 @@ export class PlanetScan {
   set fleet(value: NameQuantity[]) {
     this._fleet = value;
   }
+
+  toJSON() {
+    return {
+      resources: this.resources,
+      ground: this.ground,
+      orbit: this.orbit,
+      workers: this.workers,
+      soldiers: this.soldiers,
+      buildings: this.buildings,
+      fleet: this.fleet,
+      location: this.location
+    }
+  }
 }

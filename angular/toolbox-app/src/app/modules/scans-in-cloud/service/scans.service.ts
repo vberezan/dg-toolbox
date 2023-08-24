@@ -56,42 +56,10 @@ export class ScansService {
 
       this.firestore.collection('scans')
         .doc(items.docs[0].id)
-        .set(dbScan);
+        .set(JSON.parse(JSON.stringify(dbScan)));
     });
   }
 
   constructor() {
-
-    // this.firestore.firestore.collection('scans').get().then((snapshot) => {
-    //   snapshot.forEach((data) => {
-    //     console.log(data.get('_resources'));
-    //   })
-    // });
-    //
-    // let fs: PlanetScan = new PlanetScan();
-    // fs.ground = 10;
-    // fs.orbit = 11;
-    // fs.soldiers = 22;
-    // fs.workers.maximumNumber = 1;
-    // fs.workers.currentNumber = 2;
-    // fs.workers.available = 3;
-    //
-    // let r: Resource = new Resource();
-    // r.name = 'metal';
-    // r.production = 111;
-    // r.stored = 222;
-    // r.abundance = 33;
-    // fs.resources.push(r);
-    //
-    // fs.buildings.push(new NameQuantity('metal-mine', 22));
-    // fs.buildings.push(new NameQuantity('mineral-mine', 33));
-    //
-    // fs.fleet.push(new NameQuantity(Ships.FIGHTER, 33));
-    // fs.fleet.push(new NameQuantity('bombers', 33));
-
-
-    // this.firestore.firestore.collection('scans').add(JSON.parse(JSON.stringify(fs))).then(() => {
-    //   console.log("SENT!");
-    // })
   }
 }
