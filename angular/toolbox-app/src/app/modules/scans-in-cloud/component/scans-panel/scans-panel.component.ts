@@ -1,5 +1,6 @@
 import {Component, inject, OnInit} from '@angular/core';
 import {ScansService} from "../../service/scans.service";
+import {PlanetScanEvent} from "../../model/planet-scan-event.model";
 
 @Component({
   selector: 'dgt-scans-panel',
@@ -13,6 +14,10 @@ export class ScansPanelComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    this.scansService.updateScan(this.scansService.extractScan());
+    let planetScanEvent:PlanetScanEvent = this.scansService.extractScan();
+
+    if (planetScanEvent != null) {
+      this.scansService.updateScan(this.scansService.extractScan());
+    }
   }
 }

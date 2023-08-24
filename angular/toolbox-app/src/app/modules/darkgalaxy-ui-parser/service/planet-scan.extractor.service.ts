@@ -17,12 +17,12 @@ export class PlanetScanExtractorService implements DataExtractor {
 
   extract(): PlanetScanEvent {
     // -- no scan
-    if (document.querySelectorAll('#contentBox #planetHeader').length <= 1) {
+    if (this.document.querySelectorAll('#contentBox #planetHeader').length <= 1) {
       return null;
     }
 
     let planetScan: PlanetScan = new PlanetScan();
-    let base: Element = document.querySelectorAll('#contentBox #planetHeader')[1];
+    let base: Element = this.document.querySelectorAll('#contentBox #planetHeader')[1];
     let scanType: ScanType;
 
     switch (base.querySelectorAll('.planetHeadSection .resource > span').length) {
