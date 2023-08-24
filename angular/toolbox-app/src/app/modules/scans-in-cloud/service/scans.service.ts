@@ -18,8 +18,6 @@ export class ScansService {
   }
 
   updateScan(scanEvent: PlanetScanEvent): void {
-    console.log('update event: ' + JSON.stringify(scanEvent));
-
     this.firestore.collection<PlanetScan>('scans', ref => ref
       .where('_location', '==', scanEvent.planetScan.location)
       .limit(1)
@@ -33,6 +31,8 @@ export class ScansService {
       }
 
       if (scanEvent.type == ScanType.RESOURCE) {
+        console.log("db scan: " + dbScan);
+
         if (dbScan.resources.length > 0) {
           dbScan.resources.forEach((dbResource: Resource, index) => {
             dbResource.abundance = scanEvent.planetScan.resources[index].abundance;
