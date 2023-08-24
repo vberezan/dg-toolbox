@@ -32,6 +32,8 @@ export class ScansService {
       }
 
       if (scanEvent.type == ScanType.RESOURCE) {
+        console.log("RESOURCE");
+        console.log(dbScan.resources.length);
 
         if (dbScan.resources.length > 0) {
           dbScan.resources.forEach((dbResource: Resource, index) => {
@@ -43,6 +45,7 @@ export class ScansService {
       }
 
       if (scanEvent.type == ScanType.SURFACE) {
+        console.log("SURFACE");
         dbScan.resources = scanEvent.planetScan.resources;
         dbScan.workers = scanEvent.planetScan.workers;
         dbScan.soldiers = scanEvent.planetScan.soldiers;
