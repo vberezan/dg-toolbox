@@ -18,6 +18,8 @@ export class ScansService {
   }
 
   updateScan(scanEvent: PlanetScanEvent): void {
+    console.log('update event: ' + scanEvent);
+
     this.firestore.collection<PlanetScan>('scans', ref => ref
       .where('_location', '==', scanEvent.planetScan.location)
       .limit(1)
