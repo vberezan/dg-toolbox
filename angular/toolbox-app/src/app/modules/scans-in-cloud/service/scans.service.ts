@@ -33,9 +33,9 @@ export class ScansService {
       if (scanEvent.type == ScanType.RESOURCE) {
 
         if (dbScan.resources.length > 0) {
+          console.log(dbScan.resources);
+
           dbScan.resources.forEach((dbResource: Resource, index) => {
-            console.log(index);
-            console.log(scanEvent.planetScan.resources[index]);
             dbResource.abundance = scanEvent.planetScan.resources[index].abundance;
           });
         } else {
