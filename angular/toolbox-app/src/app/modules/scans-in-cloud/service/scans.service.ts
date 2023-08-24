@@ -32,9 +32,6 @@ export class ScansService {
       }
 
       if (scanEvent.type == ScanType.RESOURCE) {
-        console.log("RESOURCE");
-        console.log(dbScan.resources.length);
-
         if (dbScan.resources.length > 0) {
           dbScan.resources.forEach((dbResource: Resource, index) => {
             dbResource.abundance = scanEvent.planetScan.resources[index].abundance;
@@ -45,7 +42,6 @@ export class ScansService {
       }
 
       if (scanEvent.type == ScanType.SURFACE) {
-        console.log("SURFACE");
         dbScan.resources = scanEvent.planetScan.resources;
         dbScan.workers = scanEvent.planetScan.workers;
         dbScan.soldiers = scanEvent.planetScan.soldiers;
@@ -58,9 +54,7 @@ export class ScansService {
 
       this.firestore.collection('scans')
         .doc(items.docs[0].id)
-        .set(JSON.parse(JSON.stringify(scanEvent.planetScan))).then(() => {
-        console.log("Planet Scan [" + scanEvent.type + "] updated to FireStore: [" + JSON.stringify(scanEvent.planetScan) + "]");
-      })
+        .set(JSON.parse(JSON.stringify(dbScan)));
     });
   }
 
