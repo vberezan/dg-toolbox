@@ -32,6 +32,11 @@ body {
   width: 552px !important;
 }
 
+#buttonBlock div,
+#buttonBlock a {
+  margin-right: 5px !important;
+}
+
 #planetList > #planetList .locationWrapper .paddingMid {
   padding: 0 !important;
   display: block;
@@ -165,3 +170,5 @@ body {
 #planetList > #planetList .resourceLine .resource {
   width: calc(25% - 15px) !important;
 }
+
+/******/

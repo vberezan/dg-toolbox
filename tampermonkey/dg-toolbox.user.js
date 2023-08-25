@@ -118,12 +118,15 @@ function applyCustomStyling() {
     document.querySelectorAll('.resource span').forEach((resource) => {
         resource.innerHTML = resource.innerHTML.replace(/\(/g, '[').replace(/\)/g, ']');
     });
+
+    // -- temp fix. check later if can be removed
+    document.querySelector('#fleetHeader').parentElement.querySelector('div.opacDarkBackground.left:nth-child(2)').style.marginRight = '3px';
 }
 
 ///////////
 function setUpNgZone() {
     let style = document.createElement('link');
-    style.href = 'https://cdn.jsdelivr.net/gh/vberezan/dg-toolbox/angular/toolbox-app/dist/toolbox-app/styles.85aa89c891a4a951.css';
+    style.href = 'https://cdn.jsdelivr.net/gh/vberezan/dg-toolbox/angular/toolbox-app/dist/toolbox-app/styles.bae278528565afc8.css';
     style.rel = 'stylesheet';
     document.head.appendChild(style);
 
