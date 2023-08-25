@@ -23,4 +23,11 @@ export class NameQuantity {
   set quantity(value: number) {
     this._quantity = value;
   }
+
+  toJSON() {
+    return {
+      name: this.name,
+      quantity: this.quantity
+    }
+  }
 }

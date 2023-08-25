@@ -8,7 +8,7 @@ export class PlanetScan {
   private _orbit: number = 0;
   private _workers: Population = new Population();
   private _soldiers: number = 0;
-  private _buildings: NameQuantity[] = [];
+  private _structures: NameQuantity[] = [];
   private _fleet: NameQuantity[] = [];
   private _location: string;
 
@@ -61,12 +61,12 @@ export class PlanetScan {
   }
 
 
-  get buildings(): NameQuantity[] {
-    return this._buildings;
+  get structures(): NameQuantity[] {
+    return this._structures;
   }
 
-  set buildings(value: NameQuantity[]) {
-    this._buildings = value;
+  set structures(value: NameQuantity[]) {
+    this._structures = value;
   }
 
   get fleet(): NameQuantity[] {
@@ -84,7 +84,7 @@ export class PlanetScan {
       orbit: this.orbit,
       workers: this.workers,
       soldiers: this.soldiers,
-      buildings: this.buildings,
+      structures: this.structures,
       fleet: this.fleet,
       location: this.location
     }

@@ -26,9 +26,11 @@ export class ScansService {
         Object.assign(new PlanetScan(), items.docChanges().map(entry => {
           return entry.doc.data();
         })[0]);
+      dbScan.location = scanEvent.planetScan.location;
 
-      if (scanEvent.type == ScanType.FLEET) {
-        dbScan.fleet = scanEvent.planetScan.fleet;
+      if (scanEvent.type == ScanType.RESOURCE || scanEvent.type == ScanType.SURFACE) {
+        dbScan.orbit = scanEvent.planetScan.orbit;
+        dbScan.ground = scanEvent.planetScan.ground;
       }
 
       if (scanEvent.type == ScanType.RESOURCE) {
@@ -45,18 +47,22 @@ export class ScansService {
         dbScan.resources = scanEvent.planetScan.resources;
         dbScan.workers = scanEvent.planetScan.workers;
         dbScan.soldiers = scanEvent.planetScan.soldiers;
+        dbScan.structures = scanEvent.planetScan.structures;
+
+
       }
 
-      if (scanEvent.type == ScanType.RESOURCE || scanEvent.type == ScanType.SURFACE) {
-        dbScan.orbit = scanEvent.planetScan.orbit;
-        dbScan.ground = scanEvent.planetScan.ground;
+      if (scanEvent.type == ScanType.FLEET) {
+        dbScan.fleet = scanEvent.planetScan.fleet;
       }
 
-      console.log(dbScan);
-
-      this.firestore.collection('scans')
-        .doc(items.docs[0].id)
-        .set(JSON.parse(JSON.stringify(dbScan)));
+      if (items.size == 0) {
+        this.firestore.collection('scans').add(JSON.parse(JSON.stringify(dbScan)));
+      } else {
+        this.firestore.collection('scans')
+          .doc(items.docs[0].id)
+          .set(JSON.parse(JSON.stringify(dbScan)));
+      }
     });
   }
 
