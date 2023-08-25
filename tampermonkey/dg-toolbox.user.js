@@ -119,8 +119,9 @@ function applyCustomStyling() {
         resource.innerHTML = resource.innerHTML.replace(/\(/g, '[').replace(/\)/g, ']');
     });
 
-    // -- temp fix. check later if can be removed
-    document.querySelector('#fleetHeader').parentElement.querySelector('div.opacDarkBackground.left:nth-child(2)').style.marginRight = '3px';
+    if (document.querySelector('#fleetHeader')) {
+        document.querySelector('#fleetHeader').parentElement.querySelector('div.opacDarkBackground.left:nth-child(2)').style.marginRight = '3px';
+    }
 }
 
 ///////////
