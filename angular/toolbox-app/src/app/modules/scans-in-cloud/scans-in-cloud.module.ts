@@ -27,6 +27,6 @@ import {ScansService} from "./service/scans.service";
 })
 export class ScansInCloudModule {
   constructor() {
-    console.log("%cDGT%c - installing scans in cloud...", "font-size: 12px; font-weight: bold;", "font-size: 12px;");
+    console.log("%cDGT%c - installing shared scans...", "font-size: 12px; font-weight: bold;", "font-size: 12px;");
   }
 }
