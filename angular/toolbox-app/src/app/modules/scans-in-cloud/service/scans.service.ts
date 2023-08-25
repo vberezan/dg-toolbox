@@ -27,6 +27,7 @@ export class ScansService {
           return entry.doc.data();
         })[0]);
       dbScan.location = scanEvent.planetScan.location;
+      dbScan.turn = scanEvent.planetScan.turn;
 
       if (scanEvent.type == ScanType.RESOURCE || scanEvent.type == ScanType.SURFACE) {
         dbScan.orbit = scanEvent.planetScan.orbit;

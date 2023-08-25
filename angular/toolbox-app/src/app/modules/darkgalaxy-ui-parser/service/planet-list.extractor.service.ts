@@ -36,7 +36,8 @@ export class PlanetListExtractorService implements DataExtractor {
       planetSummary.resources = resources;
 
       // -- set population data
-      planetSummary.workers.available = parseInt(planet.querySelectorAll('.planetHeadSection .resource span')[4].innerHTML.split(/\s+/)[0].replace(/[(,]/g, ''));
+      let availableWorkers = planet.querySelectorAll('.planetHeadSection .resource span')[4].innerHTML.split(/\s+/)[0];
+      planetSummary.workers.available = parseInt(availableWorkers.substring(1, availableWorkers.length));
       planetSummary.workers.currentNumber = parseInt(planet.querySelectorAll('.planetHeadSection .resource span')[3].innerHTML.split(/\//g)[0].replace(/,/g, ''));
       planetSummary.workers.maximumNumber = parseInt(planet.querySelectorAll('.planetHeadSection .resource span')[3].innerHTML.split(/\//g)[1].replace(/,/g, ''));
       planetSummary.soldiers.currentNumber = parseInt(planet.querySelectorAll('.planetHeadSection .resource span')[2].innerHTML.replace(/,/g, ''));

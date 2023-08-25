@@ -11,6 +11,15 @@ export class PlanetScan {
   private _structures: NameQuantity[] = [];
   private _fleet: NameQuantity[] = [];
   private _location: string;
+  private _turn: number;
+
+  get turn(): number {
+    return this._turn;
+  }
+
+  set turn(value: number) {
+    this._turn = value;
+  }
 
   get location(): string {
     return this._location;
@@ -86,7 +95,8 @@ export class PlanetScan {
       soldiers: this.soldiers,
       structures: this.structures,
       fleet: this.fleet,
-      location: this.location
+      location: this.location,
+      turn: this.turn
     }
   }
 }

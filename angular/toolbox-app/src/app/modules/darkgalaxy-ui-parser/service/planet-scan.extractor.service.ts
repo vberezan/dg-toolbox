@@ -45,7 +45,9 @@ export class PlanetScanExtractorService implements DataExtractor {
     }
 
     let result = new PlanetScanEvent(planetScan, scanType);
+    result.planetScan.turn = parseInt(document.querySelector('#turnNumber').textContent.trim().replace(/,/g, ''));
 
+    // -- extract common RESOURCE & SURFACE scans data
     if (scanType === ScanType.RESOURCE || scanType === ScanType.SURFACE) {
       result.planetScan.orbit = parseInt(base.querySelectorAll('.planetHeadSection .resource > span')[0].textContent.trim());
       result.planetScan.ground = parseInt(base.querySelectorAll('.planetHeadSection .resource > span')[1].textContent.trim());
@@ -53,6 +55,7 @@ export class PlanetScanExtractorService implements DataExtractor {
 
     }
 
+    // -- extract RESOURCE specific data
     if (scanType === ScanType.RESOURCE) {
       base.querySelectorAll('.planetHeadSection .resourceRow:nth-child(2) > .data:not(:first-child)').forEach((abundance: Element) => {
         let resource: Resource = new Resource();
@@ -62,6 +65,7 @@ export class PlanetScanExtractorService implements DataExtractor {
       });
     }
 
+    // -- extract SURFACE specific data
     if (scanType === ScanType.SURFACE) {
       base.querySelectorAll('.planetHeadSection .resourceRow:nth-child(2) > .data:not(:first-child)').forEach((production: Element) => {
         let resource: Resource = new Resource();
@@ -76,7 +80,8 @@ export class PlanetScanExtractorService implements DataExtractor {
 
       result.planetScan.workers.currentNumber = parseInt(base.querySelectorAll('.planetHeadSection .resource > span')[3].textContent.trim().split(/\//g)[0].replace(/,/g, ''));
       result.planetScan.workers.maximumNumber = parseInt(base.querySelectorAll('.planetHeadSection .resource > span')[3].textContent.trim().split(/\//g)[1].replace(/,/g, ''));
-      result.planetScan.workers.available = parseInt(base.querySelectorAll('.planetHeadSection .resource > span')[4].textContent.trim().split(/\s+/)[0].replace(/[(,]/g, ''));
+      let availableWorkers = base.querySelectorAll('.planetHeadSection .resource > span')[4].textContent.trim().split(/\s+/)[0];
+      result.planetScan.workers.available = parseInt(availableWorkers.substring(1, availableWorkers.length));
 
       result.planetScan.soldiers = parseInt(base.querySelectorAll('.planetHeadSection .resource > span')[2].textContent.trim().replace(/,/g, ''));
 
@@ -89,6 +94,7 @@ export class PlanetScanExtractorService implements DataExtractor {
         );
       });
 
+      // -- calculate native production (no bonuses applied)
       result.planetScan.structures.forEach((structure) => {
         switch (structure.name as Structures) {
           case Structures.OUTPOST: {
