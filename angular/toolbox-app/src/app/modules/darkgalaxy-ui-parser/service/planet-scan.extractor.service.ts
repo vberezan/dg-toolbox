@@ -90,7 +90,6 @@ export class PlanetScanExtractorService implements DataExtractor {
       });
 
       result.planetScan.structures.forEach((structure) => {
-
         switch (structure.name as Structures) {
           case Structures.OUTPOST: {
             result.planetScan.resources[0].production += 300;
@@ -149,12 +148,12 @@ export class PlanetScanExtractorService implements DataExtractor {
             break;
           }
         }
-
-        result.planetScan.resources.forEach((resource) => {
-          resource.production = Math.ceil(resource.production * (resource.abundance / 100));
-        });
       });
     }
+
+    result.planetScan.resources.forEach((resource) => {
+      resource.production = Math.ceil((resource.production * resource.abundance) / 100);
+    });
 
     return result;
   }
