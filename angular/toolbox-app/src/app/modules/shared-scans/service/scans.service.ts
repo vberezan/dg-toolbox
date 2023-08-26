@@ -28,6 +28,7 @@ export class ScansService {
         })[0]);
       dbScan.location = scanEvent.planetScan.location;
       dbScan.turn = scanEvent.planetScan.turn;
+      dbScan.owner = scanEvent.planetScan.owner;
 
       if (scanEvent.type == ScanType.RESOURCE || scanEvent.type == ScanType.SURFACE) {
         dbScan.orbit = scanEvent.planetScan.orbit;
@@ -49,8 +50,6 @@ export class ScansService {
         dbScan.workers = scanEvent.planetScan.workers;
         dbScan.soldiers = scanEvent.planetScan.soldiers;
         dbScan.structures = scanEvent.planetScan.structures;
-
-
       }
 
       if (scanEvent.type == ScanType.FLEET) {
