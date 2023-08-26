@@ -78,11 +78,10 @@ export class PlanetScanExtractorService implements DataExtractor {
         result.planetScan.resources[index].abundance = parseInt(abundance.textContent.trim());
       });
 
+      let availableWorkers = base.querySelectorAll('.planetHeadSection .resource > span')[4].textContent.trim().split(/\s+/)[0];
       result.planetScan.workers.currentNumber = parseInt(base.querySelectorAll('.planetHeadSection .resource > span')[3].textContent.trim().split(/\//g)[0].replace(/,/g, ''));
       result.planetScan.workers.maximumNumber = parseInt(base.querySelectorAll('.planetHeadSection .resource > span')[3].textContent.trim().split(/\//g)[1].replace(/,/g, ''));
-      let availableWorkers = base.querySelectorAll('.planetHeadSection .resource > span')[4].textContent.trim().split(/\s+/)[0];
-      result.planetScan.workers.available = parseInt(availableWorkers.substring(1, availableWorkers.length));
-
+      result.planetScan.workers.available = parseInt(availableWorkers.substring(1, availableWorkers.length).replace(/,/g, ''));
       result.planetScan.soldiers = parseInt(base.querySelectorAll('.planetHeadSection .resource > span')[2].textContent.trim().replace(/,/g, ''));
 
       base.parentElement.querySelectorAll('div.entry > .left:not(.structureImageSmall)').forEach((structure: Element) => {
