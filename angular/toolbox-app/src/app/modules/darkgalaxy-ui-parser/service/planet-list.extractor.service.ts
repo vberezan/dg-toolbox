@@ -1,6 +1,6 @@
 import {inject, Injectable} from '@angular/core';
 import {DOCUMENT} from "@angular/common";
-import {PlanetSummary} from "../model/planet-list/planet-list-planet-summary.model";
+import {PlanetSummary} from "../../../model/planet-list/planet-summary.planet-list-model";
 import {Resource} from "../../../model/resource.model";
 import {DataExtractor} from "./data-extractor";
 

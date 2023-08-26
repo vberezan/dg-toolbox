@@ -1,8 +1,8 @@
 import {inject, Injectable} from '@angular/core';
 import {PlanetListExtractorService} from "./planet-list.extractor.service";
-import {PlanetSummary} from "../model/planet-list/planet-list-planet-summary.model";
+import {PlanetSummary} from "../../../model/planet-list/planet-summary.planet-list-model";
 import {PlanetScanExtractorService} from "./planet-scan.extractor.service";
-import {PlanetScanEvent} from "../../scans-in-cloud/model/planet-scan-event.model";
+import {PlanetScanEvent} from "../../../model/shared-scans/shared-scans-planet-scan-event.model";
 
 @Injectable({
   providedIn: 'platform'

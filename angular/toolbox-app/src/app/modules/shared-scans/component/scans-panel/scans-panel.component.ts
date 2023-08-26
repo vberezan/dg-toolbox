@@ -1,6 +1,6 @@
 import {Component, inject, OnInit} from '@angular/core';
 import {ScansService} from "../../service/scans.service";
-import {PlanetScanEvent} from "../../model/planet-scan-event.model";
+import {PlanetScanEvent} from "../../../../model/shared-scans/shared-scans-planet-scan-event.model";
 
 @Component({
   selector: 'dgt-scans-panel',

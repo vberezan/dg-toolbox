@@ -1,12 +1,13 @@
 import {inject, Injectable} from '@angular/core';
 import {DOCUMENT} from "@angular/common";
 import {DataExtractor} from "./data-extractor";
-import {PlanetScan} from "../../scans-in-cloud/model/planet-scan.model";
-import {ScanType} from "../../scans-in-cloud/model/scan-type";
+import {PlanetScan} from "../../../model/shared-scans/shared-scans-planet-scan.model";
+import {ScanType} from "../../../model/scan-type";
 import {Resource} from "../../../model/resource.model";
-import {PlanetScanEvent} from "../../scans-in-cloud/model/planet-scan-event.model";
+import {PlanetScanEvent} from "../../../model/shared-scans/shared-scans-planet-scan-event.model";
 import {NameQuantity} from "../../../model/name-quantity.model";
 import {Structures} from "../../../model/structures";
+import {Owner} from "../../../model/shared-scans/shared-scans-owner.model";
 
 @Injectable({
   providedIn: 'root'
@@ -45,7 +46,14 @@ export class PlanetScanExtractorService implements DataExtractor {
     }
 
     let result = new PlanetScanEvent(planetScan, scanType);
-    result.planetScan.turn = parseInt(document.querySelector('#turnNumber').textContent.trim().replace(/,/g, ''));
+
+    if (scanType !== ScanType.UNKNOWN) {
+      result.planetScan.turn = parseInt(document.querySelector('#turnNumber').textContent.trim().replace(/,/g, ''));
+
+      let ownerAlliance = base.querySelectorAll('.planetHeadSection .opacBackground>.left>span')[0].textContent.trim();
+      result.planetScan.owner = new Owner(base.querySelectorAll('.planetHeadSection .opacBackground>.left>span')[0].textContent.trim().split('Owner:')[1].trim(),
+        ownerAlliance.substring(1, ownerAlliance.length - 1));
+    }
 
     // -- extract common RESOURCE & SURFACE scans data
     if (scanType === ScanType.RESOURCE || scanType === ScanType.SURFACE) {
@@ -154,6 +162,10 @@ export class PlanetScanExtractorService implements DataExtractor {
           }
         }
       });
+    }
+
+    if (scanType === ScanType.FLEET) {
+
     }
 
     result.planetScan.resources.forEach((resource) => {

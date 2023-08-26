@@ -1,9 +1,9 @@
 import {inject, Injectable} from '@angular/core';
 import {AngularFirestore} from "@angular/fire/compat/firestore";
-import {PlanetScan} from "../model/planet-scan.model";
+import {PlanetScan} from "../../../model/shared-scans/shared-scans-planet-scan.model";
 import {DarkgalaxyApiService} from "../../darkgalaxy-ui-parser/service/darkgalaxy-api.service";
-import {PlanetScanEvent} from "../model/planet-scan-event.model";
-import {ScanType} from "../model/scan-type";
+import {PlanetScanEvent} from "../../../model/shared-scans/shared-scans-planet-scan-event.model";
+import {ScanType} from "../../../model/scan-type";
 import {Resource} from "../../../model/resource.model";
 
 @Injectable({

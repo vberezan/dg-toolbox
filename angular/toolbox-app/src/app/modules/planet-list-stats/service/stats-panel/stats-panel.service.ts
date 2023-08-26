@@ -1,8 +1,8 @@
 import {inject, Injectable} from '@angular/core';
 import {DarkgalaxyApiService} from "../../../darkgalaxy-ui-parser/service/darkgalaxy-api.service";
-import {PlanetSummary} from "../../../darkgalaxy-ui-parser/model/planet-list/planet-list-planet-summary.model";
-import {StatsPanel} from "../../../darkgalaxy-ui-parser/model/planet-list/planet-list-stats-panel.model";
-import {PlanetStats} from "../../../darkgalaxy-ui-parser/model/planet-list/planet-list-planet-stats.model";
+import {PlanetSummary} from "../../../../model/planet-list/planet-summary.planet-list-model";
+import {StatsPanel} from "../../../../model/planet-list/planet-list-stats-panel.model";
+import {PlanetStats} from "../../../../model/planet-list/planet-list-planet-stats.model";
 import {Resource} from "../../../../model/resource.model";
 
 @Injectable({

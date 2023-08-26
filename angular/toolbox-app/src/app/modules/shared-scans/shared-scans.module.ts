@@ -1,4 +1,4 @@
-import {NgModule} from '@angular/core';
+import {NgModule, OnInit} from '@angular/core';
 import {BrowserModule} from "@angular/platform-browser";
 import {ScansPanelComponent} from './component/scans-panel/scans-panel.component';
 import {DarkgalaxyApiService} from "../darkgalaxy-ui-parser/service/darkgalaxy-api.service";
@@ -25,8 +25,11 @@ import {ScansService} from "./service/scans.service";
   ],
   bootstrap: [ScansPanelComponent]
 })
-export class ScansInCloudModule {
+export class SharedScansModule implements OnInit {
   constructor() {
-    console.log("%cDGT%c - installing shared scans...", "font-size: 12px; font-weight: bold;", "font-size: 12px;");
+  }
+
+  ngOnInit(): void {
+    console.log("%cDGT%c - installed shared scans...", "font-size: 12px; font-weight: bold;", "font-size: 12px;");
   }
 }

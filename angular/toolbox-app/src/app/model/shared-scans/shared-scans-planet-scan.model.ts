@@ -1,6 +1,7 @@
-import {Resource} from "../../../model/resource.model";
-import {Population} from "../../../model/population.model";
-import {NameQuantity} from "../../../model/name-quantity.model";
+import {Resource} from "../resource.model";
+import {Population} from "../population.model";
+import {NameQuantity} from "../name-quantity.model";
+import {Owner} from "./shared-scans-owner.model";
 
 export class PlanetScan {
   private _resources: Resource[] = [];
@@ -12,6 +13,15 @@ export class PlanetScan {
   private _fleet: NameQuantity[] = [];
   private _location: string;
   private _turn: number;
+  private _owner: Owner;
+
+  get owner(): Owner {
+    return this._owner;
+  }
+
+  set owner(value: Owner) {
+    this._owner = value;
+  }
 
   get turn(): number {
     return this._turn;
@@ -96,7 +106,8 @@ export class PlanetScan {
       structures: this.structures,
       fleet: this.fleet,
       location: this.location,
-      turn: this.turn
+      turn: this.turn,
+      owner: this.owner
     }
   }
 }
