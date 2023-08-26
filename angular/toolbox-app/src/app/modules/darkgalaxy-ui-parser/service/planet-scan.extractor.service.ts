@@ -50,7 +50,7 @@ export class PlanetScanExtractorService implements DataExtractor {
     if (scanType !== ScanType.UNKNOWN) {
       result.planetScan.turn = parseInt(document.querySelector('#turnNumber').textContent.trim().replace(/,/g, ''));
 
-      let ownerAlliance = base.querySelectorAll('.planetHeadSection .opacBackground>.left>span')[0].textContent.trim();
+      let ownerAlliance = base.querySelectorAll('.planetHeadSection .opacBackground>.left>span')[1].textContent.trim();
       result.planetScan.owner = new Owner(base.querySelectorAll('.planetHeadSection .opacBackground>.left>span')[0].textContent.trim().split('Owner:')[1].trim(),
         ownerAlliance.substring(1, ownerAlliance.length - 1));
     }
