@@ -165,7 +165,8 @@ export class PlanetScanExtractorService implements DataExtractor {
     }
 
     if (scanType === ScanType.FLEET) {
-
+      // -- TODO: implement this when needed.
+      // -- fleets are volatile, so there is no real benefit of storing such info yet.
     }
 
     result.planetScan.resources.forEach((resource) => {

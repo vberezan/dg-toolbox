@@ -10,7 +10,7 @@ import {DataExtractor} from "./data-extractor";
 export class PlanetListExtractorService implements DataExtractor {
   private document: any = inject(DOCUMENT);
 
-  // FIXME: use textContent instead of innerHTML
+  // TODO: use textContent instead of innerHTML
 
   extract(): PlanetSummary[] {
     let result: PlanetSummary[] = [];

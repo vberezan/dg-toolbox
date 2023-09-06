@@ -142,7 +142,7 @@ function setUpNgZone() {
     document.head.appendChild(polyfills);
 
     let main = document.createElement('script');
-    main.src = 'https://cdn.jsdelivr.net/gh/vberezan/dg-toolbox/angular/toolbox-app/dist/toolbox-app/main.615fbfd28c7624c3.js';
+    main.src = 'https://cdn.jsdelivr.net/gh/vberezan/dg-toolbox/angular/toolbox-app/dist/toolbox-app/main.2c7e5ce6b01dd9d6.js';
     main.type = 'module';
     document.head.appendChild(main);
 }
@@ -180,10 +180,10 @@ function setUpScansInCloud(windowURL) {
         setUpNgZone();
 
         applyCustomStyling();
-        console.log("%cDGT%c - installed custom styles...", "font-size: 12px; font-weight: bold;", "font-size: 12px;");
+        console.log("%cDGT%c - installing custom styles...", "font-size: 12px; font-weight: bold;", "font-size: 12px;");
         replaceIcons();
-        console.log("%cDGT%c - installed FontAwsome icons...", "font-size: 12px; font-weight: bold;", "font-size: 12px;");
+        console.log("%cDGT%c - installing FontAwsome icons...", "font-size: 12px; font-weight: bold;", "font-size: 12px;");
         replacePlanetsImages();
-        console.log("%cDGT%c - installed planets images...", "font-size: 12px; font-weight: bold;", "font-size: 12px;");
+        console.log("%cDGT%c - installing planets images...", "font-size: 12px; font-weight: bold;", "font-size: 12px;");
     });
 })();
