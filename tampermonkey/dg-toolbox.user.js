@@ -180,10 +180,10 @@ function setUpScansInCloud(windowURL) {
         setUpNgZone();
 
         applyCustomStyling();
-        console.log("%cDGT%c - installing custom styles...", "font-size: 12px; font-weight: bold;", "font-size: 12px;");
+        console.log("%cDGT%c - installed custom styles...", "font-size: 12px; font-weight: bold;", "font-size: 12px;");
         replaceIcons();
-        console.log("%cDGT%c - installing FontAwsome icons...", "font-size: 12px; font-weight: bold;", "font-size: 12px;");
+        console.log("%cDGT%c - installed FontAwsome icons...", "font-size: 12px; font-weight: bold;", "font-size: 12px;");
         replacePlanetsImages();
-        console.log("%cDGT%c - installing planets images...", "font-size: 12px; font-weight: bold;", "font-size: 12px;");
+        console.log("%cDGT%c - installed planets images...", "font-size: 12px; font-weight: bold;", "font-size: 12px;");
     });
 })();

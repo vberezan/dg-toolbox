@@ -1,6 +1,6 @@
 import {Component, inject, OnInit} from '@angular/core';
 import {StatsPanel} from "../../../../model/planet-list/planet-list-stats-panel.model";
-import {StatsPanelService} from "../../service/stats-panel/stats-panel.service";
+import {StatsPanelService} from "../../service/stats-panel.service";
 import {FaIconLibrary} from "@fortawesome/angular-fontawesome";
 import {
   faBolt as fasBolt,
