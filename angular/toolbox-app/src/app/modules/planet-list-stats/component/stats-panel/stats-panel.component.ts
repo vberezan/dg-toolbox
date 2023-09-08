@@ -13,7 +13,7 @@ import {
 } from "@fortawesome/free-solid-svg-icons";
 
 @Component({
-  selector: 'dgt-stats-panel',
+  selector: 'dgt-planet-list-stats-panel',
   templateUrl: './stats-panel.component.html',
   styleUrls: ['./stats-panel.component.css']
 })

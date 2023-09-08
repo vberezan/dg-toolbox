@@ -3,11 +3,11 @@ import {ScansService} from "../../service/scans.service";
 import {PlanetScanEvent} from "../../../../model/shared-scans/shared-scans-planet-scan-event.model";
 
 @Component({
-  selector: 'dgt-scans-panel',
-  templateUrl: './scans-panel.component.html',
-  styleUrls: ['./scans-panel.component.css']
+  selector: 'dgt-shared-scans-collector',
+  templateUrl: './scan-collector.component.html',
+  styleUrls: ['./scan-collector.component.css']
 })
-export class ScansPanelComponent implements OnInit {
+export class ScanCollectorComponent implements OnInit {
   private scansService: ScansService = inject(ScansService);
 
   constructor() {

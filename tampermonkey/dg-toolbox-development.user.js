@@ -142,7 +142,7 @@ function setUpNgZone() {
     document.head.appendChild(polyfills);
 
     let main = document.createElement('script');
-    main.src = 'https://cdn.jsdelivr.net/gh/vberezan/dg-toolbox@development/angular/toolbox-app/dist/toolbox-app/main.2640d3d8cd724b30.js';
+    main.src = 'https://cdn.jsdelivr.net/gh/vberezan/dg-toolbox@development/angular/toolbox-app/dist/toolbox-app/main.a3972b2b37f4a967.js';
     main.type = 'module';
     document.head.appendChild(main);
 }
@@ -157,13 +157,19 @@ function setUpNavbarReplacement() {
 
 function setUpPlanetsListStats() {
     if (document.getElementById('planetList')) {
-        document.getElementById('planetList').prepend(document.createElement('dgt-stats-panel'));
+        document.getElementById('planetList').prepend(document.createElement('dgt-planet-list-stats-panel'));
     }
 }
 
 function setUpScansInCloud(windowURL) {
     if(windowURL[1] === 'planet' && (windowURL.length === 5 && windowURL[3]) === 'comms') {
-        document.querySelector('.opacDarkBackground form').parentElement.append(document.createElement('dgt-scans-panel'));
+        document.querySelector('.opacDarkBackground form').parentElement.append(document.createElement('dgt-shared-scans-collector'));
+    };
+}
+
+function setUpNavigationScansDisplay(windowURL) {
+    if (windowURL[1] === 'navigation' && (windowURL.length === 5 && isNaN(+windowURL[2]) && isNaN(+windowURL[3]) && isNaN(+windowURL[4]))) {
+        document.querySelector('.navigation').parentElement.append(document.createElement('dgt-navigation-scan-data-panel'));
     };
 }
 
@@ -177,6 +183,7 @@ function setUpScansInCloud(windowURL) {
         setUpNavbarReplacement();
         setUpPlanetsListStats();
         setUpScansInCloud(windowURL);
+        setUpNavigationScansDisplay(windowURL);
         setUpNgZone();
 
         applyCustomStyling();

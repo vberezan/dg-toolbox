@@ -1,6 +1,6 @@
 import {NgModule, OnInit} from '@angular/core';
 import {BrowserModule} from "@angular/platform-browser";
-import {ScansPanelComponent} from './component/scans-panel/scans-panel.component';
+import {ScanCollectorComponent} from './component/scan-collector/scan-collector.component';
 import {DarkgalaxyApiService} from "../darkgalaxy-ui-parser/service/darkgalaxy-api.service";
 import {DarkgalaxyUiParserModule} from "../darkgalaxy-ui-parser/darkgalaxy-ui-parser.module";
 import {AngularFireModule} from "@angular/fire/compat";
@@ -11,7 +11,7 @@ import {ScansService} from "./service/scans.service";
 
 @NgModule({
   declarations: [
-    ScansPanelComponent
+    ScanCollectorComponent
   ],
   imports: [
     BrowserModule,
@@ -23,7 +23,7 @@ import {ScansService} from "./service/scans.service";
     DarkgalaxyApiService,
     ScansService
   ],
-  bootstrap: [ScansPanelComponent]
+  bootstrap: [ScanCollectorComponent]
 })
 export class SharedScansModule implements OnInit {
   constructor() {
