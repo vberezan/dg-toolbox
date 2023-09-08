@@ -127,7 +127,7 @@ function applyCustomStyling() {
 ///////////
 function setUpNgZone() {
     let style = document.createElement('link');
-    style.href = 'https://cdn.jsdelivr.net/gh/vberezan/dg-toolbox@development/angular/toolbox-app/dist/toolbox-app/styles.eb5edb4d40c1325d.css';
+    style.href = 'https://cdn.jsdelivr.net/gh/vberezan/dg-toolbox@development/angular/toolbox-app/dist/toolbox-app/styles.668dc0ad99714399.css';
     style.rel = 'stylesheet';
     document.head.appendChild(style);
 
@@ -142,7 +142,7 @@ function setUpNgZone() {
     document.head.appendChild(polyfills);
 
     let main = document.createElement('script');
-    main.src = 'https://cdn.jsdelivr.net/gh/vberezan/dg-toolbox@development/angular/toolbox-app/dist/toolbox-app/main.d51ab76d7577c021.js';
+    main.src = 'https://cdn.jsdelivr.net/gh/vberezan/dg-toolbox@development/angular/toolbox-app/dist/toolbox-app/main.2197388c08f6630a.js';
     main.type = 'module';
     document.head.appendChild(main);
 }
@@ -155,22 +155,51 @@ function setUpNavbarReplacement() {
     }
 }
 
-function setUpPlanetsListStats() {
+function setUpPlanetListStatsPanel() {
     if (document.getElementById('planetList')) {
         document.getElementById('planetList').prepend(document.createElement('dgt-planet-list-stats-panel'));
     }
 }
 
-function setUpScansInCloud(windowURL) {
+function setUpSharedScansCollector(windowURL) {
     if(windowURL[1] === 'planet' && (windowURL.length === 5 && windowURL[3]) === 'comms') {
         document.querySelector('.opacDarkBackground form').parentElement.append(document.createElement('dgt-shared-scans-collector'));
-    };
+    }
 }
 
-function setUpNavigationScansDisplay(windowURL) {
+function setUpNavigationScanDataPanel(windowURL) {
+    document.querySelectorAll('div.navigation .row .planets').forEach((planet) => {
+
+        let surfaceMetalColumn = document.createElement('td')
+        surfaceMetalColumn.classList.add('dgt-navigation-scan-resource', 'metal');
+        let surfaceMineralColumn = document.createElement('td')
+        surfaceMineralColumn.classList.add('dgt-navigation-scan-resource', 'mineral');
+        let surfaceFoodColumn = document.createElement('td')
+        surfaceFoodColumn.classList.add('dgt-navigation-scan-resource', 'food');
+        let surfaceEnergyColumn = document.createElement('td')
+        surfaceEnergyColumn.classList.add('dgt-navigation-scan-resources', 'energy');
+
+        let surfaceRow = document.createElement('tr');
+        surfaceRow.classList.add('dgt-navigation-scan-resources');
+
+        let surfaceTbody = document.createElement('tbody');
+        let surfaceTable = document.createElement('table');
+        surfaceTable.classList.add('dgt-navigation-scan');
+
+        surfaceRow.append(surfaceMetalColumn);
+        surfaceRow.append(surfaceMineralColumn);
+        surfaceRow.append(surfaceFoodColumn);
+        surfaceRow.append(surfaceEnergyColumn);
+        surfaceTbody.append(surfaceRow);
+        surfaceTable.append(surfaceTbody);
+
+
+        planet.insertBefore(surfaceTable, planet.querySelector('div.text'));
+    });
+
     if (windowURL[1] === 'navigation' && (windowURL.length === 6 && !isNaN(+windowURL[2]) && !isNaN(+windowURL[3]) && !isNaN(+windowURL[4]))) {
-        document.querySelector('.navigation').append(document.createElement('dgt-navigation-scan-data-panel'));
-    };
+        document.querySelector('div.navigation').append(document.createElement('dgt-navigation-scan-data-panel'));
+    }
 }
 
 (function() {
@@ -180,16 +209,20 @@ function setUpNavigationScansDisplay(windowURL) {
 
         console.log("%cDarkGalaxy Toolbox - DGT", "font-size: 16px; font-weight: bold;");
 
+        // -- angular modules
         setUpNavbarReplacement();
-        setUpPlanetsListStats();
-        setUpScansInCloud(windowURL);
-        setUpNavigationScansDisplay(windowURL);
+        setUpPlanetListStatsPanel();
+        setUpSharedScansCollector(windowURL);
+        setUpNavigationScanDataPanel(windowURL);
         setUpNgZone();
 
+        // -- vanilla stuff
         applyCustomStyling();
         console.log("%cDGT%c - installed custom styles...", "font-size: 12px; font-weight: bold;", "font-size: 12px;");
+
         replaceIcons();
         console.log("%cDGT%c - installed FontAwsome icons...", "font-size: 12px; font-weight: bold;", "font-size: 12px;");
+
         replacePlanetsImages();
         console.log("%cDGT%c - installed planets images...", "font-size: 12px; font-weight: bold;", "font-size: 12px;");
     });

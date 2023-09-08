@@ -1,6 +1,9 @@
 import {NgModule, OnInit} from '@angular/core';
 import {ScanDataPanelComponent} from './component/scan-data-panel/scan-data-panel.component';
 import {BrowserModule} from "@angular/platform-browser";
+import {AngularFireModule} from "@angular/fire/compat";
+import {environment} from "../../../environments/environment";
+import {AngularFirestoreModule} from "@angular/fire/compat/firestore";
 
 
 @NgModule({
@@ -8,7 +11,9 @@ import {BrowserModule} from "@angular/platform-browser";
     ScanDataPanelComponent
   ],
   imports: [
-    BrowserModule
+    BrowserModule,
+    AngularFireModule.initializeApp(environment.firebase),
+    AngularFirestoreModule
   ],
   bootstrap: [
     ScanDataPanelComponent

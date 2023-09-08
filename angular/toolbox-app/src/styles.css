@@ -172,3 +172,16 @@ body {
 }
 
 /******/
+
+.navigation .row .planets {
+  width: 175px !important;
+}
+
+.navigation .row .planets img,
+.navigation .row .planets div.text {
+  float: left !important;
+}
+
+.navigation .row .planets .dgt-navigation-scan {
+  float: right;
+}
