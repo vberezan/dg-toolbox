@@ -67,11 +67,14 @@ export class PlanetScanExtractorService implements DataExtractor {
 
     // -- extract RESOURCE specific data
     if (scanType === ScanType.RESOURCE) {
-      base.querySelectorAll('.planetHeadSection .resourceRow:nth-child(2) > .data:not(:first-child)').forEach((abundance: Element) => {
+      base.querySelectorAll('.planetHeadSection .resourceRow:nth-child(1) > .data:not(:first-child)').forEach((name: Element) => {
         let resource: Resource = new Resource();
-        resource.abundance = parseInt(abundance.textContent.trim());
-
+        resource.name = name.textContent.trim().toLowerCase();
         result.planetScan.resources.push(resource);
+      });
+
+      base.querySelectorAll('.planetHeadSection .resourceRow:nth-child(2) > .data:not(:first-child)').forEach((abundance: Element, index: number) => {
+        result.planetScan.resources[index].abundance = parseInt(abundance.textContent.trim());
       });
     }
 
@@ -79,7 +82,7 @@ export class PlanetScanExtractorService implements DataExtractor {
     if (scanType === ScanType.SURFACE) {
       base.querySelectorAll('.planetHeadSection .resourceRow:nth-child(1) > .data:not(:first-child)').forEach((name: Element) => {
         let resource: Resource = new Resource();
-        resource.name = name.textContent.toLowerCase();
+        resource.name = name.textContent.trim().toLowerCase();
         result.planetScan.resources.push(resource);
       });
 
