@@ -8,14 +8,17 @@ const platform = platformBrowserDynamic();
 let windowURL = window.location.pathname.split(/\//g);
 platform.bootstrapModule(NavbarModule).catch(err => console.error(err));
 
+// -- planets list screen
 if (windowURL[1] === 'planets') {
   platform.bootstrapModule(PlanetListStatsModule).catch(err => console.error(err));
 }
 
+// -- planet screen >> comms
 if (windowURL[1] === 'planet' && (windowURL.length === 5 && windowURL[3]) === 'comms') {
   platform.bootstrapModule(SharedScansModule).catch(err => console.error(err));
 }
 
-if (windowURL[1] === 'navigation' && (windowURL.length === 5 && !isNaN(+windowURL[2]) && !isNaN(+windowURL[3]) && !isNaN(+windowURL[4]))) {
+// -- navigation screen >> system level
+if (windowURL[1] === 'navigation' && (windowURL.length === 6 && !isNaN(+windowURL[2]) && !isNaN(+windowURL[3]) && !isNaN(+windowURL[4]))) {
   platform.bootstrapModule(NavigationScansModule).catch(err => console.error(err));
 }
