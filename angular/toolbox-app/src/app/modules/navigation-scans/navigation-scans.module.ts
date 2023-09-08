@@ -4,6 +4,8 @@ import {BrowserModule} from "@angular/platform-browser";
 import {AngularFireModule} from "@angular/fire/compat";
 import {environment} from "../../../environments/environment";
 import {AngularFirestoreModule} from "@angular/fire/compat/firestore";
+import {ScansService} from "./service/scans.service";
+import {DarkgalaxyUiParserModule} from "../darkgalaxy-ui-parser/darkgalaxy-ui-parser.module";
 
 
 @NgModule({
@@ -13,7 +15,11 @@ import {AngularFirestoreModule} from "@angular/fire/compat/firestore";
   imports: [
     BrowserModule,
     AngularFireModule.initializeApp(environment.firebase),
-    AngularFirestoreModule
+    AngularFirestoreModule,
+    DarkgalaxyUiParserModule,
+  ],
+  providers: [
+    ScansService
   ],
   bootstrap: [
     ScanDataPanelComponent

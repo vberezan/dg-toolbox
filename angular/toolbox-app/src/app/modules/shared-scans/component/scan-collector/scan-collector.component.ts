@@ -17,7 +17,7 @@ export class ScanCollectorComponent implements OnInit {
     let planetScanEvent:PlanetScanEvent = this.scansService.extractScan();
 
     if (planetScanEvent != null) {
-      this.scansService.updateScan(this.scansService.extractScan());
+      this.scansService.updateScan(planetScanEvent);
     }
   }
 }

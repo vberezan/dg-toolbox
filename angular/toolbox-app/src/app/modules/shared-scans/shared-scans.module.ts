@@ -1,7 +1,6 @@
 import {NgModule, OnInit} from '@angular/core';
 import {BrowserModule} from "@angular/platform-browser";
 import {ScanCollectorComponent} from './component/scan-collector/scan-collector.component';
-import {DarkgalaxyApiService} from "../darkgalaxy-ui-parser/service/darkgalaxy-api.service";
 import {DarkgalaxyUiParserModule} from "../darkgalaxy-ui-parser/darkgalaxy-ui-parser.module";
 import {AngularFireModule} from "@angular/fire/compat";
 import {environment} from "../../../environments/environment";
@@ -20,7 +19,6 @@ import {ScansService} from "./service/scans.service";
     AngularFirestoreModule
   ],
   providers: [
-    DarkgalaxyApiService,
     ScansService
   ],
   bootstrap: [ScanCollectorComponent]

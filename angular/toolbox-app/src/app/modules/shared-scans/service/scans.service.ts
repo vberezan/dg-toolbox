@@ -13,6 +13,9 @@ export class ScansService {
   private firestore: AngularFirestore = inject(AngularFirestore);
   private dgAPI: DarkgalaxyApiService = inject(DarkgalaxyApiService);
 
+  constructor() {
+  }
+
   extractScan(): PlanetScanEvent {
     return this.dgAPI.planetScan();
   }
@@ -39,6 +42,7 @@ export class ScansService {
         if (dbScan.resources.length > 0) {
           dbScan.resources.forEach((dbResource: Resource, index) => {
             dbResource.abundance = scanEvent.planetScan.resources[index].abundance;
+            dbResource.name = scanEvent.planetScan.resources[index].name;
           });
         } else {
           dbScan.resources = scanEvent.planetScan.resources;
@@ -64,8 +68,5 @@ export class ScansService {
           .set(JSON.parse(JSON.stringify(dbScan)));
       }
     });
-  }
-
-  constructor() {
   }
 }

@@ -52,6 +52,7 @@ export class PlanetScanExtractorService implements DataExtractor {
 
       let ownerAlliance = base.querySelectorAll('.planetHeadSection .opacBackground>.left>span')[1] ?
         base.querySelectorAll('.planetHeadSection .opacBackground>.left>span')[1].textContent.trim() : '[-]';
+
       result.planetScan.owner = new Owner(base.querySelectorAll('.planetHeadSection .opacBackground>.left>span')[0].textContent.trim().split('Owner:')[1].trim(),
         ownerAlliance.substring(1, ownerAlliance.length - 1));
     }
@@ -76,11 +77,14 @@ export class PlanetScanExtractorService implements DataExtractor {
 
     // -- extract SURFACE specific data
     if (scanType === ScanType.SURFACE) {
-      base.querySelectorAll('.planetHeadSection .resourceRow:nth-child(2) > .data:not(:first-child)').forEach((production: Element) => {
+      base.querySelectorAll('.planetHeadSection .resourceRow:nth-child(1) > .data:not(:first-child)').forEach((name: Element) => {
         let resource: Resource = new Resource();
-        resource.stored = parseInt(production.textContent.trim().replace(/,/g, ''));
-
+        resource.name = name.textContent.toLowerCase();
         result.planetScan.resources.push(resource);
+      });
+
+      base.querySelectorAll('.planetHeadSection .resourceRow:nth-child(2) > .data:not(:first-child)').forEach((production: Element, index: number) => {
+        result.planetScan.resources[index].stored = parseInt(production.textContent.trim().replace(/,/g, ''));
       });
 
       base.querySelectorAll('.planetHeadSection .resourceRow:nth-child(3) > .data:not(:first-child)').forEach((abundance: Element, index: number) => {
