@@ -16,6 +16,6 @@ if (windowURL[1] === 'planet' && (windowURL.length === 5 && windowURL[3]) === 'c
   platform.bootstrapModule(SharedScansModule).catch(err => console.error(err));
 }
 
-if (windowURL[1] === 'navigation' && (windowURL.length === 5 && isNaN(+windowURL[2]) && isNaN(+windowURL[3]) && isNaN(+windowURL[4]))) {
+if (windowURL[1] === 'navigation' && (windowURL.length === 5 && !isNaN(+windowURL[2]) && !isNaN(+windowURL[3]) && !isNaN(+windowURL[4]))) {
   platform.bootstrapModule(NavigationScansModule).catch(err => console.error(err));
 }

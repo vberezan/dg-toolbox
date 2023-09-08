@@ -142,7 +142,7 @@ function setUpNgZone() {
     document.head.appendChild(polyfills);
 
     let main = document.createElement('script');
-    main.src = 'https://cdn.jsdelivr.net/gh/vberezan/dg-toolbox@development/angular/toolbox-app/dist/toolbox-app/main.5295ca4724a134f2.js';
+    main.src = 'https://cdn.jsdelivr.net/gh/vberezan/dg-toolbox@development/angular/toolbox-app/dist/toolbox-app/main.246a6c06a889e5ce.js';
     main.type = 'module';
     document.head.appendChild(main);
 }
@@ -168,7 +168,7 @@ function setUpScansInCloud(windowURL) {
 }
 
 function setUpNavigationScansDisplay(windowURL) {
-    if (windowURL[1] === 'navigation' && (windowURL.length === 5 && isNaN(+windowURL[2]) && isNaN(+windowURL[3]) && isNaN(+windowURL[4]))) {
+    if (windowURL[1] === 'navigation' && (windowURL.length === 5 && !isNaN(+windowURL[2]) && !isNaN(+windowURL[3]) && !isNaN(+windowURL[4]))) {
         document.querySelector('.navigation').parentElement.append(document.createElement('dgt-navigation-scan-data-panel'));
     };
 }
