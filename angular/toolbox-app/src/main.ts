@@ -20,6 +20,5 @@ if (windowURL[1] === 'planet' && (windowURL.length === 5 && windowURL[3]) === 'c
 
 // -- navigation screen >> system level
 if (windowURL[1] === 'navigation' && (windowURL.length === 6 && !isNaN(+windowURL[2]) && !isNaN(+windowURL[3]) && !isNaN(+windowURL[4]))) {
-  console.log('xxxxxxxxx');
   platform.bootstrapModule(NavigationScansModule).catch(err => console.error(err));
 }
