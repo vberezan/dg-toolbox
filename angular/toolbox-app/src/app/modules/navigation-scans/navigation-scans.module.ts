@@ -1,7 +1,6 @@
-import { NgModule } from '@angular/core';
-import { CommonModule } from '@angular/common';
-import { ScanDataPanelComponent } from './component/scan-data-panel/scan-data-panel.component';
-
+import {NgModule, OnInit} from '@angular/core';
+import {CommonModule} from '@angular/common';
+import {ScanDataPanelComponent} from './component/scan-data-panel/scan-data-panel.component';
 
 
 @NgModule({
@@ -15,4 +14,8 @@ import { ScanDataPanelComponent } from './component/scan-data-panel/scan-data-pa
     ScanDataPanelComponent
   ]
 })
-export class NavigationScansModule { }
+export class NavigationScansModule implements OnInit {
+  ngOnInit(): void {
+    console.log("%cDGT%c - installed navigation scans panel...", "font-size: 12px; font-weight: bold;", "font-size: 12px;");
+  }
+}
