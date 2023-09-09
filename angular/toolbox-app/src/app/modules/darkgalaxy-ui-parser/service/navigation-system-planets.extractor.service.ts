@@ -14,7 +14,7 @@ export class NavigationSystemPlanetsExtractorService implements DataExtractor {
   extract(): PlanetSummary[] {
     let result: PlanetSummary[] = [];
 
-    document.querySelectorAll('div.navigation div.planets').forEach((planet: Element) => {
+    this.document.querySelectorAll('div.navigation div.planets').forEach((planet: Element) => {
       let summary: PlanetSummary = new PlanetSummary();
       summary.location = planet.querySelector('.coords>span').textContent.trim().split(/\./);
 

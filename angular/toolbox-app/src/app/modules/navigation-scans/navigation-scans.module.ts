@@ -6,6 +6,7 @@ import {environment} from "../../../environments/environment";
 import {AngularFirestoreModule} from "@angular/fire/compat/firestore";
 import {ScansService} from "./service/scans.service";
 import {DarkgalaxyUiParserModule} from "../darkgalaxy-ui-parser/darkgalaxy-ui-parser.module";
+import {ResourceProductionFormatterPipe} from "../planet-list-stats/pipe/resource-production-formatter.pipe";
 
 
 @NgModule({
@@ -19,6 +20,7 @@ import {DarkgalaxyUiParserModule} from "../darkgalaxy-ui-parser/darkgalaxy-ui-pa
     DarkgalaxyUiParserModule,
   ],
   providers: [
+    ResourceProductionFormatterPipe,
     ScansService
   ],
   bootstrap: [

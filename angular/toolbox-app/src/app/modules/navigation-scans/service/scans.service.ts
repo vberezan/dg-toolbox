@@ -5,12 +5,14 @@ import {PlanetSummary} from "../../../model/planet-list/planet-summary.planet-li
 import {PlanetScan} from "../../../model/shared-scans/shared-scans-planet-scan.model";
 import {DOCUMENT} from "@angular/common";
 import {Resource} from "../../../model/resource.model";
+import {ResourceProductionFormatterPipe} from "../../planet-list-stats/pipe/resource-production-formatter.pipe";
 
 @Injectable({
   providedIn: 'root'
 })
 export class ScansService {
   private document: any = inject(DOCUMENT);
+  private resourceProductionFormatterPipe: ResourceProductionFormatterPipe = inject(ResourceProductionFormatterPipe);
   private dgAPI: DarkgalaxyApiService = inject(DarkgalaxyApiService);
   private firestore: AngularFirestore = inject(AngularFirestore);
 
@@ -35,12 +37,16 @@ export class ScansService {
         new Map()
       );
 
-      document.querySelectorAll('div.navigation div.planets').forEach((planet: Element) => {
+      this.document.querySelectorAll('div.navigation div.planets').forEach((planet: Element) => {
         let planetLocation: string = planet.querySelector('div.coords > span').textContent.trim();
 
         if (byLocation.get(planetLocation)) {
           byLocation.get(planetLocation).resources.forEach((resource: Resource) => {
-            planet.querySelector('.dgt-navigation-scan .dgt-navigation-scan-resource.' + resource.name + ' .abundance').textContent = resource.abundance.toString();
+            planet.querySelector('.dgt-navigation-scan .dgt-navigation-scan-resource.' + resource.name + ' .abundance')
+              .textContent = resource.abundance.toString() + '%';
+
+            planet.querySelector('.dgt-navigation-scan .dgt-navigation-scan-resource.' + resource.name + ' .production')
+              .textContent = this.resourceProductionFormatterPipe.transform(resource.production).trim();
           });
         }
 
