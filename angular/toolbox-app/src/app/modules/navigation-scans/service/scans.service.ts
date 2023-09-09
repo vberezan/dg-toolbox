@@ -3,11 +3,14 @@ import {DarkgalaxyApiService} from "../../darkgalaxy-ui-parser/service/darkgalax
 import {AngularFirestore} from "@angular/fire/compat/firestore";
 import {PlanetSummary} from "../../../model/planet-list/planet-summary.planet-list-model";
 import {PlanetScan} from "../../../model/shared-scans/shared-scans-planet-scan.model";
+import {DOCUMENT} from "@angular/common";
+import {Resource} from "../../../model/resource.model";
 
 @Injectable({
   providedIn: 'root'
 })
 export class ScansService {
+  private document: any = inject(DOCUMENT);
   private dgAPI: DarkgalaxyApiService = inject(DarkgalaxyApiService);
   private firestore: AngularFirestore = inject(AngularFirestore);
 
@@ -27,9 +30,26 @@ export class ScansService {
           return entry.doc.data();
         }));
 
-      dbScans.forEach((dbScan: PlanetScan) => {
-        console.log(dbScan.resources);
+      let byLocation: Map<String, PlanetScan> = dbScans.reduce(
+        (entryMap, e) => entryMap.set(e.location, e),
+        new Map()
+      );
+
+      document.querySelectorAll('div.navigation div.planets').forEach((planet: Element) => {
+        let planetLocation: string = planet.querySelector('div.coords > span').textContent.trim();
+
+        if (byLocation.get(planetLocation)) {
+          byLocation.get(planetLocation).resources.forEach((resource: Resource) => {
+            console.log('.dgt-navigation-scan .dgt-navigation-scan-resource.' + resource.name);
+            planet.querySelector('.dgt-navigation-scan .dgt-navigation-scan-resource.' + resource.name).textContent = resource.abundance.toString();
+          });
+        }
+
       });
+
+      // dbScans.forEach((dbScan: PlanetScan) => {
+      //   console.log(dbScan.location);
+      // });
     });
   }
 }
