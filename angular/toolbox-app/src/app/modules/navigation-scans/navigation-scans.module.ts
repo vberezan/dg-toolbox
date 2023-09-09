@@ -7,6 +7,7 @@ import {AngularFirestoreModule} from "@angular/fire/compat/firestore";
 import {ScansService} from "./service/scans.service";
 import {DarkgalaxyUiParserModule} from "../darkgalaxy-ui-parser/darkgalaxy-ui-parser.module";
 import {ResourceProductionFormatterPipe} from "../planet-list-stats/pipe/resource-production-formatter.pipe";
+import {DecimalPipe} from "@angular/common";
 
 
 @NgModule({
@@ -20,6 +21,7 @@ import {ResourceProductionFormatterPipe} from "../planet-list-stats/pipe/resourc
     DarkgalaxyUiParserModule,
   ],
   providers: [
+    DecimalPipe,
     ResourceProductionFormatterPipe,
     ScansService
   ],
