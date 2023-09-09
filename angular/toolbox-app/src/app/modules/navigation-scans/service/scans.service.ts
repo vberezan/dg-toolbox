@@ -40,7 +40,6 @@ export class ScansService {
 
         if (byLocation.get(planetLocation)) {
           byLocation.get(planetLocation).resources.forEach((resource: Resource) => {
-            console.log('.dgt-navigation-scan .dgt-navigation-scan-resource.' + resource.name);
             planet.querySelector('.dgt-navigation-scan .dgt-navigation-scan-resource.' + resource.name).textContent = resource.abundance.toString();
           });
         }
