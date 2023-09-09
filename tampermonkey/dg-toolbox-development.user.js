@@ -142,7 +142,7 @@ function setUpNgZone() {
     document.head.appendChild(polyfills);
 
     let main = document.createElement('script');
-    main.src = 'https://cdn.jsdelivr.net/gh/vberezan/dg-toolbox@development/angular/toolbox-app/dist/toolbox-app/main.0367e1d7ab00982e.js';
+    main.src = 'https://cdn.jsdelivr.net/gh/vberezan/dg-toolbox@development/angular/toolbox-app/dist/toolbox-app/main.60828078ebe859ad.js';
     main.type = 'module';
     document.head.appendChild(main);
 }
@@ -169,6 +169,25 @@ function setUpSharedScansCollector(windowURL) {
 
 function setUpNavigationScanDataPanel(windowURL) {
     document.querySelectorAll('div.navigation .row .planets').forEach((planet) => {
+        let resources = ['metal', 'mineral', 'food', 'energy'];
+        let surfaceTable = document.createElement('table');
+        let surfaceTbody = document.createElement('tbody');
+        surfaceTable.classList.add('dgt-navigation-scan');
+        surfaceTable.append(surfaceTbody);
+
+        resources.forEach((resource) => {
+            let row = document.createElement('tr');
+            let abundance = document.createElement('td');
+            let production = document.createElement('td');
+
+            row.classList.add('dgt-navigation-scan-resource', resource);
+            abundance.classList.add('abundance');
+            production.classList.add('production');
+
+            row.append(abundance, production);
+
+            surfaceTbody.append(row);
+        });
 
         let surfaceMetalColumn = document.createElement('td')
         surfaceMetalColumn.classList.add('dgt-navigation-scan-resource', 'metal');
@@ -177,21 +196,7 @@ function setUpNavigationScanDataPanel(windowURL) {
         let surfaceFoodColumn = document.createElement('td')
         surfaceFoodColumn.classList.add('dgt-navigation-scan-resource', 'food');
         let surfaceEnergyColumn = document.createElement('td')
-        surfaceEnergyColumn.classList.add('dgt-navigation-scan-resources', 'energy');
-
-        let surfaceRow = document.createElement('tr');
-        surfaceRow.classList.add('dgt-navigation-scan-resources');
-
-        let surfaceTbody = document.createElement('tbody');
-        let surfaceTable = document.createElement('table');
-        surfaceTable.classList.add('dgt-navigation-scan');
-
-        surfaceRow.append(surfaceMetalColumn);
-        surfaceRow.append(surfaceMineralColumn);
-        surfaceRow.append(surfaceFoodColumn);
-        surfaceRow.append(surfaceEnergyColumn);
-        surfaceTbody.append(surfaceRow);
-        surfaceTable.append(surfaceTbody);
+        surfaceEnergyColumn.classList.add('dgt-navigation-scan-resource', 'energy');
 
 
         planet.insertBefore(surfaceTable, planet.querySelector('div.text'));
