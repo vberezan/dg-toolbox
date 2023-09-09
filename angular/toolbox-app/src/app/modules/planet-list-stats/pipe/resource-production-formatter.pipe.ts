@@ -9,7 +9,7 @@ export class ResourceProductionFormatterPipe implements PipeTransform {
   private decimalPipe: DecimalPipe = inject(DecimalPipe);
 
   transform(value: number): string {
-    if (isNaN(value)) {
+    if (isNaN(value) || value === 0) {
       return ' [N/A]';
     } else {
       return ' [+' + this.decimalPipe.transform(value, '1.0', 'en_US') + ']';
