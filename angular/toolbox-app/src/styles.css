@@ -211,8 +211,11 @@ body {
 
 .navigation .row .planets .text .coords {
   width: 100% !important;
-  margin: 2px auto;
   text-align: left;
+  margin: 0 !important;
+  border: none !important;
+  height: 18px !important;
+  line-height: 17px !important;
 }
 
 .navigation .row .planets .text span {
