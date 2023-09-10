@@ -174,7 +174,14 @@ body {
 /******/
 
 .navigation .row .planets {
-  width: 175px !important;
+  width: 180px !important;
+  margin: 5px !important;
+  padding: 5px !important;
+  border-radius: 5px;
+}
+
+.navigation .row .planets img {
+  border-radius: 5px;
 }
 
 .navigation .row .planets img,
@@ -195,3 +202,6 @@ body {
   padding-top: 10px;
 }
 
+.dgt-navigation-scan-turn {
+  color: #fff !important;
+}
