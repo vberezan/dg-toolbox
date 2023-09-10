@@ -199,7 +199,6 @@ body {
 
 .navigation .row .planets .text {
   width: 100%;
-  padding-top: 10px;
 }
 
 .dgt-navigation-scan-turn {
@@ -234,7 +233,14 @@ body {
   vertical-align: 0 !important;
 }
 
+.navigation .row .planets .text span.hostile,
 .navigation .row .planets .text b {
   text-align: left !important;
   float: left;
+  width: 100%;
+}
+
+.navigation .row .planets .text>div:first-child {
+  padding-top: 10px;
+  padding-bottom: 10px;
 }
