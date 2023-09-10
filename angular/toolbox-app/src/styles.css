@@ -173,6 +173,11 @@ body {
 
 /******/
 
+a.right.navigation {
+  font-size: 22px !important;
+  line-height: 26px !important;
+}
+
 .navigation .row .planets {
   width: 180px !important;
   margin: 5px !important;
