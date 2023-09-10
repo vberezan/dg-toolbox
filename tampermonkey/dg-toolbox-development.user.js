@@ -142,7 +142,7 @@ function setUpNgZone() {
     document.head.appendChild(polyfills);
 
     let main = document.createElement('script');
-    main.src = 'https://cdn.jsdelivr.net/gh/vberezan/dg-toolbox@development/angular/toolbox-app/dist/toolbox-app/main.eaddf756595ad93f.js';
+    main.src = 'https://cdn.jsdelivr.net/gh/vberezan/dg-toolbox@development/angular/toolbox-app/dist/toolbox-app/main.6878522a363e2553.js';
     main.type = 'module';
     document.head.appendChild(main);
 }
@@ -177,7 +177,14 @@ function setUpNavigationScanDataPanel(windowURL) {
 
         let turnRow = document.createElement('tr');
         turnRow.classList.add('dgt-navigation-scan-turn');
-        turnRow.append(document.createElement('td'));
+        let turnLabel = document.createElement('td');
+        turnLabel.textContent = 'Turn:'
+        turnLabel.classList.add('dgt-navigation-scan-turn-label');
+        let turnValue = document.createElement('td');
+        turnValue.classList.add('dgt-navigation-scan-turn-value');
+
+        turnRow.append(turnLabel);
+        turnRow.append(turnValue);
         surfaceTbody.append(turnRow);
 
         resources.forEach((resource) => {

@@ -3,7 +3,7 @@ import {DarkgalaxyApiService} from "../../darkgalaxy-ui-parser/service/darkgalax
 import {AngularFirestore} from "@angular/fire/compat/firestore";
 import {PlanetSummary} from "../../../model/planet-list/planet-summary.planet-list-model";
 import {PlanetScan} from "../../../model/shared-scans/shared-scans-planet-scan.model";
-import {DOCUMENT} from "@angular/common";
+import {DecimalPipe, DOCUMENT} from "@angular/common";
 import {Resource} from "../../../model/resource.model";
 import {ResourceProductionFormatterPipe} from "../../planet-list-stats/pipe/resource-production-formatter.pipe";
 
@@ -13,6 +13,7 @@ import {ResourceProductionFormatterPipe} from "../../planet-list-stats/pipe/reso
 export class ScansService {
   private document: any = inject(DOCUMENT);
   private resourceProductionFormatterPipe: ResourceProductionFormatterPipe = inject(ResourceProductionFormatterPipe);
+  private decimalPipe: DecimalPipe = inject(DecimalPipe);
   private dgAPI: DarkgalaxyApiService = inject(DarkgalaxyApiService);
   private firestore: AngularFirestore = inject(AngularFirestore);
 
@@ -41,7 +42,8 @@ export class ScansService {
         let planetLocation: string = planet.querySelector('div.coords > span').textContent.trim();
 
         if (byLocation.get(planetLocation)) {
-          planet.querySelector('.dgt-navigation-scan-turn td').textContent = byLocation.get(planetLocation).turn.toString();
+          planet.querySelector('.dgt-navigation-scan-turn .dgt-navigation-scan-turn-value').textContent =
+            this.decimalPipe.transform(byLocation.get(planetLocation).turn, '1.0', 'en_US');
 
           byLocation.get(planetLocation).resources.forEach((resource: Resource) => {
             planet.querySelector('.dgt-navigation-scan .dgt-navigation-scan-resource.' + resource.name + ' .abundance')
