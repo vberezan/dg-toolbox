@@ -127,7 +127,7 @@ function applyCustomStyling() {
 ///////////
 function setUpNgZone() {
     let style = document.createElement('link');
-    style.href = 'https://cdn.jsdelivr.net/gh/vberezan/dg-toolbox@development/angular/toolbox-app/dist/toolbox-app/styles.668dc0ad99714399.css';
+    style.href = 'https://cdn.jsdelivr.net/gh/vberezan/dg-toolbox@development/angular/toolbox-app/dist/toolbox-app/styles.2d4d71ae57b84608.css';
     style.rel = 'stylesheet';
     document.head.appendChild(style);
 
@@ -142,7 +142,7 @@ function setUpNgZone() {
     document.head.appendChild(polyfills);
 
     let main = document.createElement('script');
-    main.src = 'https://cdn.jsdelivr.net/gh/vberezan/dg-toolbox@development/angular/toolbox-app/dist/toolbox-app/main.60828078ebe859ad.js';
+    main.src = 'https://cdn.jsdelivr.net/gh/vberezan/dg-toolbox@development/angular/toolbox-app/dist/toolbox-app/main.eaddf756595ad93f.js';
     main.type = 'module';
     document.head.appendChild(main);
 }
@@ -174,6 +174,11 @@ function setUpNavigationScanDataPanel(windowURL) {
         let surfaceTbody = document.createElement('tbody');
         surfaceTable.classList.add('dgt-navigation-scan');
         surfaceTable.append(surfaceTbody);
+
+        let turnRow = document.createElement('tr');
+        turnRow.classList.add('dgt-navigation-scan-turn');
+        turnRow.append(document.createElement('td'));
+        surfaceTbody.append(turnRow);
 
         resources.forEach((resource) => {
             let row = document.createElement('tr');

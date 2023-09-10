@@ -189,3 +189,9 @@ body {
   border-collapse: collapse;
   width: 50%;
 }
+
+.navigation .row .planets .text {
+  width: 100%;
+  padding-top: 10px;
+}
+

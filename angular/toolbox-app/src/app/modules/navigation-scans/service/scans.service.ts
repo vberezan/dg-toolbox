@@ -41,6 +41,8 @@ export class ScansService {
         let planetLocation: string = planet.querySelector('div.coords > span').textContent.trim();
 
         if (byLocation.get(planetLocation)) {
+          planet.querySelector('.dgt-navigation-scan-turn td').textContent = byLocation.get(planetLocation).turn.toString();
+
           byLocation.get(planetLocation).resources.forEach((resource: Resource) => {
             planet.querySelector('.dgt-navigation-scan .dgt-navigation-scan-resource.' + resource.name + ' .abundance')
               .textContent = resource.abundance.toString() + '%';
