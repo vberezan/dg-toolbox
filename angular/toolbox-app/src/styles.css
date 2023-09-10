@@ -233,3 +233,8 @@ body {
 .navigation .row .planets .text .ng-fa-icon svg {
   vertical-align: 0 !important;
 }
+
+.navigation .row .planets .text b {
+  text-align: left !important;
+  float: left;
+}
