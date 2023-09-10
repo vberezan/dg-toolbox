@@ -228,4 +228,5 @@ body {
   font-size: 12px;
   line-height: 20px;
   padding-left: 10px;
+  vertical-align: 0 !important;
 }
