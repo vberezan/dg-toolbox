@@ -205,3 +205,22 @@ body {
 .dgt-navigation-scan-turn {
   color: #fff !important;
 }
+
+.dgt-navigation-scan-resource td.resource {
+  min-width: 65%;
+}
+
+.navigation .row .planets .text .coords {
+  width: 100%;
+  margin: 2px auto;
+  padding-left: 10px;
+  text-align: left;
+}
+
+.navigation .row .planets .text span {
+  float: left;
+}
+
+.navigation .row .planets .text .right {
+  float: left !important;
+}
