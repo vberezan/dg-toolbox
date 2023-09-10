@@ -211,9 +211,8 @@ body {
 }
 
 .navigation .row .planets .text .coords {
-  width: 100%;
+  width: 100% !important;
   margin: 2px auto;
-  padding-left: 10px;
   text-align: left;
 }
 
@@ -223,4 +222,10 @@ body {
 
 .navigation .row .planets .text .right {
   float: left !important;
+}
+
+.navigation .row .planets .text .ng-fa-icon {
+  font-size: 12px;
+  line-height: 20px;
+  padding-left: 10px;
 }
