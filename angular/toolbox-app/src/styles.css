@@ -228,5 +228,8 @@ body {
   font-size: 12px;
   line-height: 20px;
   padding-left: 10px;
+}
+
+.navigation .row .planets .text .ng-fa-icon svg {
   vertical-align: 0 !important;
 }

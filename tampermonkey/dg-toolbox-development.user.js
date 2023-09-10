@@ -212,6 +212,9 @@ function setUpNavigationScanDataPanel(windowURL) {
 
 
         planet.insertBefore(surfaceTable, planet.querySelector('div.text'));
+        planet.querySelectorAll('br').forEach((br) => {
+            br.remove();
+        })
     });
 
     if (windowURL[1] === 'navigation' && (windowURL.length === 6 && !isNaN(+windowURL[2]) && !isNaN(+windowURL[3]) && !isNaN(+windowURL[4]))) {
