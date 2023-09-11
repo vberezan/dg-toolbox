@@ -127,7 +127,7 @@ function applyCustomStyling() {
 ///////////
 function setUpNgZone() {
     let style = document.createElement('link');
-    style.href = 'https://cdn.jsdelivr.net/gh/vberezan/dg-toolbox@development/angular/toolbox-app/dist/toolbox-app/styles.2d4d71ae57b84608.css';
+    style.href = 'https://cdn.jsdelivr.net/gh/vberezan/dg-toolbox@development/angular/toolbox-app/dist/toolbox-app/styles.af811e7d5e605117.css';
     style.rel = 'stylesheet';
     document.head.appendChild(style);
 
@@ -142,7 +142,7 @@ function setUpNgZone() {
     document.head.appendChild(polyfills);
 
     let main = document.createElement('script');
-    main.src = 'https://cdn.jsdelivr.net/gh/vberezan/dg-toolbox@development/angular/toolbox-app/dist/toolbox-app/main.6878522a363e2553.js';
+    main.src = 'https://cdn.jsdelivr.net/gh/vberezan/dg-toolbox@development/angular/toolbox-app/dist/toolbox-app/main.8d3478965328ef48.js';
     main.type = 'module';
     document.head.appendChild(main);
 }
@@ -169,6 +169,8 @@ function setUpSharedScansCollector(windowURL) {
 
 function setUpNavigationScanDataPanel(windowURL) {
     document.querySelectorAll('div.navigation .row .planets').forEach((planet) => {
+
+        // -- resources
         let resources = ['metal', 'mineral', 'food', 'energy'];
         let surfaceTable = document.createElement('table');
         let surfaceTbody = document.createElement('tbody');
@@ -210,11 +212,45 @@ function setUpNavigationScanDataPanel(windowURL) {
         let surfaceEnergyColumn = document.createElement('td')
         surfaceEnergyColumn.classList.add('dgt-navigation-scan-resource', 'energy');
 
-
         planet.insertBefore(surfaceTable, planet.querySelector('div.text'));
+
+        // -- remove useless empty lines
         planet.querySelectorAll('br').forEach((br) => {
             br.remove();
         })
+
+        //-- population
+        let populationTable = document.createElement('table');
+        populationTable.classList.add('dgt-navigation-scan-population');
+        let populationTbody = document.createElement('tbody');
+        let populationRow = document.createElement('tr');
+        populationRow.classList.add('dgt-navigation-scan-population-data');
+
+        let workersIcon = document.createElement('td');
+        workersIcon.classList.add('dgt-navigation-scan-workers-icon');
+        let workersValue = document.createElement('td');
+        workersValue.classList.add('dgt-navigation-scan-workers-value');
+
+        let soldiersIcon = document.createElement('td');
+        soldiersIcon.classList.add('dgt-navigation-scan-soldiers-icon');
+        let soldiersValue = document.createElement('td');
+        soldiersValue.classList.add('dgt-navigation-scan-soldiers-value');
+
+
+        populationRow.append(workersIcon, workersValue, soldiersIcon, soldiersValue);
+        populationTbody.append(populationRow);
+        planet.append(populationTable);
+        populationTable.style.display = 'none';
+
+        let invasionDiv = document.createElement('div');
+        invasionDiv.classList.add('dgt-navigation-scan-invasion-data');
+        invasionDiv.innerHTML = '<fa-icon class="ng-fa-icon" style="color: rgb(223, 74, 74);"><svg role="img" aria-hidden="true" focusable="false" data-prefix="fas" data-icon="person-rifle" class="svg-inline--fa fa-person-rifle" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 576 512"><path fill="currentColor" d="M265.2 192c25.4 0 49.8 7.1 70.8 19.9V512H144V337.7L90.4 428.3c-11.2 19-35.8 25.3-54.8 14.1s-25.3-35.8-14.1-54.8L97.7 258.8c24.5-41.4 69-66.8 117.1-66.8h50.4zM160 80a80 80 0 1 1 160 0A80 80 0 1 1 160 80zM448 0c8.8 0 16 7.2 16 16V132.3c9.6 5.5 16 15.9 16 27.7V269.3l16-5.3V208c0-8.8 7.2-16 16-16h16c8.8 0 16 7.2 16 16v84.5c0 6.9-4.4 13-10.9 15.2L480 325.3V352h48c8.8 0 16 7.2 16 16v16c0 8.8-7.2 16-16 16H484l23 92.1c2.5 10.1-5.1 19.9-15.5 19.9H432c-8.8 0-16-7.2-16-16V400H400c-17.7 0-32-14.3-32-32V224c0-17.7 14.3-32 32-32V160c0-11.8 6.4-22.2 16-27.7V32c-8.8 0-16-7.2-16-16s7.2-16 16-16h16 16z"></path></svg></fa-icon>';
+        let invasionValueSpan = document.createElement('span');
+        invasionValueSpan.classList.add('dgt-navigation-scan-invasion-value');
+        invasionDiv.append(invasionValueSpan);
+
+        planet.append(invasionDiv);
+        invasionDiv.style.display = 'none';
     });
 
     if (windowURL[1] === 'navigation' && (windowURL.length === 6 && !isNaN(+windowURL[2]) && !isNaN(+windowURL[3]) && !isNaN(+windowURL[4]))) {

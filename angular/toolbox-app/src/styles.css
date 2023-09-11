@@ -184,6 +184,7 @@ a.right.navigation {
   margin: 5px !important;
   padding: 5px !important;
   border-radius: 5px;
+  height: auto !important;
 }
 
 .navigation .row .planets img {
