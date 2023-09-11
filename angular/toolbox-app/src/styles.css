@@ -270,7 +270,7 @@ a.right.navigation {
 }
 
 .navigation .row .planets .text span.hostile {
-  color: rgb(255, 0, 0) !important;
+  color: #df4a4a !important;
 }
 
 .navigation .row .planets .text>div:first-child {
