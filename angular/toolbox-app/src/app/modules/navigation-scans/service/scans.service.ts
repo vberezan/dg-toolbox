@@ -39,7 +39,7 @@ export class ScansService {
         new Map()
       );
 
-      this.document.querySelectorAll('div.navigation div.planets').forEach((planet: Element) => {
+      this.document.querySelectorAll('div.navigation div.planets').forEach((planet: any) => {
         let planetLocation: string = planet.querySelector('div.coords > span').textContent.trim();
 
         if (byLocation.get(planetLocation)) {
@@ -67,6 +67,10 @@ export class ScansService {
             hnSpan.classList.add('dgt-navigation-scan-hb');
             hnSpan.textContent = 'HB';
             planet.querySelector('.coords').append(hnSpan);
+          }
+
+          if (byLocation.get(planetLocation).workers.currentNumber > 0) {
+            planet.querySelector('dgt-navigation-scan-population').removeStyle('display');
           }
         } else {
           planet.querySelector('.dgt-navigation-scan-turn .dgt-navigation-scan-turn-value').textContent = 'N/A';
