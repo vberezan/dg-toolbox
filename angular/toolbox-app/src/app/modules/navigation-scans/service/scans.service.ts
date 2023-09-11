@@ -70,6 +70,11 @@ export class ScansService {
           }
 
           if (byLocation.get(planetLocation).workers.currentNumber > 0) {
+            planet.querySelector('.dgt-navigation-scan-population .dgt-navigation-scan-workers-value').textContent =
+              this.decimalPipe.transform(byLocation.get(planetLocation).workers.currentNumber, '1.0', 'en_US');
+            planet.querySelector('.dgt-navigation-scan-population .dgt-navigation-scan-soldiers-value').textContent =
+              this.decimalPipe.transform(byLocation.get(planetLocation).soldiers, '1.0', 'en_US');
+
             planet.querySelector('.dgt-navigation-scan-population').style.display = '';
             planet.querySelector('.navigation .row .planets .dgt-navigation-scan-invasion-data').style.display = '';
           }
