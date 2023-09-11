@@ -9,7 +9,8 @@ import {
   faCubesStacked as fasCubesStacked,
   faPersonRifle as fasPersonRifle,
   faSatellite as fasSatellite,
-  faTreeCity as fasTreeCity
+  faTreeCity as fasTreeCity,
+  faCubes as fasCubes
 } from "@fortawesome/free-solid-svg-icons";
 
 @Component({
@@ -22,7 +23,7 @@ export class StatsPanelComponent implements OnInit {
   private statsPanelService: StatsPanelService = inject(StatsPanelService);
 
   constructor(library: FaIconLibrary) {
-    library.addIcons(fasCubesStacked, fasCarrot, fasCoins, fasBolt, fasSatellite, fasTreeCity, fasPersonRifle);
+    library.addIcons(fasCubesStacked, fasCarrot, fasCoins, fasBolt, fasSatellite, fasTreeCity, fasPersonRifle, fasCubes);
   }
 
   ngOnInit() {
