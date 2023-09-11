@@ -375,7 +375,7 @@ function setUpNavigationScanDataPanel(windowURL) {
 
 function setUpNgZone() {
     let style = document.createElement('link');
-    style.href = 'https://cdn.jsdelivr.net/gh/vberezan/dg-toolbox@development/angular/toolbox-app/dist/toolbox-app/styles.5294a97946772ed0.css';
+    style.href = 'https://cdn.jsdelivr.net/gh/vberezan/dg-toolbox@development/angular/toolbox-app/dist/toolbox-app/styles.8d77f56fabf3803d.css';
     style.rel = 'stylesheet';
     document.head.appendChild(style);
 

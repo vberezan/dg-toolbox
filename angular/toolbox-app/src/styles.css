@@ -460,3 +460,7 @@ label.queueDestroyButton:hover {
 #addQueue .prequeue {
   border: none !important;
 }
+
+#addQueue .tableHeader {
+  border-bottom: 1px solid #787878 !important;
+}
