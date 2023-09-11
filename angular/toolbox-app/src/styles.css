@@ -277,4 +277,12 @@ a.right.navigation {
 .navigation .row .planets .dgt-navigation-scan-invasion-data,
 .navigation .row .planets .dgt-navigation-scan-population {
   float: left !important;
+  width: 100%;
 }
+
+.navigation .row .planets .dgt-navigation-scan-population .dgt-navigation-scan-soldiers-value,
+.navigation .row .planets .dgt-navigation-scan-population .dgt-navigation-scan-workers-value {
+  color: #fff;
+}
+
+
