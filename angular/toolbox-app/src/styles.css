@@ -275,15 +275,12 @@ a.right.navigation {
 }
 
 .navigation .row .planets .dgt-navigation-scan-invasion-data,
-.navigation .row .planets .dgt-navigation-scan-invasion-data td,
+.navigation .row .planets .dgt-navigation-scan-population td,
 .navigation .row .planets .dgt-navigation-scan-population {
   float: left !important;
+  text-align: left;
   width: 100%;
   line-height: 14px !important;
-}
-
-.navigation .row .planets .dgt-navigation-scan-population td {
-  text-align: left;
 }
 
 .navigation .row .planets .dgt-navigation-scan-population td:first-child {
