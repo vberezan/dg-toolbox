@@ -70,7 +70,7 @@ export class ScansService {
             planet.querySelector('.coords').append(hnSpan);
           }
 
-          if (pl.workers.currentNumber > 0) {
+          if (pl.workers.currentNumber > 0 || pl.soldiers > 0) {
             planet.querySelector('.dgt-navigation-scan-population .dgt-navigation-scan-workers-value').textContent =
               this.decimalPipe.transform(pl.workers.currentNumber, '1.0', 'en_US');
             planet.querySelector('.dgt-navigation-scan-population .dgt-navigation-scan-soldiers-value').textContent =
