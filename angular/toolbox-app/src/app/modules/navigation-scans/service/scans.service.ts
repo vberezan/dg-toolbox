@@ -78,7 +78,7 @@ export class ScansService {
 
             let requiredForInvasion: number = ((pl.workers.currentNumber / 15) + (pl.soldiers / 2) * 3) + 1;
             planet.querySelector('.dgt-navigation-scan-invasion-value').textContent =
-              this.decimalPipe.transform(requiredForInvasion, '1.0', 'en_US');
+              this.decimalPipe.transform(Math.ceil(requiredForInvasion), '1.0', 'en_US');
 
             planet.querySelector('.dgt-navigation-scan-population').style.display = '';
             planet.querySelector('.navigation .row .planets .dgt-navigation-scan-invasion-data').style.display = '';
