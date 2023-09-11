@@ -239,7 +239,7 @@ a.right.navigation {
   padding-left: 10px;
 }
 
-.navigation .row .planets .text .ng-fa-icon:first-child {
+.navigation .row .planets .text .coords .left>.ng-fa-icon {
   padding-left: 3px !important;
 }
 
