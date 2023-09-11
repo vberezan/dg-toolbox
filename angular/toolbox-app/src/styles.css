@@ -278,6 +278,7 @@ a.right.navigation {
 .navigation .row .planets .dgt-navigation-scan-population {
   float: left !important;
   width: 100%;
+  line-height: 14px !important;
 }
 
 .navigation .row .planets .dgt-navigation-scan-population td {
