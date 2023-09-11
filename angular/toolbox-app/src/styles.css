@@ -292,6 +292,17 @@ a.right.navigation {
 .navigation .row .planets .dgt-navigation-scan-population .dgt-navigation-scan-workers-value {
   color: #fff;
   font-size: 12px;
+  min-width: 48%;
+}
+
+.dgt-navigation-scan-soldiers-icon fa-icon,
+.dgt-navigation-scan-workers-icon fa-icon {
+  font-size: 12px;
+}
+
+.dgt-navigation-scan-workers-icon,
+.dgt-navigation-scan-soldiers-icon {
+  width: 10%;
 }
 
 .dgt-navigation-scan-invasion-data {
