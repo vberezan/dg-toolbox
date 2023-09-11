@@ -70,8 +70,8 @@ export class ScansService {
           }
 
           if (byLocation.get(planetLocation).workers.currentNumber > 0) {
-            planet.querySelector('.dgt-navigation-scan-population').removeStyle('display');
-            planet.querySelector('.navigation .row .planets .dgt-navigation-scan-invasion-data').removeStyle('display');
+            planet.querySelector('.dgt-navigation-scan-population').style.display = '';
+            planet.querySelector('.navigation .row .planets .dgt-navigation-scan-invasion-data').style.display = '';
           }
         } else {
           planet.querySelector('.dgt-navigation-scan-turn .dgt-navigation-scan-turn-value').textContent = 'N/A';
