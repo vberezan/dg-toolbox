@@ -125,29 +125,6 @@ function applyCustomStyling() {
 }
 
 ///////////
-function setUpNgZone() {
-    let style = document.createElement('link');
-    style.href = 'https://cdn.jsdelivr.net/gh/vberezan/dg-toolbox@development/angular/toolbox-app/dist/toolbox-app/styles.2bd6213f6f245893.css';
-    style.rel = 'stylesheet';
-    document.head.appendChild(style);
-
-    let runtime = document.createElement('script');
-    runtime.src = 'https://cdn.jsdelivr.net/gh/vberezan/dg-toolbox@development/angular/toolbox-app/dist/toolbox-app/runtime.79543c56c927dd9a.js';
-    runtime.type = 'module';
-    document.head.appendChild(runtime);
-
-    let polyfills = document.createElement('script');
-    polyfills.src = 'https://cdn.jsdelivr.net/gh/vberezan/dg-toolbox@development/angular/toolbox-app/dist/toolbox-app/polyfills.fccd34e7614ee531.js';
-    polyfills.type = 'module';
-    document.head.appendChild(polyfills);
-
-    let main = document.createElement('script');
-    main.src = 'https://cdn.jsdelivr.net/gh/vberezan/dg-toolbox@development/angular/toolbox-app/dist/toolbox-app/main.705d1d37149c5acc.js';
-    main.type = 'module';
-    document.head.appendChild(main);
-}
-
-
 function setUpNavbarReplacement() {
     if (document.getElementById('content')) {
         document.getElementById('content').prepend(document.createElement('dgt-navbar'));
@@ -258,6 +235,28 @@ function setUpNavigationScanDataPanel(windowURL) {
     if (windowURL[1] === 'navigation' && (windowURL.length === 6 && !isNaN(+windowURL[2]) && !isNaN(+windowURL[3]) && !isNaN(+windowURL[4]))) {
         document.querySelector('div.navigation').append(document.createElement('dgt-navigation-scan-data-panel'));
     }
+}
+
+function setUpNgZone() {
+    let style = document.createElement('link');
+    style.href = 'https://cdn.jsdelivr.net/gh/vberezan/dg-toolbox@development/angular/toolbox-app/dist/toolbox-app/styles.d9ef90f8e87e8f0b.css';
+    style.rel = 'stylesheet';
+    document.head.appendChild(style);
+
+    let runtime = document.createElement('script');
+    runtime.src = 'https://cdn.jsdelivr.net/gh/vberezan/dg-toolbox@development/angular/toolbox-app/dist/toolbox-app/runtime.79543c56c927dd9a.js';
+    runtime.type = 'module';
+    document.head.appendChild(runtime);
+
+    let polyfills = document.createElement('script');
+    polyfills.src = 'https://cdn.jsdelivr.net/gh/vberezan/dg-toolbox@development/angular/toolbox-app/dist/toolbox-app/polyfills.fccd34e7614ee531.js';
+    polyfills.type = 'module';
+    document.head.appendChild(polyfills);
+
+    let main = document.createElement('script');
+    main.src = 'https://cdn.jsdelivr.net/gh/vberezan/dg-toolbox@development/angular/toolbox-app/dist/toolbox-app/main.25c15d11a2958f93.js';
+    main.type = 'module';
+    document.head.appendChild(main);
 }
 
 (function() {
