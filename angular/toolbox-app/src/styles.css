@@ -426,3 +426,7 @@ label.queueDestroyButton:hover {
 .consList .nameCol {
   width: 160px !important;
 }
+
+.planetHeadSection .resourceName .seperatorRight {
+  margin-right: 4px;
+}
