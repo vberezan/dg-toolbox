@@ -357,6 +357,7 @@ a.right.navigation {
 
 .structureImageSmall {
   height: 32px !important;
+  width: 42px !important;
 }
 
 .structureImageSmall img {
@@ -365,11 +366,12 @@ a.right.navigation {
   margin-left: 5px;
   padding: 0 !important;
   border-radius: 5px;
-  border: 1px solid #6a6a6a;
+  border: 1px solid #595959;
 }
 
 .structureImage {
   height: 52px !important;
+  width: 62px !important;
 }
 
 .structureImage img {
@@ -378,6 +380,9 @@ a.right.navigation {
   margin-left: 5px;
   padding: 0 !important;
   border-radius: 5px;
-  border: 1px solid #6a6a6a;
+  border: 1px solid #595959;
 }
 
+.entry.queueItem .name {
+  font-weight: normal;
+}
