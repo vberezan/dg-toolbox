@@ -223,7 +223,8 @@ a.right.navigation {
   margin: 0 !important;
   border: none !important;
   height: 18px !important;
-  line-height: 17px !important;
+  line-height: 18px !important;
+  font-size: 12px;
 }
 
 .navigation .row .planets .text span {
@@ -285,8 +286,8 @@ a.right.navigation {
 
 .dgt-navigation-scan-fleet {
   color: #fff !important;
-  padding-right: 5px;
-  float: right;
+  padding-right: 7px;
+  float: right !important;
 }
 
 .dgt-navigation-scan-hb {
