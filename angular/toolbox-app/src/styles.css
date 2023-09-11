@@ -440,6 +440,7 @@ label.queueDestroyButton:hover {
   fill: #ffffff;
 }
 
+#addQueue .prequeue fa-icon>svg,
 #addQueue .queueDestroyButton.rotation45.researchQueue svg {
   fill: #AAFF00 !important;
 }
@@ -450,4 +451,8 @@ label.queueDestroyButton:hover {
 
 #addQueue .tableHeader div {
   padding: 5px 0 5px 0 !important;
+}
+
+#addQueue .prequeue {
+  border: none !important;
 }
