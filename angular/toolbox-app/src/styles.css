@@ -247,6 +247,7 @@ a.right.navigation {
   text-align: left !important;
   float: left;
   width: 100%;
+  padding-left: 5px;
 }
 
 .navigation .row .planets .text>div:first-child {
