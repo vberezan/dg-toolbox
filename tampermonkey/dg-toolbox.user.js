@@ -375,22 +375,22 @@ function setUpNavigationScanDataPanel(windowURL) {
 
 function setUpNgZone() {
     let style = document.createElement('link');
-    style.href = 'https://cdn.jsdelivr.net/gh/vberezan/dg-toolbox@development/angular/toolbox-app/dist/toolbox-app/styles.35623663d704529e.css';
+    style.href = 'https://cdn.jsdelivr.net/gh/vberezan/dg-toolbox/angular/toolbox-app/dist/toolbox-app/styles.35623663d704529e.css';
     style.rel = 'stylesheet';
     document.head.appendChild(style);
 
     let runtime = document.createElement('script');
-    runtime.src = 'https://cdn.jsdelivr.net/gh/vberezan/dg-toolbox@development/angular/toolbox-app/dist/toolbox-app/runtime.79543c56c927dd9a.js';
+    runtime.src = 'https://cdn.jsdelivr.net/gh/vberezan/dg-toolbox/angular/toolbox-app/dist/toolbox-app/runtime.79543c56c927dd9a.js';
     runtime.type = 'module';
     document.head.appendChild(runtime);
 
     let polyfills = document.createElement('script');
-    polyfills.src = 'https://cdn.jsdelivr.net/gh/vberezan/dg-toolbox@development/angular/toolbox-app/dist/toolbox-app/polyfills.fccd34e7614ee531.js';
+    polyfills.src = 'https://cdn.jsdelivr.net/gh/vberezan/dg-toolbox/angular/toolbox-app/dist/toolbox-app/polyfills.fccd34e7614ee531.js';
     polyfills.type = 'module';
     document.head.appendChild(polyfills);
 
     let main = document.createElement('script');
-    main.src = 'https://cdn.jsdelivr.net/gh/vberezan/dg-toolbox@development/angular/toolbox-app/dist/toolbox-app/main.8586086f846831c1.js';
+    main.src = 'https://cdn.jsdelivr.net/gh/vberezan/dg-toolbox/angular/toolbox-app/dist/toolbox-app/main.8586086f846831c1.js';
     main.type = 'module';
     document.head.appendChild(main);
 }
