@@ -262,3 +262,10 @@ a.right.navigation {
   padding-top: 10px;
   padding-bottom: 10px;
 }
+
+.navigation .row .planets .coords .dgt-navigation-scan-jg,
+.navigation .row .planets .coords .dgt-navigation-scan-hb,
+.navigation .row .planets .coords .dgt-navigation-scan-st {
+  color: #0ca1e1 !important;
+  padding-left: 10px;
+}

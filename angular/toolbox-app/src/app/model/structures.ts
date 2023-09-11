@@ -13,5 +13,7 @@ export enum Structures {
   STRIP_MINERAL_EXTRACTOR = 'strip mineral extractor',
   HYDROPONICS_DOME = 'hydroponics dome',
   SOLAR_STATION = 'solar station',
-  JUMP_GATE = 'jump gate'
+  JUMP_GATE = 'jump gate',
+  HYPERSPACE_BEACON = 'hyperspace beacon',
+  SPACE_TETHER = 'space tether'
 }

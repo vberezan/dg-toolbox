@@ -61,6 +61,20 @@ export class ScansService {
             jgSpan.textContent = 'JG';
             planet.querySelector('.coords').append(jgSpan);
           }
+
+          if (structureNames.includes(Structures.HYPERSPACE_BEACON)) {
+            let hnSpan = document.createElement('span');
+            hnSpan.classList.add('dgt-navigation-scan-hb');
+            hnSpan.textContent = 'HB';
+            planet.querySelector('.coords').append(hnSpan);
+          }
+
+          if (structureNames.includes(Structures.SPACE_TETHER)) {
+            let stSpan = document.createElement('span');
+            stSpan.classList.add('dgt-navigation-scan-st');
+            stSpan.textContent = 'ST';
+            planet.querySelector('.coords').append(stSpan);
+          }
         } else {
           planet.querySelector('.dgt-navigation-scan-turn .dgt-navigation-scan-turn-value').textContent = 'N/A';
           planet.querySelector('.dgt-navigation-scan .dgt-navigation-scan-resource.metal .abundance').textContent = '-';
