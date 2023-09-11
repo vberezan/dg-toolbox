@@ -396,15 +396,21 @@ a.right.navigation {
   font-weight: normal;
 }
 
+label.queueDownButton,
+label.queueUpButton,
 label.queueDestroyButton {
   background: none !important;
   font-size: 18px;
 }
 
+label.queueDownButton,
+label.queueUpButton,
 label.queueDestroyButton svg {
   fill: #a2a2a2;
 }
 
+label.queueDownButton:hover,
+label.queueUpButton:hover,
 label.queueDestroyButton:hover {
   cursor: pointer;
 }
