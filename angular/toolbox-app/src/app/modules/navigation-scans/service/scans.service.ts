@@ -64,10 +64,10 @@ export class ScansService {
           }
 
           if (structureNames.includes(Structures.HYPERSPACE_BEACON)) {
-            let hnSpan: Element = document.createElement('span');
-            hnSpan.classList.add('dgt-navigation-scan-hb');
-            hnSpan.textContent = 'HB';
-            planet.querySelector('.coords').append(hnSpan);
+            let hbSpan: Element = document.createElement('span');
+            hbSpan.classList.add('dgt-navigation-scan-hb');
+            hbSpan.textContent = 'HB';
+            planet.querySelector('.coords').append(hbSpan);
           }
 
           if (pl.workers.currentNumber > 0 || pl.soldiers > 0) {
@@ -83,6 +83,13 @@ export class ScansService {
             planet.querySelector('.dgt-navigation-scan-population').style.display = '';
             planet.querySelector('.dgt-navigation-scan-invasion-data').style.display = '';
           }
+
+          if (pl.fleets.length >= 0) {
+            let fleetSpan: Element = document.createElement('span');
+            fleetSpan.classList.add('dgt-navigation-scan-fleet');
+            fleetSpan.textContent = 'FLEET';
+            planet.querySelector('.coords').append(fleetSpan);
+          }
         } else {
           planet.querySelector('.dgt-navigation-scan-turn .dgt-navigation-scan-turn-value').textContent = 'N/A';
           planet.querySelector('.dgt-navigation-scan .dgt-navigation-scan-resource.metal .abundance').textContent = '-';
@@ -90,7 +97,6 @@ export class ScansService {
           planet.querySelector('.dgt-navigation-scan .dgt-navigation-scan-resource.food .abundance').textContent = '-';
           planet.querySelector('.dgt-navigation-scan .dgt-navigation-scan-resource.energy .abundance').textContent = '-';
         }
-
       });
 
       // dbScans.forEach((dbScan: PlanetScan) => {

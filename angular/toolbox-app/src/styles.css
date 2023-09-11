@@ -283,6 +283,12 @@ a.right.navigation {
   padding-left: 5px;
 }
 
+.dgt-navigation-scan-fleet {
+  color: #fff !important;
+  padding-right: 5px;
+  float: right;
+}
+
 .dgt-navigation-scan-hb {
   color: #fff !important;
   padding-left: 5px;
