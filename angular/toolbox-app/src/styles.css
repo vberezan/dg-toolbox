@@ -33,16 +33,13 @@ body {
 }
 
 #buttonBlock div,
-#buttonBlock a:not(:last-child) {
+#buttonBlock a {
   margin-right: 5px !important;
-}
-
-#buttonBlock a:last-child {
-  margin-right: 0 !important;
 }
 
 #buttonBlock #comms {
   width: 174px;
+  margin-right: 0 !important;
 }
 
 #planetList > #planetList .locationWrapper .paddingMid {
