@@ -84,12 +84,12 @@ export class ScansService {
             planet.querySelector('.dgt-navigation-scan-invasion-data').style.display = '';
           }
 
-          if (pl.fleets.length >= 0) {
+          // if (pl.fleets && pl.fleets.length >= 0) {
             let fleetSpan: Element = document.createElement('span');
             fleetSpan.classList.add('dgt-navigation-scan-fleet');
             fleetSpan.textContent = 'FLEET';
             planet.querySelector('.coords').append(fleetSpan);
-          }
+          // }
         } else {
           planet.querySelector('.dgt-navigation-scan-turn .dgt-navigation-scan-turn-value').textContent = 'N/A';
           planet.querySelector('.dgt-navigation-scan .dgt-navigation-scan-resource.metal .abundance').textContent = '-';
