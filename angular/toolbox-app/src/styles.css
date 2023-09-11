@@ -389,7 +389,7 @@ a.right.navigation {
 
 #completed .upkeepList span,
 #completed .upkeepList fa-icon {
-  font-size: 12px;
+  font-size: 1em;
 }
 
 .entry.queueItem .name {
@@ -403,6 +403,14 @@ label.queueDestroyButton {
   font-size: 18px;
 }
 
+.rotation45 {
+  -webkit-transform: rotate(45deg);
+  -moz-transform: rotate(45deg);
+  -ms-transform: rotate(45deg);
+  -o-transform: rotate(45deg);
+  transform: rotate(45deg);
+}
+
 label.queueDownButton svg,
 label.queueUpButton svg,
 label.queueDestroyButton svg {
@@ -413,4 +421,8 @@ label.queueDownButton:hover,
 label.queueUpButton:hover,
 label.queueDestroyButton:hover {
   cursor: pointer;
+}
+
+.consList .nameCol {
+  width: 160px !important;
 }
