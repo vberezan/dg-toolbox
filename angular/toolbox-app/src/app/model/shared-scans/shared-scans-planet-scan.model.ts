@@ -2,6 +2,7 @@ import {Resource} from "../resource.model";
 import {Population} from "../population.model";
 import {NameQuantity} from "../name-quantity.model";
 import {Owner} from "./shared-scans-owner.model";
+import {Fleet} from "../fleet.model";
 
 export class PlanetScan {
   private _resources: Resource[] = [];
@@ -10,7 +11,7 @@ export class PlanetScan {
   private _workers: Population = new Population();
   private _soldiers: number = 0;
   private _structures: NameQuantity[] = [];
-  private _fleet: NameQuantity[] = [];
+  private _fleets: Fleet[] = [];
   private _location: string;
   private _turn: number;
   private _owner: Owner;
@@ -88,12 +89,13 @@ export class PlanetScan {
     this._structures = value;
   }
 
-  get fleet(): NameQuantity[] {
-    return this._fleet;
+
+  get fleets(): Fleet[] {
+    return this._fleets;
   }
 
-  set fleet(value: NameQuantity[]) {
-    this._fleet = value;
+  set fleets(value: Fleet[]) {
+    this._fleets = value;
   }
 
   toJSON() {
@@ -104,7 +106,7 @@ export class PlanetScan {
       workers: this.workers,
       soldiers: this.soldiers,
       structures: this.structures,
-      fleet: this.fleet,
+      fleets: this.fleets,
       location: this.location,
       turn: this.turn,
       owner: this.owner

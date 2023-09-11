@@ -57,7 +57,7 @@ export class ScansService {
       }
 
       if (scanEvent.type == ScanType.FLEET) {
-        dbScan.fleet = scanEvent.planetScan.fleet;
+        dbScan.fleets = scanEvent.planetScan.fleets;
       }
 
       if (items.size == 0) {
