@@ -433,6 +433,7 @@ label.queueDestroyButton:hover {
 
 #addQueue .consList .icon.width24 {
   font-size: 12px;
+  line-height: 20px;
 }
 
 #addQueue .consList .icon.width24 svg {
