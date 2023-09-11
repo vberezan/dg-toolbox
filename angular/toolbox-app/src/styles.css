@@ -440,7 +440,7 @@ label.queueDestroyButton:hover {
   fill: #ffffff;
 }
 
-#addQueue .consList .icon.researchQueue svg {
+#addQueue .queueDestroyButton.rotation45.researchQueue svg {
   fill: #AAFF00 !important;
 }
 
