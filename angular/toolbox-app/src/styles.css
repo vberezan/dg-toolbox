@@ -295,14 +295,10 @@ a.right.navigation {
   min-width: 48%;
 }
 
+.dgt-navigation-scan-invasion-data fa-icon,
 .dgt-navigation-scan-soldiers-icon fa-icon,
 .dgt-navigation-scan-workers-icon fa-icon {
   font-size: 12px;
-}
-
-.dgt-navigation-scan-workers-icon,
-.dgt-navigation-scan-soldiers-icon {
-  width: 10%;
 }
 
 .dgt-navigation-scan-invasion-data {
@@ -313,5 +309,9 @@ a.right.navigation {
 .dgt-navigation-scan-invasion-data span {
   color: #fff;
   font-size: 12px;
+}
+
+.dgt-navigation-scan-invasion-value {
+  margin-left: 3px;
 }
 
