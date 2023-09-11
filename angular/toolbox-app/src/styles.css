@@ -387,6 +387,11 @@ a.right.navigation {
   border: 1px solid #595959;
 }
 
+#completed .upkeepList span,
+#completed .upkeepList fa-icon {
+  font-size: 12px;
+}
+
 .entry.queueItem .name {
   font-weight: normal;
 }
