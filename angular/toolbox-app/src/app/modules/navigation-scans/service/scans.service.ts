@@ -55,15 +55,11 @@ export class ScansService {
           });
 
           let structureNames: string[] = byLocation.get(planetLocation).structures.map(structure => structure.name);
-          let ally: number = 0;
-          let player: number = 0;
           if (structureNames.includes(Structures.JUMP_GATE)) {
             let jgSpan: Element = document.createElement('span');
             jgSpan.classList.add('dgt-navigation-scan-jg');
             jgSpan.textContent = 'JG';
             planet.querySelector('.coords').append(jgSpan);
-            ally -= 3;
-            player -= 3;
           }
 
           if (structureNames.includes(Structures.HYPERSPACE_BEACON)) {
@@ -71,16 +67,7 @@ export class ScansService {
             hnSpan.classList.add('dgt-navigation-scan-hb');
             hnSpan.textContent = 'HB';
             planet.querySelector('.coords').append(hnSpan);
-            player -= 2;
           }
-
-          if (ally < 0 || player < 0) {
-            let ttSpan: Element = document.createElement('span');
-            ttSpan.classList.add('dgt-navigation-scan-tt');
-            ttSpan.textContent = '[' + (ally < 0 ? ally.toString() : '0') + (ally < 0 && player < 0 ? '-' : '') + (player < 0 ? player.toString() : '0') + ']';
-            planet.querySelector('.coords').append(ttSpan);
-          }
-
         } else {
           planet.querySelector('.dgt-navigation-scan-turn .dgt-navigation-scan-turn-value').textContent = 'N/A';
           planet.querySelector('.dgt-navigation-scan .dgt-navigation-scan-resource.metal .abundance').textContent = '-';
