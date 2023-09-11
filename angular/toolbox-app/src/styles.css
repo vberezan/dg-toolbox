@@ -37,6 +37,7 @@ body {
   margin-right: 5px !important;
 }
 
+#buttonBlock a#comms,
 #buttonBlock a:last-child {
   width: 174px !important;
   margin-right: 0 !important;
