@@ -211,6 +211,7 @@ a.right.navigation {
   color: #fff !important;
 }
 
+.dgt-navigation-scan-resource td.dgt-navigation-scan-turn-value,
 .dgt-navigation-scan-resource td.resource {
   min-width: 65%;
 }
@@ -248,6 +249,7 @@ a.right.navigation {
   float: left;
   width: 100%;
   padding-left: 5px;
+  font-weight: normal;
 }
 
 .navigation .row .planets .text>div:first-child {
