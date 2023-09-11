@@ -80,8 +80,8 @@ export class ScansService {
             planet.querySelector('.dgt-navigation-scan-invasion-value').textContent =
               this.decimalPipe.transform(Math.ceil(requiredForInvasion), '1.0', 'en_US');
 
-            // planet.querySelector('.dgt-navigation-scan-population').style.display = '';
-            // planet.querySelector('.dgt-navigation-scan-invasion-data').style.display = '';
+            planet.querySelector('.dgt-navigation-scan-population').style.display = '';
+            planet.querySelector('.dgt-navigation-scan-invasion-data').style.display = '';
           }
         } else {
           planet.querySelector('.dgt-navigation-scan-turn .dgt-navigation-scan-turn-value').textContent = 'N/A';
