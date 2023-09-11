@@ -445,6 +445,10 @@ label.queueDestroyButton:hover {
   fill: #AAFF00 !important;
 }
 
+#addQueue .prequeue fa-icon {
+  color: #AAFF00 !important;
+}
+
 #addQueue .tableHeader fa-icon {
   padding-left: 3px !important;
 }
