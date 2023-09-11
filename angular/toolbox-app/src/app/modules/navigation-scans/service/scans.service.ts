@@ -41,12 +41,13 @@ export class ScansService {
 
       this.document.querySelectorAll('div.navigation div.planets').forEach((planet: any) => {
         let planetLocation: string = planet.querySelector('div.coords > span').textContent.trim();
+        let pl = byLocation.get(planetLocation);
 
-        if (byLocation.get(planetLocation)) {
+        if (pl) {
           planet.querySelector('.dgt-navigation-scan-turn .dgt-navigation-scan-turn-value').textContent =
-            this.decimalPipe.transform(byLocation.get(planetLocation).turn, '1.0', 'en_US');
+            this.decimalPipe.transform(pl.turn, '1.0', 'en_US');
 
-          byLocation.get(planetLocation).resources.forEach((resource: Resource) => {
+          pl.resources.forEach((resource: Resource) => {
             planet.querySelector('.dgt-navigation-scan .dgt-navigation-scan-resource.' + resource.name + ' .abundance')
               .textContent = resource.abundance.toString() + '%';
 
@@ -54,7 +55,7 @@ export class ScansService {
               .textContent = this.resourceProductionFormatterPipe.transform(resource.production).trim();
           });
 
-          let structureNames: string[] = byLocation.get(planetLocation).structures.map(structure => structure.name);
+          let structureNames: string[] = pl.structures.map(structure => structure.name);
           if (structureNames.includes(Structures.JUMP_GATE)) {
             let jgSpan: Element = document.createElement('span');
             jgSpan.classList.add('dgt-navigation-scan-jg');
@@ -69,11 +70,15 @@ export class ScansService {
             planet.querySelector('.coords').append(hnSpan);
           }
 
-          if (byLocation.get(planetLocation).workers.currentNumber > 0) {
+          if (pl.workers.currentNumber > 0) {
             planet.querySelector('.dgt-navigation-scan-population .dgt-navigation-scan-workers-value').textContent =
-              this.decimalPipe.transform(byLocation.get(planetLocation).workers.currentNumber, '1.0', 'en_US');
+              this.decimalPipe.transform(pl.workers.currentNumber, '1.0', 'en_US');
             planet.querySelector('.dgt-navigation-scan-population .dgt-navigation-scan-soldiers-value').textContent =
-              this.decimalPipe.transform(byLocation.get(planetLocation).soldiers, '1.0', 'en_US');
+              this.decimalPipe.transform(pl.soldiers, '1.0', 'en_US');
+
+            let requiredForInvasion: number = ((pl.workers.currentNumber / 15) + (pl.soldiers / 2) * 3) + 1;
+            planet.querySelector('dgt-navigation-scan-invasion-value').textContent =
+              this.decimalPipe.transform(requiredForInvasion, '1.0', 'en_US');
 
             planet.querySelector('.dgt-navigation-scan-population').style.display = '';
             planet.querySelector('.navigation .row .planets .dgt-navigation-scan-invasion-data').style.display = '';
