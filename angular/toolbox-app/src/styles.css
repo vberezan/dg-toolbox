@@ -355,6 +355,10 @@ a.right.navigation {
 
 /******/
 
+.width100 {
+  width: 100px;
+}
+
 .structureImageSmall {
   height: 32px !important;
   width: 42px !important;
