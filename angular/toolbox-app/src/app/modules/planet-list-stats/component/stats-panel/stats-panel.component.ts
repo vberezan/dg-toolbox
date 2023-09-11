@@ -6,6 +6,7 @@ import {
   faBolt as fasBolt,
   faCarrot as fasCarrot,
   faCoins as fasCoins,
+  faCubesStacked as fasCubesStacked,
   faPersonRifle as fasPersonRifle,
   faSatellite as fasSatellite,
   faTreeCity as fasTreeCity,
@@ -22,7 +23,7 @@ export class StatsPanelComponent implements OnInit {
   private statsPanelService: StatsPanelService = inject(StatsPanelService);
 
   constructor(library: FaIconLibrary) {
-    library.addIcons(fasCarrot, fasCoins, fasBolt, fasSatellite, fasTreeCity, fasPersonRifle, fasDiceD20);
+    library.addIcons(fasCubesStacked, fasCarrot, fasCoins, fasBolt, fasSatellite, fasTreeCity, fasPersonRifle, fasDiceD20);
   }
 
   ngOnInit() {

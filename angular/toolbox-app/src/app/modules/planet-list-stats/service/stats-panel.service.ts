@@ -16,7 +16,7 @@ export class StatsPanelService {
     let panel: StatsPanel = new StatsPanel();
     panel.stats.set(Resources.ALL, new PlanetStats());
 
-    this.dgAPI.planetsSummaries().forEach((planetSummary: PlanetSummary) => {
+    this.dgAPI.planetsSummaries().forEach((planetSummary: PlanetSummary): void => {
       if (!panel.stats.has(planetSummary.location[0])) {
         panel.stats.set(planetSummary.location[0], new PlanetStats());
       }
@@ -34,7 +34,7 @@ export class StatsPanelService {
       panel.stats.get(Resources.ALL).resources.orbit += planetSummary.orbit;
       panel.stats.get(planetSummary.location[0]).resources.orbit += planetSummary.orbit;
 
-      planetSummary.resources.forEach((resource: Resource) => {
+      planetSummary.resources.forEach((resource: Resource) : void => {
         switch (resource.name) {
           case Resources.METAL: {
             panel.stats.get(Resources.ALL).resources.metalStored += resource.stored;
