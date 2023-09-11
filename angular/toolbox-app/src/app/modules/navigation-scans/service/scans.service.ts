@@ -6,6 +6,7 @@ import {PlanetScan} from "../../../model/shared-scans/shared-scans-planet-scan.m
 import {DecimalPipe, DOCUMENT} from "@angular/common";
 import {Resource} from "../../../model/resource.model";
 import {ResourceProductionFormatterPipe} from "../../planet-list-stats/pipe/resource-production-formatter.pipe";
+import {Structures} from "../../../model/structures";
 
 @Injectable({
   providedIn: 'root'
@@ -52,6 +53,14 @@ export class ScansService {
             planet.querySelector('.dgt-navigation-scan .dgt-navigation-scan-resource.' + resource.name + ' .production')
               .textContent = this.resourceProductionFormatterPipe.transform(resource.production).trim();
           });
+
+          let structureNames = byLocation.get(planetLocation).structures.map(structure => structure.name);
+          if (structureNames.includes(Structures.JUMP_GATE)) {
+            let jgSpan = document.createElement('span');
+            jgSpan.classList.add('dgt-navigation-scan-jg');
+            jgSpan.textContent = 'JG';
+            planet.querySelector('.coords').append(jgSpan);
+          }
         } else {
           planet.querySelector('.dgt-navigation-scan-turn .dgt-navigation-scan-turn-value').textContent = 'N/A';
           planet.querySelector('.dgt-navigation-scan .dgt-navigation-scan-resource.metal .abundance').textContent = '-';
