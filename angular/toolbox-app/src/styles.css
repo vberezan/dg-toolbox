@@ -395,3 +395,13 @@ a.right.navigation {
 .entry.queueItem .name {
   font-weight: normal;
 }
+
+label.queueDestroyButton {
+  background: none !important;
+  font-size: 12px;
+  color: #ffffff;
+}
+
+label.queueDestroyButton:hover {
+  cursor: pointer;
+}
