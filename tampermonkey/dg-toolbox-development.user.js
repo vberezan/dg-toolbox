@@ -202,6 +202,7 @@ function applyCustomStyling() {
             label.htmlFor = close.id;
             label.classList.add('queueDestroyButton');
             if (close.classList.contains('addQueue')) label.classList.add('rotation45');
+            if (close.classList.contains('prequeue')) label.classList.add('researchQueue');
             label.innerHTML = '<svg xmlns="http://www.w3.org/2000/svg" height="1em" viewBox="0 0 512 512"><style>svg{fill:#535353}</style><path d="M256 48a208 208 0 1 1 0 416 208 208 0 1 1 0-416zm0 464A256 256 0 1 0 256 0a256 256 0 1 0 0 512zM175 175c-9.4 9.4-9.4 24.6 0 33.9l47 47-47 47c-9.4 9.4-9.4 24.6 0 33.9s24.6 9.4 33.9 0l47-47 47 47c9.4 9.4 24.6 9.4 33.9 0s9.4-24.6 0-33.9l-47-47 47-47c9.4-9.4 9.4-24.6 0-33.9s-24.6-9.4-33.9 0l-47 47-47-47c-9.4-9.4-24.6-9.4-33.9 0z"/></svg>';
             close.parentNode.insertBefore(label, close.nextSibling);
             close.style.display = 'none';
@@ -374,7 +375,7 @@ function setUpNavigationScanDataPanel(windowURL) {
 
 function setUpNgZone() {
     let style = document.createElement('link');
-    style.href = 'https://cdn.jsdelivr.net/gh/vberezan/dg-toolbox@development/angular/toolbox-app/dist/toolbox-app/styles.656054dce7b93149.css';
+    style.href = 'https://cdn.jsdelivr.net/gh/vberezan/dg-toolbox@development/angular/toolbox-app/dist/toolbox-app/styles.35623663d704529e.css';
     style.rel = 'stylesheet';
     document.head.appendChild(style);
 
