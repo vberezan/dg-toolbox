@@ -78,6 +78,7 @@ export class ScansService {
             let ttSpan: Element = document.createElement('span');
             ttSpan.classList.add('dgt-navigation-scan-tt');
             ttSpan.textContent = '[' + (ally < 0 ? ally.toString() : '0') + (ally < 0 && player < 0 ? '-' : '') + (player < 0 ? player.toString() : '0') + ']';
+            planet.querySelector('.coords').append(ttSpan);
           }
 
         } else {
