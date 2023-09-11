@@ -403,8 +403,8 @@ label.queueDestroyButton {
   font-size: 18px;
 }
 
-label.queueDownButton,
-label.queueUpButton,
+label.queueDownButton svg,
+label.queueUpButton svg,
 label.queueDestroyButton svg {
   fill: #a2a2a2;
 }
