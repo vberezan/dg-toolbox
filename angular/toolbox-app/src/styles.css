@@ -440,6 +440,10 @@ label.queueDestroyButton:hover {
   fill: #ffffff;
 }
 
+#addQueue .consList .icon.researchQueue svg {
+  fill: #AAFF00 !important;
+}
+
 #addQueue .tableHeader fa-icon {
   padding-left: 3px !important;
 }
