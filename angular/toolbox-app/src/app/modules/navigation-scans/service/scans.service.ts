@@ -57,21 +57,21 @@ export class ScansService {
           let structureNames = byLocation.get(planetLocation).structures.map(structure => structure.name);
           if (structureNames.includes(Structures.JUMP_GATE)) {
             let jgSpan = document.createElement('span');
-            jgSpan.classList.add('dgt-navigation-scan-jg');
+            jgSpan.classList.add('structure','dgt-navigation-scan-jg');
             jgSpan.textContent = 'JG';
             planet.querySelector('.coords').append(jgSpan);
           }
 
           if (structureNames.includes(Structures.HYPERSPACE_BEACON)) {
             let hnSpan = document.createElement('span');
-            hnSpan.classList.add('dgt-navigation-scan-hb');
+            hnSpan.classList.add('structure','dgt-navigation-scan-hb');
             hnSpan.textContent = 'HB';
             planet.querySelector('.coords').append(hnSpan);
           }
 
           if (structureNames.includes(Structures.SPACE_TETHER)) {
             let stSpan = document.createElement('span');
-            stSpan.classList.add('dgt-navigation-scan-st');
+            stSpan.classList.add('structure','dgt-navigation-scan-st');
             stSpan.textContent = 'ST';
             planet.querySelector('.coords').append(stSpan);
           }
