@@ -430,3 +430,11 @@ label.queueDestroyButton:hover {
 .planetHeadSection .resourceName .seperatorRight {
   margin-right: 4px;
 }
+
+#addQueue .consList .icon.width24 {
+  font-size: 12px;
+}
+
+#addQueue .consList .icon.width24 svg {
+  fill: #ffffff;
+}
