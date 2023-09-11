@@ -403,7 +403,7 @@ label.queueDestroyButton {
   font-size: 18px;
 }
 
-.rotation45 {
+.rotation45 svg {
   -webkit-transform: rotate(45deg);
   -moz-transform: rotate(45deg);
   -ms-transform: rotate(45deg);
