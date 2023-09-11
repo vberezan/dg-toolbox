@@ -196,7 +196,7 @@ a.right.navigation {
   float: left !important;
 }
 
-.navigation .row .planets .dgt-navigation-scan {
+.dgt-navigation-scan {
   float: right;
   font-size: 11px;
   text-align: left;
@@ -264,34 +264,39 @@ a.right.navigation {
   padding-bottom: 10px;
 }
 
-.navigation .row .planets .coords .dgt-navigation-scan-jg {
+.dgt-navigation-scan-jg {
   color: #0ca1e1 !important;
   padding-left: 5px;
 }
 
-.navigation .row .planets .coords .dgt-navigation-scan-hb {
+.dgt-navigation-scan-hb {
   color: #fff !important;
   padding-left: 5px;
 }
 
-.navigation .row .planets .dgt-navigation-scan-invasion-data,
-.navigation .row .planets .dgt-navigation-scan-population {
+.dgt-navigation-scan-population {
+  margin-top: 10px;
+}
+
+.dgt-navigation-scan-invasion-data,
+.dgt-navigation-scan-population {
   float: left !important;
   width: 100%;
   line-height: 14px !important;
+  border-collapse: collapse;
 }
 
-.navigation .row .planets .dgt-navigation-scan-population td {
+.dgt-navigation-scan-population td {
   text-align: left;
   line-height: 14px !important;
 }
 
-.navigation .row .planets .dgt-navigation-scan-population td:first-child {
+.dgt-navigation-scan-population td:first-child {
   padding-left: 5px;
 }
 
-.navigation .row .planets .dgt-navigation-scan-population .dgt-navigation-scan-soldiers-value,
-.navigation .row .planets .dgt-navigation-scan-population .dgt-navigation-scan-workers-value {
+.dgt-navigation-scan-population .dgt-navigation-scan-soldiers-value,
+.dgt-navigation-scan-population .dgt-navigation-scan-workers-value {
   color: #fff;
   font-size: 12px;
   min-width: 48%;
