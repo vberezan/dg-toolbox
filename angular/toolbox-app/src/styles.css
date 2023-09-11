@@ -280,9 +280,18 @@ a.right.navigation {
   width: 100%;
 }
 
+.navigation .row .planets .dgt-navigation-scan-population td {
+  text-align: left;
+}
+
+.navigation .row .planets .dgt-navigation-scan-population td:first-child {
+  padding-left: 5px;
+}
+
 .navigation .row .planets .dgt-navigation-scan-population .dgt-navigation-scan-soldiers-value,
 .navigation .row .planets .dgt-navigation-scan-population .dgt-navigation-scan-workers-value {
   color: #fff;
+  font-size: 12px;
 }
 
 .dgt-navigation-scan-invasion-data {
@@ -292,5 +301,6 @@ a.right.navigation {
 
 .dgt-navigation-scan-invasion-data span {
   color: #fff;
+  font-size: 12px;
 }
 
