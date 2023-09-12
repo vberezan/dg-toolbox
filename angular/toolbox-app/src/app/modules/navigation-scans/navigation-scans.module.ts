@@ -47,16 +47,21 @@ import {Subscription} from "rxjs";
 })
 export class NavigationScansModule implements OnInit, OnDestroy {
     private auth: Auth = inject(Auth);
+    private scansService: ScansService = inject(ScansService);
     private idToken$ = idToken(this.auth);
     private idTokenSubscription: Subscription;
+
     constructor() {
         this.idTokenSubscription = this.idToken$.subscribe((token: string | null) => {
-            console.log(token);
+            if (token == null) {
+                this.scansService = null;
+            }
+
+            console.log('Permission denied!');
         })
     }
 
     ngOnDestroy() {
-        // when manually subscribing to an observable remember to unsubscribe in ngOnDestroy
         this.idTokenSubscription.unsubscribe();
     }
 
