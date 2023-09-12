@@ -7,5 +7,5 @@
 </div>
 
 <div *ngIf="localStorage.getItem('user') != null" class="logout" id="dgt-logout">
-    <button (click)="authService.signOut()">Logout</button>
+    <button (click)="authService.signOut(true)">Logout</button>
 </div>

@@ -23,18 +23,20 @@ export class AuthService implements OnDestroy {
                 this.firestore.collection('users', ref => ref.where('email', '==', user.email).limit(1))
                     .get().subscribe((items) => {
                         if (items.size == 1) {
-                            let dbUser: { email: string, active: boolean } =
-                                Object.assign({email: '', active: false}, items.docChanges().map(entry => {
+                            let userCheck: { email: string, enabled: boolean } =
+                                Object.assign({email: '', enabled: false}, items.docChanges().map(entry => {
                                     return entry.doc.data();
                                 })[0]);
 
-                            if (dbUser.active) {
+                            if (userCheck.enabled) {
                                 localStorage.setItem('user', JSON.stringify(user));
                                 this._isLoggedIn = true;
                             } else {
-                                this.signOut();
+                                this.signOut(false);
                             }
-                        }
+                        } {
+                            this.signOut(false);
+                    }
                     }
                 );
             } else {
@@ -62,10 +64,13 @@ export class AuthService implements OnDestroy {
         });
     }
 
-    signOut() {
+    signOut(refresh: boolean) {
         return this.auth.signOut().then(() => {
             localStorage.removeItem('user');
-            location.reload();
+
+            if (refresh) {
+                location.reload();
+            }
         });
     }
 
