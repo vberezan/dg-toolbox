@@ -1,4 +1,4 @@
-import {inject, NgModule, OnDestroy, OnInit} from '@angular/core';
+import {NgModule, OnInit} from '@angular/core';
 import {ScanDataPanelComponent} from './component/scan-data-panel/scan-data-panel.component';
 import {BrowserModule} from "@angular/platform-browser";
 import {environment} from "../../../environments/environment";
@@ -13,9 +13,8 @@ import firebase from 'firebase/compat/app';
 import 'firebase/compat/auth';
 import 'firebase/compat/firestore';
 import {FIREBASE_OPTIONS} from "@angular/fire/compat";
+import {getAuth, provideAuth} from "@angular/fire/auth";
 import initializeApp = firebase.initializeApp;
-import {Auth, getAuth, idToken, provideAuth} from "@angular/fire/auth";
-import {Subscription} from "rxjs";
 
 
 @NgModule({
@@ -45,24 +44,9 @@ import {Subscription} from "rxjs";
         ScanDataPanelComponent
     ]
 })
-export class NavigationScansModule implements OnInit, OnDestroy {
-    private auth: Auth = inject(Auth);
-    private scansService: ScansService = inject(ScansService);
-    private idToken$ = idToken(this.auth);
-    private idTokenSubscription: Subscription;
+export class NavigationScansModule implements OnInit {
 
     constructor() {
-        this.idTokenSubscription = this.idToken$.subscribe((token: string | null) => {
-            if (token == null) {
-                this.scansService = null;
-            }
-
-            console.log('Permission denied!');
-        })
-    }
-
-    ngOnDestroy() {
-        this.idTokenSubscription.unsubscribe();
     }
 
     ngOnInit(): void {
