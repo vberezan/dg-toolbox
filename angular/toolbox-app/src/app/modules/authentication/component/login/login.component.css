@@ -1,11 +1,9 @@
 .login {
     overflow: hidden;
-    background-color: white;
+    background-color: #4b4b4b;
     padding: 40px 30px 30px 30px;
     border-radius: 10px;
     position: relative;
-    top: 50%;
-    left: 50%;
     width: 200px;
     -webkit-transform: translate(-50%, -50%);
     -moz-transform: translate(-50%, -50%);
@@ -23,7 +21,7 @@
     display: block;
     border-radius: 5px;
     font-size: 16px;
-    background: #4b4b4b;
+    background: #fff;
     width: 100%;
     border: 0;
     padding: 10px 10px;
