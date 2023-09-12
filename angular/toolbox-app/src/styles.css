@@ -199,6 +199,184 @@ body {
   width: calc(25% - 15px) !important;
 }
 
+/******/
+
+a.left.navigation,
+a.right.navigation {
+  font-size: 22px !important;
+  line-height: 26px !important;
+}
+
+.navigation .row .planets {
+  width: 180px !important;
+  margin: 5px !important;
+  padding: 5px !important;
+  border-radius: 5px;
+  height: auto !important;
+}
+
+.navigation .row .planets img {
+  border-radius: 5px;
+}
+
+.navigation .row .planets img,
+.navigation .row .planets div.text {
+  float: left !important;
+}
+
+.dgt-navigation-scan {
+  float: right;
+  font-size: 11px;
+  text-align: left;
+  border-collapse: collapse;
+  width: 50%;
+}
+
+.navigation .row .planets .text {
+  width: 100%;
+}
+
+.dgt-navigation-scan-turn {
+  color: #fff !important;
+}
+
+.dgt-navigation-scan-resource td.dgt-navigation-scan-turn-value,
+.dgt-navigation-scan-resource td.resource {
+  min-width: 65%;
+}
+
+.navigation .row .planets .text .coords {
+  width: 100% !important;
+  text-align: left;
+  margin: 0 !important;
+  border: none !important;
+  height: 18px !important;
+  line-height: 18px !important;
+  font-size: 12px;
+}
+
+.navigation .row .planets .text span {
+  float: left;
+}
+
+.navigation .row .planets .text .right {
+  float: left !important;
+}
+
+.navigation .row .planets .text .ng-fa-icon {
+  font-size: 12px;
+  line-height: 20px;
+  padding-left: 10px;
+}
+
+.navigation .row .planets .text .coords .left>.ng-fa-icon {
+  padding-left: 3px !important;
+}
+
+.navigation .row .planets .text .ng-fa-icon svg {
+  vertical-align: 0 !important;
+}
+
+.navigation .row .planets .text span.friendly,
+.navigation .row .planets .text span.allied,
+.navigation .row .planets .text span.hostile,
+.navigation .row .planets .text b {
+  text-align: left !important;
+  float: left;
+  width: 100%;
+  padding-left: 5px;
+  font-weight: normal;
+  font-size: 12px;
+  color: #fff;
+}
+
+.navigation .row .planets .text span.friendly {
+  color: #55FF55 !important;
+}
+
+.navigation .row .planets .text span.allied {
+  color: #0A96FF !important;
+}
+
+.navigation .row .planets .text span.hostile {
+  color: #df4a4a !important;
+}
+
+.navigation .row .planets .text>div:first-child {
+  padding-top: 10px;
+  padding-bottom: 10px;
+}
+
+.dgt-navigation-scan-jg {
+  color: #0ca1e1 !important;
+  padding-left: 5px;
+}
+
+.dgt-navigation-scan-fleet {
+  color: #fff !important;
+  background: #0ca1e1 !important;
+  margin-right: 7px;
+  float: right !important;
+  padding-left: 7px;
+  padding-right: 7px;
+  border-radius: 10px;
+}
+
+.dgt-navigation-scan-hb {
+  color: #fff !important;
+  padding-left: 5px;
+}
+
+.dgt-navigation-scan-population {
+  margin-top: 10px;
+}
+
+.dgt-navigation-scan-invasion-data,
+.dgt-navigation-scan-population {
+  float: left !important;
+  width: 100%;
+  line-height: 14px !important;
+  border-collapse: collapse;
+}
+
+.dgt-navigation-scan-population td {
+  text-align: left;
+  line-height: 14px !important;
+}
+
+.dgt-navigation-scan-population td:first-child {
+  padding-left: 5px;
+}
+
+.dgt-navigation-scan-population .dgt-navigation-scan-soldiers-value,
+.dgt-navigation-scan-population .dgt-navigation-scan-workers-value {
+  color: #fff;
+  font-size: 12px;
+  min-width: 48%;
+}
+
+.dgt-navigation-scan-invasion-data fa-icon,
+.dgt-navigation-scan-soldiers-icon fa-icon,
+.dgt-navigation-scan-workers-icon fa-icon {
+  font-size: 12px;
+}
+
+.dgt-navigation-scan-invasion-data {
+  text-align: left;
+  padding-left: 5px;
+}
+
+.dgt-navigation-scan-invasion-data span {
+  color: #fff;
+  font-size: 12px;
+}
+
+.dgt-navigation-scan-invasion-value {
+  margin-left: 3px;
+}
+
+/******/
+
 .width100 {
   width: 100px;
 }
