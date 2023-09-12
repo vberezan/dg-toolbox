@@ -60,6 +60,24 @@ function applyCustomStyling() {
                     part.classList.remove('width50');
                     part.classList.add('width100');
                 }
+                if (part.classList.contains('metal')) {
+                    part.innerHTML = '<img alt="Metal" src="https://i.imgur.com/FPuGoOV.png" width="17" height="17"><span>' + part.innerHTML + '</span>';
+                }
+                if (part.classList.contains('mineral')) {
+                    part.innerHTML = '<img alt="Minteral" src="https://i.imgur.com/OTTk4eY.png" title="Mineral" width="17" height="17"><span>' + part.innerHTML + '</span>';
+                }
+                if (part.classList.contains('food')) {
+                    part.innerHTML = '<img src="https://i.imgur.com/7gmDfoF.png" title="Food" width="17" height="17"><span>' + part.innerHTML + '</span>';
+                }
+                if (part.classList.contains('energy')) {
+                    part.innerHTML = '<img alt="Energy" src="https://i.imgur.com/DEv8NW9.png" width="17" height="17"><span>' + part.innerHTML + '</span>';
+                }
+                if (part.classList.contains('ground')) {
+                    part.innerHTML = '<img src="https://i.imgur.com/HesibsH.png" title="Ground Space" width="17" height="17"><span>' + part.innerHTML + '</span>';
+                }
+                if (part.classList.contains('orbit')) {
+                    part.innerHTML = '<img src="https://i.imgur.com/KKdM7BA.png" title="Orbit Space" width="17" height="17"><span>' + part.innerHTML + '</span>';
+                }
             });
         });
     }
