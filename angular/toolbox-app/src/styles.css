@@ -492,3 +492,15 @@ label.queueDestroyButton:hover {
 #addQueue .tableHeader {
   border-bottom: 1px solid #787878 !important;
 }
+
+#planetHeader .resource span {
+  line-height: 16px;
+  padding-left: 2px;
+}
+
+#planetHeader .resource img {
+  border-radius: 3px;
+  border: 1px solid #626262;
+  height: 15px;
+  width: 15px;
+}

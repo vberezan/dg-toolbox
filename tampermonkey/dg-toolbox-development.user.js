@@ -98,13 +98,13 @@ function loadCustomStyling() {
         applyCustomStyling();
     }
 
-    // loadResource({
-    //     tagName: 'script',
-    //     src: 'https://cdn.jsdelivr.net/gh/vberezan/dg-toolbox@development/tampermonkey/parts/dg-toolbox-replace-icons-with-fa-icons.0.js',
-    //     rel: 'text/javascript'
-    // }).onload = function () {
-    //     replaceIconsWithFAIcons();
-    // }
+    loadResource({
+        tagName: 'script',
+        src: 'https://cdn.jsdelivr.net/gh/vberezan/dg-toolbox@development/tampermonkey/parts/dg-toolbox-replace-icons-with-fa-icons.0.js',
+        rel: 'text/javascript'
+    }).onload = function () {
+        replaceIconsWithFAIcons();
+    }
 
     loadResource({
         tagName: 'script',
