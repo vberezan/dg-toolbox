@@ -13,7 +13,7 @@ import firebase from 'firebase/compat/app';
 import 'firebase/compat/auth';
 import 'firebase/compat/firestore';
 import {FIREBASE_OPTIONS} from "@angular/fire/compat";
-import {Auth, getAuth, idToken, provideAuth} from "@angular/fire/auth";
+import {Auth, getAuth, idToken, provideAuth, User, user} from "@angular/fire/auth";
 import initializeApp = firebase.initializeApp;
 import {Subscription} from "rxjs";
 import {PlanetSummary} from "../../model/planet-list/planet-summary.planet-list-model";
@@ -48,16 +48,16 @@ import {PlanetSummary} from "../../model/planet-list/planet-summary.planet-list-
 })
 export class NavigationScansModule implements OnInit, OnDestroy {
     private auth: Auth = inject(Auth);
-    private idToken$ = idToken(this.auth);
-    private idTokenSubscription: Subscription;
+    user$ = user(this.auth);
+    userSubscription: Subscription;
 
     constructor() {
     }
 
     ngOnInit(): void {
-        this.idTokenSubscription = this.idToken$.subscribe((token: string | null) => {
-            if (token == null) {
-                console.log("%cDGT%c - uninstalled navigation scans panel... insufficient rights for this module!", "font-size: 12px; font-weight: bold;", "font-size: 12px;");;
+        this.userSubscription = this.user$.subscribe((user: User | null) => {
+            if (user == null) {
+                console.log("%cDGT%c - uninstalled navigation scans panel... insufficient rights for this module!", "font-size: 12px; font-weight: bold;", "font-size: 12px;");
             }
 
             console.log("%cDGT%c - installed navigation scans panel...", "font-size: 12px; font-weight: bold;", "font-size: 12px;");
@@ -65,6 +65,6 @@ export class NavigationScansModule implements OnInit, OnDestroy {
     }
 
     ngOnDestroy() {
-        this.idTokenSubscription.unsubscribe();
+        this.userSubscription.unsubscribe();
     }
 }
