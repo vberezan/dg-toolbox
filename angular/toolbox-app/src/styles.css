@@ -43,11 +43,22 @@ body {
   margin-right: 0 !important;
 }
 
+#planetList .coords img,
 #planetList .resource .left img {
   border-radius: 3px;
-  border: 1px solid #8e8e8e;
+  border: 1px solid #5e5e5e;
   height: 15px;
   width: 15px;
+}
+
+#planetList .coords span,
+#planetList .planetHeadSection .resource span,
+#planetList .resourceLine .resource span {
+  line-height: 16px !important;
+}
+
+#planetList .planetHeadSection .planetName {
+  line-height: 24px !important;
 }
 
 #planetList > #planetList .locationWrapper .paddingMid {
