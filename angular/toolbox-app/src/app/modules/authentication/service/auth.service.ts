@@ -27,7 +27,7 @@ export class AuthService implements OnDestroy {
                                 return entry.doc.data();
                             })[0]);
 
-                        console.log(dbUser);
+                        console.log('db: ' + dbUser);
                     }
                 );
 
@@ -54,7 +54,7 @@ export class AuthService implements OnDestroy {
 
     signInWithGoogle() {
         this.auth.signInWithPopup(new GoogleAuthProvider()).then((credentials: UserCredential) => {
-            console.log(credentials.user.email);
+            console.log('google: ' + credentials.user.email);
         });
     }
 
