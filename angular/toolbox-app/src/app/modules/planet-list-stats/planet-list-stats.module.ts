@@ -30,7 +30,5 @@ export class PlanetListStatsModule implements OnInit {
   constructor() {
   }
 
-  ngOnInit(): void {
-    console.log("%cDGT%c - installed planets stats panel...", "font-size: 12px; font-weight: bold;", "font-size: 12px;");
-  }
+  ngOnInit(): void {}
 }

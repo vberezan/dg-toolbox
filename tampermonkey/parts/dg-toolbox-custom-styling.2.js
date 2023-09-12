@@ -81,6 +81,4 @@ function applyCustomStyling() {
             });
         });
     }
-
-    console.log("%cDGT%c - installed custom styles...", "font-size: 12px; font-weight: bold;", "font-size: 12px;");
 }

@@ -65,30 +65,6 @@ function loadSetups(windowURL) {
     }
 }
 
-function loadAngular() {
-    let angular = [{
-        tagName: 'link',
-        href: 'https://cdn.jsdelivr.net/gh/vberezan/dg-toolbox@development/angular/toolbox-app/dist/toolbox-app/styles.0c5a3c9eca00aa87.css',
-        rel: 'stylesheet'
-    }, {
-        tagName: 'script',
-        src: 'https://cdn.jsdelivr.net/gh/vberezan/dg-toolbox@development/angular/toolbox-app/dist/toolbox-app/runtime.79543c56c927dd9a.js',
-        rel: 'module'
-    }, {
-        tagName: 'script',
-        src: 'https://cdn.jsdelivr.net/gh/vberezan/dg-toolbox@development/angular/toolbox-app/dist/toolbox-app/polyfills.fccd34e7614ee531.js',
-        rel: 'module'
-    }, {
-        tagName: 'script',
-        src: 'https://cdn.jsdelivr.net/gh/vberezan/dg-toolbox@development/angular/toolbox-app/dist/toolbox-app/main.2b68f6091157261f.js',
-        rel: 'module'
-    }];
-
-    angular.forEach((ang) => {
-        loadResource(ang);
-    });
-}
-
 function loadCustomStyling() {
     loadResource({
         tagName: 'script',
@@ -131,6 +107,30 @@ function loadCustomStyling() {
     }
 }
 
+function loadAngular() {
+    let angular = [{
+        tagName: 'link',
+        href: 'https://cdn.jsdelivr.net/gh/vberezan/dg-toolbox@development/angular/toolbox-app/dist/toolbox-app/styles.0c5a3c9eca00aa87.css',
+        rel: 'stylesheet'
+    }, {
+        tagName: 'script',
+        src: 'https://cdn.jsdelivr.net/gh/vberezan/dg-toolbox@development/angular/toolbox-app/dist/toolbox-app/runtime.79543c56c927dd9a.js',
+        rel: 'module'
+    }, {
+        tagName: 'script',
+        src: 'https://cdn.jsdelivr.net/gh/vberezan/dg-toolbox@development/angular/toolbox-app/dist/toolbox-app/polyfills.fccd34e7614ee531.js',
+        rel: 'module'
+    }, {
+        tagName: 'script',
+        src: 'https://cdn.jsdelivr.net/gh/vberezan/dg-toolbox@development/angular/toolbox-app/dist/toolbox-app/main.1039d67f3fbd43df.js',
+        rel: 'module'
+    }];
+
+    angular.forEach((ang) => {
+        loadResource(ang);
+    });
+}
+
 (function () {
 
     document.addEventListener("DOMContentLoaded", function (event) {
@@ -144,10 +144,16 @@ function loadCustomStyling() {
             src: 'https://cdn.jsdelivr.net/gh/vberezan/dg-toolbox@development/tampermonkey/parts/dg-toolbox-utils.1.js',
             rel: 'text/javascript'
         }).onload = function () {
-            document.getElementById('body').prepend(document.createElement('dgt-aauthentication'));
+            document.body.prepend(document.createElement('dgt-authentication'));
+            console.log("%cDGT%c - cooking environment", "font-size: 12px; font-weight: bold;", "font-size: 12px;");
             loadSetups(windowURL);
+            console.log("%cDGT%c - cooking additional components", "font-size: 12px; font-weight: bold;", "font-size: 12px;");
             loadAngular();
+            console.log("%cDGT%c - cooking custom theme", "font-size: 12px; font-weight: bold;", "font-size: 12px;");
             loadCustomStyling();
+
+            console.log("%cDGT%c - all done", "font-size: 12px; font-weight: bold;", "font-size: 12px;");
+            console.log("%cDGT%c - 2023 ©nobody - do whatever you want with this code", "font-size: 12px; font-weight: bold;", "font-size: 12px;");
         }
     });
 })();

@@ -42,7 +42,5 @@ export class SharedScansModule implements OnInit {
     constructor() {
     }
 
-    ngOnInit(): void {
-        console.log("%cDGT%c - installed shared scans collector...", "font-size: 12px; font-weight: bold;", "font-size: 12px;");
-    }
+    ngOnInit(): void {}
 }

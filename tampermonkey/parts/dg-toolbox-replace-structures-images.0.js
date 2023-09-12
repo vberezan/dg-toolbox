@@ -46,6 +46,4 @@ function replaceStructuresImages() {
     replaceImgWithImg('/images/units/main/structures/energy_booster.jpg', 'https://i.imgur.com/3wjvwgM.png');
     replaceImgWithImg('/images/units/main/structures/medical_centre.jpg', 'https://i.imgur.com/kje84Fs.png');
     replaceImgWithImg('/images/units/main/structures/leisure_centre.jpg', 'https://i.imgur.com/ZxUONnB.png');
-
-    console.log("%cDGT%c - installed structure images...", "font-size: 12px; font-weight: bold;", "font-size: 12px;");
 }

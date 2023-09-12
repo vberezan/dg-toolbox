@@ -1,4 +1,4 @@
-import {NgModule, OnInit} from '@angular/core';
+import {NgModule} from '@angular/core';
 import {ScanDataPanelComponent} from './component/scan-data-panel/scan-data-panel.component';
 import {BrowserModule} from "@angular/platform-browser";
 import {environment} from "../../../environments/environment";
@@ -13,7 +13,7 @@ import firebase from 'firebase/compat/app';
 import 'firebase/compat/auth';
 import 'firebase/compat/firestore';
 import {FIREBASE_OPTIONS} from "@angular/fire/compat";
-import {getAuth, provideAuth, user} from "@angular/fire/auth";
+import {getAuth, provideAuth} from "@angular/fire/auth";
 import {AuthenticationModule} from "../authentication/authentication.module";
 import {AuthService} from "../authentication/service/auth.service";
 import initializeApp = firebase.initializeApp;
@@ -48,15 +48,7 @@ import initializeApp = firebase.initializeApp;
         ScanDataPanelComponent
     ]
 })
-export class NavigationScansModule implements OnInit {
+export class NavigationScansModule {
     constructor() {
-    }
-
-    ngOnInit(): void {
-        if (localStorage.getItem('user') == null) {
-            console.log("%cDGT%c - navigation scans panel not installed... insufficient rights for this module!", "font-size: 12px; font-weight: bold;", "font-size: 12px;");
-        } else {
-            console.log("%cDGT%c - installed navigation scans panel...", "font-size: 12px; font-weight: bold;", "font-size: 12px;");
-        }
     }
 }

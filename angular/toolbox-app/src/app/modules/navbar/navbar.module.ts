@@ -5,23 +5,22 @@ import {BrowserModule} from "@angular/platform-browser";
 import {ActiveTabDirective} from './directive/active-tab.directive';
 
 @NgModule({
-  declarations: [
-    MenuComponent,
-    ActiveTabDirective
-  ],
-  imports: [
-    BrowserModule,
-    FontAwesomeModule
-  ],
-  exports: [MenuComponent],
-  bootstrap: [MenuComponent]
+    declarations: [
+        MenuComponent,
+        ActiveTabDirective
+    ],
+    imports: [
+        BrowserModule,
+        FontAwesomeModule
+    ],
+    exports: [MenuComponent],
+    bootstrap: [MenuComponent]
 })
 export class NavbarModule implements OnInit {
-  constructor() {
-  }
+    constructor() {
+    }
 
-  ngOnInit(): void {
-    console.log("%cDGT%c - installed custom navigation menu...", "font-size: 12px; font-weight: bold;", "font-size: 12px;");
-  }
+    ngOnInit(): void {
+    }
 
 }
