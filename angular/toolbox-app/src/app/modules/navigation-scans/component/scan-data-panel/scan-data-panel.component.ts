@@ -25,16 +25,15 @@ export class ScanDataPanelComponent implements OnInit, OnDestroy {
   ngOnInit() {
     this.idTokenSubscription = this.idToken$.subscribe((token: string | null) => {
       if (token == null) {
-        console.log('Permission Denied!');
+        return;
       }
 
       let summaries: PlanetSummary[] = this.scansService.extractSummaries();
 
       if (summaries.length > 0) {
         this.scansService.fillScans(summaries);
-
       }
-    })
+    });
   }
 
 }

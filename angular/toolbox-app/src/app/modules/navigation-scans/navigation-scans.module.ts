@@ -1,4 +1,4 @@
-import {NgModule, OnInit} from '@angular/core';
+import {inject, NgModule, OnDestroy, OnInit} from '@angular/core';
 import {ScanDataPanelComponent} from './component/scan-data-panel/scan-data-panel.component';
 import {BrowserModule} from "@angular/platform-browser";
 import {environment} from "../../../environments/environment";
@@ -13,8 +13,10 @@ import firebase from 'firebase/compat/app';
 import 'firebase/compat/auth';
 import 'firebase/compat/firestore';
 import {FIREBASE_OPTIONS} from "@angular/fire/compat";
-import {getAuth, provideAuth} from "@angular/fire/auth";
+import {Auth, getAuth, idToken, provideAuth} from "@angular/fire/auth";
 import initializeApp = firebase.initializeApp;
+import {Subscription} from "rxjs";
+import {PlanetSummary} from "../../model/planet-list/planet-summary.planet-list-model";
 
 
 @NgModule({
@@ -44,12 +46,25 @@ import initializeApp = firebase.initializeApp;
         ScanDataPanelComponent
     ]
 })
-export class NavigationScansModule implements OnInit {
+export class NavigationScansModule implements OnInit, OnDestroy {
+    private auth: Auth = inject(Auth);
+    private idToken$ = idToken(this.auth);
+    private idTokenSubscription: Subscription;
 
     constructor() {
     }
 
     ngOnInit(): void {
-        console.log("%cDGT%c - installed navigation scans panel...", "font-size: 12px; font-weight: bold;", "font-size: 12px;");
+        this.idTokenSubscription = this.idToken$.subscribe((token: string | null) => {
+            if (token == null) {
+                console.log("%cDGT%c - uninstalled navigation scans panel... insufficient rights for this module!", "font-size: 12px; font-weight: bold;", "font-size: 12px;");;
+            }
+
+            console.log("%cDGT%c - installed navigation scans panel...", "font-size: 12px; font-weight: bold;", "font-size: 12px;");
+        });
+    }
+
+    ngOnDestroy() {
+        this.idTokenSubscription.unsubscribe();
     }
 }
