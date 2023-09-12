@@ -1,5 +1,5 @@
 import {inject, Injectable, OnDestroy} from '@angular/core';
-import {User} from "@angular/fire/auth";
+import {signOut, User} from "@angular/fire/auth";
 import {AngularFireAuth} from "@angular/fire/compat/auth";
 import {Subscription} from "rxjs";
 import {GoogleAuthProvider} from 'firebase/auth';
@@ -28,13 +28,15 @@ export class AuthService implements OnDestroy {
                                     return entry.doc.data();
                                 })[0]);
 
-                            console.log('db: ' + dbUser.email);
+                            if (dbUser.active) {
+                                localStorage.setItem('user', JSON.stringify(user));
+                                this._isLoggedIn = true;
+                            } else {
+                                this.signOut();
+                            }
                         }
                     }
                 );
-
-                localStorage.setItem('user', JSON.stringify(user));
-                this._isLoggedIn = true;
             } else {
                 localStorage.removeItem('user');
                 this._isLoggedIn = false
