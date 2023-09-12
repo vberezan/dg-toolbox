@@ -1,4 +1,4 @@
-dgt-authentication .login {
+.login {
     overflow: hidden;
     background-color: white;
     padding: 40px 30px 30px 30px;
@@ -18,7 +18,7 @@ dgt-authentication .login {
     box-shadow: 5px 10px 10px rgba(2, 128, 144, 0.2);
 }
 
-dgt-authentication .login::before, .login::after {
+.login::before, .login::after {
     content: "";
     position: absolute;
     width: 600px;
@@ -30,7 +30,7 @@ dgt-authentication .login::before, .login::after {
     z-index: -1;
 }
 
-dgt-authentication .login::before {
+.login::before {
     left: 40%;
     bottom: -130%;
     background-color: rgba(69, 105, 144, 0.15);
@@ -39,7 +39,7 @@ dgt-authentication .login::before {
     animation: wawes 6s infinite linear;
 }
 
-dgt-authentication .login::after {
+.login::after {
     left: 35%;
     bottom: -125%;
     background-color: rgba(2, 128, 144, 0.2);
@@ -114,7 +114,7 @@ dgt-authentication.login > button:hover {
     }
 }
 
-dgt-authentication a {
+a {
     text-decoration: none;
     color: rgba(255, 255, 255, 0.6);
     position: absolute;
