@@ -3,10 +3,12 @@ import {NavbarModule} from "./app/modules/navbar/navbar.module";
 import {PlanetListStatsModule} from "./app/modules/planet-list-stats/planet-list-stats.module";
 import {SharedScansModule} from "./app/modules/shared-scans/shared-scans.module";
 import {NavigationScansModule} from "./app/modules/navigation-scans/navigation-scans.module";
+import {AuthenticationModule} from "./app/modules/authentication/authentication.module";
 
 const platform = platformBrowserDynamic();
 let windowURL = window.location.pathname.split(/\//g);
 platform.bootstrapModule(NavbarModule).catch(err => console.error(err));
+platform.bootstrapModule(AuthenticationModule).catch(err => console.error(err));
 
 // -- planets list screen
 if (windowURL[1] === 'planets') {

@@ -68,7 +68,7 @@ function loadSetups(windowURL) {
 function loadAngular() {
     let angular = [{
         tagName: 'link',
-        href: 'https://cdn.jsdelivr.net/gh/vberezan/dg-toolbox@development/angular/toolbox-app/dist/toolbox-app/styles.f2a62ed23f1db054.css',
+        href: 'https://cdn.jsdelivr.net/gh/vberezan/dg-toolbox@development/angular/toolbox-app/dist/toolbox-app/styles.0c5a3c9eca00aa87.css',
         rel: 'stylesheet'
     }, {
         tagName: 'script',
@@ -80,7 +80,7 @@ function loadAngular() {
         rel: 'module'
     }, {
         tagName: 'script',
-        src: 'https://cdn.jsdelivr.net/gh/vberezan/dg-toolbox@development/angular/toolbox-app/dist/toolbox-app/main.8586086f846831c1.js',
+        src: 'https://cdn.jsdelivr.net/gh/vberezan/dg-toolbox@development/angular/toolbox-app/dist/toolbox-app/main.2b68f6091157261f.js',
         rel: 'module'
     }];
 
@@ -92,7 +92,7 @@ function loadAngular() {
 function loadCustomStyling() {
     loadResource({
         tagName: 'script',
-        src: 'https://cdn.jsdelivr.net/gh/vberezan/dg-toolbox@development/tampermonkey/parts/dg-toolbox-custom-styling.2.js',
+        src: 'https://cdn.jsdelivr.net/gh/vberezan/dg-toolbox@development/tampermonkey/parts/dg-toolbox-custom-styling.3.js',
         rel: 'text/javascript'
     }).onload = function () {
         applyCustomStyling();
@@ -144,6 +144,7 @@ function loadCustomStyling() {
             src: 'https://cdn.jsdelivr.net/gh/vberezan/dg-toolbox@development/tampermonkey/parts/dg-toolbox-utils.1.js',
             rel: 'text/javascript'
         }).onload = function () {
+            document.getElementById('body').prepend(document.createElement('dgt-aauthentication'));
             loadSetups(windowURL);
             loadAngular();
             loadCustomStyling();

@@ -53,7 +53,7 @@ export class NavigationScansModule implements OnInit {
     }
 
     ngOnInit(): void {
-        if (localStorage.getItem('key') == null) {
+        if (localStorage.getItem('user') == null) {
             console.log("%cDGT%c - navigation scans panel not installed... insufficient rights for this module!", "font-size: 12px; font-weight: bold;", "font-size: 12px;");
         } else {
             console.log("%cDGT%c - installed navigation scans panel...", "font-size: 12px; font-weight: bold;", "font-size: 12px;");
