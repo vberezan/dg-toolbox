@@ -2,6 +2,7 @@ import {inject, Injectable, OnDestroy} from '@angular/core';
 import {User} from "@angular/fire/auth";
 import {AngularFireAuth} from "@angular/fire/compat/auth";
 import {Subscription} from "rxjs";
+import {GoogleAuthProvider} from 'firebase/auth';
 
 @Injectable({
     providedIn: 'platform'
@@ -33,6 +34,10 @@ export class AuthService implements OnDestroy {
             .catch((error) => {
                 window.alert(error.message);
             });
+    }
+
+    signInWithGoogle() {
+        let credentials = this.auth.signInWithPopup(new GoogleAuthProvider());
     }
 
     signOut() {
