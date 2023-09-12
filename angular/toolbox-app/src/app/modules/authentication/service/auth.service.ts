@@ -9,13 +9,16 @@ import {Subscription} from "rxjs";
 export class AuthService implements OnDestroy {
     private auth: AngularFireAuth = inject(AngularFireAuth);
     private subscription: Subscription;
+    private _isLoggedIn: boolean = false;
 
     constructor() {
         this.subscription = this.auth.authState.subscribe((user: User) => {
             if (user) {
                 localStorage.setItem('user', JSON.stringify(user));
+                this._isLoggedIn = true;
             } else {
                 localStorage.setItem('user', null);
+                this._isLoggedIn = false
             }
         });
     }
@@ -39,4 +42,7 @@ export class AuthService implements OnDestroy {
         });
     }
 
+    get isLoggedIn(): boolean {
+        return this._isLoggedIn;
+    }
 }

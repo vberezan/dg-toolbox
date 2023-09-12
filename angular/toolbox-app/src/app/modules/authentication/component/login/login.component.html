@@ -1,9 +1,9 @@
-<div class="login">
+<div *ngIf="authService.isLoggedIn" class="login">
     <span>DarkGalaxy Tools Login</span>
-    <input type="text" placeholder="email">
-    <input type="password" placeholder="password">
-    <button>Login</button>
-    <button>Logout</button>
+    <input type="text" placeholder="email" required #userName>
+    <input type="password" placeholder="password" required #userPassword>
+    <button (click)="authService.signIn(userName.value, userPassword.value)">Login</button>
+    <button (click)="authService.signOut()">Logout</button>
 </div>
 
 
