@@ -27,7 +27,7 @@ export class AuthService implements OnDestroy {
                                 return entry.doc.data();
                             })[0]);
 
-                        console.log('db: ' + dbUser);
+                        console.log('db: ' + dbUser.email);
                     }
                 );
 
