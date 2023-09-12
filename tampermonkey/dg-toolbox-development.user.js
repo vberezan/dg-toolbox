@@ -14,44 +14,44 @@
 // @grant        GM_xmlhttpRequest
 // ==/UserScript==
 
-function loadResource(tagName, href, rel) {
-    let node = document.createElement(tagName);
-    node.href = href;
-    node.rel = rel;
+function loadResource(element) {
+    let node = document.createElement(element.tagName);
+    node.href = element.href;
+    node.rel = element.rel;
     document.head.appendChild(node);
 }
 
 function loadSetups(windowURL) {
-    setups = [{
+    let setups = [{
         tagName: 'script',
         href: 'https://cdn.jsdelivr.net/gh/vberezan/dg-toolbox@development/tampermonkey/dg-toolbox-setup-navbar-replacement.0.js',
-        rel: 'text/javascript',
-        execute: setUpNavbarReplacement()
+        rel: 'text/javascript'
     }, {
         tagName: 'script',
         href: 'https://cdn.jsdelivr.net/gh/vberezan/dg-toolbox@development/tampermonkey/dg-toolbox-setup-planet-list-panel.0.js',
-        rel: 'text/javascript',
-        execute: setUpPlanetListStatsPanel()
+        rel: 'text/javascript'
     }, {
         tagName: 'script',
         href: 'https://cdn.jsdelivr.net/gh/vberezan/dg-toolbox@development/tampermonkey/dg-toolbox-setup-shared-scans-collector.0.js',
-        rel: 'text/javascript',
-        execute: setUpSharedScansCollector(windowURL)
+        rel: 'text/javascript'
     }, {
         tagName: 'script',
         href: 'https://cdn.jsdelivr.net/gh/vberezan/dg-toolbox@development/tampermonkey/dg-toolbox-navigation-scan-data-panel.0.js',
-        rel: 'text/javascript',
-        execute: setUpNavigationScanDataPanel(windowURL)
+        rel: 'text/javascript'
     }];
 
     setups.forEach((setup) => {
         loadResource(setup);
-        setup.execute();
     });
+
+    setUpNavbarReplacement();
+    setUpPlanetListStatsPanel();
+    setUpSharedScansCollector(windowURL);
+    setUpNavigationScanDataPanel(windowURL);
 }
 
 function loadAngular() {
-    angular = [{
+    let angular = [{
         tagName: 'link',
         href: 'https://cdn.jsdelivr.net/gh/vberezan/dg-toolbox@development/angular/toolbox-app/dist/toolbox-app/styles.8d77f56fabf3803d.css',
         rel: 'stylesheet'
@@ -75,31 +75,32 @@ function loadAngular() {
 }
 
 function loadCustomStyling() {
-    stylings = [{
+    let stylings = [{
         tagName: 'script',
         href: 'https://cdn.jsdelivr.net/gh/vberezan/dg-toolbox@development/tampermonkey/dg-toolbox-apply-custom-styling.0.js',
-        rel: 'text/javascript',
-        execute: applyCustomStyling()
+        rel: 'text/javascript'
     },{
         tagName: 'script',
         href: 'https://cdn.jsdelivr.net/gh/vberezan/dg-toolbox@development/tampermonkey/dg-toolbox-replace-icons-with-fa-icons.0.js',
-        rel: 'text/javascript',
-        execute: replaceIconsWithFAIcons()
+        rel: 'text/javascript'
     },{
         tagName: 'script',
         href: 'https://cdn.jsdelivr.net/gh/vberezan/dg-toolbox@development/tampermonkey/dg-toolbox-replace-planets-images.0.js',
-        rel: 'text/javascript',
-        execute: replacePlanetsImages()
+        rel: 'text/javascript'
     },{
         tagName: 'script',
         href: 'https://cdn.jsdelivr.net/gh/vberezan/dg-toolbox@development/tampermonkey/dg-toolbox-replace-structures-images.0.js',
-        rel: 'text/javascript',
-        execute: replaceStructuresImages()
+        rel: 'text/javascript'
     }];
 
     stylings.forEach((styling) => {
         loadResource(styling);
     });
+
+    applyCustomStyling();
+    replaceIconsWithFAIcons();
+    replacePlanetsImages();
+    replaceStructuresImages();
 }
 
 (function () {
