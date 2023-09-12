@@ -27,6 +27,4 @@ function replacePlanetsImages() {
     } else { // small images for anything else (planet list, nav other planets, nav own planets)
         Array.from(document.querySelectorAll('.planetImage img, .planets > img, .planets > a > img')).forEach((img) => replaceImage(img, 'icon'));
     }
-
-    console.log("%cDGT%c - installed planets images...", "font-size: 12px; font-weight: bold;", "font-size: 12px;");
 }

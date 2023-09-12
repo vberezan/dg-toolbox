@@ -10,6 +10,4 @@ function replaceIconsWithImages() {
     replaceImgWithImg('/images/units/small/ground.gif', 'https://i.imgur.com/HesibsH.png');
     replaceImgWithImg('/images/units/small/orbit.gif', 'https://i.imgur.com/KKdM7BA.png');
     replaceImgWithImg('/images/units/small/coords.gif', 'https://i.imgur.com/F0Vdyzn.png');
-
-    console.log("%cDGT%c - installed new icons...", "font-size: 12px; font-weight: bold;", "font-size: 12px;");
 }

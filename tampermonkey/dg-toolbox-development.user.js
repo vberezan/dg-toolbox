@@ -34,7 +34,7 @@ function loadResource(element) {
 function loadSetups(windowURL) {
     loadResource({
         tagName: 'script',
-        src: 'https://cdn.jsdelivr.net/gh/vberezan/dg-toolbox@development/tampermonkey/parts/dg-toolbox-setup-navbar-replacement.0.js',
+        src: 'https://cdn.jsdelivr.net/gh/vberezan/dg-toolbox@development/tampermonkey/parts/dg-toolbox-setup-navbar-replacement.3.js',
         rel: 'text/javascript'
     }).onload = function () {
         setUpNavbarReplacement();
@@ -42,7 +42,7 @@ function loadSetups(windowURL) {
 
     loadResource({
         tagName: 'script',
-        src: 'https://cdn.jsdelivr.net/gh/vberezan/dg-toolbox@development/tampermonkey/parts/dg-toolbox-setup-planet-list-panel.0.js',
+        src: 'https://cdn.jsdelivr.net/gh/vberezan/dg-toolbox@development/tampermonkey/parts/dg-toolbox-setup-planet-list-panel.3.js',
         rel: 'text/javascript'
     }).onload = function () {
         setUpPlanetListStatsPanel();
@@ -50,7 +50,7 @@ function loadSetups(windowURL) {
 
     loadResource({
         tagName: 'script',
-        src: 'https://cdn.jsdelivr.net/gh/vberezan/dg-toolbox@development/tampermonkey/parts/dg-toolbox-setup-shared-scans-collector.0.js',
+        src: 'https://cdn.jsdelivr.net/gh/vberezan/dg-toolbox@development/tampermonkey/parts/dg-toolbox-setup-shared-scans-collector.3.js',
         rel: 'text/javascript'
     }).onload = function () {
         setUpSharedScansCollector(windowURL);
@@ -58,7 +58,7 @@ function loadSetups(windowURL) {
 
     loadResource({
         tagName: 'script',
-        src: 'https://cdn.jsdelivr.net/gh/vberezan/dg-toolbox@development/tampermonkey/parts/dg-toolbox-setup-navigation-scan-data-panel.0.js',
+        src: 'https://cdn.jsdelivr.net/gh/vberezan/dg-toolbox@development/tampermonkey/parts/dg-toolbox-setup-navigation-scan-data-panel.3.js',
         rel: 'text/javascript'
     }).onload = function () {
         setUpNavigationScanDataPanel(windowURL);
@@ -76,7 +76,7 @@ function loadCustomStyling() {
 
     loadResource({
         tagName: 'script',
-        src: 'https://cdn.jsdelivr.net/gh/vberezan/dg-toolbox@development/tampermonkey/parts/dg-toolbox-replace-icons-with-fa-icons.0.js',
+        src: 'https://cdn.jsdelivr.net/gh/vberezan/dg-toolbox@development/tampermonkey/parts/dg-toolbox-replace-icons-with-fa-icons.3.js',
         rel: 'text/javascript'
     }).onload = function () {
         replaceIconsWithFAIcons();
@@ -84,7 +84,7 @@ function loadCustomStyling() {
 
     loadResource({
         tagName: 'script',
-        src: 'https://cdn.jsdelivr.net/gh/vberezan/dg-toolbox@development/tampermonkey/parts/dg-toolbox-replace-icons-with-images.1.js',
+        src: 'https://cdn.jsdelivr.net/gh/vberezan/dg-toolbox@development/tampermonkey/parts/dg-toolbox-replace-icons-with-images.3.js',
         rel: 'text/javascript'
     }).onload = function () {
         replaceIconsWithImages();
@@ -92,7 +92,7 @@ function loadCustomStyling() {
 
     loadResource({
         tagName: 'script',
-        src: 'https://cdn.jsdelivr.net/gh/vberezan/dg-toolbox@development/tampermonkey/parts/dg-toolbox-replace-planets-images.0.js',
+        src: 'https://cdn.jsdelivr.net/gh/vberezan/dg-toolbox@development/tampermonkey/parts/dg-toolbox-replace-planets-images.3.js',
         rel: 'text/javascript'
     }).onload = function () {
         replacePlanetsImages();
@@ -100,7 +100,7 @@ function loadCustomStyling() {
 
     loadResource({
         tagName: 'script',
-        src: 'https://cdn.jsdelivr.net/gh/vberezan/dg-toolbox@development/tampermonkey/parts/dg-toolbox-replace-structures-images.0.js',
+        src: 'https://cdn.jsdelivr.net/gh/vberezan/dg-toolbox@development/tampermonkey/parts/dg-toolbox-replace-structures-images.3.js',
         rel: 'text/javascript'
     }).onload = function () {
         replaceStructuresImages();
@@ -141,7 +141,7 @@ function loadAngular() {
 
         loadResource({
             tagName: 'script',
-            src: 'https://cdn.jsdelivr.net/gh/vberezan/dg-toolbox@development/tampermonkey/parts/dg-toolbox-utils.1.js',
+            src: 'https://cdn.jsdelivr.net/gh/vberezan/dg-toolbox@development/tampermonkey/parts/dg-toolbox-utils.3.js',
             rel: 'text/javascript'
         }).onload = function () {
             document.body.prepend(document.createElement('dgt-authentication'));
