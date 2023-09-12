@@ -510,6 +510,10 @@ label.queueDestroyButton:hover {
   border: 1px solid #535353 !important;
 }
 
+#completed .upkeepList span {
+  padding-left: 4px !important;
+}
+
 #completed .upkeepList img {
   float: left;
 }
