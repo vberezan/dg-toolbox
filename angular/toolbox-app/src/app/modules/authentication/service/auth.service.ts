@@ -35,6 +35,7 @@ export class AuthService implements OnDestroy {
     signOut() {
         return this.auth.signOut().then(() => {
             localStorage.removeItem('user');
+            location.reload();
         });
     }
 
