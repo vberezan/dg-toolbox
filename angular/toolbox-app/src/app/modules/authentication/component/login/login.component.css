@@ -1,8 +1,7 @@
 .login {
     overflow: hidden;
-    background-color: #4b4b4b;
-    padding: 10px 90px 10px;
-    border-radius: 5px;
+    background-color: rgba(75, 75, 75, 0.6);
+    padding: 10px;
     position: relative;
     width: 200px;
 }
@@ -12,9 +11,9 @@
     border-radius: 3px;
     font-size: 14px;
     background: #fff;
-    width: 100%;
+    width: 50%;
     border: 0;
-    padding: 7px 7px 7px 10px;
+    padding: 5px 5px 5px 10px;
     margin: 5px 0;
 }
 
