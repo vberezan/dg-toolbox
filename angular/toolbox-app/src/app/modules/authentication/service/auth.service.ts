@@ -22,12 +22,14 @@ export class AuthService implements OnDestroy {
             if (user != null) {
                 this.firestore.collection('users', ref => ref.where('email', '==', user.email).limit(1))
                     .get().subscribe((items) => {
-                        let dbUser: { email: string, active: boolean } =
-                            Object.assign({ email: '', active: false }, items.docChanges().map(entry => {
-                                return entry.doc.data();
-                            })[0]);
+                        if (items.size == 1) {
+                            let dbUser: { email: string, active: boolean } =
+                                Object.assign({email: '', active: false}, items.docChanges().map(entry => {
+                                    return entry.doc.data();
+                                })[0]);
 
-                        console.log('db: ' + dbUser.email);
+                            console.log('db: ' + dbUser.email);
+                        }
                     }
                 );
 
