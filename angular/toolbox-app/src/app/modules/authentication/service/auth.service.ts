@@ -3,6 +3,8 @@ import {User} from "@angular/fire/auth";
 import {AngularFireAuth} from "@angular/fire/compat/auth";
 import {Subscription} from "rxjs";
 import {GoogleAuthProvider} from 'firebase/auth';
+import firebase from "firebase/compat";
+import UserCredential = firebase.auth.UserCredential;
 
 @Injectable({
     providedIn: 'platform'
@@ -37,7 +39,9 @@ export class AuthService implements OnDestroy {
     }
 
     signInWithGoogle() {
-        let credentials = this.auth.signInWithPopup(new GoogleAuthProvider());
+        this.auth.signInWithPopup(new GoogleAuthProvider()).then((credentials: UserCredential) => {
+            console.log(credentials.user.email);
+        });
     }
 
     signOut() {
