@@ -13,7 +13,7 @@ export class AuthService implements OnDestroy {
 
     constructor() {
         this.subscription = this.auth.authState.subscribe((user: User) => {
-            if (user) {
+            if (user != null) {
                 localStorage.setItem('user', JSON.stringify(user));
                 this._isLoggedIn = true;
             } else {

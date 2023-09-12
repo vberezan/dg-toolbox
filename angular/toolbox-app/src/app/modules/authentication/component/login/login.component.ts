@@ -8,5 +8,5 @@ import {AuthService} from "../../service/auth.service";
 })
 export class LoginComponent {
     authService: AuthService = inject(AuthService);
-    protected readonly localStorage = localStorage;
+    protected localStorage = localStorage;
 }
