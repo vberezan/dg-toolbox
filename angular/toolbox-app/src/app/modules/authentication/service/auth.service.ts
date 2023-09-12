@@ -17,7 +17,7 @@ export class AuthService implements OnDestroy {
                 localStorage.setItem('user', JSON.stringify(user));
                 this._isLoggedIn = true;
             } else {
-                localStorage.setItem('user', null);
+                localStorage.removeItem('user');
                 this._isLoggedIn = false
             }
         });
