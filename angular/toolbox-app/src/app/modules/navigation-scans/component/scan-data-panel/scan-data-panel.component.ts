@@ -14,6 +14,7 @@ export class ScanDataPanelComponent implements OnInit, OnDestroy {
     private scansService: ScansService = inject(ScansService);
     private auth: AngularFireAuth = inject(AngularFireAuth);
     private authSubscription: Subscription;
+    active: boolean = false;
 
     constructor() {
     }
@@ -21,11 +22,14 @@ export class ScanDataPanelComponent implements OnInit, OnDestroy {
     ngOnInit() {
         this.authSubscription = this.auth.authState.subscribe((user: User) => {
             if (user) {
+                this.active = true;
                 let summaries: PlanetSummary[] = this.scansService.extractSummaries();
 
                 if (summaries.length > 0) {
                     this.scansService.fillScans(summaries);
                 }
+            } else {
+                this.active = false;
             }
         });
     }
