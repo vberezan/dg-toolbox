@@ -1,11 +1,10 @@
 import {inject, Injectable, OnDestroy} from '@angular/core';
-import {signOut, User} from "@angular/fire/auth";
+import {User} from "@angular/fire/auth";
 import {AngularFireAuth} from "@angular/fire/compat/auth";
 import {Subscription} from "rxjs";
 import {GoogleAuthProvider} from 'firebase/auth';
 import firebase from "firebase/compat";
 import {AngularFirestore} from "@angular/fire/compat/firestore";
-import {PlanetScan} from "../../../model/shared-scans/shared-scans-planet-scan.model";
 import UserCredential = firebase.auth.UserCredential;
 
 @Injectable({
@@ -28,17 +27,19 @@ export class AuthService implements OnDestroy {
                                     return entry.doc.data();
                                 })[0]);
 
-                            console.log(userCheck.enabled);
-
                             if (userCheck.enabled) {
                                 localStorage.setItem('user', JSON.stringify(user));
+
+                                console.log(localStorage.getItem('user'));
+
                                 this._isLoggedIn = true;
                             } else {
                                 this.signOut(false);
                             }
-                        } {
+                        }
+                        {
                             this.signOut(false);
-                    }
+                        }
                     }
                 );
             } else {
