@@ -1,43 +1,52 @@
-<div class="displayTable">
-    <div class="displayTableCell">
-        <div class="authBlock">
-            <h3>Sign In</h3>
-            <div class="formGroup">
-                <input
-                        type="text"
-                        class="formControl"
-                        placeholder="Username"
-                        #userName
-                        required
-                />
-            </div>
-            <div class="formGroup">
-                <input
-                        type="password"
-                        class="formControl"
-                        placeholder="Password"
-                        #userPassword
-                        required
-                />
-            </div>
+<form class="login">
+    <input type="text" placeholder="Username">
+    <input type="password" placeholder="Password">
+    <button>Login</button>
+    <button>Logout</button>
+</form>
 
-            <div class="formGroup">
-                <input
-                        type="button"
-                        class="btn btnPrimary"
-                        value="Log in"
-                        (click)="authService.signIn(userName.value, userPassword.value)"
-                />
-                <input
-                        type="button"
-                        class="btn btnPrimary"
-                        value="Log out"
-                        (click)="authService.signOut()"
-                />
-            </div>
-            <div class="formGroup">
-                <span class="or"><span class="orInner">Or</span></span>
-            </div>
-        </div>
-    </div>
-</div>
+
+
+<!--<div class="displayTable">-->
+<!--    <div class="displayTableCell">-->
+<!--        <div class="authBlock">-->
+<!--            <h3>Sign In</h3>-->
+<!--            <div class="formGroup">-->
+<!--                <input-->
+<!--                        type="text"-->
+<!--                        class="formControl"-->
+<!--                        placeholder="Username"-->
+<!--                        #userName-->
+<!--                        required-->
+<!--                />-->
+<!--            </div>-->
+<!--            <div class="formGroup">-->
+<!--                <input-->
+<!--                        type="password"-->
+<!--                        class="formControl"-->
+<!--                        placeholder="Password"-->
+<!--                        #userPassword-->
+<!--                        required-->
+<!--                />-->
+<!--            </div>-->
+
+<!--            <div class="formGroup">-->
+<!--                <input-->
+<!--                        type="button"-->
+<!--                        class="btn btnPrimary"-->
+<!--                        value="Log in"-->
+<!--                        (click)="authService.signIn(userName.value, userPassword.value)"-->
+<!--                />-->
+<!--                <input-->
+<!--                        type="button"-->
+<!--                        class="btn btnPrimary"-->
+<!--                        value="Log out"-->
+<!--                        (click)="authService.signOut()"-->
+<!--                />-->
+<!--            </div>-->
+<!--            <div class="formGroup">-->
+<!--                <span class="or"><span class="orInner">Or</span></span>-->
+<!--            </div>-->
+<!--        </div>-->
+<!--    </div>-->
+<!--</div>-->
