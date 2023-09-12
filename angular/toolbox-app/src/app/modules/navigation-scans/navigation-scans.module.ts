@@ -1,39 +1,50 @@
 import {NgModule, OnInit} from '@angular/core';
 import {ScanDataPanelComponent} from './component/scan-data-panel/scan-data-panel.component';
 import {BrowserModule} from "@angular/platform-browser";
-import {AngularFireModule} from "@angular/fire/compat";
 import {environment} from "../../../environments/environment";
-import {AngularFirestoreModule} from "@angular/fire/compat/firestore";
 import {ScansService} from "./service/scans.service";
 import {DarkgalaxyUiParserModule} from "../darkgalaxy-ui-parser/darkgalaxy-ui-parser.module";
 import {ResourceProductionFormatterPipe} from "../planet-list-stats/pipe/resource-production-formatter.pipe";
 import {DecimalPipe} from "@angular/common";
+import {getApp, provideFirebaseApp} from "@angular/fire/app";
+import {getFirestore, provideFirestore} from "@angular/fire/firestore";
+import {initializeAppCheck, provideAppCheck, ReCaptchaV3Provider} from "@angular/fire/app-check";
+import firebase from 'firebase/compat/app';
+import 'firebase/compat/auth';
+import 'firebase/compat/firestore';
+import initializeApp = firebase.initializeApp;
 
 
 @NgModule({
-  declarations: [
-    ScanDataPanelComponent
-  ],
-  imports: [
-    BrowserModule,
-    AngularFireModule.initializeApp(environment.firebase),
-    AngularFirestoreModule,
-    DarkgalaxyUiParserModule,
-  ],
-  providers: [
-    DecimalPipe,
-    ResourceProductionFormatterPipe,
-    ScansService
-  ],
-  bootstrap: [
-    ScanDataPanelComponent
-  ]
+    declarations: [
+        ScanDataPanelComponent
+    ],
+    imports: [
+        BrowserModule,
+        provideFirebaseApp(() => initializeApp(environment.firebase)),
+        provideFirestore(() => getFirestore()),
+        provideAppCheck(() => initializeAppCheck(getApp(),
+            {
+                provider: new ReCaptchaV3Provider(environment.firebase.appCheck.recaptchaSiteKey),
+                isTokenAutoRefreshEnabled: true
+            })
+        ),
+        DarkgalaxyUiParserModule,
+    ],
+    providers: [
+        DecimalPipe,
+        ResourceProductionFormatterPipe,
+        ScansService
+    ],
+    bootstrap: [
+        ScanDataPanelComponent
+    ]
 })
 export class NavigationScansModule implements OnInit {
-  constructor() {
-  }
+    constructor() {
+    }
 
-  ngOnInit(): void {
-    console.log("%cDGT%c - installed navigation scans panel...", "font-size: 12px; font-weight: bold;", "font-size: 12px;");
-  }
+    ngOnInit(): void {
+        console.log("%cDGT%c - installed navigation scans panel...", "font-size: 12px; font-weight: bold;", "font-size: 12px;");
+    }
 }

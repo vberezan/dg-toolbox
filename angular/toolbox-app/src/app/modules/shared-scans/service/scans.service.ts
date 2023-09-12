@@ -5,12 +5,14 @@ import {DarkgalaxyApiService} from "../../darkgalaxy-ui-parser/service/darkgalax
 import {PlanetScanEvent} from "../../../model/shared-scans/shared-scans-planet-scan-event.model";
 import {ScanType} from "../../../model/scan-type";
 import {Resource} from "../../../model/resource.model";
+import {AppCheck} from "@angular/fire/app-check";
 
 @Injectable({
   providedIn: 'root'
 })
 export class ScansService {
   private firestore: AngularFirestore = inject(AngularFirestore);
+    private appCheck: AppCheck = inject(AppCheck);
   private dgAPI: DarkgalaxyApiService = inject(DarkgalaxyApiService);
 
   constructor() {
