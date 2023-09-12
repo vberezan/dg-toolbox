@@ -43,6 +43,13 @@ body {
   margin-right: 0 !important;
 }
 
+#planetList .resource .left img {
+  border-radius: 3px;
+  border: 1px solid #8e8e8e;
+  height: 15px;
+  width: 15px;
+}
+
 #planetList > #planetList .locationWrapper .paddingMid {
   padding: 0 !important;
   display: block;
