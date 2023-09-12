@@ -46,9 +46,19 @@ body {
 #planetList .coords img,
 #planetList .resource .left img {
   border-radius: 3px;
-  border: 1px solid #5e5e5e;
+  border: 1px solid #626262;
   height: 15px;
   width: 15px;
+}
+
+#planetList .coords img {
+  border: 1px solid #535353 !important;
+}
+
+#planetList .resource.metal .left img,
+#planetList .resource.mineral .left img,
+#planetList .resource.food .left img {
+  border: 1px solid #7b7b7b !important;
 }
 
 #planetList .coords span,
