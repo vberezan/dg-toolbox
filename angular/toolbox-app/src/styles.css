@@ -487,6 +487,7 @@ label.queueDestroyButton:hover {
   border-bottom: 1px solid #787878 !important;
 }
 
+.qtip-content .resourceName span,
 #completed .upkeepList span,
 #planetHeader .planetHeadSection .coords,
 #planetHeader .resourceName span,
@@ -495,6 +496,7 @@ label.queueDestroyButton:hover {
   padding-left: 2px;
 }
 
+.qtip-content .resourceName img,
 #completed .upkeepList img,
 #addQueue .icon img,
 #planetHeader .planetHeadSection .coords img,
