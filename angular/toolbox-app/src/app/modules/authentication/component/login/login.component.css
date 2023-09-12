@@ -1,36 +1,33 @@
 .login {
     overflow: hidden;
     background-color: #4b4b4b;
-    padding: 40px 30px 30px 30px;
+    padding: 10px 90px 10px;
     border-radius: 5px;
     position: relative;
     width: 200px;
 }
 
 .login > input {
-    font-family: "Asap", sans-serif;
     display: block;
-    border-radius: 5px;
-    font-size: 16px;
+    border-radius: 3px;
+    font-size: 14px;
     background: #fff;
     width: 100%;
     border: 0;
-    padding: 10px 10px;
-    margin: 15px -10px;
+    padding: 7px 7px 7px 10px;
+    margin: 5px -10px;
 }
 
 .login > button {
-    font-family: "Asap", sans-serif;
     cursor: pointer;
     color: #fff;
     font-size: 16px;
-    text-transform: uppercase;
     width: 80px;
     border: 0;
-    padding: 10px 0;
-    margin-top: 10px;
+    padding: 5px 0;
+    margin-top: 0;
     margin-left: -5px;
-    border-radius: 5px;
+    border-radius: 3px;
     background-color: #f45b69;
     -webkit-transition: background-color 300ms;
     -moz-transition: background-color 300ms;
