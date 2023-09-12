@@ -55,12 +55,6 @@ body {
   border: 1px solid #535353 !important;
 }
 
-#planetList .resource.metal .left img,
-#planetList .resource.mineral .left img,
-#planetList .resource.food .left img {
-  border: 1px solid #7b7b7b !important;
-}
-
 #planetList .coords span,
 #planetList .planetHeadSection .resource span,
 #planetList .resourceLine .resource span {
@@ -500,6 +494,7 @@ label.queueDestroyButton:hover {
   padding-left: 2px;
 }
 
+#addQueue .icon img,
 #planetHeader .planetHeadSection .coords img,
 #planetHeader .resourceName img,
 #planetHeader .resource img {
