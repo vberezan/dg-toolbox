@@ -13,5 +13,6 @@ export class LoginComponent implements OnInit {
 
     ngOnInit(): void {
         document.getElementById('dgt-login').style.display = '';
+        document.getElementById('dgt-logout').style.display = '';
     }
 }

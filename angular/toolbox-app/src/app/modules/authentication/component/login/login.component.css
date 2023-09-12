@@ -1,3 +1,4 @@
+.logout,
 .login {
     overflow: hidden;
     background-color: rgba(75, 75, 75, 0.6);
@@ -17,6 +18,7 @@
     margin: 5px 0;
 }
 
+.logout > button,
 .login > button {
     cursor: pointer;
     color: #fff;
@@ -33,6 +35,7 @@
     transition: background-color 300ms;
 }
 
+.logout > button:hover,
 .login > button:hover {
     background-color: #f24353;
 }
