@@ -1,4 +1,4 @@
-import {inject, NgModule, OnDestroy, OnInit} from '@angular/core';
+import {NgModule, OnInit} from '@angular/core';
 import {ScanDataPanelComponent} from './component/scan-data-panel/scan-data-panel.component';
 import {BrowserModule} from "@angular/platform-browser";
 import {environment} from "../../../environments/environment";
@@ -13,10 +13,10 @@ import firebase from 'firebase/compat/app';
 import 'firebase/compat/auth';
 import 'firebase/compat/firestore';
 import {FIREBASE_OPTIONS} from "@angular/fire/compat";
-import {Auth, getAuth, idToken, provideAuth, User, user} from "@angular/fire/auth";
+import {getAuth, provideAuth, user} from "@angular/fire/auth";
+import {AuthenticationModule} from "../authentication/authentication.module";
+import {AuthService} from "../authentication/service/auth.service";
 import initializeApp = firebase.initializeApp;
-import {Subscription} from "rxjs";
-import {PlanetSummary} from "../../model/planet-list/planet-summary.planet-list-model";
 
 
 @NgModule({
@@ -25,6 +25,7 @@ import {PlanetSummary} from "../../model/planet-list/planet-summary.planet-list-
     ],
     imports: [
         BrowserModule,
+        AuthenticationModule,
         provideFirebaseApp(() => initializeApp(environment.firebase)),
         provideAuth(() => getAuth()),
         provideFirestore(() => getFirestore()),
@@ -40,31 +41,22 @@ import {PlanetSummary} from "../../model/planet-list/planet-summary.planet-list-
         {provide: FIREBASE_OPTIONS, useValue: environment.firebase},
         DecimalPipe,
         ResourceProductionFormatterPipe,
-        ScansService
+        ScansService,
+        AuthService
     ],
     bootstrap: [
         ScanDataPanelComponent
     ]
 })
-export class NavigationScansModule implements OnInit, OnDestroy {
-    private auth: Auth = inject(Auth);
-    user$ = user(this.auth);
-    userSubscription: Subscription;
-
+export class NavigationScansModule implements OnInit {
     constructor() {
     }
 
     ngOnInit(): void {
-        this.userSubscription = this.user$.subscribe((user: User | null) => {
-            if (user == null) {
-                console.log("%cDGT%c - uninstalled navigation scans panel... insufficient rights for this module!", "font-size: 12px; font-weight: bold;", "font-size: 12px;");
-            }
-
+        if (localStorage.getItem('key') == null) {
+            console.log("%cDGT%c - navigation scans panel not installed... insufficient rights for this module!", "font-size: 12px; font-weight: bold;", "font-size: 12px;");
+        } else {
             console.log("%cDGT%c - installed navigation scans panel...", "font-size: 12px; font-weight: bold;", "font-size: 12px;");
-        });
-    }
-
-    ngOnDestroy() {
-        this.userSubscription.unsubscribe();
+        }
     }
 }
