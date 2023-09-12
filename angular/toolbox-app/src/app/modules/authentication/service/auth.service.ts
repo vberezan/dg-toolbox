@@ -29,20 +29,18 @@ export class AuthService implements OnDestroy {
 
                             if (userCheck.enabled) {
                                 localStorage.setItem('user', JSON.stringify(user));
-
                                 console.log(localStorage.getItem('user'));
-
                                 this._isLoggedIn = true;
                             } else {
                                 this.signOut(false);
                             }
-                        }
-                        {
+                        } else {
                             this.signOut(false);
                         }
                     }
                 );
             } else {
+                console.log('logout');
                 localStorage.removeItem('user');
                 this._isLoggedIn = false
             }
