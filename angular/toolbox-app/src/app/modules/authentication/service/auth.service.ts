@@ -28,6 +28,8 @@ export class AuthService implements OnDestroy {
                                     return entry.doc.data();
                                 })[0]);
 
+                            console.log(userCheck.enabled);
+
                             if (userCheck.enabled) {
                                 localStorage.setItem('user', JSON.stringify(user));
                                 this._isLoggedIn = true;
