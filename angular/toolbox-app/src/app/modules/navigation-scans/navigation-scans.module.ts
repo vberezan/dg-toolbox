@@ -12,6 +12,7 @@ import {initializeAppCheck, provideAppCheck, ReCaptchaV3Provider} from "@angular
 import firebase from 'firebase/compat/app';
 import 'firebase/compat/auth';
 import 'firebase/compat/firestore';
+import {FIREBASE_OPTIONS} from "@angular/fire/compat";
 import initializeApp = firebase.initializeApp;
 
 
@@ -32,6 +33,7 @@ import initializeApp = firebase.initializeApp;
         DarkgalaxyUiParserModule,
     ],
     providers: [
+        {provide: FIREBASE_OPTIONS, useValue: environment.firebase},
         DecimalPipe,
         ResourceProductionFormatterPipe,
         ScansService

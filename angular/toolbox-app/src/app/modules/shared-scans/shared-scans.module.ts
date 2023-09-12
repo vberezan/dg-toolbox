@@ -11,6 +11,7 @@ import 'firebase/compat/auth';
 import 'firebase/compat/firestore';
 import {getFirestore, provideFirestore} from "@angular/fire/firestore";
 import initializeApp = firebase.initializeApp;
+import {FIREBASE_OPTIONS} from "@angular/fire/compat";
 
 
 @NgModule({
@@ -30,6 +31,7 @@ import initializeApp = firebase.initializeApp;
         )
     ],
     providers: [
+        {provide: FIREBASE_OPTIONS, useValue: environment.firebase},
         ScansService
     ],
     bootstrap: [ScanCollectorComponent]
