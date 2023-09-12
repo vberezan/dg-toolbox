@@ -3,7 +3,7 @@
     background-color: white;
     padding: 40px 30px 30px 30px;
     border-radius: 10px;
-    position: absolute;
+    position: relative;
     top: 50%;
     left: 50%;
     width: 200px;
@@ -23,7 +23,7 @@
     display: block;
     border-radius: 5px;
     font-size: 16px;
-    background: white;
+    background: #4b4b4b;
     width: 100%;
     border: 0;
     padding: 10px 10px;
