@@ -1,4 +1,4 @@
-import {NgModule, OnInit} from '@angular/core';
+import {inject, NgModule, OnDestroy, OnInit} from '@angular/core';
 import {ScanDataPanelComponent} from './component/scan-data-panel/scan-data-panel.component';
 import {BrowserModule} from "@angular/platform-browser";
 import {environment} from "../../../environments/environment";
@@ -14,7 +14,8 @@ import 'firebase/compat/auth';
 import 'firebase/compat/firestore';
 import {FIREBASE_OPTIONS} from "@angular/fire/compat";
 import initializeApp = firebase.initializeApp;
-import {getAuth, provideAuth} from "@angular/fire/auth";
+import {Auth, getAuth, idToken, provideAuth} from "@angular/fire/auth";
+import {Subscription} from "rxjs";
 
 
 @NgModule({
@@ -44,8 +45,19 @@ import {getAuth, provideAuth} from "@angular/fire/auth";
         ScanDataPanelComponent
     ]
 })
-export class NavigationScansModule implements OnInit {
+export class NavigationScansModule implements OnInit, OnDestroy {
+    private auth: Auth = inject(Auth);
+    private idToken$ = idToken(this.auth);
+    private idTokenSubscription: Subscription;
     constructor() {
+        this.idTokenSubscription = this.idToken$.subscribe((token: string | null) => {
+            console.log(token);
+        })
+    }
+
+    ngOnDestroy() {
+        // when manually subscribing to an observable remember to unsubscribe in ngOnDestroy
+        this.idTokenSubscription.unsubscribe();
     }
 
     ngOnInit(): void {
