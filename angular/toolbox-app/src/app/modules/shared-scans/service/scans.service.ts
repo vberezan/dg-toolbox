@@ -12,7 +12,6 @@ import {AppCheck} from "@angular/fire/app-check";
 })
 export class ScansService {
   private firestore: AngularFirestore = inject(AngularFirestore);
-    private appCheck: AppCheck = inject(AppCheck);
   private dgAPI: DarkgalaxyApiService = inject(DarkgalaxyApiService);
 
   constructor() {

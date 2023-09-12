@@ -14,6 +14,7 @@ import 'firebase/compat/auth';
 import 'firebase/compat/firestore';
 import {FIREBASE_OPTIONS} from "@angular/fire/compat";
 import initializeApp = firebase.initializeApp;
+import {getAuth, provideAuth} from "@angular/fire/auth";
 
 
 @NgModule({
@@ -23,6 +24,7 @@ import initializeApp = firebase.initializeApp;
     imports: [
         BrowserModule,
         provideFirebaseApp(() => initializeApp(environment.firebase)),
+        provideAuth(() => getAuth()),
         provideFirestore(() => getFirestore()),
         provideAppCheck(() => initializeAppCheck(getApp(),
             {
