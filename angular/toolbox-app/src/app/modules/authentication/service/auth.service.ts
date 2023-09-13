@@ -17,6 +17,7 @@ export class AuthService implements OnDestroy {
 
     constructor() {
         this.subscription = this.auth.authState.subscribe((user: User) => {
+            console.log('inside authState subscribe');
             if (user != null) {
                 this.firestore.collection('valid-users', ref => ref.where('email', '==', user.email).limit(1))
                     .get().subscribe((items) => {
@@ -73,6 +74,8 @@ export class AuthService implements OnDestroy {
     }
 
     async signOut(refresh: boolean) {
+        console.log('inside logout');
+
         await this.auth.signOut();
         localStorage.removeItem('user');
         this._loggedStatus.emit(false);
