@@ -18,7 +18,7 @@ export class AuthService implements OnDestroy {
     constructor() {
         this.subscription = this.auth.authState.subscribe((user: User) => {
             if (user != null) {
-                this.firestore.collection('users', ref => ref.where('email', '==', user.email).limit(1))
+                this.firestore.collection('valid-users', ref => ref.where('email', '==', user.email).limit(1))
                     .get().subscribe((items) => {
                         if (items.size == 1) {
                             let userCheck: { email: string, enabled: boolean } =
@@ -54,7 +54,8 @@ export class AuthService implements OnDestroy {
 
     signIn(email: string, password: string) {
         console.log('email: ' + email + '; pass: ' + password);
-        return this.auth
+
+        this.auth
             .signInWithEmailAndPassword(email, password)
             .catch((error) => {
                     window.alert(error.message);
