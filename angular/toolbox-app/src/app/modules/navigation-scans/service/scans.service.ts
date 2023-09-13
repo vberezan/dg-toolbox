@@ -19,6 +19,7 @@ export class ScansService {
     private firestore: AngularFirestore = inject(AngularFirestore);
 
     constructor() {
+        console.log('apiService - ' + this.dgAPI.id);
     }
 
     extractSummaries(): PlanetSummary[] {

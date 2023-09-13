@@ -9,4 +9,8 @@ import {AuthService} from "../../service/auth.service";
 export class LoginComponent {
     authService: AuthService = inject(AuthService);
     protected localStorage = localStorage;
+
+    constructor() {
+        console.log('authService - ' + this.authService.id);
+    }
 }
