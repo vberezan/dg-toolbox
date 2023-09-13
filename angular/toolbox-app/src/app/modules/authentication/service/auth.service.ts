@@ -7,7 +7,7 @@ import {AngularFirestore} from "@angular/fire/compat/firestore";
 import GoogleAuthProvider = firebase.auth.GoogleAuthProvider;
 
 @Injectable({
-    providedIn: 'platform'
+    providedIn: 'root'
 })
 export class AuthService implements OnDestroy {
     private auth: AngularFireAuth = inject(AngularFireAuth);
