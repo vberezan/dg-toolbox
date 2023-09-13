@@ -14,7 +14,6 @@ export class AuthService implements OnDestroy {
     private auth: AngularFireAuth = inject(AngularFireAuth);
     private subscription: Subscription;
     private firestore: AngularFirestore = inject(AngularFirestore);
-    private _isLoggedIn: boolean = false;
     private _loggedStatus: EventEmitter<boolean> = new EventEmitter();
 
     constructor() {
@@ -31,7 +30,6 @@ export class AuthService implements OnDestroy {
                             if (userCheck.enabled) {
                                 localStorage.setItem('user', JSON.stringify(user));
                                 console.log(localStorage.getItem('user'));
-                                this._isLoggedIn = true;
                                 this._loggedStatus.emit(true);
                             } else {
                                 this.signOut(false);
@@ -42,9 +40,7 @@ export class AuthService implements OnDestroy {
                     }
                 );
             } else {
-                console.log('logout');
                 localStorage.removeItem('user');
-                this._isLoggedIn = false;
                 this._loggedStatus.emit(false);
             }
         });
@@ -71,17 +67,13 @@ export class AuthService implements OnDestroy {
     signOut(refresh: boolean) {
         return this.auth.signOut().then(() => {
             localStorage.removeItem('user');
+            this._loggedStatus.emit(false);
 
             if (refresh) {
                 location.reload();
             }
         });
     }
-
-    get isLoggedIn(): boolean {
-        return this._isLoggedIn;
-    }
-
 
     get loggedStatus(): EventEmitter<boolean> {
         return this._loggedStatus;

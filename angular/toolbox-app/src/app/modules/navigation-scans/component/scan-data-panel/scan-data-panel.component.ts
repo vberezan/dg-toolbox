@@ -1,9 +1,7 @@
 import {Component, inject, OnDestroy, OnInit} from '@angular/core';
 import {ScansService} from "../../service/scans.service";
 import {PlanetSummary} from "../../../../model/planet-list/planet-summary.planet-list-model";
-import {AngularFireAuth} from "@angular/fire/compat/auth";
 import {Subscription} from "rxjs";
-import {User} from "@angular/fire/auth";
 import {AuthService} from "../../../authentication/service/auth.service";
 
 @Component({
@@ -14,7 +12,6 @@ import {AuthService} from "../../../authentication/service/auth.service";
 export class ScanDataPanelComponent implements OnInit, OnDestroy {
     private authService: AuthService = inject(AuthService);
     private scansService: ScansService = inject(ScansService);
-    private auth: AngularFireAuth = inject(AngularFireAuth);
     private authSubscription: Subscription;
     active: boolean = false;
 
@@ -22,12 +19,8 @@ export class ScanDataPanelComponent implements OnInit, OnDestroy {
     }
 
     ngOnInit() {
-        this.authService.loggedStatus.subscribe((status) => {
-           console.log('status: ' + status);
-        });
-
-        this.authSubscription = this.auth.authState.subscribe((user: User) => {
-            if (user) {
+        this.authService.loggedStatus.subscribe((status: boolean) => {
+            if (status) {
                 this.active = true;
                 let summaries: PlanetSummary[] = this.scansService.extractSummaries();
 
