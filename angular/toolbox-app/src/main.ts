@@ -1,12 +1,13 @@
-import {platformBrowserDynamic} from '@angular/platform-browser-dynamic';
 import {NavbarModule} from "./app/modules/navbar/navbar.module";
 import {PlanetListStatsModule} from "./app/modules/planet-list-stats/planet-list-stats.module";
 import {SharedScansModule} from "./app/modules/shared-scans/shared-scans.module";
 import {NavigationScansModule} from "./app/modules/navigation-scans/navigation-scans.module";
 import {AuthenticationModule} from "./app/modules/authentication/authentication.module";
+import {PlatformRef} from "@angular/core";
+import {platformBrowser} from "@angular/platform-browser";
 
-const platform = platformBrowserDynamic();
-let windowURL = window.location.pathname.split(/\//g);
+const platform: PlatformRef = platformBrowser();
+let windowURL: string[] = window.location.pathname.split(/\//g);
 
 platform.bootstrapModule(AuthenticationModule).catch(err => console.error(err));
 
