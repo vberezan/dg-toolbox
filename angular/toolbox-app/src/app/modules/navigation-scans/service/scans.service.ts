@@ -91,10 +91,6 @@ export class ScansService {
                     planet.querySelector('.dgt-navigation-scan .dgt-navigation-scan-resource.energy .abundance').textContent = '-';
                 }
             });
-
-            // dbScans.forEach((dbScan: PlanetScan) => {
-            //   console.log(dbScan.location);
-            // });
         });
     }
 }

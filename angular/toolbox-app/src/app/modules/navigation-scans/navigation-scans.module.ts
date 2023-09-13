@@ -3,7 +3,6 @@ import {ScanDataPanelComponent} from './component/scan-data-panel/scan-data-pane
 import {BrowserModule} from "@angular/platform-browser";
 import {environment} from "../../../environments/environment";
 import {ScansService} from "./service/scans.service";
-import {DarkgalaxyUiParserModule} from "../darkgalaxy-ui-parser/darkgalaxy-ui-parser.module";
 import {ResourceProductionFormatterPipe} from "../planet-list-stats/pipe/resource-production-formatter.pipe";
 import {DecimalPipe} from "@angular/common";
 import {getApp, provideFirebaseApp} from "@angular/fire/app";
@@ -14,40 +13,40 @@ import 'firebase/compat/firestore';
 import 'firebase/compat/auth';
 import {FIREBASE_OPTIONS} from "@angular/fire/compat";
 import {getAuth, provideAuth} from "@angular/fire/auth";
-import {AuthService} from "../authentication/service/auth.service";
-import initializeApp = firebase.initializeApp;
 import {DarkgalaxyApiService} from "../darkgalaxy-ui-parser/service/darkgalaxy-api.service";
+import initializeApp = firebase.initializeApp;
+import {AuthService} from "../authentication/service/auth.service";
 
 
 @NgModule({
-    declarations: [
-        ScanDataPanelComponent
-    ],
-    imports: [
-        BrowserModule,
-        provideFirebaseApp(() => initializeApp(environment.firebase)),
-        provideAuth(() => getAuth()),
-        provideFirestore(() => getFirestore()),
-        provideAppCheck(() => initializeAppCheck(getApp(),
-            {
-                provider: new ReCaptchaV3Provider(environment.firebase.appCheck.recaptchaSiteKey),
-                isTokenAutoRefreshEnabled: true
-            })
-        )
-    ],
-    providers: [
-        {provide: FIREBASE_OPTIONS, useValue: environment.firebase},
-        DecimalPipe,
-        ResourceProductionFormatterPipe,
-        ScansService,
-        AuthService,
-        DarkgalaxyApiService
-    ],
-    bootstrap: [
-        ScanDataPanelComponent
-    ]
+  declarations: [
+    ScanDataPanelComponent
+  ],
+  imports: [
+    BrowserModule,
+    provideFirebaseApp(() => initializeApp(environment.firebase)),
+    provideAuth(() => getAuth()),
+    provideFirestore(() => getFirestore()),
+    provideAppCheck(() => initializeAppCheck(getApp(),
+      {
+        provider: new ReCaptchaV3Provider(environment.firebase.appCheck.recaptchaSiteKey),
+        isTokenAutoRefreshEnabled: true
+      })
+    )
+  ],
+  providers: [
+    {provide: FIREBASE_OPTIONS, useValue: environment.firebase},
+    DecimalPipe,
+    ResourceProductionFormatterPipe,
+    ScansService,
+    DarkgalaxyApiService,
+    AuthService
+  ],
+  bootstrap: [
+    ScanDataPanelComponent
+  ]
 })
 export class NavigationScansModule {
-    constructor() {
-    }
+  constructor() {
+  }
 }

@@ -1,95 +1,90 @@
 import {EventEmitter, inject, Injectable, OnDestroy} from '@angular/core';
-import {User} from "@angular/fire/auth";
-import {AngularFireAuth} from "@angular/fire/compat/auth";
+import {Auth, authState, signInWithEmailAndPassword, signInWithPopup, User} from "@angular/fire/auth";
 import {Subscription} from "rxjs";
-import firebase from "firebase/compat/app";
-import {AngularFirestore} from "@angular/fire/compat/firestore";
-import GoogleAuthProvider = firebase.auth.GoogleAuthProvider;
+import {collection, collectionData, Firestore, limit, query, where} from "@angular/fire/firestore";
+import {GoogleAuthProvider} from "firebase/auth";
 
 @Injectable({
-    providedIn: 'platform'
+  providedIn: 'platform'
 })
 export class AuthService implements OnDestroy {
-    private auth: AngularFireAuth = inject(AngularFireAuth);
-    private readonly authSubscription: Subscription;
-    private firestore: AngularFirestore = inject(AngularFirestore);
-    private _loggedStatus: EventEmitter<boolean> = new EventEmitter();
-    readonly id: string;
+  private auth: Auth = inject(Auth);
+  private firestore: Firestore = inject(Firestore);
 
-    constructor() {
-        this.id = crypto.randomUUID();
+  private readonly authStateSubscription: Subscription;
+  private authState$ = authState(this.auth);
 
-        if (this.authSubscription == null) {
-            this.authSubscription = this.auth.authState.subscribe((user: User) => {
-                if (user != null) {
-                    this.firestore.collection('valid-users', ref => ref.where('email', '==', user.email).limit(1))
-                        .get().subscribe((items) => {
-                            if (items.size == 1) {
-                                let userCheck: { email: string, enabled: boolean } =
-                                    Object.assign({email: '', enabled: false}, items.docChanges().map(entry => {
-                                        return entry.doc.data();
-                                    })[0]);
 
-                                if (userCheck.enabled) {
-                                    localStorage.setItem('user', JSON.stringify(user));
-                                    this._loggedStatus.emit(true);
-                                } else {
-                                    this.signOut(false).catch((error) => {
-                                        console.log(error.message);
-                                    });
-                                }
-                            } else {
-                                this.signOut(false).catch((error) => {
-                                    console.log(error.message);
-                                });
-                            }
-                        }
-                    );
-                } else {
-                    localStorage.removeItem('user');
-                    this._loggedStatus.emit(false);
-                }
-            });
-        }
-    }
+  private _loggedStatus: EventEmitter<boolean> = new EventEmitter();
+  readonly id: number;
 
-    ngOnDestroy(): void {
-        this.authSubscription.unsubscribe();
-    }
+  constructor() {
+    this.id = Math.random();
 
-    signIn(email: string, password: string) {
-        console.log('email: ' + email + '; pass: ' + password);
+    this.authStateSubscription = this.authState$.subscribe((user: User) => {
+      if (user != null) {
+        const validUsers = collection(this.firestore, 'valid-users');
 
-        this.auth
-            .signInWithEmailAndPassword(email, password)
-            .catch((error) => {
-                    window.alert(error.message);
-                }
-            );
-    }
+        collectionData(
+          query(validUsers,
+            where('email', '==', user.email),
+            limit(1)
+          )
+        ).subscribe((items) => {
+          if (items.length == 1) {
+            let userCheck: { email: string, enabled: boolean } =
+              Object.assign({email: '', enabled: false}, items.map(entry => {
+                return entry;
+              })[0]);
 
-    signInWithGoogle() {
-        this.auth
-            .signInWithPopup(new GoogleAuthProvider())
-            .catch((error) => {
-                    window.alert(error.message)
-                }
-            );
-    }
-
-    async signOut(refresh: boolean) {
-        console.log('inside logout');
-
-        await this.auth.signOut();
+            if (userCheck.enabled) {
+              localStorage.setItem('user', JSON.stringify(user));
+              this._loggedStatus.emit(true);
+            } else {
+              this.signOut(false).catch((error) => {
+                console.log(error.message);
+              });
+            }
+          }
+        });
+      } else {
         localStorage.removeItem('user');
         this._loggedStatus.emit(false);
+      }
+    });
+  }
 
-        if (refresh) {
-            location.reload();
+  ngOnDestroy(): void {
+    this.authStateSubscription.unsubscribe();
+  }
+
+  signIn(email: string, password: string) {
+    signInWithEmailAndPassword(this.auth, email, password)
+      .catch((error) => {
+          window.alert(error.message);
         }
-    }
+      );
+  }
 
-    get loggedStatus(): EventEmitter<boolean> {
-        return this._loggedStatus;
+  signInWithGoogle() {
+    signInWithPopup(this.auth, new GoogleAuthProvider())
+      .catch((error) => {
+          window.alert(error.message)
+        }
+      );
+  }
+
+  async signOut(refresh: boolean) {
+    await this.auth.signOut();
+    localStorage.removeItem('user');
+    this._loggedStatus.emit(false);
+
+    if (refresh) {
+      location.reload();
     }
+  }
+
+  get loggedStatus(): EventEmitter<boolean> {
+    return this._loggedStatus;
+  }
 }

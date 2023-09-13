@@ -10,7 +10,6 @@ const platform: PlatformRef = platformBrowserDynamic();
 let windowURL: string[] = window.location.pathname.split(/\//g);
 
 platform.bootstrapModule(AuthenticationModule).catch(err => console.error(err));
-console.log(platform.injector);
 
 platform.bootstrapModule(NavbarModule).catch(err => console.error(err));
 
