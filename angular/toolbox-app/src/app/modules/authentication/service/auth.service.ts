@@ -4,7 +4,6 @@ import {AngularFireAuth} from "@angular/fire/compat/auth";
 import {Subscription} from "rxjs";
 import firebase from "firebase/compat/app";
 import {AngularFirestore} from "@angular/fire/compat/firestore";
-import UserCredential = firebase.auth.UserCredential;
 import GoogleAuthProvider = firebase.auth.GoogleAuthProvider;
 
 @Injectable({
@@ -29,13 +28,16 @@ export class AuthService implements OnDestroy {
 
                             if (userCheck.enabled) {
                                 localStorage.setItem('user', JSON.stringify(user));
-                                console.log(localStorage.getItem('user'));
                                 this._loggedStatus.emit(true);
                             } else {
-                                this.signOut(false);
+                                this.signOut(false).catch((error) => {
+                                    console.log(error.message);
+                                });
                             }
                         } else {
-                            this.signOut(false);
+                            this.signOut(false).catch((error) => {
+                                console.log(error.message);
+                            });
                         }
                     }
                 );
@@ -51,28 +53,30 @@ export class AuthService implements OnDestroy {
     }
 
     signIn(email: string, password: string) {
-        return this.auth
+        this.auth
             .signInWithEmailAndPassword(email, password)
             .catch((error) => {
-                window.alert(error.message);
-            });
+                    window.alert(error.message);
+                }
+            );
     }
 
     signInWithGoogle() {
-        this.auth.signInWithPopup(new GoogleAuthProvider()).then((credentials: UserCredential) => {
-            console.log('google: ' + credentials.user.email);
-        });
+        this.auth
+            .signInWithPopup(new GoogleAuthProvider())
+            .catch((error) => {
+                    window.alert(error.message)
+                }
+            );
     }
 
-    signOut(refresh: boolean) {
-        return this.auth.signOut().then(() => {
-            localStorage.removeItem('user');
-            this._loggedStatus.emit(false);
-
-            if (refresh) {
-                location.reload();
-            }
-        });
+    async signOut(refresh: boolean) {
+        await this.auth.signOut();
+        localStorage.removeItem('user');
+        this._loggedStatus.emit(false);
+        if (refresh) {
+            location.reload();
+        }
     }
 
     get loggedStatus(): EventEmitter<boolean> {

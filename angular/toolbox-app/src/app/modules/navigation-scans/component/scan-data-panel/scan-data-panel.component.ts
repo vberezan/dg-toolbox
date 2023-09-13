@@ -1,7 +1,6 @@
 import {Component, inject, OnDestroy, OnInit} from '@angular/core';
 import {ScansService} from "../../service/scans.service";
 import {PlanetSummary} from "../../../../model/planet-list/planet-summary.planet-list-model";
-import {Subscription} from "rxjs";
 import {AuthService} from "../../../authentication/service/auth.service";
 
 @Component({
@@ -12,7 +11,6 @@ import {AuthService} from "../../../authentication/service/auth.service";
 export class ScanDataPanelComponent implements OnInit, OnDestroy {
     private authService: AuthService = inject(AuthService);
     private scansService: ScansService = inject(ScansService);
-    private authSubscription: Subscription;
     active: boolean = false;
 
     constructor() {
@@ -21,12 +19,12 @@ export class ScanDataPanelComponent implements OnInit, OnDestroy {
     ngOnInit() {
         this.authService.loggedStatus.subscribe((status: boolean) => {
             if (status) {
-                this.active = true;
                 let summaries: PlanetSummary[] = this.scansService.extractSummaries();
 
                 if (summaries.length > 0) {
                     this.scansService.fillScans(summaries);
                 }
+                this.active = true;
             } else {
                 this.active = false;
             }
@@ -34,7 +32,7 @@ export class ScanDataPanelComponent implements OnInit, OnDestroy {
     }
 
     ngOnDestroy() {
-        this.authSubscription.unsubscribe();
+        this.authService.loggedStatus.unsubscribe();
     }
 
 }

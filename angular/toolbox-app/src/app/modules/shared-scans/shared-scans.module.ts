@@ -10,9 +10,11 @@ import firebase from 'firebase/compat/app';
 import 'firebase/compat/auth';
 import 'firebase/compat/firestore';
 import {getFirestore, provideFirestore} from "@angular/fire/firestore";
-import initializeApp = firebase.initializeApp;
 import {FIREBASE_OPTIONS} from "@angular/fire/compat";
 import {getAuth, provideAuth} from "@angular/fire/auth";
+import {AuthenticationModule} from "../authentication/authentication.module";
+import {AuthService} from "../authentication/service/auth.service";
+import initializeApp = firebase.initializeApp;
 
 
 @NgModule({
@@ -21,6 +23,7 @@ import {getAuth, provideAuth} from "@angular/fire/auth";
     ],
     imports: [
         BrowserModule,
+        AuthenticationModule,
         DarkgalaxyUiParserModule,
         provideFirebaseApp(() => initializeApp(environment.firebase)),
         provideAuth(() => getAuth()),
@@ -34,7 +37,8 @@ import {getAuth, provideAuth} from "@angular/fire/auth";
     ],
     providers: [
         {provide: FIREBASE_OPTIONS, useValue: environment.firebase},
-        ScansService
+        ScansService,
+        AuthService
     ],
     bootstrap: [ScanCollectorComponent]
 })
@@ -42,5 +46,6 @@ export class SharedScansModule implements OnInit {
     constructor() {
     }
 
-    ngOnInit(): void {}
+    ngOnInit(): void {
+    }
 }
