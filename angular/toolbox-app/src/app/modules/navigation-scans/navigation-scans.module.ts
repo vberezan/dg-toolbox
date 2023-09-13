@@ -14,7 +14,6 @@ import 'firebase/compat/firestore';
 import 'firebase/compat/auth';
 import {FIREBASE_OPTIONS} from "@angular/fire/compat";
 import {getAuth, provideAuth} from "@angular/fire/auth";
-import {AuthenticationModule} from "../authentication/authentication.module";
 import {AuthService} from "../authentication/service/auth.service";
 import initializeApp = firebase.initializeApp;
 
@@ -25,7 +24,6 @@ import initializeApp = firebase.initializeApp;
     ],
     imports: [
         BrowserModule,
-        AuthenticationModule,
         provideFirebaseApp(() => initializeApp(environment.firebase)),
         provideAuth(() => getAuth()),
         provideFirestore(() => getFirestore()),
@@ -41,8 +39,7 @@ import initializeApp = firebase.initializeApp;
         {provide: FIREBASE_OPTIONS, useValue: environment.firebase},
         DecimalPipe,
         ResourceProductionFormatterPipe,
-        ScansService,
-        AuthService
+        ScansService
     ],
     bootstrap: [
         ScanDataPanelComponent
