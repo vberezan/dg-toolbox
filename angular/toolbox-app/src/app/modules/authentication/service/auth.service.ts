@@ -16,37 +16,39 @@ export class AuthService implements OnDestroy {
     private _loggedStatus: EventEmitter<boolean> = new EventEmitter();
 
     constructor() {
-        this.subscription = this.auth.authState.subscribe((user: User) => {
-            console.log('inside authState subscribe');
-            if (user != null) {
-                this.firestore.collection('valid-users', ref => ref.where('email', '==', user.email).limit(1))
-                    .get().subscribe((items) => {
-                        if (items.size == 1) {
-                            let userCheck: { email: string, enabled: boolean } =
-                                Object.assign({email: '', enabled: false}, items.docChanges().map(entry => {
-                                    return entry.doc.data();
-                                })[0]);
+        if (this.subscription == null) {
+            this.subscription = this.auth.authState.subscribe((user: User) => {
+                console.log('inside authState subscribe');
+                if (user != null) {
+                    this.firestore.collection('valid-users', ref => ref.where('email', '==', user.email).limit(1))
+                        .get().subscribe((items) => {
+                            if (items.size == 1) {
+                                let userCheck: { email: string, enabled: boolean } =
+                                    Object.assign({email: '', enabled: false}, items.docChanges().map(entry => {
+                                        return entry.doc.data();
+                                    })[0]);
 
-                            if (userCheck.enabled) {
-                                localStorage.setItem('user', JSON.stringify(user));
-                                this._loggedStatus.emit(true);
+                                if (userCheck.enabled) {
+                                    localStorage.setItem('user', JSON.stringify(user));
+                                    this._loggedStatus.emit(true);
+                                } else {
+                                    this.signOut(false).catch((error) => {
+                                        console.log(error.message);
+                                    });
+                                }
                             } else {
                                 this.signOut(false).catch((error) => {
                                     console.log(error.message);
                                 });
                             }
-                        } else {
-                            this.signOut(false).catch((error) => {
-                                console.log(error.message);
-                            });
                         }
-                    }
-                );
-            } else {
-                localStorage.removeItem('user');
-                this._loggedStatus.emit(false);
-            }
-        });
+                    );
+                } else {
+                    localStorage.removeItem('user');
+                    this._loggedStatus.emit(false);
+                }
+            });
+        }
     }
 
     ngOnDestroy(): void {
