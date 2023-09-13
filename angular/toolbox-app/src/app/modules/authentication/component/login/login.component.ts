@@ -11,6 +11,6 @@ export class LoginComponent {
     protected localStorage = localStorage;
 
     constructor() {
-        console.log('authService - ' + this.authService.id);
+        console.log('authService in login - ' + this.authService.id);
     }
 }

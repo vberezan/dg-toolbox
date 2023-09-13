@@ -14,10 +14,7 @@ export class DarkgalaxyApiService {
   private planetScanExtractor: PlanetScanExtractorService = inject(PlanetScanExtractorService);
   private navigationSystemPlanetsExtractor: NavigationSystemPlanetsExtractorService = inject(NavigationSystemPlanetsExtractorService);
 
-  readonly id: string;
-
   constructor() {
-    this.id = crypto.randomUUID();
   }
 
   planetsSummaries(): PlanetSummary[] {

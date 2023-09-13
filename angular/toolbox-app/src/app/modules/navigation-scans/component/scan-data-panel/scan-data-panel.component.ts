@@ -14,7 +14,7 @@ export class ScanDataPanelComponent implements OnInit, OnDestroy {
     active: boolean = false;
 
     constructor() {
-        console.log('authService - ' + this.authService.id);
+        console.log('authService in scan - ' + this.authService.id);
     }
 
     ngOnInit() {

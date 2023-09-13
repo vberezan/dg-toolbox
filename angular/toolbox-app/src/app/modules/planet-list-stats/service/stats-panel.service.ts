@@ -13,7 +13,6 @@ export class StatsPanelService {
   private dgAPI: DarkgalaxyApiService = inject(DarkgalaxyApiService);
 
   constructor() {
-    console.log('apiService - ' + this.dgAPI.id);
   }
 
   public extractStats(): StatsPanel {
