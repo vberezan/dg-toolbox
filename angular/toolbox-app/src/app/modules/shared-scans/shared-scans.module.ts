@@ -1,7 +1,6 @@
 import {NgModule, OnInit} from '@angular/core';
 import {BrowserModule} from "@angular/platform-browser";
 import {ScanCollectorComponent} from './component/scan-collector/scan-collector.component';
-import {DarkgalaxyUiParserModule} from "../darkgalaxy-ui-parser/darkgalaxy-ui-parser.module";
 import {environment} from "../../../environments/environment";
 import {ScansService} from "./service/scans.service";
 import {initializeAppCheck, provideAppCheck, ReCaptchaV3Provider} from "@angular/fire/app-check";
@@ -12,9 +11,9 @@ import 'firebase/compat/firestore';
 import {getFirestore, provideFirestore} from "@angular/fire/firestore";
 import {FIREBASE_OPTIONS} from "@angular/fire/compat";
 import {getAuth, provideAuth} from "@angular/fire/auth";
-import {AuthenticationModule} from "../authentication/authentication.module";
 import {AuthService} from "../authentication/service/auth.service";
 import initializeApp = firebase.initializeApp;
+import {DarkgalaxyApiService} from "../darkgalaxy-ui-parser/service/darkgalaxy-api.service";
 
 
 @NgModule({
@@ -36,7 +35,8 @@ import initializeApp = firebase.initializeApp;
     providers: [
         {provide: FIREBASE_OPTIONS, useValue: environment.firebase},
         ScansService,
-        AuthService
+        AuthService,
+        DarkgalaxyApiService
     ],
     bootstrap: [ScanCollectorComponent]
 })

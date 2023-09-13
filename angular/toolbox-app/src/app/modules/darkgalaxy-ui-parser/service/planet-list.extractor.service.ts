@@ -5,7 +5,7 @@ import {Resource} from "../../../model/resource.model";
 import {DataExtractor} from "./data-extractor";
 
 @Injectable({
-  providedIn: 'platform'
+  providedIn: 'root'
 })
 export class PlanetListExtractorService implements DataExtractor {
   private document: any = inject(DOCUMENT);

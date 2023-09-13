@@ -4,7 +4,7 @@ import {PlanetSummary} from "../../../model/planet-list/planet-summary.planet-li
 import {DOCUMENT} from "@angular/common";
 
 @Injectable({
-  providedIn: 'platform'
+  providedIn: 'root'
 })
 export class NavigationSystemPlanetsExtractorService implements DataExtractor {
   private document: any = inject(DOCUMENT);

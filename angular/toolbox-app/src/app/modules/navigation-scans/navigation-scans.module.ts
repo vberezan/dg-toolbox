@@ -16,6 +16,7 @@ import {FIREBASE_OPTIONS} from "@angular/fire/compat";
 import {getAuth, provideAuth} from "@angular/fire/auth";
 import {AuthService} from "../authentication/service/auth.service";
 import initializeApp = firebase.initializeApp;
+import {DarkgalaxyApiService} from "../darkgalaxy-ui-parser/service/darkgalaxy-api.service";
 
 
 @NgModule({
@@ -39,7 +40,8 @@ import initializeApp = firebase.initializeApp;
         DecimalPipe,
         ResourceProductionFormatterPipe,
         ScansService,
-        AuthService
+        AuthService,
+        DarkgalaxyApiService
     ],
     bootstrap: [
         ScanDataPanelComponent

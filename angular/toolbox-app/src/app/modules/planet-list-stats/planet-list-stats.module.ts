@@ -7,6 +7,7 @@ import {ResourceProductionFormatterPipe} from './pipe/resource-production-format
 import {BrowserModule} from "@angular/platform-browser";
 import {DarkgalaxyUiParserModule} from "../darkgalaxy-ui-parser/darkgalaxy-ui-parser.module";
 import {StatsPanelService} from "./service/stats-panel.service";
+import {DarkgalaxyApiService} from "../darkgalaxy-ui-parser/service/darkgalaxy-api.service";
 
 @NgModule({
   imports: [
@@ -20,7 +21,8 @@ import {StatsPanelService} from "./service/stats-panel.service";
   ],
   providers: [
     DecimalPipe,
-    StatsPanelService
+    StatsPanelService,
+    DarkgalaxyApiService
   ],
   exports: [StatsPanelComponent],
   bootstrap: [StatsPanelComponent]
