@@ -39,7 +39,8 @@ import initializeApp = firebase.initializeApp;
         {provide: FIREBASE_OPTIONS, useValue: environment.firebase},
         DecimalPipe,
         ResourceProductionFormatterPipe,
-        ScansService
+        ScansService,
+        AuthService
     ],
     bootstrap: [
         ScanDataPanelComponent
