@@ -1,11 +1,11 @@
-import {inject, Injectable, OnDestroy} from '@angular/core';
+import {EventEmitter, inject, Injectable, OnDestroy} from '@angular/core';
 import {User} from "@angular/fire/auth";
 import {AngularFireAuth} from "@angular/fire/compat/auth";
 import {Subscription} from "rxjs";
-import {GoogleAuthProvider} from 'firebase/auth';
-import firebase from "firebase/compat";
+import firebase from "firebase/compat/app";
 import {AngularFirestore} from "@angular/fire/compat/firestore";
 import UserCredential = firebase.auth.UserCredential;
+import GoogleAuthProvider = firebase.auth.GoogleAuthProvider;
 
 @Injectable({
     providedIn: 'platform'
@@ -15,6 +15,7 @@ export class AuthService implements OnDestroy {
     private subscription: Subscription;
     private firestore: AngularFirestore = inject(AngularFirestore);
     private _isLoggedIn: boolean = false;
+    private _loggedStatus: EventEmitter<boolean> = new EventEmitter();
 
     constructor() {
         this.subscription = this.auth.authState.subscribe((user: User) => {
@@ -31,6 +32,7 @@ export class AuthService implements OnDestroy {
                                 localStorage.setItem('user', JSON.stringify(user));
                                 console.log(localStorage.getItem('user'));
                                 this._isLoggedIn = true;
+                                this._loggedStatus.emit(true);
                             } else {
                                 this.signOut(false);
                             }
@@ -42,7 +44,8 @@ export class AuthService implements OnDestroy {
             } else {
                 console.log('logout');
                 localStorage.removeItem('user');
-                this._isLoggedIn = false
+                this._isLoggedIn = false;
+                this._loggedStatus.emit(false);
             }
         });
     }
@@ -77,5 +80,10 @@ export class AuthService implements OnDestroy {
 
     get isLoggedIn(): boolean {
         return this._isLoggedIn;
+    }
+
+
+    get loggedStatus(): EventEmitter<boolean> {
+        return this._loggedStatus;
     }
 }

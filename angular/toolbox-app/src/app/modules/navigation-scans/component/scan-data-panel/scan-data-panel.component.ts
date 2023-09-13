@@ -4,6 +4,7 @@ import {PlanetSummary} from "../../../../model/planet-list/planet-summary.planet
 import {AngularFireAuth} from "@angular/fire/compat/auth";
 import {Subscription} from "rxjs";
 import {User} from "@angular/fire/auth";
+import {AuthService} from "../../../authentication/service/auth.service";
 
 @Component({
     selector: 'dgt-navigation-scan-data-panel',
@@ -11,6 +12,7 @@ import {User} from "@angular/fire/auth";
     styleUrls: ['./scan-data-panel.component.css']
 })
 export class ScanDataPanelComponent implements OnInit, OnDestroy {
+    private authService: AuthService = inject(AuthService);
     private scansService: ScansService = inject(ScansService);
     private auth: AngularFireAuth = inject(AngularFireAuth);
     private authSubscription: Subscription;
@@ -20,6 +22,10 @@ export class ScanDataPanelComponent implements OnInit, OnDestroy {
     }
 
     ngOnInit() {
+        this.authService.loggedStatus.subscribe((status) => {
+           console.log('status: ' + status);
+        });
+
         this.authSubscription = this.auth.authState.subscribe((user: User) => {
             if (user) {
                 this.active = true;
