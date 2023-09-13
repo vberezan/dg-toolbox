@@ -54,7 +54,7 @@ export class AuthService implements OnDestroy {
 
     signIn(email: string, password: string) {
         console.log('email: ' + email + '; pass: ' + password);
-        this.auth
+        return this.auth
             .signInWithEmailAndPassword(email, password)
             .catch((error) => {
                     window.alert(error.message);
