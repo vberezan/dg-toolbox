@@ -9,11 +9,10 @@ import {AuthService} from "../../../authentication/service/auth.service";
     styleUrls: ['./scan-data-panel.component.css']
 })
 export class ScanDataPanelComponent implements OnInit, OnDestroy {
-    private authService: AuthService = inject(AuthService);
     private scansService: ScansService = inject(ScansService);
     active: boolean = false;
 
-    constructor() {
+    constructor( private authService: AuthService) {
     }
 
     ngOnInit() {

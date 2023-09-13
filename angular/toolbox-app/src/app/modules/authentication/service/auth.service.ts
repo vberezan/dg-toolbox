@@ -11,7 +11,7 @@ import GoogleAuthProvider = firebase.auth.GoogleAuthProvider;
 })
 export class AuthService implements OnDestroy {
     private auth: AngularFireAuth = inject(AngularFireAuth);
-    private readonly subscription: Subscription;
+    private readonly authSubscription: Subscription;
     private firestore: AngularFirestore = inject(AngularFirestore);
     private _loggedStatus: EventEmitter<boolean> = new EventEmitter();
     readonly id: string;
@@ -19,10 +19,10 @@ export class AuthService implements OnDestroy {
     constructor() {
         this.id = crypto.randomUUID();
 
-        if (this.subscription == null) {
+        if (this.authSubscription == null) {
             console.log('registering new subscription - ' + this.id);
 
-            this.subscription = this.auth.authState.subscribe((user: User) => {
+            this.authSubscription = this.auth.authState.subscribe((user: User) => {
                 console.log('inside authState subscribe - ' + this.id);
 
                 if (user != null) {
@@ -58,7 +58,7 @@ export class AuthService implements OnDestroy {
     }
 
     ngOnDestroy(): void {
-        this.subscription.unsubscribe();
+        this.authSubscription.unsubscribe();
     }
 
     signIn(email: string, password: string) {
