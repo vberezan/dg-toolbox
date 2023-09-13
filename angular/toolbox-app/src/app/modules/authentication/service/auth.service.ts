@@ -20,11 +20,7 @@ export class AuthService implements OnDestroy {
         this.id = crypto.randomUUID();
 
         if (this.authSubscription == null) {
-            console.log('registering new subscription - ' + this.id);
-
             this.authSubscription = this.auth.authState.subscribe((user: User) => {
-                console.log('inside authState subscribe - ' + this.id);
-
                 if (user != null) {
                     this.firestore.collection('valid-users', ref => ref.where('email', '==', user.email).limit(1))
                         .get().subscribe((items) => {
