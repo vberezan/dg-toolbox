@@ -11,14 +11,17 @@ import GoogleAuthProvider = firebase.auth.GoogleAuthProvider;
 })
 export class AuthService implements OnDestroy {
     private auth: AngularFireAuth = inject(AngularFireAuth);
-    private subscription: Subscription;
+    private readonly subscription: Subscription;
     private firestore: AngularFirestore = inject(AngularFirestore);
     private _loggedStatus: EventEmitter<boolean> = new EventEmitter();
 
     constructor() {
         if (this.subscription == null) {
+            console.log('registering new subscription');
+
             this.subscription = this.auth.authState.subscribe((user: User) => {
                 console.log('inside authState subscribe');
+
                 if (user != null) {
                     this.firestore.collection('valid-users', ref => ref.where('email', '==', user.email).limit(1))
                         .get().subscribe((items) => {
