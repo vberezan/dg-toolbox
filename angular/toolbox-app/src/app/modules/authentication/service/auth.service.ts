@@ -14,13 +14,16 @@ export class AuthService implements OnDestroy {
     private readonly subscription: Subscription;
     private firestore: AngularFirestore = inject(AngularFirestore);
     private _loggedStatus: EventEmitter<boolean> = new EventEmitter();
+    readonly id: string;
 
     constructor() {
+        this.id = crypto.randomUUID();
+
         if (this.subscription == null) {
-            console.log('registering new subscription');
+            console.log('registering new subscription - ' + this.id);
 
             this.subscription = this.auth.authState.subscribe((user: User) => {
-                console.log('inside authState subscribe');
+                console.log('inside authState subscribe - ' + this.id);
 
                 if (user != null) {
                     this.firestore.collection('valid-users', ref => ref.where('email', '==', user.email).limit(1))
