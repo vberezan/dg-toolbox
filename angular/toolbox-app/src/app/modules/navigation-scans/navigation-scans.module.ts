@@ -32,8 +32,7 @@ import initializeApp = firebase.initializeApp;
                 provider: new ReCaptchaV3Provider(environment.firebase.appCheck.recaptchaSiteKey),
                 isTokenAutoRefreshEnabled: true
             })
-        ),
-        DarkgalaxyUiParserModule,
+        )
     ],
     providers: [
         {provide: FIREBASE_OPTIONS, useValue: environment.firebase},

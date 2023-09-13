@@ -23,8 +23,6 @@ import initializeApp = firebase.initializeApp;
     ],
     imports: [
         BrowserModule,
-        AuthenticationModule,
-        DarkgalaxyUiParserModule,
         provideFirebaseApp(() => initializeApp(environment.firebase)),
         provideAuth(() => getAuth()),
         provideFirestore(() => getFirestore()),

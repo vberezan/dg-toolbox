@@ -11,8 +11,7 @@ import {StatsPanelService} from "./service/stats-panel.service";
 @NgModule({
   imports: [
     BrowserModule,
-    FontAwesomeModule,
-    DarkgalaxyUiParserModule,
+    FontAwesomeModule
   ],
   declarations: [
     StatsPanelComponent,
