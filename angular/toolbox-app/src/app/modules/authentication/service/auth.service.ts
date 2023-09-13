@@ -53,6 +53,7 @@ export class AuthService implements OnDestroy {
     }
 
     signIn(email: string, password: string) {
+        console.log('email: ' + email + '; pass: ' + password);
         this.auth
             .signInWithEmailAndPassword(email, password)
             .catch((error) => {
@@ -74,6 +75,7 @@ export class AuthService implements OnDestroy {
         await this.auth.signOut();
         localStorage.removeItem('user');
         this._loggedStatus.emit(false);
+
         if (refresh) {
             location.reload();
         }
