@@ -5,38 +5,30 @@ import {environment} from "../../../environments/environment";
 import {ScansService} from "./service/scans.service";
 import {ResourceProductionFormatterPipe} from "../planet-list-stats/pipe/resource-production-formatter.pipe";
 import {DecimalPipe} from "@angular/common";
-import {getApp, provideFirebaseApp} from "@angular/fire/app";
+import {getApp, initializeApp, provideFirebaseApp} from "@angular/fire/app";
 import {getFirestore, provideFirestore} from "@angular/fire/firestore";
 import {initializeAppCheck, provideAppCheck, ReCaptchaV3Provider} from "@angular/fire/app-check";
-import firebase from 'firebase/compat/app';
-import 'firebase/compat/firestore';
-import 'firebase/compat/auth';
-import {FIREBASE_OPTIONS} from "@angular/fire/compat";
 import {getAuth, provideAuth} from "@angular/fire/auth";
 import {DarkgalaxyApiService} from "../darkgalaxy-ui-parser/service/darkgalaxy-api.service";
-import initializeApp = firebase.initializeApp;
-import {AuthService} from "../authentication/service/auth.service";
-import {AuthenticationModule} from "../authentication/authentication.module";
 
 
 @NgModule({
-  declarations: [
-    ScanDataPanelComponent
-  ],
   imports: [
     BrowserModule,
     provideFirebaseApp(() => initializeApp(environment.firebase)),
     provideAuth(() => getAuth()),
     provideFirestore(() => getFirestore()),
-    // provideAppCheck(() => initializeAppCheck(getApp(),
-    //   {
-    //     provider: new ReCaptchaV3Provider(environment.firebase.appCheck.recaptchaSiteKey),
-    //     isTokenAutoRefreshEnabled: true
-    //   })
-    // )
+    provideAppCheck(() => initializeAppCheck(getApp(),
+      {
+        provider: new ReCaptchaV3Provider(environment.firebase.appCheck.recaptchaSiteKey),
+        isTokenAutoRefreshEnabled: true
+      })
+    )
+  ],
+  declarations: [
+    ScanDataPanelComponent
   ],
   providers: [
-    {provide: FIREBASE_OPTIONS, useValue: environment.firebase},
     DecimalPipe,
     ResourceProductionFormatterPipe,
     ScansService,

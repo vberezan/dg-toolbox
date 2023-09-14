@@ -5,6 +5,7 @@ import {Owner} from "./shared-scans-owner.model";
 import {Fleet} from "../fleet.model";
 
 export class PlanetScan {
+  private _id: string;
   private _resources: Resource[] = [];
   private _ground: number = 0;
   private _orbit: number = 0;
@@ -98,8 +99,17 @@ export class PlanetScan {
     this._fleets = value;
   }
 
+  get id(): string {
+    return this._id;
+  }
+
+  set id(value: string) {
+    this._id = value;
+  }
+
   toJSON() {
     return {
+      id: this.id,
       resources: this.resources,
       ground: this.ground,
       orbit: this.orbit,

@@ -1,17 +1,18 @@
 import {inject, Injectable} from '@angular/core';
-import {AngularFirestore} from "@angular/fire/compat/firestore";
 import {PlanetScan} from "../../../model/shared-scans/shared-scans-planet-scan.model";
 import {DarkgalaxyApiService} from "../../darkgalaxy-ui-parser/service/darkgalaxy-api.service";
 import {PlanetScanEvent} from "../../../model/shared-scans/shared-scans-planet-scan-event.model";
 import {ScanType} from "../../../model/scan-type";
 import {Resource} from "../../../model/resource.model";
-import {AppCheck} from "@angular/fire/app-check";
+import {addDoc, collection, collectionData, doc, Firestore, limit, query, updateDoc, where} from "@angular/fire/firestore";
+import firebase from "firebase/compat";
+import DocumentData = firebase.firestore.DocumentData;
 
 @Injectable({
   providedIn: 'root'
 })
 export class ScansService {
-  private firestore: AngularFirestore = inject(AngularFirestore);
+  private firestore: Firestore = inject(Firestore);
   private dgAPI: DarkgalaxyApiService = inject(DarkgalaxyApiService);
 
   constructor() {
@@ -22,14 +23,16 @@ export class ScansService {
   }
 
   updateScan(scanEvent: PlanetScanEvent): void {
-    this.firestore.collection<PlanetScan>('scans', ref => ref
-      .where('location', '==', scanEvent.planetScan.location)
-      .limit(1)
-    ).get().subscribe((items) => {
-      let dbScan: PlanetScan =
-        Object.assign(new PlanetScan(), items.docChanges().map(entry => {
-          return entry.doc.data();
-        })[0]);
+    let scansRef = collection(this.firestore, 'scans');
+
+    collectionData(
+      query(scansRef,
+        where('location', '==', scanEvent.planetScan.location),
+        limit(1)
+      ), {idField: 'id'}
+    ).subscribe((items: DocumentData[]) => {
+      let dbScan: PlanetScan = Object.assign(new PlanetScan(), items[0]);
+
       dbScan.location = scanEvent.planetScan.location;
       dbScan.turn = scanEvent.planetScan.turn;
       dbScan.owner = scanEvent.planetScan.owner;
@@ -61,12 +64,16 @@ export class ScansService {
         dbScan.fleets = scanEvent.planetScan.fleets;
       }
 
-      if (items.size == 0) {
-        this.firestore.collection('scans').add(JSON.parse(JSON.stringify(dbScan)));
+      if (items.length == 0) {
+        addDoc(scansRef, JSON.parse(JSON.stringify(dbScan)))
+          .catch((error): void => {
+              console.log(error);
+            }
+          );
       } else {
-        this.firestore.collection('scans')
-          .doc(items.docs[0].id)
-          .set(JSON.parse(JSON.stringify(dbScan)));
+        updateDoc(doc(scansRef, dbScan.id), JSON.parse(JSON.stringify(dbScan))).catch((error) => {
+          console.log(error);
+        });
       }
     });
   }

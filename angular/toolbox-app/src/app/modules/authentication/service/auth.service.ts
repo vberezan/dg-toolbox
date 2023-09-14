@@ -3,6 +3,8 @@ import {Auth, authState, signInWithEmailAndPassword, signInWithPopup, User} from
 import {collection, collectionData, Firestore, limit, query, where} from "@angular/fire/firestore";
 import {GoogleAuthProvider} from "firebase/auth";
 import {Subscription} from "rxjs";
+import firebase from "firebase/compat";
+import DocumentData = firebase.firestore.DocumentData;
 
 @Injectable({
   providedIn: 'platform'
@@ -30,28 +32,27 @@ export class AuthService implements OnDestroy {
 
     this.authSubscription = authState(auth).subscribe((user: User) => {
       if (user != null) {
-        const validUsers = collection(firestore, 'valid-users');
-
         collectionData(
-          query(validUsers,
+          query(collection(firestore, 'valid-users'),
             where('email', '==', user.email),
             limit(1)
           )
-        ).subscribe((items) => {
-          if (items.length == 1) {
-            let userCheck: { email: string, enabled: boolean } =
-              Object.assign({email: '', enabled: false}, items.map(entry => {
-                return entry;
-              })[0]);
+        ).subscribe((items: DocumentData[]): void => {
+          if (items.length > 0) {
+            let userCheck: { email: string, enabled: boolean } = Object.assign({email: '', enabled: false}, items[0]);
 
             if (userCheck.enabled) {
               localStorage.setItem('user', JSON.stringify(user));
               this._loggedStatus.emit(true);
             } else {
-              this.signOut(auth, false).catch((error) => {
+              this.signOut(auth, false).catch((error): void => {
                 console.log(error.message);
               });
             }
+          } else {
+            this.signOut(auth, false).catch((error): void => {
+              console.log(error.message);
+            });
           }
         });
       } else {
@@ -61,7 +62,7 @@ export class AuthService implements OnDestroy {
     });
   }
 
-  signInWithEmailAndPassword(auth: Auth, email: string, password: string) {
+  signInWithEmailAndPassword(auth: Auth, email: string, password: string): void {
     signInWithEmailAndPassword(auth, email, password)
       .catch((error) => {
           window.alert(error.message);
@@ -69,7 +70,7 @@ export class AuthService implements OnDestroy {
       );
   }
 
-  signInWithGoogle(auth: Auth) {
+  signInWithGoogle(auth: Auth): void {
     signInWithPopup(auth, new GoogleAuthProvider())
       .catch((error) => {
           window.alert(error.message)
@@ -77,7 +78,7 @@ export class AuthService implements OnDestroy {
       );
   }
 
-  async signOut(auth: Auth, refreshPage: boolean) {
+  async signOut(auth: Auth, refreshPage: boolean): Promise<void> {
     await auth.signOut();
     localStorage.removeItem('user');
     this._loggedStatus.emit(false);

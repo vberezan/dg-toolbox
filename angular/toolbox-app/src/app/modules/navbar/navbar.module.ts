@@ -5,22 +5,22 @@ import {BrowserModule} from "@angular/platform-browser";
 import {ActiveTabDirective} from './directive/active-tab.directive';
 
 @NgModule({
-    declarations: [
-        MenuComponent,
-        ActiveTabDirective
-    ],
-    imports: [
-        BrowserModule,
-        FontAwesomeModule
-    ],
-    exports: [MenuComponent],
-    bootstrap: [MenuComponent]
+  imports: [
+    BrowserModule,
+    FontAwesomeModule
+  ],
+  exports: [MenuComponent],
+  declarations: [
+    MenuComponent,
+    ActiveTabDirective
+  ],
+  bootstrap: [MenuComponent]
 })
 export class NavbarModule implements OnInit {
-    constructor() {
-    }
+  constructor() {
+  }
 
-    ngOnInit(): void {
-    }
+  ngOnInit(): void {
+  }
 
 }

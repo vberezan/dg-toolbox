@@ -1,5 +1,4 @@
-import {inject, Injectable} from '@angular/core';
-import {DOCUMENT} from "@angular/common";
+import {Injectable} from '@angular/core';
 import {PlanetSummary} from "../../../model/planet-list/planet-summary.planet-list-model";
 import {Resource} from "../../../model/resource.model";
 import {DataExtractor} from "./data-extractor";
@@ -8,14 +7,12 @@ import {DataExtractor} from "./data-extractor";
   providedIn: 'root'
 })
 export class PlanetListExtractorService implements DataExtractor {
-  private document: any = inject(DOCUMENT);
-
   // TODO: use textContent instead of innerHTML
 
   extract(): PlanetSummary[] {
     let result: PlanetSummary[] = [];
 
-    this.document.querySelectorAll('#planetList > #planetList').forEach((planet: Element) => {
+    document.querySelectorAll('#planetList > #planetList').forEach((planet: Element) => {
       let planetSummary: PlanetSummary = new PlanetSummary();
 
       // -- set resources data

@@ -14,6 +14,7 @@ import {DarkgalaxyApiService} from "../darkgalaxy-ui-parser/service/darkgalaxy-a
     BrowserModule,
     FontAwesomeModule
   ],
+  exports: [StatsPanelComponent],
   declarations: [
     StatsPanelComponent,
     GalaxyNameFormatterPipe,
@@ -24,7 +25,6 @@ import {DarkgalaxyApiService} from "../darkgalaxy-ui-parser/service/darkgalaxy-a
     StatsPanelService,
     DarkgalaxyApiService
   ],
-  exports: [StatsPanelComponent],
   bootstrap: [StatsPanelComponent]
 })
 export class PlanetListStatsModule implements OnInit {

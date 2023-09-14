@@ -12,7 +12,7 @@ export class LoginComponent {
   private authService: AuthService = inject(AuthService);
   private auth: Auth = inject(Auth);
   private firestore: Firestore = inject(Firestore);
-  protected localStorage = localStorage;
+  protected localStorage: Storage = localStorage;
 
 
   constructor() {

@@ -1,5 +1,4 @@
-import {inject, Injectable} from '@angular/core';
-import {DOCUMENT} from "@angular/common";
+import {Injectable} from '@angular/core';
 import {DataExtractor} from "./data-extractor";
 import {PlanetScan} from "../../../model/shared-scans/shared-scans-planet-scan.model";
 import {ScanType} from "../../../model/scan-type";
@@ -13,19 +12,14 @@ import {Owner} from "../../../model/shared-scans/shared-scans-owner.model";
   providedIn: 'root'
 })
 export class PlanetScanExtractorService implements DataExtractor {
-  private document: any = inject(DOCUMENT);
-
-  constructor() {
-  }
-
   extract(): PlanetScanEvent {
     // -- no scan
-    if (this.document.querySelectorAll('#contentBox #planetHeader').length <= 1) {
+    if (document.querySelectorAll('#contentBox #planetHeader').length <= 1) {
       return null;
     }
 
     let planetScan: PlanetScan = new PlanetScan();
-    let base: Element = this.document.querySelectorAll('#contentBox #planetHeader')[1];
+    let base: Element = document.querySelectorAll('#contentBox #planetHeader')[1];
     let scanType: ScanType;
 
     switch (base.querySelectorAll('.planetHeadSection .resource > span').length) {

@@ -9,20 +9,20 @@ import {initializeAppCheck, provideAppCheck, ReCaptchaV3Provider} from "@angular
 
 
 @NgModule({
-  declarations: [
-    LoginComponent
-  ],
   imports: [
     BrowserModule,
     provideFirebaseApp(() => initializeApp(environment.firebase)),
     provideAuth(() => getAuth()),
     provideFirestore(() => getFirestore()),
-    // provideAppCheck(() => initializeAppCheck(getApp(),
-    //   {
-    //     provider: new ReCaptchaV3Provider(environment.firebase.appCheck.recaptchaSiteKey),
-    //     isTokenAutoRefreshEnabled: true
-    //   })
-    // ),
+    provideAppCheck(() => initializeAppCheck(getApp(),
+      {
+        provider: new ReCaptchaV3Provider(environment.firebase.appCheck.recaptchaSiteKey),
+        isTokenAutoRefreshEnabled: true
+      })
+    ),
+  ],
+  declarations: [
+    LoginComponent
   ],
   bootstrap: [
     LoginComponent

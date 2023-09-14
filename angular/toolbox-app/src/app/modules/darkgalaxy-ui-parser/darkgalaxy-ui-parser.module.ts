@@ -7,15 +7,13 @@ import {BrowserModule} from "@angular/platform-browser";
 
 
 @NgModule({
-    declarations: [],
-    exports: [],
-    providers: [
-        PlanetListExtractorService,
-        PlanetScanExtractorService,
-        NavigationSystemPlanetsExtractorService,
-        DarkgalaxyApiService
-    ],
-    imports: [BrowserModule]
+  imports: [BrowserModule],
+  providers: [
+    PlanetListExtractorService,
+    PlanetScanExtractorService,
+    NavigationSystemPlanetsExtractorService,
+    DarkgalaxyApiService
+  ]
 })
 export class DarkgalaxyUiParserModule {
 }
