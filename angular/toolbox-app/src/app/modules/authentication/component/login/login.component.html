@@ -1,11 +1,11 @@
 <div *ngIf="localStorage.getItem('user') == null" class="login" id="dgt-login">
-    <span>DarkGalaxy Tools Login</span>
-    <input type="text" placeholder="email" required #userName>
-    <input type="password" placeholder="password" required #userPassword>
-    <button (click)="authService.signIn(userName.value, userPassword.value)">Login</button>
-    <button (click)="authService.signInWithGoogle()">Login with Google</button>
+  <span>DarkGalaxy Tools Login</span>
+  <input type="text" placeholder="email" required #userName>
+  <input type="password" placeholder="password" required #userPassword>
+  <button (click)="signInWithEmailAndPassword( userName.value, userPassword.value)">Login</button>
+  <button (click)="signInWithGoogle()">Login with Google</button>
 </div>
 
 <div *ngIf="localStorage.getItem('user') != null" class="logout" id="dgt-logout">
-    <button (click)="authService.signOut(true)">Logout</button>
+  <button (click)="signOut(true)">Logout</button>
 </div>

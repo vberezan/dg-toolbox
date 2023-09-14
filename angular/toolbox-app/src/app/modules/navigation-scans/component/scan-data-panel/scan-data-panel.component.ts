@@ -4,36 +4,36 @@ import {PlanetSummary} from "../../../../model/planet-list/planet-summary.planet
 import {AuthService} from "../../../authentication/service/auth.service";
 
 @Component({
-    selector: 'dgt-navigation-scan-data-panel',
-    templateUrl: './scan-data-panel.component.html',
-    styleUrls: ['./scan-data-panel.component.css']
+  selector: 'dgt-navigation-scan-data-panel',
+  templateUrl: './scan-data-panel.component.html',
+  styleUrls: ['./scan-data-panel.component.css']
 })
 export class ScanDataPanelComponent implements OnInit, OnDestroy {
-    private authService: AuthService = inject(AuthService);
-    private scansService: ScansService = inject(ScansService);
-    active: boolean = false;
+  private scansService: ScansService = inject(ScansService);
+  private authService: AuthService = inject(AuthService);
+  active: boolean = false;
 
-    constructor() {
-        console.log('authService in scan - ' + this.authService.id);
-    }
+  constructor() {
+    console.log('authService in scan - ' + this.authService.id);
+  }
 
-    ngOnInit() {
-        this.authService.loggedStatus.subscribe((status: boolean) => {
-            if (status) {
-                let summaries: PlanetSummary[] = this.scansService.extractSummaries();
+  ngOnInit() {
+    this.authService.loggedStatus.subscribe((status: boolean) => {
+      if (status) {
+        let summaries: PlanetSummary[] = this.scansService.extractSummaries();
 
-                if (summaries.length > 0) {
-                    this.scansService.fillScans(summaries);
-                }
-                this.active = true;
-            } else {
-                this.active = false;
-            }
-        });
-    }
+        if (summaries.length > 0) {
+          this.scansService.fillScans(summaries);
+        }
+        this.active = true;
+      } else {
+        this.active = false;
+      }
+    });
+  }
 
-    ngOnDestroy() {
-        this.authService.loggedStatus.unsubscribe();
-    }
+  ngOnDestroy() {
+    this.authService.loggedStatus.unsubscribe();
+  }
 
 }

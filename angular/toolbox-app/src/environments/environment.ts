@@ -8,10 +8,11 @@ const firebaseConfig = {
   appId: '1:740995977873:web:756583aeec86bc76c3a530',
   measurementId: 'G-DBBD8N8LCR',
   appCheck: {
-    recaptchaSiteKey: '6LfICx0oAAAAAEd5kbT41ZHF2Zbgba9ocRB7guP6'
+    recaptchaSiteKey: '6Le5AyQoAAAAAEqVW9cQF-nT73cKe3Zp9N8mxTsO'
   }
 };
 
 export const environment = {
-  firebase: firebaseConfig
+  firebase: firebaseConfig,
+  production: true
 }

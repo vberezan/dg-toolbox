@@ -1,16 +1,34 @@
-import {AfterViewInit, Component, inject} from '@angular/core';
+import {Component, inject} from '@angular/core';
 import {AuthService} from "../../service/auth.service";
+import {Auth} from "@angular/fire/auth";
+import {Firestore} from "@angular/fire/firestore";
 
 @Component({
-    selector: 'dgt-authentication',
-    templateUrl: './login.component.html',
-    styleUrls: ['./login.component.css']
+  selector: 'dgt-authentication',
+  templateUrl: './login.component.html',
+  styleUrls: ['./login.component.css']
 })
 export class LoginComponent {
-    authService: AuthService = inject(AuthService);
-    protected localStorage = localStorage;
+  private authService: AuthService = inject(AuthService);
+  private auth: Auth = inject(Auth);
+  private firestore: Firestore = inject(Firestore);
+  protected localStorage = localStorage;
 
-    constructor() {
-        console.log('authService in login - ' + this.authService.id);
-    }
+
+  constructor() {
+    this.authService.setUpFirebaseAuthSubscription(this.auth, this.firestore);
+    console.log('authService in login - ' + this.authService.id);
+  }
+
+  signInWithEmailAndPassword(email: string, password: string) {
+    this.authService.signInWithEmailAndPassword(this.auth, email, password);
+  }
+
+  signInWithGoogle() {
+    this.authService.signInWithGoogle(this.auth);
+  }
+
+  async signOut(refreshPage: boolean): Promise<void> {
+    return this.authService.signOut(this.auth, refreshPage);
+  }
 }

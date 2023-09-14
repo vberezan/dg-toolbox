@@ -16,6 +16,7 @@ import {getAuth, provideAuth} from "@angular/fire/auth";
 import {DarkgalaxyApiService} from "../darkgalaxy-ui-parser/service/darkgalaxy-api.service";
 import initializeApp = firebase.initializeApp;
 import {AuthService} from "../authentication/service/auth.service";
+import {AuthenticationModule} from "../authentication/authentication.module";
 
 
 @NgModule({
@@ -27,20 +28,19 @@ import {AuthService} from "../authentication/service/auth.service";
     provideFirebaseApp(() => initializeApp(environment.firebase)),
     provideAuth(() => getAuth()),
     provideFirestore(() => getFirestore()),
-    provideAppCheck(() => initializeAppCheck(getApp(),
-      {
-        provider: new ReCaptchaV3Provider(environment.firebase.appCheck.recaptchaSiteKey),
-        isTokenAutoRefreshEnabled: true
-      })
-    )
+    // provideAppCheck(() => initializeAppCheck(getApp(),
+    //   {
+    //     provider: new ReCaptchaV3Provider(environment.firebase.appCheck.recaptchaSiteKey),
+    //     isTokenAutoRefreshEnabled: true
+    //   })
+    // )
   ],
   providers: [
     {provide: FIREBASE_OPTIONS, useValue: environment.firebase},
     DecimalPipe,
     ResourceProductionFormatterPipe,
     ScansService,
-    DarkgalaxyApiService,
-    AuthService
+    DarkgalaxyApiService
   ],
   bootstrap: [
     ScanDataPanelComponent

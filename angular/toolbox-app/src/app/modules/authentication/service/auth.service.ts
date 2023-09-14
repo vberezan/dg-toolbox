@@ -1,29 +1,36 @@
-import {EventEmitter, inject, Injectable, OnDestroy} from '@angular/core';
+import {EventEmitter, Injectable, OnDestroy} from '@angular/core';
 import {Auth, authState, signInWithEmailAndPassword, signInWithPopup, User} from "@angular/fire/auth";
-import {Subscription} from "rxjs";
 import {collection, collectionData, Firestore, limit, query, where} from "@angular/fire/firestore";
 import {GoogleAuthProvider} from "firebase/auth";
+import {Subscription} from "rxjs";
 
 @Injectable({
   providedIn: 'platform'
 })
 export class AuthService implements OnDestroy {
-  private auth: Auth = inject(Auth);
-  private firestore: Firestore = inject(Firestore);
-
-  private readonly authStateSubscription: Subscription;
-  private authState$ = authState(this.auth);
-
-
   private _loggedStatus: EventEmitter<boolean> = new EventEmitter();
+  private authSubscription: Subscription;
   readonly id: number;
 
   constructor() {
     this.id = Math.random();
+  }
 
-    this.authStateSubscription = this.authState$.subscribe((user: User) => {
+  ngOnDestroy(): void {
+    if (this.authSubscription != null) {
+      this.authSubscription.unsubscribe();
+    }
+  }
+
+  setUpFirebaseAuthSubscription(auth: Auth, firestore: Firestore): void {
+    // -- current implementation will not allow multiple subscriptions for authState
+    if (this.authSubscription != null) {
+      this.authSubscription.unsubscribe();
+    }
+
+    this.authSubscription = authState(auth).subscribe((user: User) => {
       if (user != null) {
-        const validUsers = collection(this.firestore, 'valid-users');
+        const validUsers = collection(firestore, 'valid-users');
 
         collectionData(
           query(validUsers,
@@ -41,7 +48,7 @@ export class AuthService implements OnDestroy {
               localStorage.setItem('user', JSON.stringify(user));
               this._loggedStatus.emit(true);
             } else {
-              this.signOut(false).catch((error) => {
+              this.signOut(auth, false).catch((error) => {
                 console.log(error.message);
               });
             }
@@ -54,32 +61,28 @@ export class AuthService implements OnDestroy {
     });
   }
 
-  ngOnDestroy(): void {
-    this.authStateSubscription.unsubscribe();
-  }
-
-  signIn(email: string, password: string) {
-    signInWithEmailAndPassword(this.auth, email, password)
+  signInWithEmailAndPassword(auth: Auth, email: string, password: string) {
+    signInWithEmailAndPassword(auth, email, password)
       .catch((error) => {
           window.alert(error.message);
         }
       );
   }
 
-  signInWithGoogle() {
-    signInWithPopup(this.auth, new GoogleAuthProvider())
+  signInWithGoogle(auth: Auth) {
+    signInWithPopup(auth, new GoogleAuthProvider())
       .catch((error) => {
           window.alert(error.message)
         }
       );
   }
 
-  async signOut(refresh: boolean) {
-    await this.auth.signOut();
+  async signOut(auth: Auth, refreshPage: boolean) {
+    await auth.signOut();
     localStorage.removeItem('user');
     this._loggedStatus.emit(false);
 
-    if (refresh) {
+    if (refreshPage) {
       location.reload();
     }
   }
