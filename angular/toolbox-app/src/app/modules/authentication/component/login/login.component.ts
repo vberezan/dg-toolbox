@@ -17,7 +17,6 @@ export class LoginComponent {
 
   constructor() {
     this.authService.setUpFirebaseAuthSubscription(this.auth, this.firestore);
-    console.log('authService in login - ' + this.authService.id);
   }
 
   signInWithEmailAndPassword(email: string, password: string) {

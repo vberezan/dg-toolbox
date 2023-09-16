@@ -6,16 +6,13 @@ import {PlanetScanEvent} from "../../../model/shared-scans/shared-scans-planet-s
 import {NavigationSystemPlanetsExtractorService} from "./navigation-system-planets.extractor.service";
 
 @Injectable({
-  providedIn: 'platform'
+  providedIn: 'root'
 })
 export class DarkgalaxyApiService {
 
   private planetListExtractor: PlanetListExtractorService = inject(PlanetListExtractorService);
   private planetScanExtractor: PlanetScanExtractorService = inject(PlanetScanExtractorService);
   private navigationSystemPlanetsExtractor: NavigationSystemPlanetsExtractorService = inject(NavigationSystemPlanetsExtractorService);
-
-  constructor() {
-  }
 
   planetsSummaries(): PlanetSummary[] {
     return this.planetListExtractor.extract();

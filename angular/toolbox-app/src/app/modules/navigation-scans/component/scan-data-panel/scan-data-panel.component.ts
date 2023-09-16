@@ -13,10 +13,6 @@ export class ScanDataPanelComponent implements OnInit, OnDestroy {
   private authService: AuthService = inject(AuthService);
   active: boolean = false;
 
-  constructor() {
-    console.log('authService in scan - ' + this.authService.id);
-  }
-
   ngOnInit() {
     this.authService.loggedStatus.subscribe((status: boolean) => {
       if (status) {

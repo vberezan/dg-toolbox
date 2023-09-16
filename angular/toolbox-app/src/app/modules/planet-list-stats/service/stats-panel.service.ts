@@ -12,9 +12,6 @@ import {Resources} from "../../../model/resources";
 export class StatsPanelService {
   private dgAPI: DarkgalaxyApiService = inject(DarkgalaxyApiService);
 
-  constructor() {
-  }
-
   public extractStats(): StatsPanel {
     let panel: StatsPanel = new StatsPanel();
     panel.stats.set(Resources.ALL, new PlanetStats());

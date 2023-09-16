@@ -11,8 +11,7 @@ import {BrowserModule} from "@angular/platform-browser";
   providers: [
     PlanetListExtractorService,
     PlanetScanExtractorService,
-    NavigationSystemPlanetsExtractorService,
-    DarkgalaxyApiService
+    NavigationSystemPlanetsExtractorService
   ]
 })
 export class DarkgalaxyUiParserModule {

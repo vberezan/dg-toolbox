@@ -12,11 +12,6 @@ import DocumentData = firebase.firestore.DocumentData;
 export class AuthService implements OnDestroy {
   private _loggedStatus: EventEmitter<boolean> = new EventEmitter();
   private authSubscription: Subscription;
-  readonly id: number;
-
-  constructor() {
-    this.id = Math.random();
-  }
 
   ngOnDestroy(): void {
     if (this.authSubscription != null) {
