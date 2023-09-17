@@ -12,7 +12,6 @@ export class LoginComponent {
   private authService: AuthService = inject(AuthService);
   private auth: Auth = inject(Auth);
   private firestore: Firestore = inject(Firestore);
-  protected localStorage: Storage = localStorage;
 
 
   constructor() {
@@ -27,7 +26,12 @@ export class LoginComponent {
     this.authService.signInWithGoogle(this.auth);
   }
 
-  async signOut(refreshPage: boolean): Promise<void> {
-    return this.authService.signOut(this.auth, refreshPage);
+  signOut(refreshPage: boolean): void {
+    this.authService.signOut(this.auth, refreshPage);
+  }
+
+  displayLogin(): boolean {
+    return localStorage.getItem('user') == null &&
+      !this.authService.refreshInProgress;
   }
 }

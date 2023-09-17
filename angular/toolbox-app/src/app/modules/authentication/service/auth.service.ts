@@ -12,6 +12,7 @@ import DocumentData = firebase.firestore.DocumentData;
 export class AuthService implements OnDestroy {
   private _loggedStatus: EventEmitter<boolean> = new EventEmitter();
   private authSubscription: Subscription;
+  private _refreshInProgress: boolean = false;
 
   ngOnDestroy(): void {
     if (this.authSubscription != null) {
@@ -72,6 +73,7 @@ export class AuthService implements OnDestroy {
   signOut(auth: Auth, refreshPage: boolean): void {
     this._loggedStatus.emit(false);
     localStorage.removeItem('user');
+    this._refreshInProgress = refreshPage;
 
     auth.signOut()
       .catch((error) => {
@@ -86,5 +88,9 @@ export class AuthService implements OnDestroy {
 
   get loggedStatus(): EventEmitter<boolean> {
     return this._loggedStatus;
+  }
+
+  get refreshInProgress(): boolean {
+    return this._refreshInProgress;
   }
 }
