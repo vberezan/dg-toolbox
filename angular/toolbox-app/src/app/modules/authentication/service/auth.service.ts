@@ -74,9 +74,10 @@ export class AuthService implements OnDestroy {
   }
 
   async signOut(auth: Auth, refreshPage: boolean): Promise<void> {
-    await auth.signOut();
-    localStorage.removeItem('user');
     this._loggedStatus.emit(false);
+    localStorage.removeItem('user');
+
+    await auth.signOut();
 
     if (refreshPage) {
       location.reload();
