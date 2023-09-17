@@ -40,14 +40,10 @@ export class AuthService implements OnDestroy {
               localStorage.setItem('user', JSON.stringify(user));
               this._loggedStatus.emit(true);
             } else {
-              this.signOut(auth, false).catch((error): void => {
-                console.log(error.message);
-              });
+              this.signOut(auth, false);
             }
           } else {
-            this.signOut(auth, false).catch((error): void => {
-              console.log(error.message);
-            });
+            this.signOut(auth, false);
           }
         });
       } else {
@@ -73,11 +69,15 @@ export class AuthService implements OnDestroy {
       );
   }
 
-  async signOut(auth: Auth, refreshPage: boolean): Promise<void> {
+  signOut(auth: Auth, refreshPage: boolean): void {
     this._loggedStatus.emit(false);
     localStorage.removeItem('user');
 
-    await auth.signOut();
+    auth.signOut()
+      .catch((error) => {
+          window.alert(error.message)
+        }
+      );
 
     if (refreshPage) {
       location.reload();
