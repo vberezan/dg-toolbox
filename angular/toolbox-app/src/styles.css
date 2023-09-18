@@ -203,20 +203,21 @@ body {
 
 .navigation {
   padding: 4px !important;
+  margin-top: 5px !important;
 }
 
 a.left.navigation,
 a.right.navigation {
   font-size: 22px !important;
   line-height: 26px !important;
+  padding: 0px !important;
 }
 
 a.right.navigation {
   width: 30px !important;
   height: 30px !important;
-  padding: 0px !important;
   text-align: center !important;
-  margin-top: -3px !important;
+  margin-top: 0 !important;
   float: right !important;
   position: absolute !important;
   margin-left: 417px !important;
