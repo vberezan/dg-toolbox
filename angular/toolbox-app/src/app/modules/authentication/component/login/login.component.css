@@ -6,7 +6,7 @@
   position: relative;
 }
 
-.login > input {
+.login input {
   background: rgba(0, 0, 0, 0.35);
   color: white;
   border: 1px solid #555555;
@@ -40,7 +40,7 @@
   background-color: #f24353;
 }
 
-a {
+.login a {
   text-decoration: none;
   color: rgba(255, 255, 255, 0.6);
   position: absolute;
