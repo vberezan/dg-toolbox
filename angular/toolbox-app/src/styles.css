@@ -541,3 +541,26 @@ label.queueDestroyButton:hover {
   padding-top: 4px !important;
   line-height: 20px !important;
 }
+
+/*******/
+#playerBox .header fa-icon svg{
+  fill: #FFF;
+}
+
+#playerBox .header fa-icon {
+  margin-left: 5px;
+}
+
+#playerBox .header .mail {
+  padding-top: 1px;
+}
+
+#playerBox .header .news,
+#playerBox .header .logout {
+  margin-left: 5px;
+  font-size: 22px;
+}
+
+#playerBox .header {
+  line-height: 32px !important;
+}
