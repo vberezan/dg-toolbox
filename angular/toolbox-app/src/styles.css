@@ -274,6 +274,10 @@ a.right.navigation {
   color: #fff !important;
 }
 
+.dgt-navigation-scan-turn {
+  display: none;
+}
+
 .dgt-navigation-scan-resource td.dgt-navigation-scan-turn-value,
 .dgt-navigation-scan-resource td.resource {
   min-width: 65%;

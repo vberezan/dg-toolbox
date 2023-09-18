@@ -28,6 +28,12 @@ export class ScansService {
   }
 
   fillScans(summaries: PlanetSummary[]) {
+    document.querySelectorAll('div.navigation div.planets').forEach((planet: any): void=> {
+      planet.querySelector('.dgt-navigation-scan-coords-value').textContent =
+        planet.querySelector('.coords>span').textContent.trim();
+    });
+
+
     let locations: string[] = summaries.map((summary: PlanetSummary) => summary.location.join('.'));
 
     let subscription = collectionData(
@@ -41,15 +47,14 @@ export class ScansService {
         entryMap.set(e.location, e), new Map()
       );
 
+
       document.querySelectorAll('div.navigation div.planets').forEach((planet: any): void=> {
         let planetLocation: string = planet.querySelector('div.coords > span').textContent.trim();
         let pl: PlanetScan = byLocation.get(planetLocation);
 
-        planet.querySelector('.dgt-navigation-scan-coords-value').textContent =
-          planet.querySelector('.coords>span').textContent.trim();
+        planet.querySelector('.dgt-navigation-scan-turn').style.display = '';
 
         if (pl) {
-          console.log('a');
           planet.querySelector('.dgt-navigation-scan-turn-value').textContent =
             this.decimalPipe.transform(pl.turn, '1.0', 'en_US');
 
@@ -109,7 +114,6 @@ export class ScansService {
             planet.querySelector('.dgt-navigation-scan-structures').style.display = '';
           }
         } else {
-          console.log('b');
           planet.querySelector('.dgt-navigation-scan-turn-value').textContent = 'N/A';
           planet.querySelector('.dgt-navigation-scan-resource.metal .abundance').textContent = '-';
           planet.querySelector('.dgt-navigation-scan-resource.mineral .abundance').textContent = '-';
