@@ -201,15 +201,31 @@ body {
 
 /******/
 
+.navigation {
+  padding: 4px !important;
+}
+
 a.left.navigation,
 a.right.navigation {
   font-size: 22px !important;
   line-height: 26px !important;
 }
 
+a.right.navigation {
+  width: 30px;
+  height: 30px;
+  padding: 0px;
+  text-align: center;
+  margin-top: -3px;
+  float: right;
+  position: absolute;
+  margin-left: 417px;
+}
+
 .navigation .row .planets {
-  width: 180px !important;
-  margin: 5px !important;
+  float: left;
+  width: 213px !important;
+  margin: 3px !important;
   padding: 5px !important;
   border-radius: 5px;
   height: auto !important;
@@ -220,6 +236,8 @@ a.right.navigation {
   -webkit-filter: grayscale(100%);
   filter: grayscale(100%);
   border-radius: 5px;
+  width: 100px;
+  height: 100px;
 }
 
 .navigation .row .planets table img {
