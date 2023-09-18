@@ -41,12 +41,13 @@ export class ScansService {
         entryMap.set(e.location, e), new Map()
       );
 
-
       document.querySelectorAll('div.navigation div.planets').forEach((planet: any): void=> {
         let planetLocation: string = planet.querySelector('div.coords > span').textContent.trim();
         let pl: PlanetScan = byLocation.get(planetLocation);
 
         planet.querySelector('.dgt-navigation-scan-turn').style.display = '';
+        planet.querySelector('img:first-child').css('filter', 'grayscale(100%)');
+        planet.querySelector('img:first-child').css('-webkit-filter', 'grayscale(100%)');
 
         if (pl) {
           planet.querySelector('.dgt-navigation-scan-turn-value').textContent =

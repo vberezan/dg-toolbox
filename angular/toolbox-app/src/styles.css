@@ -234,8 +234,6 @@ a.right.navigation {
 
 
 .navigation .row .planets>img {
-  -webkit-filter: grayscale(100%);
-  filter: grayscale(100%);
   border-radius: 5px;
   width: 100px;
   height: 100px;
