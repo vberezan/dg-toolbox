@@ -53,27 +53,43 @@ function setUpNavigationScanDataPanel(windowURL) {
         //-- population
         let populationTable = document.createElement('table');
         populationTable.classList.add('dgt-navigation-scan-population');
-        let populationTbody = document.createElement('tbody');
-        let populationRow = document.createElement('tr');
-        populationRow.classList.add('dgt-navigation-scan-population-data');
+        populationTable.innerHTML =
+            '<tbody>' +
+                '<tr class="dgt-navigation-scan-population-data">' +
+                    '<td class="dgt-navigation-scan-workers-icon"><img src="https://i.imgur.com/7u6VnpE.png" title="Workers" width="17" height="17" /></td>' +
+                    '<td class="dgt-navigation-scan-workers-value"></td>' +
+                '</tr>' +
+                '<tr class="dgt-navigation-scan-population-data">' +
+                    '<td class="dgt-navigation-scan-soldiers-icon"><img src="https://i.imgur.com/FHlHgxL.png" title="Soldiers" width="17" height="17" /></td>' +
+                    '<td class="dgt-navigation-scan-soldiers-value"></td>' +
+                '</tr>' +
+            '</tbody>'
 
-        let workersIcon = document.createElement('td');
-        workersIcon.classList.add('dgt-navigation-scan-workers-icon');
-        workersIcon.innerHTML = '<img src="https://i.imgur.com/7u6VnpE.png" title="Workers" width="17" height="17">';
-        let workersValue = document.createElement('td');
-        workersValue.classList.add('dgt-navigation-scan-workers-value');
-
-        let soldiersIcon = document.createElement('td');
-        soldiersIcon.classList.add('dgt-navigation-scan-soldiers-icon');
-        soldiersIcon.innerHTML = '<img src="https://i.imgur.com/FHlHgxL.png" title="Soldiers" width="17" height="17">';
-        let soldiersValue = document.createElement('td');
-        soldiersValue.classList.add('dgt-navigation-scan-soldiers-value');
-
-        populationRow.append(workersIcon, workersValue, soldiersIcon, soldiersValue);
-        populationTbody.append(populationRow);
-        populationTable.append(populationTbody);
-        planet.append(populationTable);
         populationTable.style.display = 'none';
+        planet.append(populationTable);
+
+        // -- structures
+        let structuresTable = document.createElement('table');
+        structuresTable.classList.add('dgt-navigation-scan-structures');
+        structuresTable.innerHTML =
+            '<tbody>' +
+                '<tr class="dgt-navigation-scan-structures-data">' +
+                    '<td class="pg"></td>' +
+                    '<td class="st"></td>' +
+                    '<td class="hb"></td>' +
+                    '<td class="jg"></td>' +
+                '</tr>' +
+                '<tr class="dgt-navigation-scan-structures-data">' +
+                    '<td class="lw"></td>' +
+                    '<td class="sy"></td>' +
+                    '<td class="hw"></td>' +
+                    '<td class="sd"></td>' +
+                '</tr>' +
+            '</tbody>';
+
+        structuresTable.style.display = 'none';
+        planet.append(structuresTable);
+        /////
 
         let invasionDiv = document.createElement('div');
         invasionDiv.classList.add('dgt-navigation-scan-invasion-data');
