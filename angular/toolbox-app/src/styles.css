@@ -543,6 +543,7 @@ label.queueDestroyButton:hover {
 }
 
 /*******/
+
 #playerBox .header fa-icon svg{
   fill: #FFF;
 }
@@ -551,7 +552,7 @@ label.queueDestroyButton:hover {
   margin-left: 5px;
 }
 
-#playerBox .header .mail {
+#playerBox .header .mail svg {
   padding-top: 1px;
 }
 
@@ -563,4 +564,13 @@ label.queueDestroyButton:hover {
 
 #playerBox .header {
   line-height: 32px !important;
+}
+
+#playerBox .header>div,
+#playerBox .header>div>a>img {
+  border-radius: 100px;
+}
+
+#playerBox .header>div>a>img {
+  object-fit: cover;
 }
