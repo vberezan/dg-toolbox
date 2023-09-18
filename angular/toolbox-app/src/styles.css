@@ -346,10 +346,6 @@ a.right.navigation {
   padding-bottom: 10px;
 }
 
-.dgt-navigation-scan-structures-data .jg {
-  color: #0ca1e1 !important;
-}
-
 .dgt-navigation-scan-fleet {
   color: #fff !important;
   background: #0ca1e1 !important;
@@ -408,6 +404,24 @@ a.right.navigation {
 
 .dgt-navigation-scan-invasion-value {
   margin-left: 3px;
+}
+
+.dgt-navigation-scan-structures {
+  float: left !important;
+  line-height: 14px !important;
+  width: 100px !important;
+  border-collapse: collapse;
+  margin-top: 46px;
+  position: absolute;
+  background: #000000b8;
+}
+
+.dgt-navigation-scan-structures-data td {
+  color: #fff;
+}
+
+.dgt-navigation-scan-structures-data .jg {
+  color: #0ca1e1 !important;
 }
 
 /******/
