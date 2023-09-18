@@ -99,9 +99,9 @@ export class ScansService {
             planet.querySelector('.dgt-navigation-scan-population .dgt-navigation-scan-soldiers-value').textContent =
               this.decimalPipe.transform(pl.soldiers, '1.0', 'en_US');
 
-            // let requiredForInvasion: number = ((pl.workers.currentNumber / 15) + (pl.soldiers / 2) * 3) + 1;
-            // planet.querySelector('.dgt-navigation-scan-invasion-value').textContent =
-            //   this.decimalPipe.transform(Math.ceil(requiredForInvasion), '1.0', 'en_US');
+            let requiredForInvasion: number = ((pl.workers.currentNumber / 15) + (pl.soldiers / 2) * 3) + 1;
+            planet.querySelector('.dgt-navigation-scan-structures-data .invasion-value').textContent =
+              this.decimalPipe.transform(Math.ceil(requiredForInvasion), '1.0', 'en_US');
 
             planet.querySelector('.dgt-navigation-scan-population').style.display = '';
             planet.querySelector('.dgt-navigation-scan-structures').style.display = '';

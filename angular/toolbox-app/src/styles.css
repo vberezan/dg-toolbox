@@ -410,6 +410,8 @@ a.right.navigation {
   color: #fff;
   min-width: 25%;
   font-size: 11px;
+  padding-left: 5px;
+  text-align: left;
 }
 
 
