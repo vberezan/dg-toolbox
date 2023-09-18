@@ -61,11 +61,11 @@ export class ScansService {
 
           let structureNames: string[] = pl.structures.map((structure: NameQuantity) => structure.name);
           if (structureNames.includes(Structures.JUMP_GATE)) {
-            let jg: Element = document.createElement('.dgt-navigation-scan-structures-data .jg');
+            let jg: Element = document.querySelector('.dgt-navigation-scan-structures-data .jg');
             jg.textContent = 'JG';
           }
           if (structureNames.includes(Structures.HYPERSPACE_BEACON)) {
-            let jg: Element = document.createElement('.dgt-navigation-scan-structures-data .hb');
+            let jg: Element = document.querySelector('.dgt-navigation-scan-structures-data .hb');
             jg.textContent = 'HB';
           }
 
