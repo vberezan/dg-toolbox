@@ -63,7 +63,7 @@ function setUpNavigationScanDataPanel(windowURL) {
         structuresTable.innerHTML =
             '<tbody>' +
                 '<tr class="dgt-navigation-scan-structures-data">' +
-                    '<td class="pg"></td>' +
+                    '<td class="ab"></td>' +
                     '<td class="st"></td>' +
                     '<td class="hb"></td>' +
                     '<td class="jg"></td>' +

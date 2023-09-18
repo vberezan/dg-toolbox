@@ -19,5 +19,6 @@ export enum Structures {
   SHIP_YARD = 'ship yard',
   LIGHT_WEAPONS_FACTORY = 'light weapons factory',
   HEAVY_WEAPONS_FACTORY = 'heavy weapons factory',
-  SPACE_DOCK = 'space dock'
+  SPACE_DOCK = 'space dock',
+  ARMY_BARRACKS = 'army barracks'
 }

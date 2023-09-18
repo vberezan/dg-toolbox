@@ -419,10 +419,19 @@ a.right.navigation {
 .dgt-navigation-scan-structures-data td {
   color: #fff;
   min-width: 25%;
+  font-size: 11px;
+}
+
+.dgt-navigation-scan-structures-data td.sd {
+  padding-bottom: 10px !important;
 }
 
 .dgt-navigation-scan-structures-data .jg {
   color: #0ca1e1 !important;
+}
+
+.dgt-navigation-scan-structures-data .ab {
+  color: #e46045 !important;
 }
 
 /******/
