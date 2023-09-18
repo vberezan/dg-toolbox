@@ -212,14 +212,14 @@ a.right.navigation {
 }
 
 a.right.navigation {
-  width: 30px;
-  height: 30px;
-  padding: 0px;
-  text-align: center;
-  margin-top: -3px;
-  float: right;
-  position: absolute;
-  margin-left: 417px;
+  width: 30px !important;
+  height: 30px !important;
+  padding: 0px !important;
+  text-align: center !important;
+  margin-top: -3px !important;
+  float: right !important;
+  position: absolute !important;
+  margin-left: 417px !important;
 }
 
 .navigation .row .planets {
