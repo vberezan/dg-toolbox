@@ -78,17 +78,6 @@ function setUpNavigationScanDataPanel(windowURL) {
 
         structuresTable.style.display = 'none';
         planet.append(structuresTable);
-        /////
-
-        let invasionDiv = document.createElement('div');
-        invasionDiv.classList.add('dgt-navigation-scan-invasion-data');
-        invasionDiv.innerHTML = '<span class="dgt-navigation-scan-invasion-label">Invasion: </span>';
-        let invasionValueSpan = document.createElement('span');
-        invasionValueSpan.classList.add('dgt-navigation-scan-invasion-value');
-        invasionDiv.append(invasionValueSpan);
-
-        planet.append(invasionDiv);
-        invasionDiv.style.display = 'none';
     });
 
     if (windowURL[1] === 'navigation' && (windowURL.length === 6 && !isNaN(+windowURL[2]) && !isNaN(+windowURL[3]) && !isNaN(+windowURL[4]))) {
