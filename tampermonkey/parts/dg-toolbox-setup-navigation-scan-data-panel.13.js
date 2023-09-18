@@ -33,6 +33,8 @@ function setUpNavigationScanDataPanel(windowURL) {
             '</tbody>';
 
         planet.insertBefore(surfaceTable, planet.querySelector('div.text'));
+        planet.querySelector('.dgt-navigation-scan-coords-value').textContent =
+            planet.querySelector('.coords>span').textContent.trim();
 
         // -- remove useless empty lines
         planet.querySelectorAll('br').forEach((br) => {
