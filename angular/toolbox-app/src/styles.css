@@ -346,10 +346,8 @@ a.right.navigation {
   padding-bottom: 10px;
 }
 
-.dgt-navigation-scan-jg {
+.dgt-navigation-scan-structures-data .jg {
   color: #0ca1e1 !important;
-  padding-left: 5px;
-  margin-top: 2px;
 }
 
 .dgt-navigation-scan-fleet {
@@ -360,11 +358,6 @@ a.right.navigation {
   padding-left: 7px;
   padding-right: 7px;
   border-radius: 10px;
-}
-
-.dgt-navigation-scan-hb {
-  color: #fff !important;
-  padding-left: 5px;
 }
 
 .dgt-navigation-scan-population {
@@ -394,7 +387,7 @@ a.right.navigation {
 .dgt-navigation-scan-population .dgt-navigation-scan-workers-value {
   color: #fff;
   font-size: 11px;
-  min-width: 55px;
+  min-width: 65px;
 }
 
 .dgt-navigation-scan-soldiers-icon img,

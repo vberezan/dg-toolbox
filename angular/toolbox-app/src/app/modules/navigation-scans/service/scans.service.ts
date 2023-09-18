@@ -60,19 +60,14 @@ export class ScansService {
           });
 
           let structureNames: string[] = pl.structures.map((structure: NameQuantity) => structure.name);
-          // if (structureNames.includes(Structures.JUMP_GATE) && planet.querySelector('dgt-navigation-scan-jg').length == 0) {
-          //   let jgSpan: Element = document.createElement('span');
-          //   jgSpan.classList.add('dgt-navigation-scan-jg');
-          //   jgSpan.textContent = 'JG';
-          //   planet.querySelector('.coords').append(jgSpan);
-          // }
-          //
-          // if (structureNames.includes(Structures.HYPERSPACE_BEACON) && planet.querySelector('dgt-navigation-scan-hb').length == 0) {
-          //   let hbSpan: Element = document.createElement('span');
-          //   hbSpan.classList.add('dgt-navigation-scan-hb');
-          //   hbSpan.textContent = 'HB';
-          //   planet.querySelector('.coords').append(hbSpan);
-          // }
+          if (structureNames.includes(Structures.JUMP_GATE)) {
+            let jg: Element = document.createElement('.dgt-navigation-scan-structures-data .jg');
+            jg.textContent = 'JG';
+          }
+          if (structureNames.includes(Structures.HYPERSPACE_BEACON)) {
+            let jg: Element = document.createElement('.dgt-navigation-scan-structures-data .hb');
+            jg.textContent = 'HB';
+          }
 
           if (pl.workers.currentNumber > 0 || pl.soldiers > 0) {
             planet.querySelector('.dgt-navigation-scan-population .dgt-navigation-scan-workers-value').textContent =
@@ -85,7 +80,7 @@ export class ScansService {
             //   this.decimalPipe.transform(Math.ceil(requiredForInvasion), '1.0', 'en_US');
 
             planet.querySelector('.dgt-navigation-scan-population').style.display = '';
-            // planet.querySelector('.dgt-navigation-scan-invasion-data').style.display = '';
+            planet.querySelector('.dgt-navigation-scan-structures').style.display = '';
           }
         } else {
           planet.querySelector('.dgt-navigation-scan-turn .dgt-navigation-scan-turn-value').textContent = 'N/A';
