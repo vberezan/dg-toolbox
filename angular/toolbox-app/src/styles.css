@@ -211,13 +211,13 @@ a.right.navigation {
   font-size: 22px !important;
   line-height: 26px !important;
   padding: 0px !important;
+  margin-top: 0 !important;
 }
 
 a.right.navigation {
   width: 30px !important;
   height: 30px !important;
   text-align: center !important;
-  margin-top: 0 !important;
   float: right !important;
   position: absolute !important;
   margin-left: 417px !important;
@@ -237,8 +237,8 @@ a.right.navigation {
   -webkit-filter: grayscale(100%);
   filter: grayscale(100%);
   border-radius: 5px;
-  width: 99px;
-  height: 99px;
+  width: 100px;
+  height: 100px;
 }
 
 .navigation .row .planets table img {
