@@ -1,49 +1,50 @@
 .logout,
 .login {
-    overflow: hidden;
-    background-color: rgba(75, 75, 75, 0.6);
-    padding: 10px;
-    position: relative;
+  overflow: hidden;
+  background-color: rgba(75, 75, 75, 0.6);
+  padding: 10px;
+  position: relative;
 }
 
 .login > input {
-    display: block;
-    border-radius: 3px;
-    font-size: 14px;
-    background: #fff;
-    width: 50%;
-    border: 0;
-    padding: 5px 5px 5px 10px;
-    margin: 5px 0;
+  background: rgba(0, 0, 0, 0.35);
+  color: white;
+  border: 1px solid #555555;
+  padding: 8px;
+  margin: 0;
+  border-radius: 2px;
+  width: 100%;
+  box-sizing: border-box;
 }
+
 
 .logout > button,
 .login > button {
-    cursor: pointer;
-    color: #fff;
-    font-size: 16px;
-    width: 80px;
-    border: 0;
-    padding: 5px 0;
-    margin-top: 5px;
-    margin-right: 10px;
-    border-radius: 3px;
-    background-color: #f45b69;
-    -webkit-transition: background-color 300ms;
-    -moz-transition: background-color 300ms;
-    transition: background-color 300ms;
+  cursor: pointer;
+  color: #fff;
+  font-size: 16px;
+  width: 80px;
+  border: 0;
+  padding: 5px 0;
+  margin-top: 5px;
+  margin-right: 10px;
+  border-radius: 3px;
+  background-color: #f45b69;
+  -webkit-transition: background-color 300ms;
+  -moz-transition: background-color 300ms;
+  transition: background-color 300ms;
 }
 
 .logout > button:hover,
 .login > button:hover {
-    background-color: #f24353;
+  background-color: #f24353;
 }
 
 a {
-    text-decoration: none;
-    color: rgba(255, 255, 255, 0.6);
-    position: absolute;
-    right: 10px;
-    bottom: 10px;
-    font-size: 12px;
+  text-decoration: none;
+  color: rgba(255, 255, 255, 0.6);
+  position: absolute;
+  right: 10px;
+  bottom: 10px;
+  font-size: 12px;
 }
