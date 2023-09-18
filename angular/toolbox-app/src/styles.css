@@ -237,8 +237,8 @@ a.right.navigation {
   -webkit-filter: grayscale(100%);
   filter: grayscale(100%);
   border-radius: 5px;
-  width: 100px;
-  height: 100px;
+  width: 99px;
+  height: 99px;
 }
 
 .navigation .row .planets table img {
