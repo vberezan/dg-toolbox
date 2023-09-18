@@ -253,6 +253,10 @@ a.right.navigation {
   float: left !important;
 }
 
+.navigation .row .planets div.text>div {
+  display: none !important;
+}
+
 .dgt-navigation-scan {
   float: right;
   font-size: 11px;
