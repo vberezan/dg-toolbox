@@ -20,5 +20,6 @@ export enum Structures {
   LIGHT_WEAPONS_FACTORY = 'light weapons factory',
   HEAVY_WEAPONS_FACTORY = 'heavy weapons factory',
   SPACE_DOCK = 'space dock',
+  HOLO_GENERATOR = 'holo generator',
   ARMY_BARRACKS = 'army barracks'
 }

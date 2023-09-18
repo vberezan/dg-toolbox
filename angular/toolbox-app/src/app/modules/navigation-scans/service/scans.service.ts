@@ -88,9 +88,9 @@ export class ScansService {
             let jg: Element = planet.querySelector('.dgt-navigation-scan-structures-data .sd');
             jg.textContent = 'SD';
           }
-          if (structureNames.includes(Structures.ARMY_BARRACKS)) {
-            let jg: Element = planet.querySelector('.dgt-navigation-scan-structures-data .ab');
-            jg.textContent = 'AB';
+          if (structureNames.includes(Structures.HOLO_GENERATOR)) {
+            let jg: Element = planet.querySelector('.dgt-navigation-scan-structures-data .hg');
+            jg.textContent = 'HG';
           }
 
           if (pl.workers.currentNumber > 0 || pl.soldiers > 0) {

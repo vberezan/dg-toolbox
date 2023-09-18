@@ -430,6 +430,9 @@ a.right.navigation {
   color: #0ca1e1 !important;
 }
 
+.dgt-navigation-scan-structures-data .sy,
+.dgt-navigation-scan-structures-data .sd,
+.dgt-navigation-scan-structures-data .hg,
 .dgt-navigation-scan-structures-data .ab {
   color: #e46045 !important;
 }
