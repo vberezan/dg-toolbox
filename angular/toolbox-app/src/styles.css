@@ -369,6 +369,9 @@ a.right.navigation {
 
 .dgt-navigation-scan-population {
   margin-top: 10px;
+  position: absolute;
+  width: 95px;
+  background: #000000b8;
 }
 
 .dgt-navigation-scan-invasion-data,
@@ -385,20 +388,20 @@ a.right.navigation {
 }
 
 .dgt-navigation-scan-population td:first-child {
-  padding-left: 5px;
+  padding-left: 4px;
 }
 
 .dgt-navigation-scan-population .dgt-navigation-scan-soldiers-value,
 .dgt-navigation-scan-population .dgt-navigation-scan-workers-value {
   color: #fff;
-  font-size: 12px;
-  min-width: 48%;
+  font-size: 11px;
+  min-width: 55px;
 }
 
-.dgt-navigation-scan-invasion-data fa-icon,
-.dgt-navigation-scan-soldiers-icon fa-icon,
-.dgt-navigation-scan-workers-icon fa-icon {
-  font-size: 12px;
+.dgt-navigation-scan-soldiers-icon img,
+.dgt-navigation-scan-workers-icon img {
+  width: 14px !important;
+  height: 14px !important;
 }
 
 .dgt-navigation-scan-invasion-data {
