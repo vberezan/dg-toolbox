@@ -2,7 +2,6 @@
 .login {
   overflow: hidden;
   background-color: rgba(75, 75, 75, 0.6);
-  padding: 10px;
   position: relative;
 }
 
@@ -29,7 +28,7 @@
 }
 
 .dgt-login-button {
-  min-width: 160px;
+  min-width: 75px;
   float: left;
 }
 
