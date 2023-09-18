@@ -1,9 +1,20 @@
 <div *ngIf="displayLogin()" class="login" id="dgt-login">
   <span>DarkGalaxy Tools Login</span>
-  <input class="dgt-login" type="text" placeholder="email" required #userName>
-  <input class="dgt-password" type="password" placeholder="password" required #userPassword>
-  <button (click)="signInWithEmailAndPassword( userName.value, userPassword.value)">Login</button>
-  <button (click)="signInWithGoogle()">Login with Google</button>
+
+  <table>
+    <tbody>
+    <tr class="dgt-login-table-credentials">
+      <td><input class="dgt-login" type="text" placeholder="email" required #userName></td>
+      <td><input class="dgt-password" type="password" placeholder="password" required #userPassword></td>
+    </tr>
+    <tr class="dgt-login-table-signin">
+      <td>
+        <button (click)="signInWithEmailAndPassword( userName.value, userPassword.value)">Login</button>
+        <button (click)="signInWithGoogle()">Login with Google</button>
+      </td>
+    </tr>
+    </tbody>
+  </table>
 </div>
 
 <div *ngIf="!displayLogin()" class="logout" id="dgt-logout">
