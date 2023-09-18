@@ -46,9 +46,9 @@ export class ScansService {
         let pl: PlanetScan = byLocation.get(planetLocation);
 
         if (pl) {
-          planet.querySelector('.dgt-navigation-scan-coords-value').textContent =
-            this.decimalPipe.transform(pl.turn, '1.0', 'en_US');
           planet.querySelector('.dgt-navigation-scan-turn-value').textContent =
+            this.decimalPipe.transform(pl.turn, '1.0', 'en_US');
+          planet.querySelector('.dgt-navigation-scan-coords-value').textContent =
             planet.querySelector('.coords>span').textContent.trim();
 
           pl.resources.forEach((resource: Resource): void => {
