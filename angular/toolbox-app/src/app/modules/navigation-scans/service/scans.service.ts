@@ -58,19 +58,19 @@ export class ScansService {
           });
 
           let structureNames: string[] = pl.structures.map((structure: NameQuantity) => structure.name);
-          if (structureNames.includes(Structures.JUMP_GATE) && !planet.querySelector('dgt-navigation-scan-jg')) {
-            let jgSpan: Element = document.createElement('span');
-            jgSpan.classList.add('dgt-navigation-scan-jg');
-            jgSpan.textContent = 'JG';
-            planet.querySelector('.coords').append(jgSpan);
-          }
-
-          if (structureNames.includes(Structures.HYPERSPACE_BEACON) && !planet.querySelector('dgt-navigation-scan-hb')) {
-            let hbSpan: Element = document.createElement('span');
-            hbSpan.classList.add('dgt-navigation-scan-hb');
-            hbSpan.textContent = 'HB';
-            planet.querySelector('.coords').append(hbSpan);
-          }
+          // if (structureNames.includes(Structures.JUMP_GATE) && planet.querySelector('dgt-navigation-scan-jg').length == 0) {
+          //   let jgSpan: Element = document.createElement('span');
+          //   jgSpan.classList.add('dgt-navigation-scan-jg');
+          //   jgSpan.textContent = 'JG';
+          //   planet.querySelector('.coords').append(jgSpan);
+          // }
+          //
+          // if (structureNames.includes(Structures.HYPERSPACE_BEACON) && planet.querySelector('dgt-navigation-scan-hb').length == 0) {
+          //   let hbSpan: Element = document.createElement('span');
+          //   hbSpan.classList.add('dgt-navigation-scan-hb');
+          //   hbSpan.textContent = 'HB';
+          //   planet.querySelector('.coords').append(hbSpan);
+          // }
 
           if (pl.workers.currentNumber > 0 || pl.soldiers > 0) {
             planet.querySelector('.dgt-navigation-scan-population .dgt-navigation-scan-workers-value').textContent =
@@ -78,9 +78,9 @@ export class ScansService {
             planet.querySelector('.dgt-navigation-scan-population .dgt-navigation-scan-soldiers-value').textContent =
               this.decimalPipe.transform(pl.soldiers, '1.0', 'en_US');
 
-            let requiredForInvasion: number = ((pl.workers.currentNumber / 15) + (pl.soldiers / 2) * 3) + 1;
-            planet.querySelector('.dgt-navigation-scan-invasion-value').textContent =
-              this.decimalPipe.transform(Math.ceil(requiredForInvasion), '1.0', 'en_US');
+            // let requiredForInvasion: number = ((pl.workers.currentNumber / 15) + (pl.soldiers / 2) * 3) + 1;
+            // planet.querySelector('.dgt-navigation-scan-invasion-value').textContent =
+            //   this.decimalPipe.transform(Math.ceil(requiredForInvasion), '1.0', 'en_US');
 
             planet.querySelector('.dgt-navigation-scan-population').style.display = '';
             planet.querySelector('.dgt-navigation-scan-invasion-data').style.display = '';
