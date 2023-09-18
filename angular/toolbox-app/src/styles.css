@@ -414,6 +414,10 @@ a.right.navigation {
   text-align: left;
 }
 
+.dgt-navigation-scan-structures-data .invasion-value {
+  padding-left: 0 !important;
+}
+
 
 .dgt-navigation-scan-structures-data .jg {
   color: #0ca1e1 !important;
