@@ -30,7 +30,7 @@ export class ScansService {
   fillScans(summaries: PlanetSummary[]) {
     let locations: string[] = summaries.map((summary: PlanetSummary) => summary.location.join('.'));
 
-    collectionData(
+    let subscription = collectionData(
       query(collection(this.firestore, 'scans'),
         where('location', 'in', locations)
       )
@@ -94,6 +94,9 @@ export class ScansService {
         }
       });
 
+      // -- we do this to avoid large consumption of Firestore reads.
+      // -- if the usage stays in reasonable limits, we can switch to live.
+      subscription.unsubscribe();
     });
   }
 }
