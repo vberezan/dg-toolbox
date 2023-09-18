@@ -110,19 +110,19 @@ function loadCustomStyling() {
 function loadAngular() {
     let angular = [{
         tagName: 'link',
-        href: 'https://cdn.jsdelivr.net/gh/vberezan/dg-toolbox@development/angular/toolbox-app/dist/toolbox-app/styles.0c5a3c9eca00aa87.css',
+        href: 'https://cdn.jsdelivr.net/gh/vberezan/dg-toolbox@development/angular/toolbox-app/dist/toolbox-app/styles.37e79b92372a13c2.css',
         rel: 'stylesheet'
     }, {
         tagName: 'script',
-        src: 'https://cdn.jsdelivr.net/gh/vberezan/dg-toolbox@development/angular/toolbox-app/dist/toolbox-app/runtime.79543c56c927dd9a.js',
+        src: 'https://cdn.jsdelivr.net/gh/vberezan/dg-toolbox@development/angular/toolbox-app/dist/toolbox-app/runtime.7f7a1c1514cf4fd2.js',
         rel: 'module'
     }, {
         tagName: 'script',
-        src: 'https://cdn.jsdelivr.net/gh/vberezan/dg-toolbox@development/angular/toolbox-app/dist/toolbox-app/polyfills.fccd34e7614ee531.js',
+        src: 'https://cdn.jsdelivr.net/gh/vberezan/dg-toolbox@development/angular/toolbox-app/dist/toolbox-app/polyfills.8e8b88e65f8eb80f.js',
         rel: 'module'
     }, {
         tagName: 'script',
-        src: 'https://cdn.jsdelivr.net/gh/vberezan/dg-toolbox@development/angular/toolbox-app/dist/toolbox-app/main.1039d67f3fbd43df.js',
+        src: 'https://cdn.jsdelivr.net/gh/vberezan/dg-toolbox@development/angular/toolbox-app/dist/toolbox-app/main.311b544796bc718e.js',
         rel: 'module'
     }];
 
@@ -144,16 +144,20 @@ function loadAngular() {
             src: 'https://cdn.jsdelivr.net/gh/vberezan/dg-toolbox@development/tampermonkey/parts/dg-toolbox-utils.3.js',
             rel: 'text/javascript'
         }).onload = function () {
-            document.body.prepend(document.createElement('dgt-authentication'));
-            console.log("%cDGT%c - cooking environment", "font-size: 12px; font-weight: bold;", "font-size: 12px;");
-            loadSetups(windowURL);
-            console.log("%cDGT%c - cooking additional components", "font-size: 12px; font-weight: bold;", "font-size: 12px;");
-            loadAngular();
-            console.log("%cDGT%c - cooking custom theme", "font-size: 12px; font-weight: bold;", "font-size: 12px;");
-            loadCustomStyling();
+            if (document.getElementById('playerBox')) {
+                document.getElementById('playerBox').append(document.createElement('dgt-authentication'));
 
-            console.log("%cDGT%c - all done", "font-size: 12px; font-weight: bold;", "font-size: 12px;");
-            console.log("%cDGT%c - 2023 ©nobody - do whatever you want with this code", "font-size: 12px; font-weight: bold;", "font-size: 12px;");
+                console.log("%cDGT%c - cooking environment", "font-size: 12px; font-weight: bold;", "font-size: 12px;");
+                loadSetups(windowURL);
+                console.log("%cDGT%c - cooking additional components", "font-size: 12px; font-weight: bold;", "font-size: 12px;");
+                loadAngular();
+                console.log("%cDGT%c - cooking custom theme", "font-size: 12px; font-weight: bold;", "font-size: 12px;");
+                loadCustomStyling();
+
+                console.log("%cDGT%c - enjoy", "font-size: 12px; font-weight: bold;", "font-size: 12px;");
+            } else {
+                document.body.style.visibility = '';
+            }
         }
     });
 })();
