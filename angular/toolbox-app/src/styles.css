@@ -544,6 +544,11 @@ label.queueDestroyButton:hover {
 
 /*******/
 
+#playerBox {
+  border-radius: 5px;
+  margin-top: 5px !important;
+}
+
 #playerBox .header fa-icon svg{
   fill: #FFF;
 }
@@ -564,6 +569,8 @@ label.queueDestroyButton:hover {
 
 #playerBox .header {
   line-height: 32px !important;
+  border-top-left-radius: 3px;
+  border-top-right-radius: 3px;
 }
 
 #playerBox .header>div,
