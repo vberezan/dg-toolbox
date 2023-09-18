@@ -108,11 +108,11 @@ export class ScansService {
             planet.querySelector('.dgt-navigation-scan-structures').style.display = '';
           }
         } else {
-          planet.querySelector('.dgt-navigation-scan-turn .dgt-navigation-scan-turn-value').textContent = 'N/A';
-          planet.querySelector('.dgt-navigation-scan .dgt-navigation-scan-resource.metal .abundance').textContent = '-';
-          planet.querySelector('.dgt-navigation-scan .dgt-navigation-scan-resource.mineral .abundance').textContent = '-';
-          planet.querySelector('.dgt-navigation-scan .dgt-navigation-scan-resource.food .abundance').textContent = '-';
-          planet.querySelector('.dgt-navigation-scan .dgt-navigation-scan-resource.energy .abundance').textContent = '-';
+          planet.querySelector('.dgt-navigation-scan-turn-value').textContent = 'N/A';
+          planet.querySelector('.dgt-navigation-scan-resource.metal .abundance').textContent = '-';
+          planet.querySelector('.dgt-navigation-scan-resource.mineral .abundance').textContent = '-';
+          planet.querySelector('.dgt-navigation-scan-resource.food .abundance').textContent = '-';
+          planet.querySelector('.dgt-navigation-scan-resource.energy .abundance').textContent = '-';
         }
       });
 
