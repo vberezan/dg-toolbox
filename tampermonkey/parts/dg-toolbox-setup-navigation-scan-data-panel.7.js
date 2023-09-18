@@ -7,7 +7,7 @@ function setUpNavigationScanDataPanel(windowURL) {
         surfaceTable.innerHTML =
             '<tbody>' +
                 '<tr class="dgt-navigation-scan-coords">' +
-                    '<td class="dgt-navigation-scan-coords-label">Turn: </td>' +
+                    '<td class="dgt-navigation-scan-coords-label"><img src="https://i.imgur.com/F0Vdyzn.png" width="17" height="17"></td>' +
                     '<td class="dgt-navigation-scan-coords-value"></td>' +
                 '</tr>' +
                 '<tr class="dgt-navigation-scan-turn">' +
