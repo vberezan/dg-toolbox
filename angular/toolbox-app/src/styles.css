@@ -215,10 +215,18 @@ a.right.navigation {
   height: auto !important;
 }
 
-.navigation .row .planets img {
-  border-radius: 5px;
+
+.navigation .row .planets>img {
   -webkit-filter: grayscale(100%);
   filter: grayscale(100%);
+  border-radius: 5px;
+}
+
+.navigation .row .planets table img {
+  border-radius: 3px;
+  border: 1px solid #626262;
+  height: 15px;
+  width: 15px;
 }
 
 .navigation .row .planets img,
