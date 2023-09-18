@@ -370,15 +370,14 @@ a.right.navigation {
 .dgt-navigation-scan-population {
   margin-top: 10px;
   position: absolute;
-  width: 95px;
   background: #000000b8;
 }
 
 .dgt-navigation-scan-invasion-data,
 .dgt-navigation-scan-population {
   float: left !important;
-  width: 100%;
   line-height: 14px !important;
+  width: 100px !important;
   border-collapse: collapse;
 }
 
