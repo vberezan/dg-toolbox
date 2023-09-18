@@ -94,9 +94,21 @@ export class ScansService {
             ab.textContent = 'AB';
           }
 
+          let popGrowth: number= 0;
+          if (structureNames.includes(Structures.MEDICAL_CENTRE)) {
+            popGrowth += 0.3;
+          }
+          if (structureNames.includes(Structures.LEISURE_CENTRE)) {
+            popGrowth += 0.4;
+          }
+          if (structureNames.includes(Structures.HOSPITAL)) {
+            popGrowth += 0.3;
+          }
+
           if (pl.workers.currentNumber > 0 || pl.soldiers > 0) {
             planet.querySelector('.dgt-navigation-scan-population .dgt-navigation-scan-workers-value').textContent =
-              this.decimalPipe.transform(pl.workers.currentNumber, '1.0', 'en_US');
+              this.decimalPipe.transform(pl.workers.currentNumber, '1.0', 'en_US') + ' | ' +
+              this.decimalPipe.transform(popGrowth, '1.0', 'en_US');
             planet.querySelector('.dgt-navigation-scan-population .dgt-navigation-scan-soldiers-value').textContent =
               this.decimalPipe.transform(pl.soldiers, '1.0', 'en_US');
 
