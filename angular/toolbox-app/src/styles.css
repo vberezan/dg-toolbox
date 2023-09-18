@@ -242,10 +242,10 @@ a.right.navigation {
 }
 
 .navigation .row .planets table img {
-  border-radius: 3px;
+  border-radius: 2px;
   border: 1px solid #626262;
-  height: 15px;
-  width: 15px;
+  height: 12px;
+  width: 12px;
 }
 
 .navigation .row .planets img,
@@ -269,6 +269,7 @@ a.right.navigation {
   width: 100%;
 }
 
+.dgt-navigation-scan-coords,
 .dgt-navigation-scan-turn {
   color: #fff !important;
 }
@@ -323,6 +324,11 @@ a.right.navigation {
   color: #fff;
 }
 
+.navigation .row .planets .text b {
+  margin-top: 10px !important;
+  padding-left: 1px !important;
+}
+
 .navigation .row .planets .text span.friendly {
   color: #55FF55 !important;
 }
@@ -343,6 +349,7 @@ a.right.navigation {
 .dgt-navigation-scan-jg {
   color: #0ca1e1 !important;
   padding-left: 5px;
+  margin-top: 2px;
 }
 
 .dgt-navigation-scan-fleet {
