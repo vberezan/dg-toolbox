@@ -418,6 +418,7 @@ a.right.navigation {
 
 .dgt-navigation-scan-structures-data td {
   color: #fff;
+  min-width: 25%;
 }
 
 .dgt-navigation-scan-structures-data .jg {

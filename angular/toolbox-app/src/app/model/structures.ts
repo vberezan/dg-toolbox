@@ -15,5 +15,9 @@ export enum Structures {
   SOLAR_STATION = 'solar station',
   JUMP_GATE = 'jump gate',
   HYPERSPACE_BEACON = 'hyperspace beacon',
-  SPACE_TETHER = 'space tether'
+  SPACE_TETHER = 'space tether',
+  SHIP_YARD = 'ship yard',
+  LIGHT_WEAPONS_FACTORY = 'light weapons factory',
+  HEAVY_WEAPONS_FACTORY = 'heavy weapons factory',
+  SPACE_DOCK = 'space dock'
 }

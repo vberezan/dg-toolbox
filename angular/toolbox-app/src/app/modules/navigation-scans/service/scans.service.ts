@@ -68,6 +68,26 @@ export class ScansService {
             let jg: Element = planet.querySelector('.dgt-navigation-scan-structures-data .hb');
             jg.textContent = 'HB';
           }
+          if (structureNames.includes(Structures.SPACE_TETHER)) {
+            let jg: Element = planet.querySelector('.dgt-navigation-scan-structures-data .st');
+            jg.textContent = 'ST';
+          }
+          if (structureNames.includes(Structures.LIGHT_WEAPONS_FACTORY)) {
+            let jg: Element = planet.querySelector('.dgt-navigation-scan-structures-data .lw');
+            jg.textContent = 'LW';
+          }
+          if (structureNames.includes(Structures.HEAVY_WEAPONS_FACTORY)) {
+            let jg: Element = planet.querySelector('.dgt-navigation-scan-structures-data .hw');
+            jg.textContent = 'HW';
+          }
+          if (structureNames.includes(Structures.SHIP_YARD)) {
+            let jg: Element = planet.querySelector('.dgt-navigation-scan-structures-data .sy');
+            jg.textContent = 'SY';
+          }
+          if (structureNames.includes(Structures.SPACE_DOCK)) {
+            let jg: Element = planet.querySelector('.dgt-navigation-scan-structures-data .sd');
+            jg.textContent = 'SD';
+          }
 
           if (pl.workers.currentNumber > 0 || pl.soldiers > 0) {
             planet.querySelector('.dgt-navigation-scan-population .dgt-navigation-scan-workers-value').textContent =
