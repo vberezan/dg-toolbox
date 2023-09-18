@@ -18,26 +18,34 @@
   box-sizing: border-box;
 }
 
-.logout > button,
-.login > button {
+.logout button,
+.login button {
   cursor: pointer;
-  color: #fff;
-  font-size: 16px;
-  width: 80px;
-  border: 0;
-  padding: 5px 0;
-  margin-top: 5px;
-  margin-right: 10px;
-  border-radius: 3px;
-  background-color: #f45b69;
-  -webkit-transition: background-color 300ms;
-  -moz-transition: background-color 300ms;
-  transition: background-color 300ms;
 }
 
 .logout > button:hover,
 .login > button:hover {
   background-color: #f24353;
+}
+
+.dgt-login-button {
+  min-width: 160px;
+  float: left;
+}
+
+.dgt-login-with-google-button img {
+  width: 20px;
+  height: 20px;
+  margin: 0;
+  vertical-align: middle;
+}
+
+.dgt-login-with-google-button {
+  margin-left: 5px;
+  min-width: 30px;
+  padding: 0;
+  height: 26px !important;
+  float: left;
 }
 
 .login a {
@@ -47,4 +55,13 @@
   right: 10px;
   bottom: 10px;
   font-size: 12px;
+}
+
+.login span {
+  padding: 1px;
+  text-shadow: -1px -1px 0 #000, 1px -1px 0 #000, -1px 1px 0 #000, 1px 1px 0 #000;
+  font-family: DarkGalaxy, sans-serif;
+  font-size: 18px;
+  color: #fff;
+  line-height: 14px;
 }
