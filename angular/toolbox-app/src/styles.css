@@ -362,7 +362,6 @@ a.right.navigation {
   background: #000000b8;
 }
 
-.dgt-navigation-scan-invasion-data,
 .dgt-navigation-scan-population {
   float: left !important;
   line-height: 14px !important;
@@ -392,15 +391,6 @@ a.right.navigation {
   height: 14px !important;
 }
 
-.dgt-navigation-scan-invasion-data {
-  text-align: left;
-  padding-left: 5px;
-}
-
-.dgt-navigation-scan-invasion-data span {
-  color: #fff;
-  font-size: 12px;
-}
 
 .dgt-navigation-scan-invasion-value {
   margin-left: 3px;
@@ -422,16 +412,11 @@ a.right.navigation {
   font-size: 11px;
 }
 
-.dgt-navigation-scan-structures-data td.sd {
-  padding-bottom: 10px !important;
-}
 
 .dgt-navigation-scan-structures-data .jg {
   color: #0ca1e1 !important;
 }
 
-.dgt-navigation-scan-structures-data .sy,
-.dgt-navigation-scan-structures-data .sd,
 .dgt-navigation-scan-structures-data .hg,
 .dgt-navigation-scan-structures-data .ab {
   color: #e46045 !important;

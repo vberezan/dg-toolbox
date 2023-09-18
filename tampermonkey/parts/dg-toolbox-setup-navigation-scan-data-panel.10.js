@@ -63,6 +63,10 @@ function setUpNavigationScanDataPanel(windowURL) {
         structuresTable.innerHTML =
             '<tbody>' +
                 '<tr class="dgt-navigation-scan-structures-data">' +
+                    '<td colspan="2" class="invasion-label">Invasion:</td>' +
+                    '<td colspan="2" class="invasion-value"></td>' +
+                '</tr>' +
+                '<tr class="dgt-navigation-scan-structures-data">' +
                     '<td class="hb"></td>' +
                     '<td class="jg"></td>' +
                     '<td class="ab"></td>' +
