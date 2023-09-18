@@ -46,8 +46,7 @@ export class ScansService {
         let pl: PlanetScan = byLocation.get(planetLocation);
 
         planet.querySelector('.dgt-navigation-scan-turn').style.display = '';
-        planet.querySelector('img:first-child').css('filter', 'grayscale(100%)');
-        planet.querySelector('img:first-child').css('-webkit-filter', 'grayscale(100%)');
+        planet.querySelector('img:first-child').style.filter = 'grayscale(100%)';
 
         if (pl) {
           planet.querySelector('.dgt-navigation-scan-turn-value').textContent =
