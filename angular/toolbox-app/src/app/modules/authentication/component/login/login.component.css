@@ -22,11 +22,7 @@
   cursor: pointer;
 }
 
-.logout > button:hover,
-.login > button:hover {
-  background-color: #f24353;
-}
-
+.dgt-logout-button,
 .dgt-login-button {
   min-width: 75px;
   float: left;
