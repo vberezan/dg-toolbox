@@ -68,10 +68,6 @@ export class ScansService {
             let hb: Element = planet.querySelector('.dgt-navigation-scan-structures-data .hb');
             hb.textContent = 'HB';
           }
-          if (structureNames.includes(Structures.SPACE_TETHER)) {
-            let st: Element = planet.querySelector('.dgt-navigation-scan-structures-data .st');
-            st.textContent = 'ST';
-          }
           if (structureNames.includes(Structures.LIGHT_WEAPONS_FACTORY)) {
             let lw: Element = planet.querySelector('.dgt-navigation-scan-structures-data .lw');
             lw.textContent = 'LW';
