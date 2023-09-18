@@ -536,3 +536,8 @@ label.queueDestroyButton:hover {
 #completed .upkeepList img {
   float: left;
 }
+
+#completed form .entry>div:nth-child(2) {
+  padding-top: 4px !important;
+  line-height: 20px !important;
+}
