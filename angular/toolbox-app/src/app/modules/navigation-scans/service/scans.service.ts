@@ -58,14 +58,14 @@ export class ScansService {
           });
 
           let structureNames: string[] = pl.structures.map((structure: NameQuantity) => structure.name);
-          if (structureNames.includes(Structures.JUMP_GATE)) {
+          if (structureNames.includes(Structures.JUMP_GATE) && !planet.querySelector('dgt-navigation-scan-jg')) {
             let jgSpan: Element = document.createElement('span');
             jgSpan.classList.add('dgt-navigation-scan-jg');
             jgSpan.textContent = 'JG';
             planet.querySelector('.coords').append(jgSpan);
           }
 
-          if (structureNames.includes(Structures.HYPERSPACE_BEACON)) {
+          if (structureNames.includes(Structures.HYPERSPACE_BEACON) && !planet.querySelector('dgt-navigation-scan-hb')) {
             let hbSpan: Element = document.createElement('span');
             hbSpan.classList.add('dgt-navigation-scan-hb');
             hbSpan.textContent = 'HB';
