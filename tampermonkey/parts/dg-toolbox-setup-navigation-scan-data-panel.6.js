@@ -2,46 +2,35 @@ function setUpNavigationScanDataPanel(windowURL) {
     document.querySelectorAll('div.navigation .row .planets').forEach((planet) => {
 
         // -- resources
-        let resources = ['metal', 'mineral', 'food', 'energy'];
         let surfaceTable = document.createElement('table');
-        let surfaceTbody = document.createElement('tbody');
         surfaceTable.classList.add('dgt-navigation-scan');
-        surfaceTable.append(surfaceTbody);
-
-        let turnRow = document.createElement('tr');
-        turnRow.classList.add('dgt-navigation-scan-turn');
-        let turnLabel = document.createElement('td');
-        turnLabel.textContent = 'Turn:'
-        turnLabel.classList.add('dgt-navigation-scan-turn-label');
-        let turnValue = document.createElement('td');
-        turnValue.classList.add('dgt-navigation-scan-turn-value');
-
-        turnRow.append(turnLabel);
-        turnRow.append(turnValue);
-        surfaceTbody.append(turnRow);
-
-        resources.forEach((resource) => {
-            let row = document.createElement('tr');
-            let abundance = document.createElement('td');
-            let production = document.createElement('td');
-
-            row.classList.add('dgt-navigation-scan-resource', resource);
-            abundance.classList.add('abundance');
-            production.classList.add('production');
-
-            row.append(abundance, production);
-
-            surfaceTbody.append(row);
-        });
-
-        let surfaceMetalColumn = document.createElement('td')
-        surfaceMetalColumn.classList.add('dgt-navigation-scan-resource', 'metal');
-        let surfaceMineralColumn = document.createElement('td')
-        surfaceMineralColumn.classList.add('dgt-navigation-scan-resource', 'mineral');
-        let surfaceFoodColumn = document.createElement('td')
-        surfaceFoodColumn.classList.add('dgt-navigation-scan-resource', 'food');
-        let surfaceEnergyColumn = document.createElement('td')
-        surfaceEnergyColumn.classList.add('dgt-navigation-scan-resource', 'energy');
+        surfaceTable.innerHTML =
+            '<tbody>' +
+                '<tr class="dgt-navigation-scan-coords">' +
+                    '<td class="dgt-navigation-scan-coords-label">Turn: </td>' +
+                    '<td class="dgt-navigation-scan-coords-value"></td>' +
+                '</tr>' +
+                '<tr class="dgt-navigation-scan-turn">' +
+                    '<td class="dgt-navigation-scan-turn-label">Turn: </td>' +
+                    '<td class="dgt-navigation-scan-turn-value"></td>' +
+                '</tr>' +
+                '<tr class="dgt-navigation-scan-resource metal">' +
+                    '<td class="abundance"></td>' +
+                    '<td class="production"></td>' +
+                '</tr>' +
+                '<tr class="dgt-navigation-scan-resource mineral">' +
+                    '<td class="abundance"></td>' +
+                    '<td class="production"></td>' +
+                '</tr>' +
+                '<tr class="dgt-navigation-scan-resource food">' +
+                    '<td class="abundance"></td>' +
+                    '<td class="production"></td>' +
+                '</tr>' +
+                '<tr class="dgt-navigation-scan-resource energy">' +
+                    '<td class="abundance"></td>' +
+                    '<td class="production"></td>' +
+                '</tr>' +
+            '</tbody>';
 
         planet.insertBefore(surfaceTable, planet.querySelector('div.text'));
 
