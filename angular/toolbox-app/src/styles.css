@@ -574,3 +574,7 @@ label.queueDestroyButton:hover {
 #playerBox .header>div>a>img {
   object-fit: cover;
 }
+
+#turnStatus {
+  font-weight: normal !important;
+}
