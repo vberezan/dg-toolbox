@@ -65,32 +65,36 @@ export class ScansService {
             jg.textContent = 'JG';
           }
           if (structureNames.includes(Structures.HYPERSPACE_BEACON)) {
-            let jg: Element = planet.querySelector('.dgt-navigation-scan-structures-data .hb');
-            jg.textContent = 'HB';
+            let hb: Element = planet.querySelector('.dgt-navigation-scan-structures-data .hb');
+            hb.textContent = 'HB';
           }
           if (structureNames.includes(Structures.SPACE_TETHER)) {
-            let jg: Element = planet.querySelector('.dgt-navigation-scan-structures-data .st');
-            jg.textContent = 'ST';
+            let st: Element = planet.querySelector('.dgt-navigation-scan-structures-data .st');
+            st.textContent = 'ST';
           }
           if (structureNames.includes(Structures.LIGHT_WEAPONS_FACTORY)) {
-            let jg: Element = planet.querySelector('.dgt-navigation-scan-structures-data .lw');
-            jg.textContent = 'LW';
+            let lw: Element = planet.querySelector('.dgt-navigation-scan-structures-data .lw');
+            lw.textContent = 'LW';
           }
           if (structureNames.includes(Structures.HEAVY_WEAPONS_FACTORY)) {
-            let jg: Element = planet.querySelector('.dgt-navigation-scan-structures-data .hw');
-            jg.textContent = 'HW';
+            let hw: Element = planet.querySelector('.dgt-navigation-scan-structures-data .hw');
+            hw.textContent = 'HW';
           }
           if (structureNames.includes(Structures.SHIP_YARD)) {
-            let jg: Element = planet.querySelector('.dgt-navigation-scan-structures-data .sy');
-            jg.textContent = 'SY';
+            let sy: Element = planet.querySelector('.dgt-navigation-scan-structures-data .sy');
+            sy.textContent = 'SY';
           }
           if (structureNames.includes(Structures.SPACE_DOCK)) {
-            let jg: Element = planet.querySelector('.dgt-navigation-scan-structures-data .sd');
-            jg.textContent = 'SD';
+            let sd: Element = planet.querySelector('.dgt-navigation-scan-structures-data .sd');
+            sd.textContent = 'SD';
           }
           if (structureNames.includes(Structures.HOLO_GENERATOR)) {
-            let jg: Element = planet.querySelector('.dgt-navigation-scan-structures-data .hg');
-            jg.textContent = 'HG';
+            let hg: Element = planet.querySelector('.dgt-navigation-scan-structures-data .hg');
+            hg.textContent = 'HG';
+          }
+          if (structureNames.includes(Structures.ARMY_BARRACKS)) {
+            let ab: Element = planet.querySelector('.dgt-navigation-scan-structures-data .ab');
+            ab.textContent = 'AB';
           }
 
           if (pl.workers.currentNumber > 0 || pl.soldiers > 0) {
