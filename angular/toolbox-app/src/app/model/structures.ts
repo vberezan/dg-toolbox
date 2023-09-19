@@ -23,5 +23,6 @@ export enum Structures {
   ARMY_BARRACKS = 'army barracks',
   LEISURE_CENTRE = 'leisure centre',
   MEDICAL_CENTRE = 'medical centre',
-  HOSPITAL = 'hospital'
+  HOSPITAL = 'hospital',
+  COMMS_SATELLITE = 'comms satellite'
 }

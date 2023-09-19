@@ -49,10 +49,12 @@ function setUpNavigationScanDataPanel(windowURL) {
                 '<tr class="dgt-navigation-scan-population-data">' +
                     '<td class="dgt-navigation-scan-workers-icon"><img src="https://i.imgur.com/7u6VnpE.png" title="Workers" width="17" height="17" /></td>' +
                     '<td class="dgt-navigation-scan-workers-value"></td>' +
+                    '<td class="dgt-navigation-scan-workers-gr"></td>' +
                 '</tr>' +
                 '<tr class="dgt-navigation-scan-population-data">' +
                     '<td class="dgt-navigation-scan-soldiers-icon"><img src="https://i.imgur.com/FHlHgxL.png" title="Soldiers" width="17" height="17" /></td>' +
                     '<td class="dgt-navigation-scan-soldiers-value"></td>' +
+                    '<td class="dgt-navigation-scan-soldiers-ab"></td>' +
                 '</tr>' +
             '</tbody>'
 
@@ -71,7 +73,7 @@ function setUpNavigationScanDataPanel(windowURL) {
                 '<tr class="dgt-navigation-scan-structures-data">' +
                     '<td class="hb"></td>' +
                     '<td class="jg"></td>' +
-                    '<td class="ab"></td>' +
+                    '<td class="cs"></td>' +
                     '<td class="hg"></td>' +
                 '</tr>' +
                 '<tr class="dgt-navigation-scan-structures-data">' +

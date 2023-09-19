@@ -45,7 +45,7 @@ export class ScansService {
         let planetLocation: string = planet.querySelector('div.coords > span').textContent.trim();
         let pl: PlanetScan = byLocation.get(planetLocation);
 
-        planet.querySelector('.dgt-navigation-scan-turn').style.display = '';
+        planet.querySelector('.dgt-navigation-scan-turn').style.display = 'contents';
         planet.querySelector('img:first-child').style.filter = 'grayscale(100%)';
 
         if (pl) {
@@ -90,11 +90,15 @@ export class ScansService {
             hg.textContent = 'HG';
           }
           if (structureNames.includes(Structures.ARMY_BARRACKS)) {
-            let ab: Element = planet.querySelector('.dgt-navigation-scan-structures-data .ab');
-            ab.textContent = 'AB';
+            planet.querySelector('.dgt-navigation-scan-population .dgt-navigation-scan-soldiers-ab').textContent =
+              'AB';
+          }
+          if (structureNames.includes(Structures.COMMS_SATELLITE)) {
+            let cs: Element = planet.querySelector('.dgt-navigation-scan-structures-data .cs');
+            cs.textContent = 'CS';
           }
 
-          let popGrowth: number= 0;
+          let popGrowth: number= 1;
           if (structureNames.includes(Structures.MEDICAL_CENTRE)) {
             popGrowth += 0.3;
           }
@@ -107,10 +111,9 @@ export class ScansService {
 
           if (pl.workers.currentNumber > 0 || pl.soldiers > 0) {
             planet.querySelector('.dgt-navigation-scan-population .dgt-navigation-scan-workers-value').textContent =
-              this.decimalPipe.transform(pl.workers.currentNumber, '1.0', 'en_US') + '|' +
+              this.decimalPipe.transform(pl.workers.currentNumber, '1.0', 'en_US');
+            planet.querySelector('.dgt-navigation-scan-population .dgt-navigation-scan-workers-gr').textContent =
               this.decimalPipe.transform(popGrowth, '1.0', 'en_US');
-            planet.querySelector('.dgt-navigation-scan-population .dgt-navigation-scan-soldiers-value').textContent =
-              this.decimalPipe.transform(pl.soldiers, '1.0', 'en_US');
 
             let requiredForInvasion: number = ((pl.workers.currentNumber / 15) + (pl.soldiers / 2) * 3) + 1;
             planet.querySelector('.dgt-navigation-scan-structures-data .invasion-value').textContent =
