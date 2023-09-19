@@ -62,7 +62,7 @@ a:hover {
   margin-right: 5px !important;
 }
 
-#buttonBlock a#comms,
+#buttonBlock #comms,
 #buttonBlock a:last-child {
   width: 174px !important;
   margin-right: 0 !important;
