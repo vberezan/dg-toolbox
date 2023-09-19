@@ -261,6 +261,11 @@ a.right.navigation {
     position: relative;
     background: #000;
   }
+
+  .opacBackground.ofHidden.padding,
+  .navigation .row.ofHidden {
+    overflow: visible !important;
+  }
 }
 
 .navigation .row .planets>img {
