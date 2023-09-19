@@ -57,7 +57,7 @@
 .resource > span.dgt-value {
   float: right;
   padding-left: 4px;
-  line-height: 20px;
+  line-height: 17px;
 }
 
 .dgt-stats-panel {
@@ -67,3 +67,11 @@
 .dgt-resource fa-icon {
   font-size: 14px !important;
 }
+
+.dgt-resource img {
+  border-radius: 3px;
+  border: 1px solid #626262;
+  height: 15px;
+  width: 15px;
+}
+
