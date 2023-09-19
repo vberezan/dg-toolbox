@@ -25,6 +25,12 @@ body {
   color: #fff;
 }
 
+input:focus,
+input:focus-visible {
+  outline: none;
+  border-color: #9b9b9b;
+}
+
 a:hover {
   text-decoration: none !important;
 }
