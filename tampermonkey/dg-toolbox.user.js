@@ -58,7 +58,7 @@ function loadSetups(windowURL) {
 
     loadResource({
         tagName: 'script',
-        src: 'https://cdn.jsdelivr.net/gh/vberezan/dg-toolbox/tampermonkey/parts/dg-toolbox-setup-navigation-scan-data-panel.13.js',
+        src: 'https://cdn.jsdelivr.net/gh/vberezan/dg-toolbox/tampermonkey/parts/dg-toolbox-setup-navigation-scan-data-panel.15.js',
         rel: 'text/javascript'
     }).onload = function () {
         setUpNavigationScanDataPanel(windowURL);
@@ -68,7 +68,7 @@ function loadSetups(windowURL) {
 function loadCustomStyling() {
     loadResource({
         tagName: 'script',
-        src: 'https://cdn.jsdelivr.net/gh/vberezan/dg-toolbox/tampermonkey/parts/dg-toolbox-custom-styling.3.js',
+        src: 'https://cdn.jsdelivr.net/gh/vberezan/dg-toolbox/tampermonkey/parts/dg-toolbox-custom-styling.6.js',
         rel: 'text/javascript'
     }).onload = function () {
         applyCustomStyling();
@@ -110,7 +110,7 @@ function loadCustomStyling() {
 function loadAngular() {
     let angular = [{
         tagName: 'link',
-        href: 'https://cdn.jsdelivr.net/gh/vberezan/dg-toolbox/angular/toolbox-app/dist/toolbox-app/styles.2971a987554ae133.css',
+        href: 'https://cdn.jsdelivr.net/gh/vberezan/dg-toolbox/angular/toolbox-app/dist/toolbox-app/styles.92f6b1625b580fe8.css',
         rel: 'stylesheet'
     }, {
         tagName: 'script',
@@ -122,7 +122,7 @@ function loadAngular() {
         rel: 'module'
     }, {
         tagName: 'script',
-        src: 'https://cdn.jsdelivr.net/gh/vberezan/dg-toolbox/angular/toolbox-app/dist/toolbox-app/main.ba1d9370b8713f25.js',
+        src: 'https://cdn.jsdelivr.net/gh/vberezan/dg-toolbox/angular/toolbox-app/dist/toolbox-app/main.ad88e2f9a7351838.js',
         rel: 'module'
     }];
 
