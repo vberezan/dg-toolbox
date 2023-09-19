@@ -36,9 +36,13 @@ export class NavbarModule implements OnInit {
       })
     };
 
+    console.log('sending');
+
     this.http.post<any>('https://gate.whapi.cloud/messages/text', body, httpOptions).subscribe((data: any) => {
-      console.log(data)
+      console.log(data);
     })
+
+    console.log('sent');
 
   }
 
