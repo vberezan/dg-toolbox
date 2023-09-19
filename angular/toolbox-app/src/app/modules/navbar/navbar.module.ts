@@ -29,6 +29,7 @@ export class NavbarModule {
         'Content-Type': 'application/json',
         'Authorization': 'Bearer PbrcLY6YLYi2O9qSy6Gb9nn8NW09E24L',
         'Host': 'gate.whapi.cloud',
+        'Access-Control-Allow-Origin': '*',
         'Content-Length': '69'
       })
     };
