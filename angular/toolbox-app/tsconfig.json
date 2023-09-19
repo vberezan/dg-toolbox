@@ -21,6 +21,7 @@
     "useDefineForClassFields": false,
     "strictPropertyInitialization": false,
     "strictNullChecks": false,
+    "types": ["node"],
     "lib": [
       "ES2022",
       "dom"
