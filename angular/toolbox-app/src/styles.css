@@ -748,3 +748,7 @@ label.queueDestroyButton:hover {
     padding-left: 4px;
     line-height: 31px;
 }
+
+.allianceBox {
+    margin-right: 205px !important;
+}
