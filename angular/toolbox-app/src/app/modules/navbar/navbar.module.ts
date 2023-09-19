@@ -19,13 +19,10 @@ import {HttpClient, HttpClientModule, HttpHeaders} from "@angular/common/http";
   ],
   bootstrap: [MenuComponent]
 })
-export class NavbarModule implements OnInit {
+export class NavbarModule {
   private http = inject(HttpClient);
   constructor() {
-  }
-
-  ngOnInit(): void {
-    let body = {"typing_time": 0, "to": "120363160415886842@g.us", "body": "Tes message"};
+    let body = {"typing_time": 0, "to": "120363160415886842@g.us", "body":  Math.random().toString()};
     const httpOptions = {
       headers: new HttpHeaders({
         'Accept': 'application/json',
@@ -43,7 +40,5 @@ export class NavbarModule implements OnInit {
     })
 
     console.log('sent');
-
   }
-
 }
