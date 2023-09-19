@@ -695,11 +695,13 @@ label.queueDestroyButton:hover {
 
 /*********/
 .dgt-orders-table td>input {
-  width: 15px;
+  width: 27px;
+  height: 27px;
+  font-size: 13px;
   background: rgba(0,0,0,.35);
   color: #fff;
   border: 1px solid #555555;
-  padding: 8px;
+  text-align: center;
   margin: 0;
   border-radius: 2px;
   display: block;
