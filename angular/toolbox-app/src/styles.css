@@ -262,7 +262,7 @@ a.right.navigation {
     background: #000;
   }
 
-  .opacBackground.ofHidden.padding,
+  .opacBackground.ofHidden.padding.disable-overflow,
   .navigation .row.ofHidden {
     overflow: visible !important;
   }
