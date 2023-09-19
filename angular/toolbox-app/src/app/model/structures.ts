@@ -1,5 +1,4 @@
 export enum Structures {
-  UNKNOWN = 'unknown',
   OUTPOST = "outpost",
   METAL_MINE = 'metal mine',
   MINERAL_EXTRACTOR = 'mineral extractor',

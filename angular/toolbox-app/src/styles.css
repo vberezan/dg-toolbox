@@ -1,6 +1,6 @@
 /*****/
 .zoom-in-out-box {
-  animation: zoom-in-zoom-out 1s ease infinite;
+  animation: zoom-in-zoom-out 2s ease infinite;
 }
 
 @keyframes zoom-in-zoom-out {
