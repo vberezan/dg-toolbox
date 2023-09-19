@@ -85,9 +85,9 @@ function applyCustomStyling() {
         });
     }
 
-    if (document.querySelector('.right.navigation') || document.querySelector('.left.navigation')) {
-        let righNav = document.querySelector('.right.navigation');
-        let leftNav = document.querySelector('.left.navigation');
+    if (document.querySelector('a.right.navigation') || document.querySelector('a.left.navigation')) {
+        let righNav = document.querySelector('a.right.navigation');
+        let leftNav = document.querySelector('a.left.navigation');
 
         if (righNav) {
             righNav = detach(righNav);
