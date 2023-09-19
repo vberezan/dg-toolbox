@@ -83,7 +83,9 @@ function applyCustomStyling() {
                 }
             });
         });
+    }
 
+    if (document.querySelector('.right.navigation') || document.querySelector('.left.navigation')) {
         let righNav = document.querySelector('.right.navigation');
         let leftNav = document.querySelector('.left.navigation');
 
