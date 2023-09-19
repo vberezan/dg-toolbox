@@ -42,10 +42,10 @@ function loadSetups(windowURL) {
 
     loadResource({
         tagName: 'script',
-        src: 'https://cdn.jsdelivr.net/gh/vberezan/dg-toolbox@development/tampermonkey/parts/dg-toolbox-setup-planet-list-panel.3.js',
+        src: 'https://cdn.jsdelivr.net/gh/vberezan/dg-toolbox@development/tampermonkey/parts/dg-toolbox-setup-planet-list-panel.5.js',
         rel: 'text/javascript'
     }).onload = function () {
-        setUpPlanetListStatsPanel();
+        setUpPlanetListStatsPanel(windowURL);
     }
 
     loadResource({
@@ -62,6 +62,14 @@ function loadSetups(windowURL) {
         rel: 'text/javascript'
     }).onload = function () {
         setUpNavigationScanDataPanel(windowURL);
+    }
+
+    loadResource({
+        tagName: 'script',
+        src: 'https://cdn.jsdelivr.net/gh/vberezan/dg-toolbox@development/tampermonkey/parts/dgt-toolbox-setup-alliance-orders-manager.3.js',
+        rel: 'text/javascript'
+    }).onload = function () {
+        setUpAllianceOrdersManagerPanel(windowURL);
     }
 }
 
@@ -122,7 +130,7 @@ function loadAngular() {
         rel: 'module'
     }, {
         tagName: 'script',
-        src: 'https://cdn.jsdelivr.net/gh/vberezan/dg-toolbox@development/angular/toolbox-app/dist/toolbox-app/main.84ca41c6d00fe126.js',
+        src: 'https://cdn.jsdelivr.net/gh/vberezan/dg-toolbox@development/angular/toolbox-app/dist/toolbox-app/main.118d91d72ed2ac56.js',
         rel: 'module'
     }];
 
