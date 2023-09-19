@@ -263,8 +263,8 @@ a.right.navigation {
   }
 }
 
-.navigation .row {
-  overflow: inherit !important;
+.navigation .row.ofHidden {
+  overflow: visible !important;
 }
 
 .navigation .row .planets>img {
