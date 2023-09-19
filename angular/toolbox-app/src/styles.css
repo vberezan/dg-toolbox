@@ -25,10 +25,12 @@ body {
   color: #fff;
 }
 
+textarea:focus,
+textarea:focus-visible,
 input:focus,
 input:focus-visible {
   outline: none;
-  border-color: #9b9b9b;
+  border-color: #7a7a7a !important;
 }
 
 a:hover {
@@ -712,6 +714,18 @@ label.queueDestroyButton:hover {
   color: #fff;
   border: 1px solid #555555;
   text-align: center;
+  margin: 0;
+  border-radius: 2px;
+  display: block;
+  box-sizing: border-box;
+}
+
+.dgt-orders-table td>textarea {
+  font-size: 13px;
+  background: rgba(0,0,0,.35);
+  color: #fff;
+  border: 1px solid #555555;
+  text-align: left;
   margin: 0;
   border-radius: 2px;
   display: block;
