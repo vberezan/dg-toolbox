@@ -20,6 +20,10 @@
 /*****/
 
 /* Override game rules section */
+.ofHidden {
+  overflow: visible !important;
+}
+
 body {
   visibility: hidden;
   color: #fff;
@@ -261,10 +265,6 @@ a.right.navigation {
     position: relative;
     background: #000;
   }
-}
-
-.navigation .row.ofHidden {
-  overflow: visible !important;
 }
 
 .navigation .row .planets>img {
