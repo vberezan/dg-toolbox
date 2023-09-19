@@ -90,8 +90,7 @@ export class ScansService {
             hg.textContent = 'HG';
           }
           if (structureNames.includes(Structures.ARMY_BARRACKS)) {
-            planet.querySelector('.dgt-navigation-scan-population .dgt-navigation-scan-soldiers-ab').textContent =
-              'AB';
+            planet.querySelector('.dgt-navigation-scan-soldiers-ab').textContent = 'AB';
           }
           if (structureNames.includes(Structures.COMMS_SATELLITE)) {
             let cs: Element = planet.querySelector('.dgt-navigation-scan-structures-data .cs');
@@ -110,10 +109,13 @@ export class ScansService {
           }
 
           if (pl.workers.currentNumber > 0 || pl.soldiers > 0) {
-            planet.querySelector('.dgt-navigation-scan-population .dgt-navigation-scan-workers-value').textContent =
+            planet.querySelector('.dgt-navigation-scan-workers-value').textContent =
               this.decimalPipe.transform(pl.workers.currentNumber, '1.0', 'en_US');
-            planet.querySelector('.dgt-navigation-scan-population .dgt-navigation-scan-workers-gr').textContent =
+            planet.querySelector('.dgt-navigation-scan-workers-gr').textContent =
               this.decimalPipe.transform(popGrowth, '1.0', 'en_US');
+
+            planet.querySelector('.dgt-navigation-scan-soldiers-value').textContent =
+              this.decimalPipe.transform(pl.soldiers, '1.0', 'en_US');
 
             let requiredForInvasion: number = ((pl.workers.currentNumber / 15) + (pl.soldiers / 2) * 3) + 1;
             planet.querySelector('.dgt-navigation-scan-structures-data .invasion-value').textContent =
