@@ -19,7 +19,8 @@ function setUpAllianceOrdersManagerPanel(windowURL) {
                         '<td class="wait-label"><span>Wait:</span></td>' +
                         '<td class="wait"><input type="text" oninput="this.value = this.value.replace(/[^0-9.]/g, \'\').replace(/(\\..*?)\\..*/g, \'$1\').replace(/^0[^.]/, \'0\');" /></td>' +
                         '<td class="wait-label"><span>Comment:</span></td>' +
-                        '<td class="wait"><textarea></textarea></td>' +
+                        '<td class="wait"><textarea placeholder="Ex: minim 100 fighters"></textarea></td>' +
+                        '<td class="submit"><button>Send</button></td>' +
                     '</tr>' +
                 '</tbody>';
 
