@@ -1,8 +1,8 @@
 import {platformBrowserDynamic} from '@angular/platform-browser-dynamic';
 import {NavbarModule} from "./app/modules/navbar/navbar.module";
-import {PlanetListStatsModule} from "./app/modules/planet-list-stats/planet-list-stats.module";
-import {SharedScansModule} from "./app/modules/shared-scans/shared-scans.module";
-import {NavigationScansModule} from "./app/modules/navigation-scans/navigation-scans.module";
+import {PlanetListStatsModule} from "./app/modules/planets/planet-list-stats/planet-list-stats.module";
+import {SharedScansModule} from "./app/modules/scans/shared-scans/shared-scans.module";
+import {NavigationScansModule} from "./app/modules/scans/navigation-scans/navigation-scans.module";
 import {AuthenticationModule} from "./app/modules/authentication/authentication.module";
 import {PlatformRef} from "@angular/core";
 

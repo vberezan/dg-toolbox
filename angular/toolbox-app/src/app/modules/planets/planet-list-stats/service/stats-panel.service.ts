@@ -1,10 +1,10 @@
 import {inject, Injectable} from '@angular/core';
-import {DarkgalaxyApiService} from "../../darkgalaxy-ui-parser/service/darkgalaxy-api.service";
-import {PlanetSummary} from "../../../model/planet-list/planet-summary.planet-list-model";
-import {StatsPanel} from "../../../model/planet-list/planet-list-stats-panel.model";
-import {PlanetStats} from "../../../model/planet-list/planet-list-planet-stats.model";
-import {Resource} from "../../../model/resource.model";
-import {Resources} from "../../../model/resources";
+import {DarkgalaxyApiService} from "../../../darkgalaxy-ui-parser/service/darkgalaxy-api.service";
+import {PlanetSummary} from "../../../../model/planet-list/planet-summary.planet-list-model";
+import {StatsPanel} from "../../../../model/planet-list/planet-list-stats-panel.model";
+import {PlanetStats} from "../../../../model/planet-list/planet-list-planet-stats.model";
+import {Resource} from "../../../../model/resource.model";
+import {Resources} from "../../../../model/resources";
 
 @Injectable({
   providedIn: 'root'

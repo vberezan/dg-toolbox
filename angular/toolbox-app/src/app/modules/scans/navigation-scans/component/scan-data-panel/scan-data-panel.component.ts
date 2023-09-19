@@ -1,7 +1,7 @@
 import {Component, inject, OnDestroy, OnInit} from '@angular/core';
 import {ScansService} from "../../service/scans.service";
-import {PlanetSummary} from "../../../../model/planet-list/planet-summary.planet-list-model";
-import {AuthService} from "../../../authentication/service/auth.service";
+import {PlanetSummary} from "../../../../../model/planet-list/planet-summary.planet-list-model";
+import {AuthService} from "../../../../authentication/service/auth.service";
 
 @Component({
   selector: 'dgt-navigation-scan-data-panel',

@@ -1,7 +1,7 @@
 import {Component, inject, OnDestroy, OnInit} from '@angular/core';
 import {ScansService} from "../../service/scans.service";
-import {PlanetScanEvent} from "../../../../model/shared-scans/shared-scans-planet-scan-event.model";
-import {AuthService} from "../../../authentication/service/auth.service";
+import {PlanetScanEvent} from "../../../../../model/shared-scans/shared-scans-planet-scan-event.model";
+import {AuthService} from "../../../../authentication/service/auth.service";
 import {activate} from "@angular/fire/remote-config";
 
 @Component({
