@@ -743,6 +743,8 @@ label.queueDestroyButton:hover {
 }
 
 .playerList > .player > .name {
-    width: 18%;
+    width: calc(18% - 4px);
     font-weight: normal;
+    padding-left: 4px;
+    line-height: 31px;
 }
