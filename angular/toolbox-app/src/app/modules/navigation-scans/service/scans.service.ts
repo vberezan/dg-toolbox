@@ -95,6 +95,7 @@ export class ScansService {
           if (structureNames.includes(Structures.COMMS_SATELLITE)) {
             let cs: Element = planet.querySelector('.dgt-navigation-scan-structures-data .cs');
             cs.textContent = 'CS';
+            cs.classList.add('zoom-in-out-box');
           }
 
           let popGrowth: number= 1;

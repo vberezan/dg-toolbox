@@ -1,3 +1,21 @@
+/*****/
+.zoom-in-out-box {
+  animation: zoom-in-zoom-out 1s ease infinite;
+}
+
+@keyframes zoom-in-zoom-out {
+  0% {
+    transform: scale(1, 1);
+  }
+  50% {
+    transform: scale(1.1, 1.1);
+  }
+  100% {
+    transform: scale(1, 1);
+  }
+}
+/*****/
+
 /* Override game rules section */
 body {
   visibility: hidden;
@@ -437,12 +455,9 @@ a.right.navigation {
   color: #0ca1e1 !important;
 }
 
+.dgt-navigation-scan-structures-data .cs,
 .dgt-navigation-scan-structures-data .hg {
   color: #e46045 !important;
-}
-
-.dgt-navigation-scan-structures-data .cs {
-  color: #FFDC2DFF !important;
 }
 
 /******/
