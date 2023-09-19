@@ -20,10 +20,6 @@
 /*****/
 
 /* Override game rules section */
-.ofHidden {
-  overflow: visible !important;
-}
-
 body {
   visibility: hidden;
   color: #fff;
