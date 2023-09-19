@@ -50,8 +50,10 @@
 }
 
 .dgt-resource {
-  height: 20px !important;
+  height: 23px !important;
   padding: 0;
+  vertical-align: middle;
+  display: table-cell;
 }
 
 .resource > span.dgt-value {
