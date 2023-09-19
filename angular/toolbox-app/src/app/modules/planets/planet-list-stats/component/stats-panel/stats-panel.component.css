@@ -57,7 +57,7 @@
 .resource > span.dgt-value {
   float: right;
   padding-left: 4px;
-  line-height: 17px;
+  line-height: 23px;
 }
 
 .dgt-stats-panel {
@@ -73,5 +73,6 @@
   border: 1px solid #626262;
   height: 15px;
   width: 15px;
+  vertical-align: center;
 }
 
