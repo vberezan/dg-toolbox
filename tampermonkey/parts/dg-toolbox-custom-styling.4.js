@@ -1,3 +1,6 @@
+function detach(node) {
+    return node.parentElement.removeChild(node);
+}
 function applyCustomStyling() {
     document.querySelectorAll('#planetList > #planetList').forEach((planet) => {
         planet.querySelector('.planetImage img').setAttribute('width', 75);
@@ -80,5 +83,17 @@ function applyCustomStyling() {
                 }
             });
         });
+
+        let righNav = document.querySelector('.right.navigation');
+        let leftNav = document.querySelector('.left.navigation');
+
+        if (righNav) {
+            righNav = detach(righNav);
+            document.querySelector('.header.border.pageTitle').append(righNav);
+        }
+        if (leftNav) {
+            leftNav = detach(leftNav);
+            document.querySelector('.header.border.pageTitle').append(leftNav);
+        }
     }
 }
