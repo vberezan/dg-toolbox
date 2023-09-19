@@ -692,3 +692,8 @@ label.queueDestroyButton:hover {
 #turnStatus {
   font-weight: normal !important;
 }
+
+/*********/
+.dgt-orders-table td>input {
+  width: 15px;
+}

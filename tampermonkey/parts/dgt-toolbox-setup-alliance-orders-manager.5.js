@@ -19,7 +19,7 @@ function setUpAllianceOrdersManagerPanel(windowURL) {
                         '<td class="wait-label"><span>Wait:</span></td>' +
                         '<td class="wait"><input/></td>' +
                         '<td class="wait-label"><span>Comment:</span></td>' +
-                        '<td class="wait"><textarea/></td>' +
+                        '<td class="wait"><textarea></textarea></td>' +
                     '</tr>' +
                 '</tbody>';
 
