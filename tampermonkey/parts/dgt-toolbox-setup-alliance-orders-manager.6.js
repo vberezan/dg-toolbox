@@ -12,12 +12,12 @@ function setUpAllianceOrdersManagerPanel(windowURL) {
                 '<tbody>' +
                     '<tr class="dgt-orders-data">' +
                         '<td class="target-label"><span>Target:</span></td>' +
-                        '<td class="galaxy"><input/></td>' +
-                        '<td class="sector"><input/></td>' +
-                        '<td class="system"><input/></td>' +
-                        '<td class="planet"><input/></td>' +
+                        '<td class="galaxy"><input type="text" oninput="this.value = this.value.replace(/[^0-9.]/g, \'\').replace(/(\\..*?)\\..*/g, \'$1\').replace(/^0[^.]/, \'0\');" /></td>' +
+                        '<td class="sector"><input type="text" oninput="this.value = this.value.replace(/[^0-9.]/g, \'\').replace(/(\\..*?)\\..*/g, \'$1\').replace(/^0[^.]/, \'0\');" /></td>' +
+                        '<td class="system"><input type="text" oninput="this.value = this.value.replace(/[^0-9.]/g, \'\').replace(/(\\..*?)\\..*/g, \'$1\').replace(/^0[^.]/, \'0\');" /></td>' +
+                        '<td class="planet"><input type="text" oninput="this.value = this.value.replace(/[^0-9.]/g, \'\').replace(/(\\..*?)\\..*/g, \'$1\').replace(/^0[^.]/, \'0\');" /></td>' +
                         '<td class="wait-label"><span>Wait:</span></td>' +
-                        '<td class="wait"><input/></td>' +
+                        '<td class="wait"><input type="text" oninput="this.value = this.value.replace(/[^0-9.]/g, \'\').replace(/(\\..*?)\\..*/g, \'$1\').replace(/^0[^.]/, \'0\');" /></td>' +
                         '<td class="wait-label"><span>Comment:</span></td>' +
                         '<td class="wait"><textarea></textarea></td>' +
                     '</tr>' +
