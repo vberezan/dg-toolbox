@@ -704,6 +704,7 @@ label.queueDestroyButton:hover {
 /*********/
 .dgt-orders-table {
   float: left;
+  width: 78%;
 }
 
 .dgt-orders-table td>input {
@@ -734,4 +735,9 @@ label.queueDestroyButton:hover {
   box-sizing: border-box;
   padding: 5px;
   overflow: hidden;
+}
+
+.playerList > .player > .name {
+  width: 22%;
+  font-weight: normal;
 }
