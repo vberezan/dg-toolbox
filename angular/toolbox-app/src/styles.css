@@ -380,11 +380,23 @@ a.right.navigation {
   padding-left: 4px;
 }
 
-.dgt-navigation-scan-population .dgt-navigation-scan-soldiers-value,
-.dgt-navigation-scan-population .dgt-navigation-scan-workers-value {
+.dgt-navigation-scan-workers-gr {
   color: #fff;
   font-size: 11px;
-  min-width: 65px;
+  min-width: 20px;
+}
+
+.dgt-navigation-scan-soldiers-ab {
+  color: #e46045;
+  font-size: 11px;
+  min-width: 20px;
+}
+
+.dgt-navigation-scan-soldiers-value,
+.dgt-navigation-scan-workers-value {
+  color: #fff;
+  font-size: 11px;
+  min-width: 55px;
 }
 
 .dgt-navigation-scan-soldiers-icon img,
@@ -425,9 +437,12 @@ a.right.navigation {
   color: #0ca1e1 !important;
 }
 
-.dgt-navigation-scan-structures-data .hg,
-.dgt-navigation-scan-structures-data .ab {
+.dgt-navigation-scan-structures-data .hg {
   color: #e46045 !important;
+}
+
+.dgt-navigation-scan-structures-data .cs {
+  color: #FFDC2DFF !important;
 }
 
 /******/
