@@ -10,9 +10,8 @@ import DocumentData = firebase.firestore.DocumentData;
 })
 export class OrderService {
   private firestore: Firestore = inject(Firestore);
-  private changeDetection: ChangeDetectorRef = inject(ChangeDetectorRef);
 
-  getOrders(user: string, observer: Subscriber<AllianceOrder[]>): void {
+  getOrders(user: string, observer: Subscriber<AllianceOrder[]>, changeDetection: ChangeDetectorRef): void {
     let ordersRef = collection(this.firestore, 'orders');
 
     collectionData(
@@ -21,7 +20,7 @@ export class OrderService {
       ), {idField: 'id'}
     ).subscribe((items: DocumentData[]) => {
       observer.next(Object.assign([], items));
-      this.changeDetection.detectChanges();
+      changeDetection.detectChanges();
     });
   }
 }
