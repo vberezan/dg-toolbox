@@ -44,10 +44,10 @@ function setUpAllianceOrdersManagerPanel(windowURL) {
             player.append(ordersTable);
             player.append(activeOrdersTable);
         });
-    }
 
-    document.querySelectorAll('.allianceBox .plainHeader')[1].style.display = 'none';
-    document.querySelectorAll('.allianceBox')[0].style.display = 'none';
+        document.querySelectorAll('.allianceBox .plainHeader')[1].style.display = 'none';
+        document.querySelectorAll('.allianceBox')[0].style.display = 'none';
+    }
 }
 
 function populateAngularForm(orderTableId) {

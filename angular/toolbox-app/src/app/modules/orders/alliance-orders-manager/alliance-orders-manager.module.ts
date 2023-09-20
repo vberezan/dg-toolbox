@@ -12,9 +12,6 @@ import {initializeAppCheck, provideAppCheck, ReCaptchaV3Provider} from "@angular
 
 
 @NgModule({
-  declarations: [
-    OrdersPanelComponent
-  ],
   imports: [
     BrowserModule,
     FormsModule,
@@ -27,6 +24,9 @@ import {initializeAppCheck, provideAppCheck, ReCaptchaV3Provider} from "@angular
         isTokenAutoRefreshEnabled: true
       })
     )
+  ],
+  declarations: [
+    OrdersPanelComponent
   ],
   providers: [
     OrderService,
