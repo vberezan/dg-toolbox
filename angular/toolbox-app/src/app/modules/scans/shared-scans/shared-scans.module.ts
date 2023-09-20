@@ -2,7 +2,7 @@ import {NgModule, OnInit} from '@angular/core';
 import {BrowserModule} from "@angular/platform-browser";
 import {ScanCollectorComponent} from './component/scan-collector/scan-collector.component';
 import {environment} from "../../../../environments/environment";
-import {ScansService} from "./service/scans.service";
+import {ScanService} from "./service/scan.service";
 import {initializeAppCheck, provideAppCheck, ReCaptchaV3Provider} from "@angular/fire/app-check";
 import {getApp, initializeApp, provideFirebaseApp} from "@angular/fire/app";
 import {getFirestore, provideFirestore} from "@angular/fire/firestore";
@@ -27,7 +27,7 @@ import {DarkgalaxyApiService} from "../../darkgalaxy-ui-parser/service/darkgalax
     ScanCollectorComponent
   ],
   providers: [
-    ScansService,
+    ScanService,
     DarkgalaxyApiService
   ],
   bootstrap: [ScanCollectorComponent]

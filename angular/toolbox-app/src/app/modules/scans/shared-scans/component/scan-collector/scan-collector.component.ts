@@ -1,6 +1,6 @@
 import {Component, inject, OnDestroy, OnInit} from '@angular/core';
-import {ScansService} from "../../service/scans.service";
-import {PlanetScanEvent} from "../../../../../model/shared-scans/shared-scans-planet-scan-event.model";
+import {ScanService} from "../../service/scan.service";
+import {PlanetScanEvent} from "../../../../../model/scans/shared-scans-planet-scan-event.model";
 import {AuthService} from "../../../../authentication/service/auth.service";
 import {activate} from "@angular/fire/remote-config";
 
@@ -10,7 +10,7 @@ import {activate} from "@angular/fire/remote-config";
   styleUrls: ['./scan-collector.component.css']
 })
 export class ScanCollectorComponent implements OnInit, OnDestroy {
-  private scansService: ScansService = inject(ScansService);
+  private scanService: ScanService = inject(ScanService);
   private authService: AuthService = inject(AuthService);
   active: boolean = false;
 
@@ -20,10 +20,10 @@ export class ScanCollectorComponent implements OnInit, OnDestroy {
   ngOnInit(): void {
     this.authService.loggedStatus.subscribe((status: boolean) => {
       if (status) {
-        let planetScanEvent: PlanetScanEvent = this.scansService.extractScan();
+        let planetScanEvent: PlanetScanEvent = this.scanService.extractScan();
 
         if (planetScanEvent != null) {
-          this.scansService.updateScan(planetScanEvent);
+          this.scanService.updateScan(planetScanEvent);
         }
 
         this.active = true;

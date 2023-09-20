@@ -1,7 +1,7 @@
 import {inject, Injectable} from '@angular/core';
 import {DarkgalaxyApiService} from "../../../darkgalaxy-ui-parser/service/darkgalaxy-api.service";
-import {PlanetSummary} from "../../../../model/planet-list/planet-summary.planet-list-model";
-import {PlanetScan} from "../../../../model/shared-scans/shared-scans-planet-scan.model";
+import {PlanetSummary} from "../../../../model/planets/planet-summary.planet-list-model";
+import {PlanetScan} from "../../../../model/scans/shared-scans-planet-scan.model";
 import {DecimalPipe} from "@angular/common";
 import {Resource} from "../../../../model/resource.model";
 import {ResourceProductionFormatterPipe} from "../../../planets/planet-list-stats/pipe/resource-production-formatter.pipe";
@@ -14,7 +14,7 @@ import {NameQuantity} from "../../../../model/name-quantity.model";
 @Injectable({
   providedIn: 'root'
 })
-export class ScansService {
+export class ScanService {
   private firestore: Firestore = inject(Firestore);
   private dgAPI: DarkgalaxyApiService = inject(DarkgalaxyApiService);
   private resourceProductionFormatterPipe: ResourceProductionFormatterPipe = inject(ResourceProductionFormatterPipe);

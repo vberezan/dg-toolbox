@@ -2,7 +2,7 @@ import {NgModule} from '@angular/core';
 import {ScanDataPanelComponent} from './component/scan-data-panel/scan-data-panel.component';
 import {BrowserModule} from "@angular/platform-browser";
 import {environment} from "../../../../environments/environment";
-import {ScansService} from "./service/scans.service";
+import {ScanService} from "./service/scan.service";
 import {ResourceProductionFormatterPipe} from "../../planets/planet-list-stats/pipe/resource-production-formatter.pipe";
 import {DecimalPipe} from "@angular/common";
 import {getApp, initializeApp, provideFirebaseApp} from "@angular/fire/app";
@@ -31,7 +31,7 @@ import {DarkgalaxyApiService} from "../../darkgalaxy-ui-parser/service/darkgalax
   providers: [
     DecimalPipe,
     ResourceProductionFormatterPipe,
-    ScansService,
+    ScanService,
     DarkgalaxyApiService
   ],
   bootstrap: [

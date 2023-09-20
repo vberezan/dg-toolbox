@@ -1,8 +1,8 @@
 import {inject, Injectable} from '@angular/core';
 import {PlanetListExtractorService} from "./planet-list.extractor.service";
-import {PlanetSummary} from "../../../model/planet-list/planet-summary.planet-list-model";
+import {PlanetSummary} from "../../../model/planets/planet-summary.planet-list-model";
 import {PlanetScanExtractorService} from "./planet-scan.extractor.service";
-import {PlanetScanEvent} from "../../../model/shared-scans/shared-scans-planet-scan-event.model";
+import {PlanetScanEvent} from "../../../model/scans/shared-scans-planet-scan-event.model";
 import {NavigationSystemPlanetsExtractorService} from "./navigation-system-planets.extractor.service";
 
 @Injectable({
@@ -24,5 +24,9 @@ export class DarkgalaxyApiService {
 
   navigationSystemPlanets(): PlanetSummary[] {
     return this.navigationSystemPlanetsExtractor.extract();
+  }
+
+  gameTurn(): number {
+    return parseInt(document.querySelector('#turnNumber').textContent.trim().replace(/,/g, ''));
   }
 }

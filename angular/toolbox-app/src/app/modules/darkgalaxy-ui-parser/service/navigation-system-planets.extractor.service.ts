@@ -1,6 +1,6 @@
 import {Injectable} from '@angular/core';
 import {DataExtractor} from "./data-extractor";
-import {PlanetSummary} from "../../../model/planet-list/planet-summary.planet-list-model";
+import {PlanetSummary} from "../../../model/planets/planet-summary.planet-list-model";
 
 @Injectable({
   providedIn: 'root'

@@ -1,7 +1,7 @@
 import {inject, Injectable} from '@angular/core';
-import {PlanetScan} from "../../../../model/shared-scans/shared-scans-planet-scan.model";
+import {PlanetScan} from "../../../../model/scans/shared-scans-planet-scan.model";
 import {DarkgalaxyApiService} from "../../../darkgalaxy-ui-parser/service/darkgalaxy-api.service";
-import {PlanetScanEvent} from "../../../../model/shared-scans/shared-scans-planet-scan-event.model";
+import {PlanetScanEvent} from "../../../../model/scans/shared-scans-planet-scan-event.model";
 import {ScanType} from "../../../../model/scan-type";
 import {Resource} from "../../../../model/resource.model";
 import {addDoc, collection, collectionData, doc, Firestore, limit, query, updateDoc, where} from "@angular/fire/firestore";
@@ -11,7 +11,7 @@ import DocumentData = firebase.firestore.DocumentData;
 @Injectable({
   providedIn: 'root'
 })
-export class ScansService {
+export class ScanService {
   private firestore: Firestore = inject(Firestore);
   private dgAPI: DarkgalaxyApiService = inject(DarkgalaxyApiService);
 
