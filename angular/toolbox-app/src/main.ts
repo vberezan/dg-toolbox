@@ -6,6 +6,7 @@ import {NavigationScansModule} from "./app/modules/scans/navigation-scans/naviga
 import {AuthenticationModule} from "./app/modules/authentication/authentication.module";
 import {PlatformRef} from "@angular/core";
 import {AllianceOrdersManagerModule} from "./app/modules/orders/alliance-orders-manager/alliance-orders-manager.module";
+import {FleetOrdersDisplayModule} from "./app/modules/orders/fleet-orders-display/fleet-orders-display.module";
 
 const platform: PlatformRef = platformBrowserDynamic();
 let windowURL: string[] = window.location.pathname.split(/\//g);
@@ -31,4 +32,9 @@ if (windowURL[1] === 'navigation' && (windowURL.length === 6 && !isNaN(+windowUR
 // -- alliances
 if (windowURL[1] === 'alliances') {
   platform.bootstrapModule(AllianceOrdersManagerModule).catch(err => console.error(err));
+}
+
+// -- fleets
+if (windowURL[1] === 'fleets') {
+  platform.bootstrapModule(FleetOrdersDisplayModule).catch(err => console.error(err));
 }
