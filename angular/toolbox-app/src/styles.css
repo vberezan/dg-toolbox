@@ -740,6 +740,7 @@ label.queueDestroyButton:hover {
 
 .dgt-orders-table td.submit > button {
     width: 100px !important;
+  cursor: pointer;
 }
 
 .playerList > .player > .name {
