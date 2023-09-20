@@ -25,7 +25,7 @@ export class OrdersPanelComponent implements OnInit{
     ].join('.');
 
     allianceOrder.wait = parseInt(this.ordersForm.value['wait']);
-    allianceOrder.comment = this.ordersForm.value['comment'];
+    allianceOrder.instructions = this.ordersForm.value['instructions'];
     allianceOrder.executed = false;
     allianceOrder.turn = this.dgAPI.gameTurn();
     allianceOrder.user = this.ordersForm.value['user'];

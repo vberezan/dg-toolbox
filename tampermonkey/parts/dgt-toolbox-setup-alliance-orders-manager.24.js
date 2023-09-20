@@ -18,8 +18,8 @@ function setUpAllianceOrdersManagerPanel(windowURL) {
                         '<td class="planet"><input type="text" oninput="this.value = this.value.replace(/[^0-9.]/g, \'\').replace(/(\\..*?)\\..*/g, \'$1\').replace(/^0[^.]/, \'0\');" /></td>' +
                         '<td class="wait-label"><span>Wait:</span></td>' +
                         '<td class="wait"><input type="text" oninput="this.value = this.value.replace(/[^0-9.]/g, \'\').replace(/(\\..*?)\\..*/g, \'$1\').replace(/^0[^.]/, \'0\');" /></td>' +
-                        '<td class="wait-label"><span>Comment:</span></td>' +
-                        '<td class="comment"><textarea placeholder="Ex: min 100xFighter"></textarea></td>' +
+                        '<td class="wait-label"><span>Instructions:</span></td>' +
+                        '<td class="instructions"><textarea placeholder="Ex: min 100xFighter"></textarea></td>' +
                         '<td class="submit"><button onclick="populateAngularForm(\'' + ordersTable.id + '\')">Send</button></td>' +
                     '</tr>' +
                 '</tbody>';
@@ -29,6 +29,15 @@ function setUpAllianceOrdersManagerPanel(windowURL) {
             activeOrdersTable.classList.add('dgt-orders-list-table');
             activeOrdersTable.id = 'dgt-orders-list-table-' + idx;
             activeOrdersTable.innerHTML =
+                '<thead>' +
+                    '<tr>' +
+                        '<td>Target</td>' +
+                        '<td>Wait</td>' +
+                        '<td>Created</td>' +
+                        '<td>Instructions</td>' +
+                        '<td>Executed</td>' +
+                    '</tr>' +
+                '</thead>' +
                 '<tbody>' +
                 '</tbody>';
 
@@ -67,10 +76,10 @@ function populateAngularForm(orderTableId) {
     playerTable.querySelector('td.wait>input').value = '';
     playerTable.querySelector('td.wait>input').dispatchEvent(new Event('input'));
 
-    angularForm.querySelector('td.comment>textarea').value = playerTable.querySelector('td.comment>textarea').value;
-    angularForm.querySelector('td.comment>textarea').dispatchEvent(new Event('input'));
-    playerTable.querySelector('td.comment>textarea').value = '';
-    playerTable.querySelector('td.comment>textarea').dispatchEvent(new Event('input'));
+    angularForm.querySelector('td.instructions>textarea').value = playerTable.querySelector('td.instructions>textarea').value;
+    angularForm.querySelector('td.instructions>textarea').dispatchEvent(new Event('input'));
+    playerTable.querySelector('td.instructions>textarea').value = '';
+    playerTable.querySelector('td.instructions>textarea').dispatchEvent(new Event('input'));
 
     angularForm.querySelector('td.user>input').value = playerTable.parentElement.querySelector('div.left.name').childNodes[0].textContent.trim();
     angularForm.querySelector('td.user>input').dispatchEvent(new Event('input'));

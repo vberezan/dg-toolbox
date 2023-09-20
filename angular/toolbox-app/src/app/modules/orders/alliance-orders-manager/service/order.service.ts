@@ -39,7 +39,8 @@ export class OrderService {
           '<td>' + order.target + '</td>' +
           '<td>' + order.wait + '</td>' +
           '<td>' + order.turn + '</td>' +
-          '<td>' + order.comment + '</td>';
+          '<td>' + order.instructions + '</td>' +
+          '<td>' + order.executed + '</td>';
 
         ordersListTable.append(orderLine);
       });

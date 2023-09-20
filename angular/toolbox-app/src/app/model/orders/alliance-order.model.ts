@@ -1,17 +1,17 @@
 export class AllianceOrder {
-  private _comment: string;
+  private _instructions: string;
   private _target: string;
   private _turn: number;
   private _executed: boolean;
   private _user: string;
   private _wait: number;
 
-  get comment(): string {
-    return this._comment;
+  get instructions(): string {
+    return this._instructions;
   }
 
-  set comment(value: string) {
-    this._comment = value;
+  set instructions(value: string) {
+    this._instructions = value;
   }
 
   get target(): string {
@@ -56,7 +56,7 @@ export class AllianceOrder {
 
   toJSON() {
     return {
-      comment: this.comment,
+      instructions: this._instructions,
       wait: this.wait,
       user: this.user,
       executed: this.executed,
