@@ -1,4 +1,4 @@
-import {Component} from '@angular/core';
+import {Component, ViewChild} from '@angular/core';
 import {NgForm} from "@angular/forms";
 
 @Component({
@@ -7,8 +7,9 @@ import {NgForm} from "@angular/forms";
   styleUrls: ['./orders-panel.component.css']
 })
 export class OrdersPanelComponent {
+  @ViewChild('dgtOrdersForm') ordersForm: NgForm;
 
-  onSubmit(form: NgForm): void {
-    console.log(form.value);
+  onSubmit(): void {
+    console.log(this.ordersForm.value);
   }
 }
