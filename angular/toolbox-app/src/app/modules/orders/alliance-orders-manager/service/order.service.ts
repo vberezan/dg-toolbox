@@ -55,7 +55,7 @@ export class OrderService {
       case true:
         return '<svg style="fill: #7BBD1A" xmlns="http://www.w3.org/2000/svg" height="1em" viewBox="0 0 512 512"><path d="M256 512A256 256 0 1 0 256 0a256 256 0 1 0 0 512z"/></svg>'
       case false:
-        return '<svg style="fill: #df4a4a" xmlns="http://www.w3.org/2000/svg" height="1em" viewBox="0 0 512 512"><path d="M256 512A256 256 0 1 0 256 0a256 256 0 1 0 0 512z"/></svg>'
+        return '<svg style="fill: #ff8484" xmlns="http://www.w3.org/2000/svg" height="1em" viewBox="0 0 512 512"><path d="M256 512A256 256 0 1 0 256 0a256 256 0 1 0 0 512z"/></svg>'
       default:
         return ''
     }

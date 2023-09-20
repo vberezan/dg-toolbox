@@ -769,11 +769,16 @@ label.queueDestroyButton:hover {
   padding-bottom: 5px;
   font-size: 18px;
   margin-bottom: 5px;
+  color: #FFD46F;
+}
+
+.allianceBox .playerList > .player > .name span {
+  display: none;
 }
 
 .allianceBox .playerList > .player.opacBackground,
 .allianceBox .playerList > .player.opacLightBackground {
-  background: rgb(75, 75, 75) !important;
+  background: rgba(87, 87, 87, 0.72) !important;
 }
 
 .allianceBox .playerList > .player {
