@@ -34,7 +34,7 @@ function populateAngularForm(orderTableId) {
     let angularForm = document.getElementById('dgt-orders-panel-data-form');
     let playerTable = document.getElementById(orderTableId);
 
-    angularForm.querySelector('td.galaxy').textContent = playerTable.querySelector('td.galaxy').textContent.trim();
+    angularForm.querySelector('td.galaxy>input').value = playerTable.querySelector('td.galaxy>input').value;
 
     console.log(orderTableId)
 }
