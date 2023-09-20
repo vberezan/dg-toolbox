@@ -23,6 +23,8 @@ export class OrderService {
   fillActiveOrders(user: string, idx: number): void {
     let ordersRef = collection(this.firestore, 'orders');
 
+    console.log(user);
+
     collectionData(
       query(ordersRef,
         where('user', '==', user)
