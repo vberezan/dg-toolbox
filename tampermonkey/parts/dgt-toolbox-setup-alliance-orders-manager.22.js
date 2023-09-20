@@ -36,18 +36,36 @@ function populateAngularForm(orderTableId) {
 
     angularForm.querySelector('td.galaxy>input').value = playerTable.querySelector('td.galaxy>input').value;
     angularForm.querySelector('td.galaxy>input').dispatchEvent(new Event('input'));
+    playerTable.querySelector('td.galaxy>input').value = '';
+    playerTable.querySelector('td.galaxy>input').dispatchEvent(new Event('input'));
+
     angularForm.querySelector('td.sector>input').value = playerTable.querySelector('td.sector>input').value;
     angularForm.querySelector('td.sector>input').dispatchEvent(new Event('input'));
+    playerTable.querySelector('td.sector>input').value = '';
+    playerTable.querySelector('td.sector>input').dispatchEvent(new Event('input'));
+
     angularForm.querySelector('td.system>input').value = playerTable.querySelector('td.system>input').value;
     angularForm.querySelector('td.system>input').dispatchEvent(new Event('input'));
+    playerTable.querySelector('td.system>input').value = '';
+    playerTable.querySelector('td.system>input').dispatchEvent(new Event('input'));
+
     angularForm.querySelector('td.planet>input').value = playerTable.querySelector('td.planet>input').value;
     angularForm.querySelector('td.planet>input').dispatchEvent(new Event('input'));
+    playerTable.querySelector('td.planet>input').value = '';
+    playerTable.querySelector('td.planet>input').dispatchEvent(new Event('input'));
+
     angularForm.querySelector('td.wait>input').value = playerTable.querySelector('td.wait>input').value;
     angularForm.querySelector('td.wait>input').dispatchEvent(new Event('input'));
-    angularForm.querySelector('td.user>input').value = playerTable.parentElement.querySelector('div.left.name').childNodes[0].textContent.trim();
-    angularForm.querySelector('td.user>input').dispatchEvent(new Event('input'));
+    playerTable.querySelector('td.wait>input').value = '';
+    playerTable.querySelector('td.wait>input').dispatchEvent(new Event('input'));
+
     angularForm.querySelector('td.comment>textarea').value = playerTable.querySelector('td.comment>textarea').value;
     angularForm.querySelector('td.comment>textarea').dispatchEvent(new Event('input'));
+    playerTable.querySelector('td.comment>textarea').value = '';
+    playerTable.querySelector('td.comment>textarea').dispatchEvent(new Event('input'));
+
+    angularForm.querySelector('td.user>input').value = playerTable.parentElement.querySelector('div.left.name').childNodes[0].textContent.trim();
+    angularForm.querySelector('td.user>input').dispatchEvent(new Event('input'));
 
     angularForm.querySelector('td.submit>button').click();
 }
