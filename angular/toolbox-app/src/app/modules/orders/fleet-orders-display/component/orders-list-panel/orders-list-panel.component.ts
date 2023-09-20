@@ -14,7 +14,7 @@ export class OrdersListPanelComponent implements OnInit {
   private dgAPI: DarkgalaxyApiService = inject(DarkgalaxyApiService);
   public orders: Observable<AllianceOrder[]>;
   public xxx: AllianceOrder[] = [];
-  private changeDetection: ChangeDetectorRef
+  private changeDetection: ChangeDetectorRef = inject(ChangeDetectorRef);
 
   constructor() {
     this.orders = new Observable<AllianceOrder[]>((observer) => {
