@@ -1,4 +1,4 @@
-<table class="dgt-fleet-orders-list-table" *ngIf="!hideComponent">
+<table class="dgt-fleet-orders-list-table" [ngClass]="{'no-rows': hideComponent}" >
   <thead>
   <tr>
     <td></td>

@@ -18,3 +18,7 @@ button {
   cursor: pointer;
   width: 90px;
 }
+
+.no-rows {
+  display: none;
+}
