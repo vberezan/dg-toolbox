@@ -10,21 +10,17 @@ import DocumentData = firebase.firestore.DocumentData;
 export class OrderService {
   private firestore: Firestore = inject(Firestore);
 
-  fillOrders(user: string): void {
+  getOrders(user: string, callback: Function): AllianceOrder[] {
     let ordersRef = collection(this.firestore, 'orders');
-
-    console.log(user);
 
     collectionData(
       query(ordersRef,
         where('user', '==', user)
       ), {idField: 'id'}
-    ).forEach((items: DocumentData[]) => {
-      let orders: AllianceOrder[] = Object.assign([], items);
+    ).subscribe((items: DocumentData[]) => {
+      callback(Object.assign([], items));
+    });
 
-      console.log(orders);
-    }).catch((error) => {
-      console.log(error);
-    })
+    return [];
   }
 }
