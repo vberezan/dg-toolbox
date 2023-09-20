@@ -14,6 +14,7 @@ export class OrdersListPanelComponent implements OnInit {
   private dgAPI: DarkgalaxyApiService = inject(DarkgalaxyApiService);
   public orders: Observable<AllianceOrder[]>;
   public xxx: AllianceOrder[];
+  public show: boolean = true;
 
   constructor() {
     this.orders = new Observable<AllianceOrder[]>((observer) => {
@@ -24,8 +25,14 @@ export class OrdersListPanelComponent implements OnInit {
   ngOnInit(): void {
     this.orders.subscribe((data) => {
       this.xxx = data;
+      this.reload();
 
       console.log(this.xxx);
     });
+  }
+
+  private reload(): void {
+    this.show = false;
+    setTimeout(() => this.show = true);
   }
 }
