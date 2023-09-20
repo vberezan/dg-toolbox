@@ -38,7 +38,7 @@ export class OrderService {
         orderLine.innerHTML =
           '<td>' + order.target + '</td>' +
           '<td>' + order.wait + '</td>' +
-          '<td>' + order.turn + '</td>' +
+          '<td>' + (order.turn + order.wait) + '</td>' +
           '<td>' + order.instructions + '</td>' +
           '<td>' + order.executed + '</td>';
 

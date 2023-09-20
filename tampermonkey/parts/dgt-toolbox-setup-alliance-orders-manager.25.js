@@ -33,7 +33,7 @@ function setUpAllianceOrdersManagerPanel(windowURL) {
                     '<tr>' +
                         '<td>Target</td>' +
                         '<td>Wait</td>' +
-                        '<td>Created</td>' +
+                        '<td>Send at</td>' +
                         '<td>Instructions</td>' +
                         '<td>Executed</td>' +
                     '</tr>' +
