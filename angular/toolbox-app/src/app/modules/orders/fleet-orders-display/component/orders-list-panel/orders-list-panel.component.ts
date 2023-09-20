@@ -11,12 +11,15 @@ import {AllianceOrder} from "../../../../../model/orders/alliance-order.model";
 export class OrdersListPanelComponent implements OnInit {
   private orderService: OrderService = inject(OrderService);
   private dgAPI: DarkgalaxyApiService = inject(DarkgalaxyApiService);
-  protected orders: AllianceOrder[] = [];
+  protected orders: Promise<AllianceOrder[]>;
+
+  constructor() {
+    this.orders = new Promise<AllianceOrder[]>((resolve, reject) => {
+      this.orderService.getOrders(this.dgAPI.getUser(), resolve);
+    });
+  }
 
   ngOnInit(): void {
-    this.orderService.getOrders(this.dgAPI.getUser(), (allianceOrders: AllianceOrder[]): void => {
-      this.orders = allianceOrders;
-    });
   }
 
 

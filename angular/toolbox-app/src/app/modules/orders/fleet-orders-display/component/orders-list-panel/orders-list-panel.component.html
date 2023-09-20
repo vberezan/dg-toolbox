@@ -6,7 +6,7 @@
   </tr>
   </thead>
   <tbody>
-  <tr *ngFor="let row of orders; index as i;">
+  <tr *ngFor="let row of orders | async; index as i;">
     <td>{{row.target}}</td>
     <td>{{row.wait}}</td>
   </tr>
