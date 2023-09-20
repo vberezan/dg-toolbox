@@ -1,14 +1,18 @@
-<table>
+<table class="'dgt-fleet-orders-list-table">
   <thead>
   <tr>
-    <td>x</td>
-    <td>y</td>
+    <td>Target</td>
+    <td>Wait</td>
+    <td>Instructions</td>
+    <td></td>
   </tr>
   </thead>
   <tbody>
   <tr *ngFor="let row of orders | async; index as i;">
-    <td>{{row.target}}</td>
-    <td>{{row.wait}}</td>
+    <td class="target">{{row.target}}</td>
+    <td class="wait">{{row.wait}}</td>
+    <td class="instructions">{{row.instructions}}</td>
+    <td class="complete"><button>Complete</button></td>
   </tr>
   </tbody>
 </table>

@@ -14,7 +14,7 @@ export class OrdersListPanelComponent implements OnInit {
   protected orders: Promise<AllianceOrder[]>;
 
   constructor() {
-    this.orders = new Promise<AllianceOrder[]>((resolve, reject) => {
+    this.orders = new Promise<AllianceOrder[]>((resolve) => {
       this.orderService.getOrders(this.dgAPI.getUser(), resolve);
     });
   }
