@@ -1,4 +1,5 @@
-import { Component } from '@angular/core';
+import {Component} from '@angular/core';
+import {NgForm} from "@angular/forms";
 
 @Component({
   selector: 'dgt-alliance-orders-manager-panel',
@@ -7,7 +8,7 @@ import { Component } from '@angular/core';
 })
 export class OrdersPanelComponent {
 
-  onSubmit(): void {
-    console.log('submitted');
+  onSubmit(form: NgForm): void {
+    console.log(form.value.galaxy);
   }
 }
