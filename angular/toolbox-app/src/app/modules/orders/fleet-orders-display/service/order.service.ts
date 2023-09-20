@@ -17,8 +17,6 @@ export class OrderService {
         where('user', '==', user)
       ), {idField: 'id'}
     ).subscribe((items: DocumentData[]) => {
-      console.log(items);
-
       callback(Object.assign([], items));
     });
   }

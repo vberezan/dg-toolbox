@@ -22,7 +22,8 @@ export class OrdersListPanelComponent implements OnInit {
   ngOnInit(): void {
   }
 
-  identify(index: number, item: AllianceOrder){
+  identify(index: number, item: AllianceOrder) {
+    console.log(item);
     return item.target + item.wait + item.turn + item.instructions;
   }
 
