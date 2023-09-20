@@ -709,9 +709,9 @@ label.queueDestroyButton:hover {
 }
 
 .dgt-orders-table td > input {
-    width: 27px;
-    height: 27px;
-    font-size: 13px;
+    width: 21px;
+    height: 25px;
+    font-size: 11px;
     background: rgba(0, 0, 0, .35);
     color: #fff;
     border: 1px solid #555555;
@@ -723,9 +723,9 @@ label.queueDestroyButton:hover {
 }
 
 .dgt-orders-table td > textarea {
-    height: 27px;
+    height: 25px;
     min-width: 200px;
-    font-size: 13px;
+    font-size: 11px;
     background: rgba(0, 0, 0, .35);
     color: #fff;
     border: 1px solid #555555;
@@ -739,14 +739,14 @@ label.queueDestroyButton:hover {
 }
 
 .dgt-orders-table td.submit > button {
-    width: 75px !important;
+    width: 100px !important;
 }
 
 .playerList > .player > .name {
-    width: calc(18% - 4px);
+    width: 100%;
     font-weight: normal;
     padding-left: 4px;
-    line-height: 31px;
+    padding-right: 4px;
 }
 
 .allianceBox {
