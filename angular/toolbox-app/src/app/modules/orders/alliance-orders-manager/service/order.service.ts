@@ -36,11 +36,11 @@ export class OrderService {
       orders.forEach((order: AllianceOrder) => {
         let orderLine = document.createElement('tr');
         orderLine.innerHTML =
-          '<td>' + this.status(order.executed) + '</td>' +
-          '<td>' + order.target + '</td>' +
-          '<td>' + order.wait + '</td>' +
-          '<td>' + (order.turn + order.wait + 1) + '</td>' +
-          '<td>' + order.instructions + '</td>';
+          '<td class="status">' + this.status(order.executed) + '</td>' +
+          '<td class="target">' + order.target + '</td>' +
+          '<td class="wait">' + order.wait + '</td>' +
+          '<td class="flying">' + (order.turn + order.wait + 1) + '</td>' +
+          '<td class="instructions">' + order.instructions + '</td>';
 
         ordersListTable.append(orderLine);
       });
