@@ -8,7 +8,7 @@
   </tr>
   </thead>
   <tbody>
-  <tr *ngFor="let row of orders | async; index as i;">
+  <tr *ngFor="let row of (orders | async); index as i; trackBy: identify">
     <td class="target">{{row.target}}</td>
     <td class="wait">{{row.wait}}</td>
     <td class="instructions">{{row.instructions}}</td>
