@@ -13,6 +13,7 @@ export class OrdersListPanelComponent implements OnInit {
   private orderService: OrderService = inject(OrderService);
   private dgAPI: DarkgalaxyApiService = inject(DarkgalaxyApiService);
   protected orders: Observable<AllianceOrder[]>;
+  protected xxx: AllianceOrder[];
 
   constructor() {
     this.orders = new Observable<AllianceOrder[]>((observer) => {
@@ -22,7 +23,7 @@ export class OrdersListPanelComponent implements OnInit {
 
   ngOnInit(): void {
     this.orders.subscribe((data) => {
-      console.log('subscription: ' + data);
+      this.xxx = data;
     })
   }
 }
