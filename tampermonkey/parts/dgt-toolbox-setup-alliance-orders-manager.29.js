@@ -31,11 +31,11 @@ function setUpAllianceOrdersManagerPanel(windowURL) {
             activeOrdersTable.innerHTML =
                 '<thead>' +
                     '<tr>' +
-                        '<td>Target</td>' +
-                        '<td>Wait</td>' +
-                        '<td>Flying</td>' +
-                        '<td>Instructions</td>' +
-                        '<td>Executed</td>' +
+                        '<td class="status">Status</td>' +
+                        '<td class="target">Target</td>' +
+                        '<td class="wait">Wait</td>' +
+                        '<td class="flying">Flying</td>' +
+                        '<td class="instructions">Instructions</td>' +
                     '</tr>' +
                 '</thead>' +
                 '<tbody>' +
