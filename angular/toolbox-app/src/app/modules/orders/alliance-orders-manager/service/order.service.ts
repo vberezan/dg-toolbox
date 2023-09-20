@@ -53,11 +53,11 @@ export class OrderService {
   private status(executed: boolean): string {
     switch (executed) {
       case true:
-        return '<svg style="fill: #7BBD1A" xmlns="http://www.w3.org/2000/svg" height="1em" viewBox="0 0 512 512"><path d="M256 512A256 256 0 1 0 256 0a256 256 0 1 0 0 512z"/></svg><span>DONE</span>'
+        return '<svg style="fill: #7BBD1A; height: 13px; vertical-align: middle; align-content: center; display: inline-flex;" xmlns="http://www.w3.org/2000/svg" height="1em" viewBox="0 0 512 512"><path d="M256 512A256 256 0 1 0 256 0a256 256 0 1 0 0 512z"/></svg><span>sent</span>';
       case false:
-        return '<svg style="fill: #ff8484" xmlns="http://www.w3.org/2000/svg" height="1em" viewBox="0 0 512 512"><path d="M256 512A256 256 0 1 0 256 0a256 256 0 1 0 0 512z"/></svg><span>PENDING</span>'
+        return '<svg style="fill: #ff8484; height: 13px; vertical-align: middle; align-content: center; display: inline-flex;" xmlns="http://www.w3.org/2000/svg" height="1em" viewBox="0 0 512 512"><path d="M256 512A256 256 0 1 0 256 0a256 256 0 1 0 0 512z"/></svg><span>not sent</span>';
       default:
-        return ''
+        return '';
     }
   }
 }
