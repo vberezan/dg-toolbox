@@ -709,10 +709,23 @@ label.queueDestroyButton:hover {
     width: 100%;
 }
 
+.dgt-orders-table {
+  border-bottom: 2px solid rgba(0,0,0,.25);
+}
+
+.dgt-orders-table td.instructions {
+  width: 40%;
+}
+
+.dgt-orders-table td.wait,
+.dgt-orders-table td.planet {
+  width: 10%;
+}
+
 .dgt-orders-table td > input {
-    width: 21px;
+    width: 25px;
     height: 25px;
-    font-size: 11px;
+    font-size: 13px;
     background: rgba(0, 0, 0, .35);
     color: #fff;
     border: 1px solid #555555;
@@ -725,8 +738,8 @@ label.queueDestroyButton:hover {
 
 .dgt-orders-table td > textarea {
     height: 25px;
-    min-width: 200px;
-    font-size: 11px;
+    min-width: 280px;
+    font-size: 13px;
     background: rgba(0, 0, 0, .35);
     color: #fff;
     border: 1px solid #555555;
@@ -735,7 +748,7 @@ label.queueDestroyButton:hover {
     border-radius: 2px;
     display: block;
     box-sizing: border-box;
-    padding: 5px;
+    padding: 3px 5px 3px 5px;
     overflow: hidden;
 }
 

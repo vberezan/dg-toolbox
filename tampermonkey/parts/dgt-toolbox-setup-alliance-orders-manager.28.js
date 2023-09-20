@@ -18,7 +18,7 @@ function setUpAllianceOrdersManagerPanel(windowURL) {
                         '<td class="planet"><input type="text" oninput="this.value = this.value.replace(/[^0-9.]/g, \'\').replace(/(\\..*?)\\..*/g, \'$1\').replace(/^0[^.]/, \'0\');" /></td>' +
                         '<td class="wait-label"><span>Wait:</span></td>' +
                         '<td class="wait"><input type="text" oninput="this.value = this.value.replace(/[^0-9.]/g, \'\').replace(/(\\..*?)\\..*/g, \'$1\').replace(/^0[^.]/, \'0\');" /></td>' +
-                        '<td class="wait-label"><span>Instructions:</span></td>' +
+                        '<td class="instructions-label"><span>Instructions:</span></td>' +
                         '<td class="instructions"><textarea placeholder="Ex: min 100xFighter"></textarea></td>' +
                         '<td class="submit"><button onclick="populateAngularForm(\'' + ordersTable.id + '\')">Send</button></td>' +
                     '</tr>' +
@@ -45,6 +45,9 @@ function setUpAllianceOrdersManagerPanel(windowURL) {
             player.append(activeOrdersTable);
         });
     }
+
+    document.querySelectorAll('.allianceBox .plainHeader')[1].style.display = 'none';
+    document.querySelectorAll('.allianceBox')[0].style.display = 'none';
 }
 
 function populateAngularForm(orderTableId) {
