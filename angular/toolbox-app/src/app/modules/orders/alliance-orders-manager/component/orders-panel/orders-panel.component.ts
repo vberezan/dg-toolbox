@@ -9,6 +9,6 @@ import {NgForm} from "@angular/forms";
 export class OrdersPanelComponent {
 
   onSubmit(form: NgForm): void {
-    console.log(form.value.galaxy);
+    console.log(form.value);
   }
 }
