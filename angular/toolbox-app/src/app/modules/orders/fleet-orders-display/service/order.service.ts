@@ -19,6 +19,7 @@ export class OrderService {
         where('user', '==', user)
       ), {idField: 'id'}
     ).subscribe((items: DocumentData[]) => {
+      console.log(items);
       observer.next(Object.assign([], items));
     });
   }
