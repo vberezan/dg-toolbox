@@ -1,4 +1,4 @@
-import {inject, Injectable} from '@angular/core';
+import {ChangeDetectorRef, inject, Injectable} from '@angular/core';
 import {collection, collectionData, Firestore, query, where} from "@angular/fire/firestore";
 import firebase from "firebase/compat";
 import {Subscriber} from "rxjs";
@@ -10,7 +10,7 @@ import DocumentData = firebase.firestore.DocumentData;
 })
 export class OrderService {
   private firestore: Firestore = inject(Firestore);
-
+  private changeDetection: ChangeDetectorRef = inject(ChangeDetectorRef);
 
   getOrders(user: string, observer: Subscriber<AllianceOrder[]>): void {
     let ordersRef = collection(this.firestore, 'orders');
@@ -21,6 +21,7 @@ export class OrderService {
       ), {idField: 'id'}
     ).subscribe((items: DocumentData[]) => {
       observer.next(Object.assign([], items));
+      this.changeDetection.detectChanges();
     });
   }
 }

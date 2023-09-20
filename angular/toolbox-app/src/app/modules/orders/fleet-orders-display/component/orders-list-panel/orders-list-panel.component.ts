@@ -1,4 +1,4 @@
-import {ChangeDetectorRef, Component, inject, OnInit} from '@angular/core';
+import {Component, inject, OnInit} from '@angular/core';
 import {OrderService} from "../../service/order.service";
 import {DarkgalaxyApiService} from "../../../../darkgalaxy-ui-parser/service/darkgalaxy-api.service";
 import {AllianceOrder} from "../../../../../model/orders/alliance-order.model";
@@ -13,8 +13,6 @@ export class OrdersListPanelComponent implements OnInit {
   private orderService: OrderService = inject(OrderService);
   private dgAPI: DarkgalaxyApiService = inject(DarkgalaxyApiService);
   public orders: Observable<AllianceOrder[]>;
-  public xxx: AllianceOrder[] = [];
-  private changeDetection: ChangeDetectorRef = inject(ChangeDetectorRef);
 
   constructor() {
     this.orders = new Observable<AllianceOrder[]>((observer) => {
@@ -23,10 +21,5 @@ export class OrdersListPanelComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    this.orders.subscribe((data) => {
-      this.xxx = data;
-      this.changeDetection.detectChanges();
-      console.log(this.xxx);
-    });
   }
 }
