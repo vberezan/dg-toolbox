@@ -765,6 +765,10 @@ label.queueDestroyButton:hover {
   padding-bottom: 2px !important;
 }
 
+.dgt-orders-list-table td.instructions {
+  width: 65%;
+}
+
 .allianceBox .playerList > .player > .name {
   width: 100%;
   float: left;
