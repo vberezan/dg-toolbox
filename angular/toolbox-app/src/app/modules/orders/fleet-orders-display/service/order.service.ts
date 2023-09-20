@@ -18,9 +18,11 @@ export class OrderService {
       query(ordersRef,
         where('user', '==', user)
       ), {idField: 'id'}
-    ).subscribe((items: DocumentData[]) => {
+    ).forEach((items: DocumentData[]) => {
       observer.next(Object.assign([], items));
       changeDetection.detectChanges();
+    }).catch((error) => {
+      console.log(error);
     });
   }
 }
