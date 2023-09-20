@@ -15,9 +15,6 @@ export class ScanService {
   private firestore: Firestore = inject(Firestore);
   private dgAPI: DarkgalaxyApiService = inject(DarkgalaxyApiService);
 
-  constructor() {
-  }
-
   extractScan(): PlanetScanEvent {
     return this.dgAPI.planetScan();
   }

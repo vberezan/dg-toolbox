@@ -14,9 +14,6 @@ export class ScanCollectorComponent implements OnInit, OnDestroy {
   private authService: AuthService = inject(AuthService);
   active: boolean = false;
 
-  constructor() {
-  }
-
   ngOnInit(): void {
     this.authService.loggedStatus.subscribe((status: boolean) => {
       if (status) {

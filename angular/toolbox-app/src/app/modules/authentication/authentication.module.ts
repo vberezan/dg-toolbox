@@ -29,7 +29,5 @@ import {initializeAppCheck, provideAppCheck, ReCaptchaV3Provider} from "@angular
   ]
 })
 export class AuthenticationModule {
-  constructor() {
-  }
 
 }

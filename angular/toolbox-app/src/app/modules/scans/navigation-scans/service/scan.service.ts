@@ -20,9 +20,6 @@ export class ScanService {
   private resourceProductionFormatterPipe: ResourceProductionFormatterPipe = inject(ResourceProductionFormatterPipe);
   private decimalPipe: DecimalPipe = inject(DecimalPipe);
 
-  constructor() {
-  }
-
   extractSummaries(): PlanetSummary[] {
     return this.dgAPI.navigationSystemPlanets();
   }
