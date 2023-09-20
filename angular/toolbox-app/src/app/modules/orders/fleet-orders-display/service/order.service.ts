@@ -20,7 +20,7 @@ export class OrderService {
       ), {idField: 'id'}
     ).subscribe((items: DocumentData[]) => {
       observer.next(Object.assign([], items));
-      hideComponent = items.length == 0;
+      hideComponent = (items.length == 0);
       changeDetection.detectChanges();
     });
   }
