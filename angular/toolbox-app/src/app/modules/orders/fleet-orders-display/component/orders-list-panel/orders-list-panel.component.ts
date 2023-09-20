@@ -14,10 +14,11 @@ export class OrdersListPanelComponent implements OnInit {
   private dgAPI: DarkgalaxyApiService = inject(DarkgalaxyApiService);
   private changeDetection: ChangeDetectorRef = inject(ChangeDetectorRef);
   public orders: Observable<AllianceOrder[]>;
+  public hideComponent = false;
 
   constructor() {
     this.orders = new Observable<AllianceOrder[]>((observer) => {
-      this.orderService.getOrders(this.dgAPI.getUser(), observer, this.changeDetection);
+      this.orderService.getOrders(this.dgAPI.getUser(), observer, this.changeDetection, this.hideComponent);
     });
   }
 
