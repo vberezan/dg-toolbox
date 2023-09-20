@@ -7,4 +7,7 @@ import { Component } from '@angular/core';
 })
 export class OrdersPanelComponent {
 
+  onSubmit(): void {
+    console.log('submitted');
+  }
 }
