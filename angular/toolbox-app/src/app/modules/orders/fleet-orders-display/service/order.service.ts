@@ -11,7 +11,7 @@ import DocumentData = firebase.firestore.DocumentData;
 export class OrderService {
   private firestore: Firestore = inject(Firestore);
 
-  getOrders(user: string, observer: Subscriber<AllianceOrder[]>, changeDetection: ChangeDetectorRef, hideComponent: boolean): void {
+  getOrders(user: string, observer: Subscriber<AllianceOrder[]>, changeDetection: ChangeDetectorRef): void {
     let ordersRef = collection(this.firestore, 'orders');
 
     collectionData(
@@ -20,7 +20,6 @@ export class OrderService {
       ), {idField: 'id'}
     ).subscribe((items: DocumentData[]) => {
       observer.next(Object.assign([], items));
-      hideComponent = (items.length == 0);
       changeDetection.detectChanges();
     });
   }
