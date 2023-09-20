@@ -14,9 +14,8 @@ export class OrdersListPanelComponent implements OnInit {
   protected orders: AllianceOrder[] = [];
 
   ngOnInit(): void {
-    this.orderService.getOrders(this.dgAPI.getUser(), (allianceOrders: AllianceOrder[]) => {
+    this.orderService.getOrders(this.dgAPI.getUser(), (allianceOrders: AllianceOrder[]): void => {
       this.orders = allianceOrders;
-      console.log(this.orders);
     });
   }
 

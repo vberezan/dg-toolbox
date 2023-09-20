@@ -6,9 +6,9 @@
   </tr>
   </thead>
   <tbody>
-  <tr>
-    <td>1</td>
-    <td>2</td>
+  <tr *ngFor="let row of orders; index as i;">
+    <td>{{row.target}}</td>
+    <td>{{row.wait}}</td>
   </tr>
   </tbody>
 </table>
