@@ -27,7 +27,7 @@ export class ScanService {
         where('location', '==', scanEvent.planetScan.location),
         limit(1)
       ), {idField: 'id'}
-    ).subscribe((items: DocumentData[]) => {
+    ).forEach((items: DocumentData[]) => {
       let dbScan: PlanetScan = Object.assign(new PlanetScan(), items[0]);
 
       dbScan.location = scanEvent.planetScan.location;
@@ -68,10 +68,12 @@ export class ScanService {
             }
           );
       } else {
-        updateDoc(doc(scansRef, dbScan.id), JSON.parse(JSON.stringify(dbScan))).catch((error) => {
+        updateDoc(doc(scansRef, dbScan.id), JSON.parse(JSON.stringify(dbScan))).catch((error): void => {
           console.log(error);
         });
       }
+    }).catch((error): void => {
+      console.log(error);
     });
   }
 }

@@ -34,6 +34,8 @@ export class OrdersPanelComponent implements OnInit{
   }
 
   ngOnInit() {
-    this.orderService.fillActiveorders();
+    document.querySelectorAll('.allianceBox .playerList div.name').forEach((playerName, idx) => {
+      this.orderService.fillActiveOrders(playerName.childNodes[0].textContent.trim(), idx);
+    })
   }
 }

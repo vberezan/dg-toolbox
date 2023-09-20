@@ -7,9 +7,9 @@ import {Resource} from "../../../../model/resource.model";
 import {ResourceProductionFormatterPipe} from "../../../planets/planet-list-stats/pipe/resource-production-formatter.pipe";
 import {Structures} from "../../../../model/structures";
 import {collection, collectionData, Firestore, limit, query, where} from "@angular/fire/firestore";
+import {NameQuantity} from "../../../../model/name-quantity.model";
 import firebase from "firebase/compat";
 import DocumentData = firebase.firestore.DocumentData;
-import {NameQuantity} from "../../../../model/name-quantity.model";
 
 @Injectable({
   providedIn: 'root'
