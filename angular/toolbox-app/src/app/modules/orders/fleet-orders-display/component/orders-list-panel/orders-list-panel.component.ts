@@ -12,8 +12,8 @@ import {Observable} from "rxjs";
 export class OrdersListPanelComponent implements OnInit {
   private orderService: OrderService = inject(OrderService);
   private dgAPI: DarkgalaxyApiService = inject(DarkgalaxyApiService);
-  protected orders: Observable<AllianceOrder[]>;
-  protected xxx: AllianceOrder[];
+  public orders: Observable<AllianceOrder[]>;
+  public xxx: AllianceOrder[];
 
   constructor() {
     this.orders = new Observable<AllianceOrder[]>((observer) => {
@@ -24,6 +24,8 @@ export class OrdersListPanelComponent implements OnInit {
   ngOnInit(): void {
     this.orders.subscribe((data) => {
       this.xxx = data;
-    })
+
+      console.log(this.xxx);
+    });
   }
 }
