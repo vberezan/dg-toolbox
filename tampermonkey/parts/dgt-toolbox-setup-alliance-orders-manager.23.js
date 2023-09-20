@@ -8,7 +8,6 @@ function setUpAllianceOrdersManagerPanel(windowURL) {
             let ordersTable = document.createElement('table');
             ordersTable.classList.add('dgt-orders-table');
             ordersTable.id = 'dgt-orders-table-' + idx;
-
             ordersTable.innerHTML =
                 '<tbody>' +
                     '<tr class="dgt-orders-data">' +
@@ -25,7 +24,16 @@ function setUpAllianceOrdersManagerPanel(windowURL) {
                     '</tr>' +
                 '</tbody>';
 
+
+            let activeOrdersTable = document.createElement('table');
+            activeOrdersTable.classList.add('dgt-orders-list-table');
+            activeOrdersTable.id = 'dgt-orders-list-table-' + idx;
+            activeOrdersTable.innerHTML =
+                '<tbody>' +
+                '</tbody>';
+
             player.append(ordersTable);
+            player.append(activeOrdersTable);
         });
     }
 }

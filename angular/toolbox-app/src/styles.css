@@ -703,9 +703,10 @@ label.queueDestroyButton:hover {
 }
 
 /*********/
+.dgt-orders-list-table,
 .dgt-orders-table {
     float: left;
-    width: 82%;
+    width: 100%;
 }
 
 .dgt-orders-table td > input {
