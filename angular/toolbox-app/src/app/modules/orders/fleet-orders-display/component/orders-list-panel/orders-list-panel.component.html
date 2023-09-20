@@ -9,10 +9,10 @@
   </thead>
   <tbody>
   <tr *ngFor="let row of (orders | async)">
+    <td class="complete"><button>Complete</button></td>
     <td class="target">{{row.target}}</td>
     <td class="wait">{{row.wait}}</td>
     <td class="instructions">{{row.instructions}}</td>
-    <td class="complete"><button>Complete</button></td>
   </tr>
   </tbody>
 </table>

@@ -757,6 +757,7 @@ label.queueDestroyButton:hover {
 .dgt-orders-table td.submit > button {
   width: 100px !important;
   cursor: pointer;
+  border: 1px solid #6a6a6a !important;
 }
 
 .dgt-orders-list-table td.status > span {
