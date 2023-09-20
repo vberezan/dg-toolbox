@@ -20,7 +20,7 @@ function setUpAllianceOrdersManagerPanel(windowURL) {
                         '<td class="wait-label"><span>Wait:</span></td>' +
                         '<td class="wait"><input type="text" oninput="this.value = this.value.replace(/[^0-9.]/g, \'\').replace(/(\\..*?)\\..*/g, \'$1\').replace(/^0[^.]/, \'0\');" /></td>' +
                         '<td class="wait-label"><span>Comment:</span></td>' +
-                        '<td class="wait"><textarea placeholder="Ex: minim 100 fighters"></textarea></td>' +
+                        '<td class="comment"><textarea placeholder="Ex: min 100xFighter"></textarea></td>' +
                         '<td class="submit"><button onclick="populateAngularForm(\'' + ordersTable.id + '\')">Send</button></td>' +
                     '</tr>' +
                 '</tbody>';
@@ -35,6 +35,11 @@ function populateAngularForm(orderTableId) {
     let playerTable = document.getElementById(orderTableId);
 
     angularForm.querySelector('td.galaxy>input').value = playerTable.querySelector('td.galaxy>input').value;
+    angularForm.querySelector('td.sector>input').value = playerTable.querySelector('td.sector>input').value;
+    angularForm.querySelector('td.system>input').value = playerTable.querySelector('td.system>input').value;
+    angularForm.querySelector('td.planet>input').value = playerTable.querySelector('td.planet>input').value;
+    angularForm.querySelector('td.wait>input').value = playerTable.querySelector('td.wait>input').value;
+    angularForm.querySelector('td.comment>input').value = playerTable.querySelector('td.comment>input').value;
 
-    console.log(orderTableId)
+    angularForm.querySelector('td.submit>button').click();
 }
