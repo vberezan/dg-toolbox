@@ -761,7 +761,8 @@ label.queueDestroyButton:hover {
 
 .dgt-orders-list-table td.status span {
   vertical-align: middle;
-  margin-left: 5px;
+  margin-left: 3px;
+  padding-bottom: 2px;
 }
 
 .allianceBox .playerList > .player > .name {
