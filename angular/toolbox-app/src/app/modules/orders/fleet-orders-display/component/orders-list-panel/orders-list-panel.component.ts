@@ -21,5 +21,8 @@ export class OrdersListPanelComponent implements OnInit {
   }
 
   ngOnInit(): void {
+    this.orders.subscribe((data) => {
+      console.log('subscription: ' + data);
+    })
   }
 }
