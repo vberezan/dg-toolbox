@@ -31,5 +31,10 @@ function setUpAllianceOrdersManagerPanel(windowURL) {
 }
 
 function populateAngularForm(orderTableId) {
+    let angularForm = document.getElementById('dgt-orders-panel-data-form');
+    let playerTable = document.getElementById(orderTableId);
+
+    angularForm.querySelector('td.galaxy').textContent = playerTable.querySelector('td.galaxy').textContent.trim();
+
     console.log(orderTableId)
 }
