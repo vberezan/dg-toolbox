@@ -45,7 +45,7 @@ function populateAngularForm(orderTableId) {
     angularForm.querySelector('td.wait>input').value = playerTable.querySelector('td.wait>input').value;
     angularForm.querySelector('td.wait>input').dispatchEvent(new Event('input'));
     angularForm.querySelector('td.comment>textarea').value = playerTable.querySelector('td.comment>textarea').value;
-    angularForm.querySelector('td.comment>input').dispatchEvent(new Event('input'));
+    angularForm.querySelector('td.comment>textarea').dispatchEvent(new Event('input'));
 
     angularForm.querySelector('td.submit>button').click();
 }
