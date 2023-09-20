@@ -28,7 +28,22 @@ export class OrderService {
         where('user', '==', user)
       ), {idField: 'id'}
     ).forEach((items: DocumentData[]) => {
-      console.log(items);
+      let orders: AllianceOrder[] = Object.assign([], items);
+      let ordersListTable = document.getElementById('dgt-orders-list-table-' + idx).querySelector('tbody');
+
+      // -- reset table
+      ordersListTable.innerHTML = '';
+      orders.forEach((order: AllianceOrder) => {
+        let orderLine = document.createElement('tr');
+        orderLine.innerHTML =
+          '<td>' + order.target + '</td>' +
+          '<td>' + order.wait + '</td>' +
+          '<td>' + order.turn + '</td>' +
+          '<td>' + order.comment + '</td>';
+
+        ordersListTable.append(orderLine);
+      });
+
     }).catch((error): void => {
       console.log(error);
     })
