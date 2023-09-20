@@ -759,10 +759,10 @@ label.queueDestroyButton:hover {
   cursor: pointer;
 }
 
-.dgt-orders-list-table td.status span {
+.dgt-orders-list-table td.status > span {
   vertical-align: middle;
-  margin-left: 3px;
-  padding-bottom: 2px;
+  margin-left: 3px !important;
+  padding-bottom: 2px !important;
 }
 
 .allianceBox .playerList > .player > .name {
