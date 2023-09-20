@@ -28,7 +28,7 @@ export class OrdersPanelComponent implements OnInit{
     allianceOrder.instructions = this.ordersForm.value['instructions'];
     allianceOrder.executed = false;
     allianceOrder.turn = this.dgAPI.gameTurn();
-    allianceOrder.user = this.ordersForm.value['user'];
+    allianceOrder.user = this.ordersForm.value['user'].toLowerCase();
 
     this.orderService.updateOrder(allianceOrder);
   }

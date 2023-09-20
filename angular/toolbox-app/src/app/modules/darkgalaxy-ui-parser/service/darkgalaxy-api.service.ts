@@ -29,4 +29,14 @@ export class DarkgalaxyApiService {
   gameTurn(): number {
     return parseInt(document.querySelector('#turnNumber').textContent.trim().replace(/,/g, ''));
   }
+
+  getUser(): string {
+    let completeName = document.querySelector('#header>#playerBox>.header>div.left:nth-child(2)').textContent.split('Welcome')[1].trim();
+
+    if (completeName.indexOf('[') == 0 && completeName.indexOf(']') == 4) {
+      completeName.substring(5, completeName.length);
+    }
+
+    return completeName.toLowerCase();
+  }
 }

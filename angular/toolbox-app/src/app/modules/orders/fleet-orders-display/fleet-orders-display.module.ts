@@ -7,6 +7,7 @@ import {environment} from "../../../../environments/environment";
 import {getAuth, provideAuth} from "@angular/fire/auth";
 import {getFirestore, provideFirestore} from "@angular/fire/firestore";
 import {initializeAppCheck, provideAppCheck, ReCaptchaV3Provider} from "@angular/fire/app-check";
+import {DarkgalaxyApiService} from "../../darkgalaxy-ui-parser/service/darkgalaxy-api.service";
 
 
 @NgModule({
@@ -26,7 +27,8 @@ import {initializeAppCheck, provideAppCheck, ReCaptchaV3Provider} from "@angular
     OrdersListPanelComponent
   ],
   providers: [
-    OrderService
+    OrderService,
+    DarkgalaxyApiService
   ],
   bootstrap: [
     OrdersListPanelComponent
