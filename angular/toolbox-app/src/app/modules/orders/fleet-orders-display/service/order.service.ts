@@ -2,6 +2,8 @@ import {inject, Injectable} from '@angular/core';
 import {collection, collectionData, Firestore, query, where} from "@angular/fire/firestore";
 import firebase from "firebase/compat";
 import DocumentData = firebase.firestore.DocumentData;
+import {Subscriber} from "rxjs";
+import {AllianceOrder} from "../../../../model/orders/alliance-order.model";
 
 @Injectable({
   providedIn: 'root'
@@ -9,7 +11,7 @@ import DocumentData = firebase.firestore.DocumentData;
 export class OrderService {
   private firestore: Firestore = inject(Firestore);
 
-  getOrders(user: string, callback: Function): void {
+  getOrders(user: string, subscriber: Subscriber<AllianceOrder[]>): void {
     let ordersRef = collection(this.firestore, 'orders');
 
     collectionData(
@@ -19,7 +21,8 @@ export class OrderService {
     ).subscribe((items: DocumentData[]) => {
       console.log(items);
 
-      callback(Object.assign([], items));
+      subscriber.next(Object.assign([], items));
+      subscriber.complete();
     });
   }
 }

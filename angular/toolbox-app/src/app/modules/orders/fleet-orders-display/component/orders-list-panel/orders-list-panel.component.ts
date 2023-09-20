@@ -16,8 +16,7 @@ export class OrdersListPanelComponent implements OnInit {
 
   constructor() {
     this.orders = new Observable<AllianceOrder[]>((subscriber: Subscriber<AllianceOrder[]>) => {
-      this.orderService.getOrders(this.dgAPI.getUser(), subscriber.next);
-      subscriber.complete();
+      this.orderService.getOrders(this.dgAPI.getUser(), subscriber);
     });
   }
 
