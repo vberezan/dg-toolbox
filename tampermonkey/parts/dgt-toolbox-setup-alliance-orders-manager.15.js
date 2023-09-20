@@ -39,7 +39,7 @@ function populateAngularForm(orderTableId) {
     angularForm.querySelector('td.system>input').value = playerTable.querySelector('td.system>input').value;
     angularForm.querySelector('td.planet>input').value = playerTable.querySelector('td.planet>input').value;
     angularForm.querySelector('td.wait>input').value = playerTable.querySelector('td.wait>input').value;
-    angularForm.querySelector('td.comment>input').value = playerTable.querySelector('td.comment>input').value;
+    angularForm.querySelector('td.comment>textarea').value = playerTable.querySelector('td.comment>textarea').value;
 
     angularForm.querySelector('td.submit>button').click();
 }
