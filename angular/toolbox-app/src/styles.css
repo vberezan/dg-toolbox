@@ -771,6 +771,7 @@ label.queueDestroyButton:hover {
   margin-bottom: 5px;
 }
 
+.allianceBox .playerList > .player.opacBackground,
 .allianceBox .playerList > .player.opacLightBackground {
   background: rgb(75,75,75) !important;
 }
