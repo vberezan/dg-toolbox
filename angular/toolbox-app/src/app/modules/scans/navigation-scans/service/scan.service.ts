@@ -27,11 +27,11 @@ export class ScanService {
   fillScans(summaries: PlanetSummary[]) {
     let locations: string[] = summaries.map((summary: PlanetSummary) => summary.location.join('.'));
 
-    let subscription = collectionData(
+    collectionData(
       query(collection(this.firestore, 'scans'),
         where('location', 'in', locations)
       )
-    ).subscribe((items: DocumentData[]): void => {
+    ).forEach((items: DocumentData[]): void => {
       let dbScans: PlanetScan[] = Object.assign([], items);
 
       let byLocation: Map<String, PlanetScan> = dbScans.reduce((entryMap: Map<any, any>, e: PlanetScan) =>
@@ -130,9 +130,8 @@ export class ScanService {
         }
       });
 
-      // -- we do this to avoid large consumption of Firestore reads.
-      // -- if the usage stays in reasonable limits, we can switch to live.
-      subscription.unsubscribe();
+    }).catch((error): void => {
+      console.log(error)
     });
   }
 }

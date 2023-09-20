@@ -1,4 +1,4 @@
-import {Component, inject, ViewChild} from '@angular/core';
+import {Component, inject, OnInit, ViewChild} from '@angular/core';
 import {NgForm} from "@angular/forms";
 import {OrderService} from "../../service/order.service";
 import {AllianceOrder} from "../../../../../model/orders/alliance-order.model";
@@ -9,7 +9,7 @@ import {DarkgalaxyApiService} from "../../../../darkgalaxy-ui-parser/service/dar
   templateUrl: './orders-panel.component.html',
   styleUrls: ['./orders-panel.component.css']
 })
-export class OrdersPanelComponent {
+export class OrdersPanelComponent implements OnInit{
   @ViewChild('dgtOrdersForm') ordersForm: NgForm;
 
   private orderService: OrderService = inject(OrderService);
@@ -31,5 +31,9 @@ export class OrdersPanelComponent {
     allianceOrder.user = this.ordersForm.value['user'];
 
     this.orderService.updateOrder(allianceOrder);
+  }
+
+  ngOnInit() {
+    this.orderService.fillActiveorders();
   }
 }
