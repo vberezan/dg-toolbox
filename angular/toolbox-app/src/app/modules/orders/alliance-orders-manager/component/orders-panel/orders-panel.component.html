@@ -1,5 +1,12 @@
 <div>
-  <div *ngFor="let member of allianceMembers">{{member}}</div>
+  <div *ngFor="let member of allianceMembers">
+    <div class="name"><span>{{member}}</span></div>
+    <div class="dgt-orders-launcher">
+      <div class="target"><input type="text" ngModel name="target"/></div>
+      <div class="wait"><input type="text" ngModel name="wait"/></div>
+      <div class="instructions"><textarea ngModel name="instructions"></textarea></div>
+    </div>
+  </div>
 </div>
 
 <form id="dgt-orders-panel-data-form" (ngSubmit)="onSubmit()" #dgtOrdersForm="ngForm">

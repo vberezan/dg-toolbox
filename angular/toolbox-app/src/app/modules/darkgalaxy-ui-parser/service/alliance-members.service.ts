@@ -13,7 +13,7 @@ export class AllianceMembersService implements DataExtractor {
     let result: string[] = [];
 
     document.querySelectorAll('.allianceBox .playerList div.name').forEach((playerName: any) => {
-      result.push(playerName.childNodes[0].textContent.trim().toLowerCase());
+      result.push(playerName.childNodes[0].textContent.trim());
     });
 
     return result;
