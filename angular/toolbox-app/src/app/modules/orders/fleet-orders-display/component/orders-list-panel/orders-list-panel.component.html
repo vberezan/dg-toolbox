@@ -1,4 +1,4 @@
-<table class="dgt-fleet-orders-list-table" [ngClass]="{'no-rows': hideComponent}" >
+<table class="dgt-fleet-orders-list-table" >
   <thead>
   <tr>
     <td></td>
@@ -16,3 +16,10 @@
   </tr>
   </tbody>
 </table>
+
+<div class="dgt-fleet-order" *ngFor="let order of (orders | async)">
+  <div class="complete"><button>Complete</button></div>
+  <div class="target"><span class="label">Target:</span><span class="value">{{order.target}}</span></div>
+  <div class="wait"><span class="label">Wait:</span><span class="value">{{order.wait}}</span></div>
+  <div class="instructions"><span class="label">Instructions:</span><span class="value">{{order.instructions}}</span></div>
+</div>
