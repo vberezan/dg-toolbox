@@ -4,13 +4,15 @@ import {collection, collectionData, Firestore, limit, query, where} from "@angul
 import {GoogleAuthProvider} from "firebase/auth";
 import {Subscription} from "rxjs";
 import firebase from "firebase/compat";
+import {AuthState} from "../../../model/authentication/auth-state.model";
+import {UserRole} from "../../../model/authentication/user-role";
 import DocumentData = firebase.firestore.DocumentData;
 
 @Injectable({
   providedIn: 'platform'
 })
 export class AuthService implements OnDestroy {
-  private _loggedStatus: EventEmitter<boolean> = new EventEmitter();
+  private _authState: EventEmitter<AuthState> = new EventEmitter();
   private authSubscription: Subscription;
   private _refreshInProgress: boolean = false;
 
@@ -35,11 +37,15 @@ export class AuthService implements OnDestroy {
           )
         ).subscribe((items: DocumentData[]): void => {
           if (items.length > 0) {
-            let userCheck: { email: string, enabled: boolean } = Object.assign({email: '', enabled: false}, items[0]);
+            let userCheck: { email: string, enabled: boolean, role: UserRole } = Object.assign({
+              email: '',
+              enabled: false,
+              role: UserRole.USER
+            }, items[0]);
 
             if (userCheck.enabled) {
               localStorage.setItem('user', JSON.stringify(user));
-              this._loggedStatus.emit(true);
+              this._authState.emit(new AuthState(true, userCheck.role));
             } else {
               this.signOut(auth, false);
             }
@@ -49,7 +55,7 @@ export class AuthService implements OnDestroy {
         });
       } else {
         localStorage.removeItem('user');
-        this._loggedStatus.emit(false);
+        this._authState.emit(new AuthState(false, null));
       }
     });
   }
@@ -81,7 +87,7 @@ export class AuthService implements OnDestroy {
   }
 
   signOut(auth: Auth, refreshPage: boolean): void {
-    this._loggedStatus.emit(false);
+    this._authState.emit(new AuthState(true, null));
     localStorage.removeItem('user');
     this._refreshInProgress = refreshPage;
 
@@ -97,8 +103,8 @@ export class AuthService implements OnDestroy {
       );
   }
 
-  get loggedStatus(): EventEmitter<boolean> {
-    return this._loggedStatus;
+  get authState(): EventEmitter<AuthState> {
+    return this._authState;
   }
 
   get refreshInProgress(): boolean {

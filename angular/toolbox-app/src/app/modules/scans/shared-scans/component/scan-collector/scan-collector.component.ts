@@ -2,6 +2,7 @@ import {Component, inject, OnDestroy, OnInit} from '@angular/core';
 import {ScanService} from "../../service/scan.service";
 import {PlanetScanEvent} from "../../../../../model/scans/shared-scans-planet-scan-event.model";
 import {AuthService} from "../../../../authentication/service/auth.service";
+import {AuthState} from "../../../../../model/authentication/auth-state.model";
 
 @Component({
   selector: 'dgt-shared-scans-collector',
@@ -14,10 +15,10 @@ export class ScanCollectorComponent implements OnInit, OnDestroy {
   active: boolean = false;
 
   ngOnInit(): void {
-    this.authService.loggedStatus.subscribe((status: boolean) => {
-      this.active = status;
+    this.authService.authState.subscribe((state: AuthState) => {
+      this.active = state.status;
 
-      if (status) {
+      if (state.status) {
         let planetScanEvent: PlanetScanEvent = this.scanService.extractScan();
 
         if (planetScanEvent != null) {
@@ -28,6 +29,6 @@ export class ScanCollectorComponent implements OnInit, OnDestroy {
   }
 
   ngOnDestroy(): void {
-    this.authService.loggedStatus.unsubscribe();
+    this.authService.authState.unsubscribe();
   }
 }

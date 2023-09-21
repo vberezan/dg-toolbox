@@ -2,6 +2,7 @@ import {Component, inject, OnDestroy, OnInit} from '@angular/core';
 import {ScanService} from "../../service/scan.service";
 import {PlanetSummary} from "../../../../../model/planets/planet-summary.planet-list-model";
 import {AuthService} from "../../../../authentication/service/auth.service";
+import {AuthState} from "../../../../../model/authentication/auth-state.model";
 
 @Component({
   selector: 'dgt-navigation-scan-data-panel',
@@ -14,10 +15,10 @@ export class ScanDataPanelComponent implements OnInit, OnDestroy {
   public active: boolean = false;
 
   ngOnInit() {
-    this.authService.loggedStatus.subscribe((status: boolean) => {
-      this.active = status;
+    this.authService.authState.subscribe((state: AuthState) => {
+      this.active = state.status;
 
-      if (status) {
+      if (state.status) {
         let summaries: PlanetSummary[] = this.scanService.extractSummaries();
 
         if (summaries.length > 0) {
@@ -28,7 +29,7 @@ export class ScanDataPanelComponent implements OnInit, OnDestroy {
   }
 
   ngOnDestroy() {
-    this.authService.loggedStatus.unsubscribe();
+    this.authService.authState.unsubscribe();
   }
 
 }

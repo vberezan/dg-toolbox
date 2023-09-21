@@ -25,7 +25,7 @@ export class OrderService {
 
     collectionData(
       query(ordersRef,
-        where('user', '==', user.toLowerCase())
+        where('user', '==', user.toLowerCase()),
       ), {idField: 'id'}
     ).forEach((items: DocumentData[]) => {
       let orders: AllianceOrder[] = Object.assign([], items);
