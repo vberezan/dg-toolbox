@@ -23,8 +23,7 @@ export class OrdersListPanelComponent {
     this.authService.loggedStatus.subscribe((status: boolean) => {
 
       if (status) {
-
-        this.active = new Observable<boolean>((observer) => {
+        this.active = new Observable<boolean>((observer: Subscriber<boolean>) => {
           console.log('TRUE');
           observer.next(true);
 
