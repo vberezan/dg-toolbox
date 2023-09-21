@@ -28,6 +28,14 @@ textarea {
   overflow: hidden;
 }
 
-.dgt-orders-manager-member {
+.dgt-orders-manager-member,
+.dgt-orders-manager-member > div {
+  float: left;
+  width: 100%;
+}
+
+.dgt-orders-manager-member > div > div {
   float: left;
 }
+
+
