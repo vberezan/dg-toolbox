@@ -57,20 +57,20 @@ export class OrdersPanelComponent implements OnInit, OnDestroy {
   }
 
   ngOnInit() {
-    this.authService.authState.subscribe((state: AuthState) => {
-      if (state.status && state.role == UserRole.ADMIN) {
-        document.querySelectorAll('.allianceBox .playerList table').forEach((table: any) => {
-          table.style.display = 'table';
-        });
-        document.querySelectorAll('.allianceBox .playerList div.name').forEach((playerName: any, idx: number) => {
-          this.orderService.fillActiveOrders(playerName.childNodes[0].textContent.trim(), this.dgAPI.gameTurn(), idx);
-        });
-      } else {
-        document.querySelectorAll('.allianceBox .playerList table').forEach((table: Element) => {
-          table.remove();
-        });
-      }
-    });
+    // this.authService.authState.subscribe((state: AuthState) => {
+    //   if (state.status && state.role == UserRole.ADMIN) {
+    //     document.querySelectorAll('.allianceBox .playerList table').forEach((table: any) => {
+    //       table.style.display = 'table';
+    //     });
+    //     document.querySelectorAll('.allianceBox .playerList div.name').forEach((playerName: any, idx: number) => {
+    //       this.orderService.fillActiveOrders(playerName.childNodes[0].textContent.trim(), this.dgAPI.gameTurn(), idx);
+    //     });
+    //   } else {
+    //     document.querySelectorAll('.allianceBox .playerList table').forEach((table: Element) => {
+    //       table.remove();
+    //     });
+    //   }
+    // });
   }
 
   ngOnDestroy(): void {
