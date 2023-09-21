@@ -34,6 +34,6 @@ export class OrdersListPanelComponent {
   }
 
   onCompleteClick(id: string) {
-    console.log(id);
+    this.orderService.completeOrder(id);
   }
 }

@@ -1,5 +1,5 @@
 import {ChangeDetectorRef, inject, Injectable} from '@angular/core';
-import {collection, collectionData, Firestore, query, where} from "@angular/fire/firestore";
+import {collection, collectionData, doc, Firestore, query, updateDoc, where} from "@angular/fire/firestore";
 import firebase from "firebase/compat";
 import {Subscriber} from "rxjs";
 import {AllianceOrder} from "../../../../model/orders/alliance-order.model";
@@ -29,6 +29,14 @@ export class OrderService {
       observer.next(orders);
       changeDetection.detectChanges();
     }).catch((error) => {
+      console.log(error);
+    });
+  }
+
+  completeOrder(id: string) {
+    let ordersRef = collection(this.firestore, 'orders');
+
+    updateDoc(doc(ordersRef, id), {'executed': true}).catch((error): void => {
       console.log(error);
     });
   }
