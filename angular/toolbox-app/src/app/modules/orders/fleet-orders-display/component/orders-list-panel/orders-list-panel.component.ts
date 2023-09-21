@@ -21,6 +21,8 @@ export class OrdersListPanelComponent {
 
   constructor() {
     this.authService.loggedStatus.subscribe((status: boolean) => {
+      console.log(status);
+
       if (status) {
         this.orders = new Observable<AllianceOrder[]>((observer: Subscriber<AllianceOrder[]>) => {
           this.orderService.getOrders(this.dgAPI.username(), this.dgAPI.gameTurn(), observer, this.changeDetection);
