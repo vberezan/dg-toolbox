@@ -23,21 +23,12 @@
 </div>
 
 <form id="dgt-orders-panel-data-form" (ngSubmit)="onSubmit()" #dgtOrdersForm="ngForm">
-  <table class="dgt-orders-table">
-    <tbody>
-    <tr class="dgt-orders-data">
-      <td class="galaxy"><input type="text" ngModel name="galaxy"/></td>
-      <td class="sector"><input type="text" ngModel name="sector"/></td>
-      <td class="system"><input type="text" ngModel name="system"/></td>
-      <td class="planet"><input type="text" ngModel name="planet"/></td>
-      <td class="wait"><input type="text" ngModel name="wait"/></td>
-      <td class="user"><input type="text" ngModel name="user"/></td>
-      <td class="instructions"><textarea placeholder="Ex: minim 100 fighters" ngModel name="instructions"></textarea></td>
-      <td class="submit">
-        <button type="submit">Send</button>
-      </td>
-    </tr>
-    </tbody>
-  </table>
+  <div>
+    <input type="text" ngModel name="target"/>
+    <input type="text" ngModel name="wait"/>
+    <input type="text" ngModel name="user"/>
+    <textarea placeholder="Ex: minim 100 fighters" ngModel name="instructions"></textarea>
+    <button type="submit">Send</button>
+  </div>
 </form>
 
