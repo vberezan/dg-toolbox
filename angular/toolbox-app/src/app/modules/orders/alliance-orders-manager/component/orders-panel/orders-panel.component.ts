@@ -24,11 +24,18 @@ export class OrdersPanelComponent implements OnInit, OnDestroy {
 
   protected allianceMembers: string[];
   protected orders: Map<string, Observable<AllianceOrder[]>> = new Map<string, Observable<AllianceOrder[]>>();
-  protected targets: string[] = [];
+  protected controls: {
+    'target': string[],
+    'wait' : number[],
+    'instructions' : string[]
+  }
 
   constructor(library: FaIconLibrary) {
     library.addIcons(farCircleXmark);
     this.allianceMembers = this.dgAPI.allianceMembers();
+    this.controls.target = [];
+    this.controls.wait = [];
+    this.controls.instructions = [];
 
     this.allianceMembers.forEach((member: string) => {
       this.orders.set(member.toLowerCase(), new Observable<AllianceOrder[]>((observer: Subscriber<AllianceOrder[]>) => {
@@ -56,8 +63,10 @@ export class OrdersPanelComponent implements OnInit, OnDestroy {
   }
 
   createOrder(idx: number): void {
-    console.log(idx);
-    console.log(this.targets[idx]);
+    console.log(this.allianceMembers[idx]);
+    console.log(this.controls.target[idx]);
+    console.log(this.controls.wait[idx]);
+    console.log(this.controls.instructions[idx]);
   }
 
   ngOnInit() {
