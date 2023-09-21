@@ -26,6 +26,17 @@ body {
   color: #fff;
 }
 
+.notification-badge {
+  background: #FF3B302B;
+  border: 1px solid #FF3B30;
+  position: absolute;
+  top: -10px;
+  right: -10px;
+  padding: 5px 10px;
+  border-radius: 50%;
+  color: white;
+}
+
 textarea:focus,
 textarea:focus-visible,
 input:focus,
