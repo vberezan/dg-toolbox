@@ -66,7 +66,7 @@ function loadSetups(windowURL) {
 
     loadResource({
         tagName: 'script',
-        src: 'https://cdn.jsdelivr.net/gh/vberezan/dg-toolbox@development/tampermonkey/parts/dgt-toolbox-setup-alliance-orders-manager.30.js',
+        src: 'https://cdn.jsdelivr.net/gh/vberezan/dg-toolbox@development/tampermonkey/parts/dgt-toolbox-setup-alliance-orders-manager.31.js',
         rel: 'text/javascript'
     }).onload = function () {
         setUpAllianceOrdersManagerPanel(windowURL);
@@ -126,7 +126,7 @@ function loadCustomStyling() {
 function loadAngular() {
     let angular = [{
         tagName: 'link',
-        href: 'https://cdn.jsdelivr.net/gh/vberezan/dg-toolbox@development/angular/toolbox-app/dist/toolbox-app/styles.2217f747bd8e57f9.css',
+        href: 'https://cdn.jsdelivr.net/gh/vberezan/dg-toolbox@development/angular/toolbox-app/dist/toolbox-app/styles.c5e8678043a7a4d4.css',
         rel: 'stylesheet'
     }, {
         tagName: 'script',
@@ -138,7 +138,7 @@ function loadAngular() {
         rel: 'module'
     }, {
         tagName: 'script',
-        src: 'https://cdn.jsdelivr.net/gh/vberezan/dg-toolbox@development/angular/toolbox-app/dist/toolbox-app/main.3b31738851bf3eb1.js',
+        src: 'https://cdn.jsdelivr.net/gh/vberezan/dg-toolbox@development/angular/toolbox-app/dist/toolbox-app/main.beca08d47318edbd.js',
         rel: 'module'
     }];
 
