@@ -16,11 +16,11 @@ export class OrderService {
 
     collectionData(
       query(ordersRef,
-        where('user', '==', user)
+        where('user', '==', user),
+        where('executed', '==', false)
       ), {idField: 'id'}
     ).forEach((items: DocumentData[]) => {
       let orders: AllianceOrder[] = Object.assign([], items);
-
 
       orders.forEach((order) => {
         order.wait -= (turn - order.turn);
