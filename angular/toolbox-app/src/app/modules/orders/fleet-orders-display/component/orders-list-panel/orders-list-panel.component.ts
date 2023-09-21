@@ -32,4 +32,8 @@ export class OrdersListPanelComponent {
       this.changeDetection.detectChanges();
     });
   }
+
+  onCompleteClick(id: string) {
+    console.log(id);
+  }
 }
