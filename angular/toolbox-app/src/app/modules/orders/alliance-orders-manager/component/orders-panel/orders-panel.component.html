@@ -1,11 +1,11 @@
 <div class="dgt-orders-manager-panel">
-  <div class="dgt-orders-manager-member" *ngFor="let member of allianceMembers">
-    <div class="name"><span>{{member}}</span></div>
+  <div class="dgt-orders-manager-member" *ngFor="let member of allianceMembers; index as idx">
+    <div class="name" [class]="'idx-' + idx"><span>{{member}}</span></div>
     <div class="dgt-orders-launcher">
-      <div class="target"><span class="target">Target:</span><input type="text" ngModel name="target" placeholder="Ex: 1.1.1.1"/></div>
-      <div class="wait"><span class="wait">Wait:</span><input type="text" ngModel name="wait"/></div>
-      <div class="instructions"><span class="instructions">Instructions:</span><textarea ngModel name="instructions" placeholder="Ex: min 100xFighter"></textarea></div>
-      <div class="create"><button>Create</button></div>
+      <div class="target" [class]="'idx-' + idx" ><span class="target">Target:</span><input type="text" ngModel name="target" placeholder="Ex: 1.1.1.1"/></div>
+      <div class="wait" [class]="'idx-' + idx"><span class="wait">Wait:</span><input type="text" ngModel name="wait"/></div>
+      <div class="instructions" [class]="'idx-' + idx"><span class="instructions">Instructions:</span><textarea ngModel name="instructions" placeholder="Ex: min 100xFighter"></textarea></div>
+      <div class="create" [class]="'idx-' + idx"><button>Create</button></div>
     </div>
 
     <div class="dgt-orders-history">
