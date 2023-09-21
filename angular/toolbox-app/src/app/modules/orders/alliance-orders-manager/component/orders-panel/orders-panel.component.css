@@ -25,6 +25,7 @@ textarea {
 
 span {
   float: left;
+  line-height: 23px;
 }
 
 .dgt-orders-launcher {
