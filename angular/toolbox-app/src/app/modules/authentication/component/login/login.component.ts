@@ -18,12 +18,12 @@ export class LoginComponent {
     this.authService.setUpFirebaseAuthSubscription(this.auth, this.firestore);
   }
 
-  signInWithEmailAndPassword(email: string, password: string) {
-    this.authService.signInWithEmailAndPassword(this.auth, email, password);
+  signInWithEmailAndPassword(email: string, password: string, refreshPage: boolean) {
+    this.authService.signInWithEmailAndPassword(this.auth, email, password, refreshPage);
   }
 
-  signInWithGoogle() {
-    this.authService.signInWithGoogle(this.auth);
+  signInWithGoogle(refreshPage: boolean) {
+    this.authService.signInWithGoogle(this.auth, refreshPage);
   }
 
   signOut(refreshPage: boolean): void {

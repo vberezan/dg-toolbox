@@ -1,4 +1,4 @@
-import {NgModule, OnInit} from '@angular/core';
+import {NgModule} from '@angular/core';
 import {BrowserModule} from "@angular/platform-browser";
 import {ScanCollectorComponent} from './component/scan-collector/scan-collector.component';
 import {environment} from "../../../../environments/environment";
@@ -32,7 +32,5 @@ import {DarkgalaxyApiService} from "../../darkgalaxy-ui-parser/service/darkgalax
   ],
   bootstrap: [ScanCollectorComponent]
 })
-export class SharedScansModule implements OnInit {
-  ngOnInit(): void {
-  }
+export class SharedScansModule {
 }

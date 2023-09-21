@@ -54,16 +54,26 @@ export class AuthService implements OnDestroy {
     });
   }
 
-  signInWithEmailAndPassword(auth: Auth, email: string, password: string): void {
+  signInWithEmailAndPassword(auth: Auth, email: string, password: string, refreshPage: boolean): void {
     signInWithEmailAndPassword(auth, email, password)
+      .then(() => {
+        if (refreshPage) {
+          location.reload();
+        }
+      })
       .catch((error) => {
           window.alert(error.message);
         }
       );
   }
 
-  signInWithGoogle(auth: Auth): void {
+  signInWithGoogle(auth: Auth, refreshPage: boolean): void {
     signInWithPopup(auth, new GoogleAuthProvider())
+      .then(() => {
+        if (refreshPage) {
+          location.reload();
+        }
+      })
       .catch((error) => {
           window.alert(error.message)
         }
@@ -76,14 +86,15 @@ export class AuthService implements OnDestroy {
     this._refreshInProgress = refreshPage;
 
     auth.signOut()
+      .then(() => {
+        if (refreshPage) {
+          location.reload();
+        }
+      })
       .catch((error) => {
           window.alert(error.message)
         }
       );
-
-    if (refreshPage) {
-      location.reload();
-    }
   }
 
   get loggedStatus(): EventEmitter<boolean> {

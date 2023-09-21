@@ -10,8 +10,8 @@
     </tr>
     <tr class="dgt-login-table-signin">
       <td colspan="2">
-        <button class="dgt-login-button" (click)="signInWithEmailAndPassword( userName.value, userPassword.value)">Login</button>
-        <button class="dgt-login-with-google-button" (click)="signInWithGoogle()">
+        <button class="dgt-login-button" (click)="signInWithEmailAndPassword( userName.value, userPassword.value, true)">Login</button>
+        <button class="dgt-login-with-google-button" (click)="signInWithGoogle(true)">
           <img src="https://i.imgur.com/kQiZ3fy.png" alt="Google Login"/>
         </button>
       </td>
