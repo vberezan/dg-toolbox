@@ -17,7 +17,7 @@ export class OrdersListPanelComponent {
   private authService: AuthService = inject(AuthService);
 
   public orders: Observable<AllianceOrder[]>;
-  public active: boolean;
+  public active: Observable<boolean>;
 
   constructor() {
     this.authService.loggedStatus.subscribe((status: boolean) => {
@@ -26,9 +26,15 @@ export class OrdersListPanelComponent {
           this.orderService.getOrders(this.dgAPI.username(), this.dgAPI.gameTurn(), observer, this.changeDetection);
         });
 
-        this.active = true;
+        this.active = new Observable<boolean>((observer) => {
+          observer.next(true);
+          observer.complete();
+        });
       } else {
-        this.active = false;
+        this.active = new Observable<boolean>((observer) => {
+          observer.next(false);
+          observer.complete();
+        });
       }
     });
   }
