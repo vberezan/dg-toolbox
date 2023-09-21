@@ -95,8 +95,10 @@ button {
 
 .dgt-fleet-order span.label {
   padding-right: 5px;
+  font-weight: bold;
 }
 
-.dgt-fleet-order span.value {
-  padding-right: 15px;
+.dgt-fleet-order .target span.value,
+.dgt-fleet-order .wait span.value {
+  padding-right: 30px;
 }
