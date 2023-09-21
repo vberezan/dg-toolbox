@@ -24,8 +24,8 @@ export class OrdersListPanelComponent {
 
       if (status) {
         this.active = new Observable<boolean>((observer: Subscriber<boolean>) => {
-          console.log('TRUE');
           observer.next(true);
+          console.log('TRUE');
 
           this.orders = new Observable<AllianceOrder[]>((observer: Subscriber<AllianceOrder[]>) => {
             this.orderService.getOrders(this.dgAPI.username(), this.dgAPI.gameTurn(), observer, this.changeDetection);
@@ -33,8 +33,8 @@ export class OrdersListPanelComponent {
         });
       } else {
         this.active = new Observable<boolean>((observer) => {
-          console.log('FALSE');
           observer.next(false);
+          console.log('FALSE');
         });
       }
     });
