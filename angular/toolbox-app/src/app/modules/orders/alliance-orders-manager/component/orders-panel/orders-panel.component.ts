@@ -40,6 +40,9 @@ export class OrdersPanelComponent implements OnInit, OnDestroy {
     ngOnInit() {
         this.authService.authState.subscribe((state: AuthState) => {
             if (state.status && state.role == UserRole.ADMIN) {
+                document.querySelectorAll('.allianceBox .playerList table').forEach((element: any) => {
+                    element.style.display = '';
+                });
                 document.querySelectorAll('.allianceBox .playerList div.name').forEach((playerName: any, idx: number) => {
                     this.orderService.fillActiveOrders(playerName.childNodes[0].textContent.trim(), this.dgAPI.gameTurn(), idx);
                 });
