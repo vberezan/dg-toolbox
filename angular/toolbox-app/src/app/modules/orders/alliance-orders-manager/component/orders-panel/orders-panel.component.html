@@ -9,10 +9,13 @@
 
     <div class="dgt-orders-history">
       <div class="dgt-orders-history-details" *ngFor="let order of (orders.get(member.toLowerCase()) | async)">
-        <div class="delete"><fa-icon [icon]="['far','circle-xmark']" [style]="{color: '#fff'}"></fa-icon><button></button></div>
-        <div class="target"><span>{{order.target}}</span></div>
-        <div class="wait"><span>{{order.wait}}</span></div>
-        <div class="instructions"><span>{{order.instructions}}</span></div>
+        <div class="delete">
+          <fa-icon [icon]="['far','circle-xmark']" [style]="{color: '#fff'}"></fa-icon>
+          <button></button>
+        </div>
+        <div class="target"><span class="label">Target:</span><span class="value">{{order.target}}</span></div>
+        <div class="wait"><span class="label">Wait:</span><span class="value">{{order.wait}}</span></div>
+        <div class="instructions"><span class="label">Instructions:</span><span class="value">{{order.instructions}}</span></div>
       </div>
     </div>
   </div>
