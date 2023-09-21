@@ -22,13 +22,14 @@ export class OrdersListPanelComponent {
   constructor() {
     this.authService.loggedStatus.subscribe((status: boolean) => {
       this.active = status;
-      this.changeDetection.detectChanges();
 
       if (status) {
         this.orders = new Observable<AllianceOrder[]>((observer: Subscriber<AllianceOrder[]>) => {
           this.orderService.getOrders(this.dgAPI.username(), this.dgAPI.gameTurn(), observer, this.changeDetection);
         });
       }
+
+      this.changeDetection.detectChanges();
     });
   }
 }
