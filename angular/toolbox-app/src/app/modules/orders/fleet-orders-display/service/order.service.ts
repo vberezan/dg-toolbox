@@ -24,8 +24,6 @@ export class OrderService {
 
       orders.forEach((order) => {
         order.wait -= (turn - order.turn);
-
-        console.log(order.id);
       })
 
       observer.next(orders);
