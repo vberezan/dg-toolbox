@@ -15,11 +15,11 @@ textarea {
   float: left;
 }
 
-input.target {
+.target > input {
   width: 75px;
 }
 
-input.wait {
+.wait > input {
   width: 30px;
 }
 
