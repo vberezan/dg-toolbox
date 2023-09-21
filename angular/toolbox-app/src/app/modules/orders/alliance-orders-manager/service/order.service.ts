@@ -20,7 +20,7 @@ export class OrderService {
       );
   }
 
-  fillActiveOrders(user: string, idx: number): void {
+  fillActiveOrders(user: string, turn: number, idx: number): void {
     let ordersRef = collection(this.firestore, 'orders');
 
     console.log(user);
@@ -36,6 +36,8 @@ export class OrderService {
       // -- reset table
       ordersListTable.innerHTML = '';
       orders.forEach((order: AllianceOrder) => {
+        order.wait -= (turn - order.turn);
+
         let orderLine = document.createElement('tr');
         orderLine.innerHTML =
           '<td class="status">' + this.status(order.executed) + '</td>' +

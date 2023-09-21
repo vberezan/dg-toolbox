@@ -17,7 +17,7 @@ export class OrdersListPanelComponent {
 
   constructor() {
     this.orders = new Observable<AllianceOrder[]>((observer: Subscriber<AllianceOrder[]>) => {
-      this.orderService.getOrders(this.dgAPI.getUser(), observer, this.changeDetection);
+      this.orderService.getOrders(this.dgAPI.username(), this.dgAPI.gameTurn(), observer, this.changeDetection);
     });
   }
 }

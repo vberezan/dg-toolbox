@@ -30,7 +30,7 @@ export class DarkgalaxyApiService {
     return parseInt(document.querySelector('#turnNumber').textContent.trim().replace(/,/g, ''));
   }
 
-  getUser(): string {
+  username(): string {
     let completeName = document.querySelector('#header>#playerBox>.header>div.left:nth-child(2)').textContent.split('Welcome')[1].trim();
 
     if (completeName.indexOf('[') == 0 && completeName.indexOf(']') == 4) {

@@ -60,3 +60,7 @@
 .dgt-fleet-order .wait span.value {
   padding-right: 30px;
 }
+
+.dgt-fleet-order button {
+  cursor: pointer;
+}
