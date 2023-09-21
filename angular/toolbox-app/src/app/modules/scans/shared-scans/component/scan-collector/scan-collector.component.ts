@@ -1,8 +1,8 @@
 import {Component, inject, OnDestroy, OnInit} from '@angular/core';
 import {ScanService} from "../../service/scan.service";
-import {PlanetScanEvent} from "../../../../../model/scans/shared-scans-planet-scan-event.model";
+import {PlanetScanEvent} from "../../../../../shared/model/scans/shared-scans-planet-scan-event.model";
 import {AuthService} from "../../../../authentication/service/auth.service";
-import {AuthState} from "../../../../../model/authentication/auth-state.model";
+import {AuthState} from "../../../../../shared/model/authentication/auth-state.model";
 
 @Component({
   selector: 'dgt-shared-scans-collector',

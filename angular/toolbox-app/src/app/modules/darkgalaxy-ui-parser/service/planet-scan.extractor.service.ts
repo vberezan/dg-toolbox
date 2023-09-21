@@ -1,12 +1,12 @@
 import {Injectable} from '@angular/core';
 import {DataExtractor} from "./data-extractor";
-import {PlanetScan} from "../../../model/scans/shared-scans-planet-scan.model";
-import {ScanType} from "../../../model/scan-type";
-import {Resource} from "../../../model/resource.model";
-import {PlanetScanEvent} from "../../../model/scans/shared-scans-planet-scan-event.model";
-import {NameQuantity} from "../../../model/name-quantity.model";
-import {Structures} from "../../../model/structures";
-import {Owner} from "../../../model/scans/shared-scans-owner.model";
+import {PlanetScan} from "../../../shared/model/scans/shared-scans-planet-scan.model";
+import {ScanType} from "../../../shared/model/scan-type";
+import {Resource} from "../../../shared/model/resource.model";
+import {PlanetScanEvent} from "../../../shared/model/scans/shared-scans-planet-scan-event.model";
+import {NameQuantity} from "../../../shared/model/name-quantity.model";
+import {Structures} from "../../../shared/model/structures";
+import {Owner} from "../../../shared/model/scans/shared-scans-owner.model";
 
 @Injectable({
   providedIn: 'root'

@@ -1,13 +1,13 @@
 import {inject, Injectable} from '@angular/core';
 import {DarkgalaxyApiService} from "../../../darkgalaxy-ui-parser/service/darkgalaxy-api.service";
-import {PlanetSummary} from "../../../../model/planets/planet-summary.planet-list-model";
-import {PlanetScan} from "../../../../model/scans/shared-scans-planet-scan.model";
+import {PlanetSummary} from "../../../../shared/model/planets/planet-summary.planet-list-model";
+import {PlanetScan} from "../../../../shared/model/scans/shared-scans-planet-scan.model";
 import {DecimalPipe} from "@angular/common";
-import {Resource} from "../../../../model/resource.model";
+import {Resource} from "../../../../shared/model/resource.model";
 import {ResourceProductionFormatterPipe} from "../../../planets/planet-list-stats/pipe/resource-production-formatter.pipe";
-import {Structures} from "../../../../model/structures";
+import {Structures} from "../../../../shared/model/structures";
 import {collection, collectionData, Firestore, limit, query, where} from "@angular/fire/firestore";
-import {NameQuantity} from "../../../../model/name-quantity.model";
+import {NameQuantity} from "../../../../shared/model/name-quantity.model";
 import firebase from "firebase/compat";
 import DocumentData = firebase.firestore.DocumentData;
 

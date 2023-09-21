@@ -1,5 +1,5 @@
 import {ChangeDetectorRef, inject, Injectable} from '@angular/core';
-import {AllianceOrder} from "../../../../model/orders/alliance-order.model";
+import {AllianceOrder} from "../../../../shared/model/orders/alliance-order.model";
 import {addDoc, collection, collectionData, Firestore, query, where} from "@angular/fire/firestore";
 import firebase from "firebase/compat";
 import DocumentData = firebase.firestore.DocumentData;

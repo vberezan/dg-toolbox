@@ -13,7 +13,7 @@ import {BadgeService} from "../../service/badge.service";
 import {Observable} from "rxjs";
 import {DarkgalaxyApiService} from "../../../darkgalaxy-ui-parser/service/darkgalaxy-api.service";
 import {AuthService} from "../../../authentication/service/auth.service";
-import {AuthState} from "../../../../model/authentication/auth-state.model";
+import {AuthState} from "../../../../shared/model/authentication/auth-state.model";
 
 @Component({
   selector: 'dgt-navbar',

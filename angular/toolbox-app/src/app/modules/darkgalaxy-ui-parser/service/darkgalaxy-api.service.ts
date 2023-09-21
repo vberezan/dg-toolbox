@@ -1,8 +1,8 @@
 import {inject, Injectable} from '@angular/core';
 import {PlanetListExtractorService} from "./planet-list.extractor.service";
-import {PlanetSummary} from "../../../model/planets/planet-summary.planet-list-model";
+import {PlanetSummary} from "../../../shared/model/planets/planet-summary.planet-list-model";
 import {PlanetScanExtractorService} from "./planet-scan.extractor.service";
-import {PlanetScanEvent} from "../../../model/scans/shared-scans-planet-scan-event.model";
+import {PlanetScanEvent} from "../../../shared/model/scans/shared-scans-planet-scan-event.model";
 import {NavigationSystemPlanetsExtractorService} from "./navigation-system-planets.extractor.service";
 import {AllianceMembersService} from "./alliance-members.service";
 

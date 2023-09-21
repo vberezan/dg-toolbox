@@ -4,8 +4,8 @@ import {collection, collectionData, Firestore, limit, query, where} from "@angul
 import {GoogleAuthProvider} from "firebase/auth";
 import {Subscription} from "rxjs";
 import firebase from "firebase/compat";
-import {AuthState} from "../../../model/authentication/auth-state.model";
-import {UserRole} from "../../../model/authentication/user-role";
+import {AuthState} from "../../../shared/model/authentication/auth-state.model";
+import {UserRole} from "../../../shared/model/authentication/user-role";
 import DocumentData = firebase.firestore.DocumentData;
 
 @Injectable({

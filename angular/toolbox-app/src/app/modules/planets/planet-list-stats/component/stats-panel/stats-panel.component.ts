@@ -1,5 +1,5 @@
 import {Component, inject, OnInit} from '@angular/core';
-import {StatsPanel} from "../../../../../model/planets/planet-list-stats-panel.model";
+import {StatsPanel} from "../../../../../shared/model/planets/planet-list-stats-panel.model";
 import {StatsPanelService} from "../../service/stats-panel.service";
 
 @Component({

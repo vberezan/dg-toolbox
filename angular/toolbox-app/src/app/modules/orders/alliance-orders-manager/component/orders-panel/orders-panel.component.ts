@@ -1,7 +1,7 @@
 import {ChangeDetectorRef, Component, inject, OnDestroy, OnInit, ViewChild} from '@angular/core';
 import {NgForm} from "@angular/forms";
 import {OrderService} from "../../service/order.service";
-import {AllianceOrder} from "../../../../../model/orders/alliance-order.model";
+import {AllianceOrder} from "../../../../../shared/model/orders/alliance-order.model";
 import {DarkgalaxyApiService} from "../../../../darkgalaxy-ui-parser/service/darkgalaxy-api.service";
 import {AuthService} from "../../../../authentication/service/auth.service";
 import {Observable, Subscriber} from "rxjs";

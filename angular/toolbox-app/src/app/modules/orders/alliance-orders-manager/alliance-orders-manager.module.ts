@@ -10,6 +10,7 @@ import {getAuth, provideAuth} from "@angular/fire/auth";
 import {getFirestore, provideFirestore} from "@angular/fire/firestore";
 import {initializeAppCheck, provideAppCheck, ReCaptchaV3Provider} from "@angular/fire/app-check";
 import {FontAwesomeModule} from "@fortawesome/angular-fontawesome";
+import {NavigationTargetDirective} from "../../../shared/directive/navigation-target.directive";
 
 
 @NgModule({
@@ -29,7 +30,8 @@ import {FontAwesomeModule} from "@fortawesome/angular-fontawesome";
     FontAwesomeModule
   ],
   declarations: [
-    OrdersPanelComponent
+    OrdersPanelComponent,
+    NavigationTargetDirective
   ],
   providers: [
     OrderService,

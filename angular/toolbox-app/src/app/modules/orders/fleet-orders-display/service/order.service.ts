@@ -2,7 +2,7 @@ import {ChangeDetectorRef, inject, Injectable} from '@angular/core';
 import {collection, collectionData, doc, Firestore, query, updateDoc, where} from "@angular/fire/firestore";
 import firebase from "firebase/compat";
 import {Subscriber} from "rxjs";
-import {AllianceOrder} from "../../../../model/orders/alliance-order.model";
+import {AllianceOrder} from "../../../../shared/model/orders/alliance-order.model";
 import DocumentData = firebase.firestore.DocumentData;
 
 @Injectable({

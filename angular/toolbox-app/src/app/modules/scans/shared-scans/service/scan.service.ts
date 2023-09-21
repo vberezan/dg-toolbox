@@ -1,9 +1,9 @@
 import {inject, Injectable} from '@angular/core';
-import {PlanetScan} from "../../../../model/scans/shared-scans-planet-scan.model";
+import {PlanetScan} from "../../../../shared/model/scans/shared-scans-planet-scan.model";
 import {DarkgalaxyApiService} from "../../../darkgalaxy-ui-parser/service/darkgalaxy-api.service";
-import {PlanetScanEvent} from "../../../../model/scans/shared-scans-planet-scan-event.model";
-import {ScanType} from "../../../../model/scan-type";
-import {Resource} from "../../../../model/resource.model";
+import {PlanetScanEvent} from "../../../../shared/model/scans/shared-scans-planet-scan-event.model";
+import {ScanType} from "../../../../shared/model/scan-type";
+import {Resource} from "../../../../shared/model/resource.model";
 import {addDoc, collection, collectionData, doc, Firestore, limit, query, updateDoc, where} from "@angular/fire/firestore";
 import firebase from "firebase/compat";
 import DocumentData = firebase.firestore.DocumentData;

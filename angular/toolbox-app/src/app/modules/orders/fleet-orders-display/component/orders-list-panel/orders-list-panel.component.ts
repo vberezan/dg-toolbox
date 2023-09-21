@@ -1,10 +1,10 @@
 import {ChangeDetectorRef, Component, inject, OnDestroy} from '@angular/core';
 import {OrderService} from "../../service/order.service";
 import {DarkgalaxyApiService} from "../../../../darkgalaxy-ui-parser/service/darkgalaxy-api.service";
-import {AllianceOrder} from "../../../../../model/orders/alliance-order.model";
+import {AllianceOrder} from "../../../../../shared/model/orders/alliance-order.model";
 import {Observable, Subscriber} from "rxjs";
 import {AuthService} from "../../../../authentication/service/auth.service";
-import {AuthState} from "../../../../../model/authentication/auth-state.model";
+import {AuthState} from "../../../../../shared/model/authentication/auth-state.model";
 import {state} from "@angular/animations";
 import {FaIconLibrary} from "@fortawesome/angular-fontawesome";
 import {
