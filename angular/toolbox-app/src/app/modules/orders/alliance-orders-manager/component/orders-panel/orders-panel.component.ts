@@ -3,6 +3,7 @@ import {NgForm} from "@angular/forms";
 import {OrderService} from "../../service/order.service";
 import {AllianceOrder} from "../../../../../model/orders/alliance-order.model";
 import {DarkgalaxyApiService} from "../../../../darkgalaxy-ui-parser/service/darkgalaxy-api.service";
+import {AuthService} from "../../../../authentication/service/auth.service";
 
 @Component({
   selector: 'dgt-alliance-orders-manager-panel',
@@ -14,6 +15,7 @@ export class OrdersPanelComponent implements OnInit{
 
   private orderService: OrderService = inject(OrderService);
   private dgAPI: DarkgalaxyApiService = inject(DarkgalaxyApiService);
+  private authService: AuthService = inject(AuthService);
 
   onSubmit(): void {
     let allianceOrder: AllianceOrder = new AllianceOrder();

@@ -39,6 +39,4 @@ import {DarkgalaxyApiService} from "../../darkgalaxy-ui-parser/service/darkgalax
   ]
 })
 export class NavigationScansModule {
-  constructor() {
-  }
 }

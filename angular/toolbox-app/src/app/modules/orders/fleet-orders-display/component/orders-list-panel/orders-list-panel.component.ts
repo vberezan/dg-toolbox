@@ -3,6 +3,7 @@ import {OrderService} from "../../service/order.service";
 import {DarkgalaxyApiService} from "../../../../darkgalaxy-ui-parser/service/darkgalaxy-api.service";
 import {AllianceOrder} from "../../../../../model/orders/alliance-order.model";
 import {Observable, Subscriber} from "rxjs";
+import {AuthService} from "../../../../authentication/service/auth.service";
 
 @Component({
   selector: 'dgt-fleet-orders-list-panel',
@@ -13,6 +14,7 @@ export class OrdersListPanelComponent {
   private orderService: OrderService = inject(OrderService);
   private dgAPI: DarkgalaxyApiService = inject(DarkgalaxyApiService);
   private changeDetection: ChangeDetectorRef = inject(ChangeDetectorRef);
+  private authService: AuthService = inject(AuthService);
   public orders: Observable<AllianceOrder[]>;
 
   constructor() {

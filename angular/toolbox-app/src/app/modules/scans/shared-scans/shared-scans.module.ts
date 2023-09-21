@@ -33,9 +33,6 @@ import {DarkgalaxyApiService} from "../../darkgalaxy-ui-parser/service/darkgalax
   bootstrap: [ScanCollectorComponent]
 })
 export class SharedScansModule implements OnInit {
-  constructor() {
-  }
-
   ngOnInit(): void {
   }
 }
