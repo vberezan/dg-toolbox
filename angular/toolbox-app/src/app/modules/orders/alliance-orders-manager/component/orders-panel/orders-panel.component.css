@@ -93,3 +93,11 @@ span {
 .dgt-orders-history-details span.value {
   margin-right: 20px;
 }
+
+.dgt-orders-history .target {
+  min-width: 135px;
+}
+
+.dgt-orders-history .wait {
+  min-width: 70px;
+}
