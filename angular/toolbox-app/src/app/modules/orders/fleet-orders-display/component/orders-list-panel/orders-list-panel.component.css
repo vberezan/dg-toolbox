@@ -54,3 +54,14 @@ button {
 .no-rows {
   display: none;
 }
+
+/****/
+
+.dgt-fleet-order {
+  float: left;
+  width: 100%;
+}
+
+.dgt-fleet-order div {
+  float: left;
+}
