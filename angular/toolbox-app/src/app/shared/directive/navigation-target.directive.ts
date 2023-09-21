@@ -4,7 +4,8 @@ import {Directive, ElementRef, HostListener} from '@angular/core';
   selector: '[dgtNavigationTarget]'
 })
 export class NavigationTargetDirective {
-  private regex: string = '^(?:[1-9]|[1-4]\\d)\\.(?:(?:[1-6]|1\\d|2[0-5])|(?:(?:[1-9])|1[0-2]))\\.(?:[1-4])\\.(?:(?:[1-9])|(?:[1-9]\\d))$';
+  regex: RegExp = /^(?:[1-9]|[1-4]\d)\.(?:(?:[1-6]|1\d|2[0-5])|(?:[1-9]|1[0-2]))\.[1-4]\.(?:[1-9]|[1-9]\d)$/;
+
   private specialKeys: Array<string> = ['Backspace', 'Space', 'Tab', 'End', 'Home'];
 
 
