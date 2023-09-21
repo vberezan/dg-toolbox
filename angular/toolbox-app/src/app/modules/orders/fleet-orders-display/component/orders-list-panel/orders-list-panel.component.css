@@ -78,24 +78,33 @@ button {
   border: none;
   margin-left: 10px;
   border-radius: 100px;
-  height: 20px;
-  width: 20px;
   vertical-align: middle;
   background: transparent;
+  line-height: 40px;
+  height: 40px;
+  width: 20px;
 }
 
 .dgt-fleet-order button>svg {
   fill: #7a7a7a;
   height: 20px;
+  align-content: center;
+  display: flex;
 }
 
 .dgt-fleet-order button:hover > svg {
   fill: #7BBD1A !important;
 }
 
+.dgt-fleet-order span {
+  height: 40px;
+  display: inline-block;
+}
+
 .dgt-fleet-order span.label {
   padding-right: 5px;
   font-weight: bold;
+  color: #FFD46F;
 }
 
 .dgt-fleet-order .target span.value,
