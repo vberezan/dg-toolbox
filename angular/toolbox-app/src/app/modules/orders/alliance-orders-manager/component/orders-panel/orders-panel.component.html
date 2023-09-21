@@ -4,11 +4,11 @@
     <div class="dgt-orders-launcher">
       <div class="target">
         <span class="target">Target:</span>
-        <input [(ngModel)]="controls.target[idx]" type="text" placeholder="Ex: 1.1.1.1"/>
+        <input [(ngModel)]="controls.target[idx]" type="text" placeholder="Ex: 1.1.1.1" pattern="^(?:[1-9]|[1-4]\d)\.(?:(?:[1-6]|1\d|2[0-5])|(?:(?:[1-9])|1[0-2]))\.(?:[1-4])\.(?:(?:[1-9])|(?:[1-9]\d))$"/>
       </div>
       <div class="wait">
         <span class="wait">Wait:</span>
-        <input [(ngModel)]="controls.wait[idx]" type="text" pattern="^(?:[1-9]|[1-4]\d)\.(?:(?:[1-6]|1\d|2[0-5])|(?:(?:[1-9])|1[0-2]))\.(?:[1-4])\.(?:(?:[1-9])|(?:[1-9]\d))$"/>
+        <input [(ngModel)]="controls.wait[idx]" type="text"/>
       </div>
       <div class="instructions">
         <span class="instructions">Instructions:</span>
