@@ -4,6 +4,7 @@ import {PlanetSummary} from "../../../model/planets/planet-summary.planet-list-m
 import {PlanetScanExtractorService} from "./planet-scan.extractor.service";
 import {PlanetScanEvent} from "../../../model/scans/shared-scans-planet-scan-event.model";
 import {NavigationSystemPlanetsExtractorService} from "./navigation-system-planets.extractor.service";
+import {AllianceMembersService} from "./alliance-members.service";
 
 @Injectable({
   providedIn: 'root'
@@ -13,6 +14,7 @@ export class DarkgalaxyApiService {
   private planetListExtractor: PlanetListExtractorService = inject(PlanetListExtractorService);
   private planetScanExtractor: PlanetScanExtractorService = inject(PlanetScanExtractorService);
   private navigationSystemPlanetsExtractor: NavigationSystemPlanetsExtractorService = inject(NavigationSystemPlanetsExtractorService);
+  private allianceMembersExtractor: AllianceMembersService = inject(AllianceMembersService);
 
   planetsSummaries(): PlanetSummary[] {
     return this.planetListExtractor.extract();
@@ -25,6 +27,10 @@ export class DarkgalaxyApiService {
   navigationSystemPlanets(): PlanetSummary[] {
     return this.navigationSystemPlanetsExtractor.extract();
   }
+
+  allianceMembers(): string[] {
+    return this.allianceMembersExtractor.extract();
+}
 
   gameTurn(): number {
     return parseInt(document.querySelector('#turnNumber').textContent.trim().replace(/,/g, ''));
