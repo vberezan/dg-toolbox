@@ -18,33 +18,23 @@ export class OrdersListPanelComponent {
 
   public orders: Observable<AllianceOrder[]>;
   public active: Observable<boolean>;
+  observerx: Subscriber<boolean>;
 
   constructor() {
-    this.active = new Observable<boolean>((observer: Subscriber<boolean>) => {
-      observer.next(true);
-      console.log('TRUE');
 
-      this.orders = new Observable<AllianceOrder[]>((observer: Subscriber<AllianceOrder[]>) => {
-        this.orderService.getOrders(this.dgAPI.username(), this.dgAPI.gameTurn(), observer, this.changeDetection);
-      });
+    this.active = new Observable<boolean>((observer: Subscriber<boolean>) => {
+      this.observerx = observer;
     });
 
     this.authService.loggedStatus.subscribe((status: boolean) => {
-
       if (status) {
-        this.active = new Observable<boolean>((observer: Subscriber<boolean>) => {
-          observer.next(true);
-          console.log('TRUE');
+        this.observerx.next(true);
 
-          this.orders = new Observable<AllianceOrder[]>((observer: Subscriber<AllianceOrder[]>) => {
-            this.orderService.getOrders(this.dgAPI.username(), this.dgAPI.gameTurn(), observer, this.changeDetection);
-          });
+        this.orders = new Observable<AllianceOrder[]>((observer: Subscriber<AllianceOrder[]>) => {
+          this.orderService.getOrders(this.dgAPI.username(), this.dgAPI.gameTurn(), observer, this.changeDetection);
         });
       } else {
-        this.active = new Observable<boolean>((observer) => {
-          observer.next(false);
-          console.log('FALSE');
-        });
+        this.observerx.next(false);
       }
     });
   }
