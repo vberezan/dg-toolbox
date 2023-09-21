@@ -15,11 +15,21 @@ export class OrdersListPanelComponent {
   private dgAPI: DarkgalaxyApiService = inject(DarkgalaxyApiService);
   private changeDetection: ChangeDetectorRef = inject(ChangeDetectorRef);
   private authService: AuthService = inject(AuthService);
+
   public orders: Observable<AllianceOrder[]>;
+  public active: boolean;
 
   constructor() {
-    this.orders = new Observable<AllianceOrder[]>((observer: Subscriber<AllianceOrder[]>) => {
-      this.orderService.getOrders(this.dgAPI.username(), this.dgAPI.gameTurn(), observer, this.changeDetection);
+    this.authService.loggedStatus.subscribe((status: boolean) => {
+      if (status) {
+        this.orders = new Observable<AllianceOrder[]>((observer: Subscriber<AllianceOrder[]>) => {
+          this.orderService.getOrders(this.dgAPI.username(), this.dgAPI.gameTurn(), observer, this.changeDetection);
+        });
+
+        this.active = true;
+      } else {
+        this.active = false;
+      }
     });
   }
 }

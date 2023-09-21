@@ -11,7 +11,7 @@ import {AuthService} from "../../../../authentication/service/auth.service";
 export class ScanDataPanelComponent implements OnInit, OnDestroy {
   private scanService: ScanService = inject(ScanService);
   private authService: AuthService = inject(AuthService);
-  active: boolean = false;
+  public active: boolean = false;
 
   ngOnInit() {
     this.authService.loggedStatus.subscribe((status: boolean) => {
@@ -21,6 +21,7 @@ export class ScanDataPanelComponent implements OnInit, OnDestroy {
         if (summaries.length > 0) {
           this.scanService.fillScans(summaries);
         }
+
         this.active = true;
       } else {
         this.active = false;
