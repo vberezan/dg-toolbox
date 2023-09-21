@@ -15,16 +15,14 @@ export class ScanDataPanelComponent implements OnInit, OnDestroy {
 
   ngOnInit() {
     this.authService.loggedStatus.subscribe((status: boolean) => {
+      this.active = status;
+
       if (status) {
         let summaries: PlanetSummary[] = this.scanService.extractSummaries();
 
         if (summaries.length > 0) {
           this.scanService.fillScans(summaries);
         }
-
-        this.active = true;
-      } else {
-        this.active = false;
       }
     });
   }

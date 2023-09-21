@@ -2,7 +2,6 @@ import {Component, inject, OnDestroy, OnInit} from '@angular/core';
 import {ScanService} from "../../service/scan.service";
 import {PlanetScanEvent} from "../../../../../model/scans/shared-scans-planet-scan-event.model";
 import {AuthService} from "../../../../authentication/service/auth.service";
-import {activate} from "@angular/fire/remote-config";
 
 @Component({
   selector: 'dgt-shared-scans-collector',
@@ -16,16 +15,14 @@ export class ScanCollectorComponent implements OnInit, OnDestroy {
 
   ngOnInit(): void {
     this.authService.loggedStatus.subscribe((status: boolean) => {
+      this.active = status;
+
       if (status) {
         let planetScanEvent: PlanetScanEvent = this.scanService.extractScan();
 
         if (planetScanEvent != null) {
           this.scanService.updateScan(planetScanEvent);
         }
-
-        this.active = true;
-      } else{
-        this.active = false;
       }
     });
   }
