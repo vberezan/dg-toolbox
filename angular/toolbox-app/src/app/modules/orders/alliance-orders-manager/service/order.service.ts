@@ -42,7 +42,7 @@ export class OrderService {
           '<td class="target">' + order.target + '</td>' +
           '<td class="wait">' + order.wait + '</td>' +
           '<td class="flying">' + (order.turn + order.wait + 1) + '</td>' +
-          '<td class="instructions">' + order.instructions + '</td>';
+          '<td class="instructions"><button onC></button>' + order.instructions + '</td>';
 
         ordersListTable.append(orderLine);
       });
