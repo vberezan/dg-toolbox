@@ -1,0 +1,33 @@
+input {
+  width: 25px;
+  height: 25px;
+  font-size: 13px;
+  background: rgba(0, 0, 0, .35);
+  color: #fff;
+  border: 1px solid #555555;
+  text-align: center;
+  margin: 0;
+  border-radius: 2px;
+  display: block;
+  box-sizing: border-box;
+}
+
+textarea {
+  height: 25px;
+  min-width: 280px;
+  font-size: 13px;
+  background: rgba(0, 0, 0, .35);
+  color: #fff;
+  border: 1px solid #555555;
+  text-align: left;
+  margin: 0;
+  border-radius: 2px;
+  display: block;
+  box-sizing: border-box;
+  padding: 3px 5px 3px 5px;
+  overflow: hidden;
+}
+
+.dgt-orders-manager-member {
+  float: left;
+}
