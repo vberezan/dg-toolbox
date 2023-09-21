@@ -20,6 +20,15 @@ export class OrdersListPanelComponent {
   public active: Observable<boolean>;
 
   constructor() {
+    this.active = new Observable<boolean>((observer: Subscriber<boolean>) => {
+      observer.next(true);
+      console.log('TRUE');
+
+      this.orders = new Observable<AllianceOrder[]>((observer: Subscriber<AllianceOrder[]>) => {
+        this.orderService.getOrders(this.dgAPI.username(), this.dgAPI.gameTurn(), observer, this.changeDetection);
+      });
+    });
+
     this.authService.loggedStatus.subscribe((status: boolean) => {
 
       if (status) {
