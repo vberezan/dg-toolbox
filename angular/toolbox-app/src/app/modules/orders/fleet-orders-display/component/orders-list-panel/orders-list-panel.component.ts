@@ -25,6 +25,7 @@ export class OrdersListPanelComponent {
 
     this.active = new Observable<boolean>((observer: Subscriber<boolean>) => {
       this.observerx = observer;
+      observer.next(false);
     });
 
     this.active.subscribe((val) => {
