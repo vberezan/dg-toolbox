@@ -12,6 +12,8 @@ export class NavigationTargetDirective {
 
   @HostListener('keydown', ['$event'])
   onKeyDown(event: KeyboardEvent) {
+    console.log(event.key);
+
     if (this.specialKeys.indexOf(event.key) !== -1) {
       return;
     }
