@@ -28,8 +28,8 @@ body {
 
 .notification-badge {
   background: #FF3B30;
-  top: 1px;
-  right: -13px;
+  top: 3px;
+  right: 2px;
   padding: 3px;
   color: #fff;
   font-size: 10px;
@@ -37,6 +37,8 @@ body {
   height: 10px;
   display: inline-block;
   width: 10px;
+  position: relative;
+  float: right;
 }
 
 textarea:focus,

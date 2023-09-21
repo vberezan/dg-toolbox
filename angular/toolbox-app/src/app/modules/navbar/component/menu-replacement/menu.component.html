@@ -19,8 +19,8 @@
       </a>
     </li>
     <li [tabName]="'fleets'" class="dgt-navbar-tab" dgtActiveTab>
-      <a class="dgt-navbar-tab-link" href="/fleets">
-        <span *ngIf="fleetOrdersNotification | async" class="notification-badge">{{fleetOrdersNotification | async}}</span>
+      <span *ngIf="fleetOrdersNotification | async" style="z-index: 0" class="notification-badge">{{fleetOrdersNotification | async}}</span>
+      <a class="dgt-navbar-tab-link" href="/fleets" style="position: relative; z-index: 1">
         <fa-icon [icon]="['fas','jet-fighter-up']" [style]="{color: '#eee'}"></fa-icon>
         <span class="dgt-navbar-tab-text">fleets</span>
       </a>
