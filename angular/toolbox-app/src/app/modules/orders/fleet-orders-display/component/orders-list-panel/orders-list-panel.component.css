@@ -59,7 +59,13 @@ button {
 
 .dgt-fleet-order {
   float: left;
-  width: 100%;
+  background: #FF3B302B;
+  border: 1px solid #FF3B30;
+  margin: 5px 10px;
+  width: calc(100% - 20px);
+  border-radius: 5px;
+  height: 40px;
+  line-height: 40px;
 }
 
 .dgt-fleet-order div {
