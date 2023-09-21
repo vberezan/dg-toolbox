@@ -28,7 +28,7 @@ export class OrdersPanelComponent implements OnInit, OnDestroy {
     this.allianceMembers = this.dgAPI.allianceMembers();
 
     this.allianceMembers.forEach((member: string) => {
-      this.orders.set(member, new Observable<AllianceOrder[]>((observer: Subscriber<AllianceOrder[]>) => {
+      this.orders.set(member.toLowerCase(), new Observable<AllianceOrder[]>((observer: Subscriber<AllianceOrder[]>) => {
         this.orderService.getAllOrders(member, this.dgAPI.gameTurn(), this.changeDetection, observer);
       }));
     });

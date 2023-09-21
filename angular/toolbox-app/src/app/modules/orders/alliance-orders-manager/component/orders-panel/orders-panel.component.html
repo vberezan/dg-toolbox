@@ -8,7 +8,7 @@
     </div>
 
     <div class="dgt-orders-history">
-      <div *ngFor="let order of (orders.get(member) | async)">
+      <div *ngFor="let order of orders.get(member.toLowerCase()) | async">
         <div class="executed"><span>{{order.executed}}</span></div>
         <div class="target"><span>{{order.target}}</span></div>
         <div class="wait"><span>{{order.wait}}</span></div>
