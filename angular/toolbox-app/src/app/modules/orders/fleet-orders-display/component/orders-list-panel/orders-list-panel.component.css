@@ -9,6 +9,14 @@
   line-height: 40px;
 }
 
+.dgt-fleet-order:first-child {
+  margin-top: 10px !important;
+}
+
+.dgt-fleet-order:last-child {
+  margin-bottom: 10px !important;
+}
+
 .dgt-fleet-order div {
   float: left;
 }
