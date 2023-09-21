@@ -9,12 +9,14 @@ import {environment} from "../../../../environments/environment";
 import {getAuth, provideAuth} from "@angular/fire/auth";
 import {getFirestore, provideFirestore} from "@angular/fire/firestore";
 import {initializeAppCheck, provideAppCheck, ReCaptchaV3Provider} from "@angular/fire/app-check";
+import {FontAwesomeModule} from "@fortawesome/angular-fontawesome";
 
 
 @NgModule({
   imports: [
     BrowserModule,
     FormsModule,
+    FontAwesomeModule,
     provideFirebaseApp(() => initializeApp(environment.firebase)),
     provideAuth(() => getAuth()),
     provideFirestore(() => getFirestore()),
@@ -23,7 +25,8 @@ import {initializeAppCheck, provideAppCheck, ReCaptchaV3Provider} from "@angular
         provider: new ReCaptchaV3Provider(environment.firebase.appCheck.recaptchaSiteKey),
         isTokenAutoRefreshEnabled: true
       })
-    )
+    ),
+    FontAwesomeModule
   ],
   declarations: [
     OrdersPanelComponent

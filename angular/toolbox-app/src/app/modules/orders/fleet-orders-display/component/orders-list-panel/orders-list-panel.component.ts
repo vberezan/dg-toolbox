@@ -6,6 +6,13 @@ import {Observable, Subscriber} from "rxjs";
 import {AuthService} from "../../../../authentication/service/auth.service";
 import {AuthState} from "../../../../../model/authentication/auth-state.model";
 import {state} from "@angular/animations";
+import {FaIconLibrary} from "@fortawesome/angular-fontawesome";
+import {
+  faChessBoard as fasChessBoard,
+  faEarthAmericas as fasEarthAmericas, faFlaskVial as fasFlaskVial, faHandFist as fasHandFist,
+  faHouseChimney as fasHouseChimney, faJetFighterUp as fasJetFighterUp,
+  faSatelliteDish as fasSatelliteDish
+} from "@fortawesome/free-solid-svg-icons";
 
 @Component({
   selector: 'dgt-fleet-orders-list-panel',
@@ -21,7 +28,9 @@ export class OrdersListPanelComponent implements OnDestroy{
   public orders: Observable<AllianceOrder[]>;
   public active: boolean = false;
 
-  constructor() {
+  constructor(library: FaIconLibrary) {
+    library.addIcons(fasHouseChimney, fasEarthAmericas, fasSatelliteDish, fasJetFighterUp, fasChessBoard, fasFlaskVial, fasHandFist);
+
     this.authService.authState.subscribe((state: AuthState) => {
       this.active = state.status;
 

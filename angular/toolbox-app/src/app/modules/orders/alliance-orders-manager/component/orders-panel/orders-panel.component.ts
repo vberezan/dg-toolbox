@@ -7,6 +7,9 @@ import {AuthService} from "../../../../authentication/service/auth.service";
 import {AuthState} from "../../../../../model/authentication/auth-state.model";
 import {UserRole} from "../../../../../model/authentication/user-role";
 import {Observable, Subscriber} from "rxjs";
+import {FaIconLibrary} from "@fortawesome/angular-fontawesome";
+import {faCircleXmark as farCircleXmark} from "@fortawesome/free-regular-svg-icons"
+
 
 @Component({
   selector: 'dgt-alliance-orders-manager-panel',
@@ -24,7 +27,8 @@ export class OrdersPanelComponent implements OnInit, OnDestroy {
   protected allianceMembers: string[] = [];
   protected orders: Map<string, Observable<AllianceOrder[]>> = new Map<string, Observable<AllianceOrder[]>>();
 
-  constructor() {
+  constructor(library: FaIconLibrary) {
+    library.addIcons(farCircleXmark);
     this.allianceMembers = this.dgAPI.allianceMembers();
 
     this.allianceMembers.forEach((member: string) => {
@@ -32,8 +36,6 @@ export class OrdersPanelComponent implements OnInit, OnDestroy {
         this.orderService.getAllOrders(member.toLowerCase(), this.dgAPI.gameTurn(), this.changeDetection, observer);
       }));
     });
-
-    console.log(this.orders);
   }
 
   onSubmit(): void {
