@@ -25,14 +25,19 @@ export class OrdersPanelComponent implements OnInit, OnDestroy {
   protected allianceMembers: string[];
   protected orders: Map<string, Observable<AllianceOrder[]>> = new Map<string, Observable<AllianceOrder[]>>();
   protected controls: {
-    'target': string[],
-    'wait' : number[],
-    'instructions' : string[]
+    target: string[],
+    wait: number[],
+    instructions: string[]
+  } = {
+    target: [],
+    wait: [],
+    instructions: []
   }
 
   constructor(library: FaIconLibrary) {
     library.addIcons(farCircleXmark);
     this.allianceMembers = this.dgAPI.allianceMembers();
+
     this.controls.target = [];
     this.controls.wait = [];
     this.controls.instructions = [];
