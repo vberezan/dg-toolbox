@@ -30,7 +30,7 @@ export class MenuComponent implements AfterViewInit {
 
     this.fleetOrdersNotification = new Observable<number>((observer) => {
       this.badgeService.subscribeToFleetOrders(this.dgAPI.username(), observer, this.changeDetection);
-    })
+    });
   }
 
   ngAfterViewInit(): void {
