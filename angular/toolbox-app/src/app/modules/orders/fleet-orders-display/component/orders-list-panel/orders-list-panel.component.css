@@ -4,6 +4,7 @@
   border: 1px solid #FF3B30;
   border-radius: 5px;
   margin: 10px;
+  border-collapse: collapse;
 }
 
 td.wait {
@@ -30,6 +31,7 @@ td.complete {
 thead td {
   font-weight: bold;
   border-bottom: 1px solid #FF3B30;
+  line-height: 30px;
 }
 
 tbody tr {
