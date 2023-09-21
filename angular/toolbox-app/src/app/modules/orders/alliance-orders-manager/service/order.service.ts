@@ -1,8 +1,9 @@
-import {inject, Injectable} from '@angular/core';
+import {ChangeDetectorRef, inject, Injectable} from '@angular/core';
 import {AllianceOrder} from "../../../../model/orders/alliance-order.model";
 import {addDoc, collection, collectionData, Firestore, query, where} from "@angular/fire/firestore";
 import firebase from "firebase/compat";
 import DocumentData = firebase.firestore.DocumentData;
+import {Subscriber} from "rxjs";
 
 @Injectable({
   providedIn: 'root'
@@ -18,6 +19,27 @@ export class OrderService {
           console.log(error);
         }
       );
+  }
+
+  getAllOrders(user: string, turn: number, changeDetection: ChangeDetectorRef, observer: Subscriber<AllianceOrder[]>): void {
+    let ordersRef = collection(this.firestore, 'orders');
+
+    collectionData(
+      query(ordersRef,
+        where('user', '==', user)
+      ), {idField: 'id'}
+    ).forEach((items: DocumentData[]) => {
+      let orders: AllianceOrder[] = Object.assign([], items);
+
+      orders.forEach((order) => {
+        order.wait -= (turn - order.turn);
+      })
+
+      observer.next(orders);
+      changeDetection.detectChanges();
+    }).catch((error) => {
+      console.log(error);
+    });
   }
 
   fillActiveOrders(user: string, turn: number, idx: number): void {

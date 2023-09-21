@@ -11,7 +11,7 @@ import DocumentData = firebase.firestore.DocumentData;
 export class OrderService {
   private firestore: Firestore = inject(Firestore);
 
-  getOrders(user: string, turn: number, observer: Subscriber<AllianceOrder[]>, changeDetection: ChangeDetectorRef): void {
+  getActiveOrders(user: string, turn: number, changeDetection: ChangeDetectorRef, observer: Subscriber<AllianceOrder[]>): void {
     let ordersRef = collection(this.firestore, 'orders');
 
     collectionData(

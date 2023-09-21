@@ -6,6 +6,15 @@
       <div class="wait"><input type="text" ngModel name="wait"/></div>
       <div class="instructions"><textarea ngModel name="instructions"></textarea></div>
     </div>
+
+    <div class="dgt-orders-history">
+      <div *ngFor="let order of (orders.get(member) | async)">
+        <div class="executed"><span>{{order.executed}}</span></div>
+        <div class="target"><span>{{order.target}}</span></div>
+        <div class="wait"><span>{{order.wait}}</span></div>
+        <div class="instructions"><span>{{order.instructions}}</span></div>
+      </div>
+    </div>
   </div>
 </div>
 

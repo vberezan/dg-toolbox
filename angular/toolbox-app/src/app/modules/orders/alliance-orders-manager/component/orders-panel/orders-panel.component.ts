@@ -1,4 +1,4 @@
-import {Component, inject, OnDestroy, OnInit, ViewChild} from '@angular/core';
+import {ChangeDetectorRef, Component, inject, OnDestroy, OnInit, ViewChild} from '@angular/core';
 import {NgForm} from "@angular/forms";
 import {OrderService} from "../../service/order.service";
 import {AllianceOrder} from "../../../../../model/orders/alliance-order.model";
@@ -6,6 +6,7 @@ import {DarkgalaxyApiService} from "../../../../darkgalaxy-ui-parser/service/dar
 import {AuthService} from "../../../../authentication/service/auth.service";
 import {AuthState} from "../../../../../model/authentication/auth-state.model";
 import {UserRole} from "../../../../../model/authentication/user-role";
+import {Observable, Subscriber} from "rxjs";
 
 @Component({
   selector: 'dgt-alliance-orders-manager-panel',
@@ -18,15 +19,19 @@ export class OrdersPanelComponent implements OnInit, OnDestroy {
   private orderService: OrderService = inject(OrderService);
   private dgAPI: DarkgalaxyApiService = inject(DarkgalaxyApiService);
   private authService: AuthService = inject(AuthService);
+  private changeDetection: ChangeDetectorRef = inject(ChangeDetectorRef);
 
   protected allianceMembers: string[] = [];
-  protected username: string;
-  protected gameTurn: number;
+  protected orders: Map<string, Observable<AllianceOrder[]>> = new Map<string, Observable<AllianceOrder[]>>();
 
   constructor() {
     this.allianceMembers = this.dgAPI.allianceMembers();
-    this.username = this.dgAPI.username();
-    this.gameTurn = this.dgAPI.gameTurn();
+
+    this.allianceMembers.forEach((member: string) => {
+      this.orders.set(member, new Observable<AllianceOrder[]>((observer: Subscriber<AllianceOrder[]>) => {
+        this.orderService.getAllOrders(member, this.dgAPI.gameTurn(), this.changeDetection, observer);
+      }));
+    })
   }
 
   onSubmit(): void {
