@@ -24,7 +24,7 @@ export class OrdersPanelComponent implements OnInit, OnDestroy {
 
   protected allianceMembers: string[];
   protected orders: Map<string, Observable<AllianceOrder[]>> = new Map<string, Observable<AllianceOrder[]>>();
-  protected targets: string[];
+  protected targets: string[] = [];
 
   constructor(library: FaIconLibrary) {
     library.addIcons(farCircleXmark);
