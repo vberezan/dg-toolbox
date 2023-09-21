@@ -6,9 +6,6 @@ function setUpFleetOrdersListPanel(windowURL) {
                     document.createElement('dgt-fleet-orders-list-panel'),
                     document.querySelector('#contentBox>.ofHidden')
                 );
-
-
-
         }
     }
 }
