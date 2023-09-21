@@ -92,3 +92,11 @@ button {
 .dgt-fleet-order button:hover > svg {
   fill: #7BBD1A !important;
 }
+
+.dgt-fleet-order span.label {
+  padding-right: 5px;
+}
+
+.dgt-fleet-order span.value {
+  padding-right: 15px;
+}

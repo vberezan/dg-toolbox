@@ -381,7 +381,7 @@ a.right.navigation {
 }
 
 .navigation .row .planets .text span.friendly {
-  color: #55FF55 !important;
+  color: #7BBD1A !important;
 }
 
 .navigation .row .planets .text span.allied {
@@ -597,11 +597,11 @@ label.queueDestroyButton:hover {
 
 #addQueue .prequeue fa-icon > svg,
 #addQueue .queueDestroyButton.rotation45.researchQueue svg {
-  fill: #AAFF00 !important;
+  fill: #7BBD1A !important;
 }
 
 #addQueue .prequeue fa-icon {
-  color: #AAFF00 !important;
+  color: #7BBD1A !important;
 }
 
 #addQueue .tableHeader fa-icon {
