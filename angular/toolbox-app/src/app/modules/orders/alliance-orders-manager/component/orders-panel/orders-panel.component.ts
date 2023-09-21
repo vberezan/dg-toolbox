@@ -4,8 +4,6 @@ import {OrderService} from "../../service/order.service";
 import {AllianceOrder} from "../../../../../model/orders/alliance-order.model";
 import {DarkgalaxyApiService} from "../../../../darkgalaxy-ui-parser/service/darkgalaxy-api.service";
 import {AuthService} from "../../../../authentication/service/auth.service";
-import {AuthState} from "../../../../../model/authentication/auth-state.model";
-import {UserRole} from "../../../../../model/authentication/user-role";
 import {Observable, Subscriber} from "rxjs";
 import {FaIconLibrary} from "@fortawesome/angular-fontawesome";
 import {faCircleXmark as farCircleXmark} from "@fortawesome/free-regular-svg-icons"
@@ -24,8 +22,9 @@ export class OrdersPanelComponent implements OnInit, OnDestroy {
   private authService: AuthService = inject(AuthService);
   private changeDetection: ChangeDetectorRef = inject(ChangeDetectorRef);
 
-  protected allianceMembers: string[] = [];
+  protected allianceMembers: string[];
   protected orders: Map<string, Observable<AllianceOrder[]>> = new Map<string, Observable<AllianceOrder[]>>();
+  protected targets: string[];
 
   constructor(library: FaIconLibrary) {
     library.addIcons(farCircleXmark);
@@ -54,6 +53,11 @@ export class OrdersPanelComponent implements OnInit, OnDestroy {
     allianceOrder.user = this.ordersForm.value['user'].toLowerCase();
 
     this.orderService.updateOrder(allianceOrder);
+  }
+
+  createOrder(idx: number): void {
+    console.log(idx);
+    console.log(this.targets[idx]);
   }
 
   ngOnInit() {
