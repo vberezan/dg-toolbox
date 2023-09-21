@@ -1,6 +1,6 @@
 /*****/
 .alert-animation {
-  animation: zoom-in-zoom-out 2s ease infinite;
+  animation: zoom-in-zoom-out 3s ease 2 forwards;
 }
 
 @keyframes zoom-in-zoom-out {
@@ -10,7 +10,7 @@
   }
   50% {
     transform: scale(1.02, 1.02);
-    background: #FF3B30;
+    background: #FF3B3082;
   }
   100% {
     transform: scale(1, 1);
