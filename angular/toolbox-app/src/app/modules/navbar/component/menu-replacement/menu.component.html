@@ -20,7 +20,7 @@
     </li>
     <li [tabName]="'fleets'" class="dgt-navbar-tab" dgtActiveTab>
       <a class="dgt-navbar-tab-link" href="/fleets">
-        <span class="notification-badge">{{fleetOrdersNotification | async}}</span>
+        <span *ngIf="fleetOrdersNotification | async" class="notification-badge">{{fleetOrdersNotification | async}}</span>
         <fa-icon [icon]="['fas','jet-fighter-up']" [style]="{color: '#eee'}"></fa-icon>
         <span class="dgt-navbar-tab-text">fleets</span>
       </a>
