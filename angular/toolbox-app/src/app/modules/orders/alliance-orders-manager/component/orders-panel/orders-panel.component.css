@@ -1,8 +1,7 @@
 input,
 textarea {
   height: 25px;
-  min-width: 280px;
-  font-size: 13px;
+  font-size: 11px;
   background: rgba(0, 0, 0, .35);
   color: #fff;
   border: 1px solid #555555;
@@ -14,6 +13,14 @@ textarea {
   padding: 3px 5px 3px 5px;
   overflow: hidden;
   float: left;
+}
+
+input.target {
+  width: 75px;
+}
+
+input.wait {
+  width: 30px;
 }
 
 span {
