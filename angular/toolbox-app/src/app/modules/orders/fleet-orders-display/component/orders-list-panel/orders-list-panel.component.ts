@@ -27,11 +27,13 @@ export class OrdersListPanelComponent {
         });
 
         this.active = new Observable<boolean>((observer) => {
+          console.log('TRUE');
           observer.next(true);
           observer.complete();
         });
       } else {
         this.active = new Observable<boolean>((observer) => {
+          console.log('FALSE');
           observer.next(false);
           observer.complete();
         });
