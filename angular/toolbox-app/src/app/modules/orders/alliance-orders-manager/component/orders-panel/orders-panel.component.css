@@ -1,17 +1,4 @@
-input {
-  width: 25px;
-  height: 25px;
-  font-size: 13px;
-  background: rgba(0, 0, 0, .35);
-  color: #fff;
-  border: 1px solid #555555;
-  text-align: center;
-  margin: 0;
-  border-radius: 2px;
-  display: block;
-  box-sizing: border-box;
-}
-
+input,
 textarea {
   height: 25px;
   min-width: 280px;
@@ -26,6 +13,11 @@ textarea {
   box-sizing: border-box;
   padding: 3px 5px 3px 5px;
   overflow: hidden;
+  float: left;
+}
+
+span {
+  float: left;
 }
 
 .dgt-orders-manager-member {
