@@ -31,7 +31,7 @@ export class OrderService {
     ).forEach((items: DocumentData[]) => {
       let orders: AllianceOrder[] = Object.assign([], items);
 
-      orders.forEach((order) => {
+      orders.forEach((order: AllianceOrder) => {
         order.wait -= (turn - order.turn);
       })
 
