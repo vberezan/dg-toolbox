@@ -29,10 +29,9 @@ body {
 .notification-badge {
   background: #FF3B30;
   position: relative;
-  top: 5px;
-  right: -12px;
-  padding: 3px 3px;
-  border-radius: 50%;
+  top: 1px;
+  right: -13px;
+  padding: 3px;
   color: #fff;
   font-size: 10px;
   line-height: 9px;
