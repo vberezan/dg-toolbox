@@ -22,13 +22,19 @@ export class OrdersListPanelComponent {
 
   constructor() {
 
+
     this.active = new Observable<boolean>((observer: Subscriber<boolean>) => {
       this.observerx = observer;
+    });
+
+    this.active.subscribe((val) => {
+      console.log('subs: ' + val);
     });
 
     this.authService.loggedStatus.subscribe((status: boolean) => {
       if (status) {
         this.observerx.next(true);
+        console.log(true);
 
         this.orders = new Observable<AllianceOrder[]>((observer: Subscriber<AllianceOrder[]>) => {
           this.orderService.getOrders(this.dgAPI.username(), this.dgAPI.gameTurn(), observer, this.changeDetection);
