@@ -29,7 +29,7 @@ export class OrdersPanelComponent implements OnInit, OnDestroy {
 
     this.allianceMembers.forEach((member: string) => {
       this.orders.set(member.toLowerCase(), new Observable<AllianceOrder[]>((observer: Subscriber<AllianceOrder[]>) => {
-        this.orderService.getAllOrders(member, this.dgAPI.gameTurn(), this.changeDetection, observer);
+        this.orderService.getAllOrders(member.toLowerCase(), this.dgAPI.gameTurn(), this.changeDetection, observer);
       }));
     });
 
