@@ -4,14 +4,13 @@ import {OrderService} from "../../service/order.service";
 import {AllianceOrder} from "../../../../../model/orders/alliance-order.model";
 import {DarkgalaxyApiService} from "../../../../darkgalaxy-ui-parser/service/darkgalaxy-api.service";
 import {AuthService} from "../../../../authentication/service/auth.service";
-import {Observable} from "rxjs";
 
 @Component({
   selector: 'dgt-alliance-orders-manager-panel',
   templateUrl: './orders-panel.component.html',
   styleUrls: ['./orders-panel.component.css']
 })
-export class OrdersPanelComponent implements OnInit{
+export class OrdersPanelComponent implements OnInit {
   @ViewChild('dgtOrdersForm') ordersForm: NgForm;
 
   private orderService: OrderService = inject(OrderService);
@@ -41,7 +40,11 @@ export class OrdersPanelComponent implements OnInit{
       if (status) {
         document.querySelectorAll('.allianceBox .playerList div.name').forEach((playerName, idx) => {
           this.orderService.fillActiveOrders(playerName.childNodes[0].textContent.trim(), this.dgAPI.gameTurn(), idx);
-        })
+        });
+      } else {
+        document.querySelectorAll('.allianceBox .playerList table').forEach((element: Element) => {
+          element.remove();
+        });
       }
     });
 
