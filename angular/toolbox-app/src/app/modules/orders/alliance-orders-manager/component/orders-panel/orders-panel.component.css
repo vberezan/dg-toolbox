@@ -29,6 +29,12 @@ textarea {
   margin-right: 20px;
 }
 
+.create > button {
+  width: 80px !important;
+  cursor: pointer;
+  border: 1px solid #6a6a6a !important;
+}
+
 span {
   float: left;
   line-height: 23px;
