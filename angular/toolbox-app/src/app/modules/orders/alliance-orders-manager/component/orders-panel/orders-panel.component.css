@@ -29,12 +29,13 @@ textarea {
 }
 
 .dgt-orders-manager-member,
-.dgt-orders-manager-member > div {
-  float: left;
+.dgt-orders-manager-member > div,
+.dgt-orders-history-details {
   width: 100%;
 }
 
-.dgt-orders-manager-member > div > div {
+.dgt-orders-manager-panel,
+.dgt-orders-manager-panel div {
   float: left;
 }
 
