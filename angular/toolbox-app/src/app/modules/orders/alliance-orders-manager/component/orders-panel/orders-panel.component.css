@@ -17,15 +17,22 @@ textarea {
 
 .target > input {
   width: 75px;
+  margin-right: 20px;
 }
 
 .wait > input {
   width: 30px;
+  margin-right: 20px;
+}
+
+.instructions > input {
+  margin-right: 20px;
 }
 
 span {
   float: left;
   line-height: 23px;
+  margin-right: 5px;
 }
 
 .dgt-orders-launcher {
