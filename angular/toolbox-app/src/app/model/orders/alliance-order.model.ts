@@ -5,6 +5,7 @@ export class AllianceOrder {
   private _executed: boolean;
   private _user: string;
   private _wait: number;
+  private _id: string;
 
   get instructions(): string {
     return this._instructions;
@@ -52,6 +53,13 @@ export class AllianceOrder {
 
   set wait(value: number) {
     this._wait = value;
+  }
+  get id(): string {
+    return this._id;
+  }
+
+  set id(value: string) {
+    this._id = value;
   }
 
   toJSON() {

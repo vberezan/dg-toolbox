@@ -19,10 +19,13 @@ export class OrderService {
         where('user', '==', user)
       ), {idField: 'id'}
     ).forEach((items: DocumentData[]) => {
-      let orders: AllianceOrder[] = Object.assign([], items)
+      let orders: AllianceOrder[] = Object.assign([], items);
+
 
       orders.forEach((order) => {
         order.wait -= (turn - order.turn);
+
+        console.log(order.id);
       })
 
       observer.next(orders);
