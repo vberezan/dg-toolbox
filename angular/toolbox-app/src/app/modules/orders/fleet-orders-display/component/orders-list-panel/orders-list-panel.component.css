@@ -54,6 +54,7 @@
   padding-right: 5px;
   font-weight: bold;
   color: #FFD46F;
+  float: left;
 }
 
 .dgt-fleet-order .target span.value,
