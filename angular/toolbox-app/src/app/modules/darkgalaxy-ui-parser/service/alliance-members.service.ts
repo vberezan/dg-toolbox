@@ -18,7 +18,11 @@ export class AllianceMembersService implements DataExtractor {
         console.log (player);
 
         let name: string = player.querySelector('.name').childNodes[0].textContent.trim();
-        let note: string = player.querySelector('.note').childNodes[0].textContent.trim();
+        let note: string = null;
+
+        if (player.querySelector('.note') != null) {
+          note = player.querySelector('.note').childNodes[0].textContent.trim();
+        }
 
         result.push(new AllianceMember(name, note));
       });
