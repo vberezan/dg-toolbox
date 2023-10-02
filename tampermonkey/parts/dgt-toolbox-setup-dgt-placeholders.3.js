@@ -8,7 +8,11 @@ function setUpNavbarReplacement() {
 function setUpAllianceOrdersManagerPanel(windowURL) {
     if (windowURL[1] === 'alliances') {
         if (document.querySelector('.allianceBox > .playerList')) {
-            document.querySelector('.allianceBox > .playerList:last-child').parentElement.append(document.createElement('dgt-alliance-orders-manager-panel'));
+            document.querySelectorAll('.allianceBox > .playerList').forEach((list) => {
+                if (list.parentElement.querySelector('.plainHeader').childNodes[0].textContent.trim().toLowerCase() === 'member list') {
+                    list.parentElement.append(document.createElement('dgt-alliance-orders-manager-panel'));
+                }
+            });
         }
     }
 }
@@ -26,7 +30,7 @@ function setUpFleetOrdersListPanel(windowURL) {
 }
 
 function setUpSharedScansCollector(windowURL) {
-    if(windowURL[1] === 'planet' && (windowURL.length === 5 && windowURL[3]) === 'comms') {
+    if (windowURL[1] === 'planet' && (windowURL.length === 5 && windowURL[3]) === 'comms') {
         document.querySelector('.opacDarkBackground form').parentElement.append(document.createElement('dgt-shared-scans-collector'));
     }
 }
