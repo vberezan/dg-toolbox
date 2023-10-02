@@ -6,7 +6,7 @@ import {AuthService} from "../../../../authentication/service/auth.service";
 import {Observable, Subscriber} from "rxjs";
 import {FaIconLibrary} from "@fortawesome/angular-fontawesome";
 import {faCircleXmark as farCircleXmark} from "@fortawesome/free-regular-svg-icons"
-import {faCircle as fasCircle} from "@fortawesome/free-regular-svg-icons"
+import {faCircle as fasCircle} from "@fortawesome/free-solid-svg-icons"
 
 
 @Component({
