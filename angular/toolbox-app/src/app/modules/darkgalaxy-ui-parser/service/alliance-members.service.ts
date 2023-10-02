@@ -15,8 +15,6 @@ export class AllianceMembersService implements DataExtractor {
 
     if (!document.querySelector('[action="/alliances/join/"]')) {
       document.querySelectorAll('.allianceBox .playerList .player').forEach((player: any): void => {
-        console.log (player);
-
         let name: string = player.querySelector('.name').childNodes[0].textContent.trim();
         let note: string = null;
 
