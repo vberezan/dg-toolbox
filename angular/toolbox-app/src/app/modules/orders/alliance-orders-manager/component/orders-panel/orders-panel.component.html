@@ -1,6 +1,6 @@
 <div class="dgt-orders-manager-panel">
   <div class="dgt-orders-manager-member" *ngFor="let member of allianceMembers; index as idx">
-    <div class="name"><span>{{member}}</span></div>
+    <div class="name"><span class="name">{{member.name}}</span><span class="note">[{{member.note}}]</span></div>
     <div class="dgt-orders-launcher">
       <div class="target">
         <span class="target">Target:</span>
@@ -20,7 +20,7 @@
     </div>
 
     <div class="dgt-orders-history">
-      <div class="dgt-orders-history-details" *ngFor="let order of (orders.get(member.toLowerCase()) | async)"
+      <div class="dgt-orders-history-details" *ngFor="let order of (orders.get(member.name.toLowerCase()) | async)"
            [ngClass]="{'executed' : order.executed, 'in-progress' : !order.executed}">
         <div class="target"><span class="label">Target:</span><span class="value">{{order.target}}</span></div>
         <div class="wait"><span class="label">Wait:</span><span class="value">{{order.wait}}</span></div>

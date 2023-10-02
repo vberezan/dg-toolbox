@@ -7,6 +7,7 @@ import {Observable, Subscriber} from "rxjs";
 import {FaIconLibrary} from "@fortawesome/angular-fontawesome";
 import {faCircleXmark as fasCircleXmark} from "@fortawesome/free-solid-svg-icons"
 import {faCircle as fasCircle} from "@fortawesome/free-solid-svg-icons"
+import {AllianceMember} from "../../../../../shared/model/orders/alliance-member.model";
 
 
 @Component({
@@ -20,7 +21,7 @@ export class OrdersPanelComponent implements OnDestroy {
   private authService: AuthService = inject(AuthService);
   private changeDetection: ChangeDetectorRef = inject(ChangeDetectorRef);
 
-  protected allianceMembers: string[];
+  protected allianceMembers: AllianceMember[];
   protected orders: Map<string, Observable<AllianceOrder[]>> = new Map<string, Observable<AllianceOrder[]>>();
   protected controls: {
     target: string[],
@@ -40,9 +41,9 @@ export class OrdersPanelComponent implements OnDestroy {
     this.controls.wait = [];
     this.controls.instructions = [];
 
-    this.allianceMembers.forEach((member: string): void => {
-      this.orders.set(member.toLowerCase(), new Observable<AllianceOrder[]>((observer: Subscriber<AllianceOrder[]>): void => {
-        this.orderService.getAllOrders(member.toLowerCase(), this.dgAPI.gameTurn(), this.changeDetection, observer);
+    this.allianceMembers.forEach((member: AllianceMember): void => {
+      this.orders.set(member.name.toLowerCase(), new Observable<AllianceOrder[]>((observer: Subscriber<AllianceOrder[]>): void => {
+        this.orderService.getAllOrders(member.name.toLowerCase(), this.dgAPI.gameTurn(), this.changeDetection, observer);
       }));
     });
   }
@@ -54,7 +55,7 @@ export class OrdersPanelComponent implements OnDestroy {
     allianceOrder.target = this.controls.target[idx];
     allianceOrder.executed = false;
     allianceOrder.turn = this.dgAPI.gameTurn();
-    allianceOrder.user = this.allianceMembers[idx].toLowerCase();
+    allianceOrder.user = this.allianceMembers[idx].name.toLowerCase();
 
     this.orderService.updateOrder(allianceOrder);
   }

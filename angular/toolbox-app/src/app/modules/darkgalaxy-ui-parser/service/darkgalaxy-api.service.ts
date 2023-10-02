@@ -5,6 +5,7 @@ import {PlanetScanExtractorService} from "./planet-scan.extractor.service";
 import {PlanetScanEvent} from "../../../shared/model/scans/shared-scans-planet-scan-event.model";
 import {NavigationSystemPlanetsExtractorService} from "./navigation-system-planets.extractor.service";
 import {AllianceMembersService} from "./alliance-members.service";
+import {AllianceMember} from "../../../shared/model/orders/alliance-member.model";
 
 @Injectable({
   providedIn: 'root'
@@ -28,7 +29,7 @@ export class DarkgalaxyApiService {
     return this.navigationSystemPlanetsExtractor.extract();
   }
 
-  allianceMembers(): string[] {
+  allianceMembers(): AllianceMember[] {
     return this.allianceMembersExtractor.extract();
 }
 
