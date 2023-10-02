@@ -50,4 +50,8 @@ export class PlanetListExtractorService implements DataExtractor {
 
     return result;
   }
+
+  cleanAfterExtract(): void {
+    // -- Nothing to do
+  }
 }

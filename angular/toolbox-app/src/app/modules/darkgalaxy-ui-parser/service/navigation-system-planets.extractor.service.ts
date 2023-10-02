@@ -18,4 +18,8 @@ export class NavigationSystemPlanetsExtractorService implements DataExtractor {
 
     return result;
   }
+
+  cleanAfterExtract(): void {
+    // -- Nothing to do
+  }
 }

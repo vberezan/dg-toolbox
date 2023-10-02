@@ -1,3 +1,4 @@
 export interface DataExtractor {
-  extract(): any
+  extract(): any;
+  cleanAfterExtract(): void;
 }

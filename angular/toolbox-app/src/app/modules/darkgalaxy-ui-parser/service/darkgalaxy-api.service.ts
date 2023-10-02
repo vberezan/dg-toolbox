@@ -29,9 +29,15 @@ export class DarkgalaxyApiService {
     return this.navigationSystemPlanetsExtractor.extract();
   }
 
-  allianceMembers(): AllianceMember[] {
-    return this.allianceMembersExtractor.extract();
-}
+  allianceMembers(clean: boolean | false): AllianceMember[] {
+    let result: AllianceMember[] = this.allianceMembersExtractor.extract();
+
+    if (clean) {
+      this.allianceMembersExtractor.cleanAfterExtract()
+    }
+
+    return result;
+  }
 
   gameTurn(): number {
     return parseInt(document.querySelector('#turnNumber').textContent.trim().replace(/,/g, ''));
@@ -46,4 +52,5 @@ export class DarkgalaxyApiService {
 
     return completeName.toLowerCase();
   }
+
 }

@@ -29,5 +29,13 @@ export class AllianceMembersService implements DataExtractor {
     return result;
   }
 
+  cleanAfterExtract(): void {
+    let element: Element = document.querySelector('.allianceBox .playerList');
+
+    if (element) {
+      element.parentNode.querySelector('.plainHeader').remove();
+      element.remove();
+    }
+  }
 
 }
