@@ -33,13 +33,3 @@
   </div>
 </div>
 
-<form *ngIf="allianceMembers.length > 0" id="dgt-orders-panel-data-form" (ngSubmit)="onSubmit()" #dgtOrdersForm="ngForm">
-  <div>
-    <input type="text" ngModel name="target"/>
-    <input type="text" ngModel name="wait"/>
-    <input type="text" ngModel name="user"/>
-    <textarea placeholder="Ex: minim 100 fighters" ngModel name="instructions"></textarea>
-    <button type="submit">Send</button>
-  </div>
-</form>
-

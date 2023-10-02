@@ -14,9 +14,7 @@ import {faCircleXmark as farCircleXmark} from "@fortawesome/free-regular-svg-ico
   templateUrl: './orders-panel.component.html',
   styleUrls: ['./orders-panel.component.css']
 })
-export class OrdersPanelComponent implements OnInit, OnDestroy {
-  @ViewChild('dgtOrdersForm') ordersForm: NgForm;
-
+export class OrdersPanelComponent implements OnDestroy {
   private orderService: OrderService = inject(OrderService);
   private dgAPI: DarkgalaxyApiService = inject(DarkgalaxyApiService);
   private authService: AuthService = inject(AuthService);
@@ -49,46 +47,15 @@ export class OrdersPanelComponent implements OnInit, OnDestroy {
     });
   }
 
-  onSubmit(): void {
+  createOrder(idx: number): void {
     let allianceOrder: AllianceOrder = new AllianceOrder();
-    allianceOrder.target = [
-      this.ordersForm.value['galaxy'],
-      this.ordersForm.value['sector'],
-      this.ordersForm.value['system'],
-      this.ordersForm.value['planet']
-    ].join('.');
-
-    allianceOrder.wait = parseInt(this.ordersForm.value['wait']);
-    allianceOrder.instructions = this.ordersForm.value['instructions'];
+    allianceOrder.wait = this.controls.wait[idx]
+    allianceOrder.instructions = this.controls.instructions[idx];
     allianceOrder.executed = false;
     allianceOrder.turn = this.dgAPI.gameTurn();
-    allianceOrder.user = this.ordersForm.value['user'].toLowerCase();
+    allianceOrder.user = this.allianceMembers[idx].toLowerCase();
 
     this.orderService.updateOrder(allianceOrder);
-  }
-
-  createOrder(idx: number): void {
-    console.log(this.allianceMembers[idx]);
-    console.log(this.controls.target[idx]);
-    console.log(this.controls.wait[idx]);
-    console.log(this.controls.instructions[idx]);
-  }
-
-  ngOnInit() {
-    // this.authService.authState.subscribe((state: AuthState) => {
-    //   if (state.status && state.role == UserRole.ADMIN) {
-    //     document.querySelectorAll('.allianceBox .playerList table').forEach((table: any) => {
-    //       table.style.display = 'table';
-    //     });
-    //     document.querySelectorAll('.allianceBox .playerList div.name').forEach((playerName: any, idx: number) => {
-    //       this.orderService.fillActiveOrders(playerName.childNodes[0].textContent.trim(), this.dgAPI.gameTurn(), idx);
-    //     });
-    //   } else {
-    //     document.querySelectorAll('.allianceBox .playerList table').forEach((table: Element) => {
-    //       table.remove();
-    //     });
-    //   }
-    // });
   }
 
   ngOnDestroy(): void {
