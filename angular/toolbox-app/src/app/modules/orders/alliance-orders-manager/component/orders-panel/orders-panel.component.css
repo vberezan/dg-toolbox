@@ -110,19 +110,15 @@ span {
   border-radius: 100px;
   vertical-align: middle;
   background: transparent;
-  line-height: 40px;
-  width: 20px;
   cursor: pointer;
 }
 
 
-.delete button svg {
-  fill: #7a7a7a;
-  height: 20px;
-  align-content: center;
-  display: flex;
+.delete button fa-icon {
+  color: #7a7a7a;
+  font-size: 20px !important;
 }
 
-.delete button:hover svg {
-  fill: #e46045 !important;
+.delete button:hover fa-icon {
+  color: #e46045 !important;
 }
