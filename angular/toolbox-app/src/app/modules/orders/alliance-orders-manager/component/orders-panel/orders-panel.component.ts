@@ -1,5 +1,4 @@
-import {ChangeDetectorRef, Component, inject, OnDestroy, OnInit, ViewChild} from '@angular/core';
-import {NgForm} from "@angular/forms";
+import {ChangeDetectorRef, Component, inject, OnDestroy} from '@angular/core';
 import {OrderService} from "../../service/order.service";
 import {AllianceOrder} from "../../../../../shared/model/orders/alliance-order.model";
 import {DarkgalaxyApiService} from "../../../../darkgalaxy-ui-parser/service/darkgalaxy-api.service";
@@ -7,6 +6,7 @@ import {AuthService} from "../../../../authentication/service/auth.service";
 import {Observable, Subscriber} from "rxjs";
 import {FaIconLibrary} from "@fortawesome/angular-fontawesome";
 import {faCircleXmark as farCircleXmark} from "@fortawesome/free-regular-svg-icons"
+import {faCircle as fasCircle} from "@fortawesome/free-regular-svg-icons"
 
 
 @Component({
@@ -33,7 +33,7 @@ export class OrdersPanelComponent implements OnDestroy {
   }
 
   constructor(library: FaIconLibrary) {
-    library.addIcons(farCircleXmark);
+    library.addIcons(farCircleXmark, fasCircle);
     this.allianceMembers = this.dgAPI.allianceMembers();
 
     this.controls.target = [];
