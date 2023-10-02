@@ -122,3 +122,19 @@ span {
 .delete button:hover fa-icon {
   color: #e46045 !important;
 }
+
+fa-icon.complete {
+  color: #7BBD1A
+}
+
+fa-icon.in-progress {
+  color: #e46045;
+}
+
+.status {
+  float: left;
+  margin-right: 10px;
+  margin-left: 10px;
+  height: 20px;
+  color: #7a7a7a;
+}
