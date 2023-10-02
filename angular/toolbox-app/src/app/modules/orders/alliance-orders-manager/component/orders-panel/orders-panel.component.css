@@ -62,7 +62,7 @@ span {
   width: 100%;
 }
 
-.dgt-orders-manager-member > .name {
+.dgt-orders-manager-member .name {
   padding: 5px;
   width: calc(100% - 10px);
   float: left;
