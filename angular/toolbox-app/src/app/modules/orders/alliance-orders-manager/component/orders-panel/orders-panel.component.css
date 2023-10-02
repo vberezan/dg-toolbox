@@ -35,7 +35,7 @@ textarea {
 }
 
 .create > button {
-  width: 80px !important;
+  width: 70px !important;
   cursor: pointer;
   border: 1px solid #6a6a6a !important;
 }
@@ -72,13 +72,14 @@ span {
 }
 
 .dgt-orders-manager-member .name {
-  font-size: 18px;
+  font-size: 10px;
   color: #ffd46f;
+  float: left;
 }
 
 .dgt-orders-manager-member .note {
-  color: #ffd46f;
   font-weight: normal !important;
+  float: right;
 }
 
 
