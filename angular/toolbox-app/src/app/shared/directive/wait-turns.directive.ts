@@ -1,11 +1,11 @@
 import {Directive, ElementRef, HostListener} from '@angular/core';
 
 @Directive({
-  selector: '[dgtNavigationTarget]'
+  selector: '[dgtWaitTurns]'
 })
-export class NavigationTargetDirective {
+export class WaitTurnsDirective {
   private specialKeys: Array<string> = ['Backspace', 'Tab', 'End', 'Home', 'Delete', 'Del', 'ArrowLeft', 'ArrowRight', 'Left', 'Right'];
-  private regex: RegExp = new RegExp(/^[0-9.]+$/);
+  private regex: RegExp = new RegExp(/^[0-9]+$/);
 
   constructor(private el: ElementRef) {}
 
@@ -21,7 +21,6 @@ export class NavigationTargetDirective {
     if (this.specialKeys.indexOf(event.key) !== -1) {
       return;
     }
-
 
     let current: string = this.el.nativeElement.value + event.key;
 

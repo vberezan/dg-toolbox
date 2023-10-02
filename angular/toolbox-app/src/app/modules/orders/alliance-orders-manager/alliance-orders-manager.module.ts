@@ -11,6 +11,7 @@ import {getFirestore, provideFirestore} from "@angular/fire/firestore";
 import {initializeAppCheck, provideAppCheck, ReCaptchaV3Provider} from "@angular/fire/app-check";
 import {FontAwesomeModule} from "@fortawesome/angular-fontawesome";
 import {NavigationTargetDirective} from "../../../shared/directive/navigation-target.directive";
+import {WaitTurnsDirective} from "../../../shared/directive/wait-turns.directive";
 
 
 @NgModule({
@@ -31,7 +32,8 @@ import {NavigationTargetDirective} from "../../../shared/directive/navigation-ta
   ],
   declarations: [
     OrdersPanelComponent,
-    NavigationTargetDirective
+    NavigationTargetDirective,
+    WaitTurnsDirective
   ],
   providers: [
     OrderService,
