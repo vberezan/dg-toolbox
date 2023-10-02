@@ -103,10 +103,9 @@ span {
 }
 
 .delete button {
-  margin-right: 10px;
+  margin: 0 !important;
   padding: 0;
   border: none;
-  margin-left: 10px;
   border-radius: 100px;
   vertical-align: middle;
   background: transparent;
@@ -118,24 +117,13 @@ span {
 }
 
 .delete button fa-icon {
-  color: #7a7a7a !important;
-  font-size: 15px !important;
+  color: #ffd46f !important;
+  font-size: 16px !important;
+  line-height: 22px;
 }
 
 .delete button:hover fa-icon {
   color: #ffffff !important;
-}
-
-.status {
-  float: left;
-  margin-right: 5px;
-  margin-left: 5px;
-  height: 24px;
-  color: #7a7a7a;
-}
-
-.status fa-icon {
-  line-height: 24px;
 }
 
 .dgt-orders-history-details.executed {
