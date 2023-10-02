@@ -32,6 +32,7 @@
   line-height: 40px;
   height: 40px;
   width: 20px;
+  cursor: pointer;
 }
 
 .dgt-fleet-order button>svg {
@@ -60,8 +61,4 @@
 .dgt-fleet-order .target span.value,
 .dgt-fleet-order .wait span.value {
   padding-right: 30px;
-}
-
-.dgt-fleet-order button {
-  cursor: pointer;
 }

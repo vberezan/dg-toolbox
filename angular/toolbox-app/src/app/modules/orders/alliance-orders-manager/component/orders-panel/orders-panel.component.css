@@ -101,3 +101,29 @@ span {
 .dgt-orders-history .wait {
   min-width: 70px;
 }
+
+.delete button {
+  margin-right: 10px;
+  padding: 0;
+  border: none;
+  margin-left: 10px;
+  border-radius: 100px;
+  vertical-align: middle;
+  background: transparent;
+  line-height: 40px;
+  height: 40px;
+  width: 20px;
+  cursor: pointer;
+}
+
+
+.delete button>svg {
+  fill: #7a7a7a;
+  height: 20px;
+  align-content: center;
+  display: flex;
+}
+
+.delete button:hover > svg {
+  fill: #7BBD1A !important;
+}
