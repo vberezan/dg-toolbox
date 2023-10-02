@@ -117,10 +117,10 @@ span {
 
 
 .delete button>fa-icon>svg {
-  fill: #7a7a7a;
-  height: 20px;
-  align-content: center;
-  display: flex;
+  fill: #7a7a7a !important;
+  height: 20px !important;
+  align-content: center !important;
+  display: flex !important;
 }
 
 .delete button:hover>fa-icon>svg {
