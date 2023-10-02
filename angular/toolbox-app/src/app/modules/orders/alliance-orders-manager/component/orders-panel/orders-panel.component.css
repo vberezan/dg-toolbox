@@ -2,9 +2,9 @@ input,
 textarea {
   height: 25px;
   font-size: 11px;
-  background: rgba(0, 0, 0, .35);
+  background: rgba(0, 0, 0, .40);
   color: #fff;
-  border: 1px solid #555555;
+  border: 1px solid #6a6a6a;
   text-align: left;
   margin: 0;
   border-radius: 5px;
@@ -73,7 +73,7 @@ span {
 }
 
 .dgt-orders-manager-member .name {
-  font-size: 18px;
+  font-size: 16px;
   color: #ffd46f;
   float: left;
 }
