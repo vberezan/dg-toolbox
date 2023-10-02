@@ -115,15 +115,16 @@ span {
 
 
 .delete button fa-icon {
-  color: #7a7a7a;
+  color: #7a7a7a !important;
   font-size: 20px !important;
 }
 
 .delete button:hover fa-icon {
   color: #e46045 !important;
+  line-height: 24px;
 }
 
-fa-icon.complete {
+fa-icon.executed {
   color: #7BBD1A
 }
 
@@ -133,8 +134,8 @@ fa-icon.in-progress {
 
 .status {
   float: left;
-  margin-right: 10px;
-  margin-left: 10px;
-  height: 20px;
+  margin-right: 5px;
+  margin-left: 5px;
+  height: 24px;
   color: #7a7a7a;
 }
