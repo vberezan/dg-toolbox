@@ -83,7 +83,7 @@ span {
   width: calc(100% - 20px);
   border-radius: 5px;
   padding: 5px;
-  margin: 5px;
+  margin: 4px;
 }
 
 .dgt-orders-history-details span.label {
@@ -123,7 +123,7 @@ span {
 }
 
 .delete button:hover fa-icon {
-  color: #ffffff !important;
+  color: #c8a960 !important;
 }
 
 .dgt-orders-history-details.executed {

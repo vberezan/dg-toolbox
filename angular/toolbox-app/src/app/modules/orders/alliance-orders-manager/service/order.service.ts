@@ -1,6 +1,6 @@
 import {ChangeDetectorRef, inject, Injectable} from '@angular/core';
 import {AllianceOrder} from "../../../../shared/model/orders/alliance-order.model";
-import {addDoc, collection, collectionData, Firestore, query, where} from "@angular/fire/firestore";
+import {addDoc, collection, collectionData, Firestore, orderBy, query, where} from "@angular/fire/firestore";
 import firebase from "firebase/compat";
 import DocumentData = firebase.firestore.DocumentData;
 import {Subscriber} from "rxjs";
@@ -26,7 +26,8 @@ export class OrderService {
 
     collectionData(
       query(ordersRef,
-        where('user', '==', user)
+        where('user', '==', user),
+        orderBy('executed', 'asc')
       ), {idField: 'id'}
     ).forEach((items: DocumentData[]) => {
       let orders: AllianceOrder[] = Object.assign([], items);
