@@ -13,7 +13,7 @@ export class NavigationTargetDirective {
   validateInput(event: KeyboardEvent): void {
     const regex: RegExp = new RegExp(/^[0-9.]+$/);
 
-    let current: string = this.el.nativeElement.value;
+    let current: string = this.el.nativeElement.value + event.key;
 
     console.log(current);
     console.log(regex.test(current));
