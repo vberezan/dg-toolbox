@@ -24,9 +24,6 @@ export class WaitTurnsDirective {
 
     let current: string = this.el.nativeElement.value + event.key;
 
-    console.log(current);
-    console.log(this.regex.test(current));
-
     if (!this.regex.test(current)) {
       event.preventDefault()
     }
