@@ -34,49 +34,14 @@ function loadResource(element) {
 function loadSetups(windowURL) {
     loadResource({
         tagName: 'script',
-        src: 'https://cdn.jsdelivr.net/gh/vberezan/dg-toolbox@development/tampermonkey/parts/dg-toolbox-setup-navbar-replacement.3.js',
+        src: 'https://cdn.jsdelivr.net/gh/vberezan/dg-toolbox@development/tampermonkey/parts/dg-toolbox-setup-dgt-placeholders.1.js',
         rel: 'text/javascript'
     }).onload = function () {
         setUpNavbarReplacement();
-    }
-
-    loadResource({
-        tagName: 'script',
-        src: 'https://cdn.jsdelivr.net/gh/vberezan/dg-toolbox@development/tampermonkey/parts/dg-toolbox-setup-planet-list-panel.5.js',
-        rel: 'text/javascript'
-    }).onload = function () {
         setUpPlanetListStatsPanel(windowURL);
-    }
-
-    loadResource({
-        tagName: 'script',
-        src: 'https://cdn.jsdelivr.net/gh/vberezan/dg-toolbox@development/tampermonkey/parts/dg-toolbox-setup-shared-scans-collector.3.js',
-        rel: 'text/javascript'
-    }).onload = function () {
         setUpSharedScansCollector(windowURL);
-    }
-
-    loadResource({
-        tagName: 'script',
-        src: 'https://cdn.jsdelivr.net/gh/vberezan/dg-toolbox@development/tampermonkey/parts/dg-toolbox-setup-navigation-scan-data-panel.15.js',
-        rel: 'text/javascript'
-    }).onload = function () {
         setUpNavigationScanDataPanel(windowURL);
-    }
-
-    loadResource({
-        tagName: 'script',
-        src: 'https://cdn.jsdelivr.net/gh/vberezan/dg-toolbox@development/tampermonkey/parts/dgt-toolbox-setup-alliance-orders-manager.31.js',
-        rel: 'text/javascript'
-    }).onload = function () {
         setUpAllianceOrdersManagerPanel(windowURL);
-    }
-
-    loadResource({
-        tagName: 'script',
-        src: 'https://cdn.jsdelivr.net/gh/vberezan/dg-toolbox@development/tampermonkey/parts/dgt-toolbox-setup-fleet-orders-display.1.js',
-        rel: 'text/javascript'
-    }).onload = function () {
         setUpFleetOrdersListPanel(windowURL);
     }
 }
@@ -126,7 +91,7 @@ function loadCustomStyling() {
 function loadAngular() {
     let angular = [{
         tagName: 'link',
-        href: 'https://cdn.jsdelivr.net/gh/vberezan/dg-toolbox@development/angular/toolbox-app/dist/toolbox-app/styles.1772fdd0051f6f2d.css',
+        href: 'https://cdn.jsdelivr.net/gh/vberezan/dg-toolbox@development/angular/toolbox-app/dist/toolbox-app/styles.d865bb19c9d1b078.css',
         rel: 'stylesheet'
     }, {
         tagName: 'script',
@@ -138,7 +103,7 @@ function loadAngular() {
         rel: 'module'
     }, {
         tagName: 'script',
-        src: 'https://cdn.jsdelivr.net/gh/vberezan/dg-toolbox@development/angular/toolbox-app/dist/toolbox-app/main.de33415a602b05bb.js',
+        src: 'https://cdn.jsdelivr.net/gh/vberezan/dg-toolbox@development/angular/toolbox-app/dist/toolbox-app/main.84eb068df7812c27.js',
         rel: 'module'
     }];
 
