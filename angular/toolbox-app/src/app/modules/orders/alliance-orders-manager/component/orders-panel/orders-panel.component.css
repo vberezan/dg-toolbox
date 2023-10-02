@@ -4,7 +4,7 @@ textarea {
   font-size: 11px;
   background: rgba(0, 0, 0, .40);
   color: #fff;
-  border: 1px solid #6a6a6a;
+  border: 1px solid #6a6a6ae0;
   text-align: left;
   margin: 0;
   border-radius: 5px;
@@ -37,7 +37,7 @@ textarea {
 .create > button {
   width: 70px !important;
   cursor: pointer;
-  border: 1px solid #6a6a6a !important;
+  border: 1px solid #6a6a6ae0 !important;
   border-radius: 5px;
 }
 
