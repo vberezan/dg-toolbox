@@ -144,3 +144,8 @@ span {
   border-color: #FF3B30;
   background: #FF3B302B;
 }
+
+.dgt-orders-history .label {
+  color: #ffd46f;
+  font-weight: bold;
+}
