@@ -26,7 +26,7 @@
         <div class="wait"><span class="label">Wait:</span><span class="value">{{order.wait}}</span></div>
         <div class="instructions"><span class="label">Instructions:</span><span class="value">{{order.instructions}}</span></div>
         <div class="delete">
-          <button><fa-icon [icon]="['fas','circle-xmark']" [style]="{color: '#fff'}"></fa-icon></button>
+          <button><fa-icon [icon]="['fas','circle-xmark']" [style]="{color: '#fff'}" (click)="deleteOrder(order.id)"></fa-icon></button>
         </div>
       </div>
     </div>

@@ -40,7 +40,7 @@ export class OrdersPanelComponent implements OnDestroy {
     this.controls.wait = [];
     this.controls.instructions = [];
 
-    this.allianceMembers.forEach((member: string) => {
+    this.allianceMembers.forEach((member: string): void => {
       this.orders.set(member.toLowerCase(), new Observable<AllianceOrder[]>((observer: Subscriber<AllianceOrder[]>): void => {
         this.orderService.getAllOrders(member.toLowerCase(), this.dgAPI.gameTurn(), this.changeDetection, observer);
       }));
@@ -56,6 +56,10 @@ export class OrdersPanelComponent implements OnDestroy {
     allianceOrder.user = this.allianceMembers[idx].toLowerCase();
 
     this.orderService.updateOrder(allianceOrder);
+  }
+
+  deleteOrder(id: string): void {
+    this.orderService.deleteOrder(id);
   }
 
   ngOnDestroy(): void {

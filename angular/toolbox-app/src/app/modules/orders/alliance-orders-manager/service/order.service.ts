@@ -1,9 +1,9 @@
 import {ChangeDetectorRef, inject, Injectable} from '@angular/core';
 import {AllianceOrder} from "../../../../shared/model/orders/alliance-order.model";
-import {addDoc, collection, collectionData, Firestore, orderBy, query, where} from "@angular/fire/firestore";
+import {addDoc, collection, collectionData, deleteDoc, doc, Firestore, orderBy, query, where} from "@angular/fire/firestore";
 import firebase from "firebase/compat";
-import DocumentData = firebase.firestore.DocumentData;
 import {Subscriber} from "rxjs";
+import DocumentData = firebase.firestore.DocumentData;
 
 @Injectable({
   providedIn: 'root'
@@ -19,6 +19,13 @@ export class OrderService {
           console.log(error);
         }
       );
+  }
+
+  deleteOrder(id: string): void {
+    deleteDoc(doc(collection(this.firestore, 'orders'), id))
+      .catch((error) => {
+        console.log(error);
+      });
   }
 
   getAllOrders(user: string, turn: number, changeDetection: ChangeDetectorRef, observer: Subscriber<AllianceOrder[]>): void {
@@ -41,38 +48,6 @@ export class OrderService {
     }).catch((error) => {
       console.log(error);
     });
-  }
-
-  fillActiveOrders(user: string, turn: number, idx: number): void {
-    let ordersRef = collection(this.firestore, 'orders');
-
-    collectionData(
-      query(ordersRef,
-        where('user', '==', user.toLowerCase()),
-      ), {idField: 'id'}
-    ).forEach((items: DocumentData[]) => {
-      let orders: AllianceOrder[] = Object.assign([], items);
-      let ordersListTable = document.getElementById('dgt-orders-list-table-' + idx).querySelector('tbody');
-
-      // -- reset table
-      ordersListTable.innerHTML = '';
-      orders.forEach((order: AllianceOrder) => {
-        order.wait -= (turn - order.turn);
-
-        let orderLine = document.createElement('tr');
-        orderLine.innerHTML =
-          '<td class="status">' + this.status(order.executed) + '</td>' +
-          '<td class="target">' + order.target + '</td>' +
-          '<td class="wait">' + order.wait + '</td>' +
-          '<td class="flying">' + (order.turn + order.wait + 1) + '</td>' +
-          '<td class="instructions"><button onC></button>' + order.instructions + '</td>';
-
-        ordersListTable.append(orderLine);
-      });
-
-    }).catch((error): void => {
-      console.log(error);
-    })
   }
 
   private status(executed: boolean): string {

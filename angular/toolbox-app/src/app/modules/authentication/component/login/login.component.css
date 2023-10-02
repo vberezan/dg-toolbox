@@ -22,7 +22,10 @@
   cursor: pointer;
 }
 
-.dgt-logout-button,
+.dgt-logout-button {
+  display: none !important;
+}
+
 .dgt-login-button {
   min-width: 75px;
   float: left;
