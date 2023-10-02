@@ -20,7 +20,8 @@
     </div>
 
     <div class="dgt-orders-history">
-      <div class="dgt-orders-history-details" *ngFor="let order of (orders.get(member.toLowerCase()) | async)">
+      <div class="dgt-orders-history-details" *ngFor="let order of (orders.get(member.toLowerCase()) | async)"
+           [ngClass]="{'executed' : order.executed, 'in-progress' : !order.executed}">
         <div class="delete">
           <button><fa-icon [icon]="['far','circle-xmark']" [style]="{color: '#fff'}"></fa-icon></button>
         </div>

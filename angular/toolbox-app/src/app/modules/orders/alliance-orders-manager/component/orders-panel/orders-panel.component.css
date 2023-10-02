@@ -135,6 +135,14 @@ span {
   line-height: 24px;
 }
 
+.dgt-orders-history-details.executed {
+  border-color: #7BBD1A;
+}
+
+.dgt-orders-history-details.in-progress {
+  border-color: #e46045;
+}
+
 .status fa-icon.executed {
   color: #7BBD1A
 }
