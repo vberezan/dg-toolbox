@@ -15,6 +15,9 @@ export class NavigationTargetDirective {
 
     let current: string = this.el.nativeElement.value;
 
+    console.log(current);
+    console.log(regex.test(current));
+
     if (!regex.test(current)) {
       event.preventDefault()
     }
