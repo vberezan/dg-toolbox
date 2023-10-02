@@ -120,7 +120,7 @@ span {
 }
 
 .delete button:hover fa-icon {
-  color: #e46045 !important;
+  color: #ffffff !important;
 }
 
 .status {
@@ -137,16 +137,10 @@ span {
 
 .dgt-orders-history-details.executed {
   border-color: #7BBD1A;
+  background: #7BBD1A2E;
 }
 
 .dgt-orders-history-details.in-progress {
-  border-color: #e46045;
-}
-
-.status fa-icon.executed {
-  color: #7BBD1A
-}
-
-.status fa-icon.in-progress {
-  color: #e46045;
+  border-color: #FF3B30;
+  background: #FF3B302B;
 }
