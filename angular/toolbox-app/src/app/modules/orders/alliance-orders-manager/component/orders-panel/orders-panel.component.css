@@ -96,6 +96,7 @@ span {
 
 .dgt-orders-history .target {
   min-width: 135px;
+  margin-left: 3px;
 }
 
 .dgt-orders-history .wait {
@@ -114,6 +115,7 @@ span {
 
 .delete {
   float: right !important;
+  margin-right: 2px;
 }
 
 .delete button fa-icon {
@@ -124,6 +126,10 @@ span {
 
 .delete button:hover fa-icon {
   color: #c8a960 !important;
+}
+
+.dgt-orders-history {
+  width: 100%;
 }
 
 .dgt-orders-history-details.executed {
