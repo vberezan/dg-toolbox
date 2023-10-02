@@ -5,7 +5,7 @@ import {DarkgalaxyApiService} from "../../../../darkgalaxy-ui-parser/service/dar
 import {AuthService} from "../../../../authentication/service/auth.service";
 import {Observable, Subscriber} from "rxjs";
 import {FaIconLibrary} from "@fortawesome/angular-fontawesome";
-import {faCircleXmark as farCircleXmark} from "@fortawesome/free-regular-svg-icons"
+import {faCircleXmark as fasCircleXmark} from "@fortawesome/free-solid-svg-icons"
 import {faCircle as fasCircle} from "@fortawesome/free-solid-svg-icons"
 
 
@@ -33,7 +33,7 @@ export class OrdersPanelComponent implements OnDestroy {
   }
 
   constructor(library: FaIconLibrary) {
-    library.addIcons(farCircleXmark, fasCircle);
+    library.addIcons(fasCircleXmark, fasCircle);
     this.allianceMembers = this.dgAPI.allianceMembers();
 
     this.controls.target = [];
