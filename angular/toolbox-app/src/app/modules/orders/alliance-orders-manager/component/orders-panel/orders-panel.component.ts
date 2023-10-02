@@ -51,6 +51,7 @@ export class OrdersPanelComponent implements OnDestroy {
     let allianceOrder: AllianceOrder = new AllianceOrder();
     allianceOrder.wait = this.controls.wait[idx]
     allianceOrder.instructions = this.controls.instructions[idx];
+    allianceOrder.target = this.controls.target[idx];
     allianceOrder.executed = false;
     allianceOrder.turn = this.dgAPI.gameTurn();
     allianceOrder.user = this.allianceMembers[idx].toLowerCase();
