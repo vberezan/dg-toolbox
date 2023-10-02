@@ -113,10 +113,13 @@ span {
   cursor: pointer;
 }
 
+.delete {
+  float: right !important;
+}
 
 .delete button fa-icon {
   color: #7a7a7a !important;
-  font-size: 20px !important;
+  font-size: 15px !important;
 }
 
 .delete button:hover fa-icon {
