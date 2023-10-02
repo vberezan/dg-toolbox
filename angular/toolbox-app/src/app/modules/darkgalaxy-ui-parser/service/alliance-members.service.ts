@@ -12,9 +12,11 @@ export class AllianceMembersService implements DataExtractor {
   extract(): string[] {
     let result: string[] = [];
 
-    document.querySelectorAll('.allianceBox .playerList div.name').forEach((playerName: any) => {
-      result.push(playerName.childNodes[0].textContent.trim());
-    });
+    if (!document.querySelector('[action="/alliances/join/"]')) {
+      document.querySelectorAll('.allianceBox .playerList div.name').forEach((playerName: any) => {
+        result.push(playerName.childNodes[0].textContent.trim());
+      });
+    }
 
     return result;
   }
