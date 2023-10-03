@@ -1,8 +1,8 @@
 import {UserRole} from "./user-role";
 
 export class AuthState {
-  private _status: boolean;
-  private _role: UserRole;
+  private readonly _status: boolean;
+  private readonly _role: UserRole;
 
   constructor(status: boolean, role: UserRole) {
     this._status = status;

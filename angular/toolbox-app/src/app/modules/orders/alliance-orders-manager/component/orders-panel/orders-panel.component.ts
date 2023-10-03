@@ -5,9 +5,9 @@ import {DarkgalaxyApiService} from "../../../../darkgalaxy-ui-parser/service/dar
 import {AuthService} from "../../../../authentication/service/auth.service";
 import {Observable, Subscriber} from "rxjs";
 import {FaIconLibrary} from "@fortawesome/angular-fontawesome";
-import {faCircleXmark as farCircleXmark} from "@fortawesome/free-regular-svg-icons";
-import {faCircleRight as farCircleRight} from "@fortawesome/free-regular-svg-icons";
+import {faCircleRight as farCircleRight, faCircleXmark as farCircleXmark} from "@fortawesome/free-regular-svg-icons";
 import {AllianceMember} from "../../../../../shared/model/orders/alliance-member.model";
+import {AuthState} from "../../../../../shared/model/authentication/auth-state.model";
 
 
 @Component({
@@ -38,16 +38,20 @@ export class OrdersPanelComponent implements OnDestroy, OnInit {
   }
 
   ngOnInit(): void {
-    this.allianceMembers = this.dgAPI.allianceMembers(true);
+    this.authService.authState.subscribe((state: AuthState) => {
+      if (state.status) {
+        this.allianceMembers = this.dgAPI.allianceMembers(true);
 
-    this.controls.target = [];
-    this.controls.wait = [];
-    this.controls.instructions = [];
+        this.controls.target = [];
+        this.controls.wait = [];
+        this.controls.instructions = [];
 
-    this.allianceMembers.forEach((member: AllianceMember): void => {
-      this.orders.set(member.name.toLowerCase(), new Observable<AllianceOrder[]>((observer: Subscriber<AllianceOrder[]>): void => {
-        this.orderService.getAllOrders(member.name.toLowerCase(), this.dgAPI.gameTurn(), this.changeDetection, observer);
-      }));
+        this.allianceMembers.forEach((member: AllianceMember): void => {
+          this.orders.set(member.name.toLowerCase(), new Observable<AllianceOrder[]>((observer: Subscriber<AllianceOrder[]>): void => {
+            this.orderService.getAllOrders(member.name.toLowerCase(), this.dgAPI.gameTurn(), this.changeDetection, observer);
+          }));
+        });
+      }
     });
   }
 

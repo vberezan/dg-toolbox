@@ -22,9 +22,9 @@
   cursor: pointer;
 }
 
-.dgt-logout-button {
-  display: none !important;
-}
+/*.dgt-logout-button {*/
+/*  display: none !important;*/
+/*}*/
 
 .dgt-login-button {
   min-width: 75px;
