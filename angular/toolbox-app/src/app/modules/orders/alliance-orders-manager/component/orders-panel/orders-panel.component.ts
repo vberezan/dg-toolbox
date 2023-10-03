@@ -8,6 +8,7 @@ import {FaIconLibrary} from "@fortawesome/angular-fontawesome";
 import {faCircleXmark as farCircleXmark} from "@fortawesome/free-regular-svg-icons"
 import {AllianceMember} from "../../../../../shared/model/orders/alliance-member.model";
 import {KickMemberFormatterPipe} from "../../pipe/kick-member-formatter.pipe";
+import {Form, NgForm} from "@angular/forms";
 
 
 @Component({
@@ -68,6 +69,7 @@ export class OrdersPanelComponent implements OnDestroy {
     this.authService.authState.unsubscribe();
   }
 
-  onSubmit(url: string, dgId: string): void {
+  onSubmit($event: any): void {
+    $event.target.submit();
   }
 }
