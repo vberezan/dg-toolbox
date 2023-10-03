@@ -21,7 +21,7 @@ export class OrdersPanelComponent implements OnDestroy {
   private dgAPI: DarkgalaxyApiService = inject(DarkgalaxyApiService);
   private authService: AuthService = inject(AuthService);
   private changeDetection: ChangeDetectorRef = inject(ChangeDetectorRef);
-  // private httpClient: HttpClient = inject(HttpClient);
+  private httpClient: HttpClient = inject(HttpClient);
   private kickMemberFormatter: KickMemberFormatterPipe = inject(KickMemberFormatterPipe);
 
   protected allianceMembers: AllianceMember[];
@@ -75,8 +75,6 @@ export class OrdersPanelComponent implements OnDestroy {
     let data: any = {};
     data[this.kickMemberFormatter.transform(dgId)] = 'Kick+Member';
 
-    console.log(data);
-
-    // this.httpClient.post(url, JSON.stringify(data));
+    this.httpClient.post(url, JSON.stringify(data));
   }
 }

@@ -36,12 +36,12 @@ import {HttpClientModule} from "@angular/common/http";
   declarations: [
     OrdersPanelComponent,
     NavigationTargetDirective,
-    WaitTurnsDirective,
-    KickMemberFormatterPipe
+    WaitTurnsDirective
   ],
   providers: [
     OrderService,
-    DarkgalaxyApiService
+    DarkgalaxyApiService,
+    KickMemberFormatterPipe
   ],
   bootstrap: [OrdersPanelComponent]
 })
