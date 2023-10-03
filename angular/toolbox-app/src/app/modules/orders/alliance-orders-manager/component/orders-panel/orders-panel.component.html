@@ -17,7 +17,7 @@
         <form (ngSubmit)="onSubmitUpdateNote($event)" #f="ngForm" action="{{member.dgId | updateNoteFormatter}}" method="post">
           <input type="text" name="note" value="{{member.note}}" placeholder="Player Note">
           <button type="submit">
-            <fa-icon [icon]="['far','circle-xmark']" [style]="{color: '#fff'}" />
+            <fa-icon [icon]="['far','circle-right']" />
           </button>
         </form>
       </div>
@@ -36,7 +36,9 @@
         <textarea [(ngModel)]="controls.instructions[idx]" placeholder="Ex: min 100xFighter"></textarea>
       </div>
       <div class="create">
-        <button (click)="createOrder(idx)">Send</button>
+        <button (click)="createOrder(idx)">
+          <fa-icon [icon]="['far','circle-right']" />
+        </button>
       </div>
     </div>
 
