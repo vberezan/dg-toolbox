@@ -5,7 +5,7 @@
       <div class="dgt-orders-manager-kick" *ngIf="member.dgId != null">
         <form action="/alliances/kick/" method="post">
           <button type="submit" name="kick.{{member.dgId}}" value="Kick Member">
-            <fa-icon [icon]="['fas','circle-xmark']" [style]="{color: '#fff'}" />
+            <fa-icon [icon]="['far','circle-xmark']" [style]="{color: '#fff'}" />
           </button>
         </form>
       </div>
@@ -37,7 +37,7 @@
         <div class="instructions"><span class="label">Instructions:</span><span class="value">{{order.instructions}}</span></div>
         <div class="delete">
           <button (click)="deleteOrder(order.id)">
-            <fa-icon [icon]="['fas','circle-xmark']" [style]="{color: '#fff'}"/>
+            <fa-icon [icon]="['far','circle-xmark']" [style]="{color: '#fff'}"/>
           </button>
         </div>
       </div>
