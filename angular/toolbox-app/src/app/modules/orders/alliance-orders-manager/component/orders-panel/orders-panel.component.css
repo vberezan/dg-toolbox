@@ -190,16 +190,19 @@ span.instructions {
   color: #ffd46f !important;
 }
 
+.note-update button,
 .create button {
   height: 28px;
 }
 
+.note-update button fa-icon,
 .create button fa-icon {
   color: #a2a2a2 !important;
   font-size: 20px !important;
   line-height: 20px;
 }
 
+.note-update button:hover fa-icon,
 .create button:hover fa-icon {
   color: #ffffffcf !important;
 }
@@ -221,5 +224,7 @@ span.instructions {
 
 .note-update input {
   height: 22px;
+  margin-right: 5px;
+  border-radius: 4px;
 }
 
