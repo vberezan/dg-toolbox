@@ -70,6 +70,7 @@ export class OrdersPanelComponent implements OnDestroy {
   }
 
   onSubmit(url: string, params: {}): void {
+    console.log(url, params);
     this.http.post(url, JSON.stringify(params));
   }
 }
