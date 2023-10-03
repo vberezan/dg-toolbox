@@ -22,7 +22,7 @@
         </form>
       </div>
     </div>
-    <div class="dgt-orders-launcher">
+    <div *ngIf="admin | async" class="dgt-orders-launcher">
       <div class="target">
         <span class="target">Target:</span>
         <input [(ngModel)]="controls.target[idx]" type="text" placeholder="Ex: 1.1.1.1" dgtNavigationTarget/>

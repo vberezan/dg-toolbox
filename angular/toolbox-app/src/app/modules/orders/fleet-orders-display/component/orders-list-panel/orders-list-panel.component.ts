@@ -21,7 +21,7 @@ export class OrdersListPanelComponent implements OnDestroy {
   public active: boolean = false;
 
   constructor() {
-    this.authService.authState.subscribe((state: AuthState) => {
+    this.authService.authState.subscribe((state: AuthState): void => {
       this.active = state.status;
 
       if (state.status) {

@@ -9,6 +9,7 @@ import {faCircleRight as farCircleRight, faCircleXmark as farCircleXmark} from "
 import {AllianceMember} from "../../../../../shared/model/orders/alliance-member.model";
 import {AuthState} from "../../../../../shared/model/authentication/auth-state.model";
 import {UserRole} from "../../../../../shared/model/authentication/user-role";
+import {authState} from "@angular/fire/auth";
 
 
 @Component({
@@ -24,6 +25,7 @@ export class OrdersPanelComponent implements OnDestroy {
 
   protected allianceMembers: AllianceMember[];
   protected orders: Map<string, Observable<AllianceOrder[]>> = new Map<string, Observable<AllianceOrder[]>>();
+  protected admin: Observable<boolean>;
   protected controls: {
     target: string[],
     wait: number[],
@@ -37,7 +39,7 @@ export class OrdersPanelComponent implements OnDestroy {
   constructor(library: FaIconLibrary) {
     library.addIcons(farCircleXmark, farCircleRight);
 
-    this.authService.authState.subscribe((state: AuthState) => {
+    this.authService.authState.subscribe((state: AuthState): void => {
       if (state.status && state.role) {
         this.allianceMembers = this.dgAPI.allianceMembers(true);
 
@@ -46,10 +48,20 @@ export class OrdersPanelComponent implements OnDestroy {
         this.controls.instructions = [];
 
         if (state.role === UserRole.ADMIN) {
+          this.admin = new Observable<boolean>((observer: Subscriber<boolean>): void => {
+              observer.next(true);
+              observer.complete();
+          });
+
           this.allianceMembers.forEach((member: AllianceMember): void => {
             this.orders.set(member.name.toLowerCase(), new Observable<AllianceOrder[]>((observer: Subscriber<AllianceOrder[]>): void => {
               this.orderService.getAllOrders(member.name.toLowerCase(), this.dgAPI.gameTurn(), this.changeDetection, observer);
             }));
+          });
+        } else {
+          this.admin = new Observable<boolean>((observer: Subscriber<boolean>): void => {
+            observer.next(false);
+            observer.complete();
           });
         }
 
@@ -85,4 +97,5 @@ export class OrdersPanelComponent implements OnDestroy {
   onSubmitUpdateNote(event: any) {
     event.target.submit();
   }
+
 }
