@@ -35,14 +35,6 @@ textarea {
   width: 322px;
 }
 
-.create > button {
-  height: 28px;
-  width: 70px !important;
-  cursor: pointer;
-  border: 1px solid #000000 !important;
-  border-radius: 5px;
-}
-
 span.target,
 span.wait,
 span.instructions {
@@ -155,6 +147,7 @@ span.instructions {
   min-width: 70px;
 }
 
+.create > button,
 .note-update button,
 .dgt-orders-manager-kick button,
 .delete button {
@@ -197,7 +190,7 @@ span.instructions {
 }
 
 .note-update {
-  float: right;
+  float: right !important;
 }
 
 .note-update .label {
