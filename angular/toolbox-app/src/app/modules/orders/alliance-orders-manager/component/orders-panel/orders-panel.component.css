@@ -13,6 +13,7 @@ textarea {
   padding: 3px 5px 3px 5px;
   overflow: hidden;
   float: left;
+  line-height: 18px;
 }
 
 textarea {
@@ -50,7 +51,6 @@ span.instructions {
 }
 
 .dgt-orders-launcher {
-  padding: 5px 5px 0;
   width: calc(100% - 10px);
 }
 
@@ -59,10 +59,6 @@ span.instructions {
   border-radius: 5px;
   margin-bottom: 10px;
   padding: 5px;
-}
-
-.dgt-orders-history-details {
-  width: 100%;
 }
 
 .dgt-orders-manager-member .player {
@@ -96,8 +92,6 @@ span.instructions {
   border: 1px solid #fff;
   width: calc(100% - 20px);
   border-radius: 5px;
-  padding: 5px;
-  margin: 4px;
 }
 
 .dgt-orders-history-details span.label {
