@@ -21,6 +21,8 @@ export class AllianceMembersService implements DataExtractor {
 
             if (player.querySelector('div.note') != null) {
               allianceMember.note = player.querySelector('div.note').childNodes[0].textContent.trim();
+            } else if (player.querySelector('input[name="note"]') != null) {
+              allianceMember.note = player.querySelector('input[name="note"]').value.trim();
             }
 
             if (player.querySelector('[action^="/alliances/note/"]') != null) {
