@@ -75,6 +75,10 @@ export class OrdersPanelComponent implements OnDestroy {
     let data: any = {};
     data[this.kickMemberFormatter.transform(dgId)] = 'Kick+Member';
 
-    this.httpClient.post(url, JSON.stringify(data));
+    console.log(JSON.stringify(data));
+
+    this.httpClient.post(url, JSON.stringify(data)).subscribe((response: any): void => {
+      console.log(response);
+    });
   }
 }
