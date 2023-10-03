@@ -94,7 +94,7 @@ span.instructions {
 }
 
 .dgt-orders-history-details {
-  border: 1px solid #fff;
+  border: 1px solid transparent;
   width: calc(100% - 12px);
   border-radius: 5px;
   padding: 3px 5px;
@@ -110,17 +110,16 @@ span.instructions {
 }
 
 .dgt-orders-history-details span.value {
+  color: #ffffffad;
   margin-right: 20px;
 }
 
 .dgt-orders-history-details.executed {
-  border-color: #7BBD1A;
-  background: #7BBD1A2E;
+  background: #7BBD1A3D;
 }
 
 .dgt-orders-history-details.in-progress {
-  border-color: #FF3B30;
-  background: #FF3B302B;
+  background: #FF3B303B;
 }
 
 .dgt-orders-history {
@@ -132,7 +131,7 @@ span.instructions {
 }
 
 .dgt-orders-history .label {
-  color: #ffd46f;
+  color: #ffffffad;
   font-weight: normal;
 }
 
