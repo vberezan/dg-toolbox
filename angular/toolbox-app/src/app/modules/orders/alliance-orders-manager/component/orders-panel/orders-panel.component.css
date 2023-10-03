@@ -98,6 +98,14 @@ span.instructions {
   padding: 3px 5px;
 }
 
+.dgt-orders-history-details:not(:last-child) {
+  margin-bottom: 5px;
+}
+
+.dgt-orders-history-details span {
+  line-height: 22px;
+}
+
 .dgt-orders-history-details span.label {
   margin-right: 5px;
 }
