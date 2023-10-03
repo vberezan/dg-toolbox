@@ -14,13 +14,15 @@ import {KickMemberFormatterPipe} from "../../pipe/kick-member-formatter.pipe";
 @Component({
   selector: 'dgt-alliance-orders-manager-panel',
   templateUrl: './orders-panel.component.html',
-  styleUrls: ['./orders-panel.component.css']
+  styleUrls: ['./orders-panel.component.css'],
+  providers: [HttpClient]
 })
 export class OrdersPanelComponent implements OnDestroy {
   private orderService: OrderService = inject(OrderService);
   private dgAPI: DarkgalaxyApiService = inject(DarkgalaxyApiService);
   private authService: AuthService = inject(AuthService);
   private changeDetection: ChangeDetectorRef = inject(ChangeDetectorRef);
+  private httpClient: HttpClient = inject(HttpClient);
   private kickMemberFormatter: KickMemberFormatterPipe = inject(KickMemberFormatterPipe);
 
   protected allianceMembers: AllianceMember[];
@@ -35,7 +37,7 @@ export class OrdersPanelComponent implements OnDestroy {
     instructions: []
   }
 
-  constructor(library: FaIconLibrary, private httpClient: HttpClient) {
+  constructor(library: FaIconLibrary) {
     library.addIcons(farCircleXmark);
     this.allianceMembers = this.dgAPI.allianceMembers(false);
 
