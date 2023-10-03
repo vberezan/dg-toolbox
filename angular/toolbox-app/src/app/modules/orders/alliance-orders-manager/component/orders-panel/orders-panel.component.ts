@@ -51,6 +51,8 @@ export class OrdersPanelComponent implements OnDestroy, OnInit {
             this.orderService.getAllOrders(member.name.toLowerCase(), this.dgAPI.gameTurn(), this.changeDetection, observer);
           }));
         });
+
+        this.changeDetection.detectChanges();
       }
     });
   }
