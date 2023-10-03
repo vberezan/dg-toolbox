@@ -19,6 +19,7 @@ import {HttpClientModule} from "@angular/common/http";
 @NgModule({
   imports: [
     BrowserModule,
+    HttpClientModule,
     FormsModule,
     FontAwesomeModule,
     provideFirebaseApp(() => initializeApp(environment.firebase)),
@@ -30,8 +31,7 @@ import {HttpClientModule} from "@angular/common/http";
         isTokenAutoRefreshEnabled: true
       })
     ),
-    FontAwesomeModule,
-    HttpClientModule
+    FontAwesomeModule
   ],
   declarations: [
     OrdersPanelComponent,
