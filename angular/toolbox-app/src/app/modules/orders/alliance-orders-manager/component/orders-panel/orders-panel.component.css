@@ -210,9 +210,16 @@ span.instructions {
 
 .note-update .label {
   float: left;
+  font-weight: normal;
+  line-height: 22px;
+  margin-right: 5px;
 }
 
 .note-update form {
   float: left;
+}
+
+.note-update input {
+  height: 22px;
 }
 
