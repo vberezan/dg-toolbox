@@ -95,18 +95,6 @@ span.instructions {
   float: left;
 }
 
-.note-update {
-  float: right;
-}
-
-.note-update .label {
-  float: left;
-}
-
-.note-update form {
-  float: left;
-}
-
 .dgt-orders-manager-panel,
 .dgt-orders-manager-panel div {
   float: left;
@@ -167,6 +155,7 @@ span.instructions {
   min-width: 70px;
 }
 
+.note-update button,
 .dgt-orders-manager-kick button,
 .delete button {
   margin: 0 !important;
@@ -206,3 +195,16 @@ span.instructions {
 .delete button:hover fa-icon {
   color: #ffd46f !important;
 }
+
+.note-update {
+  float: right;
+}
+
+.note-update .label {
+  float: left;
+}
+
+.note-update form {
+  float: left;
+}
+
