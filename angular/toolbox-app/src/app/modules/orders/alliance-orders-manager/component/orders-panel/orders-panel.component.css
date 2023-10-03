@@ -91,6 +91,7 @@ span.instructions {
   line-height: 20px;
   margin-left: 5px;
   color: #e46045;
+  font-weight: normal !important;
   float: left;
 }
 

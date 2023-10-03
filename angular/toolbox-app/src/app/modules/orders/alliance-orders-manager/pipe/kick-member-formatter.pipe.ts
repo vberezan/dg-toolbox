@@ -5,7 +5,7 @@ import { Pipe, PipeTransform } from '@angular/core';
 })
 export class KickMemberFormatterPipe implements PipeTransform {
 
-  transform(value: String): string {
-    return 'kick.' + value;
+  transform(dgId: String): string {
+    return 'kick.' + dgId;
   }
 }
