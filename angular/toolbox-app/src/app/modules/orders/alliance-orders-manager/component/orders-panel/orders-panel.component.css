@@ -158,19 +158,31 @@ span.instructions {
   cursor: pointer;
 }
 
+.dgt-orders-manager-kick button {
+  margin-left: 5px !important;
+}
+
+.dgt-orders-manager-kick button fa-icon {
+  color: #a2a2a2 !important;
+  font-size: 14px !important;
+  line-height: 22px;
+}
+
+.dgt-orders-manager-kick button:hover fa-icon {
+  color: #fff !important;
+}
+
 .delete {
   float: right !important;
   margin-right: 2px;
 }
 
-.dgt-orders-manager-kick fa-icon,
 .delete button fa-icon {
   color: #ffd46f !important;
   font-size: 16px !important;
   line-height: 22px;
 }
 
-.dgt-orders-manager-kick button button:hover fa-icon,
 .delete button:hover fa-icon {
   color: #c8a960 !important;
 }
