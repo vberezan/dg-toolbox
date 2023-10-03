@@ -41,7 +41,7 @@ export class OrdersPanelComponent implements OnDestroy {
 
     this.authService.authState.subscribe((state: AuthState): void => {
       if (state.status && state.role) {
-        this.allianceMembers = this.dgAPI.allianceMembers(false);
+        this.allianceMembers = this.dgAPI.allianceMembers(true);
 
         this.controls.target = [];
         this.controls.wait = [];
