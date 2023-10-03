@@ -26,7 +26,7 @@ export class AllianceMembersService implements DataExtractor {
             }
 
             if (list.querySelector('[action="/alliances/kick/"] input') != null) {
-              let idArray = list.querySelector('[action="/alliances/kick/"] input').attributes['name'].textContent.trim().toLocaleLowerCase().split(/\./);
+              let idArray = player.querySelector('[action="/alliances/kick/"] input').attributes['name'].textContent.trim().toLocaleLowerCase().split(/\./);
               dgId = idArray[idArray.length - 1];
             }
 
