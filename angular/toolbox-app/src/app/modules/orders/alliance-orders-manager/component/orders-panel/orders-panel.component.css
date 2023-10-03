@@ -74,7 +74,7 @@ span.instructions {
 }
 
 .dgt-orders-manager-member .note {
-  color: #ffd46f;
+  color: #ffffffad;
   font-weight: normal !important;
   float: right;
 }
@@ -83,7 +83,7 @@ span.instructions {
   font-size: 14px;
   line-height: 20px;
   margin-left: 5px;
-  color: #e46045;
+  color: #ffffffad;
   font-weight: normal !important;
   float: left;
 }
@@ -176,14 +176,14 @@ span.instructions {
 }
 
 .delete button fa-icon {
-  color: #c8a960 !important;
+  color: #c8a960a1 !important;
   font-size: 16px !important;
   line-height: 22px;
 }
 
 
 .delete button:hover fa-icon {
-  color: #ffd46f !important;
+  color: #ffd46fd4 !important;
 }
 
 .note-update button {
