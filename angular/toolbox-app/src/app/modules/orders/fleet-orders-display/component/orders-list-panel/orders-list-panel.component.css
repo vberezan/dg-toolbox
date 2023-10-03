@@ -35,14 +35,14 @@
 }
 
 .dgt-fleet-order button>svg {
-  fill: #7a7a7a;
+  fill: #c8a960;
   height: 20px;
   align-content: center;
   display: flex;
 }
 
 .dgt-fleet-order button:hover > svg {
-  fill: #7BBD1A !important;
+  fill: #ffd46f !important;
 }
 
 .dgt-fleet-order span {
