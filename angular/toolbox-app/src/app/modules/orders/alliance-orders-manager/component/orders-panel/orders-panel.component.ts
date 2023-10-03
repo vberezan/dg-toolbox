@@ -8,6 +8,7 @@ import {FaIconLibrary} from "@fortawesome/angular-fontawesome";
 import {faCircleRight as farCircleRight, faCircleXmark as farCircleXmark} from "@fortawesome/free-regular-svg-icons";
 import {AllianceMember} from "../../../../../shared/model/orders/alliance-member.model";
 import {AuthState} from "../../../../../shared/model/authentication/auth-state.model";
+import {UserRole} from "../../../../../shared/model/authentication/user-role";
 
 
 @Component({
@@ -37,7 +38,7 @@ export class OrdersPanelComponent implements OnDestroy {
     library.addIcons(farCircleXmark, farCircleRight);
 
     this.authService.authState.subscribe((state: AuthState) => {
-      if (state.status) {
+      if (state.status && state.role === UserRole.ADMIN) {
         this.allianceMembers = this.dgAPI.allianceMembers(true);
 
         this.controls.target = [];

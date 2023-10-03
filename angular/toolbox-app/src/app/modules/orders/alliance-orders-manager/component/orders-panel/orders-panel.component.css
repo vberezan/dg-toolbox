@@ -178,7 +178,7 @@ span.instructions {
 .delete button fa-icon {
   color: #c8a960 !important;
   font-size: 16px !important;
-  line-height: 20px;
+  line-height: 22px;
 }
 
 
@@ -198,7 +198,7 @@ span.instructions {
 .create button fa-icon {
   color: #a2a2a2 !important;
   font-size: 20px !important;
-  line-height: 20px;
+  line-height: 22px;
 }
 
 .note-update button:hover fa-icon,
