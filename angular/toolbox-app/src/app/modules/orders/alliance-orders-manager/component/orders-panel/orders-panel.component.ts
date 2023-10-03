@@ -1,4 +1,4 @@
-import {ChangeDetectorRef, Component, inject, OnDestroy} from '@angular/core';
+import {ChangeDetectorRef, Component, inject, OnDestroy, OnInit} from '@angular/core';
 import {OrderService} from "../../service/order.service";
 import {AllianceOrder} from "../../../../../shared/model/orders/alliance-order.model";
 import {DarkgalaxyApiService} from "../../../../darkgalaxy-ui-parser/service/darkgalaxy-api.service";
@@ -15,7 +15,7 @@ import {AllianceMember} from "../../../../../shared/model/orders/alliance-member
   templateUrl: './orders-panel.component.html',
   styleUrls: ['./orders-panel.component.css']
 })
-export class OrdersPanelComponent implements OnDestroy {
+export class OrdersPanelComponent implements OnDestroy, OnInit {
   private orderService: OrderService = inject(OrderService);
   private dgAPI: DarkgalaxyApiService = inject(DarkgalaxyApiService);
   private authService: AuthService = inject(AuthService);
@@ -35,6 +35,9 @@ export class OrdersPanelComponent implements OnDestroy {
 
   constructor(library: FaIconLibrary) {
     library.addIcons(farCircleXmark, farCircleRight);
+  }
+
+  ngOnInit(): void {
     this.allianceMembers = this.dgAPI.allianceMembers(true);
 
     this.controls.target = [];
@@ -75,4 +78,5 @@ export class OrdersPanelComponent implements OnDestroy {
   onSubmitUpdateNote(event: any) {
     event.target.submit();
   }
+
 }
