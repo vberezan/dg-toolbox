@@ -11,7 +11,7 @@ function setUpAllianceOrdersManagerPanel(windowURL) {
             document.querySelectorAll('.allianceBox > .playerList').forEach((list) => {
                 if (list.parentElement.querySelector('.plainHeader').childNodes[0].textContent.trim().toLowerCase() === 'member list') {
                     list.parentElement.append(document.createElement('dgt-alliance-orders-manager-panel'));
-                    list.style.display = 'none';
+                    list.parentElement.style.display = 'none';
                 }
             });
         }

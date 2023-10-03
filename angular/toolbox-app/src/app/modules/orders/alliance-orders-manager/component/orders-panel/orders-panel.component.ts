@@ -38,18 +38,20 @@ export class OrdersPanelComponent implements OnDestroy {
     library.addIcons(farCircleXmark, farCircleRight);
 
     this.authService.authState.subscribe((state: AuthState) => {
-      if (state.status && state.role === UserRole.ADMIN) {
+      if (state.status && state.role) {
         this.allianceMembers = this.dgAPI.allianceMembers(true);
 
         this.controls.target = [];
         this.controls.wait = [];
         this.controls.instructions = [];
 
-        this.allianceMembers.forEach((member: AllianceMember): void => {
-          this.orders.set(member.name.toLowerCase(), new Observable<AllianceOrder[]>((observer: Subscriber<AllianceOrder[]>): void => {
-            this.orderService.getAllOrders(member.name.toLowerCase(), this.dgAPI.gameTurn(), this.changeDetection, observer);
-          }));
-        });
+        if (state.role === UserRole.ADMIN) {
+          this.allianceMembers.forEach((member: AllianceMember): void => {
+            this.orders.set(member.name.toLowerCase(), new Observable<AllianceOrder[]>((observer: Subscriber<AllianceOrder[]>): void => {
+              this.orderService.getAllOrders(member.name.toLowerCase(), this.dgAPI.gameTurn(), this.changeDetection, observer);
+            }));
+          });
+        }
 
         this.changeDetection.detectChanges();
       }
