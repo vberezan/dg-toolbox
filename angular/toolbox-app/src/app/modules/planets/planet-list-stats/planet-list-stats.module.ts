@@ -5,7 +5,6 @@ import {FontAwesomeModule} from "@fortawesome/angular-fontawesome";
 import {GalaxyNameFormatterPipe} from './pipe/galaxy-name-formatter.pipe';
 import {ResourceProductionFormatterPipe} from './pipe/resource-production-formatter.pipe';
 import {BrowserModule} from "@angular/platform-browser";
-import {DarkgalaxyUiParserModule} from "../../darkgalaxy-ui-parser/darkgalaxy-ui-parser.module";
 import {StatsPanelService} from "./service/stats-panel.service";
 import {DarkgalaxyApiService} from "../../darkgalaxy-ui-parser/service/darkgalaxy-api.service";
 
@@ -31,5 +30,6 @@ export class PlanetListStatsModule implements OnInit {
   constructor() {
   }
 
-  ngOnInit(): void {}
+  ngOnInit(): void {
+  }
 }

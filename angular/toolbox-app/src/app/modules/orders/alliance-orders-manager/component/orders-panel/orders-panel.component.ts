@@ -8,6 +8,7 @@ import {FaIconLibrary} from "@fortawesome/angular-fontawesome";
 import {faCircleXmark as farCircleXmark} from "@fortawesome/free-regular-svg-icons"
 import {AllianceMember} from "../../../../../shared/model/orders/alliance-member.model";
 import {HttpClient} from "@angular/common/http";
+import {KickMemberFormatterPipe} from "../../pipe/kick-member-formatter.pipe";
 
 
 @Component({
@@ -21,6 +22,7 @@ export class OrdersPanelComponent implements OnDestroy {
   private authService: AuthService = inject(AuthService);
   private changeDetection: ChangeDetectorRef = inject(ChangeDetectorRef);
   private http: HttpClient = inject(HttpClient);
+  private kickMemberFormatter: KickMemberFormatterPipe = inject(KickMemberFormatterPipe);
 
   protected allianceMembers: AllianceMember[];
   protected orders: Map<string, Observable<AllianceOrder[]>> = new Map<string, Observable<AllianceOrder[]>>();
@@ -69,8 +71,10 @@ export class OrdersPanelComponent implements OnDestroy {
     this.authService.authState.unsubscribe();
   }
 
-  onSubmit(url: string, params: {}): void {
-    console.log(url, params);
-    this.http.post(url, JSON.stringify(params));
+  onSubmit(url: string, dgId: string): void {
+    let data: any = {};
+    data[this.kickMemberFormatter.transform(dgId)] = 'Kick+Member';
+
+    this.http.post(url, JSON.stringify(data));
   }
 }
