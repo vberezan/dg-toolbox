@@ -13,13 +13,11 @@ import {FontAwesomeModule} from "@fortawesome/angular-fontawesome";
 import {NavigationTargetDirective} from "../../../shared/directive/navigation-target.directive";
 import {WaitTurnsDirective} from "../../../shared/directive/wait-turns.directive";
 import {KickMemberFormatterPipe} from './pipe/kick-member-formatter.pipe';
-import {HttpClientModule} from "@angular/common/http";
 
 
 @NgModule({
   imports: [
     BrowserModule,
-    HttpClientModule,
     FormsModule,
     FontAwesomeModule,
     provideFirebaseApp(() => initializeApp(environment.firebase)),
@@ -36,12 +34,12 @@ import {HttpClientModule} from "@angular/common/http";
   declarations: [
     OrdersPanelComponent,
     NavigationTargetDirective,
-    WaitTurnsDirective
+    WaitTurnsDirective,
+    KickMemberFormatterPipe
   ],
   providers: [
     OrderService,
-    DarkgalaxyApiService,
-    KickMemberFormatterPipe
+    DarkgalaxyApiService
   ],
   bootstrap: [OrdersPanelComponent]
 })
