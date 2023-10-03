@@ -36,6 +36,7 @@ textarea {
 }
 
 .create > button {
+  height: 28px;
   width: 70px !important;
   cursor: pointer;
   border: 1px solid #000000 !important;
@@ -52,6 +53,8 @@ span.instructions {
 
 .dgt-orders-launcher {
   width: calc(100% - 10px);
+  margin-left: 5px;
+  margin-right: 5px;
 }
 
 .dgt-orders-manager-member {
@@ -90,8 +93,9 @@ span.instructions {
 
 .dgt-orders-history-details {
   border: 1px solid #fff;
-  width: calc(100% - 20px);
+  width: calc(100% - 12px);
   border-radius: 5px;
+  padding: 3px 5px;
 }
 
 .dgt-orders-history-details span.label {
@@ -102,9 +106,32 @@ span.instructions {
   margin-right: 20px;
 }
 
+.dgt-orders-history-details.executed {
+  border-color: #7BBD1A;
+  background: #7BBD1A2E;
+}
+
+.dgt-orders-history-details.in-progress {
+  border-color: #FF3B30;
+  background: #FF3B302B;
+}
+
+.dgt-orders-history {
+  width: calc(100% - 10px) !important;
+  padding-top: 5px;
+  border-top: 1px solid rgba(0,0,0,.25);
+  margin-top: 5px;
+  margin-left: 5px;
+  margin-right: 5px;
+}
+
+.dgt-orders-history .label {
+  color: #ffd46f;
+  font-weight: bold;
+}
+
 .dgt-orders-history .target {
   min-width: 135px;
-  margin-left: 3px;
 }
 
 .dgt-orders-history .wait {
@@ -134,23 +161,4 @@ span.instructions {
 
 .delete button:hover fa-icon {
   color: #c8a960 !important;
-}
-
-.dgt-orders-history {
-  width: 100%;
-}
-
-.dgt-orders-history-details.executed {
-  border-color: #7BBD1A;
-  background: #7BBD1A2E;
-}
-
-.dgt-orders-history-details.in-progress {
-  border-color: #FF3B30;
-  background: #FF3B302B;
-}
-
-.dgt-orders-history .label {
-  color: #ffd46f;
-  font-weight: bold;
 }
