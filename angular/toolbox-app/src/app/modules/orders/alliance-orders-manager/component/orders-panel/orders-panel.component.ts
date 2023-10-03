@@ -21,7 +21,6 @@ export class OrdersPanelComponent implements OnDestroy {
   private dgAPI: DarkgalaxyApiService = inject(DarkgalaxyApiService);
   private authService: AuthService = inject(AuthService);
   private changeDetection: ChangeDetectorRef = inject(ChangeDetectorRef);
-  private http: HttpClient = inject(HttpClient);
   private kickMemberFormatter: KickMemberFormatterPipe = inject(KickMemberFormatterPipe);
 
   protected allianceMembers: AllianceMember[];
@@ -36,7 +35,7 @@ export class OrdersPanelComponent implements OnDestroy {
     instructions: []
   }
 
-  constructor(library: FaIconLibrary) {
+  constructor(library: FaIconLibrary, private httpClient: HttpClient) {
     library.addIcons(farCircleXmark);
     this.allianceMembers = this.dgAPI.allianceMembers(false);
 
@@ -75,6 +74,6 @@ export class OrdersPanelComponent implements OnDestroy {
     let data: any = {};
     data[this.kickMemberFormatter.transform(dgId)] = 'Kick+Member';
 
-    this.http.post(url, JSON.stringify(data));
+    this.httpClient.post(url, JSON.stringify(data));
   }
 }

@@ -13,7 +13,7 @@ import {FontAwesomeModule} from "@fortawesome/angular-fontawesome";
 import {NavigationTargetDirective} from "../../../shared/directive/navigation-target.directive";
 import {WaitTurnsDirective} from "../../../shared/directive/wait-turns.directive";
 import {KickMemberFormatterPipe} from './pipe/kick-member-formatter.pipe';
-import {HttpClientModule, provideHttpClient} from "@angular/common/http";
+import {HttpClientModule} from "@angular/common/http";
 
 
 @NgModule({
@@ -41,8 +41,7 @@ import {HttpClientModule, provideHttpClient} from "@angular/common/http";
   ],
   providers: [
     OrderService,
-    DarkgalaxyApiService,
-    provideHttpClient()
+    DarkgalaxyApiService
   ],
   bootstrap: [OrdersPanelComponent]
 })
