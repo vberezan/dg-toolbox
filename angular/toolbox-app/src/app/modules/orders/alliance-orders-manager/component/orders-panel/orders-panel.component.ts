@@ -67,11 +67,11 @@ export class OrdersPanelComponent implements OnDestroy {
     this.authService.authState.unsubscribe();
   }
 
-  onSubmitKickMember($event: any): void {
-    $event.target.submit();
+  onSubmitKickMember(event: any): void {
+    event.target.submit();
   }
 
-  onSubmitUpdateNote($event: any) {
-    $event.target.submit();
+  onSubmitUpdateNote(event: any) {
+    event.target.submit();
   }
 }

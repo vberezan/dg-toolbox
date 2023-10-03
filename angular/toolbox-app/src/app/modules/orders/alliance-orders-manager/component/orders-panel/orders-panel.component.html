@@ -3,7 +3,7 @@
     <div class="player">
       <span class="name">{{member.name}}</span>
       <div *ngIf="member.kickEta == null && member.dgId != null" class="dgt-orders-manager-kick">
-        <form (ngSubmit)="onSubmitKickMember($event)" action="/alliances/kick/" method="post">
+        <form (ngSubmit)="onSubmitKickMember($event)" #f="ngForm" action="/alliances/kick/" method="post">
           <input type="hidden" name="{{member.dgId | kickMemberFormatter}}" value="Kick Member"/>
           <button type="submit">
             <fa-icon [icon]="['far','circle-xmark']" />
@@ -13,7 +13,7 @@
       <span *ngIf="member.kickEta != null" class="kick-eta">[{{member.kickEta}}]</span>
       <span *ngIf="member.note != null && member.dgId == null" class="note">[note: {{member.note}}]</span>
       <div *ngIf="member.dgId != null" class="note-update">
-        <form (ngSubmit)="onSubmitUpdateNote(f)" #f="ngForm" action="{{member.dgId | updateNoteFormatter}}" method="post">
+        <form (ngSubmit)="onSubmitUpdateNote($event)" #f="ngForm" action="{{member.dgId | updateNoteFormatter}}" method="post">
           <input type="text" name="note" value="" placeholder="Player Note">
           <input type="hidden" name="submit" value="Update">
           <button type="submit">
