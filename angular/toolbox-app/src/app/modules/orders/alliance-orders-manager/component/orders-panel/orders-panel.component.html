@@ -1,6 +1,14 @@
 <div class="dgt-orders-manager-panel">
   <div class="dgt-orders-manager-member" *ngFor="let member of allianceMembers; index as idx">
-    <div class="player"><span class="name">{{member.name}}</span><span *ngIf="member.note != null" class="note">[note: {{member.note}}]</span></div>
+    <div class="player">
+      <span class="name">{{member.name}}</span>
+      <div class="dgt-orders-manager-kick" *ngIf="member.dgId != null">
+        <form action="/alliances/kick/" method="post">
+          <input type="submit" name="kick.{{member.dgId}}" value="Kick Member">
+        </form>
+      </div>
+      <span *ngIf="member.note != null" class="note">[note: {{member.note}}]</span>
+      </div>
     <div class="dgt-orders-launcher">
       <div class="target">
         <span class="target">Target:</span>

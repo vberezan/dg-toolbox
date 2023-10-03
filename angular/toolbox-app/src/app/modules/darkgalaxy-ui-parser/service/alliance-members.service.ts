@@ -19,14 +19,20 @@ export class AllianceMembersService implements DataExtractor {
           list.querySelectorAll('.player').forEach((player: any): void => {
             let name: string = null;
             let note: string = null;
+            let dgId: string = null;
 
             if (player.querySelector('div.note') != null) {
               note = player.querySelector('div.note').childNodes[0].textContent.trim();
             }
 
+            if (list.querySelector('[action="/alliances/kick/"] input') != null) {
+              let idArray = list.querySelector('[action="/alliances/kick/"] input').attributes['name'].textContent.trim().toLocaleLowerCase().split(/\./);
+              dgId = idArray[idArray.length - 1];
+            }
+
             if (player.querySelector('div.name') != null) {
               name = player.querySelector('div.name').childNodes[0].textContent.trim();
-              result.push(new AllianceMember(name, note));
+              result.push(new AllianceMember(name, note, dgId));
             }
           });
         }

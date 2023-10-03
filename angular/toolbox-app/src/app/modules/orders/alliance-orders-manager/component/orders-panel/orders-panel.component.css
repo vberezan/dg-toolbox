@@ -65,12 +65,13 @@ span.instructions {
 }
 
 .dgt-orders-manager-member .player {
-  padding: 0 5px 5px;
   width: calc(100% - 10px);
   float: left;
   border-bottom: 1px solid rgba(0,0,0,.25);
   font-weight: bold;
+  margin-left: 5px;
   margin-bottom: 5px;
+  padding-bottom: 5px;
 }
 
 .dgt-orders-manager-member .name {
