@@ -48,8 +48,6 @@ export class AllianceMembersService implements DataExtractor {
   }
 
   cleanAfterExtract(): void {
-    let element: Element = document.querySelector('.allianceBox .playerList');
-
     document.querySelectorAll('.allianceBox > .playerList').forEach((list: any): void => {
       if (list.parentElement.querySelector('.plainHeader').childNodes[0].textContent.trim().toLowerCase() === 'member list') {
         list.parentNode.querySelector('.plainHeader').remove();
