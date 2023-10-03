@@ -50,10 +50,12 @@ export class AllianceMembersService implements DataExtractor {
   cleanAfterExtract(): void {
     let element: Element = document.querySelector('.allianceBox .playerList');
 
-    if (element) {
-      element.parentNode.querySelector('.plainHeader').remove();
-      element.remove();
-    }
+    document.querySelectorAll('.allianceBox > .playerList').forEach((list: any): void => {
+      if (list.parentElement.querySelector('.plainHeader').childNodes[0].textContent.trim().toLowerCase() === 'member list') {
+        list.parentNode.querySelector('.plainHeader').remove();
+        list.remove();
+      }
+    });
   }
 
 }

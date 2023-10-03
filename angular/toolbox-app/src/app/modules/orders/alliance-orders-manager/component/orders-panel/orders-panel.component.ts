@@ -35,7 +35,7 @@ export class OrdersPanelComponent implements OnDestroy {
 
   constructor(library: FaIconLibrary) {
     library.addIcons(farCircleXmark, farCircleRight);
-    this.allianceMembers = this.dgAPI.allianceMembers(false);
+    this.allianceMembers = this.dgAPI.allianceMembers(true);
 
     this.controls.target = [];
     this.controls.wait = [];
