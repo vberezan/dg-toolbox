@@ -21,7 +21,7 @@ export class OrdersPanelComponent implements OnDestroy {
   private dgAPI: DarkgalaxyApiService = inject(DarkgalaxyApiService);
   private authService: AuthService = inject(AuthService);
   private changeDetection: ChangeDetectorRef = inject(ChangeDetectorRef);
-  private httpClient: HttpClient = inject(HttpClient);
+  // private httpClient: HttpClient = inject(HttpClient);
   private kickMemberFormatter: KickMemberFormatterPipe = inject(KickMemberFormatterPipe);
 
   protected allianceMembers: AllianceMember[];
