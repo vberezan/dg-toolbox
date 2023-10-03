@@ -20,18 +20,15 @@ export class AllianceMembersService implements DataExtractor {
             let allianceMember: AllianceMember = new AllianceMember();
 
             if (player.querySelector('div.note') != null) {
-              console.log('note');
               allianceMember.note = player.querySelector('div.note').childNodes[0].textContent.trim();
             }
 
             if (player.querySelector('[action^="/alliances/note/"]') != null) {
-              console.log('dgId');
               let idArray = player.querySelector('[action^="/alliances/note/"]').getAttribute('action').trim().toLocaleLowerCase().split(/\//g);
               allianceMember.dgId = idArray[idArray.length - 2];
             }
 
-            if (player.querySelector('[action="/alliances/kick/"] input') == null) {
-              console.log('kickEta');
+            if (player.querySelector('[action="/alliances/kick/"] input') == null && player.querySelector('.right>b') != null) {
               allianceMember.kickEta = player.querySelector('.right>b').textContent.trim().toLowerCase();
             }
 
