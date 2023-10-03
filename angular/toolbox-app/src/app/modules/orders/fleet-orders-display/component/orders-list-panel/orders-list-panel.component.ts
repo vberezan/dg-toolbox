@@ -1,4 +1,4 @@
-import {ChangeDetectorRef, Component, inject, OnDestroy} from '@angular/core';
+import {ChangeDetectorRef, Component, inject, OnDestroy, OnInit} from '@angular/core';
 import {OrderService} from "../../service/order.service";
 import {DarkgalaxyApiService} from "../../../../darkgalaxy-ui-parser/service/darkgalaxy-api.service";
 import {AllianceOrder} from "../../../../../shared/model/orders/alliance-order.model";
@@ -19,7 +19,7 @@ import {
   templateUrl: './orders-list-panel.component.html',
   styleUrls: ['./orders-list-panel.component.css']
 })
-export class OrdersListPanelComponent implements OnDestroy{
+export class OrdersListPanelComponent implements OnDestroy, OnInit {
   private orderService: OrderService = inject(OrderService);
   private dgAPI: DarkgalaxyApiService = inject(DarkgalaxyApiService);
   private changeDetection: ChangeDetectorRef = inject(ChangeDetectorRef);
@@ -30,7 +30,9 @@ export class OrdersListPanelComponent implements OnDestroy{
 
   constructor(library: FaIconLibrary) {
     library.addIcons(fasHouseChimney, fasEarthAmericas, fasSatelliteDish, fasJetFighterUp, fasChessBoard, fasFlaskVial, fasHandFist);
+  }
 
+  ngOnInit(): void {
     this.authService.authState.subscribe((state: AuthState) => {
       this.active = state.status;
 
