@@ -95,6 +95,9 @@ span.instructions {
   float: left;
 }
 
+.dgt-orders-manager-member .note-update {
+  float: right;
+}
 
 .dgt-orders-manager-panel,
 .dgt-orders-manager-panel div {

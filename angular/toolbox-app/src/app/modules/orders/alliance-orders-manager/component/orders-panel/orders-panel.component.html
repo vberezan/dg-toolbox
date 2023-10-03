@@ -13,6 +13,7 @@
       <span *ngIf="member.kickEta != null" class="kick-eta">[{{member.kickEta}}]</span>
       <span *ngIf="member.note != null && member.dgId == null" class="note">[note: {{member.note}}]</span>
       <div *ngIf="member.dgId != null" class="note-update">
+        <span class="label">Note:</span>
         <form (ngSubmit)="onSubmitUpdateNote($event)" #f="ngForm" action="{{member.dgId | updateNoteFormatter}}" method="post">
           <input type="text" name="note" value="{{member.note}}" placeholder="Player Note">
           <button type="submit">
