@@ -190,7 +190,10 @@ span.instructions {
   color: #ffd46f !important;
 }
 
-.note-update button,
+.note-update button {
+  height: 22px;
+}
+
 .create button {
   height: 28px;
 }
