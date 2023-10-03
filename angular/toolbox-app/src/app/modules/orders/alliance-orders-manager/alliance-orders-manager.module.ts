@@ -12,8 +12,8 @@ import {initializeAppCheck, provideAppCheck, ReCaptchaV3Provider} from "@angular
 import {FontAwesomeModule} from "@fortawesome/angular-fontawesome";
 import {NavigationTargetDirective} from "../../../shared/directive/navigation-target.directive";
 import {WaitTurnsDirective} from "../../../shared/directive/wait-turns.directive";
-import { KickMemberFormatterPipe } from './pipe/kick-member-formatter.pipe';
-import {HttpClientModule} from "@angular/common/http";
+import {KickMemberFormatterPipe} from './pipe/kick-member-formatter.pipe';
+import {HttpClient, HttpClientModule} from "@angular/common/http";
 
 
 @NgModule({
@@ -41,7 +41,8 @@ import {HttpClientModule} from "@angular/common/http";
   ],
   providers: [
     OrderService,
-    DarkgalaxyApiService
+    DarkgalaxyApiService,
+    HttpClient
   ],
   bootstrap: [OrdersPanelComponent]
 })
