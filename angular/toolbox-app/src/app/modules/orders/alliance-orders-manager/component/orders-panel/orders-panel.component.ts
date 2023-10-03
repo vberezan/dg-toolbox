@@ -1,4 +1,4 @@
-import {ChangeDetectorRef, Component, inject, OnDestroy, OnInit} from '@angular/core';
+import {ChangeDetectorRef, Component, inject, OnDestroy} from '@angular/core';
 import {OrderService} from "../../service/order.service";
 import {AllianceOrder} from "../../../../../shared/model/orders/alliance-order.model";
 import {DarkgalaxyApiService} from "../../../../darkgalaxy-ui-parser/service/darkgalaxy-api.service";
@@ -15,7 +15,7 @@ import {AuthState} from "../../../../../shared/model/authentication/auth-state.m
   templateUrl: './orders-panel.component.html',
   styleUrls: ['./orders-panel.component.css']
 })
-export class OrdersPanelComponent implements OnDestroy, OnInit {
+export class OrdersPanelComponent implements OnDestroy {
   private orderService: OrderService = inject(OrderService);
   private dgAPI: DarkgalaxyApiService = inject(DarkgalaxyApiService);
   private authService: AuthService = inject(AuthService);
@@ -35,9 +35,7 @@ export class OrdersPanelComponent implements OnDestroy, OnInit {
 
   constructor(library: FaIconLibrary) {
     library.addIcons(farCircleXmark, farCircleRight);
-  }
 
-  ngOnInit(): void {
     this.authService.authState.subscribe((state: AuthState) => {
       if (state.status) {
         this.allianceMembers = this.dgAPI.allianceMembers(true);
