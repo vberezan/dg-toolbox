@@ -2,11 +2,14 @@ export class AllianceMember {
   private _name: string;
   private _note: string;
   private _dgId: string;
+  private _kickEta: string;
 
-  constructor(name: string, note: string, dgId: string) {
-    this._name = name;
-    this._note = note;
-    this._dgId = dgId;
+  get kickEta(): string {
+    return this._kickEta;
+  }
+
+  set kickEta(value: string) {
+    this._kickEta = value;
   }
 
   get name(): string {
