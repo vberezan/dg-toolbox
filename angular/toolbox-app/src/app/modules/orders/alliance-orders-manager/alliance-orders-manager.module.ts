@@ -12,6 +12,7 @@ import {initializeAppCheck, provideAppCheck, ReCaptchaV3Provider} from "@angular
 import {FontAwesomeModule} from "@fortawesome/angular-fontawesome";
 import {NavigationTargetDirective} from "../../../shared/directive/navigation-target.directive";
 import {WaitTurnsDirective} from "../../../shared/directive/wait-turns.directive";
+import { KickMemberFormatterPipe } from './pipe/kick-member-formatter.pipe';
 
 
 @NgModule({
@@ -33,7 +34,8 @@ import {WaitTurnsDirective} from "../../../shared/directive/wait-turns.directive
   declarations: [
     OrdersPanelComponent,
     NavigationTargetDirective,
-    WaitTurnsDirective
+    WaitTurnsDirective,
+    KickMemberFormatterPipe
   ],
   providers: [
     OrderService,
