@@ -28,8 +28,9 @@ body {
 
 .notification-badge {
   background: #FF3B30;
-  top: 10px;
+  top: 12px;
   right: 10px;
+  border-radius: 100px;
   padding: 3px;
   color: #fff;
   font-size: 11px;

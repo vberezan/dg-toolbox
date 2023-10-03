@@ -34,7 +34,6 @@ export class AllianceMembersService implements DataExtractor {
 
 
             if (player.querySelector('div.name') != null) {
-              console.log('name');
               allianceMember.name = player.querySelector('div.name').childNodes[0].textContent.trim();
               result.push(allianceMember);
             }

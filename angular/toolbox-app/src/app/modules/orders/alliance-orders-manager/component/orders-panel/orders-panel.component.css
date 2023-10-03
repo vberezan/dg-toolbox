@@ -86,6 +86,12 @@ span.instructions {
   float: right;
 }
 
+.dgt-orders-manager-member .kick-eta {
+  color: #ffd46f;
+  font-weight: normal !important;
+  float: left;
+}
+
 
 .dgt-orders-manager-panel,
 .dgt-orders-manager-panel div {
@@ -180,7 +186,7 @@ span.instructions {
 .delete button fa-icon {
   color: #c8a960 !important;
   font-size: 16px !important;
-  line-height: 22px;
+  line-height: 20px;
 }
 
 .delete button:hover fa-icon {
