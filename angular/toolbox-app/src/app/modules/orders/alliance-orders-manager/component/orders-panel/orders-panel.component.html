@@ -3,9 +3,9 @@
     <div class="player">
       <span class="name">{{member.name}}</span>
       <div class="dgt-orders-manager-kick" *ngIf="member.dgId != null">
-        <form action="/alliances/kick/" method="post">
-          <button type="submit" name="{{member.dgId | kickMemberFormatter}}" value="Kick Member">
-            <fa-icon [icon]="['far','circle-xmark']" [style]="{color: '#fff'}" />
+        <form (ngSubmit)="onSubmit('/alliances/kick/', {'{{member.dgId | kickMemberFormatter}}':'Kick+Member'})">
+          <button type="submit" value="Kick Member">
+            <fa-icon [icon]="['far','circle-xmark']" [style]="{color: '#fff'}"/>
           </button>
         </form>
       </div>

@@ -13,6 +13,7 @@ import {FontAwesomeModule} from "@fortawesome/angular-fontawesome";
 import {NavigationTargetDirective} from "../../../shared/directive/navigation-target.directive";
 import {WaitTurnsDirective} from "../../../shared/directive/wait-turns.directive";
 import { KickMemberFormatterPipe } from './pipe/kick-member-formatter.pipe';
+import {HttpClientModule} from "@angular/common/http";
 
 
 @NgModule({
@@ -29,7 +30,8 @@ import { KickMemberFormatterPipe } from './pipe/kick-member-formatter.pipe';
         isTokenAutoRefreshEnabled: true
       })
     ),
-    FontAwesomeModule
+    FontAwesomeModule,
+    HttpClientModule
   ],
   declarations: [
     OrdersPanelComponent,

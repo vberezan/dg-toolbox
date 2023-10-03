@@ -7,6 +7,7 @@ import {Observable, Subscriber} from "rxjs";
 import {FaIconLibrary} from "@fortawesome/angular-fontawesome";
 import {faCircleXmark as farCircleXmark} from "@fortawesome/free-regular-svg-icons"
 import {AllianceMember} from "../../../../../shared/model/orders/alliance-member.model";
+import {HttpClient} from "@angular/common/http";
 
 
 @Component({
@@ -19,6 +20,7 @@ export class OrdersPanelComponent implements OnDestroy {
   private dgAPI: DarkgalaxyApiService = inject(DarkgalaxyApiService);
   private authService: AuthService = inject(AuthService);
   private changeDetection: ChangeDetectorRef = inject(ChangeDetectorRef);
+  private http: HttpClient = inject(HttpClient);
 
   protected allianceMembers: AllianceMember[];
   protected orders: Map<string, Observable<AllianceOrder[]>> = new Map<string, Observable<AllianceOrder[]>>();
@@ -65,5 +67,9 @@ export class OrdersPanelComponent implements OnDestroy {
 
   ngOnDestroy(): void {
     this.authService.authState.unsubscribe();
+  }
+
+  onSubmit(url: string, params: {}): void {
+    this.http.post(url, JSON.stringify(params));
   }
 }
