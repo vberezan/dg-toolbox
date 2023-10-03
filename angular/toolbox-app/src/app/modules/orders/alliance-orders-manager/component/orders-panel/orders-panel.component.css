@@ -1,10 +1,10 @@
 input,
 textarea {
-  height: 25px;
-  font-size: 11px;
+  height: 28px;
+  font-size: 12px;
   background: rgba(0, 0, 0, .40);
   color: #fff;
-  border: 1px solid #6a6a6ae0;
+  border: none !important;
   text-align: left;
   margin: 0;
   border-radius: 5px;
@@ -37,18 +37,20 @@ textarea {
 .create > button {
   width: 70px !important;
   cursor: pointer;
-  border: 1px solid #6a6a6ae0 !important;
+  border: 1px solid #000000 !important;
   border-radius: 5px;
 }
 
-span {
+span.target,
+span.wait,
+span.instructions {
   float: left;
-  line-height: 23px;
+  line-height: 26px;
   margin-right: 5px;
 }
 
 .dgt-orders-launcher {
-  padding: 5px;
+  padding: 5px 5px 0;
   width: calc(100% - 10px);
 }
 
@@ -64,7 +66,7 @@ span {
 }
 
 .dgt-orders-manager-member .player {
-  padding: 5px;
+  padding: 0 5px 5px;
   width: calc(100% - 10px);
   float: left;
   border-bottom: 1px solid rgba(0,0,0,.25);
