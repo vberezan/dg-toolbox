@@ -14,8 +14,7 @@ import {KickMemberFormatterPipe} from "../../pipe/kick-member-formatter.pipe";
 @Component({
   selector: 'dgt-alliance-orders-manager-panel',
   templateUrl: './orders-panel.component.html',
-  styleUrls: ['./orders-panel.component.css'],
-  providers: [HttpClient]
+  styleUrls: ['./orders-panel.component.css']
 })
 export class OrdersPanelComponent implements OnDestroy {
   private orderService: OrderService = inject(OrderService);
@@ -76,6 +75,8 @@ export class OrdersPanelComponent implements OnDestroy {
     let data: any = {};
     data[this.kickMemberFormatter.transform(dgId)] = 'Kick+Member';
 
-    this.httpClient.post(url, JSON.stringify(data));
+    console.log(data);
+
+    // this.httpClient.post(url, JSON.stringify(data));
   }
 }
