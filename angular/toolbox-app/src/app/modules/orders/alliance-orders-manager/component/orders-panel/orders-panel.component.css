@@ -169,7 +169,7 @@ span.instructions {
 }
 
 .dgt-orders-manager-kick button:hover fa-icon {
-  color: #fff !important;
+  color: #ffffffd6 !important;
 }
 
 .delete {
@@ -178,11 +178,11 @@ span.instructions {
 }
 
 .delete button fa-icon {
-  color: #ffd46f !important;
+  color: #c8a960 !important;
   font-size: 16px !important;
   line-height: 22px;
 }
 
 .delete button:hover fa-icon {
-  color: #c8a960 !important;
+  color: #ffd46f !important;
 }
