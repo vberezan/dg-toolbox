@@ -7,7 +7,7 @@ textarea {
   border: none !important;
   text-align: left;
   margin: 0;
-  border-radius: 5px;
+  border-radius: 3px;
   display: block;
   box-sizing: border-box;
   padding: 3px 5px 3px 5px;
@@ -133,7 +133,7 @@ span.instructions {
 
 .dgt-orders-history .label {
   color: #ffd46f;
-  font-weight: bold;
+  font-weight: normal;
 }
 
 .dgt-orders-history .target {
