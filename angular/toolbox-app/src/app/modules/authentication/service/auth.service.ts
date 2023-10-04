@@ -7,6 +7,7 @@ import firebase from "firebase/compat";
 import {AuthState} from "../../../shared/model/authentication/auth-state.model";
 import {UserRole} from "../../../shared/model/authentication/user-role";
 import DocumentData = firebase.firestore.DocumentData;
+import {LocalStorageKeys} from "../../../shared/model/local-storage/local-storage-keys";
 
 @Injectable({
   providedIn: 'platform'
@@ -44,7 +45,7 @@ export class AuthService implements OnDestroy {
             }, items[0]);
 
             if (userCheck.enabled) {
-              localStorage.setItem('user', JSON.stringify(user));
+              localStorage.setItem(LocalStorageKeys.USER, JSON.stringify(user));
               this._authState.emit(new AuthState(true, userCheck.role));
             } else {
               this.signOut(auth, false);
@@ -54,7 +55,7 @@ export class AuthService implements OnDestroy {
           }
         });
       } else {
-        localStorage.removeItem('user');
+        localStorage.removeItem(LocalStorageKeys.USER);
         this._authState.emit(new AuthState(false, null));
       }
     });
@@ -88,7 +89,7 @@ export class AuthService implements OnDestroy {
 
   signOut(auth: Auth, refreshPage: boolean): void {
     this._authState.emit(new AuthState(true, null));
-    localStorage.removeItem('user');
+    localStorage.removeItem(LocalStorageKeys.USER);
     this._refreshInProgress = refreshPage;
 
     auth.signOut()

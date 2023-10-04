@@ -9,7 +9,6 @@ import {faCircleRight as farCircleRight, faCircleXmark as farCircleXmark} from "
 import {AllianceMember} from "../../../../../shared/model/orders/alliance-member.model";
 import {AuthState} from "../../../../../shared/model/authentication/auth-state.model";
 import {UserRole} from "../../../../../shared/model/authentication/user-role";
-import {authState} from "@angular/fire/auth";
 
 
 @Component({

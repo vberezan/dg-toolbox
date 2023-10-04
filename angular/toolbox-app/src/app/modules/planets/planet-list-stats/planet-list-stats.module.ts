@@ -1,4 +1,4 @@
-import {NgModule, OnInit} from '@angular/core';
+import {NgModule} from '@angular/core';
 import {DecimalPipe} from '@angular/common';
 import {StatsPanelComponent} from './component/stats-panel/stats-panel.component';
 import {FontAwesomeModule} from "@fortawesome/angular-fontawesome";
@@ -26,10 +26,5 @@ import {DarkgalaxyApiService} from "../../darkgalaxy-ui-parser/service/darkgalax
   ],
   bootstrap: [StatsPanelComponent]
 })
-export class PlanetListStatsModule implements OnInit {
-  constructor() {
-  }
-
-  ngOnInit(): void {
-  }
+export class PlanetListStatsModule {
 }

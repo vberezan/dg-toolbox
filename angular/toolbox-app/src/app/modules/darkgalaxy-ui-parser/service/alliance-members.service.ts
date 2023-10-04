@@ -1,18 +1,22 @@
-import {Injectable} from '@angular/core';
+import {inject, Injectable} from '@angular/core';
 import {DataExtractor} from "./data-extractor";
 import {AllianceMember} from "../../../shared/model/orders/alliance-member.model";
+import {LocalStorageService} from "../../../shared/service/local-storage.service";
+import {LocalStorageKeys} from "../../../shared/model/local-storage/local-storage-keys";
 
 @Injectable({
   providedIn: 'root'
 })
 export class AllianceMembersService implements DataExtractor {
-
-  constructor() {
-  }
+  private localStorageService: LocalStorageService = inject(LocalStorageService);
 
   extract(): AllianceMember[] {
-    let result: AllianceMember[] = [];
+    let local: AllianceMember[] = this.localStorageService.getWithExpiry(LocalStorageKeys.ALLIANCE_MEMBERS);
+    if (local != null) {
+      return local;
+    }
 
+    let result: AllianceMember[] = [];
     if (!document.querySelector('[action="/alliances/join/"]')) {
       document.querySelectorAll('.allianceBox > .playerList').forEach((list: any): void => {
         if (list.parentElement.querySelector('.plainHeader').childNodes[0].textContent.trim().toLowerCase() === 'member list') {
@@ -43,6 +47,8 @@ export class AllianceMembersService implements DataExtractor {
         }
       });
     }
+
+    this.localStorageService.setWithExpiry(LocalStorageKeys.ALLIANCE_MEMBERS, result, 10000);
 
     return result;
   }
