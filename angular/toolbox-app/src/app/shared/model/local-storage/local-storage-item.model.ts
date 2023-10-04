@@ -1,17 +1,17 @@
 export class LocalStorageItem {
-  private _value: any;
+  private _value: string;
   private _expiry: number;
   private _ttl: number;
 
 
   constructor(item: any, ttl: number) {
-    this._value = item;
+    this._value = JSON.stringify(item);
     this._ttl = ttl;
     this._expiry = Date.now() + ttl;
   }
 
 
-  get value(): any {
+  get value(): string {
     return this._value;
   }
 
@@ -22,7 +22,7 @@ export class LocalStorageItem {
   get ttl(): number {
     return this._ttl;
   }
-  set value(value: any) {
+  set value(value: string) {
     this._value = value;
   }
 
