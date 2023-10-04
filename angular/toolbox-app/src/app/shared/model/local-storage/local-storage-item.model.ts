@@ -5,7 +5,6 @@ export class LocalStorageItem {
 
 
   constructor(item: any, ttl: number) {
-    console.log(JSON.stringify(item));
     this._value = JSON.stringify(item);
     this._ttl = ttl;
     this._expiry = Date.now() + ttl;
