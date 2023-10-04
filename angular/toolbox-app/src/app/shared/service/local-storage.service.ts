@@ -14,13 +14,15 @@ export class LocalStorageService {
   }
 
   getWithExpiry(key: string): any {
-    const itemStr = localStorage.getItem(key);
+    const itemStr: string = localStorage.getItem(key);
 
     if (!itemStr) {
       return null;
     }
 
     const item: LocalStorageItem = Object.assign(LocalStorageItem, JSON.parse(itemStr));
+
+    console.log(Date.now() - item.expiry);
 
     if (Date.now() > item.expiry) {
       localStorage.removeItem(key);

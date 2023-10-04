@@ -1,7 +1,7 @@
 export class LocalStorageItem {
-  private _value: any;
-  private _expiry: number;
-  private _ttl: number;
+  private readonly _value: any;
+  private readonly _expiry: number;
+  private readonly _ttl: number;
 
 
   constructor(item: any, ttl: number) {
