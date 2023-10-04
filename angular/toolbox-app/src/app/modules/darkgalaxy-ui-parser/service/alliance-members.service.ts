@@ -13,8 +13,10 @@ export class AllianceMembersService implements DataExtractor {
   extract(): AllianceMember[] {
     let local: AllianceMember[] = this.localStorageService.getWithExpiry(LocalStorageKeys.ALLIANCE_MEMBERS);
     if (local != null) {
+      console.log('Found alliance members in local storage');
       return local;
     }
+    console.log('Missing alliance members in local storage');
 
     let result: AllianceMember[] = [];
     if (!document.querySelector('[action="/alliances/join/"]')) {
