@@ -35,4 +35,13 @@ export class AllianceMember {
   set dgId(value: string) {
     this._dgId = value;
   }
+
+  toJSON() {
+    return {
+      name: this.name,
+      note: this.note,
+      dgId: this.dgId,
+      kickEta: this.kickEta
+    }
+  }
 }
