@@ -22,4 +22,12 @@ export class LocalStorageItem {
   get ttl(): number {
     return this._ttl;
   }
+
+  toJSON() {
+    return {
+      ttl: this.ttl,
+      expiry: this.expiry,
+      value: this.value
+    }
+  }
 }
