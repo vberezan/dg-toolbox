@@ -11,9 +11,9 @@ export class AllianceMembersService implements DataExtractor {
   private localStorageService: LocalStorageService = inject(LocalStorageService);
 
   extract(): AllianceMember[] {
-    let local: AllianceMember[] = Object.assign([], this.localStorageService.getWithExpiry(LocalStorageKeys.ALLIANCE_MEMBERS));
+    let local: AllianceMember[] = this.localStorageService.getWithExpiry(LocalStorageKeys.ALLIANCE_MEMBERS);
 
-    if (local.length > 0) {
+    if (local != null) {
       return local;
     }
 
