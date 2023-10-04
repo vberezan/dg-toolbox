@@ -15,7 +15,7 @@ export class AllianceMembersService implements DataExtractor {
 
     if (local != null) {
 
-      console.log(local[0].name);
+      console.log(local[0], local[0].name);
 
       return local;
     }
