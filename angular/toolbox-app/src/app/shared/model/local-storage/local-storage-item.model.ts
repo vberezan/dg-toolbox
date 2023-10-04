@@ -1,7 +1,7 @@
 export class LocalStorageItem {
-  private readonly _value: any;
-  private readonly _expiry: number;
-  private readonly _ttl: number;
+  private _value: any;
+  private _expiry: number;
+  private _ttl: number;
 
 
   constructor(item: any, ttl: number) {
@@ -21,6 +21,17 @@ export class LocalStorageItem {
 
   get ttl(): number {
     return this._ttl;
+  }
+  set value(value: any) {
+    this._value = value;
+  }
+
+  set expiry(value: number) {
+    this._expiry = value;
+  }
+
+  set ttl(value: number) {
+    this._ttl = value;
   }
 
   toJSON() {
