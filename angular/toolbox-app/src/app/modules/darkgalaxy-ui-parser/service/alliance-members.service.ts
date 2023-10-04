@@ -11,12 +11,10 @@ export class AllianceMembersService implements DataExtractor {
   private localStorageService: LocalStorageService = inject(LocalStorageService);
 
   extract(): AllianceMember[] {
-    console.log(this.localStorageService.getWithExpiry(LocalStorageKeys.ALLIANCE_MEMBERS));
-    let local: AllianceMember[] = Object.assign([], this.localStorageService.getWithExpiry(LocalStorageKeys.ALLIANCE_MEMBERS));
-    console.log(local);
+    let local: string = this.localStorageService.getWithExpiry(LocalStorageKeys.ALLIANCE_MEMBERS);
 
-    if (local.length > 0) {
-      return local;
+    if (local != null) {
+      return JSON.parse(local);
     }
 
     let result: AllianceMember[] = [];
