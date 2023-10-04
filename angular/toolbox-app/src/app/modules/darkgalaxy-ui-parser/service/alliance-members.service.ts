@@ -13,7 +13,7 @@ export class AllianceMembersService implements DataExtractor {
   extract(): AllianceMember[] {
     let local: AllianceMember[] = Object.assign([], this.localStorageService.getWithExpiry(LocalStorageKeys.ALLIANCE_MEMBERS));
 
-    if (local != null) {
+    if (local.length > 0) {
       return local;
     }
 
