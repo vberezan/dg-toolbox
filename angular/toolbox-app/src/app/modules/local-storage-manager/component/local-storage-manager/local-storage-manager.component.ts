@@ -1,10 +1,10 @@
 import { Component } from '@angular/core';
 
 @Component({
-  selector: 'dgt-darkgalaxy-ui-parser',
+  selector: 'dgt-local-storage-manager',
   template: '',
   styles: ['']
 })
-export class DarkgalaxyUiParserComponent {
+export class LocalStorageManagerComponent {
 
 }

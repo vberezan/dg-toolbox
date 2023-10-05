@@ -8,7 +8,7 @@ import {AuthState} from "../../../shared/model/authentication/auth-state.model";
 import {UserRole} from "../../../shared/model/authentication/user-role";
 import DocumentData = firebase.firestore.DocumentData;
 import {LocalStorageKeys} from "../../../shared/model/local-storage/local-storage-keys";
-import {LocalStorageService} from "../../../shared/service/local-storage.service";
+import {LocalStorageService} from "../../local-storage-manager/service/local-storage.service";
 
 @Injectable({
   providedIn: 'platform'

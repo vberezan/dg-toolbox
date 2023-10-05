@@ -1,5 +1,5 @@
 import {Injectable, Optional} from '@angular/core';
-import {LocalStorageItem} from "../model/local-storage/local-storage-item.model";
+import {LocalStorageItem} from "../../../shared/model/local-storage/local-storage-item.model";
 
 @Injectable({
   providedIn: 'platform'

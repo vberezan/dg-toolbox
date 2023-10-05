@@ -1,7 +1,7 @@
 import {inject, Injectable} from '@angular/core';
 import {DataExtractor} from "./data-extractor";
 import {AllianceMember} from "../../../shared/model/orders/alliance-member.model";
-import {LocalStorageService} from "../../../shared/service/local-storage.service";
+import {LocalStorageService} from "../../local-storage-manager/service/local-storage.service";
 import {LocalStorageKeys} from "../../../shared/model/local-storage/local-storage-keys";
 
 @Injectable({
