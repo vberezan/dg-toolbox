@@ -2,20 +2,22 @@
   float: left;
   background: #774946;
   border: none;
-  margin: 0 10px 10px 0;
-  padding: 3px 5px;
   width: calc(100% - 20px);
   border-radius: 5px;
-  height: 40px;
-  line-height: 40px;
+  height: 22px;
+  line-height: 22px;
+  padding: 5px;
+  margin-right: 5px;
+  margin-left: 5px;
+  margin-bottom: 5px;
 }
 
 .dgt-fleet-order:first-child {
-  margin-top: 10px !important;
+  margin-top: 5px !important;
 }
 
 .dgt-fleet-order:last-child {
-  margin-bottom: 10px !important;
+  margin-bottom: 5px !important;
 }
 
 .dgt-fleet-order div {
@@ -53,7 +55,7 @@
 
 .dgt-fleet-order span.label {
   padding-right: 5px;
-  color: #FFD46F;
+  color: #bfc5b7;
   float: left;
 }
 
