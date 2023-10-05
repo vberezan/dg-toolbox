@@ -1,7 +1,7 @@
 .dgt-fleet-order {
   float: left;
-  background: #FF3B302B;
-  border: 1px solid #FF3B30;
+  background: #774946;
+  border: none;
   margin: 5px 10px;
   width: calc(100% - 20px);
   border-radius: 5px;
@@ -52,9 +52,12 @@
 
 .dgt-fleet-order span.label {
   padding-right: 5px;
-  font-weight: bold;
   color: #FFD46F;
   float: left;
+}
+
+.dgt-fleet-order span.value {
+  color: #bfc5b7;
 }
 
 .dgt-fleet-order .target span.value,
