@@ -246,11 +246,13 @@ span.instructions {
 .dgt-orders-manager-panel.user .dgt-orders-manager-member:first-child {
   border-top-left-radius: 5px !important;
   border-top-right-radius: 5px !important;
+  padding-top: 5px !important;
 }
 
 .dgt-orders-manager-panel.user .dgt-orders-manager-member:last-child {
   border-bottom-left-radius: 5px !important;
   border-bottom-right-radius: 5px !important;
+  padding-bottom: 5px !important;
 }
 
 .dgt-orders-manager-panel.user .dgt-orders-manager-member:last-child .player {

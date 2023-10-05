@@ -2,7 +2,7 @@
   <div *ngFor="let member of allianceMembers;" class="dgt-orders-manager-member">
     <div class="player">
       <span class="name">{{member.name}}</span>
-      <span *ngIf="member.note != null" class="note">[note: {{member.note}}]</span>
+      <span *ngIf="member.note != null" class="note">Note: {{member.note}}</span>
     </div>
   </div>
 </div>
@@ -19,7 +19,7 @@
         </form>
       </div>
       <span *ngIf="member.kickEta != null" class="kick-eta">[{{member.kickEta}}]</span>
-      <span *ngIf="member.note != null && ((role | async) === UserRole.TEAM_LEADER)" class="note">[note: {{member.note}}]</span>
+      <span *ngIf="member.note != null && ((role | async) === UserRole.TEAM_LEADER)" class="note">Note: {{member.note}}</span>
       <div *ngIf="(role | async) === UserRole.ADMIN" class="note-update">
         <span class="label">Note:</span>
         <form (ngSubmit)="onSubmitUpdateNote($event)" #f="ngForm" action="{{member.dgId | updateNoteFormatter}}" method="post">
