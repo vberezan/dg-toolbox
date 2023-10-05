@@ -7,8 +7,6 @@ import {LocalStorageItem} from "../model/local-storage/local-storage-item.model"
 export class LocalStorageService {
 
   cache(key: string, value: any, @Optional() ttl: number = 0): void {
-    console.log(key, value, ttl);
-
     const item: LocalStorageItem = new LocalStorageItem(value, ttl);
     localStorage.setItem(key, JSON.stringify(item))
   }
@@ -30,7 +28,7 @@ export class LocalStorageService {
     return JSON.parse(item.value);
   }
 
-    remove(key: string): void {
-      localStorage.removeItem(key);
-    }
+  remove(key: string): void {
+    localStorage.removeItem(key);
+  }
 }
