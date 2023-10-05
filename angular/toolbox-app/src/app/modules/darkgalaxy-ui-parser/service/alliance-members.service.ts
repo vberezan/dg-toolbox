@@ -55,10 +55,10 @@ export class AllianceMembersService implements DataExtractor {
       document.querySelector('.dgt-orders-manager-panel.user').remove();
     }
 
-    document.querySelectorAll('.allianceBox > .playerList').forEach((list: any): void => {
-      if (list.parentElement.querySelector('.plainHeader').childNodes[0].textContent.trim().toLowerCase() === 'member list') {
-        list.parentNode.querySelector('.plainHeader').remove();
-        list.remove();
+    document.querySelectorAll('.allianceBox').forEach((list: any): void => {
+      if (list.querySelector('.plainHeader').childNodes[0].textContent.trim().toLowerCase() === 'member list') {
+        list.querySelector('.plainHeader').remove();
+        list.querySelector('.playerList').remove();
       }
     });
   }
