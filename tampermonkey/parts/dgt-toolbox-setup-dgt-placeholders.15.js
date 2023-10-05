@@ -26,6 +26,7 @@ function setUpAllianceOrdersManagerPanel(windowURL) {
                 } else if (allianceBox.querySelector('.plainHeader') &&
                     allianceBox.querySelector('.plainHeader').childNodes[0].textContent.trim().toLowerCase() === 'alliance announcement') {
                     allianceBox.querySelector('.plainHeader').style.display = 'none';
+                    allianceBox.querySelector('.allianceAnnouncement').parentElement.classList.add('allianceAnnouncementBox');
                 }
             });
         }
