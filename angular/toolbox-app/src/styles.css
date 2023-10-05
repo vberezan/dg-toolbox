@@ -719,6 +719,10 @@ label.queueDestroyButton:hover {
 }
 
 /********/
+.allianceBox {
+  margin-bottom: 10px !important;
+}
+
 .allianceAnnouncementBox {
   border: none !important;
   border-radius: 5px;
@@ -728,6 +732,9 @@ label.queueDestroyButton:hover {
 
 .allianceAnnouncementBox .allianceAnnouncement {
   padding: 0 !important;
+  line-height: 30px;
+  background: rgba(0, 0, 0, 0.35);
+  color: #ffffffad;
 }
 
 .allianceAnnouncementBox p {
