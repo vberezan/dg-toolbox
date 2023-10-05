@@ -1,4 +1,7 @@
-<div class="dgt-orders-manager-panel">
+<div *ngIf="!(admin | async)" class="dgt-orders-manager-panel">
+  asdasdas
+</div>
+<div *ngIf="admin | async" class="dgt-orders-manager-panel">
   <div class="dgt-orders-manager-member" *ngFor="let member of allianceMembers; index as idx">
     <div class="player">
       <span class="name">{{member.name}}</span>
@@ -22,7 +25,7 @@
         </form>
       </div>
     </div>
-    <div *ngIf="admin | async" class="dgt-orders-launcher">
+    <div class="dgt-orders-launcher">
       <div class="target">
         <span class="target">Target:</span>
         <input [(ngModel)]="controls.target[idx]" type="text" placeholder="Ex: 1.1.1.1" dgtNavigationTarget/>
