@@ -14,13 +14,11 @@ export class LocalStorageService {
   }
 
   cache(key: string, value: any, @Optional() ttl: number = 0): void {
-    console.log('cache - ' + Math.random(), this.id);
     const item: LocalStorageItem = new LocalStorageItem(this.instanceId, value, ttl);
     localStorage.setItem(key, JSON.stringify(item))
   }
 
   get(key: string): any {
-    console.log('get - ' + Math.random(), this.id);
     const itemStr: string = localStorage.getItem(key);
 
     if (!itemStr) {
@@ -38,7 +36,6 @@ export class LocalStorageService {
   }
 
   remove(key: string): void {
-    console.log('remove - ' + Math.random(), this.id);
     localStorage.removeItem(key);
   }
 }
