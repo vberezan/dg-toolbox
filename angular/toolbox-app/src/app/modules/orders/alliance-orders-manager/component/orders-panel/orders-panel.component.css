@@ -233,9 +233,14 @@ span.instructions {
   font-weight: normal !important;
 }
 
+.dgt-orders-manager-panel.user .player {
+  margin-bottom: 0 !important;
+}
+
 .dgt-orders-manager-panel.user .dgt-orders-manager-member {
   margin: 0 !important;
   border-radius: 0 !important;
+  padding-bottom: 0 !important;
 }
 
 .dgt-orders-manager-panel.user .dgt-orders-manager-member:first-child {
@@ -246,4 +251,5 @@ span.instructions {
 .dgt-orders-manager-panel.user .dgt-orders-manager-member:last-child {
   border-bottom-left-radius: 5px !important;
   border-bottom-right-radius: 5px !important;
+  border: none !important;
 }
