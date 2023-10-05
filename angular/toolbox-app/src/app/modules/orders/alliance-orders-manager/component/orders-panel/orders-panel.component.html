@@ -6,11 +6,12 @@
     </div>
   </div>
 </div>
+<span class="loader"></span>
 <div *ngIf="(role | async) === UserRole.TEAM_LEADER || (role | async) === UserRole.ADMIN" class="dgt-orders-manager-panel admin">
   <div *ngFor="let member of allianceMembers; index as idx" class="dgt-orders-manager-member">
     <div class="player">
       <span class="name">{{member.name}}</span>
-      <div *ngIf="(role | async) === UserRole.ADMIN" class="dgt-orders-manager-kick">
+      <div *ngIf="member.kickEta == null && (role | async) === UserRole.ADMIN" class="dgt-orders-manager-kick">
         <form (ngSubmit)="onSubmitKickMember($event)" #f="ngForm" action="/alliances/kick/" method="post">
           <input type="hidden" name="{{member.dgId | kickMemberFormatter}}" value="Kick Member"/>
           <button type="submit">
