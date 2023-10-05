@@ -11,7 +11,7 @@ export class AllianceMembersService implements DataExtractor {
   private localStorageService: LocalStorageService = inject(LocalStorageService);
 
   extract(): AllianceMember[] {
-    let result: AllianceMember[] = this.localStorageService.get(LocalStorageKeys.ALLIANCE_MEMBERS) || [];
+    let result: AllianceMember[] = [];
 
     if (result.length > 0 && !document.querySelector('[action="/alliances/join/"]')) {
 
