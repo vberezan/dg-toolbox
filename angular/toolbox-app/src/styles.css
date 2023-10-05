@@ -19,7 +19,16 @@
 }
 
 /*****/
-.loader {
+.dgt-spinner-container {
+  display: flex;
+  position: absolute;
+  width: 717px;
+  background: #000000ab;
+  border-radius: 5px;
+  height: 100%;
+}
+
+.dgt-spinner {
   transform: rotateZ(45deg);
   perspective: 1000px;
   border-radius: 50%;
@@ -27,8 +36,8 @@
   height: 48px;
   color: #fff;
 }
-.loader:before,
-.loader:after {
+.dgt-spinner:before,
+.dgt-spinner:after {
   content: '';
   display: block;
   position: absolute;
@@ -40,7 +49,7 @@
   transform: rotateX(70deg);
   animation: 1s spin linear infinite;
 }
-.loader:after {
+.dgt-spinner:after {
   color: #FF3D00;
   transform: rotateY(70deg);
   animation-delay: .4s;
