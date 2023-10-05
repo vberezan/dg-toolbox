@@ -45,6 +45,7 @@ export class AllianceMembersService implements DataExtractor {
         }
       });
 
+      console.log(result);
       this.localStorageService.cache(LocalStorageKeys.ALLIANCE_MEMBERS, result, 43200000);
     }
 
