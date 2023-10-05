@@ -39,11 +39,10 @@ export class OrdersPanelComponent implements OnDestroy {
 
   constructor(library: FaIconLibrary) {
     library.addIcons(farCircleXmark, farCircleRight);
+    this.allianceMembers = this.dgAPI.allianceMembers(true);
 
     this.authService.authState.subscribe((state: AuthState): void => {
-      if (state.status && state.role) {
-        this.allianceMembers = this.dgAPI.allianceMembers(true);
-
+      if (state.status) {
         this.controls.target = [];
         this.controls.wait = [];
         this.controls.instructions = [];
