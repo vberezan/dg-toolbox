@@ -11,14 +11,9 @@ export class AllianceMembersService implements DataExtractor {
   private localStorageService: LocalStorageService = inject(LocalStorageService);
 
   extract(): AllianceMember[] {
-    const local: AllianceMember[] = this.localStorageService.get(LocalStorageKeys.ALLIANCE_MEMBERS);
+    let result: AllianceMember[] = this.localStorageService.get(LocalStorageKeys.ALLIANCE_MEMBERS);
 
-    if (local != null) {
-      return local;
-    }
-
-    let result: AllianceMember[] = [];
-    if (!document.querySelector('[action="/alliances/join/"]')) {
+    if (result == null && !document.querySelector('[action="/alliances/join/"]')) {
       document.querySelectorAll('.allianceBox > .playerList').forEach((list: any): void => {
         if (list.parentElement.querySelector('.plainHeader').childNodes[0].textContent.trim().toLowerCase() === 'member list') {
           list.querySelectorAll('.player').forEach((player: any): void => {
@@ -47,9 +42,9 @@ export class AllianceMembersService implements DataExtractor {
           });
         }
       });
-    }
 
-    this.localStorageService.cache(LocalStorageKeys.ALLIANCE_MEMBERS, result, 43200000);
+      this.localStorageService.cache(LocalStorageKeys.ALLIANCE_MEMBERS, result, 43200000);
+    }
 
     return result;
   }
