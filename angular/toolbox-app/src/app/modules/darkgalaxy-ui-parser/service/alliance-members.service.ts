@@ -11,10 +11,9 @@ export class AllianceMembersService implements DataExtractor {
   private localStorageService: LocalStorageService = inject(LocalStorageService);
 
   extract(): AllianceMember[] {
-    let result: AllianceMember[] = this.localStorageService.get(LocalStorageKeys.ALLIANCE_MEMBERS);
+    let result: AllianceMember[] = this.localStorageService.get(LocalStorageKeys.ALLIANCE_MEMBERS) || [];
 
-    if (result == null && !document.querySelector('[action="/alliances/join/"]')) {
-      console.log(result);
+    if (result.length > 0 && !document.querySelector('[action="/alliances/join/"]')) {
 
       document.querySelectorAll('.allianceBox > .playerList').forEach((list: any): void => {
         if (list.parentElement.querySelector('.plainHeader').childNodes[0].textContent.trim().toLowerCase() === 'member list') {
@@ -45,7 +44,6 @@ export class AllianceMembersService implements DataExtractor {
         }
       });
 
-      console.log(result);
       this.localStorageService.cache(LocalStorageKeys.ALLIANCE_MEMBERS, result, 43200000);
     }
 
