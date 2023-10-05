@@ -15,15 +15,15 @@ function setUpNavbarReplacement() {
 
 function setUpAllianceOrdersManagerPanel(windowURL) {
     if (windowURL[1] === 'alliances') {
-        if (document.querySelector('.allianceBox > .playerList')) {
-            document.querySelectorAll('.allianceBox > .playerList').forEach((list) => {
-                if (list.parentElement.querySelector('.plainHeader').childNodes[0].textContent.trim().toLowerCase() === 'member list') {
-                    list.style.display = 'none';
-                    list.parentElement.querySelector('.plainHeader').style.display = 'none';
+        if (document.querySelector('.allianceBox')) {
+            document.querySelectorAll('.allianceBox').forEach((allianceBox) => {
+                if (allianceBox.querySelector('.plainHeader').childNodes[0].textContent.trim().toLowerCase() === 'member list') {
+                    allianceBox.querySelector('.playerList').style.display = 'none';
+                    allianceBox.querySelector('.plainHeader').style.display = 'none';
 
-                    list.parentElement.append(document.createElement('dgt-alliance-orders-manager-panel'));
-                } else if (list.parentElement.querySelector('.plainHeader').childNodes[0].textContent.trim().toLowerCase() === 'alliance announcement ') {
-                    list.parentElement.querySelector('.plainHeader').style.display = 'none';
+                    allianceBox.append(document.createElement('dgt-alliance-orders-manager-panel'));
+                } else if (allianceBox.querySelector('.plainHeader').childNodes[0].textContent.trim().toLowerCase() === 'alliance announcement ') {
+                    allianceBox.querySelector('.plainHeader').style.display = 'none';
                 }
             });
         }
