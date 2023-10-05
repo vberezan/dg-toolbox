@@ -3,7 +3,7 @@ import {DataExtractor} from "./data-extractor";
 import {PlanetSummary} from "../../../shared/model/planets/planet-summary.planet-list-model";
 
 @Injectable({
-  providedIn: 'root'
+  providedIn: 'platform'
 })
 export class NavigationSystemPlanetsExtractorService implements DataExtractor {
   extract(): PlanetSummary[] {

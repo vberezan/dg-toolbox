@@ -5,7 +5,7 @@ import {LocalStorageService} from "../../../shared/service/local-storage.service
 import {LocalStorageKeys} from "../../../shared/model/local-storage/local-storage-keys";
 
 @Injectable({
-  providedIn: 'root'
+  providedIn: 'platform'
 })
 export class AllianceMembersService implements DataExtractor {
   private localStorageService: LocalStorageService = inject(LocalStorageService);

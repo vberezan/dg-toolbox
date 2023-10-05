@@ -9,12 +9,6 @@ import {DarkgalaxyUiParserComponent} from './component/darkgalaxy-ui-placeholder
 
 @NgModule({
   imports: [BrowserModule],
-  providers: [
-    PlanetListExtractorService,
-    PlanetScanExtractorService,
-    NavigationSystemPlanetsExtractorService,
-    AllianceMembersService
-  ],
   declarations: [
     DarkgalaxyUiParserComponent
   ],

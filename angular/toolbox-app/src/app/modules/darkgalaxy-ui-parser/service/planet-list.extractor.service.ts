@@ -4,7 +4,7 @@ import {Resource} from "../../../shared/model/resource.model";
 import {DataExtractor} from "./data-extractor";
 
 @Injectable({
-  providedIn: 'root'
+  providedIn: 'platform'
 })
 export class PlanetListExtractorService implements DataExtractor {
   // TODO: use textContent instead of innerHTML

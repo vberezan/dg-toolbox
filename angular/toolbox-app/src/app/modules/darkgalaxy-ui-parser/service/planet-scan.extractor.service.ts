@@ -9,7 +9,7 @@ import {Structures} from "../../../shared/model/structures";
 import {Owner} from "../../../shared/model/scans/shared-scans-owner.model";
 
 @Injectable({
-  providedIn: 'root'
+  providedIn: 'platform'
 })
 export class PlanetScanExtractorService implements DataExtractor {
   extract(): PlanetScanEvent {
