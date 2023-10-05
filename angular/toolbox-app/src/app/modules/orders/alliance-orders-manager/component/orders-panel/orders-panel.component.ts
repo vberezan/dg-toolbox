@@ -24,7 +24,7 @@ export class OrdersPanelComponent implements OnDestroy {
 
   protected allianceMembers: AllianceMember[];
   protected orders: Map<string, Observable<AllianceOrder[]>> = new Map<string, Observable<AllianceOrder[]>>();
-  protected admin: Observable<boolean>;
+  protected role: Observable<string>;
   protected controls: {
     target: string[],
     wait: number[],
@@ -46,21 +46,17 @@ export class OrdersPanelComponent implements OnDestroy {
         this.controls.wait = [];
         this.controls.instructions = [];
 
-        if (state.role === UserRole.ADMIN) {
-          this.admin = new Observable<boolean>((observer: Subscriber<boolean>): void => {
-              observer.next(true);
-              observer.complete();
-          });
+        this.role = new Observable<string>((observer: Subscriber<string>): void => {
+          observer.next(state.role);
+          observer.complete();
+        });
+
+        if (state.role === UserRole.ADMIN || state.role === UserRole.TEAM_LEADER) {
 
           this.allianceMembers.forEach((member: AllianceMember): void => {
             this.orders.set(member.name.toLowerCase(), new Observable<AllianceOrder[]>((observer: Subscriber<AllianceOrder[]>): void => {
               this.orderService.getAllOrders(member.name.toLowerCase(), this.dgAPI.gameTurn(), this.changeDetection, observer);
             }));
-          });
-        } else {
-          this.admin = new Observable<boolean>((observer: Subscriber<boolean>): void => {
-            observer.next(false);
-            observer.complete();
           });
         }
 
@@ -97,4 +93,5 @@ export class OrdersPanelComponent implements OnDestroy {
     event.target.submit();
   }
 
+  protected readonly UserRole = UserRole;
 }

@@ -1,11 +1,16 @@
-<div *ngIf="!(admin | async)" class="dgt-orders-manager-panel">
-  asdasdas
-</div>
-<div *ngIf="admin | async" class="dgt-orders-manager-panel">
-  <div class="dgt-orders-manager-member" *ngFor="let member of allianceMembers; index as idx">
+<div *ngIf="(role | async) === UserRole.USER" class="dgt-orders-manager-panel">
+  <div *ngFor="let member of allianceMembers; index as idx" class="dgt-orders-manager-member">
     <div class="player">
       <span class="name">{{member.name}}</span>
-      <div *ngIf="member.kickEta == null && member.dgId != null" class="dgt-orders-manager-kick">
+      <span *ngIf="member.note != null" class="note">[note: {{member.note}}]</span>
+    </div>
+  </div>
+</div>
+<div *ngIf="(role | async) === UserRole.TEAM_LEADER || (role | async) === UserRole.ADMIN" class="dgt-orders-manager-panel">
+  <div *ngFor="let member of allianceMembers; index as idx" class="dgt-orders-manager-member">
+    <div class="player">
+      <span class="name">{{member.name}}</span>
+      <div *ngIf="(role | async) === UserRole.ADMIN" class="dgt-orders-manager-kick">
         <form (ngSubmit)="onSubmitKickMember($event)" #f="ngForm" action="/alliances/kick/" method="post">
           <input type="hidden" name="{{member.dgId | kickMemberFormatter}}" value="Kick Member"/>
           <button type="submit">
@@ -14,8 +19,8 @@
         </form>
       </div>
       <span *ngIf="member.kickEta != null" class="kick-eta">[{{member.kickEta}}]</span>
-      <span *ngIf="member.note != null && member.dgId == null" class="note">[note: {{member.note}}]</span>
-      <div *ngIf="member.dgId != null" class="note-update">
+      <span *ngIf="member.note != null && ((role | async) === UserRole.TEAM_LEADER)" class="note">[note: {{member.note}}]</span>
+      <div *ngIf="(role | async) === UserRole.ADMIN" class="note-update">
         <span class="label">Note:</span>
         <form (ngSubmit)="onSubmitUpdateNote($event)" #f="ngForm" action="{{member.dgId | updateNoteFormatter}}" method="post">
           <input type="text" name="note" value="{{member.note}}" placeholder="Player Note">
@@ -46,7 +51,7 @@
     </div>
 
     <div *ngIf="orders.size > 0" class="dgt-orders-history">
-      <div class="dgt-orders-history-details" *ngFor="let order of (orders.get(member.name.toLowerCase()) | async)"
+      <div *ngFor="let order of (orders.get(member.name.toLowerCase()) | async)" class="dgt-orders-history-details"
            [ngClass]="{'executed' : order.executed, 'in-progress' : !order.executed}">
         <div class="target"><span class="label">Target:</span><span class="value">{{order.target}}</span></div>
         <div class="wait"><span class="label">Wait:</span><span class="value">{{order.wait}}</span></div>
