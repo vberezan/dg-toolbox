@@ -227,3 +227,8 @@ span.instructions {
   border-radius: 4px;
 }
 
+.dgt-orders-manager-panel.user .name {
+  font-size: 12px !important;
+  color: #ffffffcf !important;
+  font-weight: normal !important;
+}
