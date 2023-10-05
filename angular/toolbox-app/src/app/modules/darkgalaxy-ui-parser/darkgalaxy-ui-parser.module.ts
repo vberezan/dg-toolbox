@@ -4,7 +4,7 @@ import {PlanetScanExtractorService} from "./service/planet-scan.extractor.servic
 import {NavigationSystemPlanetsExtractorService} from "./service/navigation-system-planets.extractor.service";
 import {BrowserModule} from "@angular/platform-browser";
 import {AllianceMembersService} from "./service/alliance-members.service";
-import {DarkgalaxyUiPlaceholderComponent} from './component/darkgalaxy-ui-placeholder/darkgalaxy-ui-placeholder.component';
+import {DarkgalaxyUiParserComponent} from './component/darkgalaxy-ui-placeholder/darkgalaxy-ui-parser.component';
 
 
 @NgModule({
@@ -16,10 +16,10 @@ import {DarkgalaxyUiPlaceholderComponent} from './component/darkgalaxy-ui-placeh
     AllianceMembersService
   ],
   declarations: [
-    DarkgalaxyUiPlaceholderComponent
+    DarkgalaxyUiParserComponent
   ],
   bootstrap: [
-    DarkgalaxyUiPlaceholderComponent
+    DarkgalaxyUiParserComponent
   ]
 })
 export class DarkgalaxyUiParserModule {
