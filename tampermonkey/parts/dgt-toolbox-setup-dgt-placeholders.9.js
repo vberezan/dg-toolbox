@@ -1,3 +1,7 @@
+function setUpUiParser() {
+    document.body.prepend(document.createElement('dgt-darkgalaxy-ui-parser'));
+}
+
 function setUpNavbarReplacement() {
     if (document.getElementById('content')) {
         document.getElementById('content').prepend(document.createElement('dgt-navbar'));
