@@ -6,17 +6,21 @@ import {LocalStorageItem} from "../../../shared/model/local-storage/local-storag
 })
 export class LocalStorageService {
   private readonly instanceId: number;
+  private id: number;
 
   constructor() {
+    this.id = Math.random();
     this.instanceId = Math.random();
   }
 
   cache(key: string, value: any, @Optional() ttl: number = 0): void {
+    console.log(this.id);
     const item: LocalStorageItem = new LocalStorageItem(this.instanceId, value, ttl);
     localStorage.setItem(key, JSON.stringify(item))
   }
 
   get(key: string): any {
+    console.log(this.id);
     const itemStr: string = localStorage.getItem(key);
 
     if (!itemStr) {
@@ -25,7 +29,7 @@ export class LocalStorageService {
 
     const item: LocalStorageItem = Object.assign(LocalStorageItem, JSON.parse(itemStr));
 
-    if ((item.ttl > 0 && (Date.now() > item.expiry))) {
+    if (item.ttl > 0 && (Date.now() > item.expiry)) {
       localStorage.removeItem(key);
       return null;
     }
@@ -34,6 +38,7 @@ export class LocalStorageService {
   }
 
   remove(key: string): void {
+    console.log(this.id);
     localStorage.removeItem(key);
   }
 }
