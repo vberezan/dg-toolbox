@@ -21,7 +21,7 @@ export class LocalStorageService {
 
     const item: LocalStorageItem = Object.assign(LocalStorageItem, JSON.parse(itemStr));
 
-    if ((this.username() === item.user) && (item.ttl > 0 && (Date.now() > item.expiry))) {
+    if ((this.username() !== item.user) || (item.ttl > 0 && (Date.now() > item.expiry))) {
       localStorage.removeItem(key);
       return null;
     }
