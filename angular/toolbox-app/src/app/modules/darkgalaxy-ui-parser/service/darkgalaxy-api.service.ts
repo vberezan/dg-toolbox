@@ -35,7 +35,7 @@ export class DarkgalaxyApiService {
     let result: AllianceMember[] = this.allianceMembersExtractor.extract();
 
     if (clean) {
-      this.allianceMembersExtractor.cleanAfterExtract()
+      this.allianceMembersExtractor.cleanAfterExtract();
     }
 
     return result;
