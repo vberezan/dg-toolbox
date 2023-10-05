@@ -6,7 +6,9 @@
     </div>
   </div>
 </div>
-<span class="loader"></span>
+<div>
+  <span class="loader"></span>
+</div>
 <div *ngIf="(role | async) === UserRole.TEAM_LEADER || (role | async) === UserRole.ADMIN" class="dgt-orders-manager-panel admin">
   <div *ngFor="let member of allianceMembers; index as idx" class="dgt-orders-manager-member">
     <div class="player">
