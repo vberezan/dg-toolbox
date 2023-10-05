@@ -16,7 +16,8 @@ export class AllianceMembersService implements DataExtractor {
     if (result.length == 0 && !document.querySelector('[action="/alliances/join/"]')) {
 
       document.querySelectorAll('.allianceBox').forEach((allianceBox: any): void => {
-        if (allianceBox.querySelector('.plainHeader').childNodes[0].textContent.trim().toLowerCase() === 'member list') {
+        if (allianceBox.querySelector('.plainHeader') &&
+          allianceBox.querySelector('.plainHeader').childNodes[0].textContent.trim().toLowerCase() === 'member list') {
           allianceBox.querySelectorAll('.player').forEach((player: any): void => {
             let allianceMember: AllianceMember = new AllianceMember();
 
@@ -55,10 +56,11 @@ export class AllianceMembersService implements DataExtractor {
       document.querySelector('.dgt-orders-manager-panel.user').remove();
     }
 
-    document.querySelectorAll('.allianceBox').forEach((list: any): void => {
-      if (list.querySelector('.plainHeader').childNodes[0].textContent.trim().toLowerCase() === 'member list') {
-        list.querySelector('.plainHeader').remove();
-        list.querySelector('.playerList').remove();
+    document.querySelectorAll('.allianceBox').forEach((allianceBox: any): void => {
+      if (allianceBox.querySelector('.plainHeader') &&
+        allianceBox.querySelector('.plainHeader').childNodes[0].textContent.trim().toLowerCase() === 'member list') {
+        allianceBox.querySelector('.plainHeader').remove();
+        allianceBox.querySelector('.playerList').remove();
       }
     });
   }

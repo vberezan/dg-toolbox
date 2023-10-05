@@ -17,12 +17,14 @@ function setUpAllianceOrdersManagerPanel(windowURL) {
     if (windowURL[1] === 'alliances') {
         if (document.querySelector('.allianceBox')) {
             document.querySelectorAll('.allianceBox').forEach((allianceBox) => {
-                if (allianceBox.querySelector('.plainHeader').childNodes[0].textContent.trim().toLowerCase() === 'member list') {
+                if (allianceBox.querySelector('.plainHeader') &&
+                    allianceBox.querySelector('.plainHeader').childNodes[0].textContent.trim().toLowerCase() === 'member list') {
                     allianceBox.querySelector('.playerList').style.display = 'none';
                     allianceBox.querySelector('.plainHeader').style.display = 'none';
 
                     allianceBox.append(document.createElement('dgt-alliance-orders-manager-panel'));
-                } else if (allianceBox.querySelector('.plainHeader').childNodes[0].textContent.trim().toLowerCase() === 'alliance announcement') {
+                } else if (allianceBox.querySelector('.plainHeader') &&
+                    allianceBox.querySelector('.plainHeader').childNodes[0].textContent.trim().toLowerCase() === 'alliance announcement') {
                     allianceBox.querySelector('.plainHeader').style.display = 'none';
                 }
             });
