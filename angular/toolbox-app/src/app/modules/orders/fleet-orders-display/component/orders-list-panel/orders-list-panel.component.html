@@ -1,3 +1,6 @@
+<div class="dgt-spinner-container">
+  <span class="dgt-spinner"></span>
+</div>
 <ng-container *ngIf="active">
   <div class="dgt-fleet-order" *ngFor="let order of (orders | async)">
     <div class="target"><span class="label">Target:</span><span class="value">{{order.target}}</span></div>
@@ -10,5 +13,3 @@
     </div>
   </div>
 </ng-container>
-
-<!-- TODO replace svg with fa-icon -->
