@@ -7,10 +7,12 @@ import {AuthenticationModule} from "./app/modules/authentication/authentication.
 import {PlatformRef} from "@angular/core";
 import {AllianceOrdersManagerModule} from "./app/modules/orders/alliance-orders-manager/alliance-orders-manager.module";
 import {FleetOrdersDisplayModule} from "./app/modules/orders/fleet-orders-display/fleet-orders-display.module";
+import {DarkgalaxyUiParserModule} from "./app/modules/darkgalaxy-ui-parser/darkgalaxy-ui-parser.module";
 
 const platform: PlatformRef = platformBrowserDynamic();
 let windowURL: string[] = window.location.pathname.split(/\//g);
 
+platform.bootstrapModule(DarkgalaxyUiParserModule).catch(err => console.error(err));
 platform.bootstrapModule(AuthenticationModule).catch(err => console.error(err));
 platform.bootstrapModule(NavbarModule).catch(err => console.error(err));
 
