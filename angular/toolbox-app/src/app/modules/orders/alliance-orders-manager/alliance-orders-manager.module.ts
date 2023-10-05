@@ -14,7 +14,6 @@ import {NavigationTargetDirective} from "../../../shared/directive/navigation-ta
 import {WaitTurnsDirective} from "../../../shared/directive/wait-turns.directive";
 import {KickMemberFormatterPipe} from './pipe/kick-member-formatter.pipe';
 import { UpdateNoteFormatterPipe } from './pipe/update-note-formatter.pipe';
-import {LocalStorageService} from "../../../shared/service/local-storage.service";
 
 
 @NgModule({
@@ -42,8 +41,7 @@ import {LocalStorageService} from "../../../shared/service/local-storage.service
   ],
   providers: [
     OrderService,
-    DarkgalaxyApiService,
-    LocalStorageService
+    DarkgalaxyApiService
   ],
   bootstrap: [OrdersPanelComponent]
 })

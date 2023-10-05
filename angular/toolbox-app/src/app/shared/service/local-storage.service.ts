@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 import {LocalStorageItem} from "../model/local-storage/local-storage-item.model";
 
 @Injectable({
-  providedIn: 'root'
+  providedIn: 'platform'
 })
 export class LocalStorageService {
 
