@@ -34,9 +34,7 @@ export class LoginComponent {
   }
 
   displayLogin(): boolean {
-    console.log('displayLogin - ' + Math.random());
-    return true;
-    // return this.localStorageService.get(LocalStorageKeys.USER) == null &&
-    //   !this.authService.refreshInProgress;
+    return this.localStorageService.get(LocalStorageKeys.USER) == null &&
+      !this.authService.refreshInProgress;
   }
 }

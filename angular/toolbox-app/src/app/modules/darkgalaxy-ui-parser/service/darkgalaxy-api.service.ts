@@ -17,6 +17,8 @@ export class DarkgalaxyApiService {
   private navigationSystemPlanetsExtractor: NavigationSystemPlanetsExtractorService = inject(NavigationSystemPlanetsExtractorService);
   private allianceMembersExtractor: AllianceMembersService = inject(AllianceMembersService);
 
+  private cachedUsername: string = null;
+
   planetsSummaries(): PlanetSummary[] {
     return this.planetListExtractor.extract();
   }
@@ -44,13 +46,17 @@ export class DarkgalaxyApiService {
   }
 
   username(): string {
-    let completeName = document.querySelector('#header>#playerBox>.header>div.left:nth-child(2)').textContent.split('Welcome')[1].trim();
+    if (this.cachedUsername == null) {
+      let completeName = document.querySelector('#header>#playerBox>.header>div.left:nth-child(2)').textContent.split('Welcome')[1].trim();
 
-    if (completeName.indexOf('[') == 0 && completeName.indexOf(']') == 4) {
-      completeName = completeName.substring(5, completeName.length);
+      if (completeName.indexOf('[') == 0 && completeName.indexOf(']') == 4) {
+        completeName = completeName.substring(5, completeName.length);
+      }
+
+      this.cachedUsername = completeName.toLowerCase();
     }
 
-    return completeName.toLowerCase();
+    return this.cachedUsername;
   }
 
 }

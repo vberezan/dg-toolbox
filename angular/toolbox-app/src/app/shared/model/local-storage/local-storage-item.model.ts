@@ -1,21 +1,21 @@
 export class LocalStorageItem {
-  private _user: number;
+  private _user: string;
   private _value: string;
   private _expiry: number;
   private _ttl: number;
 
-  constructor(id: number, item: any, ttl: number) {
+  constructor(id: string, item: any, ttl: number) {
     this._user = id;
     this._value = JSON.stringify(item);
     this._ttl = ttl;
     this._expiry = Date.now() + ttl;
   }
 
-  get user(): number {
+  get user(): string {
     return this._user;
   }
 
-  set user(value: number) {
+  set user(value: string) {
     this._user = value;
   }
 
