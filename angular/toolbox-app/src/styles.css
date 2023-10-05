@@ -19,8 +19,15 @@
 }
 
 /*****/
-.dgt-spinner-container {
+.dgt-spinner-container.show {
   display: flex;
+}
+
+.dgt-spinner-container.hide {
+  display: none;
+}
+
+.dgt-spinner-container {
   position: absolute;
   width: 100%;
   background: #4c4c4c;

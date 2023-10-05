@@ -1,3 +1,6 @@
+<div class="dgt-spinner-container">
+  <span class="dgt-spinner"></span>
+</div>
 <div class="dgt-orders-manager-panel user">
   <div *ngFor="let member of allianceMembers;" class="dgt-orders-manager-member">
     <div class="player">
@@ -5,9 +8,6 @@
       <span *ngIf="member.note != null" class="note">Note: {{member.note}}</span>
     </div>
   </div>
-</div>
-<div class="dgt-spinner-container">
-  <span class="dgt-spinner"></span>
 </div>
 <div *ngIf="(role | async) === UserRole.TEAM_LEADER || (role | async) === UserRole.ADMIN" class="dgt-orders-manager-panel admin">
   <div *ngFor="let member of allianceMembers; index as idx" class="dgt-orders-manager-member">
