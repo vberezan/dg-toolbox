@@ -137,6 +137,7 @@ span.instructions {
 
 .dgt-orders-history .target {
   min-width: 135px;
+  margin-left: 2px;
 }
 
 .dgt-orders-history .wait {

@@ -66,4 +66,9 @@
 
 .dgt-fleet-order .complete {
   float: right;
+  margin-right: 2px;
+}
+
+.dgt-fleet-order .target {
+  margin-left: 2px;
 }
