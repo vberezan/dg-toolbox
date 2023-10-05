@@ -24,8 +24,11 @@ export class LoginComponent {
 
     this.displayLogin = new Observable((observer: Subscriber<boolean>): void => {
       observer.next(false);
-      observer.next(this.localStorageService.get(LocalStorageKeys.USER) == null &&
-        !this.authService.refreshInProgress);
+
+      this.authService.authState.subscribe((): void => {
+        observer.next(this.localStorageService.get(LocalStorageKeys.USER) == null &&
+          !this.authService.refreshInProgress);
+      });
     });
   }
 
