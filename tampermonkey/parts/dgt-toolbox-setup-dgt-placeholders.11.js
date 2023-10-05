@@ -22,6 +22,8 @@ function setUpAllianceOrdersManagerPanel(windowURL) {
                     list.parentElement.querySelector('.plainHeader').style.display = 'none';
 
                     list.parentElement.append(document.createElement('dgt-alliance-orders-manager-panel'));
+                } else if (list.parentElement.querySelector('.plainHeader').childNodes[0].textContent.trim().toLowerCase() === 'alliance announcement ') {
+                    list.parentElement.querySelector('.plainHeader').style.display = 'none';
                 }
             });
         }
