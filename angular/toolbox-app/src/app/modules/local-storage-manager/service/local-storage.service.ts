@@ -30,11 +30,6 @@ export class LocalStorageService {
     return JSON.parse(item.value);
   }
 
-  getAsync(key: string, changeDetection: ChangeDetectorRef, observer: Subscriber<any>): void {
-    observer.next(this.get(key));
-    changeDetection.detectChanges();
-  }
-
   remove(key: string): void {
     localStorage.removeItem(key);
   }

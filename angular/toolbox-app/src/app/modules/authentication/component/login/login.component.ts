@@ -1,4 +1,4 @@
-import {ChangeDetectorRef, Component, inject} from '@angular/core';
+import {Component, inject} from '@angular/core';
 import {AuthService} from "../../service/auth.service";
 import {Auth} from "@angular/fire/auth";
 import {Firestore} from "@angular/fire/firestore";
@@ -16,19 +16,17 @@ export class LoginComponent {
   private auth: Auth = inject(Auth);
   private firestore: Firestore = inject(Firestore);
   private localStorageService: LocalStorageService = inject(LocalStorageService);
-  private changeDetection: ChangeDetectorRef = inject(ChangeDetectorRef);
 
   protected displayLogin: Observable<boolean>;
 
   constructor() {
     this.authService.setUpFirebaseAuthSubscription(this.auth, this.firestore);
+
     this.displayLogin = new Observable((observer: Subscriber<boolean>): void => {
       observer.next(false);
       observer.next(this.localStorageService.get(LocalStorageKeys.USER) == null &&
         !this.authService.refreshInProgress);
       observer.complete();
-
-      this.changeDetection.detectChanges();
     });
   }
 

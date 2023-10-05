@@ -10,7 +10,7 @@ import {
   faSatelliteDish as fasSatelliteDish
 } from "@fortawesome/free-solid-svg-icons";
 import {BadgeService} from "../../service/badge.service";
-import {Observable} from "rxjs";
+import {Observable, Subscriber} from "rxjs";
 import {DarkgalaxyApiService} from "../../../darkgalaxy-ui-parser/service/darkgalaxy-api.service";
 import {AuthService} from "../../../authentication/service/auth.service";
 import {AuthState} from "../../../../shared/model/authentication/auth-state.model";
@@ -33,11 +33,11 @@ export class MenuComponent implements AfterViewInit, OnDestroy {
   constructor(library: FaIconLibrary) {
     library.addIcons(fasHouseChimney, fasEarthAmericas, fasSatelliteDish, fasJetFighterUp, fasChessBoard, fasFlaskVial, fasHandFist);
 
-    this.authService.authState.subscribe((state: AuthState) => {
+    this.authService.authState.subscribe((state: AuthState): void => {
       this.active = state.status;
 
       if (state.status) {
-        this.fleetOrdersNotification = new Observable<number>((observer) => {
+        this.fleetOrdersNotification = new Observable<number>((observer: Subscriber<number>): void => {
           this.badgeService.subscribeToFleetOrders(this.dgAPI.username(), observer, this.changeDetection);
         });
       }
