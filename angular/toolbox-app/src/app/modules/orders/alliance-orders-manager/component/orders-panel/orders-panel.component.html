@@ -1,5 +1,5 @@
-<div class="dgt-orders-manager-panel">
-  <div *ngFor="let member of allianceMembers;" class="dgt-orders-manager-member user">
+<div class="dgt-orders-manager-panel user">
+  <div *ngFor="let member of allianceMembers;" class="dgt-orders-manager-member">
     <div class="player">
       <span class="name">{{member.name}}</span>
       <span *ngIf="member.note != null" class="note">[note: {{member.note}}]</span>
