@@ -22,7 +22,7 @@ function setUpAllianceOrdersManagerPanel(windowURL) {
                     allianceBox.querySelector('.plainHeader').style.display = 'none';
 
                     allianceBox.append(document.createElement('dgt-alliance-orders-manager-panel'));
-                } else if (allianceBox.querySelector('.plainHeader').childNodes[0].textContent.trim().toLowerCase() === 'alliance announcement ') {
+                } else if (allianceBox.querySelector('.plainHeader').childNodes[0].textContent.trim().toLowerCase() === 'alliance announcement') {
                     allianceBox.querySelector('.plainHeader').style.display = 'none';
                 }
             });
