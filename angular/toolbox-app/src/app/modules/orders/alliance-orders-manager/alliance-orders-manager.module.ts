@@ -40,8 +40,7 @@ import { UpdateNoteFormatterPipe } from './pipe/update-note-formatter.pipe';
     UpdateNoteFormatterPipe
   ],
   providers: [
-    OrderService,
-    DarkgalaxyApiService
+    OrderService
   ],
   bootstrap: [OrdersPanelComponent]
 })

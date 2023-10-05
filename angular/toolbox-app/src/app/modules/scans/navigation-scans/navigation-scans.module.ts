@@ -31,8 +31,7 @@ import {DarkgalaxyApiService} from "../../darkgalaxy-ui-parser/service/darkgalax
   providers: [
     DecimalPipe,
     ResourceProductionFormatterPipe,
-    ScanService,
-    DarkgalaxyApiService
+    ScanService
   ],
   bootstrap: [
     ScanDataPanelComponent

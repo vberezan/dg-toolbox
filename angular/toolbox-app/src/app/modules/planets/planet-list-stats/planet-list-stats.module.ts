@@ -21,8 +21,7 @@ import {DarkgalaxyApiService} from "../../darkgalaxy-ui-parser/service/darkgalax
   ],
   providers: [
     DecimalPipe,
-    StatsPanelService,
-    DarkgalaxyApiService
+    StatsPanelService
   ],
   bootstrap: [StatsPanelComponent]
 })

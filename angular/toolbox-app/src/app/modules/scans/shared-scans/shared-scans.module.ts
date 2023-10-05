@@ -27,8 +27,7 @@ import {DarkgalaxyApiService} from "../../darkgalaxy-ui-parser/service/darkgalax
     ScanCollectorComponent
   ],
   providers: [
-    ScanService,
-    DarkgalaxyApiService
+    ScanService
   ],
   bootstrap: [ScanCollectorComponent]
 })

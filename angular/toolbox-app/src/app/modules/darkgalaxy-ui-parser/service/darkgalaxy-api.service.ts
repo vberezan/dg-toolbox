@@ -8,7 +8,7 @@ import {AllianceMembersService} from "./alliance-members.service";
 import {AllianceMember} from "../../../shared/model/orders/alliance-member.model";
 
 @Injectable({
-  providedIn: 'root'
+  providedIn: 'platform'
 })
 export class DarkgalaxyApiService {
 

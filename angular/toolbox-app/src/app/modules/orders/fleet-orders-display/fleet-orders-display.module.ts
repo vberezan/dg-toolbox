@@ -27,8 +27,7 @@ import {DarkgalaxyApiService} from "../../darkgalaxy-ui-parser/service/darkgalax
     OrdersListPanelComponent
   ],
   providers: [
-    OrderService,
-    DarkgalaxyApiService
+    OrderService
   ],
   bootstrap: [
     OrdersListPanelComponent
