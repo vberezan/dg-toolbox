@@ -7,6 +7,8 @@ import {LocalStorageItem} from "../model/local-storage/local-storage-item.model"
 export class LocalStorageService {
 
   cache(key: string, value: any, ttl?: number | 0): void {
+    console.log(key, value, ttl);
+
     const item: LocalStorageItem = new LocalStorageItem(value, ttl);
     localStorage.setItem(key, JSON.stringify(item))
   }
