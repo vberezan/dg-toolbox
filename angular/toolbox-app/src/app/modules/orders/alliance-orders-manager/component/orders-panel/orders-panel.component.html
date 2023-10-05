@@ -50,7 +50,7 @@
       </div>
     </div>
 
-    <div class="dgt-orders-history">
+    <div *ngIf="(orders.get(member.name.toLowerCase()) | async)?.length > 0" class="dgt-orders-history">
       <div *ngFor="let order of (orders.get(member.name.toLowerCase()) | async)" class="dgt-orders-history-details"
            [ngClass]="{'executed' : order.executed, 'in-progress' : !order.executed}">
         <div class="target"><span class="label">Target:</span><span class="value">{{order.target}}</span></div>
