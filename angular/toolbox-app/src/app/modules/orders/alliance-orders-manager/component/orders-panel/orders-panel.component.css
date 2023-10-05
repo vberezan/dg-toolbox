@@ -235,6 +235,7 @@ span.note {
   color: #ffffffad !important;
   font-weight: normal !important;
   width: 35% !important;
+  font-size: 0.8em !important;
 }
 
 .dgt-orders-manager-panel.user .player {
@@ -267,4 +268,5 @@ span.note {
   line-height: 16px !important;
   width: 65%;
   text-align: left;
+  font-size: 0.8em !important;
 }
