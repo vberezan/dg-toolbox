@@ -54,7 +54,7 @@ span.instructions {
   width: calc(100% - 10px);
   border-radius: 5px;
   margin-bottom: 10px;
-  padding: 5px;
+  padding: 5px 5px 10px;
 }
 
 .dgt-orders-manager-member .player {
