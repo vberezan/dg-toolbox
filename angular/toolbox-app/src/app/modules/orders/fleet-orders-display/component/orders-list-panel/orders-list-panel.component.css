@@ -25,7 +25,6 @@
 }
 
 .dgt-fleet-order button {
-  margin-right: 10px;
   padding: 0;
   border: none;
   margin-left: 10px;
@@ -49,21 +48,25 @@
 }
 
 .dgt-fleet-order span {
-  height: 40px;
+  height: 22px;
   display: inline-block;
 }
 
 .dgt-fleet-order span.label {
   padding-right: 5px;
-  color: #bfc5b7;
+  color: #dcdcdc;
   float: left;
 }
 
 .dgt-fleet-order span.value {
-  color: #bfc5b7;
+  color: #dcdcdc;
 }
 
 .dgt-fleet-order .target span.value,
 .dgt-fleet-order .wait span.value {
   padding-right: 30px;
+}
+
+.dgt-fleet-order .complete {
+  float: right;
 }

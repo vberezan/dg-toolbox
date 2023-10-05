@@ -5,6 +5,8 @@ import {AllianceOrder} from "../../../../../shared/model/orders/alliance-order.m
 import {Observable, Subscriber} from "rxjs";
 import {AuthService} from "../../../../authentication/service/auth.service";
 import {AuthState} from "../../../../../shared/model/authentication/auth-state.model";
+import {FaIconLibrary} from "@fortawesome/angular-fontawesome";
+import {faCircleCheck as farCircleCheck} from "@fortawesome/free-regular-svg-icons";
 
 @Component({
   selector: 'dgt-fleet-orders-list-panel',
@@ -20,7 +22,8 @@ export class OrdersListPanelComponent implements OnDestroy {
   public orders: Observable<AllianceOrder[]>;
   public active: boolean = false;
 
-  constructor() {
+  constructor(library: FaIconLibrary) {
+    library.addIcons(farCircleCheck);
     this.authService.authState.subscribe((state: AuthState): void => {
       this.active = state.status;
 
