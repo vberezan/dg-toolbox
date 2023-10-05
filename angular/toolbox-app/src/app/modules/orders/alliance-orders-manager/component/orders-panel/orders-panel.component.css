@@ -232,3 +232,18 @@ span.instructions {
   color: #ffffffcf !important;
   font-weight: normal !important;
 }
+
+.dgt-orders-manager-panel.user .dgt-orders-manager-member {
+  margin: 0 !important;
+  border-radius: 0 !important;
+}
+
+.dgt-orders-manager-panel.user .dgt-orders-manager-member:first-child {
+  border-top-left-radius: 5px !important;
+  border-top-right-radius: 5px !important;
+}
+
+.dgt-orders-manager-panel.user .dgt-orders-manager-member:last-child {
+  border-bottom-left-radius: 5px !important;
+  border-bottom-right-radius: 5px !important;
+}
