@@ -17,6 +17,8 @@ import {UserRole} from "../../../../../shared/model/authentication/user-role";
   styleUrls: ['./orders-panel.component.css']
 })
 export class OrdersPanelComponent implements OnDestroy {
+  protected readonly UserRole = UserRole;
+
   private orderService: OrderService = inject(OrderService);
   private dgAPI: DarkgalaxyApiService = inject(DarkgalaxyApiService);
   private authService: AuthService = inject(AuthService);
@@ -40,7 +42,7 @@ export class OrdersPanelComponent implements OnDestroy {
 
     this.authService.authState.subscribe((state: AuthState): void => {
       if (state.status && state.role) {
-        this.allianceMembers = this.dgAPI.allianceMembers(true);
+        this.allianceMembers = this.dgAPI.allianceMembers(false);
 
         this.controls.target = [];
         this.controls.wait = [];
@@ -52,7 +54,6 @@ export class OrdersPanelComponent implements OnDestroy {
         });
 
         if (state.role === UserRole.ADMIN || state.role === UserRole.TEAM_LEADER) {
-
           this.allianceMembers.forEach((member: AllianceMember): void => {
             this.orders.set(member.name.toLowerCase(), new Observable<AllianceOrder[]>((observer: Subscriber<AllianceOrder[]>): void => {
               this.orderService.getAllOrders(member.name.toLowerCase(), this.dgAPI.gameTurn(), this.changeDetection, observer);
@@ -93,5 +94,4 @@ export class OrdersPanelComponent implements OnDestroy {
     event.target.submit();
   }
 
-  protected readonly UserRole = UserRole;
 }
