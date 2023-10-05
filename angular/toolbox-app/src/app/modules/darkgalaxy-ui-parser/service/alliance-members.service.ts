@@ -13,7 +13,7 @@ export class AllianceMembersService implements DataExtractor {
   extract(): AllianceMember[] {
     let result: AllianceMember[] = this.localStorageService.get(LocalStorageKeys.ALLIANCE_MEMBERS) || [];
 
-    if (result.length > 0 && !document.querySelector('[action="/alliances/join/"]')) {
+    if (result.length == 0 && !document.querySelector('[action="/alliances/join/"]')) {
 
       document.querySelectorAll('.allianceBox > .playerList').forEach((list: any): void => {
         if (list.parentElement.querySelector('.plainHeader').childNodes[0].textContent.trim().toLowerCase() === 'member list') {
