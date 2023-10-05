@@ -6,6 +6,7 @@ import {getAuth, provideAuth} from "@angular/fire/auth";
 import {LoginComponent} from './component/login/login.component';
 import {getFirestore, provideFirestore} from "@angular/fire/firestore";
 import {initializeAppCheck, provideAppCheck, ReCaptchaV3Provider} from "@angular/fire/app-check";
+import {LocalStorageService} from "../../shared/service/local-storage.service";
 
 
 @NgModule({
@@ -20,6 +21,9 @@ import {initializeAppCheck, provideAppCheck, ReCaptchaV3Provider} from "@angular
         isTokenAutoRefreshEnabled: true
       })
     ),
+  ],
+  providers: [
+    LocalStorageService
   ],
   declarations: [
     LoginComponent
