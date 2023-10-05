@@ -5,9 +5,15 @@ import {LocalStorageItem} from "../model/local-storage/local-storage-item.model"
   providedIn: 'platform'
 })
 export class LocalStorageService {
-  private instanceId: number = Math.random();
+  private readonly instanceId: number;
+
+  constructor() {
+    this.instanceId = Math.random();
+  }
 
   cache(key: string, value: any, @Optional() ttl: number = 0): void {
+    console.log('cache: ' + this.instanceId);
+
     const item: LocalStorageItem = new LocalStorageItem(this.instanceId, value, ttl);
     localStorage.setItem(key, JSON.stringify(item))
   }
@@ -20,6 +26,8 @@ export class LocalStorageService {
     }
 
     const item: LocalStorageItem = Object.assign(LocalStorageItem, JSON.parse(itemStr));
+
+    console.log('get: ' + this.instanceId, item.id);
 
     if ((this.instanceId !== item.id) || (item.ttl > 0 && (Date.now() > item.expiry))) {
       localStorage.removeItem(key);
