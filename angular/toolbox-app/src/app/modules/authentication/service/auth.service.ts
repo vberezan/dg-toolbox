@@ -1,4 +1,4 @@
-import {EventEmitter, Injectable, OnDestroy} from '@angular/core';
+import {EventEmitter, inject, Injectable, OnDestroy} from '@angular/core';
 import {Auth, authState, signInWithEmailAndPassword, signInWithPopup, User} from "@angular/fire/auth";
 import {collection, collectionData, Firestore, limit, query, where} from "@angular/fire/firestore";
 import {GoogleAuthProvider} from "firebase/auth";
@@ -8,14 +8,16 @@ import {AuthState} from "../../../shared/model/authentication/auth-state.model";
 import {UserRole} from "../../../shared/model/authentication/user-role";
 import DocumentData = firebase.firestore.DocumentData;
 import {LocalStorageKeys} from "../../../shared/model/local-storage/local-storage-keys";
+import {LocalStorageService} from "../../../shared/service/local-storage.service";
 
 @Injectable({
   providedIn: 'platform'
 })
 export class AuthService implements OnDestroy {
+  private localStorageService: LocalStorageService = inject(LocalStorageService);
   private _authState: EventEmitter<AuthState> = new EventEmitter();
-  private authSubscription: Subscription;
   private _refreshInProgress: boolean = false;
+  private authSubscription: Subscription;
 
   ngOnDestroy(): void {
     if (this.authSubscription != null) {
@@ -45,7 +47,7 @@ export class AuthService implements OnDestroy {
             }, items[0]);
 
             if (userCheck.enabled) {
-              localStorage.setItem(LocalStorageKeys.USER, JSON.stringify(user));
+              this.localStorageService.cache(LocalStorageKeys.USER, user);
               this._authState.emit(new AuthState(true, userCheck.role));
             } else {
               this.signOut(auth, false);
@@ -55,7 +57,7 @@ export class AuthService implements OnDestroy {
           }
         });
       } else {
-        localStorage.removeItem(LocalStorageKeys.USER);
+        this.localStorageService.remove(LocalStorageKeys.USER);
         this._authState.emit(new AuthState(false, null));
       }
     });
@@ -89,7 +91,7 @@ export class AuthService implements OnDestroy {
 
   signOut(auth: Auth, refreshPage: boolean): void {
     this._authState.emit(new AuthState(true, null));
-    localStorage.removeItem(LocalStorageKeys.USER);
+    this.localStorageService.remove(LocalStorageKeys.USER);
     this._refreshInProgress = refreshPage;
 
     auth.signOut()

@@ -3,6 +3,7 @@ import {AuthService} from "../../service/auth.service";
 import {Auth} from "@angular/fire/auth";
 import {Firestore} from "@angular/fire/firestore";
 import {LocalStorageKeys} from "../../../../shared/model/local-storage/local-storage-keys";
+import {LocalStorageService} from "../../../../shared/service/local-storage.service";
 
 @Component({
   selector: 'dgt-authentication',
@@ -13,6 +14,7 @@ export class LoginComponent {
   private authService: AuthService = inject(AuthService);
   private auth: Auth = inject(Auth);
   private firestore: Firestore = inject(Firestore);
+  private localStorageService: LocalStorageService = inject(LocalStorageService);
 
 
   constructor() {
@@ -32,7 +34,7 @@ export class LoginComponent {
   }
 
   displayLogin(): boolean {
-    return localStorage.getItem(LocalStorageKeys.USER) == null &&
+    return this.localStorageService.get(LocalStorageKeys.USER) == null &&
       !this.authService.refreshInProgress;
   }
 }

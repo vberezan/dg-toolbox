@@ -11,10 +11,10 @@ export class AllianceMembersService implements DataExtractor {
   private localStorageService: LocalStorageService = inject(LocalStorageService);
 
   extract(): AllianceMember[] {
-    let local: string = this.localStorageService.getWithExpiry(LocalStorageKeys.ALLIANCE_MEMBERS);
+    const local: AllianceMember[] = this.localStorageService.get(LocalStorageKeys.ALLIANCE_MEMBERS);
 
     if (local != null) {
-      return JSON.parse(local);
+      return local;
     }
 
     let result: AllianceMember[] = [];
@@ -49,7 +49,7 @@ export class AllianceMembersService implements DataExtractor {
       });
     }
 
-    this.localStorageService.setWithExpiry(LocalStorageKeys.ALLIANCE_MEMBERS, result, 43200000);
+    this.localStorageService.cache(LocalStorageKeys.ALLIANCE_MEMBERS, result, 43200000);
 
     return result;
   }
