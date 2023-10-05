@@ -44,7 +44,7 @@ export class LocalStorageItem {
 
   toJSON() {
     return {
-      id: this.user,
+      user: this.user,
       ttl: this.ttl,
       expiry: this.expiry,
       value: this.value
