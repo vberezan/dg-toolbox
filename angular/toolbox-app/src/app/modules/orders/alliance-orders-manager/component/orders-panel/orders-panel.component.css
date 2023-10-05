@@ -270,18 +270,3 @@ span.note {
   text-align: left;
   font-size: 1em !important;
 }
-
-.allianceAnnouncementBox {
-  border: none !important;
-  border-radius: 5px;
-  margin: 0 !important;
-  padding: 0 !important;
-}
-
-.allianceAnnouncementBox .allianceAnnouncement {
-  padding: 0 !important;
-}
-
-.allianceAnnouncementBox p {
-  text-align: center;
-}
