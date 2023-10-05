@@ -4,6 +4,7 @@ import {Auth} from "@angular/fire/auth";
 import {Firestore} from "@angular/fire/firestore";
 import {LocalStorageKeys} from "../../../../shared/model/local-storage/local-storage-keys";
 import {LocalStorageService} from "../../../local-storage-manager/service/local-storage.service";
+import {Observable, Subscriber} from "rxjs";
 
 @Component({
   selector: 'dgt-authentication',
@@ -15,10 +16,16 @@ export class LoginComponent {
   private auth: Auth = inject(Auth);
   private firestore: Firestore = inject(Firestore);
   private localStorageService: LocalStorageService = inject(LocalStorageService);
-
+  protected displayLogin: Observable<boolean>;
 
   constructor() {
     this.authService.setUpFirebaseAuthSubscription(this.auth, this.firestore);
+    this.displayLogin = new Observable((observer: Subscriber<boolean>): void => {
+      observer.next(false);
+      observer.next(this.localStorageService.get(LocalStorageKeys.USER) == null &&
+        !this.authService.refreshInProgress);
+      observer.complete();
+    });
   }
 
   signInWithEmailAndPassword(email: string, password: string, refreshPage: boolean) {
@@ -31,10 +38,5 @@ export class LoginComponent {
 
   signOut(refreshPage: boolean): void {
     this.authService.signOut(this.auth, refreshPage);
-  }
-
-  displayLogin(): boolean {
-    return this.localStorageService.get(LocalStorageKeys.USER) == null &&
-      !this.authService.refreshInProgress;
   }
 }

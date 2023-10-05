@@ -1,4 +1,4 @@
-<div *ngIf="displayLogin()" class="login" id="dgt-login">
+<div *ngIf="displayLogin | async" class="login" id="dgt-login">
   <table>
     <tbody>
     <tr>
@@ -20,7 +20,7 @@
   </table>
 </div>
 
-<div *ngIf="!displayLogin()" class="logout" id="dgt-logout">
+<div *ngIf="!(displayLogin | async)" class="logout" id="dgt-logout">
   <table>
     <tbody>
     <tr>

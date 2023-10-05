@@ -1,5 +1,6 @@
-import {Injectable, Optional} from '@angular/core';
+import {ChangeDetectorRef, Injectable, Optional} from '@angular/core';
 import {LocalStorageItem} from "../../../shared/model/local-storage/local-storage-item.model";
+import {Subscriber} from "rxjs";
 
 @Injectable({
   providedIn: 'platform'
@@ -27,6 +28,11 @@ export class LocalStorageService {
     }
 
     return JSON.parse(item.value);
+  }
+
+  getAsync(key: string, changeDetection: ChangeDetectorRef, observer: Subscriber<any>): void {
+    observer.next(this.get(key));
+    changeDetection.detectChanges();
   }
 
   remove(key: string): void {
