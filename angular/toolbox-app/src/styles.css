@@ -763,7 +763,7 @@ label.queueDestroyButton:hover {
 /********/
 dgt-fleet-orders-list-panel,
 dgt-alliance-orders-manager-panel {
-  display: grid;
+  display: flex;
   position: relative;
 }
 
