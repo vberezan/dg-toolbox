@@ -12,9 +12,8 @@ import {LocalStorageManagerModule} from "./app/modules/local-storage-manager/loc
 
 const platform: PlatformRef = platformBrowserDynamic();
 let windowURL: string[] = window.location.pathname.split(/\//g);
-
-platform.bootstrapModule(DarkgalaxyUiParserModule).catch(err => console.error(err));
 platform.bootstrapModule(LocalStorageManagerModule).catch(err => console.error(err));
+platform.bootstrapModule(DarkgalaxyUiParserModule).catch(err => console.error(err));
 platform.bootstrapModule(AuthenticationModule).catch(err => console.error(err));
 platform.bootstrapModule(NavbarModule).catch(err => console.error(err));
 
