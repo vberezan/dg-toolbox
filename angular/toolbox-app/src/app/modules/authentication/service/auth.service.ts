@@ -15,6 +15,7 @@ import {LocalStorageService} from "../../../shared/service/local-storage.service
 })
 export class AuthService implements OnDestroy {
   private localStorageService: LocalStorageService = inject(LocalStorageService);
+
   private _authState: EventEmitter<AuthState> = new EventEmitter();
   private _refreshInProgress: boolean = false;
   private authSubscription: Subscription;
