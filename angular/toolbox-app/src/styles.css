@@ -22,7 +22,7 @@
 .dgt-spinner-container {
   display: flex;
   position: absolute;
-  width: 718px;
+  width: 100%;
   background: #000000ab;
   border-radius: 5px;
   height: 100%;
@@ -804,6 +804,11 @@ label.queueDestroyButton:hover {
 }
 
 /********/
+dgt-alliance-orders-manager-panel {
+  display: flex;
+  position: relative;
+}
+
 .allianceBox {
   margin-bottom: 10px !important;
 }
