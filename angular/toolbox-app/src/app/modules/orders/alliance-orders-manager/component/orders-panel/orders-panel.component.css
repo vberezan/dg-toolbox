@@ -253,6 +253,6 @@ span.instructions {
   border-bottom-right-radius: 5px !important;
 }
 
-.dgt-orders-manager-panel.user .player:last-child {
+.dgt-orders-manager-panel.user .dgt-orders-manager-member:last-child .player {
   border-bottom: none !important;
 }
