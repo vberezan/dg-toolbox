@@ -26,7 +26,6 @@ export class LoginComponent {
       observer.next(false);
       observer.next(this.localStorageService.get(LocalStorageKeys.USER) == null &&
         !this.authService.refreshInProgress);
-      observer.complete();
     });
   }
 
