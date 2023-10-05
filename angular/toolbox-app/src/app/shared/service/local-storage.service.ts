@@ -1,4 +1,4 @@
-import { Injectable } from '@angular/core';
+import {Injectable, Optional} from '@angular/core';
 import {LocalStorageItem} from "../model/local-storage/local-storage-item.model";
 
 @Injectable({
@@ -6,7 +6,7 @@ import {LocalStorageItem} from "../model/local-storage/local-storage-item.model"
 })
 export class LocalStorageService {
 
-  cache(key: string, value: any, ttl?: number | 0): void {
+  cache(key: string, value: any, @Optional() ttl: number = 0): void {
     console.log(key, value, ttl);
 
     const item: LocalStorageItem = new LocalStorageItem(value, ttl);
