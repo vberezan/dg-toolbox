@@ -227,6 +227,10 @@ span.instructions {
   border-radius: 4px;
 }
 
+span.note {
+  line-height: 20px;
+}
+
 .dgt-orders-manager-panel.user .name {
   font-size: 12px !important;
   color: #ffffffcf !important;
@@ -257,4 +261,9 @@ span.instructions {
 
 .dgt-orders-manager-panel.user .dgt-orders-manager-member:last-child .player {
   border-bottom: none !important;
+}
+
+.dgt-orders-manager-panel.user span.note {
+  line-height: 15px !important;
+  font-size: 12px !important;
 }
