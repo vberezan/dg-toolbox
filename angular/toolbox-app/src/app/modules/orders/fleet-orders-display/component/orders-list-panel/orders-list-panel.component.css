@@ -74,7 +74,6 @@
 }
 
 .dgt-spinner-container {
-  min-height: 44px;
   margin: 5px !important;
   width: calc(100% - 10px) !important;
   height: calc(100% - 10px) !important;

@@ -13,10 +13,11 @@
   background: #4c4c4c;
   border-radius: 5px;
   height: 100%;
+  min-height: 60px;
 }
 .dgt-spinner {
   width: 60px;
-  min-height: 44px;
+  height: 40px;
   position: relative;
   display: inline-block;
   --base-color: #4c4c4c; /*use your base color*/
