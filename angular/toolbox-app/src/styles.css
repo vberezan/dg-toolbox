@@ -609,6 +609,10 @@ label.queueDestroyButton {
   font-size: 18px;
   line-height: 32px;
 }
+.entry.queueItem .width25 {
+  height: 32px;
+  line-height: 32px;
+}
 
 .consList label.queueDestroyButton {
   background: none !important;
