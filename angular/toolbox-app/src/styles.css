@@ -822,12 +822,14 @@ dgt-fleet-orders-list-panel {
 
 .researchButton .researchImage img {
   border-radius: 5px;
+  width: 50px;
+  height: 50px;
 }
 
 .researchButton .infoBack {
   border-bottom-left-radius: 5px;
   border-bottom-right-radius: 5px;
-  height: 14px;
+  height: 18px;
   width: 50px;
 }
 
@@ -836,6 +838,6 @@ dgt-fleet-orders-list-panel {
 }
 
 .researchButton .infoText {
-  font-size: 10px;
-  line-height: 14px;
+  font-size: 12px;
+  line-height: 18px;
 }
