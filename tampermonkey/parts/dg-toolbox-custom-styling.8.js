@@ -92,6 +92,8 @@ function applyCustomStyling() {
         if (righNav) {
             righNav = detach(righNav);
             document.querySelector('.header.border.pageTitle').append(righNav);
+        } else {
+            document.querySelector('#navWrapper>div>div:last-child').remove();
         }
 
         if (leftNav) {
