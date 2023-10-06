@@ -54,7 +54,7 @@
     </div>
 
     <div class="dgt-orders-history">
-      <div class="dgt-spinner-container member">
+      <div *ngIf="(orders.get(member.name.toLowerCase()) | async)?.length > 0" class="dgt-spinner-container member">
         <span class="dgt-spinner"></span>
       </div>
       <div *ngFor="let order of (orders.get(member.name.toLowerCase()) | async)" class="dgt-orders-history-details"
