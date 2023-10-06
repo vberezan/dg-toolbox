@@ -38,11 +38,12 @@ export class OrdersListPanelComponent implements OnDestroy {
         });
       }
 
-      this.changeDetection.detectChanges();
       if (document.querySelector('dgt-fleet-orders-list-panel .dgt-spinner-container')) {
         document.querySelector('dgt-fleet-orders-list-panel .dgt-spinner-container').classList.add('hide');
         document.querySelector('dgt-fleet-orders-list-panel .dgt-spinner-container').classList.remove('show');
       }
+
+      this.changeDetection.detectChanges();
     });
   }
 
