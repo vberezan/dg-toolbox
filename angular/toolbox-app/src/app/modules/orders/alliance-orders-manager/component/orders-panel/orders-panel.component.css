@@ -101,6 +101,10 @@ span.instructions {
   margin-top: 5px;
 }
 
+.dgt-orders-history-details:nth-child(2) {
+  margin-top: 10px !important;
+}
+
 .dgt-orders-history-details span {
   line-height: 22px;
 }
