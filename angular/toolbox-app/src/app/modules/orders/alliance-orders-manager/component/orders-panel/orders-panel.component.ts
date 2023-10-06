@@ -42,8 +42,10 @@ export class OrdersPanelComponent implements OnDestroy {
     this.allianceMembers = this.dgAPI.allianceMembers(true);
 
     this.authService.authState.subscribe((state: AuthState): void => {
-      document.querySelector('dgt-alliance-orders-manager-panel .dgt-spinner-container').classList.add('show');
-      document.querySelector('dgt-alliance-orders-manager-panel .dgt-spinner-container').classList.remove('hide');
+      if (document.querySelector('dgt-alliance-orders-manager-panel .dgt-spinner-container.main')) {
+        document.querySelector('dgt-alliance-orders-manager-panel .dgt-spinner-container.main').classList.add('show');
+        document.querySelector('dgt-alliance-orders-manager-panel .dgt-spinner-container.main').classList.remove('hide');
+      }
 
       if (state.status) {
         this.controls.target = [];
@@ -66,8 +68,10 @@ export class OrdersPanelComponent implements OnDestroy {
         }
 
         this.changeDetection.detectChanges();
-        document.querySelector('dgt-alliance-orders-manager-panel .dgt-spinner-container').classList.add('hide');
-        document.querySelector('dgt-alliance-orders-manager-panel .dgt-spinner-container').classList.remove('show');
+        if (document.querySelector('dgt-alliance-orders-manager-panel .dgt-spinner-container.main')) {
+          document.querySelector('dgt-alliance-orders-manager-panel .dgt-spinner-container.main').classList.add('hide');
+          document.querySelector('dgt-alliance-orders-manager-panel .dgt-spinner-container.main').classList.remove('show');
+        }
       }
     });
   }

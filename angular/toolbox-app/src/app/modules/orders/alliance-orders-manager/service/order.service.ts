@@ -29,6 +29,13 @@ export class OrderService {
   }
 
   getAllOrders(user: string, turn: number, changeDetection: ChangeDetectorRef, observer: Subscriber<AllianceOrder[]>): void {
+    if (document.querySelector('dgt-alliance-orders-manager-panel .dgt-spinner-container.member')) {
+      document.querySelectorAll('dgt-alliance-orders-manager-panel .dgt-spinner-container.member').forEach((spinner: Element): void => {
+        spinner.classList.add('show');
+        spinner.classList.remove('hide');
+      });
+    }
+
     let ordersRef = collection(this.firestore, 'orders');
 
     collectionData(
@@ -45,6 +52,13 @@ export class OrderService {
 
       observer.next(orders);
       changeDetection.detectChanges();
+
+      if (document.querySelector('dgt-alliance-orders-manager-panel .dgt-spinner-container.member')) {
+        document.querySelectorAll('dgt-alliance-orders-manager-panel .dgt-spinner-container.member').forEach((spinner: Element): void => {
+          spinner.classList.add('hide');
+          spinner.classList.remove('show');
+        });
+      }
     }).catch((error): void => {
       console.log(error);
     });
