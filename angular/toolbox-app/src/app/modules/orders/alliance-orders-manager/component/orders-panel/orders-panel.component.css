@@ -99,6 +99,7 @@ span.instructions {
   border-radius: 5px;
   padding: 3px 5px;
   margin-top: 5px;
+  position: relative;
 }
 
 .dgt-orders-history-details span {

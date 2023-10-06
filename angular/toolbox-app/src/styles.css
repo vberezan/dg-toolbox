@@ -16,7 +16,7 @@
 }
 .dgt-spinner {
   width: 60px;
-  height: 40px;
+  min-height: 44px;
   position: relative;
   display: inline-block;
   --base-color: #4c4c4c; /*use your base color*/
