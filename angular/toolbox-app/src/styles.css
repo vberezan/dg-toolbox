@@ -811,3 +811,27 @@ dgt-fleet-orders-list-panel {
 .allianceAnnouncementBox p {
   text-align: center;
 }
+
+/*******************/
+.researchButton {
+  border-radius: 5px;
+}
+
+.researchButton .researchImage img {
+  border-radius: 5px;
+}
+
+.researchButton .infoBack {
+  border-bottom-left-radius: 5px;
+  border-bottom-right-radius: 5px;
+  height: 14px;
+}
+
+.researchButton .infoIcon {
+  display: none !important;
+}
+
+.researchButton .infoText {
+  font-size: 10px;
+  line-height: 14px;
+}
