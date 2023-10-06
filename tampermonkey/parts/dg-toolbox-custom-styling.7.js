@@ -93,9 +93,12 @@ function applyCustomStyling() {
             righNav = detach(righNav);
             document.querySelector('.header.border.pageTitle').append(righNav);
         }
+
         if (leftNav) {
             leftNav = detach(leftNav);
             document.querySelector('.header.border.pageTitle').append(leftNav);
+        } else {
+            document.querySelector('#navWrapper>div>div:nth-child(1)').remove();
         }
     }
 }
