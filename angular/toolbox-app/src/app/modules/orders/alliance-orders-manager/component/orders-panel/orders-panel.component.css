@@ -272,7 +272,7 @@ span.note {
   text-align: left;
   font-size: 1em !important;
 }
-.dgt-spinner-container {
+.dgt-spinner-container.member {
   position: relative;
   margin-top: 5px;
 }
