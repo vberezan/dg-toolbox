@@ -69,6 +69,12 @@ body {
   color: #fff;
 }
 
+div.error {
+  border: none !important;
+  background: #FF3B303B !important;
+  border-radius: 5px !important;
+}
+
 .notification-badge {
   background: #FF3B30;
   top: 12px;
