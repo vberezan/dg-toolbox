@@ -30,6 +30,7 @@ export class BadgeService {
       }
 
       changeDetection.detectChanges();
+      document.querySelector<HTMLElement>('.local-orders-badge').style.display = 'none';
     }).catch((error) => {
       console.log(error);
     });
