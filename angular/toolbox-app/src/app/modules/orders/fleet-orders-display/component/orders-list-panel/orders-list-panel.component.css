@@ -65,12 +65,20 @@
   padding-right: 30px;
 }
 
+.dgt-fleet-order .target {
+  min-width: 145px;
+}
+
+.dgt-fleet-order .wait {
+  min-width: 85px;
+}
+
 .dgt-fleet-order .complete {
   float: right;
   margin-right: 2px;
 }
 
-.dgt-fleet-order .target {
+.dgt-fleet-order .from {
   margin-left: 2px;
 }
 
