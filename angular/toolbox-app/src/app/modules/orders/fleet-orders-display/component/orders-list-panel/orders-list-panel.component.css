@@ -80,6 +80,7 @@
 
 .dgt-fleet-order .from {
   margin-left: 2px;
+  min-width: 150px;
 }
 
 .dgt-spinner-container {
