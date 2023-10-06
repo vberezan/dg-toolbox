@@ -1,6 +1,6 @@
 .dgt-fleet-order {
   float: left;
-  background: #774946;
+  background: #FF3B303B;
   border: none;
   width: calc(100% - 20px);
   border-radius: 5px;
@@ -41,7 +41,7 @@
 }
 
 .dgt-fleet-order button:hover fa-icon {
-  color: #e3c167 !important
+  color: #ffd46fd4 !important
 }
 
 .dgt-fleet-order span {

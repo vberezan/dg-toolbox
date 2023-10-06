@@ -767,6 +767,10 @@ dgt-alliance-orders-manager-panel {
   position: relative;
 }
 
+dgt-fleet-orders-list-panel {
+  background: rgba(75, 75, 75, 0.6) !important;
+}
+
 .allianceBox {
   margin-bottom: 10px !important;
 }
