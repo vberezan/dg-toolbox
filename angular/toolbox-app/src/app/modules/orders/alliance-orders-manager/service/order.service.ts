@@ -14,7 +14,7 @@ export class OrderService {
   private dgApi: DarkgalaxyApiService = inject(DarkgalaxyApiService);
 
   updateOrder(order: AllianceOrder): void {
-    order.from = this.dgApi.username();
+    order.from = this.dgApi.username(false);
     let ordersRef = collection(this.firestore, 'orders');
 
     addDoc(ordersRef, JSON.parse(JSON.stringify(order)))

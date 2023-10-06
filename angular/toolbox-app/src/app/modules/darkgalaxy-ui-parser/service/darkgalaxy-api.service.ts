@@ -1,4 +1,4 @@
-import {inject, Injectable} from '@angular/core';
+import {inject, Injectable, Optional} from '@angular/core';
 import {PlanetListExtractorService} from "./planet-list.extractor.service";
 import {PlanetSummary} from "../../../shared/model/planets/planet-summary.planet-list-model";
 import {PlanetScanExtractorService} from "./planet-scan.extractor.service";
@@ -45,7 +45,7 @@ export class DarkgalaxyApiService {
     return parseInt(document.querySelector('#turnNumber').textContent.trim().replace(/,/g, ''));
   }
 
-  username(): string {
+  username(@Optional() lowercase: boolean = true): string {
     if (this.cachedUsername == null) {
       let completeName = document.querySelector('#header>#playerBox>.header>div.left:nth-child(2)').textContent.split('Welcome')[1].trim();
 
@@ -53,7 +53,9 @@ export class DarkgalaxyApiService {
         completeName = completeName.substring(5, completeName.length);
       }
 
-      this.cachedUsername = completeName.toLowerCase();
+      if (lowercase) {
+        this.cachedUsername = completeName.toLowerCase();
+      }
     }
 
     return this.cachedUsername;

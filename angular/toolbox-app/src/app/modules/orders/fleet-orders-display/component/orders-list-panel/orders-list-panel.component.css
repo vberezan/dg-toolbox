@@ -59,6 +59,7 @@
   color: #dcdcdc;
 }
 
+.dgt-fleet-order .from span.value,
 .dgt-fleet-order .target span.value,
 .dgt-fleet-order .wait span.value {
   padding-right: 30px;
