@@ -32,9 +32,11 @@ export class MenuComponent implements AfterViewInit, OnDestroy {
 
   constructor(library: FaIconLibrary) {
     library.addIcons(fasHouseChimney, fasEarthAmericas, fasSatelliteDish, fasJetFighterUp, fasChessBoard, fasFlaskVial, fasHandFist);
+
     this.fleetOrdersNotification = new Observable<number>((observer: Subscriber<number>): void => {
       observer.next(1000);
       observer.complete();
+      this.active = true;
     });
     this.changeDetection.detectChanges();
 
