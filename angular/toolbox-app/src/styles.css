@@ -598,6 +598,8 @@ a.right.navigation {
 
 .entry.queueItem .name {
   font-weight: normal;
+  height: 32px;
+  line-height: 32px;
 }
 
 label.queueDownButton,
@@ -605,6 +607,7 @@ label.queueUpButton,
 label.queueDestroyButton {
   background: none !important;
   font-size: 18px;
+  line-height: 32px;
 }
 
 .consList label.queueDestroyButton {
