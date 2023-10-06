@@ -274,3 +274,7 @@ span.note {
   position: relative;
   margin-top: 5px;
 }
+
+.dgt-spinner-container.member .dgt-spinner {
+  top: 10px !important;
+}
