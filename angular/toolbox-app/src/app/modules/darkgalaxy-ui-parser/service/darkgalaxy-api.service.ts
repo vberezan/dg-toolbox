@@ -56,6 +56,8 @@ export class DarkgalaxyApiService {
       if (lowercase) {
         this.cachedUsername = completeName.toLowerCase();
       }
+
+      return completeName;
     }
 
     return this.cachedUsername;
