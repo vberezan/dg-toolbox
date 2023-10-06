@@ -815,6 +815,7 @@ dgt-fleet-orders-list-panel {
 /*******************/
 .researchButton {
   border-radius: 5px;
+  border: 1px solid #626262;
 }
 
 .researchButton .researchImage img {
