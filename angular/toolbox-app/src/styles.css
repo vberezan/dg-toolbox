@@ -1,10 +1,10 @@
 /*****/
 .dgt-spinner-container.show {
-  display: flex;
+  display: flex !important;
 }
 
 .dgt-spinner-container.hide {
-  display: none;
+  display: none !important;
 }
 
 .dgt-spinner-container {
