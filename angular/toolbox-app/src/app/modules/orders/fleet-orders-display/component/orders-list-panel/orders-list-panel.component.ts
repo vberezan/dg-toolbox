@@ -25,6 +25,9 @@ export class OrdersListPanelComponent implements OnDestroy {
   constructor(library: FaIconLibrary) {
     library.addIcons(farCircleCheck);
     this.authService.authState.subscribe((state: AuthState): void => {
+      document.querySelector('dgt-alliance-orders-manager-panel .dgt-spinner-container').classList.add('show');
+      document.querySelector('dgt-alliance-orders-manager-panel .dgt-spinner-container').classList.remove('hide');
+
       this.active = state.status;
 
       if (state.status) {
@@ -34,6 +37,8 @@ export class OrdersListPanelComponent implements OnDestroy {
       }
 
       this.changeDetection.detectChanges();
+      document.querySelector('dgt-alliance-orders-manager-panel .dgt-spinner-container').classList.add('hide');
+      document.querySelector('dgt-alliance-orders-manager-panel .dgt-spinner-container').classList.remove('show');
     });
   }
 
