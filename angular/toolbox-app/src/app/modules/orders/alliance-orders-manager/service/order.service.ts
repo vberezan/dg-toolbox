@@ -4,14 +4,17 @@ import {addDoc, collection, collectionData, deleteDoc, doc, Firestore, orderBy, 
 import firebase from "firebase/compat";
 import {Subscriber} from "rxjs";
 import DocumentData = firebase.firestore.DocumentData;
+import {DarkgalaxyApiService} from "../../../darkgalaxy-ui-parser/service/darkgalaxy-api.service";
 
 @Injectable({
   providedIn: 'root'
 })
 export class OrderService {
   private firestore: Firestore = inject(Firestore);
+  private dgApi: DarkgalaxyApiService = inject(DarkgalaxyApiService);
 
   updateOrder(order: AllianceOrder): void {
+    order.from = this.dgApi.username();
     let ordersRef = collection(this.firestore, 'orders');
 
     addDoc(ordersRef, JSON.parse(JSON.stringify(order)))

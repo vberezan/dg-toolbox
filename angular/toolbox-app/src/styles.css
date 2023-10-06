@@ -73,6 +73,7 @@ div.error {
   border: none !important;
   background: #FF3B303B !important;
   border-radius: 5px !important;
+  color: #ffffffad !important;
 }
 
 .notification-badge {

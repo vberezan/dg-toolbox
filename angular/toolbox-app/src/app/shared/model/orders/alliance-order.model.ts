@@ -6,6 +6,15 @@ export class AllianceOrder {
   private _user: string;
   private _wait: number;
   private _id: string;
+  private _from: string;
+
+  get from(): string {
+    return this._from;
+  }
+
+  set from(value: string) {
+    this._from = value;
+  }
 
   get instructions(): string {
     return this._instructions;
@@ -69,7 +78,8 @@ export class AllianceOrder {
       user: this.user,
       executed: this.executed,
       turn: this.turn,
-      target: this.target
+      target: this.target,
+      from: this.from
     }
   }
 }
