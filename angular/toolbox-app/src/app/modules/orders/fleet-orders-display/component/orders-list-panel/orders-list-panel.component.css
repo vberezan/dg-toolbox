@@ -12,7 +12,7 @@
   margin-bottom: 5px;
 }
 
-.dgt-fleet-order:first-child {
+.dgt-fleet-order:nth-child(2) {
   margin-top: 5px !important;
 }
 
@@ -74,6 +74,8 @@
 }
 
 .dgt-spinner-container {
-  min-height: 50px;
+  min-height: 44px;
   margin: 5px !important;
+  width: calc(100% - 10px) !important;
+  height: calc(100% - 10px) !important;
 }
