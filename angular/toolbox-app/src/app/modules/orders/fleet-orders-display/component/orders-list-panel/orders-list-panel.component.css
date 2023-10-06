@@ -74,5 +74,6 @@
 }
 
 .dgt-fleet-orders-list-panel .dgt-spinner-container {
-
+  min-height: 50px;
+  margin: 5px !important;
 }
