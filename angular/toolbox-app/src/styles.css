@@ -614,6 +614,10 @@ label.queueDestroyButton {
   line-height: 32px;
 }
 
+#queue .width25.icon fa-icon {
+  color: #fff !important;
+}
+
 .consList label.queueDestroyButton {
   background: none !important;
   font-size: 18px !important;
