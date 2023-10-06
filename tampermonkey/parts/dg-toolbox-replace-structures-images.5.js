@@ -52,4 +52,11 @@ function replaceStructuresImages() {
     replaceImgWithImg('/images/units/research/metal_refinery.png', 'https://i.imgur.com/DjM9Zng.png');
     replaceImgWithImg('/images/units/research/mineral_processor.png', 'https://i.imgur.com/galxyUi.png');
     replaceImgWithImg('/images/units/research/strip_mineral_extractor.png', 'https://i.imgur.com/HSWWkLb.png');
+    replaceImgWithImg('/images/units/research/food_purifier.png', 'https://i.imgur.com/fpXb47Z.png');
+    replaceImgWithImg('/images/units/research/hydroponics_dome.png', 'https://i.imgur.com/bGrQcQd.png');
+    replaceImgWithImg('/images/units/research/energy_booster.png', 'https://i.imgur.com/3wjvwgM.png');
+    replaceImgWithImg('/images/units/research/solar_station.png', 'https://i.imgur.com/vv5SVJV.png');
+    replaceImgWithImg('/images/units/research/space_tether.png', 'https://i.imgur.com/SqMiWa8.png');
+    replaceImgWithImg('/images/units/research/hyperspace_beacon.png', 'https://i.imgur.com/7yqHw2p.png');
+    replaceImgWithImg('/images/units/research/jump_gate.png', 'https://i.imgur.com/x73pdmi.png');
 }
