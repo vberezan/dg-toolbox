@@ -23,6 +23,7 @@ export class BadgeService {
       ), {idField: 'id'}
     ).forEach((items: DocumentData[]) => {
       observer.next(items.length);
+
       if (items.length > 0 ) {
         this.localStorageService.cache(LocalStorageKeys.ACTIVE_ORDERS, items.length);
       } else {
@@ -30,7 +31,9 @@ export class BadgeService {
       }
 
       changeDetection.detectChanges();
-      document.querySelector<HTMLElement>('.local-orders-badge').style.display = 'none';
+      if (document.querySelector('.local-orders-badge')) {
+        document.querySelector<HTMLElement>('.local-orders-badge').style.display = 'none';
+      }
     }).catch((error) => {
       console.log(error);
     });
