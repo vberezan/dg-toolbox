@@ -46,4 +46,10 @@ function replaceStructuresImages() {
     replaceImgWithImg('/images/units/main/structures/energy_booster.jpg', 'https://i.imgur.com/3wjvwgM.png');
     replaceImgWithImg('/images/units/main/structures/medical_centre.jpg', 'https://i.imgur.com/kje84Fs.png');
     replaceImgWithImg('/images/units/main/structures/leisure_centre.jpg', 'https://i.imgur.com/ZxUONnB.png');
+
+
+    replaceImgWithImg('/images/units/research/strip_metal_mine.png', 'https://i.imgur.com/0RkhL2R.png');
+    replaceImgWithImg('/images/units/research/metal_refinery.png', 'https://i.imgur.com/DjM9Zng.png');
+    replaceImgWithImg('/images/units/research/mineral_processor.png', 'https://i.imgur.com/galxyUi.png');
+    replaceImgWithImg('/images/units/research/strip_mineral_extractor.png', 'https://i.imgur.com/HSWWkLb.png');
 }

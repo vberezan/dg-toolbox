@@ -34,9 +34,11 @@ function loadResource(element) {
 function loadSetups(windowURL) {
     loadResource({
         tagName: 'script',
-        src: 'https://cdn.jsdelivr.net/gh/vberezan/dg-toolbox@development/tampermonkey/parts/dgt-toolbox-setup-dgt-placeholders.1.js',
+        src: 'https://cdn.jsdelivr.net/gh/vberezan/dg-toolbox@development/tampermonkey/parts/dgt-toolbox-setup-dgt-placeholders.16.js',
         rel: 'text/javascript'
     }).onload = function () {
+        setUpUiParser();
+        setUpLocalStorageManager();
         setUpNavbarReplacement();
         setUpPlanetListStatsPanel(windowURL);
         setUpSharedScansCollector(windowURL);
@@ -49,7 +51,7 @@ function loadSetups(windowURL) {
 function loadCustomStyling() {
     loadResource({
         tagName: 'script',
-        src: 'https://cdn.jsdelivr.net/gh/vberezan/dg-toolbox@development/tampermonkey/parts/dg-toolbox-custom-styling.6.js',
+        src: 'https://cdn.jsdelivr.net/gh/vberezan/dg-toolbox@development/tampermonkey/parts/dg-toolbox-custom-styling.8.js',
         rel: 'text/javascript'
     }).onload = function () {
         applyCustomStyling();
@@ -91,7 +93,7 @@ function loadCustomStyling() {
 function loadAngular() {
     let angular = [{
         tagName: 'link',
-        href: 'https://cdn.jsdelivr.net/gh/vberezan/dg-toolbox@development/angular/toolbox-app/dist/toolbox-app/styles.d865bb19c9d1b078.css',
+        href: 'https://cdn.jsdelivr.net/gh/vberezan/dg-toolbox@development/angular/toolbox-app/dist/toolbox-app/styles.7f5b4149fa5421de.css',
         rel: 'stylesheet'
     }, {
         tagName: 'script',
@@ -103,7 +105,7 @@ function loadAngular() {
         rel: 'module'
     }, {
         tagName: 'script',
-        src: 'https://cdn.jsdelivr.net/gh/vberezan/dg-toolbox@development/angular/toolbox-app/dist/toolbox-app/main.84eb068df7812c27.js',
+        src: 'https://cdn.jsdelivr.net/gh/vberezan/dg-toolbox@development/angular/toolbox-app/dist/toolbox-app/main.02e6a7bf7e8b8721.js',
         rel: 'module'
     }];
 
