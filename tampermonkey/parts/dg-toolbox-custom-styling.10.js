@@ -2,7 +2,9 @@ function detach(node) {
     return node.parentElement.removeChild(node);
 }
 function applyCustomStyling() {
-    document.querySelectorAll('#queue .researchTitle')[document.querySelectorAll('#queue .researchTitle').length - 1].style.height = '100px';
+    if (document.querySelectorAll('#queue .researchTitle')) {
+        document.querySelectorAll('#queue .researchTitle')[document.querySelectorAll('#queue .researchTitle').length - 1].style.height = '100px';
+    }
 
     document.querySelectorAll('#planetList > #planetList').forEach((planet) => {
         planet.querySelector('.planetImage img').setAttribute('width', 75);
