@@ -838,12 +838,14 @@ dgt-fleet-orders-list-panel {
   border-radius: 0 0 5px 5px;
   height: 22px;
   width: 60px;
+  top: 0 !important;
 }
 
 .researchButton .infoIcon {
   left: 4px;
   font-size: 11px;
   line-height: 22px;
+  top: 0 !important;
 }
 
 .researchButton .infoIcon fa-icon {
@@ -859,6 +861,7 @@ dgt-fleet-orders-list-panel {
   line-height: 24px;
   right: 4px;
   color: #dcdcdc;
+  top: 0 !important;
 }
 
 .researchQueued {
