@@ -38,7 +38,11 @@ export class MenuComponent implements OnDestroy {
   constructor(library: FaIconLibrary) {
     let event: string = window.location.pathname.split('/')[1];
     setUserId(this.analytics, this.dgAPI.username());
-    logEvent(this.analytics, (event.length > 0 ? '/' + event : '/home'));
+    logEvent(this.analytics, 'page_view', {
+      page_location: window.location.href,
+      page_path: window.location.pathname,
+      page_title: document.title
+    });
 
     library.addIcons(fasHouseChimney, fasEarthAmericas, fasSatelliteDish, fasJetFighterUp, fasChessBoard, fasFlaskVial, fasHandFist);
     this.localOrdersBadge = this.localStorageService.get(LocalStorageKeys.ACTIVE_ORDERS);
