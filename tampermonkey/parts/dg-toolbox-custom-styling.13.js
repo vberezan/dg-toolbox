@@ -6,6 +6,11 @@ function applyCustomStyling() {
         document.querySelectorAll('#queue .researchTitle')[document.querySelectorAll('#queue .researchTitle').length - 1].style.height = '120px';
     }
 
+    if (document.querySelector('#addQueue') &&
+        document.querySelector('#addQueue .left.padding:last-child').textContent.trim().toLocaleLowerCase().startsWith('you are currently unable to')) {
+        document.querySelector('#addQueue .left.padding:last-child').style.width = '455px';
+    }
+
     document.querySelectorAll('#planetList > #planetList').forEach((planet) => {
         planet.querySelector('.planetImage img').setAttribute('width', 75);
         planet.querySelector('.planetImage img').setAttribute('height', 75);

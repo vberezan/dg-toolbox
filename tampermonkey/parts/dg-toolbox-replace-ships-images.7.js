@@ -5,4 +5,6 @@ function replaceShipsImages() {
     replaceImgWithImg('/images/units/research/cruiser.png', 'https://i.imgur.com/lLXCtkg.png');
     replaceImgWithImg('/images/units/research/hulk.png', 'https://i.imgur.com/dGMzZRq.png');
     replaceImgWithImg('/images/units/research/battleship.png', 'https://i.imgur.com/JJDoGTb.png');
+
+    replaceImgWithImg('/images/units/main/ships/outpost_ship.gif', 'https://i.imgur.com/pUyF9RW.png');
 }
