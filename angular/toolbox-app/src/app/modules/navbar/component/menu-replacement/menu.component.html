@@ -1,24 +1,24 @@
 <div class="dgt-navbar">
   <ul class="dgt-navbar-tab-container">
-    <li [tabName]="'home'" class="dgt-navbar-tab home" dgtActiveTab>
+    <li [tabName]="'home'" class="dgt-navbar-tab home-tab" dgtActiveTab>
       <a class="home dgt-navbar-tab-link" href="/">
         <img class="icon" src="https://i.imgur.com/a6OzUZb.png" alt="Home"/>
         <span class="dgt-navbar-tab-text">home</span>
       </a>
     </li>
-    <li [tabName]="'planets'" class="dgt-navbar-tab planets" dgtActiveTab>
+    <li [tabName]="'planets'" class="dgt-navbar-tab planets-tab" dgtActiveTab>
       <a class="dgt-navbar-tab-link" href="/planets">
         <img class="icon" src="https://i.imgur.com/Biq82rs.png" alt="Planets">
         <span class="dgt-navbar-tab-text">planets</span>
       </a>
     </li>
-    <li [tabName]="'radar'" class="dgt-navbar-tab radar" dgtActiveTab>
+    <li [tabName]="'radar'" class="dgt-navbar-tab radar-tab" dgtActiveTab>
       <a class="dgt-navbar-tab-link" href="/radar">
         <img class="icon" src="https://i.imgur.com/3ic1WXh.png" alt="Radar">
         <span class="dgt-navbar-tab-text">radar</span>
       </a>
     </li>
-    <li [tabName]="'fleets'" class="dgt-navbar-tab fleets" dgtActiveTab>
+    <li [tabName]="'fleets'" class="dgt-navbar-tab fleets-tab" dgtActiveTab>
       <span *ngIf="localOrdersBadge > 0" style="z-index: 0" class="local-orders-badge notification-badge">{{localOrdersBadge}}</span>
       <span *ngIf="active && (fleetOrdersNotification | async)" style="z-index: 0" class="notification-badge">{{fleetOrdersNotification | async}}</span>
       <a class="dgt-navbar-tab-link" href="/fleets" style="position: relative; z-index: 1">
@@ -26,19 +26,19 @@
         <span class="dgt-navbar-tab-text">fleets</span>
       </a>
     </li>
-    <li [tabName]="'navigation'" class="dgt-navbar-tab navigation" dgtActiveTab>
+    <li [tabName]="'navigation'" class="dgt-navbar-tab navigation-tab" dgtActiveTab>
       <a class="dgt-navbar-tab-link" href="/navigation">
         <img class="icon" src="https://i.imgur.com/0n5rIvT.png" alt="Navigation"/>
         <span class="dgt-navbar-tab-text">navigation</span>
       </a>
     </li>
-    <li [tabName]="'research'" class="dgt-navbar-tab research" dgtActiveTab>
+    <li [tabName]="'research'" class="dgt-navbar-tab research-tab" dgtActiveTab>
       <a class="dgt-navbar-tab-link" href="/research">
         <img class="icon" src="https://i.imgur.com/nOepTmD.png" alt="Research"/>
         <span class="dgt-navbar-tab-text">research</span>
       </a>
     </li>
-    <li [tabName]="'alliances'" class="dgt-navbar-tab alliances" dgtActiveTab>
+    <li [tabName]="'alliances'" class="dgt-navbar-tab alliances-tab" dgtActiveTab>
       <a class="dgt-navbar-tab-link" href="/alliances">
         <img class="icon" src="https://i.imgur.com/kmvKRUN.png" alt="Alliances" />
         <span class="dgt-navbar-tab-text">alliances</span>
