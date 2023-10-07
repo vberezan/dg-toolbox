@@ -16,7 +16,7 @@ import {AuthService} from "../../../authentication/service/auth.service";
 import {AuthState} from "../../../../shared/model/authentication/auth-state.model";
 import {LocalStorageService} from "../../../local-storage-manager/service/local-storage.service";
 import {LocalStorageKeys} from "../../../../shared/model/local-storage/local-storage-keys";
-import {Analytics, logEvent} from "@angular/fire/analytics";
+import {Analytics, logEvent, setUserId} from "@angular/fire/analytics";
 
 @Component({
   selector: 'dgt-navbar',
@@ -37,6 +37,7 @@ export class MenuComponent implements OnDestroy {
 
   constructor(library: FaIconLibrary) {
     let event: string = window.location.pathname.split('/')[1];
+    setUserId(this.analytics, this.dgAPI.username());
     logEvent(this.analytics, (event.length > 0 ? '/' + event : '/home'));
 
     library.addIcons(fasHouseChimney, fasEarthAmericas, fasSatelliteDish, fasJetFighterUp, fasChessBoard, fasFlaskVial, fasHandFist);
