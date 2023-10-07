@@ -26,7 +26,7 @@ function loadResource(element) {
     }
 
     node.rel = element.rel;
-    document.head.appendChild(node);
+    document.body.appendChild(node);
 
     return node;
 }
@@ -123,7 +123,6 @@ function loadAngular() {
 }
 
 (function () {
-
     document.addEventListener("DOMContentLoaded", function (event) {
         document.body.style.visibility = 'hidden';
         let windowURL = window.location.pathname.split(/\//g);
@@ -156,4 +155,8 @@ function loadAngular() {
             }
         }
     });
+
+    window.unload = function() {
+        document.body.style.visibility = 'hidden';
+    };
 })();
