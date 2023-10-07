@@ -13,4 +13,8 @@ function replaceIconsWithImages() {
 
     replaceImgWithImg('/images/units/research/mineral_research.png', 'https://i.imgur.com/OTTk4eY.png');
     replaceImgWithImg('/images/units/research/metal_research.png', 'https://i.imgur.com/FPuGoOV.png');
+    replaceImgWithImg('/images/units/research/attack.png', 'https://i.imgur.com/6IFHruW.png');
+    replaceImgWithImg('/images/units/research/armour.png', 'https://i.imgur.com/fXO642I.png');
+    replaceImgWithImg('/images/units/research/planet_limit.png', 'https://i.imgur.com/vR2HYiG.png');
+    replaceImgWithImg('/images/units/research/queue.png', 'https://i.imgur.com/BnNTpbR.png');
 }
