@@ -663,6 +663,13 @@ label.queueDestroyButton:hover {
   margin-right: 4px;
 }
 
+#addQueue .green {
+  background-color: #7BBD1A3D !important;
+  margin-left: 0 !important;
+  color: #ffffffad !important;
+  padding: 5px !important;
+}
+
 #addQueue .consList .icon.width24 {
   font-size: 12px;
   line-height: 20px;
