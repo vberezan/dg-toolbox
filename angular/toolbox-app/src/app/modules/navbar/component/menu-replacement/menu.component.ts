@@ -1,14 +1,4 @@
 import {ChangeDetectorRef, Component, inject, OnDestroy} from '@angular/core';
-import {FaIconLibrary} from "@fortawesome/angular-fontawesome";
-import {
-  faChessBoard as fasChessBoard,
-  faEarthAmericas as fasEarthAmericas,
-  faFlaskVial as fasFlaskVial,
-  faHandFist as fasHandFist,
-  faHouseChimney as fasHouseChimney,
-  faJetFighterUp as fasJetFighterUp,
-  faSatelliteDish as fasSatelliteDish
-} from "@fortawesome/free-solid-svg-icons";
 import {BadgeService} from "../../service/badge.service";
 import {Observable, Subscriber} from "rxjs";
 import {DarkgalaxyApiService} from "../../../darkgalaxy-ui-parser/service/darkgalaxy-api.service";
@@ -16,7 +6,7 @@ import {AuthService} from "../../../authentication/service/auth.service";
 import {AuthState} from "../../../../shared/model/authentication/auth-state.model";
 import {LocalStorageService} from "../../../local-storage-manager/service/local-storage.service";
 import {LocalStorageKeys} from "../../../../shared/model/local-storage/local-storage-keys";
-import {Analytics, logEvent, setUserId, setUserProperties} from "@angular/fire/analytics";
+import {Analytics, logEvent} from "@angular/fire/analytics";
 
 @Component({
   selector: 'dgt-navbar',
@@ -35,12 +25,8 @@ export class MenuComponent implements OnDestroy {
   public fleetOrdersNotification: Observable<number>;
   public active: boolean;
 
-  constructor(library: FaIconLibrary) {
+  constructor() {
     let event: string = window.location.pathname.split('/')[1];
-    setUserId(this.analytics, this.dgAPI.username());
-    setUserProperties(this.analytics, {
-      user: this.dgAPI.username()
-    });
     logEvent(this.analytics, (event.length > 0 ? '/' + event : '/home'));
     logEvent(this.analytics, 'page_view', {
       page_location: window.location.href,
@@ -48,7 +34,6 @@ export class MenuComponent implements OnDestroy {
       page_title: this.dgAPI.username()
     });
 
-    library.addIcons(fasHouseChimney, fasEarthAmericas, fasSatelliteDish, fasJetFighterUp, fasChessBoard, fasFlaskVial, fasHandFist);
     this.localOrdersBadge = this.localStorageService.get(LocalStorageKeys.ACTIVE_ORDERS);
 
     this.authService.authState.subscribe((state: AuthState): void => {

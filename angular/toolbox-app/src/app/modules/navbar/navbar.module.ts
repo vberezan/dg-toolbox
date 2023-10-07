@@ -1,6 +1,5 @@
 import {NgModule} from '@angular/core';
 import {MenuComponent} from './component/menu-replacement/menu.component';
-import {FontAwesomeModule} from "@fortawesome/angular-fontawesome";
 import {BrowserModule} from "@angular/platform-browser";
 import {ActiveTabDirective} from './directive/active-tab.directive';
 import {BadgeService} from "./service/badge.service";
@@ -14,7 +13,6 @@ import {getAnalytics, provideAnalytics} from "@angular/fire/analytics";
 @NgModule({
   imports: [
     BrowserModule,
-    FontAwesomeModule,
     provideFirebaseApp(() => initializeApp(environment.firebase)),
     provideAuth(() => getAuth()),
     provideFirestore(() => getFirestore()),

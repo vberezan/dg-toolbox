@@ -35,15 +35,12 @@
   background: rgba(53, 49, 49, 1);
 }
 
-.dgt-navbar-tab fa-icon {
-  color: #eee;
-  font-size: 16px;
-  padding-right: 3px;
-  display: block;
-  width: auto;
-  padding-top: 8px;
+.dgt-navbar-tab .icon {
   float: left;
+  width: 20px;
+  padding-top: 8px;
   padding-left: 18%;
+  padding-right: 3px;
 }
 
 .dgt-navbar-tab-text {

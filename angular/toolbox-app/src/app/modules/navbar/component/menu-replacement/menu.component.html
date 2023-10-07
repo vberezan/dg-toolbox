@@ -1,20 +1,20 @@
 <div class="dgt-navbar">
   <ul class="dgt-navbar-tab-container">
     <li [tabName]="'home'" class="dgt-navbar-tab" dgtActiveTab>
-      <a class="dgt-navbar-tab-link" href="/">
-        <fa-icon [icon]="['fas','house-chimney']" [style]="{color: '#eee'}"></fa-icon>
+      <a class="home dgt-navbar-tab-link" href="/">
+        <img class="icon" src="https://i.imgur.com/a6OzUZb.png" alt="Home"/>
         <span class="dgt-navbar-tab-text">home</span>
       </a>
     </li>
     <li [tabName]="'planets'" class="dgt-navbar-tab" dgtActiveTab>
       <a class="dgt-navbar-tab-link" href="/planets">
-        <fa-icon [icon]="['fas','earth-americas']" [style]="{color: '#eee'}"></fa-icon>
+        <img class="icon" src="https://i.imgur.com/Biq82rs.png" alt="Planets">
         <span class="dgt-navbar-tab-text">planets</span>
       </a>
     </li>
     <li [tabName]="'radar'" class="dgt-navbar-tab" dgtActiveTab>
       <a class="dgt-navbar-tab-link" href="/radar">
-        <fa-icon [icon]="['fas','satellite-dish']" [style]="{color: '#eee'}"></fa-icon>
+        <img class="icon" src="https://i.imgur.com/3ic1WXh.png" alt="Radar">
         <span class="dgt-navbar-tab-text">radar</span>
       </a>
     </li>
@@ -22,25 +22,25 @@
       <span *ngIf="localOrdersBadge > 0" style="z-index: 0" class="local-orders-badge notification-badge">{{localOrdersBadge}}</span>
       <span *ngIf="active && (fleetOrdersNotification | async)" style="z-index: 0" class="notification-badge">{{fleetOrdersNotification | async}}</span>
       <a class="dgt-navbar-tab-link" href="/fleets" style="position: relative; z-index: 1">
-        <fa-icon [icon]="['fas','jet-fighter-up']" [style]="{color: '#eee'}"></fa-icon>
+        <img class="icon" src="https://i.imgur.com/5Byl54Z.png" alt="Fleets">
         <span class="dgt-navbar-tab-text">fleets</span>
       </a>
     </li>
     <li [tabName]="'navigation'" class="dgt-navbar-tab" dgtActiveTab>
       <a class="dgt-navbar-tab-link" href="/navigation">
-        <fa-icon [icon]="['fas','chess-board']" [style]="{color: '#eee'}"></fa-icon>
+        <img class="icon" src="https://i.imgur.com/0n5rIvT.png" alt="Navigation"/>
         <span class="dgt-navbar-tab-text">navigation</span>
       </a>
     </li>
     <li [tabName]="'research'" class="dgt-navbar-tab" dgtActiveTab>
       <a class="dgt-navbar-tab-link" href="/research">
-        <fa-icon [icon]="['fas','flask-vial']" [style]="{color: '#eee'}"></fa-icon>
+        <img class="icon" src="https://i.imgur.com/nOepTmD.png" alt="Research"/>
         <span class="dgt-navbar-tab-text">research</span>
       </a>
     </li>
     <li [tabName]="'alliances'" class="dgt-navbar-tab" dgtActiveTab>
       <a class="dgt-navbar-tab-link" href="/alliances">
-        <fa-icon [icon]="['fas','hand-fist']" [style]="{color: '#eee'}"></fa-icon>
+        <img class="icon" src="https://i.imgur.com/kmvKRUN.png" alt="Alliances" />
         <span class="dgt-navbar-tab-text">alliances</span>
       </a>
     </li>
