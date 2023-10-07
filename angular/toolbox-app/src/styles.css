@@ -832,10 +832,6 @@ dgt-fleet-orders-list-panel {
   width: 50px;
 }
 
-.researchButton .infoIcon {
-  display: none !important;
-}
-
 .researchButton .infoText {
   font-size: 12px;
   line-height: 24px;
