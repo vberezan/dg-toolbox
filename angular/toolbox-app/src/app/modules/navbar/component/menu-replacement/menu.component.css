@@ -43,6 +43,16 @@
   padding-right: 3px;
 }
 
+.dgt-navbar-tab .fleets .icon,
+.dgt-navbar-tab .navigation .icon {
+  padding-right: 4px !important;
+}
+
+.dgt-navbar-tab .research .icon {
+  height: 24px !important;
+  padding-top: 6px !important;
+}
+
 .dgt-navbar-tab-text {
   float: left;
   font-family: DarkGalaxy, sans-serif;
