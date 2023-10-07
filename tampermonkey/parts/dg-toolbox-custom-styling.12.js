@@ -2,7 +2,7 @@ function detach(node) {
     return node.parentElement.removeChild(node);
 }
 function applyCustomStyling() {
-    if (document.querySelectorAll('#queue .researchTitle')) {
+    if (document.querySelector('#queue .researchTitle')) {
         document.querySelectorAll('#queue .researchTitle')[document.querySelectorAll('#queue .researchTitle').length - 1].style.height = '120px';
     }
 
