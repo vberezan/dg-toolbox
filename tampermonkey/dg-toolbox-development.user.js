@@ -26,7 +26,7 @@ function loadResource(element) {
     }
 
     node.rel = element.rel;
-    document.body.appendChild(node);
+    document.head.append(node);
 
     return node;
 }
@@ -100,10 +100,6 @@ function loadCustomStyling() {
 
 function loadAngular() {
     let angular = [{
-        tagName: 'link',
-        href: 'https://cdn.jsdelivr.net/gh/vberezan/dg-toolbox@development/angular/toolbox-app/dist/toolbox-app/styles.27a403e3391fb63e.css',
-        rel: 'stylesheet'
-    }, {
         tagName: 'script',
         src: 'https://cdn.jsdelivr.net/gh/vberezan/dg-toolbox@development/angular/toolbox-app/dist/toolbox-app/runtime.7f7a1c1514cf4fd2.js',
         rel: 'module'
@@ -122,12 +118,25 @@ function loadAngular() {
     });
 }
 
+function loadGlobalAngularStyling() {
+    let angular = [{
+        tagName: 'link',
+        href: 'https://cdn.jsdelivr.net/gh/vberezan/dg-toolbox@development/angular/toolbox-app/dist/toolbox-app/styles.27a403e3391fb63e.css',
+        rel: 'stylesheet'
+    }];
+
+    angular.forEach((ang) => {
+        loadResource(ang);
+    });
+}
+
 (function () {
     document.addEventListener("DOMContentLoaded", function (event) {
-        document.body.style.visibility = 'hidden';
         let windowURL = window.location.pathname.split(/\//g);
 
         console.log("%cDarkGalaxy Toolbox - DGT", "font-size: 16px; font-weight: bold;");
+
+        loadGlobalAngularStyling();
 
         loadResource({
             tagName: 'script',
@@ -145,13 +154,13 @@ function loadAngular() {
                 loadCustomStyling();
                 setTimeout(() => {
                     document.body.style.visibility = 'visible';
-                }, 250);
+                }, 0);
 
                 console.log("%cDGT%c - enjoy", "font-size: 12px; font-weight: bold;", "font-size: 12px;");
             } else {
                 setTimeout(() => {
                     document.body.style.visibility = 'visible';
-                }, 250);
+                }, 0);
             }
         }
     });
