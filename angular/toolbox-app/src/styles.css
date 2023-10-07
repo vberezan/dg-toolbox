@@ -65,7 +65,7 @@
 
 /* Override game rules section */
 body {
-  visibility: hidden;
+  visibility: hidden !important;
   color: #fff;
 }
 
