@@ -1,4 +1,4 @@
-import {AfterViewInit, ChangeDetectorRef, Component, inject, OnDestroy, Renderer2} from '@angular/core';
+import {ChangeDetectorRef, Component, inject, OnDestroy} from '@angular/core';
 import {FaIconLibrary} from "@fortawesome/angular-fontawesome";
 import {
   faChessBoard as fasChessBoard,
@@ -22,8 +22,7 @@ import {LocalStorageKeys} from "../../../../shared/model/local-storage/local-sto
   templateUrl: './menu.component.html',
   styleUrls: ['./menu.component.css']
 })
-export class MenuComponent implements AfterViewInit, OnDestroy {
-  private renderer: Renderer2 = inject(Renderer2);
+export class MenuComponent implements OnDestroy {
   private badgeService: BadgeService = inject(BadgeService);
   private dgAPI: DarkgalaxyApiService = inject(DarkgalaxyApiService);
   private changeDetection: ChangeDetectorRef = inject(ChangeDetectorRef);
@@ -49,10 +48,6 @@ export class MenuComponent implements AfterViewInit, OnDestroy {
 
       this.changeDetection.detectChanges();
     });
-  }
-
-  ngAfterViewInit(): void {
-    this.renderer.setStyle(document.body, 'visibility', 'visible');
   }
 
   ngOnDestroy(): void {
