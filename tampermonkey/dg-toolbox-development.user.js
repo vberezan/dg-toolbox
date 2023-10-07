@@ -101,7 +101,7 @@ function loadCustomStyling() {
 function loadAngular() {
     let angular = [{
         tagName: 'link',
-        href: 'https://cdn.jsdelivr.net/gh/vberezan/dg-toolbox@development/angular/toolbox-app/dist/toolbox-app/styles.5c3b6e643106e1a6.css',
+        href: 'https://cdn.jsdelivr.net/gh/vberezan/dg-toolbox@development/angular/toolbox-app/dist/toolbox-app/styles.27a403e3391fb63e.css',
         rel: 'stylesheet'
     }, {
         tagName: 'script',
