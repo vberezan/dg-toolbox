@@ -18,6 +18,7 @@ export class OrderService {
       query(ordersRef,
         where('user', '==', user),
         where('executed', '==', false),
+        orderBy('executed', 'asc'),
         orderBy('wait', 'asc')
       ), {idField: 'id'}
     ).forEach((items: DocumentData[]) => {
