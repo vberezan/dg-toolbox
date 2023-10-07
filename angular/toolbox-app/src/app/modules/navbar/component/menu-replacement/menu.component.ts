@@ -16,6 +16,8 @@ import {AuthService} from "../../../authentication/service/auth.service";
 import {AuthState} from "../../../../shared/model/authentication/auth-state.model";
 import {LocalStorageService} from "../../../local-storage-manager/service/local-storage.service";
 import {LocalStorageKeys} from "../../../../shared/model/local-storage/local-storage-keys";
+import {Analytics, logEvent} from "@angular/fire/analytics";
+import {logCumulativeDurations} from "@angular-devkit/build-angular/src/tools/esbuild/profiling";
 
 @Component({
   selector: 'dgt-navbar',
@@ -29,11 +31,15 @@ export class MenuComponent implements OnDestroy {
   private authService: AuthService = inject(AuthService);
   private localStorageService: LocalStorageService = inject(LocalStorageService);
   protected localOrdersBadge: number = 0;
+  private analytics: Analytics = inject(Analytics);
 
   public fleetOrdersNotification: Observable<number>;
   public active: boolean;
 
   constructor(library: FaIconLibrary) {
+    let event = window.location.pathname.split('/')[1];
+    logEvent(this.analytics, (event.length > 0 ? event : 'home'));
+
     library.addIcons(fasHouseChimney, fasEarthAmericas, fasSatelliteDish, fasJetFighterUp, fasChessBoard, fasFlaskVial, fasHandFist);
     this.localOrdersBadge = this.localStorageService.get(LocalStorageKeys.ACTIVE_ORDERS);
 
@@ -48,6 +54,7 @@ export class MenuComponent implements OnDestroy {
 
       this.changeDetection.detectChanges();
     });
+
   }
 
   ngOnDestroy(): void {

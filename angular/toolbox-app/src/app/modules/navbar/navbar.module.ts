@@ -9,6 +9,7 @@ import {environment} from "../../../environments/environment";
 import {getAuth, provideAuth} from "@angular/fire/auth";
 import {getFirestore, provideFirestore} from "@angular/fire/firestore";
 import {initializeAppCheck, provideAppCheck, ReCaptchaV3Provider} from "@angular/fire/app-check";
+import {getAnalytics, provideAnalytics} from "@angular/fire/analytics";
 
 @NgModule({
   imports: [
@@ -22,7 +23,8 @@ import {initializeAppCheck, provideAppCheck, ReCaptchaV3Provider} from "@angular
         provider: new ReCaptchaV3Provider(environment.firebase.appCheck.recaptchaSiteKey),
         isTokenAutoRefreshEnabled: true
       })
-    )
+    ),
+    provideAnalytics(() => getAnalytics())
   ],
   exports: [MenuComponent],
   declarations: [
