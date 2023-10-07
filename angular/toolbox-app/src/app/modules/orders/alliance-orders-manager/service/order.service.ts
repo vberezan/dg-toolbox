@@ -44,7 +44,8 @@ export class OrderService {
     collectionData(
       query(ordersRef,
         where('user', '==', user),
-        orderBy('executed', 'asc')
+        orderBy('executed', 'asc'),
+        orderBy('wait', 'asc')
       ), {idField: 'id'}
     ).forEach((items: DocumentData[]) => {
       let orders: AllianceOrder[] = Object.assign([], items);
