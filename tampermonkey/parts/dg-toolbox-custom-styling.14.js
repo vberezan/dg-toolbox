@@ -6,7 +6,7 @@ function applyCustomStyling() {
         document.querySelectorAll('#queue .researchTitle')[document.querySelectorAll('#queue .researchTitle').length - 1].style.height = '120px';
     }
 
-    if (document.querySelector('#addQueue') &&
+    if (document.querySelector('#addQueue .left.padding:last-child') &&
         document.querySelector('#addQueue .left.padding:last-child').textContent.trim().toLocaleLowerCase().startsWith('you are currently unable to')) {
         document.querySelector('#addQueue .left.padding:last-child').style.width = '455px';
     }
