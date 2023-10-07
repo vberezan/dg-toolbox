@@ -3,7 +3,7 @@ function detach(node) {
 }
 function applyCustomStyling() {
     if (document.querySelectorAll('#queue .researchTitle')) {
-        document.querySelectorAll('#queue .researchTitle')[document.querySelectorAll('#queue .researchTitle').length - 1].style.height = '100px';
+        document.querySelectorAll('#queue .researchTitle')[document.querySelectorAll('#queue .researchTitle').length - 1].style.height = '120px';
     }
 
     document.querySelectorAll('#planetList > #planetList').forEach((planet) => {

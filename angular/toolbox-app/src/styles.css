@@ -816,20 +816,20 @@ dgt-fleet-orders-list-panel {
 .researchButton {
   border-radius: 5px;
   border: 1px solid #626262;
-  width: 50px;
-  height: 50px;
+  width: 60px;
+  height: 60px;
 }
 
 .researchButton .researchImage img {
   border-radius: 5px;
-  width: 50px;
-  height: 50px;
+  width: 60px;
+  height: 60px;
 }
 
 .researchButton .infoBack {
   border-radius: 0 0 5px 5px;
   height: 22px;
-  width: 50px;
+  width: 60px;
 }
 
 .researchButton .infoIcon {
@@ -855,4 +855,8 @@ dgt-fleet-orders-list-panel {
 
 .researchQueued {
   border-color: #7bbd1a !important;
+}
+
+#queue .researchTitle {
+  width: 105px !important;
 }
