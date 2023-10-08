@@ -169,7 +169,7 @@ a:hover {
 }
 
 #planetList .planetHeadSection .planetName {
-  line-height: 25px !important;
+  line-height: 26px !important;
 }
 
 #planetList > #planetList .locationWrapper .paddingMid {
@@ -296,7 +296,6 @@ a:hover {
 }
 
 #planetList > #planetList .resourceLine .metal fa-icon,
-#planetList > #planetList .left.resource a,
 #planetList > #planetList .coords span,
 #planetList > #planetList .resource span {
   padding-left: 2px;
