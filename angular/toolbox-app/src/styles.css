@@ -235,6 +235,7 @@ a:hover {
 
 #planetList > #planetList .planetHeadSection:last-child .right a:hover img {
   background: rgba(53,49,49,1);
+  border: 1px solid #535353 !important;
 }
 
 #planetList > #planetList .opacDarkBackground > .planetHeadSection:last-child > .opacBackground {
@@ -788,6 +789,7 @@ label.queueDestroyButton:hover {
 #playerBox .icons div:nth-child(2) a:hover img,
 #playerBox .icons div:nth-child(1) a:hover img {
   background: rgba(53,49,49,1);
+  border: 1px solid #535353 !important;
 }
 
 #playerBox .icons div:nth-child(2) img {
