@@ -224,6 +224,14 @@ a:hover {
   float: left;
 }
 
+#planetList > #planetList .planetHeadSection:last-child .right img {
+  border: 1px solid #767676 !important;
+  width: 14px !important;
+  height: 14px !important;
+  border-radius: 3px !important;
+  padding: 2px 1px !important;
+  margin-top: -5px !important;
+}
 
 #planetList > #planetList .opacDarkBackground > .planetHeadSection:last-child > .opacBackground {
   border-bottom-right-radius: 5px;
@@ -239,7 +247,7 @@ a:hover {
 
 #planetList > #planetList .planetHeadSection:nth-child(4) .right,
 #planetList > #planetList .planetHeadSection.nameRow .resource:nth-child(3) {
-  padding-right: 10px !important;
+  padding-right: 5px !important;
 }
 
 #planetList > #planetList .opacDarkBackground > .planetImage {
