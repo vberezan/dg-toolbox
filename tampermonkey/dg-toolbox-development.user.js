@@ -1,6 +1,6 @@
 // ==UserScript==
 // @name         DarkGalaxy Toolbox
-// @version      0.0.1.beta
+// @version      0.0.2.beta
 // @namespace    dg-toolbox
 // @homepage     https://github.com/vberezan/dg-toolbox
 // @supportURL   https://github.com/vberezan/dg-toolbox
@@ -34,7 +34,7 @@ function loadResource(element) {
 function loadSetups(windowURL) {
     loadResource({
         tagName: 'script',
-        src: 'https://cdn.jsdelivr.net/gh/vberezan/dg-toolbox@development/tampermonkey/parts/dgt-toolbox-setup-dgt-placeholders.16.js',
+        src: 'https://cdn.jsdelivr.net/gh/vberezan/dg-toolbox@development/tampermonkey/parts/dgt-toolbox-setup-dgt-placeholders.17.js',
         rel: 'text/javascript'
     }).onload = function () {
         setUpUiParser();
@@ -51,7 +51,7 @@ function loadSetups(windowURL) {
 function loadCustomStyling() {
     loadResource({
         tagName: 'script',
-        src: 'https://cdn.jsdelivr.net/gh/vberezan/dg-toolbox@development/tampermonkey/parts/dg-toolbox-custom-styling.13.js',
+        src: 'https://cdn.jsdelivr.net/gh/vberezan/dg-toolbox@development/tampermonkey/parts/dg-toolbox-custom-styling.14.js',
         rel: 'text/javascript'
     }).onload = function () {
         applyCustomStyling();
@@ -67,7 +67,7 @@ function loadCustomStyling() {
 
     loadResource({
         tagName: 'script',
-        src: 'https://cdn.jsdelivr.net/gh/vberezan/dg-toolbox@development/tampermonkey/parts/dg-toolbox-replace-icons-with-images.5.js',
+        src: 'https://cdn.jsdelivr.net/gh/vberezan/dg-toolbox@development/tampermonkey/parts/dg-toolbox-replace-icons-with-images.6.js',
         rel: 'text/javascript'
     }).onload = function () {
         replaceIconsWithImages();
@@ -109,7 +109,7 @@ function loadAngular() {
         rel: 'module'
     }, {
         tagName: 'script',
-        src: 'https://cdn.jsdelivr.net/gh/vberezan/dg-toolbox@development/angular/toolbox-app/dist/toolbox-app/main.b647e80e9f4c1564.js',
+        src: 'https://cdn.jsdelivr.net/gh/vberezan/dg-toolbox@development/angular/toolbox-app/dist/toolbox-app/main.640a96cc62560d1c.js',
         rel: 'module'
     }];
 
@@ -121,7 +121,7 @@ function loadAngular() {
 function loadGlobalAngularStyling() {
     let angular = [{
         tagName: 'link',
-        href: 'https://cdn.jsdelivr.net/gh/vberezan/dg-toolbox@development/angular/toolbox-app/dist/toolbox-app/styles.27a403e3391fb63e.css',
+        href: 'https://cdn.jsdelivr.net/gh/vberezan/dg-toolbox@development/angular/toolbox-app/dist/toolbox-app/styles.1fd01cc1179c6369.css',
         rel: 'stylesheet'
     }];
 
