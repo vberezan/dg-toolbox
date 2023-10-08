@@ -141,6 +141,13 @@ a:hover {
 #buttonBlock a:last-child {
   width: 174px !important;
   margin-right: 0 !important;
+
+}
+
+#planetList .coords.left {
+  border: none !important;
+  padding: 0 !important;
+  margin: 5px !important;
 }
 
 #planetList .coords img,
@@ -162,7 +169,7 @@ a:hover {
 }
 
 #planetList .planetHeadSection .planetName {
-  line-height: 24px !important;
+  line-height: 25px !important;
 }
 
 #planetList > #planetList .locationWrapper .paddingMid {
