@@ -802,6 +802,22 @@ label.queueDestroyButton:hover {
   padding: 1px 0;
 }
 
+#playerBox #mailBox {
+  background: #FF3B30 !important;
+  top: -2px !important;
+  border-radius: 100px !important;
+  padding: 2px !important;
+  color: #fff !important;
+  font-size: 9px !important;
+  line-height: 6px !important;
+  height: 8px !important;
+  display: inline-block !important;
+  width: 8px !important;
+  position: absolute !important;
+  text-align: center !important;
+  left: 14px !important;
+}
+
 #playerBox .icons a:nth-child(3) img {
   border: 1px solid #767676 !important;
   height: 18px;
