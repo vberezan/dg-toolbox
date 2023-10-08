@@ -150,12 +150,19 @@ a:hover {
   margin: 5px !important;
 }
 
-#planetList .coords img,
 #planetList .resource .left img {
   border-radius: 3px;
   border: 1px solid #626262;
   height: 15px;
   width: 15px;
+}
+
+#planetList .coords img {
+  border-radius: 3px;
+  border: 1px solid #626262;
+  height: 13px;
+  width: 13px;
+  padding: 1px;
 }
 
 #planetList .coords img {
@@ -208,10 +215,6 @@ a:hover {
 
 #planetList > #planetList .resource {
   height: 20px !important;
-}
-
-#planetList > #planetList .resource fa-icon {
-  font-size: 12px;
 }
 
 #planetList > #planetList .opacDarkBackground > .planetImage,

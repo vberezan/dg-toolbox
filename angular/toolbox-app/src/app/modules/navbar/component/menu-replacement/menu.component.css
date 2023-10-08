@@ -52,6 +52,10 @@
   padding-top: 6px !important;
 }
 
+.dgt-navbar-tab.navigation-tab .icon {
+  width: 22px !important;
+}
+
 .dgt-navbar-tab-text {
   float: left;
   font-family: DarkGalaxy, sans-serif;
