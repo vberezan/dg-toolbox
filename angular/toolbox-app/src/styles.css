@@ -780,22 +780,17 @@ label.queueDestroyButton:hover {
   padding: 1px 2px;
 }
 
-#playerBox .header fa-icon svg {
-  fill: #FFF;
+#playerBox .icons .left:nth-child(2) img {
+  border: 1px solid #767676 !important;
+  height: 20px;
+  width: 24px;
+  border-radius: 3px;
+  margin: 0;
+  padding: 1px 0;
 }
 
-#playerBox .header fa-icon {
+#playerBox .icons a {
   margin-left: 5px;
-}
-
-#playerBox .header .mail svg {
-  padding-top: 1px;
-}
-
-#playerBox .header .news,
-#playerBox .header .logout {
-  margin-left: 10px;
-  font-size: 22px;
 }
 
 #playerBox .header {
