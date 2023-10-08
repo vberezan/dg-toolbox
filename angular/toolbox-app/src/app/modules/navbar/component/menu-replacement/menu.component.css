@@ -43,12 +43,11 @@
   padding-right: 3px;
 }
 
-.dgt-navbar-tab .fleets-tab .icon,
-.dgt-navbar-tab .navigation-tab .icon {
+.dgt-navbar-tab.fleets-tab .icon {
   padding-right: 4px !important;
 }
 
-.dgt-navbar-tab .research-tab .icon {
+.dgt-navbar-tab.research-tab .icon {
   height: 24px !important;
   padding-top: 6px !important;
 }
