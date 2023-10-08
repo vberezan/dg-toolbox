@@ -229,7 +229,7 @@ a:hover {
   width: 16px !important;
   height: 14px !important;
   border-radius: 3px !important;
-  padding: 2px 1px !important;
+  padding: 1px 0 !important;
   margin-top: -5px !important;
 }
 
@@ -778,6 +778,12 @@ label.queueDestroyButton:hover {
   border-radius: 3px;
   margin: 0;
   padding: 1px 2px;
+}
+
+#playerBox .icons a:nth-child(3):hover img,
+#playerBox .icons div:nth-child(2) a:hover img,
+#playerBox .icons div:nth-child(1) a:hover img {
+  background: rgba(53,49,49,1);
 }
 
 #playerBox .icons div:nth-child(2) img {
