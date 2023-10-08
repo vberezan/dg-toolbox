@@ -14,7 +14,7 @@ function replaceIconsWithImages() {
     replaceImgWithImg('/images/icons/news_small.png', 'https://i.imgur.com/58ScC4b.png');
     replaceImgWithImg('/images/icons/news.png', 'https://i.imgur.com/58ScC4b.png');
     replaceImgWithImg('/images/icons/mail.png', 'https://i.imgur.com/QVXJuKf.png');
-
+    replaceImgWithImg('/images/icons/logout.png', 'https://i.imgur.com/WKHlnKK.png');
 
     replaceImgWithImg('/images/units/research/mineral_research.png', 'https://i.imgur.com/OTTk4eY.png');
     replaceImgWithImg('/images/units/research/metal_research.png', 'https://i.imgur.com/FPuGoOV.png');

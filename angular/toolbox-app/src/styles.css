@@ -789,6 +789,15 @@ label.queueDestroyButton:hover {
   padding: 1px 0;
 }
 
+#playerBox .icons .left:nth-child(3) img {
+  border: 1px solid #767676 !important;
+  height: 20px;
+  width: 20px;
+  border-radius: 3px;
+  margin: 0;
+  padding: 1px 2px;
+}
+
 #playerBox .icons a {
   margin-left: 5px;
 }
