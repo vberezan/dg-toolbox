@@ -262,8 +262,11 @@ span.note {
   border-bottom-left-radius: 5px !important;
   border-bottom-right-radius: 5px !important;
   padding-bottom: 5px !important;
+}
+.dgt-orders-manager-member:last-child {
   margin-bottom: 0 !important;
 }
+
 
 .dgt-orders-manager-panel.user .dgt-orders-manager-member:last-child .player {
   border-bottom: none !important;
