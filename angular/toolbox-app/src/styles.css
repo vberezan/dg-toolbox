@@ -387,6 +387,10 @@ a.right.navigation {
   color: #fff !important;
 }
 
+.dgt-navigation-scan-coords img {
+  border: none !important;
+}
+
 .dgt-navigation-scan-turn {
   display: none;
 }
