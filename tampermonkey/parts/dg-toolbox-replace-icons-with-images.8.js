@@ -10,7 +10,7 @@ function replaceIconsWithImages() {
     replaceImgWithImg('/images/units/small/ground.gif', 'https://i.imgur.com/HesibsH.png');
     replaceImgWithImg('/images/units/small/orbit.gif', 'https://i.imgur.com/KKdM7BA.png');
     replaceImgWithImg('/images/units/small/coords.gif', 'https://i.imgur.com/HcC4l22.png');
-    replaceImgWithImg('/images/units/small/news-small.png', 'https://i.imgur.com/58ScC4b.png');
+    replaceImgWithImg('/images/icons/news_small.png', 'https://i.imgur.com/58ScC4b.png');
 
 
     replaceImgWithImg('/images/units/research/mineral_research.png', 'https://i.imgur.com/OTTk4eY.png');
