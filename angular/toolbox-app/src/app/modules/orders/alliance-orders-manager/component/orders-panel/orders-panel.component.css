@@ -53,7 +53,7 @@ span.instructions {
   background: rgba(87, 87, 87, 0.72);
   width: calc(100% - 10px);
   border-radius: 5px;
-  margin-bottom: 10px;
+  margin-bottom: 5px;
   padding: 5px 5px 10px;
 }
 
@@ -262,6 +262,7 @@ span.note {
   border-bottom-left-radius: 5px !important;
   border-bottom-right-radius: 5px !important;
   padding-bottom: 5px !important;
+  margin-bottom: 0 !important;
 }
 
 .dgt-orders-manager-panel.user .dgt-orders-manager-member:last-child .player {

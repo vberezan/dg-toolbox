@@ -847,7 +847,11 @@ dgt-fleet-orders-list-panel {
 }
 
 .allianceBox {
-  margin-bottom: 10px !important;
+  margin-bottom: 5px !important;
+}
+
+.allianceBox:last-child {
+  margin-bottom: 0 !important;
 }
 
 .allianceAnnouncementBox {
@@ -862,6 +866,7 @@ dgt-fleet-orders-list-panel {
   line-height: 30px;
   background: rgba(87,87,87,.72);
   color: #ffffffad;
+  font-weight: bold;
 }
 
 .allianceAnnouncementBox p {
