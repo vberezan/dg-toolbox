@@ -233,6 +233,10 @@ a:hover {
   margin-top: -5px !important;
 }
 
+#planetList > #planetList .planetHeadSection:last-child .right a:hover img {
+  background: rgba(53,49,49,1);
+}
+
 #planetList > #planetList .opacDarkBackground > .planetHeadSection:last-child > .opacBackground {
   border-bottom-right-radius: 5px;
 }
