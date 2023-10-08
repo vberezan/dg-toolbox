@@ -771,7 +771,7 @@ label.queueDestroyButton:hover {
   margin-top: 5px !important;
 }
 
-#playerBox .icons a:nth-child(1) img {
+#playerBox .icons div:nth-child(1) img {
   border: 1px solid #767676 !important;
   height: 20px;
   width: 20px;
@@ -780,7 +780,7 @@ label.queueDestroyButton:hover {
   padding: 1px 2px;
 }
 
-#playerBox .icons a:nth-child(2) img {
+#playerBox .icons div:nth-child(2) img {
   border: 1px solid #767676 !important;
   height: 20px;
   width: 24px;
@@ -791,11 +791,12 @@ label.queueDestroyButton:hover {
 
 #playerBox .icons a:nth-child(3) img {
   border: 1px solid #767676 !important;
-  height: 20px;
+  height: 18px;
   width: 20px;
   border-radius: 3px;
   margin: 0;
-  padding: 1px 2px;
+  padding: 2px !important;
+  object-fit: contain;
 }
 
 #playerBox .icons a {
