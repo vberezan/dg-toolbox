@@ -723,11 +723,22 @@ label.queueDestroyButton:hover {
 
 #addQueue .prequeue fa-icon > svg,
 #addQueue .queueDestroyButton.rotation45.researchQueue svg {
-  fill: #7BBD1A !important;
+  fill: #7BBD1A;
 }
 
 #addQueue .prequeue fa-icon {
-  color: #7BBD1A !important;
+  color: #7BBD1A;
+}
+
+#addQueue .prequeue fa-icon > svg:hover,
+#addQueue .queueDestroyButton.rotation45.researchQueue svg:hover {
+  background: #7bbd1a2b;
+  fill: #7bbd1a !important;
+}
+
+#addQueue .prequeue fa-icon {
+  background: #7bbd1a2b;
+  color: #7bbd1a !important;
 }
 
 #addQueue .tableHeader fa-icon {
