@@ -759,6 +759,20 @@ label.queueDestroyButton:hover {
   border-bottom: 1px solid #787878 !important;
 }
 
+#planetHeader .planetHeadSection .coords {
+  border: none !important;
+  padding: 0 !important;
+  margin: 5px !important;
+  margin-bottom: 0 !important;
+}
+
+#planetHeader .planetHeadSection .coords img {
+  border-radius: 3px;
+  height: 13px;
+  width: 13px;
+  padding: 1px;
+}
+
 .qtip-content .resourceName span,
 #completed .upkeepList span,
 #planetHeader .planetHeadSection .coords,
