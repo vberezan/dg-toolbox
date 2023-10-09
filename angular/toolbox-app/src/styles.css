@@ -724,10 +724,12 @@ label.queueDestroyButton:hover {
 #addQueue .prequeue fa-icon > svg,
 #addQueue .queueDestroyButton.rotation45.researchQueue svg {
   fill: #7BBD1A;
+  border-radius: 100px;
 }
 
 #addQueue .prequeue fa-icon {
   color: #7BBD1A;
+  border-radius: 100px;
 }
 
 #addQueue .prequeue fa-icon > svg:hover,
