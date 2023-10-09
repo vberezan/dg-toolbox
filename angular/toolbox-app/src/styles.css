@@ -672,6 +672,7 @@ label.queueDownButton svg,
 label.queueUpButton svg,
 label.queueDestroyButton svg {
   fill: #a2a2a2;
+  border-radius: 100px;
 }
 
 label.queueDownButton svg:hover,
