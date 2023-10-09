@@ -662,10 +662,22 @@ label.queueDestroyButton {
   transform: rotate(45deg);
 }
 
+label.queueDownButton,
+label.queueUpButton,
+label.queueDestroyButton {
+  border-radius: 100px;
+}
+
 label.queueDownButton svg,
 label.queueUpButton svg,
 label.queueDestroyButton svg {
   fill: #a2a2a2;
+}
+
+label.queueDownButton svg:hover,
+label.queueUpButton svg:hover,
+label.queueDestroyButton svg:hover {
+  background: rgba(53,49,49,1);
 }
 
 label.queueDownButton:hover,
