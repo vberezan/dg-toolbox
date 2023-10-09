@@ -762,15 +762,13 @@ label.queueDestroyButton:hover {
 #planetHeader .planetHeadSection .coords {
   border: none !important;
   padding: 0 !important;
-  margin: 5px !important;
-  margin-bottom: 0 !important;
+  margin: 5px 5px 0 0 !important;
 }
 
 #planetHeader .planetHeadSection .coords img {
-  border-radius: 3px;
-  height: 13px;
-  width: 13px;
-  padding: 1px;
+  height: 13px !important;
+  width: 13px !important;
+  padding: 1px !important;
 }
 
 .qtip-content .resourceName span,
