@@ -153,14 +153,14 @@ a:hover {
 
 #planetList .resource .left img {
   border-radius: 3px;
-  border: 1px solid #626262;
+  border: 1px solid #767676;
   height: 15px;
   width: 15px;
 }
 
 #planetList .coords img {
   border-radius: 3px;
-  border: 1px solid #626262;
+  border: 1px solid #767676;
   height: 13px;
   width: 13px;
   padding: 1px;
@@ -379,7 +379,7 @@ a.right.navigation {
 
 .navigation .row .planets table img {
   border-radius: 2px;
-  border: 1px solid #626262;
+  border: 1px solid #767676;
   height: 12px;
   width: 12px;
 }
@@ -601,7 +601,7 @@ a.right.navigation {
   margin-left: 5px;
   padding: 0 !important;
   border-radius: 5px;
-  border: 1px solid #626262;
+  border: 1px solid #767676;
 }
 
 .structureImage {
@@ -615,7 +615,7 @@ a.right.navigation {
   margin-left: 5px;
   padding: 0 !important;
   border-radius: 5px;
-  border: 1px solid #626262;
+  border: 1px solid #767676;
 }
 
 #completed .upkeepList span,
@@ -775,13 +775,13 @@ label.queueDestroyButton:hover {
 #planetHeader .resourceName img,
 #planetHeader .resource img {
   border-radius: 3px;
-  border: 1px solid #626262;
+  border: 1px solid #767676;
   height: 15px;
   width: 15px;
 }
 
 #planetHeader .planetHeadSection .coords img {
-  border: 1px solid #535353 !important;
+  border: 1px solid #767676 !important;
 }
 
 #completed .upkeepList span {
@@ -919,7 +919,7 @@ dgt-fleet-orders-list-panel {
 /*******************/
 .researchButton {
   border-radius: 5px;
-  border: 1px solid #626262;
+  border: 1px solid #767676;
   width: 60px;
   height: 60px;
 }
