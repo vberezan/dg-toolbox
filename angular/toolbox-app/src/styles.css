@@ -764,6 +764,9 @@ label.queueDestroyButton:hover {
   padding: 0 !important;
   margin: 5px 5px 0 0 !important;
 }
+#planetHeader .planetHeadSection .coords>div {
+  margin-right: 5px !important;
+}
 
 #planetHeader .planetHeadSection .coords img {
   height: 13px !important;
