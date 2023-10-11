@@ -22,4 +22,15 @@ function replaceIconsWithImages() {
     replaceImgWithImg('/images/units/research/armour.png', 'https://i.imgur.com/fXO642I.png');
     replaceImgWithImg('/images/units/research/planet_limit.png', 'https://i.imgur.com/vR2HYiG.png');
     replaceImgWithImg('/images/units/research/queue.png', 'https://i.imgur.com/BnNTpbR.png');
+
+    replaceImgWithImgByQuery('a>img[src="/images/buttons/construction.png"]', 'https://i.imgur.com/1Ph3T54.png');
+    replaceImgWithImg('/images/buttons/production.png', 'https://i.imgur.com/wjKU2tU.png');
+    replaceImgWithImgByQuery('div#training>img[src="/images/buttons/training.png"]', 'https://i.imgur.com/adkgAMo.png');
+    replaceImgWithImgByQuery('a#training>img[src="/images/buttons/training.png"]', 'https://i.imgur.com/wAv07G9.png');
+    replaceImgWithImgByQuery('div#converter>img[src="/images/buttons/converter.png"]', 'https://i.imgur.com/vAPOsV9.png');
+    replaceImgWithImgByQuery('a#converter>img[src="/images/buttons/converter.png"]', 'https://i.imgur.com/hytbrU9.png');
+    replaceImgWithImgByQuery('div#comms>img[src="/images/buttons/comms.png"]', 'https://i.imgur.com/ZeghkIw.png');
+    replaceImgWithImgByQuery('a#comms>img[src="/images/buttons/comms.png"]', 'https://i.imgur.com/GFbCtz9.png');
+    replaceImgWithImgByQuery('div>img[src="/images/buttons/construction.png"]', 'https://i.imgur.com/5iLvLxv.png');
+    replaceImgWithImgByQuery('div>img[src="/images/buttons/construct.png"]', 'https://i.imgur.com/5iLvLxv.png');
 }
