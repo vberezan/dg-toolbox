@@ -133,6 +133,16 @@ a:hover {
   width: 552px !important;
 }
 
+#contentBox #available .header>img {
+  float: left;
+  margin-right: 6px;
+  border: 2px solid #eee;
+  border-radius: 100px;
+  padding: 3px;
+  width: 19px;
+  height: 19px;
+}
+
 #buttonBlock div,
 #buttonBlock a {
   margin-right: 5px !important;
@@ -143,6 +153,17 @@ a:hover {
   width: 174px !important;
   margin-right: 0 !important;
 
+}
+
+#buttonBlock a>img,
+#buttonBlock div>img {
+  float: left;
+  margin-right: 6px;
+  border: 2px solid #eee;
+  border-radius: 100px;
+  padding: 3px;
+  width: 19px;
+  height: 19px;
 }
 
 #planetList .coords.left {
@@ -645,6 +666,20 @@ label.queueDestroyButton {
   fill: #fff !important;
 }
 
+#queue .researchTitle {
+  width: 105px !important;
+}
+
+#queue .header>img {
+  float: left;
+  margin-right: 6px;
+  border: 2px solid #eee;
+  border-radius: 100px;
+  padding: 3px;
+  width: 19px;
+  height: 19px;
+}
+
 .consList label.queueDestroyButton {
   background: none !important;
   font-size: 18px !important;
@@ -812,6 +847,16 @@ label.queueDestroyButton:hover {
   line-height: 20px !important;
 }
 
+#completed .header>img {
+  float: left;
+  margin-right: 6px;
+  border: 2px solid #eee;
+  border-radius: 100px;
+  padding: 3px;
+  width: 19px;
+  height: 19px;
+}
+
 /*******/
 
 #playerBox {
@@ -977,8 +1022,4 @@ dgt-fleet-orders-list-panel {
 
 .researchQueued {
   border-color: #7bbd1a !important;
-}
-
-#queue .researchTitle {
-  width: 105px !important;
 }
