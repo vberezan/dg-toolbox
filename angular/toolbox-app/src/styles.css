@@ -141,11 +141,18 @@ a:hover {
   padding: 3px;
   width: 19px;
   height: 19px;
+  margin-top: 2px !important;
 }
 
 #buttonBlock div,
 #buttonBlock a {
   margin-right: 5px !important;
+}
+
+#buttonBlock #converter img,
+#buttonBlock #comms img,
+#buttonBlock #training img {
+  border: 2px solid #5f5f5f !important;
 }
 
 #buttonBlock #comms,
@@ -678,6 +685,7 @@ label.queueDestroyButton {
   padding: 3px;
   width: 19px;
   height: 19px;
+  margin-top: 2px !important;
 }
 
 .consList label.queueDestroyButton {
@@ -855,6 +863,7 @@ label.queueDestroyButton:hover {
   padding: 3px;
   width: 19px;
   height: 19px;
+  margin-top: 2px !important;
 }
 
 /*******/
