@@ -740,6 +740,11 @@ label.queueDestroyButton {
   margin-top: 2px !important;
 }
 
+#queue form .tableHeader {
+  min-height: 26px !important;
+  border-bottom: 1px solid #787878 !important;
+}
+
 #queue form .padding {
   font-style: italic;
   color: #ffd46fd4 !important;
