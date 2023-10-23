@@ -137,6 +137,10 @@ a:hover {
   width: 944px !important;
 }
 
+#contentBox {
+  border-top-color: #5e5e5e !important;
+}
+
 #contentBox #available {
   width: 552px !important;
   border-radius: 5px;

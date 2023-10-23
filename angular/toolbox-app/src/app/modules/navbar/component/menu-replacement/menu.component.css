@@ -18,11 +18,13 @@
   flex: auto;
   background: rgba(75, 75, 75, 1);
   text-align: center;
+  border-right: 1px solid #5e5e5e;
 }
 
 .dgt-navbar-tab:first-child,
 .dgt-navbar-tab:first-child .dgt-navbar-tab-link {
   border-top-left-radius: 5px;
+  border-right: none !important;
 }
 
 .dgt-navbar-tab:last-child,
