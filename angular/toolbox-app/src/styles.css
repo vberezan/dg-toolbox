@@ -181,8 +181,7 @@ a:hover {
 }
 
 #buttonBlock #comms {
-  width: 157px;
-  margin-right: 0px;
+  width: 157px !important;
   border-right: none !important;
 }
 
