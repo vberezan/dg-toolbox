@@ -158,6 +158,20 @@ a:hover {
   margin-top: 2px !important;
 }
 
+#buttonBlock {
+  border: 1px solid #545454;
+  border-left: none !important;
+  border-bottom-right-radius: 5px;
+}
+
+#buttonBlock div,
+#buttonBlock a {
+  margin-right: 0 !important;
+  border-top: none !important;
+  border-left: none !important;
+  border-bottom: none !important;
+}
+
 #buttonBlock #converter img,
 #buttonBlock #comms img,
 #buttonBlock #training img {
