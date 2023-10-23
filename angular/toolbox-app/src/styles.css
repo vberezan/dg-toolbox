@@ -74,11 +74,6 @@
 body {
   visibility: hidden;
   color: #fff;
-  background-image: url('https://i.imgur.com/tZLl4Tz.jpg') !important;
-  background-color: #000;
-  background-repeat: no-repeat;
-  background-position: center;
-  background-size: 100% auto;
 }
 
 .bigBlue {
