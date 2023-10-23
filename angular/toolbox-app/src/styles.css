@@ -70,8 +70,7 @@ body {
 }
 
 .header {
-  background: rgb(75, 75, 75) !important;
-  background-image: none !important;
+  background: rgb(75, 75, 75) none !important;
 }
 
 div.error {
@@ -133,6 +132,10 @@ a:hover {
   width: 552px !important;
 }
 
+#contentBox #available .header {
+  padding: 5px;
+}
+
 #contentBox #available .header>img {
   float: left;
   margin-right: 6px;
@@ -147,6 +150,7 @@ a:hover {
 #buttonBlock div,
 #buttonBlock a {
   margin-right: 5px !important;
+  border-radius: 5px;
 }
 
 #buttonBlock #converter img,
@@ -697,6 +701,10 @@ label.queueDestroyButton {
   width: 105px !important;
 }
 
+#queue .header {
+  padding: 5px 5px 6px 5px !important;
+}
+
 #queue .header>img {
   float: left;
   margin-right: 6px;
@@ -706,6 +714,11 @@ label.queueDestroyButton {
   width: 19px;
   height: 19px;
   margin-top: 2px !important;
+}
+
+#queue form .padding {
+  font-style: italic;
+  color: #ffd46fd4 !important;
 }
 
 .consList label.queueDestroyButton {
@@ -884,6 +897,10 @@ label.queueDestroyButton:hover {
   width: 19px;
   height: 19px;
   margin-top: 2px !important;
+}
+
+#completed .header {
+  padding: 5px !important;
 }
 
 /*******/
