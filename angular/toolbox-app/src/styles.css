@@ -868,6 +868,12 @@ label.queueDestroyButton:hover {
   border-bottom: 1px solid #787878 !important;
 }
 
+#planetHeader {
+  border-radius: 5px;
+  border: none;
+  padding: 0;
+}
+
 #planetHeader .planetHeadSection .coords {
   border: none !important;
   padding: 0 !important;
@@ -906,6 +912,15 @@ label.queueDestroyButton:hover {
 
 #planetHeader .planetHeadSection .coords img {
   border: 1px solid #767676 !important;
+}
+
+#planetHeader #planetImage img {
+  height: 178px;
+  border: 1px solid #545454;
+  width: 178px;
+  border-top-left-radius: 5px;
+  border-bottom-left-radius: 5px;
+  border-right: none !important;
 }
 
 #completed .upkeepList span {
