@@ -112,4 +112,9 @@ function applyCustomStyling() {
             document.querySelector('#navWrapper>div>div:nth-child(1)').remove();
         }
     }
+
+    if (document.querySelector('#buttonBlock')) {
+        document.querySelector('#buttonBlock a:first-child span').textContent = 'Structures';
+        document.querySelector('#buttonBlock #converter span').textContent = 'Energy Converter';
+    }
 }

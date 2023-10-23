@@ -172,6 +172,10 @@ a:hover {
   border-bottom: none !important;
 }
 
+#buttonBlock a {
+  padding: 7px !important;
+}
+
 #buttonBlock #converter img,
 #buttonBlock #comms img,
 #buttonBlock #training img {
