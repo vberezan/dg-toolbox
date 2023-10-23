@@ -67,6 +67,7 @@
 body {
   visibility: hidden;
   color: #fff;
+  background-image: url('https://i.imgur.com/tZLl4Tz.jpg') !important;
 }
 
 .header {
@@ -130,6 +131,8 @@ a:hover {
 
 #contentBox #available {
   width: 552px !important;
+  border-radius: 5px;
+  border: 1px solid #545454;
 }
 
 #contentBox #available .header {
@@ -719,6 +722,10 @@ label.queueDestroyButton {
 #queue form .padding {
   font-style: italic;
   color: #ffd46fd4 !important;
+}
+
+#queue form .width25.icon {
+  line-height: 21px !important;
 }
 
 .consList label.queueDestroyButton {
