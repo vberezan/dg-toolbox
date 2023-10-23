@@ -198,10 +198,11 @@ a:hover {
   padding: 7px !important;
 }
 
-#buttonBlock #converter img,
-#buttonBlock #comms img,
-#buttonBlock #training img {
+#buttonBlock div#converter img,
+#buttonBlock div#comms img,
+#buttonBlock div#training img {
   border: 2px solid #5f5f5f !important;
+  background: rgba(74, 73, 73, 0.1) !important;
 }
 
 #buttonBlock a>img,
