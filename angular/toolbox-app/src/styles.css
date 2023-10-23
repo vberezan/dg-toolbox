@@ -73,7 +73,12 @@
 /* Override game rules section */
 body {
   visibility: hidden;
-  color: #ffff11;
+  color: #fff;
+  background-image: url('https://i.imgur.com/tZLl4Tz.jpg') !important;
+  background-color: #000;
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: 100% auto;
 }
 
 .bigBlue {
@@ -82,7 +87,6 @@ body {
 
 .header {
   background: rgb(75, 75, 75) none !important;
-  padding-left: 0 !important;
 }
 
 div.error {
@@ -1002,6 +1006,10 @@ label.queueDestroyButton:hover {
 #playerBox {
   border-radius: 5px;
   margin-top: 5px !important;
+}
+
+#playerBox .header {
+  padding-left: 0 !important;
 }
 
 #playerBox .icons div:nth-child(1) img {
