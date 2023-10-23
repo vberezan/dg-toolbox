@@ -117,4 +117,11 @@ function applyCustomStyling() {
         document.querySelector('#buttonBlock a:first-child span').textContent = 'Structures';
         document.querySelector('#buttonBlock #converter span').textContent = 'Energy Converter';
     }
+
+    if(document.querySelector('#header')) {
+        let credits = document.createElement('div');
+        credits.id = 'dgt-credits';
+        credits.innerHTML = '<span>Theme revamped by DGT</span>';
+        document.querySelector('#header').append(credits);
+    }
 }

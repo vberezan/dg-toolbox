@@ -62,6 +62,13 @@
 }
 
 /******/
+#dgt-credits {
+  position: absolute;
+  right: 10px;
+  top: 106px;
+  color: #909090;
+  font-size: 11px;
+}
 
 /* Override game rules section */
 body {
