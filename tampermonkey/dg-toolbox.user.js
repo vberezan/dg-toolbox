@@ -1,6 +1,6 @@
 // ==UserScript==
 // @name         DarkGalaxy Toolbox
-// @version      0.0.3.beta
+// @version      0.0.5.beta
 // @namespace    dg-toolbox
 // @homepage     https://github.com/vberezan/dg-toolbox
 // @supportURL   https://github.com/vberezan/dg-toolbox
@@ -51,7 +51,7 @@ function loadSetups(windowURL) {
 function loadCustomStyling() {
     loadResource({
         tagName: 'script',
-        src: 'https://cdn.jsdelivr.net/gh/vberezan/dg-toolbox/tampermonkey/parts/dg-toolbox-custom-styling.14.js',
+        src: 'https://cdn.jsdelivr.net/gh/vberezan/dg-toolbox/tampermonkey/parts/dg-toolbox-custom-styling.16.js',
         rel: 'text/javascript'
     }).onload = function () {
         applyCustomStyling();
@@ -109,7 +109,7 @@ function loadAngular() {
         rel: 'module'
     }, {
         tagName: 'script',
-        src: 'https://cdn.jsdelivr.net/gh/vberezan/dg-toolbox/angular/toolbox-app/dist/toolbox-app/main.3684da40820df7a0.js',
+        src: 'https://cdn.jsdelivr.net/gh/vberezan/dg-toolbox/angular/toolbox-app/dist/toolbox-app/main.c820d1dfdabf4061.js',
         rel: 'module'
     }];
 
@@ -121,7 +121,7 @@ function loadAngular() {
 function loadGlobalAngularStyling() {
     let angular = [{
         tagName: 'link',
-        href: 'https://cdn.jsdelivr.net/gh/vberezan/dg-toolbox/angular/toolbox-app/dist/toolbox-app/styles.318ab0d9d8372400.css',
+        href: 'https://cdn.jsdelivr.net/gh/vberezan/dg-toolbox/angular/toolbox-app/dist/toolbox-app/styles.91d813cf2f50c36c.css',
         rel: 'stylesheet'
     }];
 
