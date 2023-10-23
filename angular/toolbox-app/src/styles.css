@@ -215,24 +215,8 @@ a:hover {
   height: 19px;
 }
 
-#buttonBlock a>img:first-child {
-  margin-left: 12px !important;
-}
-
-#buttonBlock #shipyard>img {
-  margin-left: 5px !important;
-}
-
-#buttonBlock #training>img {
-  margin-left: 7px !important;
-}
-
-#buttonBlock #converter>img {
-  margin-left: 5px !important;
-}
-
-#buttonBlock #comms>img {
-  margin-left: 10px !important;
+#buttonBlock img {
+  margin-left: 0 !important;
 }
 
 #planetList .coords.left {
