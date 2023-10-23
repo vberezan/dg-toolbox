@@ -880,8 +880,13 @@ label.queueDestroyButton:hover {
 
 #planetHeader .planetHeadSection .padding {
   border-left: none !important;
+  border-bottom: none !important;
   border-top-right-radius: 5px;
   padding-left: 5px;
+}
+
+#planetHeader .planetHeadSection:nth-child(3) .padding {
+  border-top-right-radius: 0;
 }
 
 #planetHeader .planetHeadSection .coords {
