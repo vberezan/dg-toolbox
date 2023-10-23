@@ -164,6 +164,28 @@ a:hover {
   border-bottom-right-radius: 5px;
 }
 
+#buttonBlock a:first-child {
+  width: 126px !important;
+}
+
+#buttonBlock #shipyard {
+  width: 112px !important;
+}
+
+#buttonBlock #training {
+  width: 110px !important;
+}
+
+#buttonBlock #converter {
+  width: 175px !important;
+}
+
+#buttonBlock #comms {
+  width: 172px;
+  margin-right: 0px;
+  border-right: none !important;
+}
+
 #buttonBlock div,
 #buttonBlock a {
   margin-right: 0 !important;
@@ -180,13 +202,6 @@ a:hover {
 #buttonBlock #comms img,
 #buttonBlock #training img {
   border: 2px solid #5f5f5f !important;
-}
-
-#buttonBlock #comms,
-#buttonBlock a:last-child {
-  width: 174px !important;
-  margin-right: 0 !important;
-
 }
 
 #buttonBlock a>img,
