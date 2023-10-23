@@ -177,11 +177,11 @@ a:hover {
 }
 
 #buttonBlock #converter {
-  width: 157px !important;
+  width: 175px !important;
 }
 
 #buttonBlock #comms {
-  width: 172px;
+  width: 157px;
   margin-right: 0px;
   border-right: none !important;
 }
