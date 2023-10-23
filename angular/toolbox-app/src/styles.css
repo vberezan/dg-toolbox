@@ -879,6 +879,7 @@ label.queueDestroyButton:hover {
   border-radius: 5px;
   border: none;
   padding: 0;
+  min-height: 180px !important;
 }
 
 #planetHeader .planetHeadSection {
@@ -894,6 +895,7 @@ label.queueDestroyButton:hover {
 
 #planetHeader .planetHeadSection:nth-child(3) .padding {
   border-top-right-radius: 0;
+  padding-left: 7px !important;
 }
 
 #planetHeader .planetHeadSection .coords {
