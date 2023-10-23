@@ -74,6 +74,10 @@ body {
   background-size: 100% auto;
 }
 
+.bigBlue {
+  display: none !important;
+}
+
 .header {
   background: rgb(75, 75, 75) none !important;
 }
@@ -677,6 +681,12 @@ a.right.navigation {
   border: 1px solid #767676;
 }
 
+
+#completed {
+  border-bottom-left-radius: 5px;
+  border-bottom-right-radius: 5px;
+}
+
 #completed .upkeepList span,
 #completed .upkeepList fa-icon {
   font-size: 1em;
@@ -698,6 +708,13 @@ label.queueDestroyButton {
 .entry.queueItem .width25 {
   height: 32px;
   line-height: 32px;
+}
+
+#queue {
+  margin-bottom: 0 !important;
+  border-top-left-radius: 5px;
+  border-top-right-radius: 5px;
+  border-bottom: none !important;
 }
 
 #queue .width25.icon fa-icon svg {
