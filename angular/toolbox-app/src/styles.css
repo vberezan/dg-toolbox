@@ -1177,7 +1177,12 @@ dgt-fleet-orders-list-panel {
 
 #welcome p {
   margin: 0 !important;
-  padding: 5px !important;
+  padding: 5px 10px !important;
+}
+
+#general-info ul,
+#known-issues ul {
+  padding: 10px 10px 10px 30px;
 }
 
 #welcome,
