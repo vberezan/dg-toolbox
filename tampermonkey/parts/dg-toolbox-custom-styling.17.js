@@ -124,4 +124,34 @@ function applyCustomStyling() {
         credits.innerHTML = '<span>Theme revamped by DGT</span>';
         document.querySelector('#header').append(credits);
     }
+
+    //// -- changelog
+    let windowURL = window.location.pathname.split(/\//g);
+    if (windowURL.length === 2 && windowURL[1].trim().length === 0) {
+        let changelog = document.createElement('div');
+        changelog.id = 'dgt-changelog';
+
+        changelog.innerHTML =
+            '<div id="dgt-to-implement-features">' +
+                '<ul>' +
+                    '<li>compress images to speed up loading</li>' +
+                    '<li>revamp fleet page</li>' +
+                    '<li>copy planets/plant stats to clipboard</li>' +
+                    '<li>NAP visibility in Navigation and Radar</li>' +
+                    '<li>Combined Radars - see if this would be inside DG rules</li>' +
+                '</ul>' +
+            '</div>'
+            + '<div id="dgt-implemented-features">' +
+                '<ul>' +
+                    '<li>Revamp various game sections</li>' +
+                    '<li>Revamp game main menu</li>' +
+                    '<li>Replaces old icons/images with new ones</li>' +
+                    '<li>Display overall planet stats</li>' +
+                    '<li>Cloud Scans - retain the last scan of any planet and display the crucial info in Navigation - this is a private feature that require a DGT account</li>' +
+                    '<li>Alliance Orders - ability for designated users to send live orders to other players - this is a private feature that require a DGT account</li>' +
+                '</ul>' +
+            '</div>';
+
+        document.querySelector('#contentBox .leftContent').prepend(changelog);
+    }
 }
