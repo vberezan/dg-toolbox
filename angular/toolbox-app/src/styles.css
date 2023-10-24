@@ -1196,7 +1196,7 @@ dgt-fleet-orders-list-panel {
 #known-issues,
 #dgt-changelog {
   margin-bottom: 20px;
-  border: 1px solid #7a7a7a;
+  border: 1px solid #5e5e5e;
   border-radius: 5px;
   background: rgba(75,75,75,1);
 }
@@ -1208,7 +1208,7 @@ dgt-fleet-orders-list-panel {
   margin-top: 0;
   font-size: 18px;
   font-weight: bold;
-  border-bottom: 1px solid #7a7a7a;
+  border-bottom: 1px solid #5e5e5e;
   margin-bottom: 6px;
   padding: 5px;
 }
@@ -1223,9 +1223,17 @@ dgt-fleet-orders-list-panel {
   color: #7bbd1a !important;
 }
 
+#home-stats {
+  width: 220px !important;
+}
+
+#news-list {
+  margin-right: 230px !important;
+}
+
 #home-stats > div {
   border-radius: 5px;
-  border: 1px solid #7a7a7a;
+  border: 1px solid #5e5e5e;
 }
 
 #home-stats > div .padding {
@@ -1234,11 +1242,12 @@ dgt-fleet-orders-list-panel {
   margin-top: 0;
   font-size: 18px;
   font-weight: 700;
-  border-bottom: 1px solid #7a7a7a;
+  border-bottom: 1px solid #5e5e5e;
   padding: 5px;
   background: rgba(75,75,75,1);
 }
 
+#home-stats > div .noPadding,
 #home-stats > div .content {
   background: rgba(75,75,75,1);
   border-bottom-left-radius: 5px;
