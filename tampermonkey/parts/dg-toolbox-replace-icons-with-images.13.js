@@ -24,7 +24,8 @@ function replaceIconsWithImages() {
     replaceImgWithImg('/images/units/research/queue.png', 'https://i.imgur.com/BnNTpbR.png');
 
     replaceImgWithImgByQuery('a>img[src="/images/buttons/construction.png"]', 'https://i.imgur.com/1Ph3T54.png');
-    replaceImgWithImg('/images/buttons/production.png', 'https://i.imgur.com/wjKU2tU.png');
+    replaceImgWithImgByQuery('a>img[src="/images/buttons/production.png"]', 'https://i.imgur.com/LiZFpvY.png');
+    replaceImgWithImgByQuery('div>img[src="/images/buttons/production.png"]', 'https://i.imgur.com/Es3futz.png');
     replaceImgWithImgByQuery('div#training>img[src="/images/buttons/training.png"]', 'https://i.imgur.com/adkgAMo.png');
     replaceImgWithImgByQuery('a#training>img[src="/images/buttons/training.png"]', 'https://i.imgur.com/wAv07G9.png');
     replaceImgWithImgByQuery('div#converter>img[src="/images/buttons/converter.png"]', 'https://i.imgur.com/vAPOsV9.png');
