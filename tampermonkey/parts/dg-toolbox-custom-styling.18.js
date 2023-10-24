@@ -132,23 +132,25 @@ function applyCustomStyling() {
         changelog.id = 'dgt-changelog';
 
         changelog.innerHTML =
+            '<h2>DGT Changelog</h2>' +
             '<div id="dgt-to-implement-features">' +
+                '<div><span>Future changes:</span></div>' +
                 '<ul>' +
-                    '<li>compress images to speed up loading</li>' +
-                    '<li>revamp fleet page</li>' +
-                    '<li>copy planets/plant stats to clipboard</li>' +
+                    '<li>Compress images to speed up loading</li>' +
+                    '<li>Revamp fleet page</li>' +
+                    '<li>Copy planets/plant stats to clipboard</li>' +
                     '<li>NAP visibility in Navigation and Radar</li>' +
                     '<li>Combined Radars - see if this would be inside DG rules</li>' +
                 '</ul>' +
             '</div>'
             + '<div id="dgt-implemented-features">' +
+                '<div><span>Implemented:</span></div>' +
                 '<ul>' +
-                    '<li>Revamp various game sections</li>' +
-                    '<li>Revamp game main menu</li>' +
+                    '<li>Revamp various game UI: main menu, planets page, building page, fleets page, research page, alliances page, player box</li>' +
                     '<li>Replaces old icons/images with new ones</li>' +
                     '<li>Display overall planet stats</li>' +
-                    '<li>Cloud Scans - retain the last scan of any planet and display the crucial info in Navigation - this is a private feature that require a DGT account</li>' +
-                    '<li>Alliance Orders - ability for designated users to send live orders to other players - this is a private feature that require a DGT account</li>' +
+                    '<li>Cloud Scans - retain the last scan of any planet and display the crucial info in Navigation screen - this is a private feature that works only with a DGT account</li>' +
+                    '<li>Alliance Orders - ability for designated users to send live orders to other players - this is a private feature that works only with a DGT account</li>' +
                 '</ul>' +
             '</div>';
 
