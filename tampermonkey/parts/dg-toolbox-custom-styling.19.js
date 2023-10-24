@@ -154,6 +154,12 @@ function applyCustomStyling() {
                 '</ul>' +
             '</div>';
 
+        let generalInfo = document.createElement('div');
+        generalInfo.id = 'general-info';
+        generalInfo.prepend(detach(document.querySelector('#contentBox .leftContent>h2').nextElementSibling));
+        generalInfo.prepend(detach(document.querySelector('#contentBox .leftContent>h2')));
+
+        document.querySelector('#contentBox .leftContent').prepend(generalInfo);
         document.querySelector('#contentBox .leftContent').prepend(changelog);
     }
 }
