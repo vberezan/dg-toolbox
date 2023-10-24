@@ -1218,12 +1218,12 @@ dgt-fleet-orders-list-panel {
 }
 
 #dgt-to-implement-features {
-  padding: 10px;
+  padding: 10px 10px 5px 10px;
   color: #ff8484 !important;
 }
 
 #dgt-implemented-features {
-  padding: 10px;
+  padding: 5px 10px 10px 10px;
   color: #7bbd1a !important;
 }
 

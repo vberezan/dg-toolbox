@@ -135,7 +135,7 @@ function applyCustomStyling() {
         changelog.id = 'dgt-changelog';
 
         changelog.innerHTML =
-            '<h2>DGT Changelog <span style="font-style: italic; font-size: 13px !important;">•v0.0.5.beta</span></h2>' +
+            '<h2>DGT Changelog <span style="font-style: italic; font-size: 13px !important;">v0.0.5.beta</span></h2>' +
             '<div id="dgt-to-implement-features">' +
                 '<div><span>Future changes:</span></div>' +
                 '<ul>' +
