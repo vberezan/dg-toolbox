@@ -1185,8 +1185,9 @@ dgt-fleet-orders-list-panel {
   padding: 10px 10px 10px 30px;
 }
 
-#general-info ul li:first-child {
-  color: #ff8484 !important;
+#known-issues ul li,
+#general-info ul li {
+  color: #fff !important;
   font-size: 13px !important;
 }
 
