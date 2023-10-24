@@ -164,7 +164,17 @@ function applyCustomStyling() {
         knownIssues.prepend(detach(document.querySelector('#contentBox .leftContent>h2').nextElementSibling));
         knownIssues.prepend(detach(document.querySelector('#contentBox .leftContent>h2')));
 
+        document.querySelector('#contentBox br').remove();
+        let welcome = document.createElement('div');
+        welcome.id = 'welcome';
+        welcome.append(detach(document.querySelector('#contentBox .leftContent>.plainHeader')));
+        while (document.querySelector('#contentBox .leftContent>p')) {
+            welcome.append(detach(document.querySelector('#contentBox .leftContent>p')));
+        }
+
+        document.querySelector('#contentBox .leftContent').prepend(knownIssues);
         document.querySelector('#contentBox .leftContent').prepend(generalInfo);
+        document.querySelector('#contentBox .leftContent').prepend(welcome);
         document.querySelector('#contentBox .leftContent').prepend(changelog);
     }
 }
