@@ -171,6 +171,8 @@ function applyCustomStyling() {
         while (document.querySelector('#contentBox .leftContent>p')) {
             if (document.querySelector('#contentBox .leftContent>p').innerHTML.trim().length > 0) {
                 welcome.append(detach(document.querySelector('#contentBox .leftContent>p')));
+            } else {
+                document.querySelector('#contentBox .leftContent>p').remove();
             }
         }
 
