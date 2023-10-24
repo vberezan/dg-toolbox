@@ -1175,6 +1175,14 @@ dgt-fleet-orders-list-panel {
 
 /****/
 
+#welcome p {
+  margin: 0 !important;
+  padding: 5px !important;
+}
+
+#welcome,
+#general-info,
+#known-issues,
 #dgt-changelog {
   margin-bottom: 20px;
   border: 1px solid #7a7a7a;
@@ -1182,6 +1190,9 @@ dgt-fleet-orders-list-panel {
   background: rgba(75,75,75,1);
 }
 
+#known-issues h2,
+#general-info h2,
+#welcome .plainHeader,
 #dgt-changelog h2 {
   margin-top: 0;
   font-size: 18px;
