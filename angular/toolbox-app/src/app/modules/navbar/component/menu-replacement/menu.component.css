@@ -16,25 +16,24 @@
 .dgt-navbar-tab {
   float: left;
   flex: auto;
-  background: rgba(75, 75, 75, 1);
+  background: #5c5c5c;
   text-align: center;
-  border-right: 1px solid #5e5e5e;
 }
 
 .dgt-navbar-tab:first-child,
 .dgt-navbar-tab:first-child .dgt-navbar-tab-link {
-  border-top-left-radius: 5px;
+  border-top-left-radius: 4px;
   border-right: none !important;
 }
 
 .dgt-navbar-tab:last-child,
 .dgt-navbar-tab:last-child .dgt-navbar-tab-link {
-  border-top-right-radius: 5px;
+  border-top-right-radius: 4px;
 }
 
 .dgt-navbar-tab.active,
 .dgt-navbar-tab:hover {
-  background: rgba(53, 49, 49, 1);
+  background: #484848;
 }
 
 .dgt-navbar-tab .icon {

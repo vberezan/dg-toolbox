@@ -76,6 +76,10 @@ body {
   color: #fff;
 }
 
+.pageTitle {
+  padding-left: 10px !important;
+}
+
 .bigBlue {
   display: none !important;
 }
