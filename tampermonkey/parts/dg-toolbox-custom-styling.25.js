@@ -128,6 +128,8 @@ function applyCustomStyling() {
     //// -- changelog
     let windowURL = window.location.pathname.split(/\//g);
     if (windowURL.length === 2 && windowURL[1].trim().length === 0) {
+        document.querySelector('#contentBox .rightContent').id = 'home-stats';
+
         let changelog = document.createElement('div');
         changelog.id = 'dgt-changelog';
 
