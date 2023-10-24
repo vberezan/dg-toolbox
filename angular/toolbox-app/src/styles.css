@@ -1222,3 +1222,25 @@ dgt-fleet-orders-list-panel {
   padding: 10px;
   color: #7bbd1a !important;
 }
+
+#home-stats > div {
+  border-radius: 5px;
+  border: 1px solid #7a7a7a;
+}
+
+#home-stats > div .padding {
+  border-top-left-radius: 5px;
+  border-top-right-radius: 5px;
+  margin-top: 0;
+  font-size: 18px;
+  font-weight: 700;
+  border-bottom: 1px solid #7a7a7a;
+  padding: 5px;
+  background: rgba(75,75,75,1);
+}
+
+#home-stats > div .content {
+  background: rgba(75,75,75,1);
+  border-bottom-left-radius: 5px;
+  border-bottom-right-radius: 5px;
+}
