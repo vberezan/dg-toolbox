@@ -159,6 +159,11 @@ function applyCustomStyling() {
         generalInfo.prepend(detach(document.querySelector('#contentBox .leftContent>h2').nextElementSibling));
         generalInfo.prepend(detach(document.querySelector('#contentBox .leftContent>h2')));
 
+        let knownIssues = document.createElement('div');
+        knownIssues.id = 'known-issues';
+        knownIssues.prepend(detach(document.querySelector('#contentBox .leftContent>h2').nextElementSibling));
+        knownIssues.prepend(detach(document.querySelector('#contentBox .leftContent>h2')));
+
         document.querySelector('#contentBox .leftContent').prepend(generalInfo);
         document.querySelector('#contentBox .leftContent').prepend(changelog);
     }
