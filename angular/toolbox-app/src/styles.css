@@ -428,7 +428,7 @@ a.right.navigation {
   font-size: 26px !important;
   line-height: 24px !important;
   padding: 0 !important;
-  margin-top: 2px !important;
+  margin-top: 4px !important;
   float: right !important;
   border-radius: 3px;
   text-align: center !important;
@@ -447,21 +447,6 @@ a.right.navigation {
   border-radius: 5px;
   height: auto !important;
   min-height: 142px !important;
-}
-
-@media (pointer: fine), (pointer: none) {
-  .navigation .row .planets:hover {
-    transition: transform .2s;
-    transform: scale(1.2);
-    z-index: 9999999;
-    position: relative;
-    background: #000;
-  }
-
-  .opacBackground.ofHidden.padding.disable-overflow,
-  .navigation .row.ofHidden {
-    overflow: visible !important;
-  }
 }
 
 .navigation .row .planets a > img,
