@@ -5,8 +5,8 @@ import {SharedScansModule} from "./app/modules/scans/shared-scans/shared-scans.m
 import {NavigationScansModule} from "./app/modules/scans/navigation-scans/navigation-scans.module";
 import {AuthenticationModule} from "./app/modules/authentication/authentication.module";
 import {PlatformRef} from "@angular/core";
-import {AllianceOrdersManagerModule} from "./app/modules/orders/alliance-orders-manager/alliance-orders-manager.module";
-import {FleetOrdersDisplayModule} from "./app/modules/orders/fleet-orders-display/fleet-orders-display.module";
+import {AllianceOrdersManagerModule} from "./app/modules/alliances/alliance-orders-manager/alliance-orders-manager.module";
+import {FleetOrdersDisplayModule} from "./app/modules/alliances/fleet-orders-display/fleet-orders-display.module";
 import {DarkgalaxyUiParserModule} from "./app/modules/darkgalaxy-ui-parser/darkgalaxy-ui-parser.module";
 import {LocalStorageManagerModule} from "./app/modules/local-storage-manager/local-storage-manager.module";
 
