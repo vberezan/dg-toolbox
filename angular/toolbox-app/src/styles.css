@@ -1124,7 +1124,7 @@ dgt-fleet-orders-list-panel {
 }
 
 .researchButton.researchNotAvailable .researchImage img {
-  filter: grayscale(100%);
+  filter: grayscale(99%);
 }
 
 .researchButton .researchImage img {
