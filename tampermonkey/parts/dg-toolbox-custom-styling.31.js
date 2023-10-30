@@ -144,9 +144,9 @@ function applyCustomStyling() {
                     '<li>Button to copy planets stats to clipboard</li>' +
                     '<li>Button to copy planet details to clipboard</li>' +
                     '<li>NAP alliances - display NAP planets/fleets/players with yellow</li>' +
-                    '<li>Combined Radars - see if this would be inside DG rules</li>' +
                     '<li>Stylize <span style="font-style: italic">Navigation</span> page</li>' +
                     '<li>Stylize <span style="font-style: italic">Alliances</span> page</li>' +
+                    '<li>Combined Radars - see if this will align with DG rules</li>' +
                 '</ul>' +
             '</div>'
             + '<div id="dgt-implemented-features">' +

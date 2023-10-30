@@ -317,7 +317,7 @@ a:hover {
   float: left;
 }
 
-#planetList > #planetList .planetHeadSection:last-child .right img {
+#planetList > #planetList .planetHeadSection a>img {
   border: 1px solid #767676 !important;
   width: 16px !important;
   height: 14px !important;
@@ -446,6 +446,7 @@ a.right.navigation {
   padding: 5px !important;
   border-radius: 5px;
   height: auto !important;
+  min-height: 142px !important;
 }
 
 @media (pointer: fine), (pointer: none) {
@@ -554,7 +555,6 @@ a.right.navigation {
   text-align: left !important;
   float: left;
   width: 100%;
-  padding-left: 5px;
   font-weight: normal;
   font-size: 12px;
   color: #fff;
