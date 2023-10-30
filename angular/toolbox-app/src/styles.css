@@ -464,6 +464,7 @@ a.right.navigation {
   }
 }
 
+.navigation .row .planets a > img,
 .navigation .row .planets > img {
   border-radius: 5px;
   width: 100px;
