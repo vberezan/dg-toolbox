@@ -1123,6 +1123,10 @@ dgt-fleet-orders-list-panel {
   height: 60px;
 }
 
+.researchButton.researchNotAvailable .researchImage img {
+  filter: grayscale(100%);
+}
+
 .researchButton .researchImage img {
   border-radius: 5px;
   width: 60px;

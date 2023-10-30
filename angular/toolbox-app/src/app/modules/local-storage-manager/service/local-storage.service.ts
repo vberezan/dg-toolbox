@@ -1,6 +1,5 @@
-import {ChangeDetectorRef, Injectable, Optional} from '@angular/core';
+import {Injectable, Optional} from '@angular/core';
 import {LocalStorageItem} from "../../../shared/model/local-storage/local-storage-item.model";
-import {Subscriber} from "rxjs";
 
 @Injectable({
   providedIn: 'platform'
