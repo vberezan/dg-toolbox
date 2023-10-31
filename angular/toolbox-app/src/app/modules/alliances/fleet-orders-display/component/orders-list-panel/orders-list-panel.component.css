@@ -1,5 +1,5 @@
 .dgt-fleet-order-container {
-  margin: 5px;
+  margin: 5px 5px 0 5px !important;
   background: rgb(75, 75, 75);
   padding: 7px;
   border-radius: 5px;
@@ -87,7 +87,7 @@
 
 .dgt-spinner-container {
   border: 1px solid #5e5e5e;
-  margin: 5px !important;
+  margin: 5px 5px 0 5px !important;
   width: calc(100% - 12px) !important;
   height: calc(100% - 12px) !important;
   position: relative;
