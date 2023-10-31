@@ -239,7 +239,7 @@ a:hover {
   margin-left: 0 !important;
 }
 
-#planetList {
+#planetList:first-child {
   padding: 5px;
 }
 
