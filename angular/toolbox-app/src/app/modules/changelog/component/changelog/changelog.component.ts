@@ -1,4 +1,5 @@
-import { Component } from '@angular/core';
+import {Component, inject} from '@angular/core';
+import {ChangelogService} from "../../service/changelog.service";
 
 @Component({
   selector: 'dgt-changelog',
@@ -6,5 +7,10 @@ import { Component } from '@angular/core';
   styleUrls: ['./changelog.component.css']
 })
 export class ChangelogComponent {
+  public changed: boolean = true;
+  private changeLogService: ChangelogService = inject(ChangelogService);
 
+  constructor() {
+    this.changeLogService.getVersion();
+  }
 }

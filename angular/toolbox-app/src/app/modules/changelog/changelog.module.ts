@@ -1,6 +1,7 @@
 import {NgModule} from '@angular/core';
 import {ChangelogComponent} from './component/changelog/changelog.component';
 import {BrowserModule} from "@angular/platform-browser";
+import {ChangelogService} from "./service/changelog.service";
 
 
 @NgModule({
@@ -9,6 +10,9 @@ import {BrowserModule} from "@angular/platform-browser";
   ],
   declarations: [
     ChangelogComponent
+  ],
+  providers: [
+    ChangelogService
   ],
   bootstrap: [
     ChangelogComponent
