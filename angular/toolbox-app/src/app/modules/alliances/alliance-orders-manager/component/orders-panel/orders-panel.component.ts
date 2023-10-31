@@ -9,6 +9,8 @@ import {faCircleRight as farCircleRight, faCircleXmark as farCircleXmark} from "
 import {AllianceMember} from "../../../../../shared/model/orders/alliance-member.model";
 import {AuthState} from "../../../../../shared/model/authentication/auth-state.model";
 import {UserRole} from "../../../../../shared/model/authentication/user-role";
+import {LocalStorageService} from "../../../../local-storage-manager/service/local-storage.service";
+import {LocalStorageKeys} from "../../../../../shared/model/local-storage/local-storage-keys";
 
 
 @Component({
@@ -23,6 +25,7 @@ export class OrdersPanelComponent implements OnDestroy {
   private dgAPI: DarkgalaxyApiService = inject(DarkgalaxyApiService);
   private authService: AuthService = inject(AuthService);
   private changeDetection: ChangeDetectorRef = inject(ChangeDetectorRef);
+  private localStorageService: LocalStorageService = inject(LocalStorageService);
 
   protected allianceMembers: AllianceMember[];
   protected orders: Map<string, Observable<AllianceOrder[]>> = new Map<string, Observable<AllianceOrder[]>>();
@@ -98,12 +101,13 @@ export class OrdersPanelComponent implements OnDestroy {
   }
 
   onSubmitKickMember(event: any): void {
+    this.localStorageService.remove(LocalStorageKeys.ALLIANCE_MEMBERS);
     event.target.submit();
   }
 
-  onSubmitUpdateNote(event: any): void {
-    console.log(event);
-    // event.target.submit();
+  onSubmitUpdateNote(event: any) {
+    this.localStorageService.remove(LocalStorageKeys.ALLIANCE_MEMBERS);
+    event.target.submit();
   }
 
 }
