@@ -14,7 +14,7 @@ export class ChangelogService {
 
     docData(doc(configRef, 'version')
     ).forEach((item: DocumentData): void => {
-      let version: string = Object.assign('', item);
+      let version: string = Object.assign({value:''}, item).value;
 
       console.log(version);
     }).catch((error) => {
