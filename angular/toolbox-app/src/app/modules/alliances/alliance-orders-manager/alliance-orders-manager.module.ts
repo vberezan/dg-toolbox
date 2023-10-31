@@ -29,8 +29,7 @@ import { UpdateNoteFormatterPipe } from './pipe/update-note-formatter.pipe';
         provider: new ReCaptchaV3Provider(environment.firebase.appCheck.recaptchaSiteKey),
         isTokenAutoRefreshEnabled: true
       })
-    ),
-    FontAwesomeModule
+    )
   ],
   declarations: [
     OrdersPanelComponent,
