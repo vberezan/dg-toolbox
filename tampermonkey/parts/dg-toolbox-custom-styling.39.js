@@ -188,6 +188,10 @@ function applyCustomStyling() {
         document.querySelector('#contentBox .leftContent').prepend(knownIssues);
         document.querySelector('#contentBox .leftContent').prepend(generalInfo);
         document.querySelector('#contentBox .leftContent').prepend(welcome);
-        document.querySelector('#contentBox .leftContent').prepend(detach(document.querySelector('dgt-changelog')));
+
+        let changelog = detach(document.querySelector('dgt-changelog'));
+        if (changelog != null) {
+            document.querySelector('#contentBox .leftContent').prepend(changelog);
+        }
     }
 }
