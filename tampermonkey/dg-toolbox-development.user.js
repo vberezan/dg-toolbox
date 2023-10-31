@@ -122,7 +122,7 @@ function loadAngular() {
 function loadGlobalAngularStyling() {
     let angular = [{
         tagName: 'link',
-        href: 'https://cdn.jsdelivr.net/gh/vberezan/dg-toolbox@development/angular/toolbox-app/dist/toolbox-app/styles.24b5dcbe8814e41e.css',
+        href: 'https://cdn.jsdelivr.net/gh/vberezan/dg-toolbox@development/angular/toolbox-app/dist/toolbox-app/styles.9ab6ec9b8609c409.css',
         rel: 'stylesheet'
     }];
 
