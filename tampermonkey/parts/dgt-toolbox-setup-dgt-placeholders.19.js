@@ -48,6 +48,8 @@ function setUpAllianceOrdersManagerPanel(windowURL) {
 function setUpFleetOrdersListPanel(windowURL) {
     if (windowURL[1] === 'fleets') {
         if (document.querySelector('#contentBox>.header') && document.querySelector('#contentBox>.ofHidden')) {
+            document.querySelector('#contentBox>.ofHidden').id = 'fleets-list';
+
             document.querySelector('#contentBox')
                 .insertBefore(
                     document.createElement('dgt-fleet-orders-list-panel'),

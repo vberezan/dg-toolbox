@@ -1238,3 +1238,28 @@ dgt-fleet-orders-list-panel {
 #known-issues {
   margin-bottom: 0 !important;
 }
+
+/********/
+
+#fleets-list {
+  border-radius: 5px;
+  border: 1px solid #5e5e5e;
+  background: rgb(75, 75, 75);
+  padding: 0;
+  margin: 5px;
+}
+
+#fleets-list > div:first-child {
+  height: 72px;
+  width: 72px;
+  padding: 0;
+}
+
+#fleets-list div>img {
+  height: 72px;
+  width: 72px;
+}
+
+#fleets-list > div:last-child {
+  padding-left: 10px;
+}
