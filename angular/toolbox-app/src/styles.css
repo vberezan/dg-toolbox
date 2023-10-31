@@ -248,7 +248,7 @@ a:hover {
 }
 
 #planetList > div:nth-child(2) {
-  border: 1px solid #535353 !important;
+  border: 1px solid #5e5e5e !important;
   padding: 0;
   margin-bottom: 5px;
   border-radius: 5px;
@@ -291,7 +291,7 @@ a:hover {
 }
 
 #planetList > #planetList .locationWrapper .paddingMid {
-  border: 1px solid #535353 !important;
+  border: 1px solid #5e5e5e !important;
   padding: 0 !important;
   display: block;
 }
@@ -433,6 +433,10 @@ a:hover {
   background: transparent;
 }
 
+#navWrapper > div {
+  display: flex !important;
+}
+
 #navWrapper .row:first-child > .planets {
   margin-top: 0 !important;
 }
@@ -463,6 +467,22 @@ a.right.navigation {
   margin-right: 15px !important;
 }
 
+.navigation .row .friendly {
+  border: 1px solid #79ba1a !important;
+}
+
+.navigation .row .planets.friendly {
+  background: #79ba1a;
+}
+
+.navigation .row .hostile {
+  border: 1px solid #df4a4a !important;
+}
+
+.navigation .row .planets.hostile {
+  background: #df4a4a;
+}
+
 .navigation .row .planets {
   float: left;
   width: 217px !important;
@@ -471,6 +491,8 @@ a.right.navigation {
   border-radius: 5px;
   height: auto !important;
   min-height: 142px !important;
+  background: rgba(75, 75, 75);
+  border: 1px solid #5e5e5e;
 }
 
 .navigation .row .planets a > img,
