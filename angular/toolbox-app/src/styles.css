@@ -248,7 +248,7 @@ a:hover {
 }
 
 #planetList > div:nth-child(2) {
-  border: none !important;
+  border: 1px solid #535353 !important;
   padding: 0;
   margin-bottom: 5px;
   border-radius: 5px;
@@ -291,6 +291,7 @@ a:hover {
 }
 
 #planetList > #planetList .locationWrapper .paddingMid {
+  border: 1px solid #535353 !important;
   padding: 0 !important;
   display: block;
 }
