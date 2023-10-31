@@ -1186,7 +1186,7 @@ dgt-fleet-orders-list-panel {
 #welcome,
 #general-info,
 #known-issues {
-  margin-bottom: 20px;
+  margin-bottom: 10px;
   border: 1px solid #5e5e5e;
   border-radius: 5px;
   background: rgba(75,75,75,1);
@@ -1214,6 +1214,7 @@ dgt-fleet-orders-list-panel {
 #home-stats > div {
   border-radius: 5px;
   border: 1px solid #5e5e5e;
+  margin-bottom: 10px !important;
 }
 
 #home-stats > div .padding {
