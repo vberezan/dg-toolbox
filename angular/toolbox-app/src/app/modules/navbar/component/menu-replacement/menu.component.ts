@@ -37,7 +37,7 @@ export class MenuComponent implements OnDestroy {
     });
 
     this.localOrdersBadge = this.localStorageService.get(LocalStorageKeys.ACTIVE_ORDERS);
-    this.updateAvailable = this.localStorageService.get(LocalStorageKeys.UPDATE_AVAILABLE).value;
+    this.updateAvailable = this.localStorageService.get(LocalStorageKeys.UPDATE_AVAILABLE);
 
     this.authService.authState.subscribe((state: AuthState): void => {
       this.active = state.status;
