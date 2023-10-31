@@ -30,8 +30,7 @@
 }
 
 .dgt-spinner-container {
-  margin: 5px !important;
-  width: calc(100% - 10px) !important;
-  height: calc(100% - 10px) !important;
+  width: 100% !important;
+  height: 100% !important;
   position: relative;
 }
