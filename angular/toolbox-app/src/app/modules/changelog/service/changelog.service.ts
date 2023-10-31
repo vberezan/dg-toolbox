@@ -19,6 +19,9 @@ export class ChangelogService {
       let version: string = Object.assign({value: ''}, item).value;
       let localVersion: string = this.localStorageService.getVersion();
 
+      console.log(localVersion);
+      console.log(version);
+
       if (localVersion !== version) {
         changed.next(true);
       } else {
