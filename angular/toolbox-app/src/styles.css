@@ -434,7 +434,7 @@ a:hover {
 }
 
 #navWrapper > div {
-  display: flex !important;
+  display: inline-flex !important;
 }
 
 #navWrapper .row:first-child > .planets {
