@@ -10,7 +10,7 @@
   margin-top: 0;
   font-size: 18px;
   font-weight: bold;
-  border-bottom: 1px solid #5e5e5e5e;
+  border-bottom: 1px solid #5e5e5e;
   margin-bottom: 6px;
   padding: 5px;
 }
@@ -22,7 +22,11 @@
 }
 
 #dgt-update-changelog {
-  padding: 0 5px 5px;
+  background: #576740;
+  margin: 5px;
+  border-radius: 3px;
+  padding: 5px 10px !important;
+  color: #ffffffad;
 }
 
 #dgt-update {
@@ -31,10 +35,11 @@
 
 #dgt-update span {
   padding: 5px 10px !important;
-  background: #7E4643;
+  background: #784946;
   border-radius: 3px;
   display: block;
   margin: 0 5px;
+  color: #ffffffad;
 }
 
 .dgt-spinner-container {
