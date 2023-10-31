@@ -467,20 +467,20 @@ a.right.navigation {
   margin-right: 15px !important;
 }
 
-.navigation .row .friendly {
+.navigation .row > .friendly {
   border: 1px solid #79ba1a !important;
 }
 
 .navigation .row .planets.friendly {
-  background: #79ba1a;
+  background: #79ba1a17;
 }
 
-.navigation .row .hostile {
+.navigation .row > .hostile {
   border: 1px solid #df4a4a !important;
 }
 
 .navigation .row .planets.hostile {
-  background: #df4a4a;
+  background: #df4a4a17;
 }
 
 .navigation .row .planets {
