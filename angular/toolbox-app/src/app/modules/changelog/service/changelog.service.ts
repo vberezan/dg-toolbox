@@ -14,13 +14,18 @@ export class ChangelogService {
   checkVersion(changeDetection: ChangeDetectorRef, changed: Subscriber<boolean>) {
     let configRef = collection(this.firestore, 'config');
 
-    docData(doc(configRef, 'version')
+    console.log('x');
+
+    docData(
+      doc(configRef, 'version')
     ).forEach((item: DocumentData): void => {
+
+      console.log('y');
+
       let version: string = Object.assign({value: ''}, item).value;
       let localVersion: string = this.localStorageService.getVersion();
 
-      console.log(localVersion);
-      console.log(version);
+      console.log('z');
 
       if (localVersion !== version) {
         changed.next(true);
