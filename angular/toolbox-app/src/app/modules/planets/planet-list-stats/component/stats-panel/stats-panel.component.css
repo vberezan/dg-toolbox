@@ -1,3 +1,10 @@
+.dgt-stats-totals {
+  background: rgb(75,75,75) !important;
+  border-radius: 5px !important;
+  margin-bottom: 5px !important;
+  padding: 5px !important;
+}
+
 .dgt-stats-totals-table,
 .dgt-stats-totals-table th,
 .dgt-stats-totals-table td,
@@ -5,6 +12,10 @@
   border-collapse: collapse;
   margin: 0;
   padding: 0;
+}
+
+.dgt-stats-totals-table {
+  padding: 5px !important;
 }
 
 .dgt-stats-totals-table th {

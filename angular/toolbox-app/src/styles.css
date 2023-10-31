@@ -1,4 +1,8 @@
 /*****/
+.lightBorder {
+  border: 1px solid #535353 !important;
+}
+
 .dgt-spinner-container.show {
   display: flex !important;
 }
@@ -233,6 +237,13 @@ a:hover {
 
 #buttonBlock img {
   margin-left: 0 !important;
+}
+
+#planetList > div:nth-child(2) {
+  padding: 0px;
+  margin-bottom: 5px;
+  border-radius: 5px;
+  background: rgb(75, 75, 75);
 }
 
 #planetList .coords.left {
