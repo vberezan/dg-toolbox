@@ -28,3 +28,12 @@
 #dgt-update span {
   padding: 5px 10px !important;
 }
+
+.dgt-spinner-container.member {
+  position: relative;
+  margin-top: 5px;
+}
+
+.dgt-spinner-container.member .dgt-spinner {
+  top: 10px !important;
+}
