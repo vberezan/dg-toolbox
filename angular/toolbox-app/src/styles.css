@@ -350,14 +350,6 @@ a:hover {
   border: 1px solid rgb(53,49,49,1) !important;
 }
 
-#planetList > #planetList .opacDarkBackground > .planetHeadSection:last-child > .opacBackground {
-  border-bottom-right-radius: 5px;
-}
-
-#planetList > #planetList .opacDarkBackground > .planetHeadSection.nameRow > .opacBackground {
-  border-top-right-radius: 5px;
-}
-
 #planetList > #planetList .opacDarkBackground > .planetHeadSection.nameRow > .opacBackground .coords fa-icon {
   padding-left: 5px;
 }
