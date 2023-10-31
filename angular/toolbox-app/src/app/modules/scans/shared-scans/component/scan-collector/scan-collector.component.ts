@@ -1,4 +1,4 @@
-import {Component, inject, OnDestroy, OnInit} from '@angular/core';
+import {ChangeDetectorRef, Component, inject, OnDestroy, OnInit} from '@angular/core';
 import {ScanService} from "../../service/scan.service";
 import {PlanetScanEvent} from "../../../../../shared/model/scans/shared-scans-planet-scan-event.model";
 import {AuthService} from "../../../../authentication/service/auth.service";
@@ -12,6 +12,8 @@ import {AuthState} from "../../../../../shared/model/authentication/auth-state.m
 export class ScanCollectorComponent implements OnInit, OnDestroy {
   private scanService: ScanService = inject(ScanService);
   private authService: AuthService = inject(AuthService);
+  private changeDetection: ChangeDetectorRef = inject(ChangeDetectorRef);
+
   active: boolean = false;
 
   ngOnInit(): void {
@@ -24,6 +26,8 @@ export class ScanCollectorComponent implements OnInit, OnDestroy {
         if (planetScanEvent != null) {
           this.scanService.updateScan(planetScanEvent);
         }
+
+        this.changeDetection.detectChanges();
       }
     });
   }
