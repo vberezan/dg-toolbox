@@ -3,6 +3,10 @@
   padding: 5px !important;
 }
 
+.seperator {
+  margin-bottom: 5px !important;
+}
+
 .dgt-spinner-container.show {
   display: flex !important;
 }
@@ -241,10 +245,6 @@ a:hover {
 
 #buttonBlock img {
   margin-left: 0 !important;
-}
-
-#planetList>.seperator {
-  margin-bottom: 5px !important;
 }
 
 #planetList > div:nth-child(2) {
