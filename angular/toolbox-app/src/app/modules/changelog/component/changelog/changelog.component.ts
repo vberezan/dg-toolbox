@@ -1,5 +1,6 @@
-import {Component, inject} from '@angular/core';
+import {ChangeDetectorRef, Component, inject} from '@angular/core';
 import {ChangelogService} from "../../service/changelog.service";
+import {Observable, Subscriber} from "rxjs";
 
 @Component({
   selector: 'dgt-changelog',
@@ -7,10 +8,14 @@ import {ChangelogService} from "../../service/changelog.service";
   styleUrls: ['./changelog.component.css']
 })
 export class ChangelogComponent {
-  public changed: boolean = true;
   private changeLogService: ChangelogService = inject(ChangelogService);
+  private changeDetection: ChangeDetectorRef = inject(ChangeDetectorRef);
+
+  public changed: Observable<boolean>;
 
   constructor() {
-    this.changeLogService.getVersion();
+    this.changed = new Observable<boolean>((observer: Subscriber<boolean>): void => {
+      this.changeLogService.checkVersion(this.changeDetection, observer);
+    });
   }
 }

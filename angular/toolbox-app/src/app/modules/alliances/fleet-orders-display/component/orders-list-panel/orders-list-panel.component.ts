@@ -34,7 +34,7 @@ export class OrdersListPanelComponent implements OnDestroy {
       this.active = state.status;
 
       if (state.status) {
-        this.orders = new Observable<AllianceOrder[]>((observer: Subscriber<AllianceOrder[]>) => {
+        this.orders = new Observable<AllianceOrder[]>((observer: Subscriber<AllianceOrder[]>): void => {
           this.orderService.getActiveOrders(this.dgAPI.username(), this.dgAPI.gameTurn(), this.changeDetection, observer);
         });
       }
