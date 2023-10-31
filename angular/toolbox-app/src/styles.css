@@ -243,6 +243,10 @@ a:hover {
   padding: 5px;
 }
 
+#planetList .separator {
+  margin-bottom: 5px !important;
+}
+
 #planetList > div:nth-child(2) {
   border: none !important;
   padding: 0;
