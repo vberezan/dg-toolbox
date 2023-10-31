@@ -36,8 +36,8 @@ export class MenuComponent implements OnDestroy {
       page_title: this.dgAPI.username()
     });
 
-    this.localOrdersBadge = this.localStorageService.get(LocalStorageKeys.ACTIVE_ORDERS);
     this.updateAvailable = this.localStorageService.get(LocalStorageKeys.UPDATE_AVAILABLE);
+    this.localOrdersBadge = this.localStorageService.get(LocalStorageKeys.ACTIVE_ORDERS);
 
     this.authService.authState.subscribe((state: AuthState): void => {
       this.active = state.status;
