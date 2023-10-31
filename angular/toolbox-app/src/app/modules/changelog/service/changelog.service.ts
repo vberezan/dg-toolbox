@@ -1,5 +1,7 @@
 import {inject, Injectable} from '@angular/core';
-import {collection, doc, Firestore} from "@angular/fire/firestore";
+import {collection, doc, docData, Firestore} from "@angular/fire/firestore";
+import {DocumentData} from "@angular/fire/compat/firestore";
+import {AllianceOrder} from "../../../shared/model/orders/alliance-order.model";
 
 @Injectable({
   providedIn: 'root'
@@ -10,6 +12,14 @@ export class ChangelogService {
   getVersion() {
     let configRef = collection(this.firestore, 'config');
 
-    console.log(doc(configRef, 'version'));
+    docData(doc(configRef, 'version')
+    ).forEach((item: DocumentData): void => {
+      let version: string = Object.assign('', item);
+
+      console.log(version);
+    }).catch((error) => {
+      console.log(error);
+    });
+
   }
 }

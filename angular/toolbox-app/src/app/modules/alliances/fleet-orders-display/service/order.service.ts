@@ -21,7 +21,7 @@ export class OrderService {
         orderBy('executed', 'asc'),
         orderBy('wait', 'asc')
       ), {idField: 'id'}
-    ).forEach((items: DocumentData[]) => {
+    ).forEach((items: DocumentData[]): void => {
       let orders: AllianceOrder[] = Object.assign([], items);
 
       orders.forEach((order) => {
