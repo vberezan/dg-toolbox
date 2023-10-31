@@ -154,7 +154,7 @@ a:hover {
 }
 
 #contentBox #available {
-  width: 552px !important;
+  width: 550px !important;
   border-radius: 5px;
   border: 1px solid #545454;
 }
@@ -193,7 +193,7 @@ a:hover {
 }
 
 #buttonBlock #converter {
-  width: 175px !important;
+  width: 173px !important;
 }
 
 #buttonBlock #comms {
@@ -970,7 +970,7 @@ label.queueDestroyButton:hover {
 }
 
 #planetHeader #planetImage img {
-  height: 178px;
+  height: 182px;
   border: 1px solid #545454;
   width: 178px;
   border-top-left-radius: 5px;
