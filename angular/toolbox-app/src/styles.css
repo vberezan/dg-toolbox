@@ -145,6 +145,10 @@ a:hover {
   width: 944px !important;
 }
 
+#contentBox>.padding>.padding {
+  padding: 0 !important;
+}
+
 #contentBox {
   border-top-color: #5e5e5e !important;
 }
@@ -1206,7 +1210,7 @@ dgt-fleet-orders-list-panel {
 #welcome,
 #general-info,
 #known-issues {
-  margin-bottom: 10px;
+  margin-bottom: 5px;
   border: 1px solid #5e5e5e;
   border-radius: 5px;
   background: rgba(75,75,75,1);
@@ -1228,13 +1232,13 @@ dgt-fleet-orders-list-panel {
 }
 
 #news-list {
-  margin-right: 230px !important;
+  margin-right: 225px !important;
 }
 
 #home-stats > div {
   border-radius: 5px;
   border: 1px solid #5e5e5e;
-  margin-bottom: 10px !important;
+  margin-bottom: 5px !important;
 }
 
 #home-stats > div .padding {
