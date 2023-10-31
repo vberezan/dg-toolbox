@@ -428,8 +428,17 @@ a:hover {
 /******/
 
 .navigation {
-  padding: 4px !important;
-  margin-top: 5px !important;
+  padding: 0 !important;
+  border: none;
+  background: transparent;
+}
+
+#navWrapper .row>.planets:first-child {
+  margin-left: 0 !important;
+}
+
+#navWrapper .row>.planets:last-child {
+  margin-right: 0 !important;
 }
 
 a.left.navigation,
