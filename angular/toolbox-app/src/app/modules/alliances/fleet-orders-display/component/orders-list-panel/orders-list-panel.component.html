@@ -2,15 +2,17 @@
   <span class="dgt-spinner"></span>
 </div>
 <ng-container *ngIf="active">
-  <div class="dgt-fleet-order" *ngFor="let order of (orders | async)">
-    <div class="from"><span class="label">From:</span><span class="value">{{order.from}}</span></div>
-    <div class="target"><span class="label">Target:</span><span class="value">{{order.target}}</span></div>
-    <div class="wait"><span class="label">Wait:</span><span class="value">{{order.wait}}</span></div>
-    <div class="instructions"><span class="label">Instructions:</span><span class="value">{{order.instructions}}</span></div>
-    <div class="complete">
-      <button (click)="onCompleteClick(order.id)">
-        <fa-icon [icon]="['far','circle-check']"/>
-      </button>
+  <div class="dgt-fleet-order-container">
+    <div class="dgt-fleet-order" *ngFor="let order of (orders | async)">
+      <div class="from"><span class="label">From:</span><span class="value">{{order.from}}</span></div>
+      <div class="target"><span class="label">Target:</span><span class="value">{{order.target}}</span></div>
+      <div class="wait"><span class="label">Wait:</span><span class="value">{{order.wait}}</span></div>
+      <div class="instructions"><span class="label">Instructions:</span><span class="value">{{order.instructions}}</span></div>
+      <div class="complete">
+        <button (click)="onCompleteClick(order.id)">
+          <fa-icon [icon]="['far','circle-check']"/>
+        </button>
+      </div>
     </div>
   </div>
 </ng-container>
