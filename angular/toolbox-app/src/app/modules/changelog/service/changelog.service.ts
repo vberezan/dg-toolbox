@@ -17,10 +17,9 @@ export class ChangelogService {
     docData(doc(configRef, 'version')
     ).forEach((item: DocumentData): void => {
       let version: string = Object.assign({value: ''}, item).value;
+      let localVersion: string = this.localStorageService.getVersion();
 
-      let localVersion = this.localStorageService.getVersion();
-
-      if (localVersion && localVersion !== version) {
+      if (localVersion !== version) {
         changed.next(true);
       } else {
         changed.next(false);
