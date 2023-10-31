@@ -236,7 +236,8 @@ a:hover {
 }
 
 #planetList > div:nth-child(2) {
-  padding: 0px;
+  border: none !important;
+  padding: 0;
   margin-bottom: 5px;
   border-radius: 5px;
   background: rgb(75, 75, 75);

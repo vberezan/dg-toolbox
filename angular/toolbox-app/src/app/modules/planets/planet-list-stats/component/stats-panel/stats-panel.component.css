@@ -37,11 +37,11 @@
 .dgt-stats-totals-table th.dgt-padding-right-xl,
 .dgt-stats-totals-table td.dgt-padding-right-xl {
   padding-right: 10px;
-  border-right: 2px solid rgba(0, 0, 0, 0.25);
+  border-right: 1px solid rgba(0, 0, 0, 0.25);
 }
 
 .dgt-stats-totals-last-row {
-  border-top: 2px solid rgba(0, 0, 0, 0.25);
+  border-top: 1px solid rgba(0, 0, 0, 0.25);
 }
 
 .dgt-padding-bottom-xs {
