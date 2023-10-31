@@ -3,6 +3,7 @@ import {collection, doc, docData, Firestore} from "@angular/fire/firestore";
 import {DocumentData} from "@angular/fire/compat/firestore";
 import {Subscriber} from "rxjs";
 import {LocalStorageService} from "../../local-storage-manager/service/local-storage.service";
+import {LocalStorageKeys} from "../../../shared/model/local-storage/local-storage-keys";
 
 @Injectable({
   providedIn: 'root'
@@ -22,8 +23,10 @@ export class ChangelogService {
       let localVersion: string = this.localStorageService.getVersion();
 
       if (localVersion !== version) {
+        this.localStorageService.cache(LocalStorageKeys.UPDATE_AVAILABLE, true);
         changed.next(true);
       } else {
+        this.localStorageService.cache(LocalStorageKeys.UPDATE_AVAILABLE, false);
         changed.next(false);
       }
 

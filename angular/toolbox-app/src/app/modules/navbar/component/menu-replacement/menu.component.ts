@@ -19,8 +19,10 @@ export class MenuComponent implements OnDestroy {
   private changeDetection: ChangeDetectorRef = inject(ChangeDetectorRef);
   private authService: AuthService = inject(AuthService);
   private localStorageService: LocalStorageService = inject(LocalStorageService);
-  protected localOrdersBadge: number = 0;
   private analytics: Analytics = inject(Analytics);
+
+  protected localOrdersBadge: number = 0;
+  protected updateAvailable: boolean = false;
 
   public fleetOrdersNotification: Observable<number>;
   public active: boolean;
@@ -35,6 +37,7 @@ export class MenuComponent implements OnDestroy {
     });
 
     this.localOrdersBadge = this.localStorageService.get(LocalStorageKeys.ACTIVE_ORDERS);
+    this.updateAvailable = this.localStorageService.get(LocalStorageKeys.UPDATE_AVAILABLE).value;
 
     this.authService.authState.subscribe((state: AuthState): void => {
       this.active = state.status;
