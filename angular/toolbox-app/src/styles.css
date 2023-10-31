@@ -1,8 +1,4 @@
 /*****/
-.lightBorder {
-  border: 1px solid #535353 !important;
-}
-
 .dgt-spinner-container.show {
   display: flex !important;
 }
