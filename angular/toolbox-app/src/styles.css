@@ -472,7 +472,7 @@ a.right.navigation {
 }
 
 .navigation .row .planets.friendly {
-  background: #79ba1a17;
+  background: #3f4b2f;
 }
 
 .navigation .row > .allied {
@@ -480,7 +480,7 @@ a.right.navigation {
 }
 
 .navigation .row .planets.allied {
-  background: #0a96ff17;
+  background: #1e405a;
 }
 
 .navigation .row > .hostile {
@@ -488,7 +488,7 @@ a.right.navigation {
 }
 
 .navigation .row .planets.hostile {
-  background: #df4a4a17;
+  background: #4b2b2b;
 }
 
 .navigation .row .planets {
@@ -499,7 +499,7 @@ a.right.navigation {
   border-radius: 5px;
   height: auto !important;
   min-height: 142px !important;
-  background: #4b4b4b16;
+  background: #4b4b4b;
   border: 1px solid #5e5e5e;
 }
 
