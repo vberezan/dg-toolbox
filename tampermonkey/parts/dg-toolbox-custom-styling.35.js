@@ -128,8 +128,6 @@ function applyCustomStyling() {
     //// -- changelog
     let windowURL = window.location.pathname.split(/\//g);
     if (windowURL.length === 2 && windowURL[1].trim().length === 0) {
-        let changelog = document.querySelector('dgt-changelog');
-
         let generalInfo = document.createElement('div');
         generalInfo.id = 'general-info';
         generalInfo.prepend(detach(document.querySelector('#contentBox .leftContent>h2').nextElementSibling));
