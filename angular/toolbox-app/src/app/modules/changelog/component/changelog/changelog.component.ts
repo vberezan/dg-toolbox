@@ -9,7 +9,7 @@ import {Observable, Subscriber} from "rxjs";
 })
 export class ChangelogComponent {
   private changeLogService: ChangelogService = inject(ChangelogService);
-  private changeDetection: ChangeDetectorRef = inject(ChangeDetectorRef);
+  // private changeDetection: ChangeDetectorRef = inject(ChangeDetectorRef);
 
   // public changed: Observable<boolean>;
 
@@ -18,6 +18,6 @@ export class ChangelogComponent {
     //   this.changeLogService.checkVersion(this.changeDetection, observer);
     // });
 
-    this.changeDetection.detectChanges();
+    // this.changeDetection.detectChanges();
   }
 }
