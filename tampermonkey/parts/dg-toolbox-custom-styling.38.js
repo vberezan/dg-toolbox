@@ -1,5 +1,9 @@
 function detach(node) {
-    return node.parentElement.removeChild(node);
+    if (node != null) {
+        return node.parentElement.removeChild(node);
+    }
+
+    return null;
 }
 function applyCustomStyling() {
     if (document.querySelector('#queue .researchTitle')) {
@@ -100,14 +104,20 @@ function applyCustomStyling() {
 
         if (righNav) {
             righNav = detach(righNav);
-            document.querySelector('.header.border.pageTitle').append(righNav);
+
+            if (righNav != null) {
+                document.querySelector('.header.border.pageTitle').append(righNav);
+            }
         } else {
             document.querySelector('#navWrapper>div>div:last-child').remove();
         }
 
         if (leftNav) {
             leftNav = detach(leftNav);
-            document.querySelector('.header.border.pageTitle').append(leftNav);
+
+            if (leftNav != null) {
+                document.querySelector('.header.border.pageTitle').append(leftNav);
+            }
         } else {
             document.querySelector('#navWrapper>div>div:nth-child(1)').remove();
         }
@@ -130,21 +140,46 @@ function applyCustomStyling() {
     if (windowURL.length === 2 && windowURL[1].trim().length === 0) {
         let generalInfo = document.createElement('div');
         generalInfo.id = 'general-info';
-        generalInfo.prepend(detach(document.querySelector('#contentBox .leftContent>h2').nextElementSibling));
-        generalInfo.prepend(detach(document.querySelector('#contentBox .leftContent>h2')));
+
+        let infoPart = detach(document.querySelector('#contentBox .leftContent>h2').nextElementSibling);
+        if (infoPart != null) {
+            generalInfo.prepend(infoPart);
+        }
+
+        infoPart = detach(document.querySelector('#contentBox .leftContent>h2'));
+        if (infoPart != null) {
+            generalInfo.prepend(infoPart);
+        }
 
         let knownIssues = document.createElement('div');
         knownIssues.id = 'known-issues';
-        knownIssues.prepend(detach(document.querySelector('#contentBox .leftContent>h2').nextElementSibling));
-        knownIssues.prepend(detach(document.querySelector('#contentBox .leftContent>h2')));
+
+        let issuesPart = detach(document.querySelector('#contentBox .leftContent>h2').nextElementSibling);
+        if (issuesPart != null) {
+            knownIssues.prepend(issuesPart);
+        }
+
+        issuesPart = detach(document.querySelector('#contentBox .leftContent>h2'));
+        if (issuesPart != null) {
+            knownIssues.prepend(issuesPart);
+        }
 
         document.querySelector('#contentBox br').remove();
         let welcome = document.createElement('div');
         welcome.id = 'welcome';
-        welcome.append(detach(document.querySelector('#contentBox .leftContent>.plainHeader')));
+
+        let welcomePart = detach(document.querySelector('#contentBox .leftContent>.plainHeader'));
+        if (welcomePart != null) {
+            welcome.append(welcomePart);
+        }
+
         while (document.querySelector('#contentBox .leftContent>p')) {
             if (document.querySelector('#contentBox .leftContent>p').innerHTML.trim().length > 0) {
-                welcome.append(detach(document.querySelector('#contentBox .leftContent>p')));
+                let part = detach(document.querySelector('#contentBox .leftContent>p'));
+
+                if (part != null) {
+                    welcome.append(part);
+                }
             } else {
                 document.querySelector('#contentBox .leftContent>p').remove();
             }
