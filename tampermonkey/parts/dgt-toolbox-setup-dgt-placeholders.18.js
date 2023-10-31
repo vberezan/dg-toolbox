@@ -13,6 +13,15 @@ function setUpNavbarReplacement() {
     }
 }
 
+function setUpChangelog(windowURL) {
+    if (windowURL.length === 2 && windowURL[1].trim().length === 0) {
+        document.querySelector('#contentBox .rightContent').id = 'home-stats';
+        document.querySelector('#contentBox .leftContent').id = 'news-list';
+
+        document.getElementById('news-list').prepend(document.createElement('dgt-changelog'));
+    }
+}
+
 function setUpAllianceOrdersManagerPanel(windowURL) {
     if (windowURL[1] === 'alliances') {
         if (document.querySelector('.allianceBox')) {

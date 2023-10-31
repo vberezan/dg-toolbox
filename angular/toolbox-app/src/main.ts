@@ -9,6 +9,7 @@ import {AllianceOrdersManagerModule} from "./app/modules/alliances/alliance-orde
 import {FleetOrdersDisplayModule} from "./app/modules/alliances/fleet-orders-display/fleet-orders-display.module";
 import {DarkgalaxyUiParserModule} from "./app/modules/darkgalaxy-ui-parser/darkgalaxy-ui-parser.module";
 import {LocalStorageManagerModule} from "./app/modules/local-storage-manager/local-storage-manager.module";
+import {ChangelogModule} from "./app/modules/changelog/changelog.module";
 
 const platform: PlatformRef = platformBrowserDynamic();
 let windowURL: string[] = window.location.pathname.split(/\//g);
@@ -16,6 +17,12 @@ platform.bootstrapModule(LocalStorageManagerModule).catch(err => console.error(e
 platform.bootstrapModule(DarkgalaxyUiParserModule).catch(err => console.error(err));
 platform.bootstrapModule(AuthenticationModule).catch(err => console.error(err));
 platform.bootstrapModule(NavbarModule).catch(err => console.error(err));
+
+
+// -- home screen
+if (windowURL.length === 2 && windowURL[1].trim().length === 0) {
+  platform.bootstrapModule(ChangelogModule).catch(err => console.error(err));
+}
 
 // -- planets list screen
 if (windowURL[1] === 'planets') {
