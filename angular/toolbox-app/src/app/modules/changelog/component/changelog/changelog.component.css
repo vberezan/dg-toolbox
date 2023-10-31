@@ -1,8 +1,8 @@
 #dgt-update-changelog-container {
   margin-bottom: 10px;
-  border: 1px solid #5e5e5e5e;
+  border: 1px solid #5e5e5e;
   border-radius: 5px;
-  background: #7E4643;
+  background: rgb(75, 75, 75);
 }
 
 #dgt-update-changelog-container h2 {
@@ -22,11 +22,19 @@
 }
 
 #dgt-update-changelog {
-  padding: 5px 10px 10px 10px;
+  padding: 0 5px 5px;
+}
+
+#dgt-update {
+  margin-bottom: 5px;
 }
 
 #dgt-update span {
   padding: 5px 10px !important;
+  background: #7E4643;
+  border-radius: 3px;
+  display: block;
+  margin: 0 5px;
 }
 
 .dgt-spinner-container {

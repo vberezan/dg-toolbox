@@ -1,19 +1,17 @@
 <div class="dgt-spinner-container">
   <span class="dgt-spinner"></span>
 </div>
-<ng-container *ngIf="(changed | async)">
-  <div id="dgt-update-changelog-container">
-    <h2>DGT Update <span>0.0.5.beta</span></h2>
-    <div id="dgt-update">
-      <span>There is a new update for DarkGalaxy Toolbox. <a target="_blank" href="https://github.com/vberezan/dg-toolbox/raw/main/tampermonkey/dg-toolbox.user.js">Click here</a> to install it.</span>
-    </div>
-    <div id="dgt-update-changelog">
-      <div><span>Changelog:</span></div>
-      <ul>
-        <li>change 1</li>
-        <li>change 2</li>
-        <li>change 3</li>
-      </ul>
-    </div>
+<div id="dgt-update-changelog-container">
+  <h2>DarkGalaxy Tools <span>{{version}}</span></h2>
+  <div *ngIf="(changed | async)" id="dgt-update">
+    <span>There is a new update for DarkGalaxy Toolbox. <a target="_blank" href="https://github.com/vberezan/dg-toolbox/raw/main/tampermonkey/dg-toolbox.user.js">Click here</a> to install it.</span>
   </div>
-</ng-container>
+  <div id="dgt-update-changelog">
+    <div><span>Changelog:</span></div>
+    <ul>
+      <li>change 1</li>
+      <li>change 2</li>
+      <li>change 3</li>
+    </ul>
+  </div>
+</div>
