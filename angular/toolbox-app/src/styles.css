@@ -433,11 +433,15 @@ a:hover {
   background: transparent;
 }
 
-#navWrapper .row>.planets:first-child {
+#navWrapper .row:first-child > .planets {
+  margin-top: 0 !important;
+}
+
+#navWrapper .row > .planets:first-child {
   margin-left: 0 !important;
 }
 
-#navWrapper .row>.planets:last-child {
+#navWrapper .row > .planets:last-child {
   margin-right: 0 !important;
 }
 
@@ -461,8 +465,8 @@ a.right.navigation {
 
 .navigation .row .planets {
   float: left;
-  width: 213px !important;
-  margin: 3px !important;
+  width: 217px !important;
+  margin: 5px 0 0 5px !important;
   padding: 5px !important;
   border-radius: 5px;
   height: auto !important;
