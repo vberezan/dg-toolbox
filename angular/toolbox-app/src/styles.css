@@ -718,6 +718,7 @@ a.right.navigation {
 #completed {
   border-bottom-left-radius: 5px;
   border-bottom-right-radius: 5px;
+  margin-left: 5px !important;
 }
 
 #completed .upkeepList span,
@@ -748,6 +749,7 @@ label.queueDestroyButton {
   border-top-left-radius: 5px;
   border-top-right-radius: 5px;
   border-bottom: none !important;
+  margin-left: 5px !important;
 }
 
 #queue .width25.icon fa-icon svg {
