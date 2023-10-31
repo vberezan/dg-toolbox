@@ -31,8 +31,8 @@
 
 .dgt-spinner-container {
   border: 1px solid #5e5e5e;
-  width: 100% !important;
-  height: 60px;
+  width: calc(100% - 2px) !important;
+  height: 58px;
   position: relative;
   margin-bottom: 10px;
 }
