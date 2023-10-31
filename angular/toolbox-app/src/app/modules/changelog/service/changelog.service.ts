@@ -29,9 +29,9 @@ export class ChangelogService {
       changed.complete();
 
       changeDetection.detectChanges();
-      if (document.querySelector('dgt-fleet-orders-list-panel .dgt-spinner-container')) {
-        document.querySelector('dgt-fleet-orders-list-panel .dgt-spinner-container').classList.add('hide');
-        document.querySelector('dgt-fleet-orders-list-panel .dgt-spinner-container').classList.remove('show');
+      if (document.querySelector('dgt-changelog .dgt-spinner-container')) {
+        document.querySelector('dgt-changelog .dgt-spinner-container').classList.add('hide');
+        document.querySelector('dgt-changelog .dgt-spinner-container').classList.remove('show');
       }
     }).catch((error) => {
       console.log(error);

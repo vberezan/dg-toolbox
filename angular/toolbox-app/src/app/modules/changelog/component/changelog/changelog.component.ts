@@ -17,5 +17,7 @@ export class ChangelogComponent {
     this.changed = new Observable<boolean>((observer: Subscriber<boolean>): void => {
       this.changeLogService.checkVersion(this.changeDetection, observer);
     });
+
+    this.changeDetection.detectChanges();
   }
 }
