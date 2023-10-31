@@ -39,16 +39,21 @@ export class PlanetScanExtractorService implements DataExtractor {
         scanType = ScanType.UNKNOWN;
     }
 
-    let result = new PlanetScanEvent(planetScan, scanType);
+    let result: PlanetScanEvent = new PlanetScanEvent(planetScan, scanType);
 
     if (scanType !== ScanType.UNKNOWN) {
       result.planetScan.turn = parseInt(document.querySelector('#turnNumber').textContent.trim().replace(/,/g, ''));
 
-      let ownerAlliance = base.querySelectorAll('.planetHeadSection .opacBackground>.left>span')[1] ?
+      let ownerAlliance: string = base.querySelectorAll('.planetHeadSection .opacBackground>.left>span')[1] ?
         base.querySelectorAll('.planetHeadSection .opacBackground>.left>span')[1].textContent.trim() : '[-]';
 
-      result.planetScan.owner = new Owner(base.querySelectorAll('.planetHeadSection .opacBackground>.left>span')[0].textContent.trim().split('Owner:')[1].trim(),
-        ownerAlliance.substring(1, ownerAlliance.length - 1));
+      let owner: string = base.querySelectorAll('.planetHeadSection .opacBackground>.left>span')[0].textContent.trim();
+
+      if (owner !== 'This planet is unoccupied.') {
+        result.planetScan.owner = new Owner(owner.split('Owner:')[1].trim(), '');
+      } else {
+        result.planetScan.owner = new Owner('Unoccupied', ownerAlliance.substring(1, ownerAlliance.length - 1));
+      }
     }
 
     // -- extract common RESOURCE & SURFACE scans data
