@@ -101,9 +101,9 @@ export class OrdersPanelComponent implements OnDestroy {
     event.target.submit();
   }
 
-  onSubmitUpdateNote(event: any) {
+  onSubmitUpdateNote(event: any): void {
     console.log(event);
-    event.target.submit();
+    // event.target.submit();
   }
 
 }
