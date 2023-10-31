@@ -475,6 +475,14 @@ a.right.navigation {
   background: #79ba1a17;
 }
 
+.navigation .row > .allied {
+  border: 1px solid #0a96ff !important;
+}
+
+.navigation .row .planets.allied {
+  background: #0a96ff17;
+}
+
 .navigation .row > .hostile {
   border: 1px solid #df4a4a !important;
 }
