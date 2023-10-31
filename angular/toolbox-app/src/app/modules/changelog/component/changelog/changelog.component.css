@@ -1,4 +1,11 @@
-h2 {
+#dgt-update-changelog-container {
+  margin-bottom: 20px;
+  border: 1px solid #5e5e5e;
+  border-radius: 5px;
+  background: rgba(75,75,75,1);
+}
+
+#dgt-update-changelog-container h2 {
   margin-top: 0;
   font-size: 18px;
   font-weight: bold;
