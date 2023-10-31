@@ -29,11 +29,9 @@
   padding: 5px 10px !important;
 }
 
-.dgt-spinner-container.member {
+.dgt-spinner-container {
+  margin: 5px !important;
+  width: calc(100% - 10px) !important;
+  height: calc(100% - 10px) !important;
   position: relative;
-  margin-top: 5px;
-}
-
-.dgt-spinner-container.member .dgt-spinner {
-  top: 10px !important;
 }
