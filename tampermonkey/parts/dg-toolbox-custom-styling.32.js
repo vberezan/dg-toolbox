@@ -121,8 +121,8 @@ function applyCustomStyling() {
     if(document.querySelector('#header')) {
         let credits = document.createElement('div');
         credits.id = 'dgt-credits';
-        credits.innerHTML = '<span>Theme revamped by DGT</span>';
-        document.querySelector('#header').append(credits);
+        credits.innerHTML = '<span>DarkGalaxy Tools <i>v0.0.5</i></span>';
+        document.querySelector('#header .left').append(credits);
     }
 
     //// -- changelog
