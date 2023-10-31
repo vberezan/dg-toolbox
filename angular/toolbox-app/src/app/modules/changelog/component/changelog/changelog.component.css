@@ -1,0 +1,20 @@
+dgt-changelog {
+  margin-bottom: 20px;
+  border: 1px solid #5e5e5e;
+  border-radius: 5px;
+  background: rgba(75,75,75,1);
+}
+
+dgt-changelog h2 {
+  margin-top: 0;
+  font-size: 18px;
+  font-weight: bold;
+  border-bottom: 1px solid #5e5e5e;
+  margin-bottom: 6px;
+  padding: 5px;
+}
+
+#dgt-update-changelog {
+  padding: 5px 10px 10px 10px;
+  color: #7bbd1a !important;
+}

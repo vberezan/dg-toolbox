@@ -1185,8 +1185,7 @@ dgt-fleet-orders-list-panel {
 
 #welcome,
 #general-info,
-#known-issues,
-#dgt-changelog {
+#known-issues {
   margin-bottom: 20px;
   border: 1px solid #5e5e5e;
   border-radius: 5px;
@@ -1195,24 +1194,13 @@ dgt-fleet-orders-list-panel {
 
 #known-issues h2,
 #general-info h2,
-#welcome .plainHeader,
-#dgt-changelog h2 {
+#welcome .plainHeader {
   margin-top: 0;
   font-size: 18px;
   font-weight: bold;
   border-bottom: 1px solid #5e5e5e;
   margin-bottom: 6px;
   padding: 5px;
-}
-
-#dgt-to-implement-features {
-  padding: 10px 10px 5px 10px;
-  color: #ff8484 !important;
-}
-
-#dgt-implemented-features {
-  padding: 5px 10px 10px 10px;
-  color: #7bbd1a !important;
 }
 
 #home-stats {

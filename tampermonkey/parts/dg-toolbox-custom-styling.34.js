@@ -128,44 +128,6 @@ function applyCustomStyling() {
     //// -- changelog
     let windowURL = window.location.pathname.split(/\//g);
     if (windowURL.length === 2 && windowURL[1].trim().length === 0) {
-        // document.querySelector('#contentBox .rightContent').id = 'home-stats';
-        // document.querySelector('#contentBox .leftContent').id = 'news-list';
-
-
-        // let changelog = document.createElement('div');
-        // changelog.id = 'dgt-changelog';
-        //
-        // changelog.innerHTML =
-        //     '<h2>DGT Changelog <span style="font-style: italic; font-size: 13px !important;">v0.0.5.beta</span></h2>' +
-        //     '<div id="dgt-to-implement-features">' +
-        //         '<div><span>Future changes:</span></div>' +
-        //         '<ul>' +
-        //             '<li>Compress images - speed up loading</li>' +
-        //             '<li>Stylize <span style="font-style: italic">Fleet</span> page</li>' +
-        //             '<li>Button to copy planets stats to clipboard</li>' +
-        //             '<li>Button to copy planet details to clipboard</li>' +
-        //             '<li>NAP alliances - display NAP planets/fleets/players with yellow</li>' +
-        //             '<li>Stylize <span style="font-style: italic">Navigation</span> page</li>' +
-        //             '<li>Stylize <span style="font-style: italic">Alliances</span> page</li>' +
-        //             '<li>Combined Radars - see if this will align with DG rules</li>' +
-        //         '</ul>' +
-        //     '</div>'
-        //     + '<div id="dgt-implemented-features">' +
-        //         '<div><span>Implemented:</span></div>' +
-        //         '<ul>' +
-        //             '<li>Stylize <span style="font-style: italic">Home</span> page</li>' +
-        //             '<li>Stylize <span style="font-style: italic">Planets</span> page</li>' +
-        //             '<li>Stylize <span style="font-style: italic">Planet/Building</span> page</li>' +
-        //             '<li>Stylize <span style="font-style: italic">Research</span> page</li>' +
-        //             '<li>Stylize <span style="font-style: italic">Player Box</span></li>' +
-        //             '<li>Stylize <span style="font-style: italic">Main Menu</span></li>' +
-        //             '<li>Replace old icons/images with new ones</li>' +
-        //             '<li>Display overall planet stats in <span style="font-style: italic">Planets Page</span></li>' +
-        //             '<li>Cloud Scans - retain the last scan of any planet and display all important info in Navigation screen - this is a private feature that works only with a DGT account</li>' +
-        //             '<li>Alliance Orders - ability for designated users to send fleet orders to other players - this is a private feature that works only with a DGT account</li>' +
-        //         '</ul>' +
-        //     '</div>';
-
         let changelog = document.querySelector('dgt-changelog');
 
         let generalInfo = document.createElement('div');
