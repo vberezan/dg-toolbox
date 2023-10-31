@@ -499,7 +499,7 @@ a.right.navigation {
   border-radius: 5px;
   height: auto !important;
   min-height: 142px !important;
-  background: rgba(75, 75, 75);
+  background: #4b4b4b16;
   border: 1px solid #5e5e5e;
 }
 
