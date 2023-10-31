@@ -2,7 +2,7 @@
   <span class="dgt-spinner"></span>
 </div>
 <ng-container *ngIf="active">
-  <div class="dgt-fleet-order-container">
+  <div *ngIf="(orders | async).length > 0" class="dgt-fleet-order-container">
     <div class="dgt-fleet-order" *ngFor="let order of (orders | async)">
       <div class="from"><span class="label">From:</span><span class="value">{{order.from}}</span></div>
       <div class="target"><span class="label">Target:</span><span class="value">{{order.target}}</span></div>
