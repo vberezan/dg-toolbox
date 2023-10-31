@@ -1,23 +1,25 @@
+.dgt-fleet-order-container {
+  margin: 5px;
+  background: rgb(75, 75, 75);
+  padding: 7px;
+  border-radius: 5px;
+  border: 1px solid #5e5e5e;
+}
+
 .dgt-fleet-order {
   float: left;
-  background: #FF3B303B;
+  background: #7E4643;
   border: none;
-  width: calc(100% - 20px);
+  width: calc(100% - 10px);
   border-radius: 5px;
   height: 22px;
   line-height: 22px;
   padding: 5px;
-  margin-right: 5px;
-  margin-left: 5px;
   margin-bottom: 5px;
 }
 
-.dgt-fleet-order:nth-child(2) {
-  margin-top: 5px !important;
-}
-
 .dgt-fleet-order:last-child {
-  margin-bottom: 5px !important;
+  margin-bottom: 0 !important;
 }
 
 .dgt-fleet-order div {
