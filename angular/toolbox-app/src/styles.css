@@ -548,6 +548,7 @@ a.right.navigation {
 .dgt-navigation-scan-size-orbit span,
 .dgt-navigation-scan-size-ground span {
   margin-left: 3px !important;
+  color: #fff;
 }
 
 .dgt-navigation-scan-coords-label img {
@@ -558,13 +559,11 @@ a.right.navigation {
   float: right;
   width: 35%;
   text-align: right;
+  font-size: 12px;
+  color: #fff;
 }
 
-.navigation .row .planets .text {
-  display: flex;
-}
-
-.navigation .row .planets .text b {
+.navigation .row .planets .text .friendly {
   width: 65% !important;
   float: left;
 }
