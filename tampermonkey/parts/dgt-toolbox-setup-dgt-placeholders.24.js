@@ -111,6 +111,14 @@ function setUpNavigationScanDataPanel(windowURL) {
                 '</tbody>';
 
 
+            let planetText = planet.querySelector('div.text');
+
+            if (planetText != null) {
+                let turn = document.createElement('span');
+                turn.id = 'dgt-navigation-scan-turn';
+                planetText.append(turn);
+            }
+
 
             planet.insertBefore(surfaceTable, planet.querySelector('div.text'));
             planet.querySelector('.dgt-navigation-scan-coords-value').textContent =
