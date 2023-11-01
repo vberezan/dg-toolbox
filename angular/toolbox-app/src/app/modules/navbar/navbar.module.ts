@@ -16,6 +16,12 @@ import {getAnalytics, provideAnalytics} from "@angular/fire/analytics";
     provideFirebaseApp(() => initializeApp(environment.firebase)),
     provideAuth(() => getAuth()),
     provideFirestore(() => getFirestore()),
+    provideAppCheck(() => initializeAppCheck(getApp(),
+      {
+        provider: new ReCaptchaV3Provider(environment.firebase.appCheck.recaptchaSiteKey),
+        isTokenAutoRefreshEnabled: true
+      })
+    ),
     provideAnalytics(() => getAnalytics())
   ],
   exports: [MenuComponent],
