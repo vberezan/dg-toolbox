@@ -5,11 +5,9 @@ import {environment} from "../../../../environments/environment";
 import {ScanService} from "./service/scan.service";
 import {ResourceProductionFormatterPipe} from "../../planets/planet-list-stats/pipe/resource-production-formatter.pipe";
 import {DecimalPipe} from "@angular/common";
-import {getApp, initializeApp, provideFirebaseApp} from "@angular/fire/app";
+import {initializeApp, provideFirebaseApp} from "@angular/fire/app";
 import {getFirestore, provideFirestore} from "@angular/fire/firestore";
-import {initializeAppCheck, provideAppCheck, ReCaptchaV3Provider} from "@angular/fire/app-check";
 import {getAuth, provideAuth} from "@angular/fire/auth";
-import {DarkgalaxyApiService} from "../../darkgalaxy-ui-parser/service/darkgalaxy-api.service";
 
 
 @NgModule({
@@ -17,13 +15,7 @@ import {DarkgalaxyApiService} from "../../darkgalaxy-ui-parser/service/darkgalax
     BrowserModule,
     provideFirebaseApp(() => initializeApp(environment.firebase)),
     provideAuth(() => getAuth()),
-    provideFirestore(() => getFirestore()),
-    provideAppCheck(() => initializeAppCheck(getApp(),
-      {
-        provider: new ReCaptchaV3Provider(environment.firebase.appCheck.recaptchaSiteKey),
-        isTokenAutoRefreshEnabled: true
-      })
-    )
+    provideFirestore(() => getFirestore())
   ],
   declarations: [
     ScanDataPanelComponent
