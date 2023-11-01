@@ -42,11 +42,10 @@ export class ScanService {
         let planetLocation: string = planet.querySelector('div.coords > span').textContent.trim();
         let pl: PlanetScan = byLocation.get(planetLocation);
 
-        planet.querySelector('.dgt-navigation-scan-turn').style.display = 'contents';
         planet.querySelector('img:first-child').style.filter = 'grayscale(100%)';
 
         if (pl) {
-          planet.querySelector('.dgt-navigation-scan-turn').textContent =
+          planet.querySelector('#dgt-navigation-scan-turn').textContent =
             'Turn: ' + this.decimalPipe.transform(pl.turn, '1.0', 'en_US');
 
           pl.resources.forEach((resource: Resource): void => {
@@ -122,7 +121,7 @@ export class ScanService {
             planet.querySelector('.dgt-navigation-scan-structures').style.display = '';
           }
         } else {
-          planet.querySelector('.dgt-navigation-scan-turn').textContent = 'Turn: N/A';
+          planet.querySelector('#dgt-navigation-scan-turn').textContent = 'Turn: N/A';
           planet.querySelector('.dgt-navigation-scan-resource.metal .abundance').textContent = '-';
           planet.querySelector('.dgt-navigation-scan-resource.mineral .abundance').textContent = '-';
           planet.querySelector('.dgt-navigation-scan-resource.food .abundance').textContent = '-';
