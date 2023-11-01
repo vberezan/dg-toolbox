@@ -1,4 +1,4 @@
-import {inject, Injectable} from '@angular/core';
+import {inject, Injectable, OnDestroy} from '@angular/core';
 import {PlanetScan} from "../../../../shared/model/scans/shared-scans-planet-scan.model";
 import {DarkgalaxyApiService} from "../../../darkgalaxy-ui-parser/service/darkgalaxy-api.service";
 import {PlanetScanEvent} from "../../../../shared/model/scans/shared-scans-planet-scan-event.model";
@@ -6,23 +6,29 @@ import {ScanType} from "../../../../shared/model/scan-type";
 import {Resource} from "../../../../shared/model/resource.model";
 import {addDoc, collection, collectionData, doc, Firestore, limit, query, updateDoc, where} from "@angular/fire/firestore";
 import firebase from "firebase/compat";
+import {Subscription} from "rxjs";
 import DocumentData = firebase.firestore.DocumentData;
 
 @Injectable({
   providedIn: 'root'
 })
-export class ScanService {
+export class ScanService implements OnDestroy {
   private firestore: Firestore = inject(Firestore);
   private dgAPI: DarkgalaxyApiService = inject(DarkgalaxyApiService);
+  private planetScanSubscription: Subscription;
 
   extractScan(): PlanetScanEvent {
     return this.dgAPI.planetScan();
   }
 
   updateScan(scanEvent: PlanetScanEvent): void {
-    let scansRef = collection(this.firestore, 'scans');
+    let scansRef: any = collection(this.firestore, 'scans');
 
-    collectionData(
+    if (this.planetScanSubscription != null) {
+      this.planetScanSubscription.unsubscribe();
+    }
+
+    this.planetScanSubscription = collectionData(
       query(scansRef,
         where('location', '==', scanEvent.planetScan.location),
         limit(1)
@@ -68,10 +74,17 @@ export class ScanService {
             }
           );
       } else {
-        updateDoc(doc(scansRef, dbScan.id), JSON.parse(JSON.stringify(dbScan))).catch((error): void => {
-          console.log(error);
-        });
+        updateDoc(doc(scansRef, dbScan.id), JSON.parse(JSON.stringify(dbScan)))
+          .catch((error): void => {
+            console.log(error);
+          });
       }
-    }).unsubscribe();
+
+      this.planetScanSubscription.unsubscribe();
+    });
+  }
+
+  ngOnDestroy() {
+    this.planetScanSubscription.unsubscribe();
   }
 }
