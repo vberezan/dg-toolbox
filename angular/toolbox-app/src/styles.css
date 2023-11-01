@@ -516,8 +516,8 @@ a.right.navigation {
 .navigation .row .planets table img {
   border-radius: 2px;
   border: 1px solid #767676 !important;
-  height: 12px;
-  width: 12px;
+  height: 13px;
+  width: 13px;
 }
 
 .navigation .row .planets img,
@@ -547,7 +547,26 @@ a.right.navigation {
 
 .dgt-navigation-scan-size-orbit span,
 .dgt-navigation-scan-size-ground span {
-  margin-left: 3px;
+  margin-left: 3px !important;
+}
+
+.dgt-navigation-scan-coords-label img {
+  margin-bottom: 3px !important;
+}
+
+#dgt-navigation-scan-turn {
+  float: right;
+  width: 35%;
+  text-align: right;
+}
+
+.navigation .row .planets .text {
+  display: flex;
+}
+
+.navigation .row .planets .text b {
+  width: 65% !important;
+  float: left;
 }
 
 .navigation .row .planets .text .coords {
@@ -566,12 +585,6 @@ a.right.navigation {
 
 .navigation .row .planets .text .right {
   float: left !important;
-}
-
-.navigation .row .planets .text .ng-fa-icon {
-  font-size: 12px;
-  line-height: 20px;
-  padding-left: 10px;
 }
 
 .navigation .row .planets .text span.friendly,
