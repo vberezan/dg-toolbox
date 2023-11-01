@@ -6,7 +6,7 @@ import {DecimalPipe} from "@angular/common";
 import {Resource} from "../../../../shared/model/resource.model";
 import {ResourceProductionFormatterPipe} from "../../../planets/planet-list-stats/pipe/resource-production-formatter.pipe";
 import {Structures} from "../../../../shared/model/structures";
-import {collection, collectionData, Firestore, limit, query, where} from "@angular/fire/firestore";
+import {collection, collectionData, Firestore, query, where} from "@angular/fire/firestore";
 import {NameQuantity} from "../../../../shared/model/name-quantity.model";
 import firebase from "firebase/compat";
 import DocumentData = firebase.firestore.DocumentData;
@@ -38,7 +38,7 @@ export class ScanService {
         entryMap.set(e.location, e), new Map()
       );
 
-      document.querySelectorAll('div.navigation div.planets').forEach((planet: any): void=> {
+      document.querySelectorAll('div.navigation div.planets').forEach((planet: any): void => {
         let planetLocation: string = planet.querySelector('div.coords > span').textContent.trim();
         let pl: PlanetScan = byLocation.get(planetLocation);
 
@@ -46,8 +46,8 @@ export class ScanService {
         planet.querySelector('img:first-child').style.filter = 'grayscale(100%)';
 
         if (pl) {
-          planet.querySelector('.dgt-navigation-scan-turn-value').textContent =
-            this.decimalPipe.transform(pl.turn, '1.0', 'en_US');
+          planet.querySelector('.dgt-navigation-scan-turn').textContent =
+            'Turn: ' + this.decimalPipe.transform(pl.turn, '1.0', 'en_US');
 
           pl.resources.forEach((resource: Resource): void => {
             planet.querySelector('.dgt-navigation-scan .dgt-navigation-scan-resource.' + resource.name + ' .abundance')
@@ -94,7 +94,7 @@ export class ScanService {
             cs.textContent = 'CS';
           }
 
-          let popGrowth: number= 1;
+          let popGrowth: number = 1;
           if (structureNames.includes(Structures.MEDICAL_CENTRE)) {
             popGrowth += 0.3;
           }
@@ -122,7 +122,7 @@ export class ScanService {
             planet.querySelector('.dgt-navigation-scan-structures').style.display = '';
           }
         } else {
-          planet.querySelector('.dgt-navigation-scan-turn-value').textContent = 'N/A';
+          planet.querySelector('.dgt-navigation-scan-turn').textContent = 'Turn: N/A';
           planet.querySelector('.dgt-navigation-scan-resource.metal .abundance').textContent = '-';
           planet.querySelector('.dgt-navigation-scan-resource.mineral .abundance').textContent = '-';
           planet.querySelector('.dgt-navigation-scan-resource.food .abundance').textContent = '-';
