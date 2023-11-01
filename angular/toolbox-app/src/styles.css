@@ -555,6 +555,10 @@ a.right.navigation {
   margin-bottom: 3px !important;
 }
 
+.dgt-navigation-scan-coords-value {
+  padding-bottom: 3px !important;
+}
+
 #dgt-navigation-scan-turn {
   float: right;
   width: 35%;

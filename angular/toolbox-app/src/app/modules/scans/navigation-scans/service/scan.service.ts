@@ -123,15 +123,19 @@ export class ScanService {
             planet.querySelector('.dgt-navigation-scan-population').style.display = '';
             planet.querySelector('.dgt-navigation-scan-structures').style.display = '';
           }
-        } else {
-          planet.querySelector('#dgt-navigation-scan-turn').textContent = 'Turn: N/A';
-          planet.querySelector('.dgt-navigation-scan-resource.metal .abundance').textContent = '-';
-          planet.querySelector('.dgt-navigation-scan-resource.mineral .abundance').textContent = '-';
-          planet.querySelector('.dgt-navigation-scan-resource.food .abundance').textContent = '-';
-          planet.querySelector('.dgt-navigation-scan-resource.energy .abundance').textContent = '-';
 
-          planet.querySelector('.dgt-navigation-scan-size-ground span').textContent = '-';
-          planet.querySelector('.dgt-navigation-scan-size-orbit span').textContent = '-';
+          planet.querySelector('.dgt-navigation-scan-size-ground').visibility = 'visible';
+          planet.querySelector('.dgt-navigation-scan-size-orbit').visibility = 'visible';
+        } else {
+          planet.querySelector('#dgt-navigation-scan-turn').textContent = '';
+          planet.querySelector('.dgt-navigation-scan-resource.metal .abundance').textContent = '';
+          planet.querySelector('.dgt-navigation-scan-resource.mineral .abundance').textContent = '';
+          planet.querySelector('.dgt-navigation-scan-resource.food .abundance').textContent = '';
+          planet.querySelector('.dgt-navigation-scan-resource.energy .abundance').textContent = '';
+
+
+          planet.querySelector('.dgt-navigation-scan-size-ground').visibility = 'hidden';
+          planet.querySelector('.dgt-navigation-scan-size-orbit').visibility = 'hidden';
         }
       });
     }).catch((error): void => {
