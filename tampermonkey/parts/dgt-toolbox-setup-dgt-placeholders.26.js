@@ -87,10 +87,8 @@ function setUpNavigationScanDataPanel(windowURL) {
                         '<td class="dgt-navigation-scan-coords-value"></td>' +
                     '</tr>' +
                     '<tr class="dgt-navigation-scan-size">' +
-                        '<td class="dgt-navigation-scan-size-ground-icon"><img src="https://i.imgur.com/HesibsH.png" title="Workers" width="17" height="17" /></td>' +
-                        '<td class="dgt-navigation-scan-size-ground-value"></td>' +
-                        '<td class="dgt-navigation-scan-size-orbit-icon"><img src="https://i.imgur.com/KKdM7BA.png" title="Workers" width="17" height="17" /></td>' +
-                        '<td class="dgt-navigation-scan-size-orbit-value"></td>' +
+                        '<td class="dgt-navigation-scan-size-ground"><img src="https://i.imgur.com/HesibsH.png" title="Workers" width="17" height="17" /><span></span></td>' +
+                        '<td class="dgt-navigation-scan-size-orbit"><img src="https://i.imgur.com/KKdM7BA.png" title="Workers" width="17" height="17" /><span></span></td>' +
                     '</tr>' +
                     '<tr class="dgt-navigation-scan-resource metal">' +
                         '<td class="abundance"></td>' +
