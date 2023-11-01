@@ -130,8 +130,8 @@ export class ScanService {
           planet.querySelector('.dgt-navigation-scan-resource.food .abundance').textContent = '-';
           planet.querySelector('.dgt-navigation-scan-resource.energy .abundance').textContent = '-';
 
-          planet.querySelector('.dgt-navigation-scan-size-ground-value').textContent = '-';
-          planet.querySelector('.dgt-navigation-scan-size-orbit-value').textContent = '-';
+          planet.querySelector('.dgt-navigation-scan-size-ground span').textContent = '-';
+          planet.querySelector('.dgt-navigation-scan-size-orbit span').textContent = '-';
         }
       });
     }).catch((error): void => {
