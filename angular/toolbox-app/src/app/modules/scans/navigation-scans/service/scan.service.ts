@@ -48,8 +48,8 @@ export class ScanService {
           planet.querySelector('#dgt-navigation-scan-turn').textContent =
             'Turn: ' + this.decimalPipe.transform(pl.turn, '1.0', 'en_US');
 
-          planet.querySelector('.dgt-navigation-scan-size-ground-value').textContent = pl.ground;
-          planet.querySelector('.dgt-navigation-scan-size-orbit-value').textContent = pl.orbit;
+          planet.querySelector('.dgt-navigation-scan-size-ground span').textContent = pl.ground;
+          planet.querySelector('.dgt-navigation-scan-size-orbit span').textContent = pl.orbit;
 
           pl.resources.forEach((resource: Resource): void => {
             planet.querySelector('.dgt-navigation-scan .dgt-navigation-scan-resource.' + resource.name + ' .abundance')
