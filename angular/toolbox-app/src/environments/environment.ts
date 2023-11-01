@@ -9,7 +9,6 @@ const firebaseConfig = {
   measurementId: 'G-DBBD8N8LCR',
   appCheck: {
     recaptchaSiteKey: '6Le5AyQoAAAAAEqVW9cQF-nT73cKe3Zp9N8mxTsO'
-    // recaptchaSiteKey: 'F541AF0B-4A9F-4960-B887-98FE1514E736'
   }
 };
 
