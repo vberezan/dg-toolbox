@@ -545,6 +545,11 @@ a.right.navigation {
   color: #fff !important;
 }
 
+.dgt-navigation-scan-size-orbit,
+.dgt-navigation-scan-size-ground {
+  visibility: hidden;
+}
+
 .dgt-navigation-scan-size-orbit span,
 .dgt-navigation-scan-size-ground span {
   margin-left: 3px !important;
@@ -552,11 +557,11 @@ a.right.navigation {
 }
 
 .dgt-navigation-scan-coords-label img {
-  margin-bottom: 3px !important;
+  margin-bottom: 2px !important;
 }
 
 .dgt-navigation-scan-coords-value {
-  padding-bottom: 3px !important;
+  vertical-align: baseline;
 }
 
 #dgt-navigation-scan-turn {
