@@ -82,31 +82,37 @@ function setUpNavigationScanDataPanel(windowURL) {
             surfaceTable.classList.add('dgt-navigation-scan');
             surfaceTable.innerHTML =
                 '<tbody>' +
-                '<tr class="dgt-navigation-scan-coords">' +
-                '<td class="dgt-navigation-scan-coords-label"><img src="https://i.imgur.com/HcC4l22.png" width="17" height="17"></td>' +
-                '<td class="dgt-navigation-scan-coords-value"></td>' +
-                '</tr>' +
-                '<tr class="dgt-navigation-scan-turn">' +
-                '<td class="dgt-navigation-scan-turn-label">Turn: </td>' +
-                '<td class="dgt-navigation-scan-turn-value"></td>' +
-                '</tr>' +
-                '<tr class="dgt-navigation-scan-resource metal">' +
-                '<td class="abundance"></td>' +
-                '<td class="production"></td>' +
-                '</tr>' +
-                '<tr class="dgt-navigation-scan-resource mineral">' +
-                '<td class="abundance"></td>' +
-                '<td class="production"></td>' +
-                '</tr>' +
-                '<tr class="dgt-navigation-scan-resource food">' +
-                '<td class="abundance"></td>' +
-                '<td class="production"></td>' +
-                '</tr>' +
-                '<tr class="dgt-navigation-scan-resource energy">' +
-                '<td class="abundance"></td>' +
-                '<td class="production"></td>' +
-                '</tr>' +
+                    '<tr class="dgt-navigation-scan-coords">' +
+                        '<td class="dgt-navigation-scan-coords-label"><img src="https://i.imgur.com/HcC4l22.png" width="17" height="17"></td>' +
+                        '<td class="dgt-navigation-scan-coords-value"></td>' +
+                    '</tr>' +
+                    '<tr class="dgt-navigation-scan-size">' +
+                        '<td class="dgt-navigation-scan-size-ground-icon"><img src="https://i.imgur.com/HesibsH.png" title="Workers" width="17" height="17" />/td>' +
+                        '<td class="dgt-navigation-scan-size-ground-value"></td>' +
+                        '<td class="dgt-navigation-scan-size-orbit-icon"><img src="https://i.imgur.com/KKdM7BA.png" title="Workers" width="17" height="17" /></td>' +
+                        '<td class="dgt-navigation-scan-size-orbit-value"></td>' +
+                    '</tr>' +
+                    '<tr class="dgt-navigation-scan-resource metal">' +
+                        '<td class="abundance"></td>' +
+                        '<td class="production"></td>' +
+                    '</tr>' +
+                    '<tr class="dgt-navigation-scan-resource mineral">' +
+                        '<td class="abundance"></td>' +
+                        '<td class="production"></td>' +
+                    '</tr>' +
+                    '<tr class="dgt-navigation-scan-resource food">' +
+                        '<td class="abundance"></td>' +
+                        '<td class="production"></td>' +
+                    '</tr>' +
+                    '<tr class="dgt-navigation-scan-resource energy">' +
+                        '<td class="abundance"></td>' +
+                        '<td class="production"></td>' +
+                    '</tr>' +
                 '</tbody>';
+
+            let turn = document.createElement('span');
+            turn.id = 'dgt-navigation-scan-turn';
+            planet.querySelector('div.text').append(turn);
 
             planet.insertBefore(surfaceTable, planet.querySelector('div.text'));
             planet.querySelector('.dgt-navigation-scan-coords-value').textContent =
@@ -122,16 +128,16 @@ function setUpNavigationScanDataPanel(windowURL) {
             populationTable.classList.add('dgt-navigation-scan-population');
             populationTable.innerHTML =
                 '<tbody>' +
-                '<tr class="dgt-navigation-scan-population-data">' +
-                '<td class="dgt-navigation-scan-workers-icon"><img src="https://i.imgur.com/7u6VnpE.png" title="Workers" width="17" height="17" /></td>' +
-                '<td class="dgt-navigation-scan-workers-value"></td>' +
-                '<td class="dgt-navigation-scan-workers-gr"></td>' +
-                '</tr>' +
-                '<tr class="dgt-navigation-scan-population-data">' +
-                '<td class="dgt-navigation-scan-soldiers-icon"><img src="https://i.imgur.com/FHlHgxL.png" title="Soldiers" width="17" height="17" /></td>' +
-                '<td class="dgt-navigation-scan-soldiers-value"></td>' +
-                '<td class="dgt-navigation-scan-soldiers-ab"></td>' +
-                '</tr>' +
+                    '<tr class="dgt-navigation-scan-population-data">' +
+                        '<td class="dgt-navigation-scan-workers-icon"><img src="https://i.imgur.com/7u6VnpE.png" title="Workers" width="17" height="17" /></td>' +
+                        '<td class="dgt-navigation-scan-workers-value"></td>' +
+                        '<td class="dgt-navigation-scan-workers-gr"></td>' +
+                    '</tr>' +
+                    '<tr class="dgt-navigation-scan-population-data">' +
+                        '<td class="dgt-navigation-scan-soldiers-icon"><img src="https://i.imgur.com/FHlHgxL.png" title="Soldiers" width="17" height="17" /></td>' +
+                        '<td class="dgt-navigation-scan-soldiers-value"></td>' +
+                        '<td class="dgt-navigation-scan-soldiers-ab"></td>' +
+                    '</tr>' +
                 '</tbody>'
 
             populationTable.style.display = 'none';
@@ -142,22 +148,22 @@ function setUpNavigationScanDataPanel(windowURL) {
             structuresTable.classList.add('dgt-navigation-scan-structures');
             structuresTable.innerHTML =
                 '<tbody>' +
-                '<tr class="dgt-navigation-scan-structures-data">' +
-                '<td colspan="2" class="invasion-label">Invade:</td>' +
-                '<td colspan="2" class="invasion-value"></td>' +
-                '</tr>' +
-                '<tr class="dgt-navigation-scan-structures-data">' +
-                '<td class="hb"></td>' +
-                '<td class="jg"></td>' +
-                '<td class="cs"></td>' +
-                '<td class="hg"></td>' +
-                '</tr>' +
-                '<tr class="dgt-navigation-scan-structures-data">' +
-                '<td class="lw"></td>' +
-                '<td class="sy"></td>' +
-                '<td class="hw"></td>' +
-                '<td class="sd"></td>' +
-                '</tr>' +
+                    '<tr class="dgt-navigation-scan-structures-data">' +
+                        '<td colspan="2" class="invasion-label">Invade:</td>' +
+                        '<td colspan="2" class="invasion-value"></td>' +
+                    '</tr>' +
+                    '<tr class="dgt-navigation-scan-structures-data">' +
+                        '<td class="hb"></td>' +
+                        '<td class="jg"></td>' +
+                        '<td class="cs"></td>' +
+                        '<td class="hg"></td>' +
+                    '</tr>' +
+                    '<tr class="dgt-navigation-scan-structures-data">' +
+                        '<td class="lw"></td>' +
+                        '<td class="sy"></td>' +
+                        '<td class="hw"></td>' +
+                        '<td class="sd"></td>' +
+                    '</tr>' +
                 '</tbody>';
 
             structuresTable.style.display = 'none';
