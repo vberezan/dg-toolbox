@@ -48,6 +48,9 @@ export class ScanService {
           planet.querySelector('#dgt-navigation-scan-turn').textContent =
             'Turn: ' + this.decimalPipe.transform(pl.turn, '1.0', 'en_US');
 
+          planet.querySelector('.dgt-navigation-scan-size-ground-value').textContent = pl.ground;
+          planet.querySelector('.dgt-navigation-scan-size-orbit-value').textContent = pl.orbit;
+
           pl.resources.forEach((resource: Resource): void => {
             planet.querySelector('.dgt-navigation-scan .dgt-navigation-scan-resource.' + resource.name + ' .abundance')
               .textContent = resource.abundance.toString() + '%';
@@ -126,6 +129,9 @@ export class ScanService {
           planet.querySelector('.dgt-navigation-scan-resource.mineral .abundance').textContent = '-';
           planet.querySelector('.dgt-navigation-scan-resource.food .abundance').textContent = '-';
           planet.querySelector('.dgt-navigation-scan-resource.energy .abundance').textContent = '-';
+
+          planet.querySelector('.dgt-navigation-scan-size-ground-value').textContent = '-';
+          planet.querySelector('.dgt-navigation-scan-size-orbit-value').textContent = '-';
         }
       });
     }).catch((error): void => {
