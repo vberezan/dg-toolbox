@@ -129,7 +129,6 @@ export class ScanService {
           planet.querySelector('.dgt-navigation-scan-resource.energy .abundance').textContent = '-';
         }
       });
-
     }).catch((error): void => {
       console.log(error)
     });

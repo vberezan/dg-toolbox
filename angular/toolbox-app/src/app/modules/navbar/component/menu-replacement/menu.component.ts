@@ -28,8 +28,16 @@ export class MenuComponent implements OnDestroy {
   public active: boolean;
 
   constructor() {
-    let event: string = window.location.pathname.split('/')[1];
-    logEvent(this.analytics, (event.length > 0 ? '/' + event : '/home'));
+    let event: string[] = window.location.pathname.split('/');
+
+    if (event[1].length === 0) {
+      logEvent(this.analytics, '/home');
+    } else if (event[event.length-2] === 'comms') {
+      logEvent(this.analytics, '/scan');
+    } else {
+      logEvent(this.analytics, '/' + event[1]);
+    }
+
     logEvent(this.analytics, 'page_view', {
       page_location: window.location.href,
       page_path: window.location.pathname,
