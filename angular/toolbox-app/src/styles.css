@@ -567,6 +567,8 @@ a.right.navigation {
   color: #fff;
 }
 
+.navigation .row .planets .text .allied,
+.navigation .row .planets .text .hostile,
 .navigation .row .planets .text .friendly {
   width: 65% !important;
   float: left;

@@ -124,18 +124,16 @@ export class ScanService {
             planet.querySelector('.dgt-navigation-scan-structures').style.display = '';
           }
 
-          planet.querySelector('.dgt-navigation-scan-size-ground').visibility = 'visible';
-          planet.querySelector('.dgt-navigation-scan-size-orbit').visibility = 'visible';
+          planet.querySelector('.dgt-navigation-scan-size-ground').style.visibility = 'visible';
+          planet.querySelector('.dgt-navigation-scan-size-orbit').style.visibility = 'visible';
         } else {
           planet.querySelector('#dgt-navigation-scan-turn').textContent = '';
           planet.querySelector('.dgt-navigation-scan-resource.metal .abundance').textContent = '';
           planet.querySelector('.dgt-navigation-scan-resource.mineral .abundance').textContent = '';
           planet.querySelector('.dgt-navigation-scan-resource.food .abundance').textContent = '';
           planet.querySelector('.dgt-navigation-scan-resource.energy .abundance').textContent = '';
-
-
-          planet.querySelector('.dgt-navigation-scan-size-ground').visibility = 'hidden';
-          planet.querySelector('.dgt-navigation-scan-size-orbit').visibility = 'hidden';
+          planet.querySelector('.dgt-navigation-scan-size-ground').style.visibility = 'hidden';
+          planet.querySelector('.dgt-navigation-scan-size-orbit').style.visibility = 'hidden';
         }
       });
     }).catch((error): void => {
