@@ -18,7 +18,9 @@ export class ScanDataPanelComponent implements OnInit, OnDestroy {
   public active: boolean = false;
 
   constructor() {
-    console.log(this.http.get('https://andromeda.darkgalaxy.com/navigation/1/18/3/'));
+    this.http.get('https://andromeda.darkgalaxy.com/navigation/1/18/3/').subscribe(value => {
+      console.log(value);
+    });
   }
 
   ngOnInit() {
