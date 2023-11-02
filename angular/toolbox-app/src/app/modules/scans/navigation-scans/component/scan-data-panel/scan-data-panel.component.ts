@@ -14,18 +14,14 @@ import {lastValueFrom} from "rxjs";
 export class ScanDataPanelComponent implements OnInit, OnDestroy {
   private scanService: ScanService = inject(ScanService);
   private authService: AuthService = inject(AuthService);
-  private http: HttpClient = inject(HttpClient);
 
   public active: boolean = false;
 
   constructor() {
-    // const headers = new HttpHeaders().set('Content-Type', 'text/plain; charset=utf-8');
-    // let response: string = await lastValueFrom(this.http.get('https://andromeda.darkgalaxy.com/navigation/1/18/3/', { headers, responseType: 'text'}));
-    //
-    // this.http.get('https://andromeda.darkgalaxy.com/navigation/1/18/3/', { headers, responseType: 'text'}).subscribe(value => {
-    //   console.log(value);
-    // });
-
+    let request:XMLHttpRequest = new XMLHttpRequest();
+    request.open('GET', "https://andromeda.darkgalaxy.com/navigation/1/18/3/", false);
+    request.send(null);
+    console.log(request.responseText);
 
   }
 

@@ -9,13 +9,11 @@ import {getApp, initializeApp, provideFirebaseApp} from "@angular/fire/app";
 import {getFirestore, provideFirestore} from "@angular/fire/firestore";
 import {initializeAppCheck, provideAppCheck, ReCaptchaV3Provider} from "@angular/fire/app-check";
 import {getAuth, provideAuth} from "@angular/fire/auth";
-import {HttpClientModule} from "@angular/common/http";
 
 
 @NgModule({
   imports: [
     BrowserModule,
-    HttpClientModule,
     provideFirebaseApp(() => initializeApp(environment.firebase)),
     provideAuth(() => getAuth()),
     provideFirestore(() => getFirestore()),
