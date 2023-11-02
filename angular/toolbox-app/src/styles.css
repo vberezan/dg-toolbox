@@ -1320,17 +1320,17 @@ dgt-fleet-orders-list-panel {
   margin: 5px;
 }
 
-#fleets-list > div > div:first-child {
+#fleets-list > div:not(#fleetList) > div:first-child {
   height: 72px !important;
   width: 72px !important;
   padding: 0;
 }
 
-#fleets-list div > div > img {
+#fleets-list > div:not(#fleetList) > div > img {
   height: 72px !important;
   width: 72px !important;
 }
 
-#fleets-list > div > div:last-child {
+#fleets-list > div:not(#fleetList) > div:last-child {
   padding-left: 5px;
 }
