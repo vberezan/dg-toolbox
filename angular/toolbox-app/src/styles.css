@@ -184,23 +184,23 @@ a:hover {
 }
 
 #buttonBlock a:first-child {
-  width: 124px !important;
+  width: 125px !important;
 }
 
 #buttonBlock #shipyard {
-  width: 111px !important;
+  width: 112px !important;
 }
 
 #buttonBlock #training {
-  width: 111px !important;
+  width: 112px !important;
 }
 
 #buttonBlock #converter {
-  width: 173px !important;
+  width: 175px !important;
 }
 
 #buttonBlock #comms {
-  width: 157px !important;
+  width: 158px !important;
   border-right: none !important;
 }
 
