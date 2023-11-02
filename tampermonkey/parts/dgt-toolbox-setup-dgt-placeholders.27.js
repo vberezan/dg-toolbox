@@ -22,6 +22,12 @@ function setUpChangelog(windowURL) {
     }
 }
 
+function setUpAdminDataLoad(windowURL) {
+    if (windowURL.length === 2 && windowURL[1].trim().length === 0) {
+        document.getElementById('home-stats').append(document.createElement('dgt-admin-load-data-panel'));
+    }
+}
+
 function setUpAllianceOrdersManagerPanel(windowURL) {
     if (windowURL[1] === 'alliances') {
         if (document.querySelector('.allianceBox')) {

@@ -17,14 +17,6 @@ export class ScanDataPanelComponent implements OnInit, OnDestroy {
 
   public active: boolean = false;
 
-  constructor() {
-    let request:XMLHttpRequest = new XMLHttpRequest();
-    request.open('GET', "https://andromeda.darkgalaxy.com/navigation/1/18/3/", false);
-    request.send(null);
-    console.log(request.responseText);
-
-  }
-
   ngOnInit() {
     this.authService.authState.subscribe((state: AuthState) => {
       this.active = state.status;
