@@ -3,7 +3,7 @@ import {ScanService} from "../../service/scan.service";
 import {PlanetSummary} from "../../../../../shared/model/planets/planet-summary.planet-list-model";
 import {AuthService} from "../../../../authentication/service/auth.service";
 import {AuthState} from "../../../../../shared/model/authentication/auth-state.model";
-import {HttpClient} from "@angular/common/http";
+import {HttpClient, HttpHeaders} from "@angular/common/http";
 
 @Component({
   selector: 'dgt-navigation-scan-data-panel',
@@ -18,7 +18,8 @@ export class ScanDataPanelComponent implements OnInit, OnDestroy {
   public active: boolean = false;
 
   constructor() {
-    this.http.get('https://andromeda.darkgalaxy.com/navigation/1/18/3/').subscribe(value => {
+    const headers = new HttpHeaders().set('Content-Type', 'text/plain; charset=utf-8');
+    this.http.get('https://andromeda.darkgalaxy.com/navigation/1/18/3/', { headers, responseType: 'text'}).subscribe(value => {
       console.log(value);
     });
   }
