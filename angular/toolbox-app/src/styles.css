@@ -199,6 +199,7 @@ a:hover {
   width: 173px !important;
 }
 
+#buttonBlock a:last-child,
 #buttonBlock #comms {
   width: 158px !important;
   border-right: none !important;
