@@ -1013,10 +1013,11 @@ label.queueDestroyButton:hover {
 
 #planetHeader #planetImage {
   margin-right: 0 !important;
+  height: 180px !important;
 }
 
 #planetHeader #planetImage img {
-  height: auto;
+  height: 180px;
   width: 180px;
   border-top-left-radius: 5px;
   border-bottom-left-radius: 5px;
