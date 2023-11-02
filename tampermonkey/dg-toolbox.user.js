@@ -34,13 +34,14 @@ function loadResource(element) {
 function loadSetups(windowURL) {
     loadResource({
         tagName: 'script',
-        src: 'https://cdn.jsdelivr.net/gh/vberezan/dg-toolbox/tampermonkey/parts/dgt-toolbox-setup-dgt-placeholders.26.js',
+        src: 'https://cdn.jsdelivr.net/gh/vberezan/dg-toolbox/tampermonkey/parts/dgt-toolbox-setup-dgt-placeholders.27.js',
         rel: 'text/javascript'
     }).onload = function () {
         setUpUiParser();
         setUpLocalStorageManager();
         setUpNavbarReplacement();
         setUpChangelog(windowURL);
+        setUpAdminDataLoad(windowURL);
         setUpPlanetListStatsPanel(windowURL);
         setUpSharedScansCollector(windowURL);
         setUpNavigationScanDataPanel(windowURL);
@@ -110,7 +111,7 @@ function loadAngular() {
         rel: 'module'
     }, {
         tagName: 'script',
-        src: 'https://cdn.jsdelivr.net/gh/vberezan/dg-toolbox/angular/toolbox-app/dist/toolbox-app/main.3de197346a582e51.js',
+        src: 'https://cdn.jsdelivr.net/gh/vberezan/dg-toolbox/angular/toolbox-app/dist/toolbox-app/main.051957747732bf74.js',
         rel: 'module'
     }];
 
@@ -122,7 +123,7 @@ function loadAngular() {
 function loadGlobalAngularStyling() {
     let angular = [{
         tagName: 'link',
-        href: 'https://cdn.jsdelivr.net/gh/vberezan/dg-toolbox/angular/toolbox-app/dist/toolbox-app/styles.dbd4755b3d37a7a3.css',
+        href: 'https://cdn.jsdelivr.net/gh/vberezan/dg-toolbox/angular/toolbox-app/dist/toolbox-app/styles.bc636eabb453634f.css',
         rel: 'stylesheet'
     }];
 
@@ -165,7 +166,7 @@ function loadGlobalAngularStyling() {
             }
         }
 
-        localStorage.setItem('version', 'v1.0.8');
+        localStorage.setItem('version', 'v1.0.9');
     });
 
     window.unload = function() {
