@@ -179,8 +179,7 @@ a:hover {
 }
 
 #buttonBlock {
-  border: 1px solid #545454;
-  border-left: none !important;
+  border-top: 1px solid #545454;
   border-bottom-right-radius: 5px;
 }
 
@@ -193,7 +192,7 @@ a:hover {
 }
 
 #buttonBlock #training {
-  width: 108px !important;
+  width: 111px !important;
 }
 
 #buttonBlock #converter {
@@ -953,6 +952,7 @@ label.queueDestroyButton:hover {
   border: none;
   padding: 0;
   min-height: 180px !important;
+  border: 1px solid #545454;
 }
 
 #planetHeader .planetHeadSection {
@@ -960,10 +960,9 @@ label.queueDestroyButton:hover {
 }
 
 #planetHeader .planetHeadSection .padding {
-  border-left: none !important;
-  border-bottom: none !important;
+  border: none !important;
   border-top-right-radius: 5px;
-  padding-left: 5px;
+  padding-left: 5px !important;
 }
 
 #planetHeader .planetHeadSection:nth-child(3) .padding {
@@ -1018,8 +1017,7 @@ label.queueDestroyButton:hover {
 
 #planetHeader #planetImage img {
   height: auto;
-  border: 1px solid #545454;
-  width: 182px;
+  width: 180px;
   border-top-left-radius: 5px;
   border-bottom-left-radius: 5px;
   border-right: none !important;

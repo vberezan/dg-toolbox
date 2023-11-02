@@ -4,6 +4,7 @@ import {PlanetSummary} from "../../../../../shared/model/planets/planet-summary.
 import {AuthService} from "../../../../authentication/service/auth.service";
 import {AuthState} from "../../../../../shared/model/authentication/auth-state.model";
 import {HttpClient, HttpHeaders} from "@angular/common/http";
+import {lastValueFrom} from "rxjs";
 
 @Component({
   selector: 'dgt-navigation-scan-data-panel',
@@ -18,10 +19,14 @@ export class ScanDataPanelComponent implements OnInit, OnDestroy {
   public active: boolean = false;
 
   constructor() {
-    const headers = new HttpHeaders().set('Content-Type', 'text/plain; charset=utf-8');
-    this.http.get('https://andromeda.darkgalaxy.com/navigation/1/18/3/', { headers, responseType: 'text'}).subscribe(value => {
-      console.log(value);
-    });
+    // const headers = new HttpHeaders().set('Content-Type', 'text/plain; charset=utf-8');
+    // let response: string = await lastValueFrom(this.http.get('https://andromeda.darkgalaxy.com/navigation/1/18/3/', { headers, responseType: 'text'}));
+    //
+    // this.http.get('https://andromeda.darkgalaxy.com/navigation/1/18/3/', { headers, responseType: 'text'}).subscribe(value => {
+    //   console.log(value);
+    // });
+
+
   }
 
   ngOnInit() {
