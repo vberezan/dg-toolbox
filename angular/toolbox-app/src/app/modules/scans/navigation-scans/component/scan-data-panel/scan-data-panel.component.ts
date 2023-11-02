@@ -3,6 +3,7 @@ import {ScanService} from "../../service/scan.service";
 import {PlanetSummary} from "../../../../../shared/model/planets/planet-summary.planet-list-model";
 import {AuthService} from "../../../../authentication/service/auth.service";
 import {AuthState} from "../../../../../shared/model/authentication/auth-state.model";
+import {HttpClient} from "@angular/common/http";
 
 @Component({
   selector: 'dgt-navigation-scan-data-panel',
@@ -12,7 +13,13 @@ import {AuthState} from "../../../../../shared/model/authentication/auth-state.m
 export class ScanDataPanelComponent implements OnInit, OnDestroy {
   private scanService: ScanService = inject(ScanService);
   private authService: AuthService = inject(AuthService);
+  private http: HttpClient = inject(HttpClient);
+
   public active: boolean = false;
+
+  constructor() {
+    console.log(this.http.get('https://andromeda.darkgalaxy.com/navigation/1/18/3/'));
+  }
 
   ngOnInit() {
     this.authService.authState.subscribe((state: AuthState) => {
