@@ -951,6 +951,8 @@ label.queueDestroyButton:hover {
 #planetHeader {
   border-radius: 5px;
   height: 180px !important;
+  max-height: 180px !important;
+  min-height: 180px !important;
   padding: 0;
   border: 1px solid #545454;
 }
