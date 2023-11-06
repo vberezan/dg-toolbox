@@ -223,4 +223,21 @@ function applyCustomStyling() {
                 scanForm.querySelector('.coordsInput>div:nth-child(2) input:nth-child(4)').outerHTML;
         }
     }
+
+    if (windowURL[1] === 'rankings' && (windowURL.length === 4 && windowURL[2]) === 'players') {
+        document.querySelectorAll('span.allied').forEach((allied=> {
+            allied.parentElement.parentElement.classList.add('allied-bg');
+        }));
+
+        document.querySelectorAll('span.hostile').forEach((hostile=> {
+            hostile.parentElement.parentElement.classList.add('hostile-bg');
+            if (hostile.innerText.trim().length === 0) {
+                hostile.innerTex = '-';
+            }
+        }));
+
+        document.querySelectorAll('span.friendly').forEach((friendly=> {
+            friendly.parentElement.parentElement.classList.add('friendly-bg');
+        }));
+    }
 }
