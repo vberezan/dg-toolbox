@@ -75,9 +75,11 @@ function setUpSharedScansCollector(windowURL) {
             scanForm.parentElement.id = 'planet-scan-form-wrapper';
             scanForm.querySelector('.tableHeader div:nth-child(2)').remove();
 
-            let scannedPlanet = document.querySelector('#planet-scan-form-wrapper').nextElementSibling.nextElementSibling;
-            if (scannedPlanet) {
-                scannedPlanet.parentElement.parentElement.id = 'scanned-planet-wrapper';
+            if (document.querySelector('#planet-scan-form-wrapper').nextElementSibling) {
+                let scannedPlanet = document.querySelector('#planet-scan-form-wrapper').nextElementSibling.nextElementSibling;
+                if (scannedPlanet) {
+                    scannedPlanet.parentElement.parentElement.id = 'scanned-planet-wrapper';
+                }
             }
         }
     }
