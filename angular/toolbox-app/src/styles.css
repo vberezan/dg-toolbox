@@ -470,16 +470,26 @@ a.left.navigation,
 a.right.navigation {
   width: 26px !important;
   height: 26px !important;
-  font-size: 26px !important;
+  font-size: 24px !important;
   line-height: 24px !important;
   padding: 0 !important;
-  margin-top: 4px !important;
+  margin-top: 5px !important;
   margin-left: 5px !important;
   margin-right: 5px !important;
   float: right !important;
   text-align: center !important;
   background: transparent !important;
   border: none !important;
+}
+
+a.left.navigation svg,
+a.right.navigation svg {
+  fill: #a2a2a2 !important;
+}
+
+a.left.navigation:hover svg,
+a.right.navigation:hover svg {
+  fill: #ffffffcf !important
 }
 
 .navigation .row > .friendly {
