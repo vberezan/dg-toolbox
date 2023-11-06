@@ -211,14 +211,14 @@ function applyCustomStyling() {
             scanForm.querySelector('.coordsInput').prepend(submit);
             scanForm.querySelector('.coordsInput').append(label);
 
-            scanForm.querySelector('.coordsInput>div:nth-child(2)').innerHTML =
-                '<input type="number" name="coordinate.0">' +
-                '-' +
-                '<input type="number" name="coordinate.1">' +
-                '-' +
-                '<input type="number" name="coordinate.2">' +
-                '-' +
-                '<input type="number" name="coordinate.3">';
+            // scanForm.querySelector('.coordsInput>div:nth-child(2)').innerHTML =
+            //     '<input type="number" name="coordinate.0">' +
+            //     '-' +
+            //     '<input type="number" name="coordinate.1">' +
+            //     '-' +
+            //     '<input type="number" name="coordinate.2">' +
+            //     '-' +
+            //     '<input type="number" name="coordinate.3">';
         }
     }
 }
