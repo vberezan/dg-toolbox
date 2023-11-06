@@ -206,10 +206,10 @@ function applyCustomStyling() {
             scanForm.querySelector('input[type="submit"]').parentElement.append(newButton);
             scanForm.querySelector('input[type="submit"]').remove();
 
-            let label = detach(scanForm.querySelector('.coordsInput>div:nth-child(1)'));
             let submit = detach(scanForm.querySelector('.coordsInput>div:nth-child(3)'));
-            // scanForm.querySelector('.coordsInput').prepend(submit);
-            // scanForm.querySelector('.coordsInput').append(label);
+            let label = detach(scanForm.querySelector('.coordsInput>div:nth-child(1)'));
+            scanForm.querySelector('.coordsInput').prepend(submit);
+            scanForm.querySelector('.coordsInput').append(label);
         }
     }
 }
