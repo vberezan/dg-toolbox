@@ -145,6 +145,18 @@ a:hover {
   color: #CCCCCC !important;
 }
 
+span.friendly {
+  color: #7BBD1A !important;
+}
+
+span.allied {
+  color: #0A96FF !important;
+}
+
+span.hostile {
+  color: #df4a4a !important;
+}
+
 #content {
   width: 944px !important;
 }
@@ -614,18 +626,6 @@ a.right.navigation {
 .navigation .row .planets .text b {
   margin-top: 10px !important;
   padding-left: 1px !important;
-}
-
-.navigation .row .planets .text span.friendly {
-  color: #7BBD1A !important;
-}
-
-.navigation .row .planets .text span.allied {
-  color: #0A96FF !important;
-}
-
-.navigation .row .planets .text span.hostile {
-  color: #df4a4a !important;
 }
 
 .navigation .row .planets .text > div:first-child {
@@ -1477,10 +1477,7 @@ dgt-shared-scans-collector {
 #scanned-planet-wrapper #planetHeader {
   padding: 0 !important;
   border: none !important;
-  border-top-left-radius: 0 !important;
-  border-top-right-radius: 0 !important;
-  border-bottom-left-radius: 5px !important;
-  border-bottom-right-radius: 5px !important;
+  border-radius: 0 0 5px 5px;
 }
 
 #scanned-planet-wrapper #planetImage img {
@@ -1493,11 +1490,11 @@ dgt-shared-scans-collector {
 }
 
 #scanned-planet-wrapper .planetHeadSection:nth-child(3) {
-  height: 22px !important;
+  height: 27px !important;
 }
 
 #scanned-planet-wrapper .planetHeadSection:nth-child(4)>div {
-  height: 112px;
+  height: 107px;
   border-radius: 0 !important;
 }
 
