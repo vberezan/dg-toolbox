@@ -21,6 +21,17 @@
 
 .dgt-stats-totals-table th {
   line-height: 20px;
+  width: 65px !important;
+}
+
+.dgt-stats-totals-table th .name {
+  display: block;
+  float: left;
+}
+
+.dgt-stats-totals-table th .count {
+  display: block;
+  float: right;
 }
 
 .dgt-stats-totals-table td {
