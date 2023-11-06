@@ -80,7 +80,10 @@ function setUpSharedScansCollector(windowURL) {
                 if (scannedPlanet) {
                     scannedPlanet.id = 'scanned-planet-wrapper';
 
-                    scannedPlanet.querySelector('#planetHeader').nextElementSibling.remove();
+                    if (scannedPlanet.querySelector('#planetHeader').nextElementSibling) {
+                        scannedPlanet.querySelector('#planetHeader').nextElementSibling.remove();
+                        scannedPlanet.querySelector('#planetHeader').nextElementSibling.id = 'planet-scan-additional'
+                    }
                 }
             }
         }
