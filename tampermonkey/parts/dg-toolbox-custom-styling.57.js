@@ -231,9 +231,6 @@ function applyCustomStyling() {
 
         document.querySelectorAll('span.hostile').forEach((hostile=> {
             hostile.parentElement.parentElement.classList.add('hostile-bg','rank-row');
-            if (hostile.innerText.trim().length === 0) {
-                hostile.innerHTML = '-';
-            }
         }));
 
         document.querySelectorAll('span.friendly').forEach((friendly=> {
