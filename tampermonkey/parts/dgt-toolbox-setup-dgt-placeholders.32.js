@@ -72,7 +72,7 @@ function setUpSharedScansCollector(windowURL) {
         if (scanForm) {
             scanForm.append(document.createElement('dgt-shared-scans-collector'));
             scanForm.id = 'planet-scan-form';
-            scanForm.parent.id = 'planet-scan-form-wrapper';
+            scanForm.parentElement.id = 'planet-scan-form-wrapper';
         }
     }
 }
