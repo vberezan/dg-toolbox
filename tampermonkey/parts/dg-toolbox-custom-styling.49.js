@@ -211,14 +211,16 @@ function applyCustomStyling() {
             scanForm.querySelector('.coordsInput').prepend(submit);
             scanForm.querySelector('.coordsInput').append(label);
 
-            // scanForm.querySelector('.coordsInput>div:nth-child(2)').innerHTML =
-            //     '<input type="number" name="coordinate.0">' +
-            //     '-' +
-            //     '<input type="number" name="coordinate.1">' +
-            //     '-' +
-            //     '<input type="number" name="coordinate.2">' +
-            //     '-' +
-            //     '<input type="number" name="coordinate.3">';
+            scanForm.querySelector('.coordsInput .coords .left:last-child').remove();
+
+            scanForm.querySelector('.coordsInput>div:nth-child(2)').innerHTML =
+                scanForm.querySelector('.coordsInput>div:nth-child(2) input:nth-child(1)').outerHTML +
+                ':' +
+                scanForm.querySelector('.coordsInput>div:nth-child(2) input:nth-child(2)').outerHTML +
+                ':' +
+                scanForm.querySelector('.coordsInput>div:nth-child(2) input:nth-child(3)').outerHTML +
+                ':' +
+                scanForm.querySelector('.coordsInput>div:nth-child(2) input:nth-child(4)').outerHTML;
         }
     }
 }
