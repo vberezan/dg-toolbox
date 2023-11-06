@@ -78,7 +78,7 @@ function setUpSharedScansCollector(windowURL) {
             if (document.querySelector('#planet-scan-form-wrapper').nextElementSibling) {
                 let scannedPlanet = document.querySelector('#planet-scan-form-wrapper').nextElementSibling.nextElementSibling;
                 if (scannedPlanet) {
-                    scannedPlanet.parentElement.parentElement.id = 'scanned-planet-wrapper';
+                    scannedPlanet.id = 'scanned-planet-wrapper';
                 }
             }
         }
