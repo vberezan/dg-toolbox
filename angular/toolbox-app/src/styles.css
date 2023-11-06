@@ -1513,14 +1513,6 @@ dgt-shared-scans-collector {
   cursor: auto;
 }
 
-.rankingsList .name {
-  width: 70%;
-}
-
-.rankingsList .score {
-  width: 16%;
-}
-
 .rankingsList .tableHeader {
   border-bottom: 1px solid #787878;
 }
