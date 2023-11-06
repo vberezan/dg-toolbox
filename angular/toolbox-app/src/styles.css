@@ -1413,3 +1413,7 @@ dgt-shared-scans-collector,
   width: 26px;
   text-align: center;
 }
+
+#planet-scan-form .coordsInput>div:nth-child(2) {
+  display: flex !important;
+}
