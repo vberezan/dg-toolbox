@@ -75,7 +75,7 @@ function setUpSharedScansCollector(windowURL) {
             scanForm.parentElement.id = 'planet-scan-form-wrapper';
             scanForm.querySelector('.tableHeader div:nth-child(2)').remove();
 
-            let scannedPlanet = document.querySelector('#planet-scan-form-wrapper').parentElement.querySelector('#planetHeader');
+            let scannedPlanet = document.querySelector('#planet-scan-form-wrapper').parentElement.querySelector('#planetHeader:last-child');
             if (scannedPlanet) {
                 scannedPlanet.parentElement.parentElement.id = 'scanned-planet-wrapper';
             }
