@@ -1480,7 +1480,7 @@ dgt-shared-scans-collector {
   border-radius: 0 !important;
 }
 
-#scanned-planet-wrapper #planetHeader img {
+#scanned-planet-wrapper #planetImage img {
   height: 180px;
   width: 180px;
 }
