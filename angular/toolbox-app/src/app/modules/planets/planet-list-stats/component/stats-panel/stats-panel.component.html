@@ -5,7 +5,10 @@
           [ngClass]="{'dgt-stats-totals-last-row': i == (panel.stats.size-1)}">
 
         <th [ngClass]="{'dgt-padding-bottom-xs': i == (panel.stats.size - 2)}"
-            class="dgt-padding-right-xl">{{row.key | galaxyNameFormatter}} [{{row.value.count}}]</th>
+            class="dgt-padding-right-xl">
+          <span class="name">{{row.key | galaxyNameFormatter}}</span>
+          <span class="count">[{{row.value.count}}]</span>
+        </th>
 
         <td [ngClass]="{'dgt-padding-bottom-xs': i == (panel.stats.size - 2)}"
             class="dgt-resource-td medium dgt-padding-right-xxs dgt-padding-left-xs">
