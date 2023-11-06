@@ -1518,6 +1518,7 @@ dgt-shared-scans-collector {
 
 .rank-row > div {
   padding: 5px 0;
+  line-height: 22px;
 }
 
 .rankingsList .avatar,
