@@ -793,6 +793,9 @@ label.queueDestroyButton {
   background: none !important;
   font-size: 18px;
   line-height: 32px;
+  height: 24px;
+  margin-top: 24px;
+  display: flex;
 }
 .entry.queueItem .width25 {
   height: 32px;
@@ -1625,7 +1628,7 @@ dgt-shared-scans-collector {
   background: transparent;
   height: 26px;
   padding: 0 5px !important;
-  line-height: 24px;
+  line-height: 22px;
   font-size: 14px;
   color: #a2a2a2 !important;
 }
