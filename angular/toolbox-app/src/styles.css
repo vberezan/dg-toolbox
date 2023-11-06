@@ -1588,3 +1588,44 @@ dgt-shared-scans-collector {
 .friendly-bg > .tag {
   background: #426300;
 }
+
+#ranking-navigation {
+  margin-bottom: 0 !important;
+}
+
+#ranking-navigation > .opacBackground {
+  padding: 0 !important;
+  border: none !important;
+  background: transparent;
+}
+
+#ranking-navigation > .opacBackground a {
+  width: 26px !important;
+  height: 26px !important;
+  font-size: 22px !important;
+  line-height: 28px !important;
+  padding: 0 !important;
+  float: right !important;
+  text-align: center !important;
+  background: transparent !important;
+  border: none !important;
+  margin: 0 !important;
+}
+
+#ranking-navigation > .opacBackground a > svg {
+  fill: #a2a2a2 !important;
+}
+
+#ranking-navigation > .opacBackground a:hover > svg {
+  fill: #ffffffcf !important;
+}
+
+#ranking-navigation > .opacDarkBackground {
+  border: none !important;
+  background: transparent;
+  height: 26px;
+  padding: 0 5px !important;
+  line-height: 24px;
+  font-size: 14px;
+  color: #a2a2a2 !important;
+}
