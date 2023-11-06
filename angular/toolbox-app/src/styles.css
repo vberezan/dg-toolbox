@@ -1351,3 +1351,24 @@ dgt-shared-scans-collector,
   width: 100% !important;
   display: block;
 }
+
+#planet-scan-form-wrapper {
+  border-radius: 5px;
+}
+
+#planet-scan-form .tableHeader {
+  display: flex !important;
+}
+
+#planet-scan-form .tableHeader div:first-child {
+  padding-left: 5px;
+  width: 50%;
+  float: left;
+}
+
+#planet-scan-form .tableHeader div:last-child {
+  padding-right: 5px;
+  width: 50%;
+  float: right;
+  text-align: right;
+}
