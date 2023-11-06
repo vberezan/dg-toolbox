@@ -1395,3 +1395,21 @@ dgt-shared-scans-collector,
 #planet-scan-form .coordsInput>div {
   float: right !important;
 }
+
+#planet-scan-form .coordsInput input {
+  height: 23px;
+  font-size: 12px;
+  background: rgba(0,0,0,.4);
+  color: #fff;
+  border: none !important;
+  margin: 0;
+  border-radius: 3px;
+  display: block;
+  box-sizing: border-box;
+  padding: 3px 5px;
+  overflow: hidden;
+  float: left;
+  line-height: 18px;
+  width: 26px;
+  text-align: center;
+}
