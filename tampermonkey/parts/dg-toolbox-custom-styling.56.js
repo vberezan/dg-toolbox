@@ -240,6 +240,6 @@ function applyCustomStyling() {
             friendly.parentElement.parentElement.classList.add('friendly-bg','rank-row');
         }));
 
-        document.querySelector('.rankingsList').add('playerRankingsList');
+        document.querySelector('.rankingsList').classList.add('playerRankingsList');
     }
 }
