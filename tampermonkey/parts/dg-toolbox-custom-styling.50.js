@@ -224,20 +224,20 @@ function applyCustomStyling() {
         }
     }
 
-    if (windowURL[1] === 'rankings' && (windowURL.length === 4 && windowURL[2]) === 'players') {
+    if (windowURL[1] === 'rankings' && (windowURL.length >= 4 && windowURL[2]) === 'players') {
         document.querySelectorAll('span.allied').forEach((allied=> {
-            allied.parentElement.parentElement.classList.add('allied-bg');
+            allied.parentElement.parentElement.classList.add('allied-bg','rank-row');
         }));
 
         document.querySelectorAll('span.hostile').forEach((hostile=> {
-            hostile.parentElement.parentElement.classList.add('hostile-bg');
+            hostile.parentElement.parentElement.classList.add('hostile-bg','rank-row');
             if (hostile.innerText.trim().length === 0) {
                 hostile.innerTex = '-';
             }
         }));
 
         document.querySelectorAll('span.friendly').forEach((friendly=> {
-            friendly.parentElement.parentElement.classList.add('friendly-bg');
+            friendly.parentElement.parentElement.classList.add('friendly-bg','rank-row');
         }));
     }
 }
