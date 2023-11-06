@@ -232,13 +232,14 @@ function applyCustomStyling() {
         document.querySelectorAll('span.hostile').forEach((hostile=> {
             hostile.parentElement.parentElement.classList.add('hostile-bg','rank-row');
             if (hostile.innerText.trim().length === 0) {
-                hostile.innerTex = '-';
+                hostile.innerHTML = '-';
             }
         }));
 
         document.querySelectorAll('span.friendly').forEach((friendly=> {
             friendly.parentElement.parentElement.classList.add('friendly-bg','rank-row');
-            friendly.parentElement.parentElement.parentElement.classList.add('friendly-bg','playerRankingsList');
         }));
+
+        document.querySelector('.rankingsList').add('playerRankingsList');
     }
 }
