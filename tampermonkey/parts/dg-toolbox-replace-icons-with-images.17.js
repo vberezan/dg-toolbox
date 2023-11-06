@@ -29,7 +29,7 @@ function replaceIconsWithImages() {
     replaceImgWithImgByQuery('a>img[src="/images/buttons/training.png"]', 'https://i.imgur.com/wAv07G9.png');
     replaceImgWithImgByQuery('div>img[src="/images/buttons/converter.png"]', 'https://i.imgur.com/vAPOsV9.png');
     replaceImgWithImgByQuery('a>img[src="/images/buttons/converter.png"]', 'https://i.imgur.com/hytbrU9.png');
-    replaceImgWithImgByQuery('#scanned-planet-wrapper > .header img"', 'https://i.imgur.com/GFbCtz9.png');
+    replaceImgWithImgByQuery('.header img[src="/images/buttons/comms.png"]', 'https://i.imgur.com/GFbCtz9.png');
     replaceImgWithImgByQuery('div>img[src="/images/buttons/comms.png"]', 'https://i.imgur.com/ZeghkIw.png');
     replaceImgWithImgByQuery('a>img[src="/images/buttons/comms.png"]', 'https://i.imgur.com/GFbCtz9.png');
     replaceImgWithImgByQuery('a>img[src="/images/buttons/construction.png"]', 'https://i.imgur.com/1Ph3T54.png');
