@@ -21,6 +21,9 @@ export class StatsPanelService {
         panel.stats.set(planetSummary.location[0], new PlanetStats());
       }
 
+      panel.stats.get(Resources.ALL).count++;
+      panel.stats.get(planetSummary.location[0]).count++;
+
       panel.stats.get(Resources.ALL).workers.total += planetSummary.workers.currentNumber;
       panel.stats.get(planetSummary.location[0]).workers.total += planetSummary.workers.currentNumber;
       panel.stats.get(Resources.ALL).workers.maximum += planetSummary.workers.maximumNumber;

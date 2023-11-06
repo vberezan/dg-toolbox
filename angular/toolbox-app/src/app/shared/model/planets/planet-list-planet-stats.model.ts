@@ -5,6 +5,15 @@ export class PlanetStats {
   private _resources: ResourceStats = new ResourceStats();
   private _workers: PopulationStats = new PopulationStats();
   private _soldiers: PopulationStats = new PopulationStats();
+  private _count: number;
+
+  get count(): number {
+    return this._count;
+  }
+
+  set count(value: number) {
+    this._count = value;
+  }
 
   get resources(): ResourceStats {
     return this._resources;
