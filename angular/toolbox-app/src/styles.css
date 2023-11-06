@@ -1553,6 +1553,14 @@ dgt-shared-scans-collector {
   line-height: 22px;
 }
 
+.playerRankingsList .rank {
+  width: 20px !important;
+}
+
+.playerRankingsList .tag {
+  padding-right: 5px !important;
+}
+
 .playerRankingsList .avatar,
 .playerRankingsList .rank {
   padding-left: 5px !important;
