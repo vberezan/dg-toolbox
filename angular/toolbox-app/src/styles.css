@@ -1513,16 +1513,16 @@ dgt-shared-scans-collector {
 }
 
 .allied-bg > .rank,
-.allied-bg > tag {
+.allied-bg > .tag {
   background: #18354b;
 }
 
 .hostile-bg > .rank,
-.hostile-bg > tag {
+.hostile-bg > .tag {
   background: #4b2b2b;
 }
 
 .friendly-bg > .rank,
-.friendly-bg > tag {
+.friendly-bg > .tag {
   background: #3f4b2f;
 }
