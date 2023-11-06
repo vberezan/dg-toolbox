@@ -32,6 +32,7 @@
 .dgt-stats-totals-table th .count {
   display: block;
   float: right;
+  font-weight: normal !important;
 }
 
 .dgt-stats-totals-table td {
