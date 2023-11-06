@@ -1402,7 +1402,7 @@ dgt-shared-scans-collector,
   background: rgba(0,0,0,.4);
   color: #fff;
   border: none !important;
-  margin: 0;
+  margin: 0 3px;
   border-radius: 3px;
   display: block;
   box-sizing: border-box;
@@ -1410,8 +1410,16 @@ dgt-shared-scans-collector,
   overflow: hidden;
   float: left;
   line-height: 18px;
-  width: 26px;
+  width: 25px;
   text-align: center;
+}
+
+#planet-scan-form .coordsInput input:first-child {
+  margin-left: 0 !important;
+}
+
+#planet-scan-form .coordsInput input:last-child {
+  margin-right: 0 !important;
 }
 
 #planet-scan-form .coordsInput>div:nth-child(2) {
