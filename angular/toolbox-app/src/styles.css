@@ -1498,3 +1498,7 @@ dgt-shared-scans-collector {
   border-radius: 0 !important;
 }
 
+#planet-scan-additional {
+  border: none !important;
+}
+
