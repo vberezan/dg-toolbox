@@ -1,6 +1,6 @@
 // ==UserScript==
 // @name         DarkGalaxy Toolbox
-// @version      1.0.12
+// @version      1.0.13
 // @namespace    dg-toolbox
 // @homepage     https://github.com/vberezan/dg-toolbox
 // @supportURL   https://github.com/vberezan/dg-toolbox
@@ -53,7 +53,7 @@ function loadSetups(windowURL) {
 function loadCustomStyling() {
     loadResource({
         tagName: 'script',
-        src: 'https://cdn.jsdelivr.net/gh/vberezan/dg-toolbox/tampermonkey/parts/dg-toolbox-custom-styling.57.js',
+        src: 'https://cdn.jsdelivr.net/gh/vberezan/dg-toolbox/tampermonkey/parts/dg-toolbox-custom-styling.66.js',
         rel: 'text/javascript'
     }).onload = function () {
         applyCustomStyling();
@@ -123,7 +123,7 @@ function loadAngular() {
 function loadGlobalAngularStyling() {
     let angular = [{
         tagName: 'link',
-        href: 'https://cdn.jsdelivr.net/gh/vberezan/dg-toolbox/angular/toolbox-app/dist/toolbox-app/styles.ac66474199289b5a.css',
+        href: 'https://cdn.jsdelivr.net/gh/vberezan/dg-toolbox/angular/toolbox-app/dist/toolbox-app/styles.e75a7f494b809824.css',
         rel: 'stylesheet'
     }];
 
@@ -166,7 +166,7 @@ function loadGlobalAngularStyling() {
             }
         }
 
-        localStorage.setItem('version', 'v1.0.12');
+        localStorage.setItem('version', 'v1.0.13');
     });
 
     window.unload = function() {
