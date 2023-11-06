@@ -1502,3 +1502,16 @@ dgt-shared-scans-collector {
   border: none !important;
 }
 
+/********************/
+
+.allied-bg {
+  background: #18354b;
+}
+
+.hostile-bg {
+  background: #4b2b2b;
+}
+
+.friendly-bg {
+  background: #3f4b2f;
+}
