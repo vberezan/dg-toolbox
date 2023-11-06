@@ -1477,12 +1477,15 @@ dgt-shared-scans-collector {
 #scanned-planet-wrapper #planetHeader {
   padding: 0 !important;
   border: none !important;
-  border-radius: 0 !important;
+  border-top-left-radius: 0 !important;
+  border-top-right-radius: 0 !important;
+  border-bottom-left-radius: 5px !important;
+  border-bottom-right-radius: 5px !important;
 }
 
 #scanned-planet-wrapper #planetImage img {
-  height: 180px;
-  width: 180px;
+  height: 180px !important;
+  width: 180px !important;
 }
 
 #scanned-planet-wrapper .planetHeadSection:nth-child(2) .padding {
@@ -1495,5 +1498,6 @@ dgt-shared-scans-collector {
 
 #scanned-planet-wrapper .planetHeadSection:nth-child(4)>div {
   height: 112px;
+  border-radius: 0 !important;
 }
 
