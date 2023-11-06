@@ -1348,7 +1348,8 @@ dgt-fleet-orders-list-panel {
 
 dgt-shared-scans-collector,
 #planet-scan-form > div {
-  width: 100% !important;
+  width: calc(100% - 8px) !important;
+  padding: 5px;
   display: block;
 }
 
@@ -1358,6 +1359,7 @@ dgt-shared-scans-collector,
 
 #planet-scan-form .tableHeader {
   display: flex !important;
+  border-bottom: 1px solid #787878 !important;
 }
 
 #planet-scan-form .tableHeader div:first-child {
