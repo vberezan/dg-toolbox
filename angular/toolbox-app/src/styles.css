@@ -1346,11 +1346,16 @@ dgt-fleet-orders-list-panel {
 
 /*************/
 
-dgt-shared-scans-collector,
 #planet-scan-form > div {
   width: calc(100% - 10px) !important;
   padding: 5px !important;
   display: block;
+}
+
+dgt-shared-scans-collector {
+  float: left;
+  padding: 0 !important;
+  width: 100% !important;
 }
 
 #planet-scan-form-wrapper {
