@@ -1508,6 +1508,11 @@ dgt-shared-scans-collector {
   border-radius: 5px !important;
 }
 
+.rankingsList .playerName {
+  font-weight: normal !important;
+  cursor: auto;
+}
+
 .rankingsList .tableHeader {
   border-bottom: 1px solid #787878;
 }
@@ -1538,5 +1543,5 @@ dgt-shared-scans-collector {
 
 .friendly-bg > .rank,
 .friendly-bg > .tag {
-  background: #3f4b2f;
+  background: #426300;
 }
