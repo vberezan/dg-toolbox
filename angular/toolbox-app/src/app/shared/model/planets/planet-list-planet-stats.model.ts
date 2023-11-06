@@ -5,7 +5,7 @@ export class PlanetStats {
   private _resources: ResourceStats = new ResourceStats();
   private _workers: PopulationStats = new PopulationStats();
   private _soldiers: PopulationStats = new PopulationStats();
-  private _count: number;
+  private _count: number = 0;
 
   get count(): number {
     return this._count;
