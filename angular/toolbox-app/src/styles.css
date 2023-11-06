@@ -1525,11 +1525,11 @@ dgt-shared-scans-collector {
   border-bottom: 1px solid #787878;
 }
 
-.rank-row {
+.playerRankingsList .rank-row {
   padding: 0 !important;
 }
 
-.rank-row > div {
+.playerRankingsList .rank-row > div {
   padding: 5px 0;
   line-height: 22px;
 }

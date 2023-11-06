@@ -63,21 +63,22 @@ export class ScanService implements OnDestroy {
         dbScan.structures = scanEvent.planetScan.structures;
       }
 
+      // -- fleet scans not yet supported
       if (scanEvent.type == ScanType.FLEET) {
         dbScan.fleets = scanEvent.planetScan.fleets;
-      }
-
-      if (items.length == 0) {
-        addDoc(scansRef, JSON.parse(JSON.stringify(dbScan)))
-          .catch((error): void => {
-              console.log(error);
-            }
-          );
       } else {
-        updateDoc(doc(scansRef, dbScan.id), JSON.parse(JSON.stringify(dbScan)))
-          .catch((error): void => {
-            console.log(error);
-          });
+        if (items.length == 0) {
+          addDoc(scansRef, JSON.parse(JSON.stringify(dbScan)))
+            .catch((error): void => {
+                console.log(error);
+              }
+            );
+        } else {
+          updateDoc(doc(scansRef, dbScan.id), JSON.parse(JSON.stringify(dbScan)))
+            .catch((error): void => {
+              console.log(error);
+            });
+        }
       }
 
       this.planetScanSubscription.unsubscribe();
