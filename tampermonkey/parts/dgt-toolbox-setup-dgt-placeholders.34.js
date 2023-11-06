@@ -74,6 +74,11 @@ function setUpSharedScansCollector(windowURL) {
             scanForm.id = 'planet-scan-form';
             scanForm.parentElement.id = 'planet-scan-form-wrapper';
             scanForm.querySelector('.tableHeader div:nth-child(2)').remove();
+
+            let newButton = document.createElement('button');
+            newButton.type = 'submit';
+            scanForm.querySelector('input[type="submit"]').parentElement.append(newButton);
+            scanForm.querySelector('input[type="submit"]').remove();
         }
     }
 }
