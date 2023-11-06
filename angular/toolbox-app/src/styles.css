@@ -1504,16 +1504,24 @@ dgt-shared-scans-collector {
 
 /********************/
 
-.rankingsList {
+.playerRankingsList {
   border-radius: 5px !important;
 }
 
-.rankingsList .playerName {
+.playerRankingsList .playerName {
   font-weight: normal !important;
   cursor: auto;
 }
 
-.rankingsList .tableHeader {
+.playerRankingsList .name {
+  width: 70%;
+}
+
+.playerRankingsList .score {
+  width: 16%;
+}
+
+.playerRankingsList .tableHeader {
   border-bottom: 1px solid #787878;
 }
 
@@ -1526,8 +1534,8 @@ dgt-shared-scans-collector {
   line-height: 22px;
 }
 
-.rankingsList .avatar,
-.rankingsList .rank {
+.playerRankingsList .avatar,
+.playerRankingsList .rank {
   padding-left: 5px !important;
 }
 

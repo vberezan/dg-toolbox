@@ -238,6 +238,7 @@ function applyCustomStyling() {
 
         document.querySelectorAll('span.friendly').forEach((friendly=> {
             friendly.parentElement.parentElement.classList.add('friendly-bg','rank-row');
+            friendly.parentElement.parentElement.parentElement.classList.add('friendly-bg','playerRankingsList');
         }));
     }
 }
