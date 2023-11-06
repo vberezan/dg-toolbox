@@ -208,8 +208,8 @@ function applyCustomStyling() {
 
             let label = detach(scanForm.querySelector('.coordsInput>div:nth-child(1)'));
             let submit = detach(scanForm.querySelector('.coordsInput>div:nth-child(3)'));
-            scanForm.prepend(submit);
-            scanForm.append(label);
+            scanForm.querySelector('.coordsInput').prepend(submit);
+            scanForm.querySelector('.coordsInput').append(label);
         }
     }
 }
