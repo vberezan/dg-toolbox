@@ -39,6 +39,10 @@
   line-height: 20px;
 }
 
+.dgt-stats-totals-table td:last-child {
+  padding-right: 0 !important;
+}
+
 .dgt-stats-totals-table td.dgt-padding-right-xs {
   padding-right: 10px;
 }
