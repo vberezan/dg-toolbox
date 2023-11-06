@@ -1443,6 +1443,10 @@ dgt-shared-scans-collector,
   height: 23px !important;
 }
 
+#planet-scan-form .coordsInput .coords>div:last-child {
+  line-height: 23px !important;
+}
+
 #planet-scan-form .coordsInput .coords img {
   width: 19px !important;
   height: 19px !important;
