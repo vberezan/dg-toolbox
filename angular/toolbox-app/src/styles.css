@@ -1504,12 +1504,25 @@ dgt-shared-scans-collector {
 
 /********************/
 
+.rankingsList {
+  border-radius: 5px !important;
+}
+
+.rankingsList .tableHeader {
+  border-bottom: 1px solid #787878;
+}
+
 .rank-row {
   padding: 0 !important;
 }
 
 .rank-row > div {
-  padding: 5px;
+  padding: 5px 0;
+}
+
+.rankingsList .avatar,
+.rankingsList .rank {
+  padding-left: 5px !important;
 }
 
 .allied-bg > .rank,
