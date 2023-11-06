@@ -1386,6 +1386,10 @@ dgt-shared-scans-collector,
   cursor: pointer;
 }
 
+#planet-scan-form button:hover fa-icon {
+  color: #ffffffcf !important;
+}
+
 #planet-scan-form button fa-icon {
   color: #a2a2a2 !important;
   font-size: 20px !important;
@@ -1394,6 +1398,8 @@ dgt-shared-scans-collector,
 
 #planet-scan-form .coordsInput>div {
   float: right !important;
+  width: auto !important;
+  border: none !important;
 }
 
 #planet-scan-form .coordsInput input {
@@ -1424,4 +1430,24 @@ dgt-shared-scans-collector,
 
 #planet-scan-form .coordsInput>div:nth-child(2) {
   display: flex !important;
+}
+
+#planet-scan-form .coordsInput .coords {
+  width: auto !important;
+  border: none !important;
+  padding: 0 2px !important;
+  height: auto !important;
+}
+
+#planet-scan-form .coordsInput .coords>div {
+  height: 23px !important;
+}
+
+#planet-scan-form .coordsInput .coords img {
+  width: 19px !important;
+  height: 19px !important;
+  border: 1px solid #767676 !important;
+  border-radius: 3px !important;
+  padding: 1px !important;
+  line-height: 23px !important;
 }
