@@ -67,7 +67,8 @@ function setUpFleetOrdersListPanel(windowURL) {
 
 function setUpSharedScansCollector(windowURL) {
     if (windowURL[1] === 'planet' && (windowURL.length === 5 && windowURL[3]) === 'comms') {
-        document.querySelector('.opacDarkBackground form').append(document.createElement('dgt-shared-scans-collector'));
+        document.querySelector('.opacBackground .opacDarkBackground>form').append(document.createElement('dgt-shared-scans-collector'));
+        document.querySelector('.opacBackground .opacDarkBackground>form').id = '#planet-scan-form';
     }
 }
 
