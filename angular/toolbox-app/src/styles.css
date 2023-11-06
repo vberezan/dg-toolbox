@@ -347,7 +347,7 @@ a:hover {
   margin-top: -5px !important;
 }
 
-#planetList > #planetList .planetHeadSection:last-child .right a:hover img {
+#planetList > #planetList .planetHeadSection:nth-child(4) .right a:hover img {
   background: rgba(53,49,49,1);
   border: 1px solid rgb(53,49,49,1) !important;
 }
