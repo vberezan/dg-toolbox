@@ -33,11 +33,15 @@ export class ScanService implements OnDestroy {
 
     let locations: string[] = summaries.map((summary: PlanetSummary) => summary.location.join('.'));
 
+    console.log(locations);
+
     this.scansSubscription = collectionData(
       query(collection(this.firestore, 'scans'),
         where('location', 'in', locations)
       )
     ).subscribe((items: DocumentData[]): void => {
+      console.log(items.length);
+
       let dbScans: PlanetScan[] = Object.assign([], items);
 
       let byLocation: Map<String, PlanetScan> = dbScans.reduce((entryMap: Map<any, any>, e: PlanetScan) =>
