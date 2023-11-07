@@ -9,7 +9,7 @@ import {UserRole} from "../../../shared/model/authentication/user-role";
 import {LocalStorageKeys} from "../../../shared/model/local-storage/local-storage-keys";
 import {LocalStorageService} from "../../local-storage-manager/service/local-storage.service";
 import DocumentData = firebase.firestore.DocumentData;
-import * as cryptoJS from 'crypto-js';
+import * as CryptoJS from 'crypto-js';
 
 @Injectable({
   providedIn: 'platform'
