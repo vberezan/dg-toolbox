@@ -21,6 +21,7 @@ export class ScanDataPanelComponent implements OnInit, OnDestroy {
       this.active = state.status;
 
       if (this.active && !this.initialized) {
+        console.log('muie');
         let summaries: PlanetSummary[] = this.scanService.extractSummaries();
 
         if (summaries.length > 0) {
