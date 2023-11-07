@@ -35,12 +35,12 @@ export class LoginComponent {
     });
   }
 
-  signInWithEmailAndPassword(email: string, password: string, refreshPage: boolean) {
-    this.authService.signInWithEmailAndPassword(this.auth, email, password, refreshPage);
+  signInWithEmailAndPassword(email: string, password: string) {
+    this.authService.signInWithEmailAndPassword(this.auth, email, password);
   }
 
-  signInWithGoogle(refreshPage: boolean) {
-    this.authService.signInWithGoogle(this.auth, refreshPage);
+  signInWithGoogle() {
+    this.authService.signInWithGoogle(this.auth);
   }
 
   signOut(): void {

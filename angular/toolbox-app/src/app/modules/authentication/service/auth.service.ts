@@ -35,7 +35,9 @@ export class AuthService implements OnDestroy {
     let timeToken = this.localStorageService.get(LocalStorageKeys.USER).session.timeToken;
     let refreshToken = this.localStorageService.get(LocalStorageKeys.USER).session.refreshToken;
     let timestamp: number = Date.parse(CryptoJS.AES.decrypt(timeToken, refreshToken).toString(CryptoJS.enc.Utf8));
-    let status: boolean = (Date.now() + 1000 - timestamp) <= 30000;
+    let status: boolean = (Date.now() - timestamp) <= 30000;
+
+    console.log(Date.now() - timestamp);
 
     if (status && sendEvent) {
       this._authState.emit(new AuthState(status, this.localStorageService.get(LocalStorageKeys.USER).session.role));
@@ -99,26 +101,16 @@ export class AuthService implements OnDestroy {
     }
   }
 
-  signInWithEmailAndPassword(auth: Auth, email: string, password: string, refreshPage: boolean): void {
+  signInWithEmailAndPassword(auth: Auth, email: string, password: string): void {
     signInWithEmailAndPassword(auth, email, password)
-      .then((): void => {
-        if (refreshPage) {
-          location.reload();
-        }
-      })
       .catch((error): void => {
           window.alert(error.message);
         }
       );
   }
 
-  signInWithGoogle(auth: Auth, refreshPage: boolean): void {
+  signInWithGoogle(auth: Auth): void {
     signInWithPopup(auth, new GoogleAuthProvider())
-      .then((): void => {
-        if (refreshPage) {
-          //location.reload();
-        }
-      })
       .catch((error): void => {
           window.alert(error.message)
         }
