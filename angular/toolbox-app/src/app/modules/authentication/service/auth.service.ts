@@ -19,6 +19,12 @@ export class AuthService implements OnDestroy {
   private _authState: EventEmitter<AuthState> = new EventEmitter();
   private _refreshInProgress: boolean = false;
   private authSubscription: Subscription;
+  private id: number;
+
+  constructor() {
+    this.id = Math.random();
+    console.log(this.id);
+  }
 
   ngOnDestroy(): void {
     if (this.authSubscription != null) {
