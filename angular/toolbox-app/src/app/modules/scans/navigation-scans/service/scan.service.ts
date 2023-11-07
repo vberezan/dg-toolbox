@@ -27,6 +27,8 @@ export class ScanService implements OnDestroy {
   }
 
   fillScans(summaries: PlanetSummary[]): void {
+    console.log(this.scansSubscription);
+
     if (this.scansSubscription !== null) {
       return;
     }
