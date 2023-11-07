@@ -78,8 +78,6 @@ export class OrdersPanelComponent implements OnDestroy {
         document.querySelector('dgt-alliance-orders-manager-panel .dgt-spinner-container.main').classList.remove('show');
       }
     });
-
-    this.authService.isLoginValid();
   }
 
   createOrder(idx: number): void {
