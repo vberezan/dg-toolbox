@@ -38,7 +38,7 @@ function replaceStructuresImages() {
     replaceImgWithImg('/images/units/main/structures/space_tether.jpg', 'https://i.imgur.com/IA2Ax8v.jpg');
     replaceImgWithImg('/images/units/main/structures/hyperspace_beacon.jpg', 'https://i.imgur.com/zQb9Yp2.jpg');
     replaceImgWithImg('/images/units/main/structures/jump_gate.jpg', 'https://i.imgur.com/s6r3eFg.jpg');
-    replaceImgWithImg('/images/units/main/structures/light_weapons_factory.jpg', 'https://i.imgur.com/bJkLYHb.jpg');
+    replaceImgWithImg('/images/units/main/structures/light_weapons_factory.jpg', 'https://i.imgur.com/4p8fFug.jpg');
     replaceImgWithImg('/images/units/main/structures/strip_metal_mine.jpg', 'https://i.imgur.com/FnnxfAS.jpg');
     replaceImgWithImg('/images/units/main/structures/metal_refinery.jpg', 'https://i.imgur.com/0dVi9nd.jpg');
     replaceImgWithImg('/images/units/main/structures/mineral_processor.jpg', 'https://i.imgur.com/lXo4K1D.jpg');
