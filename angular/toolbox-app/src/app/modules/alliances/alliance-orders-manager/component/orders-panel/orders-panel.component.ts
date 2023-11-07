@@ -39,6 +39,7 @@ export class OrdersPanelComponent implements OnDestroy {
     wait: [],
     instructions: []
   }
+  private initialized: boolean = false;
 
   constructor(library: FaIconLibrary) {
     library.addIcons(farCircleXmark, farCircleRight);
@@ -63,7 +64,7 @@ export class OrdersPanelComponent implements OnDestroy {
         if (state.role === UserRole.ADMIN || state.role === UserRole.TEAM_LEADER) {
           this.dgAPI.cleanAlianceMembers();
 
-          if (this.orders.size === 0) {
+          if (!this.initialized) {
             this.allianceMembers = this.dgAPI.allianceMembers(true);
 
             this.allianceMembers.forEach((member: AllianceMember): void => {
@@ -71,6 +72,8 @@ export class OrdersPanelComponent implements OnDestroy {
                 this.orderService.getAllOrders(member.name.toLowerCase(), this.dgAPI.gameTurn(), this.changeDetection, observer);
               }));
             });
+
+            this.initialized = true;
           }
         }
       }
