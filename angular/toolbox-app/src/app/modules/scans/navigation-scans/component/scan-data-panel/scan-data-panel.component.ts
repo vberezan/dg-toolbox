@@ -3,8 +3,6 @@ import {ScanService} from "../../service/scan.service";
 import {PlanetSummary} from "../../../../../shared/model/planets/planet-summary.planet-list-model";
 import {AuthService} from "../../../../authentication/service/auth.service";
 import {AuthState} from "../../../../../shared/model/authentication/auth-state.model";
-import {HttpClient, HttpHeaders} from "@angular/common/http";
-import {lastValueFrom} from "rxjs";
 
 @Component({
   selector: 'dgt-navigation-scan-data-panel',
@@ -17,7 +15,7 @@ export class ScanDataPanelComponent implements OnInit, OnDestroy {
 
   public active: boolean = false;
 
-  ngOnInit() {
+  ngOnInit(): void {
     this.authService.authState.subscribe((state: AuthState) => {
       this.active = state.status;
 
@@ -29,9 +27,11 @@ export class ScanDataPanelComponent implements OnInit, OnDestroy {
         }
       }
     });
+
+    this.authService.checkLoginValidity(true);
   }
 
-  ngOnDestroy() {
+  ngOnDestroy(): void {
     this.authService.authState.unsubscribe();
   }
 
