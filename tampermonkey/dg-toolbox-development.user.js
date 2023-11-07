@@ -133,7 +133,7 @@ function loadGlobalAngularStyling() {
 }
 
 (function () {
-    document.addEventListener("DOMContentLoaded", function (event) {
+    document.addEventListener("DOMContentLoaded", function () {
         let windowURL = window.location.pathname.split(/\//g);
 
         console.log("%cDarkGalaxy Toolbox - DGT", "font-size: 16px; font-weight: bold;");
