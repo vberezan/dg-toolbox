@@ -16,6 +16,7 @@ const platform: PlatformRef = platformBrowserDynamic();
 let windowURL: string[] = window.location.pathname.split(/\//g);
 platform.bootstrapModule(LocalStorageManagerModule).catch(err => console.error(err));
 platform.bootstrapModule(DarkgalaxyUiParserModule).catch(err => console.error(err));
+platform.bootstrapModule(AuthenticationModule).catch(err => console.error(err));
 platform.bootstrapModule(NavbarModule).catch(err => console.error(err));
 
 
@@ -49,5 +50,3 @@ if (windowURL[1] === 'alliances') {
 if (windowURL[1] === 'fleets') {
   platform.bootstrapModule(FleetOrdersDisplayModule).catch(err => console.error(err));
 }
-
-platform.bootstrapModule(AuthenticationModule).catch(err => console.error(err));
