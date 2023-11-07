@@ -32,9 +32,13 @@ export class OrderService implements OnDestroy {
   }
 
   getAllOrders(user: string, turn: number, changeDetection: ChangeDetectorRef, observer: Subscriber<AllianceOrder[]>): void {
-    // if (this.ordersSubscriptions.has(user)) {
-    //   return;
-    // }
+    if (user === 'vladb') {
+      console.log('hello');
+    }
+
+    if (this.ordersSubscriptions.has(user)) {
+      return;
+    }
 
     if (document.querySelector('dgt-alliance-orders-manager-panel .dgt-spinner-container.member')) {
       document.querySelectorAll('dgt-alliance-orders-manager-panel .dgt-spinner-container.member').forEach((spinner: Element): void => {
