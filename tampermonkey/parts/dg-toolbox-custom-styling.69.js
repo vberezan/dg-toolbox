@@ -122,7 +122,7 @@ function applyCustomStyling() {
 
         let playerName = document.querySelector('.text span .playerName');
         if (playerName) {
-            playerName.innerHTML = playerName.trim().substring(0,15);
+            playerName.innerHTML = playerName.textContent.trim().substring(0,15);
         }
     }
 
