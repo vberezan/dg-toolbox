@@ -127,7 +127,7 @@ export class AuthService implements OnDestroy {
   }
 
   signOut(auth: Auth, refreshPage: boolean): void {
-    window.alert('signout');
+    window.alert(localStorage.getItem('user'));
     this.localStorageService.remove(LocalStorageKeys.USER);
     this._refreshInProgress = refreshPage;
     this._authState.emit(new AuthState(true, null));
