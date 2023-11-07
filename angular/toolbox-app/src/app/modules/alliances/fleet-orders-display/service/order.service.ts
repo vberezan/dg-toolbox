@@ -14,7 +14,7 @@ export class OrderService {
   getActiveOrders(user: string, turn: number, changeDetection: ChangeDetectorRef, observer: Subscriber<AllianceOrder[]>): void {
     let ordersRef = collection(this.firestore, 'orders');
 
-    collectionData(
+    collectionData<DocumentData, string>(
       query(ordersRef,
         where('user', '==', user),
         where('executed', '==', false),

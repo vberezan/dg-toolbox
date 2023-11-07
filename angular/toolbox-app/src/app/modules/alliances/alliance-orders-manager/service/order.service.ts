@@ -41,7 +41,7 @@ export class OrderService {
 
     let ordersRef = collection(this.firestore, 'orders');
 
-    collectionData(
+    collectionData<DocumentData, string>(
       query(ordersRef,
         where('user', '==', user),
         orderBy('executed', 'asc'),

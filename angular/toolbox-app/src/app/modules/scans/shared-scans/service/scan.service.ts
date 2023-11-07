@@ -28,7 +28,7 @@ export class ScanService implements OnDestroy {
       this.planetScanSubscription.unsubscribe();
     }
 
-    this.planetScanSubscription = collectionData(
+    this.planetScanSubscription = collectionData<DocumentData, string>(
       query(scansRef,
         where('location', '==', scanEvent.planetScan.location),
         limit(1)

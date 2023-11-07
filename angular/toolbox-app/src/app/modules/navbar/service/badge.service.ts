@@ -16,7 +16,7 @@ export class BadgeService {
   subscribeToFleetOrders(user: string, observer: Subscriber<number>, changeDetection: ChangeDetectorRef) {
     let ordersRef = collection(this.firestore, 'orders');
 
-    collectionData(
+    collectionData<DocumentData, string>(
       query(ordersRef,
         where('user', '==', user),
         where('executed', '==', false)
