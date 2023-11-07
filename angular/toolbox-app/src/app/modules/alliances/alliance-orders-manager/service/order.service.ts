@@ -3,8 +3,8 @@ import {AllianceOrder} from "../../../../shared/model/orders/alliance-order.mode
 import {addDoc, collection, collectionData, deleteDoc, doc, Firestore, orderBy, query, where} from "@angular/fire/firestore";
 import firebase from "firebase/compat";
 import {Subscriber, Subscription} from "rxjs";
-import DocumentData = firebase.firestore.DocumentData;
 import {DarkgalaxyApiService} from "../../../darkgalaxy-ui-parser/service/darkgalaxy-api.service";
+import DocumentData = firebase.firestore.DocumentData;
 
 @Injectable({
   providedIn: 'root'
@@ -12,7 +12,7 @@ import {DarkgalaxyApiService} from "../../../darkgalaxy-ui-parser/service/darkga
 export class OrderService implements OnDestroy {
   private firestore: Firestore = inject(Firestore);
   private dgApi: DarkgalaxyApiService = inject(DarkgalaxyApiService);
-  private ordersSubscription: Subscription;
+  private ordersSubscriptions: Map<String, Subscription> = new Map<String, Subscription>();
 
   updateOrder(order: AllianceOrder): void {
     order.from = this.dgApi.username(false);
@@ -20,9 +20,8 @@ export class OrderService implements OnDestroy {
 
     addDoc(ordersRef, JSON.parse(JSON.stringify(order)))
       .catch((error): void => {
-          console.log(error);
-        }
-      );
+        console.log(error);
+      });
   }
 
   deleteOrder(id: string): void {
@@ -33,7 +32,7 @@ export class OrderService implements OnDestroy {
   }
 
   getAllOrders(user: string, turn: number, changeDetection: ChangeDetectorRef, observer: Subscriber<AllianceOrder[]>): void {
-    if (this.ordersSubscription != null) {
+    if (this.ordersSubscriptions.has(user)) {
       return;
     }
 
@@ -46,7 +45,7 @@ export class OrderService implements OnDestroy {
 
     let ordersRef: any = collection(this.firestore, 'orders');
 
-    this.ordersSubscription = collectionData<DocumentData, string>(
+    this.ordersSubscriptions.set(user, collectionData<DocumentData, string>(
       query(ordersRef,
         where('user', '==', user),
         orderBy('executed', 'asc'),
@@ -69,10 +68,12 @@ export class OrderService implements OnDestroy {
       }
 
       changeDetection.detectChanges();
-    });
+    }));
   }
 
   ngOnDestroy() {
-    this.ordersSubscription.unsubscribe();
+    this.ordersSubscriptions.forEach((subscription: Subscription): void => {
+      subscription.unsubscribe();
+    });
   }
 }
