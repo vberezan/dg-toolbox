@@ -31,6 +31,9 @@ export class BadgeService {
       }
 
       changeDetection.detectChanges();
+
+      console.log('inauntru');
+
       if (document.querySelector('.local-orders-badge')) {
         document.querySelector<HTMLElement>('.local-orders-badge').style.display = 'none';
       }
