@@ -45,7 +45,6 @@ export class OrdersPanelComponent implements OnDestroy {
     this.allianceMembers = this.dgAPI.allianceMembers(true);
 
     this.authService.authState.subscribe((state: AuthState): void => {
-      console.log(Math.random());
 
       if (document.querySelector('dgt-alliance-orders-manager-panel .dgt-spinner-container.main')) {
         document.querySelector('dgt-alliance-orders-manager-panel .dgt-spinner-container.main').classList.add('show');
@@ -66,10 +65,11 @@ export class OrdersPanelComponent implements OnDestroy {
           this.allianceMembers = this.dgAPI.allianceMembers(true);
 
           this.allianceMembers.forEach((member: AllianceMember): void => {
-
-            this.orders.set(member.name.toLowerCase(), new Observable<AllianceOrder[]>((observer: Subscriber<AllianceOrder[]>): void => {
-              this.orderService.getAllOrders(member.name.toLowerCase(), this.dgAPI.gameTurn(), this.changeDetection, observer);
-            }));
+            if (!this.orders.has(member.name.toLowerCase())) {
+              this.orders.set(member.name.toLowerCase(), new Observable<AllianceOrder[]>((observer: Subscriber<AllianceOrder[]>): void => {
+                this.orderService.getAllOrders(member.name.toLowerCase(), this.dgAPI.gameTurn(), this.changeDetection, observer);
+              }));
+            }
           });
         }
       }
