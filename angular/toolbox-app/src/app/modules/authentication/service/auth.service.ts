@@ -49,7 +49,12 @@ export class AuthService implements OnDestroy {
             }, items[0]);
 
             if (userCheck.enabled) {
-              this.localStorageService.cache(LocalStorageKeys.USER, {user: CryptoJS.HmacSHA512(user.metadata.lastSignInTime, user.refreshToken).toString()});
+              this.localStorageService.cache(LocalStorageKeys.USER, {
+                user: {
+                  session: CryptoJS.AES.encrypt(user.metadata.lastSignInTime, user.refreshToken).toString(),
+                  refreshToken: user.refreshToken
+                }
+              });
               this._authState.emit(new AuthState(true, userCheck.role));
             } else {
               this.signOut(auth, false);
