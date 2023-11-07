@@ -47,6 +47,10 @@ export class AuthService implements OnDestroy {
     } else {
       console.log('invalid');
 
+      if (this.localStorageService.get(LocalStorageKeys.USER) !== null) {
+        this.signOut(auth, false);
+      }
+
       // -- current implementation will not allow multiple subscriptions for authState
       if (this.authSubscription != null) {
         return;
