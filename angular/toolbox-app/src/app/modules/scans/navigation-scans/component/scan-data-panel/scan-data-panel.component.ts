@@ -28,6 +28,11 @@ export class ScanDataPanelComponent implements OnInit, OnDestroy {
           this.initialized = true;
         }
       }
+
+      if (document.querySelector('dgt-navigation-scan-data-panel .dgt-spinner-container')) {
+        document.querySelector('dgt-navigation-scan-data-panel .dgt-spinner-container').classList.add('hide');
+        document.querySelector('dgt-navigation-scan-data-panel .dgt-spinner-container').classList.remove('show');
+      }
     });
 
     this.authService.checkLoginValidity();
