@@ -17,7 +17,7 @@ export class ScanDataPanelComponent implements OnInit, OnDestroy {
 
   ngOnInit(): void {
     this.authService.authState.subscribe((state: AuthState): void => {
-      console.log('xxxxxx');
+      console.log(state);
 
       this.active = state.status;
 
