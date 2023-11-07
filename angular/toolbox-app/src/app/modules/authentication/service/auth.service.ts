@@ -81,12 +81,14 @@ export class AuthService implements OnDestroy {
                   }
                 });
 
+                location.reload();
+
                 this._authState.emit(new AuthState(true, userCheck.role));
               } else {
-                this.signOut(auth, false);
+                this.signOut(auth, true);
               }
             } else {
-              this.signOut(auth, false);
+              this.signOut(auth, true);
             }
           });
         } else {
