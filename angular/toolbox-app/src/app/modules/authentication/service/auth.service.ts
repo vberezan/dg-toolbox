@@ -45,13 +45,13 @@ export class AuthService implements OnDestroy {
         ).subscribe((items: DocumentData[]): void => {
           if (items.length > 0) {
             let userCheck: { email: string, enabled: boolean, role: UserRole } = Object.assign({
-              email: 'dgt@dgt.com',
+              email: '',
               enabled: false,
               role: UserRole.USER
             }, items[0]);
 
             if (userCheck.enabled) {
-              this.localStorageService.cache(LocalStorageKeys.USER, {user: user});
+              this.localStorageService.cache(LocalStorageKeys.USER, {user: user.metadata});
               this._authState.emit(new AuthState(true, userCheck.role));
             } else {
               this.signOut(auth, false);
