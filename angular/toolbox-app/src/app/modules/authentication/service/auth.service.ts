@@ -49,7 +49,7 @@ export class AuthService implements OnDestroy {
       return;
     } else {
       if (this.localStorageService.get(LocalStorageKeys.USER) !== null) {
-        this.signOut(auth, false);
+        this.signOut(auth, true);
       }
 
       // -- current implementation will not allow multiple subscriptions for authState
@@ -82,8 +82,6 @@ export class AuthService implements OnDestroy {
                 });
 
                 this._authState.emit(new AuthState(true, userCheck.role));
-
-                location.reload();
               } else {
                 this.signOut(auth, true);
               }
@@ -114,6 +112,11 @@ export class AuthService implements OnDestroy {
 
   signInWithGoogle(auth: Auth, refreshPage: boolean): void {
     signInWithPopup(auth, new GoogleAuthProvider())
+      .then((): void => {
+        if (refreshPage) {
+          location.reload();
+        }
+      })
       .catch((error): void => {
           window.alert(error.message)
         }
