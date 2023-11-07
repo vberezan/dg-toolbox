@@ -27,7 +27,7 @@ export class AuthService implements OnDestroy {
     }
   }
 
-  isLoginValid(): boolean {
+  checkLoginValidity(): boolean {
     if (this.localStorageService.get(LocalStorageKeys.USER) === null) {
       return false;
     }
@@ -42,7 +42,7 @@ export class AuthService implements OnDestroy {
   }
 
   setUpFirebaseAuthSubscription(auth: Auth, firestore: Firestore): void {
-    if (this.isLoginValid()) {
+    if (this.checkLoginValidity()) {
       return;
     } else {
       if (this.localStorageService.get(LocalStorageKeys.USER) !== null) {

@@ -60,6 +60,7 @@ export class MenuComponent implements OnDestroy {
       this.changeDetection.detectChanges();
     });
 
+    this.authService.checkLoginValidity();
   }
 
   ngOnDestroy(): void {
