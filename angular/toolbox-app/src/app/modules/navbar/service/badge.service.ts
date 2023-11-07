@@ -14,9 +14,9 @@ export class BadgeService implements OnDestroy {
   private localStorageService: LocalStorageService = inject(LocalStorageService);
   private ordersSubscription: Subscription;
 
-  subscribeToFleetOrders(user: string, observer: Subscriber<number>, changeDetection: ChangeDetectorRef) {
+  subscribeToFleetOrders(user: string, observer: Subscriber<number>, changeDetection: ChangeDetectorRef): void {
     if (this.ordersSubscription != null) {
-      this.ordersSubscription.unsubscribe();
+      return;
     }
     let ordersRef: any = collection(this.firestore, 'orders');
 
