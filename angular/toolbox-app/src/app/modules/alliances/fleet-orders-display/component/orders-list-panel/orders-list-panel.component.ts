@@ -27,12 +27,12 @@ export class OrdersListPanelComponent implements OnDestroy {
   constructor(library: FaIconLibrary) {
     library.addIcons(farCircleCheck);
 
-    this.authService.authState.subscribe((state: AuthState): void => {
-      if (document.querySelector('dgt-fleet-orders-list-panel .dgt-spinner-container')) {
-        document.querySelector('dgt-fleet-orders-list-panel .dgt-spinner-container').classList.add('show');
-        document.querySelector('dgt-fleet-orders-list-panel .dgt-spinner-container').classList.remove('hide');
-      }
+    if (document.querySelector('dgt-fleet-orders-list-panel .dgt-spinner-container')) {
+      document.querySelector('dgt-fleet-orders-list-panel .dgt-spinner-container').classList.add('show');
+      document.querySelector('dgt-fleet-orders-list-panel .dgt-spinner-container').classList.remove('hide');
+    }
 
+    this.authService.authState.subscribe((state: AuthState): void => {
       this.active = state.status;
 
       if (state.status && !this.initialized) {
