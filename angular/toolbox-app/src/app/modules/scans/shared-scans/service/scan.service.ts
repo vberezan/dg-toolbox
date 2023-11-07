@@ -22,12 +22,11 @@ export class ScanService implements OnDestroy {
   }
 
   updateScan(scanEvent: PlanetScanEvent): void {
-    let scansRef: any = collection(this.firestore, 'scans');
-
     if (this.planetScanSubscription != null) {
       this.planetScanSubscription.unsubscribe();
     }
 
+    let scansRef: any = collection(this.firestore, 'scans');
     this.planetScanSubscription = collectionData<DocumentData, string>(
       query(scansRef,
         where('location', '==', scanEvent.planetScan.location),

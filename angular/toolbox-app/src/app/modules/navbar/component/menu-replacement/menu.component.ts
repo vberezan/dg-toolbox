@@ -55,8 +55,6 @@ export class MenuComponent implements OnDestroy {
           this.badgeService.subscribeToFleetOrders(this.dgAPI.username(), observer, this.changeDetection);
         });
       }
-
-      // this.changeDetection.detectChanges();
     });
 
     this.authService.checkLoginValidity();
