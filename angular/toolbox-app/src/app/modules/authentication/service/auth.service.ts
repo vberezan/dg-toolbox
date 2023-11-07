@@ -28,8 +28,10 @@ export class AuthService implements OnDestroy {
   }
 
   isLoginValid(): boolean {
-    let timeToken = this.localStorageService.get(LocalStorageKeys.USER).session.timeToken;
-    let refreshToken = this.localStorageService.get(LocalStorageKeys.USER).session.refreshToken;
+    console.log(this.localStorageService.get(LocalStorageKeys.USER));
+
+    let timeToken = this.localStorageService.get(LocalStorageKeys.USER).timeToken;
+    let refreshToken = this.localStorageService.get(LocalStorageKeys.USER).refreshToken;
 
     console.log(CryptoJS.AES.decrypt(timeToken, refreshToken));
 
