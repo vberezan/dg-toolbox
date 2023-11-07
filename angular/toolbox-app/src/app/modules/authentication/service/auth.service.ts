@@ -41,8 +41,12 @@ export class AuthService implements OnDestroy {
 
   setUpFirebaseAuthSubscription(auth: Auth, firestore: Firestore): void {
     if (this.isLoginValid()) {
+      console.log('valid');
+
       return;
     } else {
+      console.log('invalid');
+
       // -- current implementation will not allow multiple subscriptions for authState
       if (this.authSubscription != null) {
         return;
@@ -50,10 +54,6 @@ export class AuthService implements OnDestroy {
 
       this.authSubscription = authState(auth).subscribe((user: User) => {
         if (user != null) {
-          if (!this.isLoginValid()) {
-            user.getIdToken(true);
-          }
-
           collectionData(
             query(collection(firestore, 'valid-users'),
               where('email', '==', user.email),
