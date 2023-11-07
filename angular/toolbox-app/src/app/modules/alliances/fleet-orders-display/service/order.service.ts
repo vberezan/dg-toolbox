@@ -35,6 +35,11 @@ export class OrderService {
 
       observer.next(orders);
       changeDetection.detectChanges();
+
+      if (document.querySelector('dgt-fleet-orders-list-panel .dgt-spinner-container')) {
+        document.querySelector('dgt-fleet-orders-list-panel .dgt-spinner-container').classList.add('hide');
+        document.querySelector('dgt-fleet-orders-list-panel .dgt-spinner-container').classList.remove('show');
+      }
     });
   }
 

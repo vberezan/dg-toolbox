@@ -42,11 +42,6 @@ export class OrdersListPanelComponent implements OnDestroy {
 
         this.initialized = true;
       }
-
-      if (document.querySelector('dgt-fleet-orders-list-panel .dgt-spinner-container')) {
-        document.querySelector('dgt-fleet-orders-list-panel .dgt-spinner-container').classList.add('hide');
-        document.querySelector('dgt-fleet-orders-list-panel .dgt-spinner-container').classList.remove('show');
-      }
     });
 
     this.authService.checkLoginValidity();
