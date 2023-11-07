@@ -26,6 +26,8 @@ export class LoginComponent {
       observer.next(false);
 
       this.authService.authState.subscribe((): void => {
+        console.log(this.localStorageService.get(LocalStorageKeys.USER));
+
         observer.next(this.localStorageService.get(LocalStorageKeys.USER) == null &&
           !this.authService.refreshInProgress);
       });
