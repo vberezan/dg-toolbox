@@ -38,8 +38,6 @@ export class ScanService implements OnDestroy {
         where('location', 'in', locations)
       )
     ).subscribe((items: DocumentData[]): void => {
-      console.log(items.length);
-
       let dbScans: PlanetScan[] = Object.assign([], items);
 
       let byLocation: Map<String, PlanetScan> = dbScans.reduce((entryMap: Map<any, any>, e: PlanetScan) =>

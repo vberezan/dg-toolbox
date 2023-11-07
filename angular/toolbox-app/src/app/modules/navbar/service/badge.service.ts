@@ -54,8 +54,6 @@ export class BadgeService implements OnDestroy {
     this.configSubscription = docData(
       doc(configRef, 'version')
     ).subscribe((item: DocumentData): void => {
-      console.log(Math.random());
-
       let version: string = Object.assign({value: ''}, item).value;
       let localVersion: string = this.localStorageService.getVersion();
 
