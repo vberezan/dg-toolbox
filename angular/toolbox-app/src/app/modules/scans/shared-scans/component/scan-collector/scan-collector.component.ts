@@ -26,6 +26,8 @@ export class ScanCollectorComponent implements OnInit, OnDestroy {
         if (planetScanEvent != null) {
           this.scanService.updateScan(planetScanEvent);
         }
+
+        this.initialized = true;
       }
 
       if (document.querySelector('dgt-shared-scans-collector .dgt-spinner-container')) {
