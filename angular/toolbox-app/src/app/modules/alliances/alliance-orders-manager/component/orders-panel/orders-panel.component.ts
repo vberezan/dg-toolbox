@@ -45,6 +45,7 @@ export class OrdersPanelComponent implements OnDestroy {
     this.allianceMembers = this.dgAPI.allianceMembers(true);
 
     this.authService.authState.subscribe((state: AuthState): void => {
+      console.log(state.status);
       if (document.querySelector('dgt-alliance-orders-manager-panel .dgt-spinner-container.main')) {
         document.querySelector('dgt-alliance-orders-manager-panel .dgt-spinner-container.main').classList.add('show');
         document.querySelector('dgt-alliance-orders-manager-panel .dgt-spinner-container.main').classList.remove('hide');
