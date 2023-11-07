@@ -32,8 +32,9 @@ export class AuthService implements OnDestroy {
 
     let timeToken = this.localStorageService.get(LocalStorageKeys.USER).session.timeToken;
     let refreshToken = this.localStorageService.get(LocalStorageKeys.USER).session.refreshToken;
+    let timestamp: number = parseInt(CryptoJS.AES.decrypt(timeToken, refreshToken).toString(CryptoJS.enc.Utf8));
 
-    console.log(CryptoJS.AES.decrypt(timeToken, refreshToken).toString(CryptoJS.enc.Utf8));
+    console.log(timestamp)
 
     return false;
   }
