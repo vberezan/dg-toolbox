@@ -98,7 +98,7 @@ function setUpPlanetListStatsPanel(windowURL) {
 
 function setUpNavigationScanDataPanel(windowURL) {
     if (windowURL[1] === 'navigation' && (windowURL.length === 6 && !isNaN(+windowURL[2]) && !isNaN(+windowURL[3]) && !isNaN(+windowURL[4]))) {
-        document.querySelector('div.navigation').append(document.createElement('dgt-navigation-scan-data-panel'));
+        document.querySelector('div.navigation').prepend(document.createElement('dgt-navigation-scan-data-panel'));
         document.querySelector('.opacBackground.ofHidden.padding').classList.add('disable-overflow');
 
         document.querySelectorAll('div.navigation .row .planets').forEach((planet) => {
