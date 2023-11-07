@@ -62,10 +62,9 @@ export class OrdersPanelComponent implements OnDestroy {
 
         if (state.role === UserRole.ADMIN || state.role === UserRole.TEAM_LEADER) {
           this.allianceMembers = this.dgAPI.allianceMembers(true);
+          console.log(this.allianceMembers.length);
 
           this.allianceMembers.forEach((member: AllianceMember): void => {
-            console.log(member.name);
-
             this.orders.set(member.name.toLowerCase(), new Observable<AllianceOrder[]>((observer: Subscriber<AllianceOrder[]>): void => {
               this.orderService.getAllOrders(member.name.toLowerCase(), this.dgAPI.gameTurn(), this.changeDetection, observer);
             }));
