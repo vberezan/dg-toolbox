@@ -70,29 +70,29 @@ function applyCustomStyling() {
             building.querySelector('.ground:last-child').classList.add('orbit');
             building.querySelector('.ground:last-child').classList.remove('ground');
             building.querySelectorAll('.left').forEach((part) => {
-                if (part.textContent.trim().length == 0) part.remove();
+                if (part.textContent.trim().length === 0) part.remove();
                 if (part.classList.contains('width25') || part.classList.contains('width50')) {
                     part.classList.remove('width25');
                     part.classList.remove('width50');
                     part.classList.add('width100');
                 }
                 if (part.classList.contains('metal')) {
-                    part.innerHTML = '<img alt="Metal" src="https://i.imgur.com/FPuGoOV.png" width="17" height="17"><span>' + part.innerHTML + '</span>';
+                    part.innerHTML = '<img alt="Metal" src="https://i.imgur.com/V9Yv4MJ.jpg" width="17" height="17"><span>' + part.innerHTML + '</span>';
                 }
                 if (part.classList.contains('mineral')) {
-                    part.innerHTML = '<img alt="Minteral" src="https://i.imgur.com/OTTk4eY.png" title="Mineral" width="17" height="17"><span>' + part.innerHTML + '</span>';
+                    part.innerHTML = '<img alt="Minteral" src="https://i.imgur.com/OdLTSDl.jpg" title="Mineral" width="17" height="17"><span>' + part.innerHTML + '</span>';
                 }
                 if (part.classList.contains('food')) {
-                    part.innerHTML = '<img src="https://i.imgur.com/7gmDfoF.png" title="Food" width="17" height="17"><span>' + part.innerHTML + '</span>';
+                    part.innerHTML = '<img src="https://i.imgur.com/bhfaalb.jpg" title="Food" width="17" height="17"><span>' + part.innerHTML + '</span>';
                 }
                 if (part.classList.contains('energy')) {
-                    part.innerHTML = '<img alt="Energy" src="https://i.imgur.com/DEv8NW9.png" width="17" height="17"><span>' + part.innerHTML + '</span>';
+                    part.innerHTML = '<img alt="Energy" src="https://i.imgur.com/IkkDId3.jpg" width="17" height="17"><span>' + part.innerHTML + '</span>';
                 }
                 if (part.classList.contains('ground')) {
-                    part.innerHTML = '<img src="https://i.imgur.com/HesibsH.png" title="Ground Space" width="17" height="17"><span>' + part.innerHTML + '</span>';
+                    part.innerHTML = '<img src="https://i.imgur.com/cSsBIwv.jpg" title="Ground Space" width="17" height="17"><span>' + part.innerHTML + '</span>';
                 }
                 if (part.classList.contains('orbit')) {
-                    part.innerHTML = '<img src="https://i.imgur.com/KKdM7BA.png" title="Orbit Space" width="17" height="17"><span>' + part.innerHTML + '</span>';
+                    part.innerHTML = '<img src="https://i.imgur.com/7wtJcXw.jpg" title="Orbit Space" width="17" height="17"><span>' + part.innerHTML + '</span>';
                 }
             });
         });
