@@ -73,8 +73,6 @@ export class OrdersPanelComponent implements OnDestroy {
             });
           }
         }
-
-        this.changeDetection.detectChanges();
       }
 
       if (document.querySelector('dgt-alliance-orders-manager-panel .dgt-spinner-container.main')) {
