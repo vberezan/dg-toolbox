@@ -53,7 +53,22 @@
       </div>
     </div>
 
-
+    <div class="dgt-orders-history" *ngIf="(orders.get(member.name.toLowerCase()) | async) as allianceOrders">
+      <div class="dgt-spinner-container member">
+        <span class="dgt-spinner"></span>
+      </div>
+      <div *ngFor="let order of allianceOrders" class="dgt-orders-history-details"
+           [ngClass]="{'executed' : order.executed, 'in-progress' : !order.executed}">
+        <div class="target"><span class="label">Target:</span><span class="value">{{order.target}}</span></div>
+        <div class="wait"><span class="label">Wait:</span><span class="value">{{order.wait}}</span></div>
+        <div class="instructions"><span class="label">Instructions:</span><span class="value">{{order.instructions}}</span></div>
+        <div class="delete">
+          <button (click)="deleteOrder(order.id)">
+            <fa-icon [icon]="['far','circle-xmark']"/>
+          </button>
+        </div>
+      </div>
+    </div>
   </div>
 </div>
 
