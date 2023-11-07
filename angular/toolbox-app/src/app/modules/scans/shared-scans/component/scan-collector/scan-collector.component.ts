@@ -14,20 +14,19 @@ export class ScanCollectorComponent implements OnInit, OnDestroy {
   private authService: AuthService = inject(AuthService);
   private changeDetection: ChangeDetectorRef = inject(ChangeDetectorRef);
 
-  active: boolean = false;
+  public active: boolean = false;
+  private initialized: boolean = false;
 
   ngOnInit(): void {
     this.authService.authState.subscribe((state: AuthState) => {
       this.active = state.status;
 
-      if (state.status) {
+      if (state.status && !this.initialized) {
         let planetScanEvent: PlanetScanEvent = this.scanService.extractScan();
 
         if (planetScanEvent != null) {
           this.scanService.updateScan(planetScanEvent);
         }
-
-        this.changeDetection.detectChanges();
       }
 
       if (document.querySelector('dgt-shared-scans-collector .dgt-spinner-container')) {
@@ -35,6 +34,8 @@ export class ScanCollectorComponent implements OnInit, OnDestroy {
         document.querySelector('dgt-shared-scans-collector .dgt-spinner-container').classList.remove('show');
       }
     });
+
+    this.authService.checkLoginValidity();
   }
 
   ngOnDestroy(): void {

@@ -23,7 +23,7 @@ export class ScanService implements OnDestroy {
 
   updateScan(scanEvent: PlanetScanEvent): void {
     if (this.planetScanSubscription) {
-      this.planetScanSubscription.unsubscribe();
+      return;
     }
 
     let scansRef: any = collection(this.firestore, 'scans');
@@ -79,8 +79,6 @@ export class ScanService implements OnDestroy {
             });
         }
       }
-
-      this.planetScanSubscription.unsubscribe();
     });
   }
 
