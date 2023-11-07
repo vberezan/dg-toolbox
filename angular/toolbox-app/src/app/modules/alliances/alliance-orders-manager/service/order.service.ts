@@ -32,9 +32,7 @@ export class OrderService implements OnDestroy {
   }
 
   getAllOrders(user: string, turn: number, changeDetection: ChangeDetectorRef, observer: Subscriber<AllianceOrder[]>): void {
-    if (user === 'vladb') {
-      console.log('hello');
-    }
+    console.log(user);
 
     if (this.ordersSubscriptions.has(user)) {
       return;
