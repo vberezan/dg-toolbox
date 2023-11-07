@@ -14,7 +14,7 @@ export class BadgeService implements OnDestroy {
   private localStorageService: LocalStorageService = inject(LocalStorageService);
   private ordersSubscription: Subscription;
 
-  subscribeToFleetOrders(user: string, observer: Subscriber<number>, changeDetection: ChangeDetectorRef): void {
+  checkFleetOrders(user: string, observer: Subscriber<number>, changeDetection: ChangeDetectorRef): void {
     if (this.ordersSubscription != null) {
       return;
     }
@@ -27,8 +27,6 @@ export class BadgeService implements OnDestroy {
       ), {idField: 'id'}
     ).subscribe((items: DocumentData[]): void => {
       console.log(items.length);
-
-      observer.next(items.length);
 
       if (items.length > 0 ) {
         this.localStorageService.cache(LocalStorageKeys.ACTIVE_ORDERS, items.length);
