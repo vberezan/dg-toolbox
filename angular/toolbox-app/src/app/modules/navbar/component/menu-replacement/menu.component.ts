@@ -25,7 +25,7 @@ export class MenuComponent implements OnDestroy {
   protected localOrdersBadge: number = 0;
 
   public fleetOrdersNotification: Observable<number>;
-  public updateAvailableNotification: number;
+  public updateAvailableNotification: Observable<boolean>;
   public active: boolean;
 
   private initialized: boolean = false;
@@ -49,10 +49,9 @@ export class MenuComponent implements OnDestroy {
 
     this.localOrdersBadge = this.localStorageService.get(LocalStorageKeys.ACTIVE_ORDERS);
 
-    this.updateAvailableNotification = this.localStorageService.get(LocalStorageKeys.UPDATE_AVAILABLE) ? 1 : 0;
-    this.badgeService.changelogEmitter.subscribe((update: boolean): void => {
-      this.updateAvailableNotification = update ? 1 : 0;
-    })
+    this.updateAvailableNotification = new Observable<boolean>((observer: Subscriber<boolean>): void => {
+      this.badgeService.checkVersion(observer, this.changeDetection);
+    });
 
     this.authService.authState.subscribe((state: AuthState): void => {
       this.active = state.status;

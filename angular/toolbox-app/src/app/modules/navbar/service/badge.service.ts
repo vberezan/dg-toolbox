@@ -13,7 +13,6 @@ export class BadgeService implements OnDestroy {
   private localStorageService: LocalStorageService = inject(LocalStorageService);
   private ordersSubscription: Subscription;
   private configSubscription: Subscription;
-  private _changelogEmitter: EventEmitter<boolean> = new EventEmitter();
 
   checkFleetOrders(user: string, observer: Subscriber<number>, changeDetection: ChangeDetectorRef): void {
     if (this.ordersSubscription) {
@@ -45,7 +44,7 @@ export class BadgeService implements OnDestroy {
   }
 
 
-  checkVersion(changeDetection: ChangeDetectorRef, changed: Subscriber<boolean>): void {
+  checkVersion(observer: Subscriber<boolean>, changeDetection: ChangeDetectorRef): void {
     if (this.configSubscription) {
       return;
     }
@@ -59,27 +58,13 @@ export class BadgeService implements OnDestroy {
       let localVersion: string = this.localStorageService.getVersion();
 
       if (localVersion !== version) {
-        this.localStorageService.cache(LocalStorageKeys.UPDATE_AVAILABLE, true);
-        changed.next(true);
-        this._changelogEmitter.emit(true);
+        observer.next(true);
       } else {
-        this.localStorageService.cache(LocalStorageKeys.UPDATE_AVAILABLE, false);
-        changed.next(false);
-        this._changelogEmitter.emit(false);
+        observer.next(false);
       }
-
-      changed.complete();
 
       changeDetection.detectChanges();
-      if (document.querySelector('dgt-changelog .dgt-spinner-container')) {
-        document.querySelector('dgt-changelog .dgt-spinner-container').classList.add('hide');
-        document.querySelector('dgt-changelog .dgt-spinner-container').classList.remove('show');
-      }
     });
-  }
-
-  get changelogEmitter(): EventEmitter<boolean> {
-    return this._changelogEmitter;
   }
 
   ngOnDestroy(): void {

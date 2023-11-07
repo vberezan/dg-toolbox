@@ -27,8 +27,10 @@ export class ChangelogService implements OnDestroy {
       let localVersion: string = this.localStorageService.getVersion();
 
       if (localVersion !== version) {
+        this.localStorageService.cache(LocalStorageKeys.UPDATE_AVAILABLE, true);
         changed.next(true);
       } else {
+        this.localStorageService.cache(LocalStorageKeys.UPDATE_AVAILABLE, false);
         changed.next(false);
       }
 
