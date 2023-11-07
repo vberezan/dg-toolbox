@@ -1,4 +1,4 @@
-import {EventEmitter, inject, Injectable, OnDestroy} from '@angular/core';
+import {EventEmitter, inject, Injectable, OnDestroy, Optional} from '@angular/core';
 import {Auth, authState, signInWithEmailAndPassword, signInWithPopup, User} from "@angular/fire/auth";
 import {collection, collectionData, Firestore, limit, query, where} from "@angular/fire/firestore";
 import {GoogleAuthProvider} from "firebase/auth";
@@ -27,7 +27,7 @@ export class AuthService implements OnDestroy {
     }
   }
 
-  checkLoginValidity(sendEvent?:boolean | true): boolean {
+  checkLoginValidity(@Optional() sendEvent:boolean = true): boolean {
     if (this.localStorageService.get(LocalStorageKeys.USER) === null) {
       return false;
     }
