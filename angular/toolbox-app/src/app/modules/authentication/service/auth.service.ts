@@ -41,6 +41,8 @@ export class AuthService implements OnDestroy {
       this._authState.emit(new AuthState(status, this.localStorageService.get(LocalStorageKeys.USER).session.role));
     }
 
+    console.log('status: ' + status + ", event: " + sendEvent);
+
     return status;
   }
 
