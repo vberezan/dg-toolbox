@@ -1,4 +1,4 @@
-import {ChangeDetectorRef, inject, Injectable, OnDestroy} from '@angular/core';
+import {inject, Injectable, OnDestroy} from '@angular/core';
 import {DarkgalaxyApiService} from "../../../darkgalaxy-ui-parser/service/darkgalaxy-api.service";
 import {PlanetSummary} from "../../../../shared/model/planets/planet-summary.planet-list-model";
 import {PlanetScan} from "../../../../shared/model/scans/shared-scans-planet-scan.model";
@@ -9,8 +9,8 @@ import {Structures} from "../../../../shared/model/structures";
 import {collection, collectionData, Firestore, query, where} from "@angular/fire/firestore";
 import {NameQuantity} from "../../../../shared/model/name-quantity.model";
 import firebase from "firebase/compat";
-import DocumentData = firebase.firestore.DocumentData;
 import {Subscription} from "rxjs";
+import DocumentData = firebase.firestore.DocumentData;
 
 @Injectable({
   providedIn: 'root'
@@ -26,7 +26,7 @@ export class ScanService implements OnDestroy {
     return this.dgAPI.navigationSystemPlanets();
   }
 
-  fillScans(summaries: PlanetSummary[], changeDetection: ChangeDetectorRef): void {
+  fillScans(summaries: PlanetSummary[]): void {
     if (this.scansSubscription !== null) {
       return;
     }
@@ -142,8 +142,6 @@ export class ScanService implements OnDestroy {
           planet.querySelector('.dgt-navigation-scan-size-orbit').style.visibility = 'hidden';
         }
       });
-
-      changeDetection.detectChanges();
     });
   }
 
