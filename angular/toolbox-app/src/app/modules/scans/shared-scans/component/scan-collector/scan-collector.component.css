@@ -4,3 +4,10 @@
   margin: 0 !important;
   padding: 5px !important;
 }
+
+.dgt-spinner-container {
+  width: 100% !important;
+  height: 58px;
+  position: relative;
+  margin-bottom: 10px;
+}
