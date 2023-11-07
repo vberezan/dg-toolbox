@@ -77,10 +77,10 @@ export class ScanService implements OnDestroy {
             .catch((error): void => {
               console.log(error);
             });
-
-          this.planetScanSubscription.unsubscribe();
-          this.planetScanSubscription = null;
         }
+
+        this.planetScanSubscription.unsubscribe();
+        this.planetScanSubscription = null;
       }
     });
   }
