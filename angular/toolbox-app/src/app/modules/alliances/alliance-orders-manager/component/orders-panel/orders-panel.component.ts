@@ -50,6 +50,8 @@ export class OrdersPanelComponent implements OnDestroy {
         document.querySelector('dgt-alliance-orders-manager-panel .dgt-spinner-container.main').classList.remove('hide');
       }
 
+      console.log(state.role);
+
       if (state.status) {
         this.controls.target = [];
         this.controls.wait = [];

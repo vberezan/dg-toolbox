@@ -41,7 +41,6 @@ export class AuthService implements OnDestroy {
 
   setUpFirebaseAuthSubscription(auth: Auth, firestore: Firestore): void {
     if (this.isLoginValid()) {
-      console.log('valid: ' + this.localStorageService.get(LocalStorageKeys.USER).session.role);
       this._authState.emit(new AuthState(true, this.localStorageService.get(LocalStorageKeys.USER).session.role));
 
       return;
