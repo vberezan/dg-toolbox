@@ -8,8 +8,8 @@ import {AuthState} from "../../../shared/model/authentication/auth-state.model";
 import {UserRole} from "../../../shared/model/authentication/user-role";
 import {LocalStorageKeys} from "../../../shared/model/local-storage/local-storage-keys";
 import {LocalStorageService} from "../../local-storage-manager/service/local-storage.service";
-import DocumentData = firebase.firestore.DocumentData;
 import * as CryptoJS from 'crypto-js';
+import DocumentData = firebase.firestore.DocumentData;
 
 @Injectable({
   providedIn: 'platform'
@@ -27,7 +27,7 @@ export class AuthService implements OnDestroy {
     }
   }
 
-  checkLoginValidity(@Optional() sendEvent:boolean = true): boolean {
+  checkLoginValidity(@Optional() sendEvent: boolean = true): boolean {
     if (this.localStorageService.get(LocalStorageKeys.USER) === null) {
       return false;
     }
@@ -41,8 +41,6 @@ export class AuthService implements OnDestroy {
       this._authState.emit(new AuthState(status, this.localStorageService.get(LocalStorageKeys.USER).session.role));
     }
 
-    console.log('status: ' + status + ", event: " + sendEvent);
-
     return status;
   }
 
@@ -51,7 +49,7 @@ export class AuthService implements OnDestroy {
       return;
     } else {
       if (this.localStorageService.get(LocalStorageKeys.USER) !== null) {
-        this.signOut(auth, true);
+        this.signOut(auth);
       }
 
       // -- current implementation will not allow multiple subscriptions for authState
@@ -84,12 +82,13 @@ export class AuthService implements OnDestroy {
                 });
 
                 this._authState.emit(new AuthState(true, userCheck.role));
+
                 location.reload();
               } else {
-                this.signOut(auth, true);
+                this.signOut(auth);
               }
             } else {
-              this.signOut(auth, true);
+              this.signOut(auth);
             }
           });
         } else {
@@ -117,7 +116,7 @@ export class AuthService implements OnDestroy {
     signInWithPopup(auth, new GoogleAuthProvider())
       .then((): void => {
         if (refreshPage) {
-          // location.reload();
+          //location.reload();
         }
       })
       .catch((error): void => {
@@ -126,10 +125,10 @@ export class AuthService implements OnDestroy {
       );
   }
 
-  signOut(auth: Auth, refreshPage: boolean): void {
+  signOut(auth: Auth): void {
     this.localStorageService.remove(LocalStorageKeys.USER);
-    this._refreshInProgress = refreshPage;
-    this._authState.emit(new AuthState(true, null));
+    this._refreshInProgress = true;
+    this._authState.emit(new AuthState(false, null));
 
     if (this.authSubscription) {
       this.authSubscription.unsubscribe();
@@ -138,9 +137,7 @@ export class AuthService implements OnDestroy {
 
     auth.signOut()
       .then((): void => {
-        if (refreshPage) {
-          location.reload();
-        }
+        location.reload();
       })
       .catch((error): void => {
           window.alert(error.message)

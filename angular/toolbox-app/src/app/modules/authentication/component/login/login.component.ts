@@ -43,7 +43,7 @@ export class LoginComponent {
     this.authService.signInWithGoogle(this.auth, refreshPage);
   }
 
-  signOut(refreshPage: boolean): void {
-    this.authService.signOut(this.auth, refreshPage);
+  signOut(): void {
+    this.authService.signOut(this.auth);
   }
 }
