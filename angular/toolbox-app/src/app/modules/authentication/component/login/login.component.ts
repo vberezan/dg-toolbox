@@ -21,11 +21,6 @@ export class LoginComponent {
   protected displayLogin: Observable<boolean>;
 
   constructor() {
-    // -- temp hotfix for migration
-    if (!this.localStorageService.get(LocalStorageKeys.USER).session) {
-      this.localStorageService.remove(LocalStorageKeys.USER);
-    }
-
     this.authService.setUpFirebaseAuthSubscription(this.auth, this.firestore);
 
     this.displayLogin = new Observable((observer: Subscriber<boolean>): void => {
