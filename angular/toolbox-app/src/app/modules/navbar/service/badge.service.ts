@@ -28,7 +28,7 @@ export class BadgeService implements OnDestroy {
     ).subscribe((items: DocumentData[]): void => {
 
       changeDetection.detectChanges();
-      observer.next(items.length);
+      observer.next(50);
       changeDetection.detectChanges();
 
       if (items.length > 0 ) {
