@@ -6,9 +6,9 @@ import {Subscription} from "rxjs";
 import firebase from "firebase/compat";
 import {AuthState} from "../../../shared/model/authentication/auth-state.model";
 import {UserRole} from "../../../shared/model/authentication/user-role";
-import DocumentData = firebase.firestore.DocumentData;
 import {LocalStorageKeys} from "../../../shared/model/local-storage/local-storage-keys";
 import {LocalStorageService} from "../../local-storage-manager/service/local-storage.service";
+import DocumentData = firebase.firestore.DocumentData;
 
 @Injectable({
   providedIn: 'platform'
@@ -62,6 +62,11 @@ export class AuthService implements OnDestroy {
       } else {
         this.localStorageService.remove(LocalStorageKeys.USER);
         this._authState.emit(new AuthState(false, null));
+        auth.signOut()
+          .catch((error) => {
+              window.alert(error.message)
+            }
+          );
       }
     });
   }
