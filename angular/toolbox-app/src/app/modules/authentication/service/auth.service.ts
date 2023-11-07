@@ -42,6 +42,7 @@ export class AuthService implements OnDestroy {
   setUpFirebaseAuthSubscription(auth: Auth, firestore: Firestore): void {
     if (this.isLoginValid()) {
       console.log('valid');
+      this._authState.emit(new AuthState(true, this.localStorageService.get(LocalStorageKeys.USER).session.role));
 
       return;
     } else {
@@ -75,7 +76,8 @@ export class AuthService implements OnDestroy {
                 this.localStorageService.cache(LocalStorageKeys.USER, {
                   session: {
                     timeToken: CryptoJS.AES.encrypt(user.metadata.lastSignInTime, user.refreshToken).toString(),
-                    refreshToken: user.refreshToken
+                    refreshToken: user.refreshToken,
+                    role: userCheck.role
                   }
                 });
 
