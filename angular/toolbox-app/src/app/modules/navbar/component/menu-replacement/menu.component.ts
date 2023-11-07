@@ -23,6 +23,7 @@ export class MenuComponent implements OnDestroy {
   private analytics: Analytics = inject(Analytics);
 
   protected localOrdersBadge: number = 0;
+  protected localUpdateBadge: boolean = false;
 
   public fleetOrdersNotification: Observable<number>;
   public updateAvailableNotification: Observable<boolean>;
@@ -48,6 +49,7 @@ export class MenuComponent implements OnDestroy {
     });
 
     this.localOrdersBadge = this.localStorageService.get(LocalStorageKeys.ACTIVE_ORDERS);
+    this.localUpdateBadge = this.localStorageService.get(LocalStorageKeys.UPDATE_AVAILABLE);
 
     this.updateAvailableNotification = new Observable<boolean>((observer: Subscriber<boolean>): void => {
       this.badgeService.checkVersion(observer, this.changeDetection);
