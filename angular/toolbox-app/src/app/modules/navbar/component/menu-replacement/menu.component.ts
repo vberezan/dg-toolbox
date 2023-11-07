@@ -21,7 +21,6 @@ export class MenuComponent implements OnDestroy {
   private authService: AuthService = inject(AuthService);
   private localStorageService: LocalStorageService = inject(LocalStorageService);
   private analytics: Analytics = inject(Analytics);
-  private changelogService = inject(ChangelogService);
 
   protected localOrdersBadge: number = 0;
 
@@ -51,7 +50,7 @@ export class MenuComponent implements OnDestroy {
     this.localOrdersBadge = this.localStorageService.get(LocalStorageKeys.ACTIVE_ORDERS);
 
     this.updateAvailableNotification = this.localStorageService.get(LocalStorageKeys.UPDATE_AVAILABLE) ? 1 : 0;
-    this.changelogService.changelogEmitter.subscribe((update: boolean): void => {
+    this.badgeService.changelogEmitter.subscribe((update: boolean): void => {
       this.updateAvailableNotification = update ? 1 : 0;
     })
 

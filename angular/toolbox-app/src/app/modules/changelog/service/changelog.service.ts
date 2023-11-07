@@ -6,15 +6,14 @@ import {LocalStorageService} from "../../local-storage-manager/service/local-sto
 import {LocalStorageKeys} from "../../../shared/model/local-storage/local-storage-keys";
 
 @Injectable({
-  providedIn: 'platform'
+  providedIn: 'root'
 })
 export class ChangelogService implements OnDestroy {
   private firestore: Firestore = inject(Firestore);
   private localStorageService: LocalStorageService = inject(LocalStorageService);
   private configSubscription: Subscription;
-  private _changelogEmitter: EventEmitter<boolean> = new EventEmitter();
 
-  checkVersion(changeDetection: ChangeDetectorRef, changed: Subscriber<boolean>) {
+  checkVersion(changeDetection: ChangeDetectorRef, changed: Subscriber<boolean>): void {
     if (this.configSubscription) {
       return;
     }
@@ -28,13 +27,9 @@ export class ChangelogService implements OnDestroy {
       let localVersion: string = this.localStorageService.getVersion();
 
       if (localVersion !== version) {
-        this.localStorageService.cache(LocalStorageKeys.UPDATE_AVAILABLE, true);
         changed.next(true);
-        this._changelogEmitter.emit(true);
       } else {
-        this.localStorageService.cache(LocalStorageKeys.UPDATE_AVAILABLE, false);
         changed.next(false);
-        this._changelogEmitter.emit(false);
       }
 
       changed.complete();
@@ -47,12 +42,7 @@ export class ChangelogService implements OnDestroy {
     });
   }
 
-  ngOnDestroy() {
+  ngOnDestroy(): void {
     this.configSubscription.unsubscribe();
-  }
-
-
-  get changelogEmitter(): EventEmitter<boolean> {
-    return this._changelogEmitter;
   }
 }
