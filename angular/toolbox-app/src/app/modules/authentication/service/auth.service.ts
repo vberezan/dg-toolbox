@@ -8,8 +8,8 @@ import {AuthState} from "../../../shared/model/authentication/auth-state.model";
 import {UserRole} from "../../../shared/model/authentication/user-role";
 import {LocalStorageKeys} from "../../../shared/model/local-storage/local-storage-keys";
 import {LocalStorageService} from "../../local-storage-manager/service/local-storage.service";
-import DocumentData = firebase.firestore.DocumentData;
 import * as CryptoJS from 'crypto-js';
+import DocumentData = firebase.firestore.DocumentData;
 
 @Injectable({
   providedIn: 'platform'
@@ -29,7 +29,6 @@ export class AuthService implements OnDestroy {
 
   checkLoginValidity(): boolean {
     if (this.localStorageService.get(LocalStorageKeys.USER) === null) {
-      console.log('emis false');
       return false;
     }
 
@@ -37,9 +36,7 @@ export class AuthService implements OnDestroy {
     let refreshToken = this.localStorageService.get(LocalStorageKeys.USER).session.refreshToken;
     let timestamp: number = Date.parse(CryptoJS.AES.decrypt(timeToken, refreshToken).toString(CryptoJS.enc.Utf8));
 
-    this._authState.emit(new AuthState((Date.now() - timestamp) <= 3600000, this.localStorageService.get(LocalStorageKeys.USER).session.role));
-
-    console.log('emis corect');
+    this._authState.emit(new AuthState((Date.now() - timestamp) <= 3600000, UserRole.TEAM_LEADER));
 
     return (Date.now() - timestamp) <= 3600000;
   }
