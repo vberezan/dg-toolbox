@@ -45,7 +45,7 @@ export class AuthService implements OnDestroy {
         ).subscribe((items: DocumentData[]): void => {
           if (items.length > 0) {
             let userCheck: { email: string, enabled: boolean, role: UserRole } = Object.assign({
-              email: '',
+              email: 'dgt@dgt.com',
               enabled: false,
               role: UserRole.USER
             }, items[0]);
