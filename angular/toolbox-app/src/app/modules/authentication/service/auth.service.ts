@@ -28,60 +28,67 @@ export class AuthService implements OnDestroy {
   }
 
   isLoginValid(): boolean {
-    console.log(this.localStorageService.get(LocalStorageKeys.USER).session);
+    if (this.localStorageService.get(LocalStorageKeys.USER) === null) {
+      return false;
+    }
 
     let timeToken = this.localStorageService.get(LocalStorageKeys.USER).session.timeToken;
     let refreshToken = this.localStorageService.get(LocalStorageKeys.USER).session.refreshToken;
     let timestamp: number = Date.parse(CryptoJS.AES.decrypt(timeToken, refreshToken).toString(CryptoJS.enc.Utf8));
 
-    console.log(Date.now() - timestamp);
-
-    return false;
+    return (Date.now() - timestamp) <= 3600000;
   }
 
   setUpFirebaseAuthSubscription(auth: Auth, firestore: Firestore): void {
-    // -- current implementation will not allow multiple subscriptions for authState
-    if (this.authSubscription != null) {
+    if (this.isLoginValid()) {
       return;
-    }
+    } else {
+      // -- current implementation will not allow multiple subscriptions for authState
+      if (this.authSubscription != null) {
+        return;
+      }
 
-    this.authSubscription = authState(auth).subscribe((user: User) => {
-      if (user != null) {
-        collectionData(
-          query(collection(firestore, 'valid-users'),
-            where('email', '==', user.email),
-            limit(1)
-          )
-        ).subscribe((items: DocumentData[]): void => {
-          if (items.length > 0) {
-            let userCheck: { email: string, enabled: boolean, role: UserRole } = Object.assign({
-              email: '',
-              enabled: false,
-              role: UserRole.USER
-            }, items[0]);
+      this.authSubscription = authState(auth).subscribe((user: User) => {
+        if (user != null) {
+          if (!this.isLoginValid()) {
+            user.getIdToken(true);
+          }
 
-            if (userCheck.enabled) {
-              this.localStorageService.cache(LocalStorageKeys.USER, {
-                session: {
-                  timeToken: CryptoJS.AES.encrypt(user.metadata.lastSignInTime, user.refreshToken).toString(),
-                  refreshToken: user.refreshToken
-                }
-              });
+          collectionData(
+            query(collection(firestore, 'valid-users'),
+              where('email', '==', user.email),
+              limit(1)
+            )
+          ).subscribe((items: DocumentData[]): void => {
+            if (items.length > 0) {
+              let userCheck: { email: string, enabled: boolean, role: UserRole } = Object.assign({
+                email: '',
+                enabled: false,
+                role: UserRole.USER
+              }, items[0]);
 
-              this.isLoginValid();
-              this._authState.emit(new AuthState(true, userCheck.role));
+              if (userCheck.enabled) {
+                this.localStorageService.cache(LocalStorageKeys.USER, {
+                  session: {
+                    timeToken: CryptoJS.AES.encrypt(user.metadata.lastSignInTime, user.refreshToken).toString(),
+                    refreshToken: user.refreshToken
+                  }
+                });
+
+                this._authState.emit(new AuthState(true, userCheck.role));
+              } else {
+                this.signOut(auth, false);
+              }
             } else {
               this.signOut(auth, false);
             }
-          } else {
-            this.signOut(auth, false);
-          }
-        });
-      } else {
-        this.localStorageService.remove(LocalStorageKeys.USER);
-        this._authState.emit(new AuthState(false, null));
-      }
-    });
+          });
+        } else {
+          this.localStorageService.remove(LocalStorageKeys.USER);
+          this._authState.emit(new AuthState(false, null));
+        }
+      });
+    }
   }
 
   signInWithEmailAndPassword(auth: Auth, email: string, password: string, refreshPage: boolean): void {
