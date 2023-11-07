@@ -50,19 +50,20 @@ export class OrdersPanelComponent implements OnDestroy {
         document.querySelector('dgt-alliance-orders-manager-panel .dgt-spinner-container.main').classList.remove('hide');
       }
 
-      console.log(state.status);
-
       if (state.status) {
         this.controls.target = [];
         this.controls.wait = [];
         this.controls.instructions = [];
 
         this.role = new Observable<string>((observer: Subscriber<string>): void => {
+          console.log(state.role);
           observer.next(state.role);
           observer.complete();
         });
 
         if (state.role === UserRole.ADMIN || state.role === UserRole.TEAM_LEADER) {
+          console.log('aici');
+
           this.allianceMembers = this.dgAPI.allianceMembers(true);
 
           this.allianceMembers.forEach((member: AllianceMember): void => {
