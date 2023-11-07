@@ -35,10 +35,13 @@ export class AuthService implements OnDestroy {
     let timeToken = this.localStorageService.get(LocalStorageKeys.USER).session.timeToken;
     let refreshToken = this.localStorageService.get(LocalStorageKeys.USER).session.refreshToken;
     let timestamp: number = Date.parse(CryptoJS.AES.decrypt(timeToken, refreshToken).toString(CryptoJS.enc.Utf8));
+    let status: boolean = (Date.now() - timestamp) <= 3600000;
 
-    this._authState.emit(new AuthState((Date.now() - timestamp) <= 3600000, this.localStorageService.get(LocalStorageKeys.USER).session.role));
+    if (status) {
+      this._authState.emit(new AuthState(status, this.localStorageService.get(LocalStorageKeys.USER).session.role));
+    }
 
-    return (Date.now() - timestamp) <= 3600000;
+    return status;
   }
 
   setUpFirebaseAuthSubscription(auth: Auth, firestore: Firestore): void {
