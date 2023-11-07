@@ -3,7 +3,6 @@ import {OrdersPanelComponent} from './component/orders-panel/orders-panel.compon
 import {BrowserModule} from "@angular/platform-browser";
 import {FormsModule} from "@angular/forms";
 import {OrderService} from "./service/order.service";
-import {DarkgalaxyApiService} from "../../darkgalaxy-ui-parser/service/darkgalaxy-api.service";
 import {getApp, initializeApp, provideFirebaseApp} from "@angular/fire/app";
 import {environment} from "../../../../environments/environment";
 import {getAuth, provideAuth} from "@angular/fire/auth";
