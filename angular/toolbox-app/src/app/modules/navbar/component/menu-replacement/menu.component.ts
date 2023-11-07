@@ -7,6 +7,7 @@ import {AuthState} from "../../../../shared/model/authentication/auth-state.mode
 import {LocalStorageService} from "../../../local-storage-manager/service/local-storage.service";
 import {LocalStorageKeys} from "../../../../shared/model/local-storage/local-storage-keys";
 import {Analytics, logEvent} from "@angular/fire/analytics";
+import {ChangelogService} from "../../../changelog/service/changelog.service";
 
 @Component({
   selector: 'dgt-navbar',
@@ -20,11 +21,12 @@ export class MenuComponent implements OnDestroy {
   private authService: AuthService = inject(AuthService);
   private localStorageService: LocalStorageService = inject(LocalStorageService);
   private analytics: Analytics = inject(Analytics);
+  private changelogService = inject(ChangelogService);
 
   protected localOrdersBadge: number = 0;
-  protected updateAvailable: boolean = false;
 
   public fleetOrdersNotification: Observable<number>;
+  public updateAvailableNotification: number;
   public active: boolean;
 
   private initialized: boolean = false;
@@ -46,8 +48,12 @@ export class MenuComponent implements OnDestroy {
       page_title: this.dgAPI.username()
     });
 
-    this.updateAvailable = this.localStorageService.get(LocalStorageKeys.UPDATE_AVAILABLE);
     this.localOrdersBadge = this.localStorageService.get(LocalStorageKeys.ACTIVE_ORDERS);
+
+    this.updateAvailableNotification = this.localStorageService.get(LocalStorageKeys.UPDATE_AVAILABLE) ? 1 : 0;
+    this.changelogService.changelogEmitter.subscribe((update: boolean): void => {
+      this.updateAvailableNotification = update ? 1 : 0;
+    })
 
     this.authService.authState.subscribe((state: AuthState): void => {
       this.active = state.status;

@@ -1,4 +1,4 @@
-import {ChangeDetectorRef, inject, Injectable, OnDestroy} from '@angular/core';
+import {ChangeDetectorRef, EventEmitter, inject, Injectable, OnDestroy} from '@angular/core';
 import {collection, doc, docData, Firestore} from "@angular/fire/firestore";
 import {DocumentData} from "@angular/fire/compat/firestore";
 import {Subscriber, Subscription} from "rxjs";
@@ -6,19 +6,20 @@ import {LocalStorageService} from "../../local-storage-manager/service/local-sto
 import {LocalStorageKeys} from "../../../shared/model/local-storage/local-storage-keys";
 
 @Injectable({
-  providedIn: 'root'
+  providedIn: 'platform'
 })
 export class ChangelogService implements OnDestroy {
   private firestore: Firestore = inject(Firestore);
   private localStorageService: LocalStorageService = inject(LocalStorageService);
   private configSubscription: Subscription;
+  private _changelogEmitter: EventEmitter<boolean> = new EventEmitter();
 
   checkVersion(changeDetection: ChangeDetectorRef, changed: Subscriber<boolean>) {
     if (this.configSubscription) {
       return;
     }
 
-    let configRef = collection(this.firestore, 'config');
+    let configRef: any = collection(this.firestore, 'config');
 
     this.configSubscription = docData(
       doc(configRef, 'version')
@@ -29,9 +30,11 @@ export class ChangelogService implements OnDestroy {
       if (localVersion !== version) {
         this.localStorageService.cache(LocalStorageKeys.UPDATE_AVAILABLE, true);
         changed.next(true);
+        this._changelogEmitter.emit(true);
       } else {
         this.localStorageService.cache(LocalStorageKeys.UPDATE_AVAILABLE, false);
         changed.next(false);
+        this._changelogEmitter.emit(false);
       }
 
       changed.complete();
@@ -46,5 +49,10 @@ export class ChangelogService implements OnDestroy {
 
   ngOnDestroy() {
     this.configSubscription.unsubscribe();
+  }
+
+
+  get changelogEmitter(): EventEmitter<boolean> {
+    return this._changelogEmitter;
   }
 }
