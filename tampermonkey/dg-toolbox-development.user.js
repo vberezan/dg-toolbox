@@ -1,6 +1,6 @@
 // ==UserScript==
 // @name         DarkGalaxy Toolbox
-// @version      1.0.14
+// @version      1.0.15
 // @namespace    dg-toolbox
 // @homepage     https://github.com/vberezan/dg-toolbox
 // @supportURL   https://github.com/vberezan/dg-toolbox
@@ -34,7 +34,7 @@ function loadResource(element) {
 function loadSetups(windowURL) {
     loadResource({
         tagName: 'script',
-        src: 'https://cdn.jsdelivr.net/gh/vberezan/dg-toolbox@development/tampermonkey/parts/dgt-toolbox-setup-dgt-placeholders.42.js',
+        src: 'https://cdn.jsdelivr.net/gh/vberezan/dg-toolbox@development/tampermonkey/parts/dgt-toolbox-setup-dgt-placeholders.44.js',
         rel: 'text/javascript'
     }).onload = function () {
         setUpUiParser();
@@ -53,7 +53,7 @@ function loadSetups(windowURL) {
 function loadCustomStyling() {
     loadResource({
         tagName: 'script',
-        src: 'https://cdn.jsdelivr.net/gh/vberezan/dg-toolbox@development/tampermonkey/parts/dg-toolbox-custom-styling.66.js',
+        src: 'https://cdn.jsdelivr.net/gh/vberezan/dg-toolbox@development/tampermonkey/parts/dg-toolbox-custom-styling.67.js',
         rel: 'text/javascript'
     }).onload = function () {
         applyCustomStyling();
@@ -85,7 +85,7 @@ function loadCustomStyling() {
 
     loadResource({
         tagName: 'script',
-        src: 'https://cdn.jsdelivr.net/gh/vberezan/dg-toolbox@development/tampermonkey/parts/dg-toolbox-replace-structures-images.6.js',
+        src: 'https://cdn.jsdelivr.net/gh/vberezan/dg-toolbox@development/tampermonkey/parts/dg-toolbox-replace-structures-images.7.js',
         rel: 'text/javascript'
     }).onload = function () {
         replaceStructuresImages();
@@ -111,7 +111,7 @@ function loadAngular() {
         rel: 'module'
     }, {
         tagName: 'script',
-        src: 'https://cdn.jsdelivr.net/gh/vberezan/dg-toolbox@development/angular/toolbox-app/dist/toolbox-app/main.a76639dd6944d911.js',
+        src: 'https://cdn.jsdelivr.net/gh/vberezan/dg-toolbox@development/angular/toolbox-app/dist/toolbox-app/main.4bee82305457071c.js',
         rel: 'module'
     }];
 
@@ -166,7 +166,7 @@ function loadGlobalAngularStyling() {
             }
         }
 
-        localStorage.setItem('version', 'v1.0.14');
+        localStorage.setItem('version', 'v1.0.15');
     });
 
     window.unload = function() {
