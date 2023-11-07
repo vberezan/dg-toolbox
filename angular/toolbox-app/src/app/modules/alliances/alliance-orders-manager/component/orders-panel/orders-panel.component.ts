@@ -66,6 +66,8 @@ export class OrdersPanelComponent implements OnDestroy {
           this.allianceMembers = this.dgAPI.allianceMembers(true);
 
           if (this.orders.size === 0) {
+            console.log('xxxxxxx');
+
             this.allianceMembers.forEach((member: AllianceMember): void => {
               this.orders.set(member.name.toLowerCase(), new Observable<AllianceOrder[]>((observer: Subscriber<AllianceOrder[]>): void => {
                 this.orderService.getAllOrders(member.name.toLowerCase(), this.dgAPI.gameTurn(), this.changeDetection, observer);
