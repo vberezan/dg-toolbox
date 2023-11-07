@@ -23,7 +23,7 @@ export class LoginComponent {
     this.authService.setUpFirebaseAuthSubscription(this.auth, this.firestore);
 
     this.displayLogin = new Observable((observer: Subscriber<boolean>): void => {
-      observer.next(false);
+      observer.next(true);
 
       this.authService.authState.subscribe((): void => {
         console.log(this.localStorageService.get(LocalStorageKeys.USER) == null &&
