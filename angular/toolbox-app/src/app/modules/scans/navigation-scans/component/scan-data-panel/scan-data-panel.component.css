@@ -10,8 +10,8 @@
   width: 100% !important;
   height: 58px;
   position: relative;
-  margin-bottom: 0 !important;
-  border-radius: 0 !important;
+  margin-bottom: 5px !important;
+  border-radius: 5px !important;
 }
 
 img {
