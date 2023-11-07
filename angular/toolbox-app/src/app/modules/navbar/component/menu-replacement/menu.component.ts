@@ -27,6 +27,8 @@ export class MenuComponent implements OnDestroy {
   public fleetOrdersNotification: Observable<number>;
   public active: boolean;
 
+  private initialized: boolean = false;
+
   constructor() {
     let event: string[] = window.location.pathname.split('/');
 
@@ -50,10 +52,12 @@ export class MenuComponent implements OnDestroy {
     this.authService.authState.subscribe((state: AuthState): void => {
       this.active = state.status;
 
-      if (state.status) {
+      if (state.status && !this.initialized) {
         this.fleetOrdersNotification = new Observable<number>((observer: Subscriber<number>): void => {
           this.badgeService.checkFleetOrders(this.dgAPI.username(), observer, this.changeDetection);
         });
+
+        this.initialized = true;
       }
     });
 
