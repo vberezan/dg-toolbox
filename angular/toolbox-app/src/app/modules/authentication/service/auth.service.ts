@@ -108,6 +108,7 @@ export class AuthService implements OnDestroy {
   }
 
   get authState(): EventEmitter<AuthState> {
+    console.log(this._authState)
     return this._authState;
   }
 
