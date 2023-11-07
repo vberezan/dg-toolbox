@@ -22,7 +22,7 @@ export class ScanService implements OnDestroy {
   }
 
   updateScan(scanEvent: PlanetScanEvent): void {
-    if (this.planetScanSubscription != null) {
+    if (this.planetScanSubscription) {
       this.planetScanSubscription.unsubscribe();
     }
 

@@ -15,7 +15,7 @@ export class BadgeService implements OnDestroy {
   private ordersSubscription: Subscription;
 
   checkFleetOrders(user: string, observer: Subscriber<number>, changeDetection: ChangeDetectorRef): void {
-    if (this.ordersSubscription != null) {
+    if (this.ordersSubscription) {
       return;
     }
 
