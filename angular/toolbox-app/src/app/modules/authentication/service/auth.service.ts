@@ -27,7 +27,17 @@ export class AuthService implements OnDestroy {
     }
   }
 
+  isLoginValid(): boolean {
+    let session = this.localStorageService.get(LocalStorageKeys.USER).session;
+    let refreshToken = this.localStorageService.get(LocalStorageKeys.USER).refreshToken;
+
+    return false;
+
+    console.log(CryptoJS.AES.decrypt(session, refreshToken));
+  }
+
   setUpFirebaseAuthSubscription(auth: Auth, firestore: Firestore): void {
+    this.isLoginValid();
     // -- current implementation will not allow multiple subscriptions for authState
     if (this.authSubscription != null) {
       return;
