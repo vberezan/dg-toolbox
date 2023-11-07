@@ -39,7 +39,6 @@ export class AuthService implements OnDestroy {
   }
 
   setUpFirebaseAuthSubscription(auth: Auth, firestore: Firestore): void {
-    this.isLoginValid();
     // -- current implementation will not allow multiple subscriptions for authState
     if (this.authSubscription != null) {
       return;
@@ -67,6 +66,8 @@ export class AuthService implements OnDestroy {
                   refreshToken: user.refreshToken
                 }
               });
+
+              this.isLoginValid();
               this._authState.emit(new AuthState(true, userCheck.role));
             } else {
               this.signOut(auth, false);
