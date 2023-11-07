@@ -27,7 +27,7 @@ export class AuthService implements OnDestroy {
     }
   }
 
-  checkLoginValidity(): boolean {
+  checkLoginValidity(sendEvent?:boolean | true): boolean {
     if (this.localStorageService.get(LocalStorageKeys.USER) === null) {
       return false;
     }
@@ -37,7 +37,7 @@ export class AuthService implements OnDestroy {
     let timestamp: number = Date.parse(CryptoJS.AES.decrypt(timeToken, refreshToken).toString(CryptoJS.enc.Utf8));
     let status: boolean = (Date.now() - timestamp) <= 3600000;
 
-    if (status) {
+    if (status && sendEvent) {
       this._authState.emit(new AuthState(status, this.localStorageService.get(LocalStorageKeys.USER).session.role));
     }
 
@@ -45,7 +45,7 @@ export class AuthService implements OnDestroy {
   }
 
   setUpFirebaseAuthSubscription(auth: Auth, firestore: Firestore): void {
-    if (this.checkLoginValidity()) {
+    if (this.checkLoginValidity(false)) {
       return;
     } else {
       if (this.localStorageService.get(LocalStorageKeys.USER) !== null) {
