@@ -63,10 +63,10 @@ export class OrdersPanelComponent implements OnDestroy {
         });
 
         if (state.role === UserRole.ADMIN || state.role === UserRole.TEAM_LEADER) {
-          this.allianceMembers = this.dgAPI.allianceMembers(true);
+          this.dgAPI.cleanAlianceMembers();
 
           if (this.orders.size === 0) {
-            console.log('xxxxxxx');
+            this.allianceMembers = this.dgAPI.allianceMembers(true);
 
             this.allianceMembers.forEach((member: AllianceMember): void => {
               this.orders.set(member.name.toLowerCase(), new Observable<AllianceOrder[]>((observer: Subscriber<AllianceOrder[]>): void => {

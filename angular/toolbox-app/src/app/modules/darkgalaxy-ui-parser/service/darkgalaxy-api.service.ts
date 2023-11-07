@@ -41,6 +41,10 @@ export class DarkgalaxyApiService {
     return result;
   }
 
+  cleanAlianceMembers(): void {
+    this.allianceMembersExtractor.cleanAfterExtract();
+  }
+
   gameTurn(): number {
     return parseInt(document.querySelector('#turnNumber').textContent.trim().replace(/,/g, ''));
   }
