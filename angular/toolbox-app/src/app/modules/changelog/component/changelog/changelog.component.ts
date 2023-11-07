@@ -27,5 +27,6 @@ export class ChangelogComponent {
 
   installUpdate() {
     this.localStorageService.cache(LocalStorageKeys.UPDATE_AVAILABLE, false);
+    location.reload();
   }
 }
