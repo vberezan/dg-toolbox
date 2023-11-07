@@ -120,9 +120,11 @@ function applyCustomStyling() {
             document.querySelector('#navWrapper>div>div:nth-child(1)').remove();
         }
 
-        let playerName = document.querySelector('.text span .playerName');
-        if (playerName) {
-            playerName.innerHTML = playerName.textContent.trim().substring(0,15);
+        let playerNames = document.querySelectorAll('.text span .playerName');
+        if (playerNames) {
+            playerNames.forEach(playerName => {
+                playerName.innerHTML = playerName.textContent.trim().substring(0,15);
+            })
         }
     }
 
