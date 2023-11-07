@@ -12,13 +12,12 @@ import {AuthState} from "../../../../../shared/model/authentication/auth-state.m
 export class ScanCollectorComponent implements OnInit, OnDestroy {
   private scanService: ScanService = inject(ScanService);
   private authService: AuthService = inject(AuthService);
-  private changeDetection: ChangeDetectorRef = inject(ChangeDetectorRef);
 
   public active: boolean = false;
   private initialized: boolean = false;
 
   ngOnInit(): void {
-    this.authService.authState.subscribe((state: AuthState) => {
+    this.authService.authState.subscribe((state: AuthState): void => {
       this.active = state.status;
 
       if (state.status && !this.initialized) {
