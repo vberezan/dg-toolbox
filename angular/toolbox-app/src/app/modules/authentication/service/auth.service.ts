@@ -21,11 +21,6 @@ export class AuthService implements OnDestroy {
   private authSubscription: Subscription;
   private id: number;
 
-  constructor() {
-    this.id = Math.random();
-    console.log(this.id);
-  }
-
   ngOnDestroy(): void {
     if (this.authSubscription != null) {
       this.authSubscription.unsubscribe();
@@ -35,7 +30,7 @@ export class AuthService implements OnDestroy {
   setUpFirebaseAuthSubscription(auth: Auth, firestore: Firestore): void {
     // -- current implementation will not allow multiple subscriptions for authState
     if (this.authSubscription != null) {
-      this.authSubscription.unsubscribe();
+      return;
     }
 
     this.authSubscription = authState(auth).subscribe((user: User) => {
