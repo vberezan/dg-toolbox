@@ -5,3 +5,9 @@
   padding: 5px;
   border-radius: 5px;
 }
+
+img {
+  height: 24px;
+  margin-bottom: -7px;
+  margin-top: -7px;
+}
