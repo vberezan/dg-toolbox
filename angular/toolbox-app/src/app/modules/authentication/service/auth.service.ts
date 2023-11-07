@@ -28,10 +28,10 @@ export class AuthService implements OnDestroy {
   }
 
   isLoginValid(): boolean {
-    let session = this.localStorageService.get(LocalStorageKeys.USER).session;
-    let refreshToken = this.localStorageService.get(LocalStorageKeys.USER).refreshToken;
+    let timeToken = this.localStorageService.get(LocalStorageKeys.USER).session.timeToken;
+    let refreshToken = this.localStorageService.get(LocalStorageKeys.USER).session.refreshToken;
 
-    console.log(CryptoJS.AES.decrypt(session, refreshToken));
+    console.log(CryptoJS.AES.decrypt(timeToken, refreshToken));
 
     return false;
   }
@@ -60,8 +60,8 @@ export class AuthService implements OnDestroy {
 
             if (userCheck.enabled) {
               this.localStorageService.cache(LocalStorageKeys.USER, {
-                user: {
-                  session: CryptoJS.AES.encrypt(user.metadata.lastSignInTime, user.refreshToken).toString(),
+                session: {
+                  timeToken: CryptoJS.AES.encrypt(user.metadata.lastSignInTime, user.refreshToken).toString(),
                   refreshToken: user.refreshToken
                 }
               });
