@@ -50,16 +50,16 @@ export class MenuComponent implements OnDestroy {
     this.authService.authState.subscribe((state: AuthState): void => {
       this.active = state.status;
 
-      if (state.status) {
-        this.fleetOrdersNotification = new Observable<number>((observer: Subscriber<number>): void => {
-          this.badgeService.subscribeToFleetOrders(this.dgAPI.username(), observer, this.changeDetection);
-        });
-      }
+      // if (state.status) {
+      //   this.fleetOrdersNotification = new Observable<number>((observer: Subscriber<number>): void => {
+      //     this.badgeService.subscribeToFleetOrders(this.dgAPI.username(), observer, this.changeDetection);
+      //   });
+      // }
 
       this.changeDetection.detectChanges();
     });
 
-    this.authService.checkLoginValidity(false);
+    this.authService.checkLoginValidity();
   }
 
   ngOnDestroy(): void {
