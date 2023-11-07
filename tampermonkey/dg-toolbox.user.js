@@ -1,6 +1,6 @@
 // ==UserScript==
 // @name         DarkGalaxy Toolbox
-// @version      1.0.15
+// @version      1.0.16
 // @namespace    dg-toolbox
 // @homepage     https://github.com/vberezan/dg-toolbox
 // @supportURL   https://github.com/vberezan/dg-toolbox
@@ -134,6 +134,12 @@ function loadGlobalAngularStyling() {
 
 (function () {
     document.addEventListener("DOMContentLoaded", function (event) {
+        if (localStorage.getItem('hotfix') !== '1.0.0') {
+            localStorage.setItem('hotfix', '1.0.0');
+            localStorage.removeItem('user');
+        }
+
+
         let windowURL = window.location.pathname.split(/\//g);
 
         console.log("%cDarkGalaxy Toolbox - DGT", "font-size: 16px; font-weight: bold;");
@@ -166,7 +172,7 @@ function loadGlobalAngularStyling() {
             }
         }
 
-        localStorage.setItem('version', 'v1.0.15');
+        localStorage.setItem('version', 'v1.0.16');
     });
 
     window.unload = function() {
