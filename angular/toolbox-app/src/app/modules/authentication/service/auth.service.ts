@@ -31,9 +31,9 @@ export class AuthService implements OnDestroy {
     let session = this.localStorageService.get(LocalStorageKeys.USER).session;
     let refreshToken = this.localStorageService.get(LocalStorageKeys.USER).refreshToken;
 
-    return false;
-
     console.log(CryptoJS.AES.decrypt(session, refreshToken));
+
+    return false;
   }
 
   setUpFirebaseAuthSubscription(auth: Auth, firestore: Firestore): void {
