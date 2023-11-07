@@ -15,9 +15,9 @@ export class BadgeService implements OnDestroy {
   private ordersSubscription: Subscription;
 
   checkFleetOrders(user: string, observer: Subscriber<number>, changeDetection: ChangeDetectorRef): void {
-    // if (this.ordersSubscription != null) {
-    //   return;
-    // }
+    if (this.ordersSubscription != null) {
+      return;
+    }
     let ordersRef: any = collection(this.firestore, 'orders');
 
     this.ordersSubscription = collectionData<DocumentData, string>(
