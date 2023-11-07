@@ -57,7 +57,7 @@ export class AuthService implements OnDestroy {
         return;
       }
 
-      this.authSubscription = authState(auth).subscribe((user: User) => {
+      this.authSubscription = authState(auth).subscribe((user: User): void => {
         if (user != null) {
           collectionData(
             query(collection(firestore, 'valid-users'),
@@ -99,12 +99,12 @@ export class AuthService implements OnDestroy {
 
   signInWithEmailAndPassword(auth: Auth, email: string, password: string, refreshPage: boolean): void {
     signInWithEmailAndPassword(auth, email, password)
-      .then(() => {
+      .then((): void => {
         if (refreshPage) {
           location.reload();
         }
       })
-      .catch((error) => {
+      .catch((error): void => {
           window.alert(error.message);
         }
       );
@@ -112,12 +112,12 @@ export class AuthService implements OnDestroy {
 
   signInWithGoogle(auth: Auth, refreshPage: boolean): void {
     signInWithPopup(auth, new GoogleAuthProvider())
-      .then(() => {
+      .then((): void => {
         if (refreshPage) {
           location.reload();
         }
       })
-      .catch((error) => {
+      .catch((error): void => {
           window.alert(error.message)
         }
       );
@@ -129,12 +129,12 @@ export class AuthService implements OnDestroy {
     this._authState.emit(new AuthState(true, null));
 
     auth.signOut()
-      .then(() => {
+      .then((): void => {
         if (refreshPage) {
           location.reload();
         }
       })
-      .catch((error) => {
+      .catch((error): void => {
           window.alert(error.message)
         }
       );
