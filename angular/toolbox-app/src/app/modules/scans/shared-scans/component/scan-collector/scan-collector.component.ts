@@ -29,6 +29,11 @@ export class ScanCollectorComponent implements OnInit, OnDestroy {
 
         this.changeDetection.detectChanges();
       }
+
+      if (document.querySelector('dgt-shared-scans-collector .dgt-spinner-container')) {
+        document.querySelector('dgt-shared-scans-collector .dgt-spinner-container').classList.add('hide');
+        document.querySelector('dgt-shared-scans-collector .dgt-spinner-container').classList.remove('show');
+      }
     });
   }
 
