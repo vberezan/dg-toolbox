@@ -30,7 +30,7 @@ export class AuthService implements OnDestroy {
   setUpFirebaseAuthSubscription(auth: Auth, firestore: Firestore): void {
     // -- current implementation will not allow multiple subscriptions for authState
     if (this.authSubscription != null) {
-      return;
+      this.authSubscription.unsubscribe();
     }
 
     this.authSubscription = authState(auth).subscribe((user: User) => {
@@ -41,6 +41,7 @@ export class AuthService implements OnDestroy {
             limit(1)
           )
         ).subscribe((items: DocumentData[]): void => {
+          console.log(items);
           if (items.length > 0) {
             let userCheck: { email: string, enabled: boolean, role: UserRole } = Object.assign({
               email: '',
@@ -109,7 +110,6 @@ export class AuthService implements OnDestroy {
   }
 
   get authState(): EventEmitter<AuthState> {
-    console.log(this._authState)
     return this._authState;
   }
 
