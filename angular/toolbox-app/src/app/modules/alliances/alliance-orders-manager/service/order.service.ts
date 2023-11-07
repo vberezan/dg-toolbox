@@ -1,17 +1,18 @@
-import {ChangeDetectorRef, inject, Injectable} from '@angular/core';
+import {ChangeDetectorRef, inject, Injectable, OnDestroy} from '@angular/core';
 import {AllianceOrder} from "../../../../shared/model/orders/alliance-order.model";
 import {addDoc, collection, collectionData, deleteDoc, doc, Firestore, orderBy, query, where} from "@angular/fire/firestore";
 import firebase from "firebase/compat";
-import {Subscriber} from "rxjs";
+import {Subscriber, Subscription} from "rxjs";
 import DocumentData = firebase.firestore.DocumentData;
 import {DarkgalaxyApiService} from "../../../darkgalaxy-ui-parser/service/darkgalaxy-api.service";
 
 @Injectable({
   providedIn: 'root'
 })
-export class OrderService {
+export class OrderService implements OnDestroy {
   private firestore: Firestore = inject(Firestore);
   private dgApi: DarkgalaxyApiService = inject(DarkgalaxyApiService);
+  private ordersSubscription: Subscription;
 
   updateOrder(order: AllianceOrder): void {
     order.from = this.dgApi.username(false);
@@ -32,6 +33,10 @@ export class OrderService {
   }
 
   getAllOrders(user: string, turn: number, changeDetection: ChangeDetectorRef, observer: Subscriber<AllianceOrder[]>): void {
+    if (this.ordersSubscription != null) {
+      return;
+    }
+
     if (document.querySelector('dgt-alliance-orders-manager-panel .dgt-spinner-container.member')) {
       document.querySelectorAll('dgt-alliance-orders-manager-panel .dgt-spinner-container.member').forEach((spinner: Element): void => {
         spinner.classList.add('show');
@@ -39,15 +44,15 @@ export class OrderService {
       });
     }
 
-    let ordersRef = collection(this.firestore, 'orders');
+    let ordersRef: any = collection(this.firestore, 'orders');
 
-    collectionData<DocumentData, string>(
+    this.ordersSubscription = collectionData<DocumentData, string>(
       query(ordersRef,
         where('user', '==', user),
         orderBy('executed', 'asc'),
         orderBy('wait', 'asc')
       ), {idField: 'id'}
-    ).forEach((items: DocumentData[]) => {
+    ).subscribe((items: DocumentData[]) => {
       let orders: AllianceOrder[] = Object.assign([], items);
 
       orders.forEach((order: AllianceOrder) => {
@@ -55,7 +60,6 @@ export class OrderService {
       })
 
       observer.next(orders);
-      changeDetection.detectChanges();
 
       if (document.querySelector('dgt-alliance-orders-manager-panel .dgt-spinner-container.member')) {
         document.querySelectorAll('dgt-alliance-orders-manager-panel .dgt-spinner-container.member').forEach((spinner: Element): void => {
@@ -63,8 +67,12 @@ export class OrderService {
           spinner.classList.remove('show');
         });
       }
-    }).catch((error): void => {
-      console.log(error);
+
+      changeDetection.detectChanges();
     });
+  }
+
+  ngOnDestroy() {
+    this.ordersSubscription.unsubscribe();
   }
 }

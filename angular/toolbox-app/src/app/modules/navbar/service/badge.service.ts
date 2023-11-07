@@ -18,6 +18,7 @@ export class BadgeService implements OnDestroy {
     if (this.ordersSubscription != null) {
       return;
     }
+
     let ordersRef: any = collection(this.firestore, 'orders');
 
     this.ordersSubscription = collectionData<DocumentData, string>(
@@ -26,7 +27,6 @@ export class BadgeService implements OnDestroy {
         where('executed', '==', false)
       ), {idField: 'id'}
     ).subscribe((items: DocumentData[]): void => {
-
       observer.next(items.length);
 
       if (items.length > 0 ) {
