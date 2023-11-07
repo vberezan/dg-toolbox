@@ -56,9 +56,7 @@ export class MenuComponent implements OnDestroy {
         });
       }
 
-      if (this.changeDetection != null) {
-        this.changeDetection.detectChanges();
-      }
+      // this.changeDetection.detectChanges();
     });
 
     this.authService.checkLoginValidity();
