@@ -117,7 +117,7 @@ export class AuthService implements OnDestroy {
     signInWithPopup(auth, new GoogleAuthProvider())
       .then((): void => {
         if (refreshPage) {
-          location.reload();
+          // location.reload();
         }
       })
       .catch((error): void => {
