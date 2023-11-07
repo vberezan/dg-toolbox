@@ -29,6 +29,7 @@ export class BadgeService implements OnDestroy {
 
       changeDetection.detectChanges();
       observer.next(items.length);
+      changeDetection.detectChanges();
 
       if (items.length > 0 ) {
         this.localStorageService.cache(LocalStorageKeys.ACTIVE_ORDERS, items.length);
