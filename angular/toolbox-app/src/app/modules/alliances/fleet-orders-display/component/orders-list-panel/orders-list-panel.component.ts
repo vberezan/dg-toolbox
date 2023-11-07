@@ -22,6 +22,8 @@ export class OrdersListPanelComponent implements OnDestroy {
   public orders: Observable<AllianceOrder[]>;
   public active: boolean = false;
 
+  private initialized: boolean = false;
+
   constructor(library: FaIconLibrary) {
     library.addIcons(farCircleCheck);
 
@@ -33,18 +35,21 @@ export class OrdersListPanelComponent implements OnDestroy {
 
       this.active = state.status;
 
-      if (state.status) {
+      if (state.status && !this.initialized) {
         this.orders = new Observable<AllianceOrder[]>((observer: Subscriber<AllianceOrder[]>): void => {
           this.orderService.getActiveOrders(this.dgAPI.username(), this.dgAPI.gameTurn(), this.changeDetection, observer);
         });
+
+        this.initialized = true;
       }
 
-      this.changeDetection.detectChanges();
       if (document.querySelector('dgt-fleet-orders-list-panel .dgt-spinner-container')) {
         document.querySelector('dgt-fleet-orders-list-panel .dgt-spinner-container').classList.add('hide');
         document.querySelector('dgt-fleet-orders-list-panel .dgt-spinner-container').classList.remove('show');
       }
     });
+
+    this.authService.checkLoginValidity();
   }
 
 

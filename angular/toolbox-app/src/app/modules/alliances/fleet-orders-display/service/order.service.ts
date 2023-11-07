@@ -1,7 +1,7 @@
 import {ChangeDetectorRef, inject, Injectable} from '@angular/core';
 import {collection, collectionData, doc, Firestore, orderBy, query, updateDoc, where} from "@angular/fire/firestore";
 import firebase from "firebase/compat";
-import {Subscriber} from "rxjs";
+import {Subscriber, Subscription} from "rxjs";
 import {AllianceOrder} from "../../../../shared/model/orders/alliance-order.model";
 import DocumentData = firebase.firestore.DocumentData;
 
@@ -10,18 +10,23 @@ import DocumentData = firebase.firestore.DocumentData;
 })
 export class OrderService {
   private firestore: Firestore = inject(Firestore);
+  private ordersSubscription: Subscription;
 
   getActiveOrders(user: string, turn: number, changeDetection: ChangeDetectorRef, observer: Subscriber<AllianceOrder[]>): void {
+    if (this.ordersSubscription) {
+      return;
+    }
+
     let ordersRef = collection(this.firestore, 'orders');
 
-    collectionData<DocumentData, string>(
+    this.ordersSubscription = collectionData<DocumentData, string>(
       query(ordersRef,
         where('user', '==', user),
         where('executed', '==', false),
         orderBy('executed', 'asc'),
         orderBy('wait', 'asc')
       ), {idField: 'id'}
-    ).forEach((items: DocumentData[]): void => {
+    ).subscribe((items: DocumentData[]): void => {
       let orders: AllianceOrder[] = Object.assign([], items);
 
       orders.forEach((order) => {
@@ -30,8 +35,6 @@ export class OrderService {
 
       observer.next(orders);
       changeDetection.detectChanges();
-    }).catch((error) => {
-      console.log(error);
     });
   }
 
