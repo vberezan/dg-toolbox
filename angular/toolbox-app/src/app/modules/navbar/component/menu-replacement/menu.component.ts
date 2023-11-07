@@ -56,8 +56,6 @@ export class MenuComponent implements OnDestroy {
         });
       }
 
-      console.log('afara');
-
       this.changeDetection.detectChanges();
     });
 

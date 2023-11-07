@@ -16,13 +16,19 @@ export class BadgeService {
   subscribeToFleetOrders(user: string, observer: Subscriber<number>, changeDetection: ChangeDetectorRef) {
     let ordersRef = collection(this.firestore, 'orders');
 
+    console.log('inauntru 1');
+
     collectionData<DocumentData, string>(
       query(ordersRef,
         where('user', '==', user),
         where('executed', '==', false)
       ), {idField: 'id'}
-    ).forEach((items: DocumentData[]) => {
+    ).forEach((items: DocumentData[]): void => {
+      console.log('inauntru 2');
+
       observer.next(items.length);
+
+      console.log('inauntru 3');
 
       if (items.length > 0 ) {
         this.localStorageService.cache(LocalStorageKeys.ACTIVE_ORDERS, items.length);
@@ -30,9 +36,11 @@ export class BadgeService {
         this.localStorageService.remove(LocalStorageKeys.ACTIVE_ORDERS);
       }
 
+      console.log('inauntru 4');
+
       changeDetection.detectChanges();
 
-      console.log('inauntru');
+      console.log('inauntru 5');
 
       if (document.querySelector('.local-orders-badge')) {
         document.querySelector<HTMLElement>('.local-orders-badge').style.display = 'none';
