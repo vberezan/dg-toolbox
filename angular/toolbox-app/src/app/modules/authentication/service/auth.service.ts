@@ -51,7 +51,7 @@ export class AuthService implements OnDestroy {
             }, items[0]);
 
             if (userCheck.enabled) {
-              this.localStorageService.cache(LocalStorageKeys.USER, {user: user.email});
+              this.localStorageService.cache(LocalStorageKeys.USER, {user: user});
               this._authState.emit(new AuthState(true, userCheck.role));
             } else {
               this.signOut(auth, false);
