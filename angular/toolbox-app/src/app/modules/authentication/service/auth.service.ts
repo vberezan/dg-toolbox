@@ -35,9 +35,7 @@ export class AuthService implements OnDestroy {
     let timeToken = this.localStorageService.get(LocalStorageKeys.USER).session.timeToken;
     let refreshToken = this.localStorageService.get(LocalStorageKeys.USER).session.refreshToken;
     let timestamp: number = Date.parse(CryptoJS.AES.decrypt(timeToken, refreshToken).toString(CryptoJS.enc.Utf8));
-    let status: boolean = (Date.now() - timestamp) <= 300000;
-
-    console.log(Date.now() - timestamp);
+    let status: boolean = (Date.now() - timestamp) <= 86_400_000;
 
     if (status && sendEvent) {
       this._authState.emit(new AuthState(status, this.localStorageService.get(LocalStorageKeys.USER).session.role));
