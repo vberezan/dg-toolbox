@@ -48,7 +48,6 @@ export class MenuComponent implements OnDestroy {
     this.localOrdersBadge = this.localStorageService.get(LocalStorageKeys.ACTIVE_ORDERS);
 
     this.authService.authState.subscribe((state: AuthState): void => {
-      console.log('macarena');
       this.active = state.status;
 
       if (state.status) {
@@ -60,7 +59,7 @@ export class MenuComponent implements OnDestroy {
       this.changeDetection.detectChanges();
     });
 
-    this.authService.checkLoginValidity();
+    this.authService.checkLoginValidity(false);
   }
 
   ngOnDestroy(): void {
