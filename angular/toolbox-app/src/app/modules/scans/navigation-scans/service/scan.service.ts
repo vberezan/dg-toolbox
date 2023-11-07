@@ -1,4 +1,4 @@
-import {inject, Injectable} from '@angular/core';
+import {inject, Injectable, OnDestroy} from '@angular/core';
 import {DarkgalaxyApiService} from "../../../darkgalaxy-ui-parser/service/darkgalaxy-api.service";
 import {PlanetSummary} from "../../../../shared/model/planets/planet-summary.planet-list-model";
 import {PlanetScan} from "../../../../shared/model/scans/shared-scans-planet-scan.model";
@@ -10,28 +10,34 @@ import {collection, collectionData, Firestore, query, where} from "@angular/fire
 import {NameQuantity} from "../../../../shared/model/name-quantity.model";
 import firebase from "firebase/compat";
 import DocumentData = firebase.firestore.DocumentData;
+import {Subscription} from "rxjs";
 
 @Injectable({
   providedIn: 'root'
 })
-export class ScanService {
+export class ScanService implements OnDestroy {
   private firestore: Firestore = inject(Firestore);
   private dgAPI: DarkgalaxyApiService = inject(DarkgalaxyApiService);
   private resourceProductionFormatterPipe: ResourceProductionFormatterPipe = inject(ResourceProductionFormatterPipe);
   private decimalPipe: DecimalPipe = inject(DecimalPipe);
+  private scansSubscription: Subscription;
 
   extractSummaries(): PlanetSummary[] {
     return this.dgAPI.navigationSystemPlanets();
   }
 
-  fillScans(summaries: PlanetSummary[]) {
+  fillScans(summaries: PlanetSummary[]): void {
+    if (this.scansSubscription !== null) {
+      return;
+    }
+
     let locations: string[] = summaries.map((summary: PlanetSummary) => summary.location.join('.'));
 
-    collectionData(
+    this.scansSubscription = collectionData(
       query(collection(this.firestore, 'scans'),
         where('location', 'in', locations)
       )
-    ).forEach((items: DocumentData[]): void => {
+    ).subscribe((items: DocumentData[]): void => {
       let dbScans: PlanetScan[] = Object.assign([], items);
 
       let byLocation: Map<String, PlanetScan> = dbScans.reduce((entryMap: Map<any, any>, e: PlanetScan) =>
@@ -136,8 +142,10 @@ export class ScanService {
           planet.querySelector('.dgt-navigation-scan-size-orbit').style.visibility = 'hidden';
         }
       });
-    }).catch((error): void => {
-      console.log(error)
     });
+  }
+
+  ngOnDestroy() {
+    this.scansSubscription.unsubscribe();
   }
 }
