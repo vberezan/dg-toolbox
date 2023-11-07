@@ -34,6 +34,7 @@ export class AuthService implements OnDestroy {
     }
 
     this.authSubscription = authState(auth).subscribe((user: User) => {
+      console.log(user);
       if (user != null) {
         collectionData(
           query(collection(firestore, 'valid-users'),
@@ -41,7 +42,6 @@ export class AuthService implements OnDestroy {
             limit(1)
           )
         ).subscribe((items: DocumentData[]): void => {
-          console.log(items);
           if (items.length > 0) {
             let userCheck: { email: string, enabled: boolean, role: UserRole } = Object.assign({
               email: '',
