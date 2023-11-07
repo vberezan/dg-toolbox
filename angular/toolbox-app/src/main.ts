@@ -10,14 +10,12 @@ import {FleetOrdersDisplayModule} from "./app/modules/alliances/fleet-orders-dis
 import {DarkgalaxyUiParserModule} from "./app/modules/darkgalaxy-ui-parser/darkgalaxy-ui-parser.module";
 import {LocalStorageManagerModule} from "./app/modules/local-storage-manager/local-storage-manager.module";
 import {ChangelogModule} from "./app/modules/changelog/changelog.module";
-import {AdminPanelComponent} from "./app/modules/admin/load-data/component/admin-panel/admin-panel.component";
 import {LoadDataModule} from "./app/modules/admin/load-data/load-data.module";
 
 const platform: PlatformRef = platformBrowserDynamic();
 let windowURL: string[] = window.location.pathname.split(/\//g);
 platform.bootstrapModule(LocalStorageManagerModule).catch(err => console.error(err));
 platform.bootstrapModule(DarkgalaxyUiParserModule).catch(err => console.error(err));
-platform.bootstrapModule(AuthenticationModule).catch(err => console.error(err));
 platform.bootstrapModule(NavbarModule).catch(err => console.error(err));
 
 
@@ -29,17 +27,17 @@ if (windowURL.length === 2 && windowURL[1].trim().length === 0) {
 
 // -- planets list screen
 if (windowURL[1] === 'planets') {
-    platform.bootstrapModule(PlanetListStatsModule).catch(err => console.error(err));
+  platform.bootstrapModule(PlanetListStatsModule).catch(err => console.error(err));
 }
 
 // -- planet screen >> comms
 if (windowURL[1] === 'planet' && (windowURL.length === 5 && windowURL[3]) === 'comms') {
-    platform.bootstrapModule(SharedScansModule).catch(err => console.error(err));
+  platform.bootstrapModule(SharedScansModule).catch(err => console.error(err));
 }
 
 // -- navigation screen >> system level
 if (windowURL[1] === 'navigation' && (windowURL.length === 6 && !isNaN(+windowURL[2]) && !isNaN(+windowURL[3]) && !isNaN(+windowURL[4]))) {
-    platform.bootstrapModule(NavigationScansModule).catch(err => console.error(err));
+  platform.bootstrapModule(NavigationScansModule).catch(err => console.error(err));
 }
 
 // -- alliances
@@ -51,3 +49,5 @@ if (windowURL[1] === 'alliances') {
 if (windowURL[1] === 'fleets') {
   platform.bootstrapModule(FleetOrdersDisplayModule).catch(err => console.error(err));
 }
+
+platform.bootstrapModule(AuthenticationModule).catch(err => console.error(err));

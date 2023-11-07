@@ -45,8 +45,6 @@ export class AuthService implements OnDestroy {
     if (this.isLoginValid()) {
       return;
     } else {
-      console.log('invalid');
-
       if (this.localStorageService.get(LocalStorageKeys.USER) !== null) {
         this.signOut(auth, false);
       }
