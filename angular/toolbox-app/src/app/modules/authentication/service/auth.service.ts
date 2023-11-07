@@ -29,6 +29,7 @@ export class AuthService implements OnDestroy {
 
   checkLoginValidity(): boolean {
     if (this.localStorageService.get(LocalStorageKeys.USER) === null) {
+      console.log('emis false');
       return false;
     }
 
@@ -37,6 +38,8 @@ export class AuthService implements OnDestroy {
     let timestamp: number = Date.parse(CryptoJS.AES.decrypt(timeToken, refreshToken).toString(CryptoJS.enc.Utf8));
 
     this._authState.emit(new AuthState((Date.now() - timestamp) <= 3600000, this.localStorageService.get(LocalStorageKeys.USER).session.role));
+
+    console.log('emis corect');
 
     return (Date.now() - timestamp) <= 3600000;
   }
