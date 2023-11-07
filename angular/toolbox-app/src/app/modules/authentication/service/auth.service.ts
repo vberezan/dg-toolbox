@@ -9,6 +9,7 @@ import {UserRole} from "../../../shared/model/authentication/user-role";
 import {LocalStorageKeys} from "../../../shared/model/local-storage/local-storage-keys";
 import {LocalStorageService} from "../../local-storage-manager/service/local-storage.service";
 import DocumentData = firebase.firestore.DocumentData;
+import * as cryptoJS from 'crypto-js';
 
 @Injectable({
   providedIn: 'platform'
@@ -33,9 +34,6 @@ export class AuthService implements OnDestroy {
     }
 
     this.authSubscription = authState(auth).subscribe((user: User) => {
-      console.log('user refresh token: ' + user.refreshToken);
-      console.log(user.metadata);
-
       if (user != null) {
         collectionData(
           query(collection(firestore, 'valid-users'),
@@ -51,7 +49,7 @@ export class AuthService implements OnDestroy {
             }, items[0]);
 
             if (userCheck.enabled) {
-              this.localStorageService.cache(LocalStorageKeys.USER, {user: user.metadata});
+              this.localStorageService.cache(LocalStorageKeys.USER, {user: CryptoJS.HmacSHA512(user.metadata.lastSignInTime, user.refreshToken)});
               this._authState.emit(new AuthState(true, userCheck.role));
             } else {
               this.signOut(auth, false);
