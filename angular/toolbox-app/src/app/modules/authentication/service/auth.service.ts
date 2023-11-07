@@ -127,8 +127,11 @@ export class AuthService implements OnDestroy {
     this.localStorageService.remove(LocalStorageKeys.USER);
     this._refreshInProgress = refreshPage;
     this._authState.emit(new AuthState(true, null));
-    this.authSubscription.unsubscribe();
-    this.authSubscription = null;
+
+    if (this.authSubscription) {
+      this.authSubscription.unsubscribe();
+      this.authSubscription = null;
+    }
 
     auth.signOut()
       .then((): void => {
