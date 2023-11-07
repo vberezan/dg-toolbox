@@ -26,9 +26,8 @@ export class BadgeService implements OnDestroy {
         where('executed', '==', false)
       ), {idField: 'id'}
     ).subscribe((items: DocumentData[]): void => {
-      observer.next(items.length);
-      observer.next(items.length);
-      observer.next(items.length);
+
+      changeDetection.detectChanges();
       observer.next(items.length);
 
       if (items.length > 0 ) {
@@ -36,8 +35,6 @@ export class BadgeService implements OnDestroy {
       } else {
         this.localStorageService.remove(LocalStorageKeys.ACTIVE_ORDERS);
       }
-
-      changeDetection.detectChanges();
 
       if (document.querySelector('.local-orders-badge')) {
         document.querySelector<HTMLElement>('.local-orders-badge').style.display = 'none';
