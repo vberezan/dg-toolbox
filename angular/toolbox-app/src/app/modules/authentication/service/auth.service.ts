@@ -62,11 +62,6 @@ export class AuthService implements OnDestroy {
       } else {
         this.localStorageService.remove(LocalStorageKeys.USER);
         this._authState.emit(new AuthState(false, null));
-        auth.signOut()
-          .catch((error) => {
-              window.alert(error.message)
-            }
-          );
       }
     });
   }
