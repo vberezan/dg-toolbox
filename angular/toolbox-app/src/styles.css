@@ -810,6 +810,10 @@ label.queueDestroyButton {
   margin-left: 5px !important;
 }
 
+#queue .lightBorderBottom {
+  border-bottom: none !important;
+}
+
 #queue .width25.icon fa-icon svg {
   fill: #fff !important;
 }
@@ -906,7 +910,7 @@ label.queueDestroyButton:hover {
   margin-right: 4px;
 }
 
-#addQueue>.error {
+#addQueue .error {
   border-radius: 0 !important;
 }
 
@@ -916,6 +920,11 @@ label.queueDestroyButton:hover {
   color: #ffffffad !important;
   padding: 5px 10px !important;
   border: none !important;
+  border-radius: 0 !important;
+}
+
+#addQueue .lightBorderBottom {
+  border-bottom: none !important;
 }
 
 #addQueue .consList .icon.width24 {
@@ -1047,6 +1056,10 @@ label.queueDestroyButton:hover {
   border-top-left-radius: 5px;
   border-bottom-left-radius: 5px;
   border-right: none !important;
+}
+
+#completed .lightBorderBottom {
+  border-bottom: none !important;
 }
 
 #completed .upkeepList span {
