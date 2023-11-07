@@ -15,9 +15,9 @@ export class BadgeService implements OnDestroy {
   private ordersSubscription: Subscription;
 
   checkFleetOrders(user: string, observer: Subscriber<number>, changeDetection: ChangeDetectorRef): void {
-    if (this.ordersSubscription != null) {
-      return;
-    }
+    // if (this.ordersSubscription != null) {
+    //   return;
+    // }
     let ordersRef: any = collection(this.firestore, 'orders');
 
     this.ordersSubscription = collectionData<DocumentData, string>(
@@ -27,9 +27,7 @@ export class BadgeService implements OnDestroy {
       ), {idField: 'id'}
     ).subscribe((items: DocumentData[]): void => {
 
-      changeDetection.detectChanges();
-      observer.next(50);
-      changeDetection.detectChanges();
+      observer.next(items.length);
 
       if (items.length > 0 ) {
         this.localStorageService.cache(LocalStorageKeys.ACTIVE_ORDERS, items.length);
@@ -40,6 +38,8 @@ export class BadgeService implements OnDestroy {
       if (document.querySelector('.local-orders-badge')) {
         document.querySelector<HTMLElement>('.local-orders-badge').style.display = 'none';
       }
+
+      changeDetection.detectChanges();
     });
   }
 
