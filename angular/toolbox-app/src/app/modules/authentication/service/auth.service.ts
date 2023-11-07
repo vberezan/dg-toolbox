@@ -34,7 +34,6 @@ export class AuthService implements OnDestroy {
     }
 
     this.authSubscription = authState(auth).subscribe((user: User) => {
-      console.log(user);
       if (user != null) {
         collectionData(
           query(collection(firestore, 'valid-users'),
