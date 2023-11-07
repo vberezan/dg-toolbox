@@ -59,6 +59,7 @@ export class OrderService implements OnDestroy {
       })
 
       observer.next(orders);
+      console.log(orders);
 
       if (document.querySelector('dgt-alliance-orders-manager-panel .dgt-spinner-container.member')) {
         document.querySelectorAll('dgt-alliance-orders-manager-panel .dgt-spinner-container.member').forEach((spinner: Element): void => {
