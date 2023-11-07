@@ -112,8 +112,8 @@ function setUpNavigationScanDataPanel(windowURL) {
                         '<td class="dgt-navigation-scan-coords-value"></td>' +
                     '</tr>' +
                     '<tr class="dgt-navigation-scan-size">' +
-                        '<td class="dgt-navigation-scan-size-ground"><img src="https://i.imgur.com/HesibsH.png" title="Workers" width="17" height="17" /><span></span></td>' +
-                        '<td class="dgt-navigation-scan-size-orbit"><img src="https://i.imgur.com/KKdM7BA.png" title="Workers" width="17" height="17" /><span></span></td>' +
+                        '<td class="dgt-navigation-scan-size-ground"><img src="https://i.imgur.com/cSsBIwv.jpg" title="Workers" width="17" height="17" /><span></span></td>' +
+                        '<td class="dgt-navigation-scan-size-orbit"><img src="https://i.imgur.com/7wtJcXw.jpg" title="Workers" width="17" height="17" /><span></span></td>' +
                     '</tr>' +
                     '<tr class="dgt-navigation-scan-resource metal">' +
                         '<td class="abundance"></td>' +
@@ -158,12 +158,12 @@ function setUpNavigationScanDataPanel(windowURL) {
             populationTable.innerHTML =
                 '<tbody>' +
                     '<tr class="dgt-navigation-scan-population-data">' +
-                        '<td class="dgt-navigation-scan-workers-icon"><img src="https://i.imgur.com/7u6VnpE.png" title="Workers" width="17" height="17" /></td>' +
+                        '<td class="dgt-navigation-scan-workers-icon"><img src="https://i.imgur.com/rpxIheY.jpg" title="Workers" width="17" height="17" /></td>' +
                         '<td class="dgt-navigation-scan-workers-value"></td>' +
                         '<td class="dgt-navigation-scan-workers-gr"></td>' +
                     '</tr>' +
                     '<tr class="dgt-navigation-scan-population-data">' +
-                        '<td class="dgt-navigation-scan-soldiers-icon"><img src="https://i.imgur.com/FHlHgxL.png" title="Soldiers" width="17" height="17" /></td>' +
+                        '<td class="dgt-navigation-scan-soldiers-icon"><img src="https://i.imgur.com/0varSGq.jpg" title="Soldiers" width="17" height="17" /></td>' +
                         '<td class="dgt-navigation-scan-soldiers-value"></td>' +
                         '<td class="dgt-navigation-scan-soldiers-ab"></td>' +
                     '</tr>' +
