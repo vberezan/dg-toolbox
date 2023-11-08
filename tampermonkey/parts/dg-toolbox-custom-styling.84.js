@@ -336,14 +336,14 @@ function applyCustomStyling() {
         if (leftButtons) {
             leftButtons.forEach(button => {
                 button.parentElement.append(newButton);
-                button.remove();
+                //button.remove();
             })
         }
 
         if (rightButtons) {
             rightButtons.forEach(button => {
                 button.parentElement.append(newButton);
-                button.remove();
+                //button.remove();
             })
         }
     }
