@@ -371,6 +371,16 @@ function applyCustomStyling() {
             document.querySelector('#destroy-fleet input[type="submit"]').remove();
         }
 
+        if (document.querySelector('#colonise-planet')) {
+            let newButton = document.createElement('button');
+            newButton.type = 'submit';
+            newButton.classList.add('text-button');
+            newButton.innerHTML = 'Colonise';
+
+            document.querySelector('#colonise-planet input[type="submit"]').parentElement.append(newButton);
+            document.querySelector('#colonise-planet input[type="submit"]').remove();
+        }
+
         if (document.querySelector('#transfer-targets')) {
             let newButton = document.createElement('button');
             newButton.type = 'submit';
