@@ -1942,16 +1942,50 @@ dgt-fleet-orders-list-panel {
 
 #target-transfer {
   width: 461px !important;
+  border-radius: 5px;
 }
 
 #source-transfer {
   width: 461px !important;
   float: right;
+  border-radius: 5px;
 }
 
 #target-transfer .transferRow > .left:not(.text) {
   float: right !important;
 }
+
+#source-transfer button {
+  padding: 0 15px;
+  border: 1px solid #767676;
+  border-radius: 3px;
+  background: transparent;
+  cursor: pointer;
+  width: auto;
+  margin: 0 2px 0 0x !important;
+  height: 24px;
+  line-height: 20px;
+  font-size: 13px;
+}
+#target-transfer button {
+  padding: 0 15px;
+  border: 1px solid #767676;
+  border-radius: 3px;
+  background: transparent;
+  cursor: pointer;
+  width: auto;
+  margin: 0 0 0 10px !important;
+  height: 24px;
+  line-height: 20px;
+  font-size: 13px;
+}
+
+#source-transfer button:hover,
+#target-transfer button:hover {
+  background: rgb(45, 45, 45);
+  border: 1px solid #545454;
+}
+
 
 /*************/
 
