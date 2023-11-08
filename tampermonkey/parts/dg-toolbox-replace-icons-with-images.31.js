@@ -34,6 +34,7 @@ function replaceIconsWithImages() {
     replaceImgWithImgByQuery('#fleet-composition .header img', 'https://i.imgur.com/5Byl54Z.png');
     replaceImgWithImgByQuery('#target-transfer .header img', 'https://i.imgur.com/3r7Evsy.png');
     replaceImgWithImgByQuery('#source-transfer .header img', 'https://i.imgur.com/3r7Evsy.png');
+    replaceImgWithImgByQuery('#colonise-planet .header img', 'https://i.imgur.com/Biq82rs.png');
 
     replaceImgWithImgByQuery('a>img[src="/images/buttons/production.png"]', 'https://i.imgur.com/LiZFpvY.png');
     replaceImgWithImgByQuery('div>img[src="/images/buttons/production.png"]', 'https://i.imgur.com/Es3futz.png');

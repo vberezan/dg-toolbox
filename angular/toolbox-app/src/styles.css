@@ -1548,6 +1548,7 @@ dgt-fleet-orders-list-panel {
   border-bottom: 1px solid #545454 !important;
 }
 
+#colonise-planet .population,
 #destroy-fleet .hostile {
   color: #fff !important;
 }
