@@ -1942,6 +1942,10 @@ dgt-fleet-orders-list-panel {
   float: right;
 }
 
+#target-transfer .transferRow > .left:not(.text) {
+  float: right !important;
+}
+
 /*************/
 
 #planet-scan-form > div {
