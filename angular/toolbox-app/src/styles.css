@@ -1810,6 +1810,10 @@ dgt-fleet-orders-list-panel {
   margin: 5px !important;
 }
 
+#queue-actions-left > div > form > div:last-child .right {
+  float: left !important;
+}
+
 /*************/
 
 #planet-scan-form > div {
