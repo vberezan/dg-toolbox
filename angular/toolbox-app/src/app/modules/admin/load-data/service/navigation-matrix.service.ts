@@ -64,13 +64,13 @@ export class NavigationMatrixService {
     let dp: DOMParser = new DOMParser();
     let dd: Document = dp.parseFromString(source, 'text/html');
     dd.querySelectorAll('.navigation .planets').forEach(planet => {
-      let display: string = planet.querySelector('.coords span').textContent.trim();
+      let display: string = planet.querySelector('.coords span').textContent.trim() + ' - ';
 
       if (planet.classList.contains('neutral')) {
-        display += ' - Uninhabited';
+        display += 'Uninhabited';
       } else {
         if (planet.querySelector('.allianceName')) {
-          display += ' - ' + planet.querySelector('.allianceName').textContent.trim();
+          display += planet.querySelector('.allianceName').textContent.trim();
         }
 
         display += planet.querySelector('.playerName').textContent.trim();
