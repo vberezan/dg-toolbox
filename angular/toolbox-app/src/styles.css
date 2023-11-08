@@ -1588,7 +1588,7 @@ dgt-fleet-orders-list-panel {
   font-size: 12px;
   background: rgba(0,0,0,.4);
   color: #fff;
-  border: 1px solid #545454 !important;
+  border: 1px solid #636363 !important;
   margin: 0 2px;
   border-radius: 3px;
   display: block;
@@ -1636,9 +1636,13 @@ dgt-fleet-orders-list-panel {
 }
 
 #fleetQueue form .entry > div {
-  height: 24px !important;
+  height: auto !important;
   line-height: 24px !important;
   padding: 0;
+}
+
+#fleetQueue form .entry > .queueButtons {
+  height: 24px !important;
 }
 
 #fleetQueue form .entry {
