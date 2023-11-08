@@ -1481,6 +1481,28 @@ dgt-fleet-orders-list-panel {
   border: none !important;
 }
 
+#queue-actions-left > div > form .error {
+  border-radius: 0 !important;
+}
+
+#queue-actions-right > .fleetRight:first-child {
+  border-top-left-radius: 5px;
+  border-top-right-radius: 5px;
+  margin-bottom: 0 !important;
+  border-bottom: none !important;
+}
+
+#queue-actions-right > .fleetRight:last-child {
+  border-top: none !important;
+  border-bottom-left-radius: 5px;
+  border-bottom-right-radius: 5px;
+  margin-bottom: 0 !important;
+}
+
+#queue-actions-right {
+  width: 373px !important;
+}
+
 /*************/
 
 #planet-scan-form > div {
