@@ -1740,6 +1740,7 @@ dgt-fleet-orders-list-panel {
   text-align: center;
 }
 
+#transferDrop,
 #fleet-move-planet select {
   height: 23px;
   font-size: 12px;
