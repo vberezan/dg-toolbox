@@ -65,6 +65,7 @@ export class NavigationMatrixService {
 
     for (let i: number = 1; i < planets.length; i++) {
       console.log(planets[i].substring(0, planets[i].indexOf('<')));
+      console.log(planets[i].substring(planets[i].indexOf('">['), planets[i].indexOf(']</div>')));
     }
   }
 }
