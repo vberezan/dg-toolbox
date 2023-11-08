@@ -1626,9 +1626,9 @@ dgt-fleet-orders-list-panel {
 
 #fleet-move-coords-icon,
 #fleet-wait-icon,
-#fleet-move-planet-icon{
-  width: 20px;
-  margin: 0;
+#fleet-move-planet-icon {
+  width: 20px !important;
+  margin: 0 !important;
 }
 
 
