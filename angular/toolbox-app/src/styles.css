@@ -1418,6 +1418,28 @@ dgt-fleet-orders-list-panel {
 }
 
 /*************/
+#fleetQueue {
+  margin-bottom: 0 !important;
+  width: 550px !important;
+  border-top-left-radius: 5px;
+  border-top-right-radius: 5px;
+  border-bottom: none !important;
+}
+
+#fleetQueue .tableHeader {
+  border-bottom: 1px solid #5e5e5e;
+}
+
+#queue-actions-left {
+  width: 550px !important;
+  border-top: none !important;
+}
+
+#queue-actions-left .fleetLeftInner {
+  border: none !important;
+  width: 550px !important;
+}
+
 #queue-actions-right .header,
 #queue-actions-left .header,
 #fleetQueue .header {
