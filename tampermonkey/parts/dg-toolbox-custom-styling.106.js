@@ -408,7 +408,11 @@ function applyCustomStyling() {
             let inputs = fleetHeader.nextElementSibling.nextElementSibling.querySelectorAll('.transferRow');
             if (inputs) {
                 inputs.forEach(input => {
-                    input.prepend(detach(input.querySelector('.amount').nextElementSibling));
+                    let detached = detach(input.querySelector('.amount').nextElementSibling);
+
+                    if (detached != null) {
+                        input.prepend(detached);
+                    }
                 });
             }
         }
