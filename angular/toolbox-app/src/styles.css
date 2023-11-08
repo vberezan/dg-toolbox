@@ -857,6 +857,9 @@ label.queueDestroyButton {
   margin: auto !important;
   display: inline-flex !important;
   align-items: center !important;
+}
+
+#queue form .queueButtons {
   padding-right: 5px;
 }
 
@@ -1099,14 +1102,17 @@ label.queueDestroyButton:hover {
   padding: 5px !important;
 }
 
-#completed form label {
+#completed form .queueButtons label {
   background: none !important;
   font-size: 18px !important;
   height: 50px !important;
   margin: auto !important;
   display: inline-flex !important;
   align-items: center !important;
-  padding-right: 5px;
+}
+
+#completed form .queueButtons {
+  padding-right: 5px !important;
 }
 
 /*******/
