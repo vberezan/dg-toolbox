@@ -1530,27 +1530,31 @@ dgt-fleet-orders-list-panel {
 #fleetQueue form .entry > div {
   height: 24px !important;
   line-height: 24px !important;
-  padding: 5px !important;
+  padding: 0 !important;
 }
 
 #fleetQueue form .entry {
   padding: 5px !important;
 }
 
-#fleetQueue form .entry .nameColumn {
-  width: 380px !important;
+#fleetQueue form .nameColumn {
+  width: 410px !important;
   padding: 0 !important;
 }
-#fleetQueue form .entry .nameColumn div {
+#fleetQueue form .nameColumn div {
   font-weight: normal !important;
 }
 
-#fleetQueue form .entry .width50 {
+#fleetQueue form .width50 {
   width: 30px !important;
 }
 
-#fleetQueue form .entry .width30 {
-  width: 10px !important;
+#fleetQueue form .width30 {
+  width: 20px !important;
+}
+
+#fleetQueue form .queueButtons {
+  width: 80px !important;
 }
 
 
