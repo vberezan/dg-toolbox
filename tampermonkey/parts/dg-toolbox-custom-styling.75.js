@@ -289,9 +289,21 @@ function applyCustomStyling() {
         }
     }
 
-    // -- flet
+    // -- fleet
     if (windowURL[1] === 'fleet') {
         document.querySelector('#fleetQueue').nextElementSibling.id = 'queue-actions-left';
         document.querySelector('#fleetQueue').previousElementSibling.id = 'queue-actions-right';
+
+        if (document.querySelector('#queue-actions-left form:first-child input')) {
+            let coordsWrapper = document.querySelector('#queue-actions-left form:first-child input').parentElement;
+
+            coordsWrapper.innerHTML = coordsWrapper.querySelector('input:nth-child(1)').outerHTML +
+                ':' +
+                coordsWrapper.querySelector('input:nth-child(2)').outerHTML +
+                ':' +
+                coordsWrapper.querySelector('input:nth-child(3)').outerHTML +
+                ':' +
+                coordsWrapper.querySelector('input:nth-child(4)').outerHTML;
+        }
     }
 }
