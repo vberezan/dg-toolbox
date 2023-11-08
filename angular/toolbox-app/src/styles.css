@@ -1696,11 +1696,7 @@ dgt-fleet-orders-list-panel {
 }
 
 #queue-actions-left .fleetLeftInnerSmall .title:first-child {
-  width: 93px;
-}
-
-#queue-actions-left .amount {
-  width: 63px !important;
+  width: 93px !important;
 }
 
 #queue-actions-left .amount input {
@@ -1727,7 +1723,7 @@ dgt-fleet-orders-list-panel {
   margin: 0;
   padding: 0;
   height: 23px !important;
-  width: 23px !important;
+  width: 63px !important;
 }
 
 #queue-actions-left .transferRow > div img {
