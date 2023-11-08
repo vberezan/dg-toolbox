@@ -1624,12 +1624,15 @@ dgt-fleet-orders-list-panel {
   display: flex;
 }
 
-#fleet-wait-icon > .left:first-child,
-#fleet-move-planet-icon > .left:first-child {
+#fleet-move-coords-icon,
+#fleet-wait-icon,
+#fleet-move-planet-icon{
   width: 20px;
   margin: 0;
 }
 
+
+#fleet-move-coords-icon > .left:last-child,
 #fleet-wait-icon > .left:last-child,
 #fleet-move-planet-icon > .left:last-child {
   display: none;
