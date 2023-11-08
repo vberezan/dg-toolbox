@@ -1806,6 +1806,11 @@ dgt-fleet-orders-list-panel {
   border-bottom-left-radius: 3px;
 }
 
+#target-transfer .transferRow,
+#source-transfer .transferRow {
+  height: 23px !important;
+}
+
 #target-transfer .transferRow .left.text {
   margin-left: 0 !important;
 }
