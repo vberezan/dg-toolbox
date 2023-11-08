@@ -295,8 +295,10 @@ function applyCustomStyling() {
 
     // -- fleet
     if (windowURL[1] === 'fleet') {
-        document.querySelector('#fleetQueue').nextElementSibling.id = 'queue-actions-left';
-        document.querySelector('#fleetQueue').previousElementSibling.id = 'queue-actions-right';
+        if (document.querySelector('#fleetQueue')) {
+            document.querySelector('#fleetQueue').nextElementSibling.id = 'queue-actions-left';
+            document.querySelector('#fleetQueue').previousElementSibling.id = 'queue-actions-right';
+        }
 
         if (document.querySelector('#queue-actions-left .coordsInput form input')) {
             let coordsWrapper = document.querySelector('#queue-actions-left .coordsInput form input').parentElement;
