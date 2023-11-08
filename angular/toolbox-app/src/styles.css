@@ -1767,6 +1767,7 @@ dgt-fleet-orders-list-panel {
   width: 93px !important;
 }
 
+#target-transfer .amount input[type="number"],
 #source-transfer .amount input[type="number"],
 #queue-actions-left .amount input[type="number"] {
   height: 23px;
@@ -1795,6 +1796,7 @@ dgt-fleet-orders-list-panel {
   width: 63px !important;
 }
 
+#target-transfer .transferRow > div img,
 #source-transfer .transferRow > div img,
 #queue-actions-left .transferRow > div img {
   width: 21px;
@@ -1804,6 +1806,11 @@ dgt-fleet-orders-list-panel {
   border-bottom-left-radius: 3px;
 }
 
+#target-transfer .transferRow .left.text {
+  margin-left: 0 !important;
+}
+
+#target-transfer .transferRow .left.text,
 #source-transfer .transferRow .left.text,
 #queue-actions-left .transferRow .left.text {
   height: 23px;
