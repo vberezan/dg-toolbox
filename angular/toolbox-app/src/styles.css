@@ -1503,6 +1503,30 @@ dgt-fleet-orders-list-panel {
   width: 373px !important;
 }
 
+#fleetQueue .coords,
+#queue-actions-right .coords,
+#queue-actions-left .coords {
+  border: none;
+  background: none;
+  line-height: 24px;
+  padding: 0 !important;
+  height: 24px;
+}
+
+#fleetQueue .coords .left,
+#queue-actions-right .coords .left,
+#queue-actions-left .coords .left {
+  padding: 0 !important;
+  line-height: 22px !important;
+}
+
+#fleetQueue .coords img,
+#queue-actions-right .coords img,
+#queue-actions-left .coords img {
+  vertical-align: middle;
+  line-height: 24px;
+}
+
 /*************/
 
 #planet-scan-form > div {
