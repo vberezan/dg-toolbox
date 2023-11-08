@@ -1570,13 +1570,37 @@ dgt-fleet-orders-list-panel {
   height: 24px;
   line-height: 20px;
   font-size: 13px;
-  float: left;
+  float: right;
 }
 
 #transfer-targets button:hover,
 #destroy-fleet button:hover {
   background: rgb(45, 45, 45);
   border: 1px solid #545454;
+}
+
+#transfer-targets input {
+  height: 23px;
+  font-size: 12px;
+  background: rgba(0,0,0,.4);
+  color: #fff;
+  border: 1px solid #545454 !important;
+  margin: 0 2px;
+  border-radius: 3px;
+  display: block;
+  box-sizing: border-box;
+  padding: 3px 5px;
+  overflow: hidden;
+  float: left;
+  line-height: 18px;
+  width: 120px;
+  text-align: left;
+}
+
+#transfer-targets label {
+  float: left;
+  height: 23px;
+  line-height: 21px;
 }
 
 #queue-actions-right {
