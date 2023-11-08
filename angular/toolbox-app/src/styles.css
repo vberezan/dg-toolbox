@@ -1527,6 +1527,21 @@ dgt-fleet-orders-list-panel {
   line-height: 24px;
 }
 
+#fleetQueue form .entry > div {
+  height: 24px !important;
+  line-height: 24px !important;
+  padding: 5px !important;
+}
+
+#fleetQueue form .entry .nameColumn {
+  width: 380px !important;
+  padding: 0 !important;
+}
+#fleetQueue form .entry .nameColumn div {
+  font-weight: normal !important;
+}
+
+
 /*************/
 
 #planet-scan-form > div {
