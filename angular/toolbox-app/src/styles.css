@@ -1748,6 +1748,10 @@ dgt-fleet-orders-list-panel {
   margin-left: 0 !important;
 }
 
+#queue-actions-right .entry > div:last-child {
+  line-height: 32px !important;
+}
+
 /*************/
 
 #planet-scan-form > div {
