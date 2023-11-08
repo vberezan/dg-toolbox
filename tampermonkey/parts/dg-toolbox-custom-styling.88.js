@@ -350,5 +350,12 @@ function applyCustomStyling() {
                 button.remove();
             })
         }
+
+        let inputs = document.querySelectorAll('#queue-actions-left .transferRow');
+        if (inputs) {
+            inputs.forEach(input => {
+               input.prepend(detach(input.querySelector('.amount').nextElementSibling));
+            });
+        }
     }
 }
