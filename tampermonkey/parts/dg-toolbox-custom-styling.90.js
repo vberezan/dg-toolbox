@@ -298,6 +298,7 @@ function applyCustomStyling() {
             let coordsWrapper = document.querySelector('#queue-actions-left .coordsInput:nth-child(1) form input').parentElement;
             coordsWrapper.id = 'fleet-move-coords';
             coordsWrapper.previousElementSibling.id = 'fleet-move-coords-icon';
+            coordsWrapper.nextElementSibling.nextElementSibling.id = 'fleet-radio-check';
 
             coordsWrapper.innerHTML = coordsWrapper.querySelector('input:nth-child(1)').outerHTML +
                 ':' +
@@ -332,6 +333,7 @@ function applyCustomStyling() {
             leftButtons.forEach(button => {
                 let newButton = document.createElement('button');
                 newButton.type = 'submit';
+                newButton.classList.add('text-button');
                 newButton.innerHTML = 'Move';
 
                 button.parentElement.append(newButton);

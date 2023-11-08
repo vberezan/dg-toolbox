@@ -1778,24 +1778,26 @@ dgt-fleet-orders-list-panel {
   line-height: 23px !important;
 }
 
-#queue-actions-right button > fa-icon,
-#queue-actions-left button > fa-icon {
-  color: #a2a2a2 !important;
-  font-size: 20px !important;
-  line-height: 30px;
-}
-
 #queue-actions-left button {
-  margin: 0 !important;
-  padding: 0;
-  border: none;
-  border-radius: 100px;
+  padding: 0 15px;
+  border: 1px solid #767676;
+  border-radius: 3px;
   vertical-align: middle;
   background: transparent;
   cursor: pointer;
-  width: 20px;
-  margin-left: 15px !important;
-  margin-right: 2px !important;
+  width: auto;
+  margin: 0 2px 0 10px !important;
+  height: 24px;
+  line-height: 20px;
+  font-size: 13px;
+}
+
+#queue-actions-left #fleet-radio-check div:first-child {
+  line-height: 22px !important;
+}
+
+#queue-actions-left #fleet-radio-check div:last-child {
+  line-height: 24px !important;
 }
 
 /*************/
