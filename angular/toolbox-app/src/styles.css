@@ -857,6 +857,7 @@ label.queueDestroyButton {
   margin: auto !important;
   display: inline-flex !important;
   align-items: center !important;
+  padding-right: 5px;
 }
 
 .consList label.queueDestroyButton {
@@ -1105,6 +1106,7 @@ label.queueDestroyButton:hover {
   margin: auto !important;
   display: inline-flex !important;
   align-items: center !important;
+  padding-right: 5px;
 }
 
 /*******/
