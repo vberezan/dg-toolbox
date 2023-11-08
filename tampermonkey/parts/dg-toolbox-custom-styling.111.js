@@ -405,6 +405,29 @@ function applyCustomStyling() {
             fleetHeader.nextElementSibling.id = 'target-transfer';
             fleetHeader.nextElementSibling.nextElementSibling.id = 'source-transfer';
 
+            let targetTransfer = document.querySelector('#target-transfer input[type="submit"]');
+            let sourceTransfer = document.querySelector('#source input[type="submit"]');
+
+            if (targetTransfer) {
+                let newButton = document.createElement('button');
+                newButton.type = 'submit';
+                newButton.classList.add('text-button');
+                newButton.innerHTML = 'Transfer';
+
+                targetTransfer.parentElement.append(newButton);
+                targetTransfer.remove();
+            }
+
+            if (sourceTransfer) {
+                let newButton = document.createElement('button');
+                newButton.type = 'submit';
+                newButton.classList.add('text-button');
+                newButton.innerHTML = 'Transfer';
+
+                sourceTransfer.parentElement.append(newButton);
+                sourceTransfer.remove();
+            }
+
             let inputs = fleetHeader.nextElementSibling.nextElementSibling.querySelectorAll('.transferRow');
             if (inputs) {
                 inputs.forEach(input => {
