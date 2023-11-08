@@ -9,14 +9,15 @@ import {firstValueFrom} from "rxjs";
 })
 export class AdminPanelComponent {
   private httpClient: HttpClient = inject(HttpClient);
+
   constructor() {
-    this.execute();
+    this.execute().catch(reason => {
+      console.log(reason);
+    });
   }
 
   async execute(): Promise<void> {
-    console.log(await firstValueFrom(this.httpClient.get('https://andromeda.darkgalaxy.com/', { responseType: 'text' })));
-    console.log(await firstValueFrom(this.httpClient.get('https://andromeda.darkgalaxy.com/', { responseType: 'text' })));
-    console.log(await firstValueFrom(this.httpClient.get('https://andromeda.darkgalaxy.com/', { responseType: 'text' })));
+    console.log(await firstValueFrom(this.httpClient.get('https://andromeda.darkgalaxy.com/', {responseType: 'text'})));
   }
 
 }
