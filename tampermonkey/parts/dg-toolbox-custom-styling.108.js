@@ -418,6 +418,7 @@ function applyCustomStyling() {
 
             inputs = fleetHeader.nextElementSibling.querySelectorAll('.transferRow');
             if (inputs) {
+                console.log('xxxxx');
                 inputs.forEach(input => {
                     let detached = detach(input.querySelector('.amount').nextElementSibling);
 
