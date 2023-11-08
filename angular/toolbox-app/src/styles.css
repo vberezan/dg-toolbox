@@ -1534,14 +1534,28 @@ dgt-fleet-orders-list-panel {
 #queue-actions-right > .fleetRight:first-child {
   border-top-left-radius: 5px;
   border-top-right-radius: 5px;
-  border-top: 1px solid #545454;
+  border-top: 1px solid #545454 !important;
 }
 
 #queue-actions-right > .fleetRight:last-child {
   border-top: none !important;
   border-bottom-left-radius: 5px;
   border-bottom-right-radius: 5px;
-  border-bottom: 1px solid #545454;
+  border-bottom: 1px solid #545454 !important;
+}
+
+#destroy-fleet .hostile {
+  color: #fff !important;
+}
+
+#destroy-fleet .lightBorderBottom {
+  background: #FF3B303B !important;
+  color: #ffffffad !important;
+}
+
+#destroy-fleet .lightBorderBottom span {
+  color: #ffffffad !important;
+  font-weight: bold;
 }
 
 #queue-actions-right {
