@@ -1701,7 +1701,8 @@ dgt-fleet-orders-list-panel {
   background: rgba(0,0,0,.4);
   color: #fff;
   border: 1px solid #545454 !important;
-  border-radius: 3px;
+  border-top-left-radius: 3px;
+  border-bottom-left-radius: 3px;
   display: block;
   box-sizing: border-box;
   padding: 3px 5px;
@@ -1710,7 +1711,8 @@ dgt-fleet-orders-list-panel {
   line-height: 18px;
   width: 60px;
   text-align: left;
-  margin: 0 4px 0 2px;
+  margin: 0 !important;
+  border-right: none !important;
 }
 
 #queue-actions-left .transferRow > div:nth-child(2) {
@@ -1724,7 +1726,9 @@ dgt-fleet-orders-list-panel {
   width: 21px;
   height: 21px;
   border: 1px solid #545454;
-  border-radius: 3px;
+  border-left: none !important;
+  border-top-right-radius: 3px;
+  border-bottom-right-radius: 3px;
 }
 
 #queue-actions-left .transferRow .left.text {
