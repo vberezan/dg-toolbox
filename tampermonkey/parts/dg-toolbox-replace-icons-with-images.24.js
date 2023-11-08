@@ -23,6 +23,8 @@ function replaceIconsWithImages() {
     replaceImgWithImg('/images/units/research/planet_limit.png', 'https://i.imgur.com/48zh1A4.jpg');
     replaceImgWithImg('/images/units/research/queue.png', 'https://i.imgur.com/xtzqCN0.jpg');
 
+    replaceImgWithImg('/images/units/small/planets.png', 'https://i.imgur.com/Biq82rs.png');
+
     replaceImgWithImgByQuery('#fleetQueue .header img', 'https://i.imgur.com/4ClCtQl.png');
     replaceImgWithImgByQuery('#queue-actions-left .fleetLeftInner .header img', 'https://i.imgur.com/HcC4l22.png');
     replaceImgWithImgByQuery('#queue-actions-left form .header img', 'https://i.imgur.com/3r7Evsy.png');
