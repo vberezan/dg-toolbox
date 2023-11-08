@@ -1619,10 +1619,12 @@ dgt-fleet-orders-list-panel {
   align-items: center !important;
 }
 
+#fleet-wait,
 #fleet-move-coords {
   display: flex;
 }
 
+#fleet-wait input,
 #fleet-move-coords input {
   height: 23px;
   font-size: 12px;
