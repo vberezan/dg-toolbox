@@ -354,5 +354,15 @@ function applyCustomStyling() {
                 section.id = section.querySelector('.header').textContent.trim().toLowerCase().replace(/\s+/g, '-');
             }
         });
+
+        if (document.querySelector('#destroy-fleet')) {
+            let newButton = document.createElement('button');
+            newButton.type = 'submit';
+            newButton.classList.add('text-button');
+            newButton.innerHTML = 'Delete';
+
+            document.querySelector('#destroy-fleet input[type="submit"]').parentElement.append(newButton);
+            document.querySelector('#destroy-fleet input[type="submit"]').remove();
+        }
     }
 }
