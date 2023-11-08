@@ -1527,18 +1527,21 @@ dgt-fleet-orders-list-panel {
 
 #queue-actions-right > .fleetRight {
   margin-bottom: 0 !important;
+  border-bottom: none !important;
+  border-top: none !important;
 }
 
 #queue-actions-right > .fleetRight:first-child {
   border-top-left-radius: 5px;
   border-top-right-radius: 5px;
-  border-bottom: none !important;
+  border-top: 1px solid #545454;
 }
 
 #queue-actions-right > .fleetRight:last-child {
   border-top: none !important;
   border-bottom-left-radius: 5px;
   border-bottom-right-radius: 5px;
+  border-bottom: 1px solid #545454;
 }
 
 #queue-actions-right {
