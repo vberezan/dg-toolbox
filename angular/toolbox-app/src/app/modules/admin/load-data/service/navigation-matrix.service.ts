@@ -1,17 +1,19 @@
-import { Injectable } from '@angular/core';
+import {inject, Injectable} from '@angular/core';
+import {firstValueFrom} from "rxjs";
+import {HttpClient} from "@angular/common/http";
 
 @Injectable({
   providedIn: 'root'
 })
 export class NavigationMatrixService {
+  private httpClient: HttpClient = inject(HttpClient);
 
   constructor() {
-    console.log(this.generateNavigationCoordinates());
   }
 
   generateNavigationCoordinates(): string[] {
     let result: string[] = [];
-    const galaxies:number = 49;
+    const galaxies: number = 49;
     const g1Sectors: number = 25;
     const innerSectors: number = 6;
     const outerSectors: number = 2;
@@ -24,8 +26,8 @@ export class NavigationMatrixService {
       if (galaxy === 1) {
         for (let sector: number = 1; sector <= g1Sectors; sector++) {
           for (let system: number = 1; system <= systems; system++) {
-            for (let planet: number = 1; planet <= g1Planets; planet++ ) {
-              result.push(galaxy + '.' + sector  + '.' + system + '.' + planet);
+            for (let planet: number = 1; planet <= g1Planets; planet++) {
+              result.push(galaxy + '.' + sector + '.' + system + '.' + planet);
             }
           }
         }
@@ -34,8 +36,8 @@ export class NavigationMatrixService {
       if (galaxy > 1 && galaxy < 14) {
         for (let sector: number = 1; sector <= innerSectors; sector++) {
           for (let system: number = 1; system <= systems; system++) {
-            for (let planet: number = 1; planet <= innerPlanets; planet++ ) {
-              result.push(galaxy + '.' + sector  + '.' + system + '.' + planet);
+            for (let planet: number = 1; planet <= innerPlanets; planet++) {
+              result.push(galaxy + '.' + sector + '.' + system + '.' + planet);
             }
           }
         }
@@ -44,8 +46,8 @@ export class NavigationMatrixService {
       if (galaxy >= 14) {
         for (let sector: number = 1; sector <= outerSectors; sector++) {
           for (let system: number = 1; system <= systems; system++) {
-            for (let planet: number = 1; planet <= outerPlanets; planet++ ) {
-              result.push(galaxy + '.' + sector  + '.' + system + '.' + planet);
+            for (let planet: number = 1; planet <= outerPlanets; planet++) {
+              result.push(galaxy + '.' + sector + '.' + system + '.' + planet);
             }
           }
         }
@@ -54,5 +56,10 @@ export class NavigationMatrixService {
 
 
     return result;
+  }
+
+  async extractData(galaxy: number, sector: number, system: number): Promise<void> {
+    let source = await firstValueFrom(this.httpClient.get('https://andromeda.darkgalaxy.com/navigation/' + galaxy + '/' + sector + '/' + system, {responseType: 'text'}));
+    console.log(source);
   }
 }
