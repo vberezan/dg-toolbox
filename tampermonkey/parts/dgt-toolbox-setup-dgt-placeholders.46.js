@@ -52,7 +52,7 @@ function setUpAllianceOrdersManagerPanel(windowURL) {
 }
 
 function setUpFleetOrdersListPanel(windowURL) {
-    if (windowURL[1] === 'fleets') {
+    if (windowURL[1] === 'fleets' && windowURL.length === 3) {
         if (document.querySelector('#contentBox>.header') && document.querySelector('#contentBox>.ofHidden')) {
             document.querySelector('#contentBox>.ofHidden').id = 'fleets-list';
 
