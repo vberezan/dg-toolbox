@@ -187,7 +187,7 @@ span.hostile {
   padding: 3px;
   width: 19px;
   height: 19px;
-  margin-top: 2px !important;
+  margin-top: 3px !important;
 }
 
 #buttonBlock {
@@ -833,7 +833,7 @@ label.queueDestroyButton {
   padding: 3px;
   width: 19px;
   height: 19px;
-  margin-top: 2px !important;
+  margin-top: 3px !important;
 }
 
 #queue form .tableHeader {
@@ -1095,7 +1095,7 @@ label.queueDestroyButton:hover {
   padding: 3px;
   width: 19px;
   height: 19px;
-  margin-top: 2px !important;
+  margin-top: 3px !important;
 }
 
 #completed .header {
@@ -1501,7 +1501,7 @@ dgt-fleet-orders-list-panel {
   padding: 3px;
   width: 19px;
   height: 19px;
-  margin-top: 2px !important;
+  margin-top: 3px !important;
 }
 
 #queue-actions-left > .padding,
@@ -1824,7 +1824,7 @@ dgt-shared-scans-collector {
   padding: 3px;
   width: 19px;
   height: 19px;
-  margin-top: 2px !important;
+  margin-top: 3px !important;
 }
 
 #scanned-planet-wrapper > .padding {
