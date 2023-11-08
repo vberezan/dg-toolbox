@@ -26,8 +26,8 @@ function replaceIconsWithImages() {
     replaceImgWithImgByQuery('#fleetQueue .header img', 'https://i.imgur.com/4ClCtQl.png');
     replaceImgWithImgByQuery('.fleetLeft .fleetLeftInner .header img', 'https://i.imgur.com/HcC4l22.png');
     replaceImgWithImgByQuery('.fleetLeft form .header img', 'https://i.imgur.com/3r7Evsy.png');
-    replaceImgWithImgByQuery('..fleetRight>.fleetRight:first-child .header img', 'https://i.imgur.com/4ClCtQl.png');
-    replaceImgWithImgByQuery('..fleetRight>.fleetRight:last-child .header img', 'https://i.imgur.com/5Byl54Z.png');
+    replaceImgWithImgByQuery('.fleetRight>.fleetRight:first-child .header img', 'https://i.imgur.com/4ClCtQl.png');
+    replaceImgWithImgByQuery('.fleetRight>.fleetRight:last-child .header img', 'https://i.imgur.com/5Byl54Z.png');
 
     replaceImgWithImgByQuery('a>img[src="/images/buttons/production.png"]', 'https://i.imgur.com/LiZFpvY.png');
     replaceImgWithImgByQuery('div>img[src="/images/buttons/production.png"]', 'https://i.imgur.com/Es3futz.png');
