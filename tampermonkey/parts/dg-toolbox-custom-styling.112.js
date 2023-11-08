@@ -406,7 +406,7 @@ function applyCustomStyling() {
             fleetHeader.nextElementSibling.nextElementSibling.id = 'source-transfer';
 
             let targetTransfer = document.querySelector('#target-transfer input[type="submit"]');
-            let sourceTransfer = document.querySelector('#source input[type="submit"]');
+            let sourceTransfer = document.querySelector('#source-transfer input[type="submit"]');
 
             if (targetTransfer) {
                 let newButton = document.createElement('button');
