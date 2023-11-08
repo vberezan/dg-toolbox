@@ -1476,8 +1476,9 @@ dgt-fleet-orders-list-panel {
 
 #queue-actions-left > div > form > div {
   margin:0 !important;
+  padding: 0 !important;
   width: 275px !important;
-  border-bottom: none !important;
+  border: none !important;
 }
 
 /*************/
