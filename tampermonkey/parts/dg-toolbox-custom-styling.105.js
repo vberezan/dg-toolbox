@@ -404,6 +404,13 @@ function applyCustomStyling() {
 
             fleetHeader.nextElementSibling.id = 'target-transfer';
             fleetHeader.nextElementSibling.nextElementSibling.id = 'source-transfer';
+
+            let inputs = fleetHeader.nextElementSibling.nextElementSibling.querySelectorAll('.transferRow');
+            if (inputs) {
+                inputs.forEach(input => {
+                    input.prepend(detach(input.querySelector('.amount').nextElementSibling));
+                });
+            }
         }
     }
 }
