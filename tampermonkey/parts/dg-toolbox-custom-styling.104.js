@@ -398,5 +398,12 @@ function applyCustomStyling() {
 
             document.querySelector('.header.border.pageTitle a').parentElement.innerHTML =  document.querySelector('.header.border.pageTitle a').parentElement.textContent.trim();
         }
+
+        if (document.querySelector('#fleetHeader')) {
+            let fleetHeader = document.querySelector('#fleetHeader');
+
+            fleetHeader.nextElementSibling.id = 'target-transfer';
+            fleetHeader.nextElementSibling.nextElementSibling.id = 'source-transfer';
+        }
     }
 }
