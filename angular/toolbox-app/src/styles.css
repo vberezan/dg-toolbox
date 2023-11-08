@@ -1631,6 +1631,20 @@ dgt-fleet-orders-list-panel {
   margin: 0 !important;
 }
 
+#fleet-wait-icon > .left:first-child,
+#fleet-move-coords-icon > .left:first-child,
+#fleet-move-planet-icon > .left:first-child {
+  line-height: 20px !important;
+}
+
+#fleet-wait-icon > fa-icon {
+  margin-left: 1px !important;
+  font-size: 15px !important;
+}
+
+#fleet-wait-icon svg {
+  fill: #fff;
+}
 
 #fleet-move-coords-icon > .left:last-child,
 #fleet-wait-icon > .left:last-child,
