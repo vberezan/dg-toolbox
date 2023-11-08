@@ -1934,11 +1934,11 @@ dgt-fleet-orders-list-panel {
 }
 
 #target-transfer {
-  width: 462px;
+  width: 461px !important;
 }
 
 #source-transfer {
-  width: 461px;
+  width: 461px !important;
   float: right;
 }
 

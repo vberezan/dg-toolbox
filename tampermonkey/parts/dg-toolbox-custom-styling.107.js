@@ -415,6 +415,17 @@ function applyCustomStyling() {
                     }
                 });
             }
+
+            inputs = fleetHeader.nextElementSibling.querySelectorAll('.transferRow');
+            if (inputs) {
+                inputs.forEach(input => {
+                    let detached = detach(input.querySelector('.amount').nextElementSibling);
+
+                    if (detached != null) {
+                        input.prepend(detached);
+                    }
+                });
+            }
         }
     }
 }
