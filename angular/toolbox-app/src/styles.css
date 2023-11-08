@@ -82,10 +82,6 @@ body {
   color: #fff;
 }
 
-.header.border.pageTitle {
-  display: flex;
-}
-
 .pageTitle {
   padding-left: 10px !important;
 }
