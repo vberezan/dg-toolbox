@@ -1767,7 +1767,8 @@ dgt-fleet-orders-list-panel {
   width: 93px !important;
 }
 
-#queue-actions-left .amount input {
+#source-transfer .amount input[type="number"],
+#queue-actions-left .amount input[type="number"] {
   height: 23px;
   font-size: 12px;
   background: rgba(0,0,0,.4);
