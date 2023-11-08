@@ -24,10 +24,10 @@ function replaceIconsWithImages() {
     replaceImgWithImg('/images/units/research/queue.png', 'https://i.imgur.com/xtzqCN0.jpg');
 
     replaceImgWithImgByQuery('#fleetQueue .header img', 'https://i.imgur.com/4ClCtQl.png');
-    replaceImgWithImgByQuery('.fleetLeft .fleetLeftInner .header img', 'https://i.imgur.com/HcC4l22.png');
-    replaceImgWithImgByQuery('.fleetLeft form .header img', 'https://i.imgur.com/3r7Evsy.png');
-    replaceImgWithImgByQuery('.fleetRight>.fleetRight:first-child .header img', 'https://i.imgur.com/4ClCtQl.png');
-    replaceImgWithImgByQuery('.fleetRight>.fleetRight:last-child .header img', 'https://i.imgur.com/5Byl54Z.png');
+    replaceImgWithImgByQuery('#queue-actions-left .fleetLeftInner .header img', 'https://i.imgur.com/HcC4l22.png');
+    replaceImgWithImgByQuery('#queue-actions-left form .header img', 'https://i.imgur.com/3r7Evsy.png');
+    replaceImgWithImgByQuery('#queue-actions-right > .fleetRight:first-child .header img', 'https://i.imgur.com/4ClCtQl.png');
+    replaceImgWithImgByQuery('#queue-actions-right > .fleetRight:last-child .header img', 'https://i.imgur.com/5Byl54Z.png');
 
     replaceImgWithImgByQuery('a>img[src="/images/buttons/production.png"]', 'https://i.imgur.com/LiZFpvY.png');
     replaceImgWithImgByQuery('div>img[src="/images/buttons/production.png"]', 'https://i.imgur.com/Es3futz.png');
