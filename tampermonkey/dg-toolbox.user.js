@@ -1,6 +1,6 @@
 // ==UserScript==
 // @name         DarkGalaxy Toolbox
-// @version      1.0.16
+// @version      1.0.17
 // @namespace    dg-toolbox
 // @homepage     https://github.com/vberezan/dg-toolbox
 // @supportURL   https://github.com/vberezan/dg-toolbox
@@ -34,7 +34,7 @@ function loadResource(element) {
 function loadSetups(windowURL) {
     loadResource({
         tagName: 'script',
-        src: 'https://cdn.jsdelivr.net/gh/vberezan/dg-toolbox/tampermonkey/parts/dgt-toolbox-setup-dgt-placeholders.44.js',
+        src: 'https://cdn.jsdelivr.net/gh/vberezan/dg-toolboxdgt-navigation-scan-data-panel/tampermonkey/parts/dgt-toolbox-setup-dgt-placeholders.46.js',
         rel: 'text/javascript'
     }).onload = function () {
         setUpUiParser();
@@ -53,7 +53,7 @@ function loadSetups(windowURL) {
 function loadCustomStyling() {
     loadResource({
         tagName: 'script',
-        src: 'https://cdn.jsdelivr.net/gh/vberezan/dg-toolbox/tampermonkey/parts/dg-toolbox-custom-styling.67.js',
+        src: 'https://cdn.jsdelivr.net/gh/vberezan/dg-toolboxdgt-navigation-scan-data-panel/tampermonkey/parts/dg-toolbox-custom-styling.70.js',
         rel: 'text/javascript'
     }).onload = function () {
         applyCustomStyling();
@@ -61,7 +61,7 @@ function loadCustomStyling() {
 
     loadResource({
         tagName: 'script',
-        src: 'https://cdn.jsdelivr.net/gh/vberezan/dg-toolbox/tampermonkey/parts/dg-toolbox-replace-icons-with-fa-icons.10.js',
+        src: 'https://cdn.jsdelivr.net/gh/vberezan/dg-toolboxdgt-navigation-scan-data-panel/tampermonkey/parts/dg-toolbox-replace-icons-with-fa-icons.10.js',
         rel: 'text/javascript'
     }).onload = function () {
         replaceIconsWithFAIcons();
@@ -69,7 +69,7 @@ function loadCustomStyling() {
 
     loadResource({
         tagName: 'script',
-        src: 'https://cdn.jsdelivr.net/gh/vberezan/dg-toolbox/tampermonkey/parts/dg-toolbox-replace-icons-with-images.18.js',
+        src: 'https://cdn.jsdelivr.net/gh/vberezan/dg-toolboxdgt-navigation-scan-data-panel/tampermonkey/parts/dg-toolbox-replace-icons-with-images.18.js',
         rel: 'text/javascript'
     }).onload = function () {
         replaceIconsWithImages();
@@ -77,7 +77,7 @@ function loadCustomStyling() {
 
     loadResource({
         tagName: 'script',
-        src: 'https://cdn.jsdelivr.net/gh/vberezan/dg-toolbox/tampermonkey/parts/dg-toolbox-replace-planets-images.5.js',
+        src: 'https://cdn.jsdelivr.net/gh/vberezan/dg-toolboxdgt-navigation-scan-data-panel/tampermonkey/parts/dg-toolbox-replace-planets-images.6.js',
         rel: 'text/javascript'
     }).onload = function () {
         replacePlanetsImages();
@@ -85,7 +85,7 @@ function loadCustomStyling() {
 
     loadResource({
         tagName: 'script',
-        src: 'https://cdn.jsdelivr.net/gh/vberezan/dg-toolbox/tampermonkey/parts/dg-toolbox-replace-structures-images.7.js',
+        src: 'https://cdn.jsdelivr.net/gh/vberezan/dg-toolboxdgt-navigation-scan-data-panel/tampermonkey/parts/dg-toolbox-replace-structures-images.7.js',
         rel: 'text/javascript'
     }).onload = function () {
         replaceStructuresImages();
@@ -93,7 +93,7 @@ function loadCustomStyling() {
 
     loadResource({
         tagName: 'script',
-        src: 'https://cdn.jsdelivr.net/gh/vberezan/dg-toolbox/tampermonkey/parts/dg-toolbox-replace-ships-images.7.js',
+        src: 'https://cdn.jsdelivr.net/gh/vberezan/dg-toolboxdgt-navigation-scan-data-panel/tampermonkey/parts/dg-toolbox-replace-ships-images.7.js',
         rel: 'text/javascript'
     }).onload = function () {
         replaceShipsImages();
@@ -103,15 +103,15 @@ function loadCustomStyling() {
 function loadAngular() {
     let angular = [{
         tagName: 'script',
-        src: 'https://cdn.jsdelivr.net/gh/vberezan/dg-toolbox/angular/toolbox-app/dist/toolbox-app/runtime.7f7a1c1514cf4fd2.js',
+        src: 'https://cdn.jsdelivr.net/gh/vberezan/dg-toolboxdgt-navigation-scan-data-panel/angular/toolbox-app/dist/toolbox-app/runtime.926d433ed3f5f1cc.js',
         rel: 'module'
     }, {
         tagName: 'script',
-        src: 'https://cdn.jsdelivr.net/gh/vberezan/dg-toolbox/angular/toolbox-app/dist/toolbox-app/polyfills.8e8b88e65f8eb80f.js',
+        src: 'https://cdn.jsdelivr.net/gh/vberezan/dg-toolboxdgt-navigation-scan-data-panel/angular/toolbox-app/dist/toolbox-app/polyfills.8e8b88e65f8eb80f.js',
         rel: 'module'
     }, {
         tagName: 'script',
-        src: 'https://cdn.jsdelivr.net/gh/vberezan/dg-toolbox/angular/toolbox-app/dist/toolbox-app/main.4bee82305457071c.js',
+        src: 'https://cdn.jsdelivr.net/gh/vberezan/dg-toolboxdgt-navigation-scan-data-panel/angular/toolbox-app/dist/toolbox-app/main.e51c3c1c86a3bf18.js',
         rel: 'module'
     }];
 
@@ -123,7 +123,7 @@ function loadAngular() {
 function loadGlobalAngularStyling() {
     let angular = [{
         tagName: 'link',
-        href: 'https://cdn.jsdelivr.net/gh/vberezan/dg-toolbox/angular/toolbox-app/dist/toolbox-app/styles.ae4f861d85fb7712.css',
+        href: 'https://cdn.jsdelivr.net/gh/vberezan/dg-toolboxdgt-navigation-scan-data-panel/angular/toolbox-app/dist/toolbox-app/styles.6bf304f260336117.css',
         rel: 'stylesheet'
     }];
 
@@ -148,7 +148,7 @@ function loadGlobalAngularStyling() {
 
         loadResource({
             tagName: 'script',
-            src: 'https://cdn.jsdelivr.net/gh/vberezan/dg-toolbox/tampermonkey/parts/dg-toolbox-utils.4.js',
+            src: 'https://cdn.jsdelivr.net/gh/vberezan/dg-toolboxdgt-navigation-scan-data-panel/tampermonkey/parts/dg-toolbox-utils.4.js',
             rel: 'text/javascript'
         }).onload = function () {
             if (document.getElementById('playerBox')) {
@@ -172,7 +172,7 @@ function loadGlobalAngularStyling() {
             }
         }
 
-        localStorage.setItem('version', 'v1.0.16');
+        localStorage.setItem('version', 'v1.0.17');
     });
 
     window.unload = function() {
