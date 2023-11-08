@@ -1637,7 +1637,7 @@ dgt-fleet-orders-list-panel {
   line-height: 20px !important;
 }
 
-#fleet-wait-icon > fa-icon {
+#fleet-wait-icon fa-icon {
   margin-left: 1px !important;
   font-size: 15px !important;
 }
