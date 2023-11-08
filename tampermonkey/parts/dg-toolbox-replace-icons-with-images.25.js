@@ -28,8 +28,17 @@ function replaceIconsWithImages() {
     replaceImgWithImgByQuery('#fleetQueue .header img', 'https://i.imgur.com/4ClCtQl.png');
     replaceImgWithImgByQuery('#queue-actions-left .fleetLeftInner .header img', 'https://i.imgur.com/HcC4l22.png');
     replaceImgWithImgByQuery('#queue-actions-left form .header img', 'https://i.imgur.com/3r7Evsy.png');
-    replaceImgWithImgByQuery('#queue-actions-right > .fleetRight:first-child .header img', 'https://i.imgur.com/4ClCtQl.png');
-    replaceImgWithImgByQuery('#queue-actions-right > .fleetRight:last-child .header img', 'https://i.imgur.com/5Byl54Z.png');
+
+    document.querySelectorAll('#queue-actions-right > .fleetRight').forEach((section) => {
+        if (section.querySelector('.header')) {
+            section.id = section.textContent.trim().toLowerCase().replace(/\s+/g, '-');
+        }
+    });
+
+    replaceImgWithImgByQuery('#current-action .header img', 'https://i.imgur.com/4ClCtQl.png');
+    replaceImgWithImgByQuery('#transfer-targets .header img', 'https://i.imgur.com/3r7Evsy.png');
+    replaceImgWithImgByQuery('#destroy-fleet .header img', 'https://i.imgur.com/tZTdZTC.png');
+    replaceImgWithImgByQuery('#fleet-composition.header img', 'https://i.imgur.com/5Byl54Z.png');
 
     replaceImgWithImgByQuery('a>img[src="/images/buttons/production.png"]', 'https://i.imgur.com/LiZFpvY.png');
     replaceImgWithImgByQuery('div>img[src="/images/buttons/production.png"]', 'https://i.imgur.com/Es3futz.png');
