@@ -1439,6 +1439,16 @@ dgt-fleet-orders-list-panel {
   margin-top: 2px !important;
 }
 
+#queue-actions-left > .padding,
+#queue-actions-left {
+  padding: 0 !important;
+  margin: 0 !important;
+}
+
+#queue-actions-left > .header {
+  display: none !important;
+}
+
 /*************/
 
 #planet-scan-form > div {
