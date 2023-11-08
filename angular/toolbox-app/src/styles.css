@@ -1805,9 +1805,9 @@ dgt-fleet-orders-list-panel {
   line-height: 24px !important;
 }
 
-#queue-actions-left button[name="isload"] {
+#queue-actions-left button[name="isLoad"] {
   float: left !important;
-  margin: 5px !important
+  margin: 5px !important;
 }
 
 /*************/
