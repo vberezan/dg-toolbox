@@ -1691,6 +1691,28 @@ dgt-fleet-orders-list-panel {
   appearance: none;
 }
 
+#queue-actions-left .fleetLeftInnerSmall .tableHeader {
+  border-bottom: 1px solid #5e5e5e;
+}
+
+#queue-actions-right .amount input {
+  height: 23px;
+  font-size: 12px;
+  background: rgba(0,0,0,.4);
+  color: #fff;
+  border: 1px solid #545454 !important;
+  margin: 0 2px;
+  border-radius: 3px;
+  display: block;
+  box-sizing: border-box;
+  padding: 3px 5px;
+  overflow: hidden;
+  float: left;
+  line-height: 18px;
+  width: 60px;
+  text-align: left;
+}
+
 /*************/
 
 #planet-scan-form > div {
