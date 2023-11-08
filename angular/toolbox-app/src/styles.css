@@ -1793,8 +1793,8 @@ dgt-fleet-orders-list-panel {
 }
 
 #queue-actions-left button:hover {
-  background: rgba(53,49,49,1);
-  border: 1px solid rgb(53,49,49,1) !important;
+  background: rgb(45, 45, 45);
+  border: 1px solid #545454;
 }
 
 #queue-actions-left #fleet-radio-check div:first-child {
@@ -1803,6 +1803,11 @@ dgt-fleet-orders-list-panel {
 
 #queue-actions-left #fleet-radio-check div:last-child {
   line-height: 24px !important;
+}
+
+#queue-actions-left button[name="isload"] {
+  float: left !important;
+  margin: 5px !important
 }
 
 /*************/
