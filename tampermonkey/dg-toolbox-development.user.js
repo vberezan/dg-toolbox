@@ -139,7 +139,6 @@ function loadGlobalAngularStyling() {
             localStorage.removeItem('user');
         }
 
-
         let windowURL = window.location.pathname.split(/\//g);
 
         console.log("%cDarkGalaxy Toolbox - DGT", "font-size: 16px; font-weight: bold;");

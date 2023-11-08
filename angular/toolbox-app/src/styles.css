@@ -1346,15 +1346,15 @@ dgt-fleet-orders-list-panel {
 /********/
 
 #fleets-list {
-  padding: 0 !important;
+  padding: 5px !important;
 }
 
 #fleets-list > div {
   border-radius: 5px;
   border: 1px solid #5e5e5e;
   background: rgb(75, 75, 75);
-  padding: 0;
-  margin: 5px;
+  padding: 0 !important;
+  margin: 0 !important;
 }
 
 #fleets-list > div:not(#fleetList) > div:first-child {
@@ -1370,6 +1370,29 @@ dgt-fleet-orders-list-panel {
 
 #fleets-list > div:not(#fleetList) > div:last-child {
   padding-left: 5px;
+}
+
+#fleets-list .tableHeader {
+  border-bottom: 1px solid #5e5e5e;
+  padding: 5px !important;
+  background: rgba(255, 255, 255, 0.15);
+}
+
+#fleets-list .tableHeader > div:first-child {
+  padding: 0 !important;
+  width: 0 !important;
+}
+
+#fleets-list .tableHeader .name,
+#fleets-list .tableHeader .activity {
+  padding: 0 !important;
+  line-height: 24px !important;
+  min-width: 250px !important;
+}
+
+#fleets-list .opacBackground.entry,
+#fleets-list .opacLightBackground.entry {
+  padding: 5px !important;
 }
 
 /*************/
