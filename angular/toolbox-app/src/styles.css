@@ -1579,7 +1579,7 @@ dgt-fleet-orders-list-panel {
 
 #fleetQueue .tableHeader .nameColumn,
 #fleetQueue form .nameColumn {
-  width: 410px !important;
+  width: 428px !important;
   padding: 0 !important;
 }
 
@@ -1589,11 +1589,16 @@ dgt-fleet-orders-list-panel {
 
 #fleetQueue .tableHeader .width50 {
   width: 30px !important;
+  line-height: 28px !important;
 }
 
 #fleetQueue form .width50 {
   width: 28px !important;
   padding-left: 2px !important;
+}
+
+#fleetQueue .tableHeader .width30 {
+  font-weight: bold;
 }
 
 #fleetQueue .tableHeader .width30,
@@ -1602,7 +1607,16 @@ dgt-fleet-orders-list-panel {
 }
 
 #fleetQueue form .queueButtons {
-  width: 80px !important;
+  width: 62px !important;
+}
+
+#fleetQueue form .queueButtons label {
+  background: none !important;
+  font-size: 18px !important;
+  height: 24px !important;
+  margin: auto !important;
+  display: inline-flex !important;
+  align-items: center !important;
 }
 
 
