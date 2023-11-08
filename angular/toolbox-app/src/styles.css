@@ -1562,6 +1562,7 @@ dgt-fleet-orders-list-panel {
   font-weight: bold;
 }
 
+#colonise-planet button,
 #transfer-targets button,
 #destroy-fleet button {
   padding: 0 15px;
@@ -1577,12 +1578,14 @@ dgt-fleet-orders-list-panel {
   float: right;
 }
 
+#colonise-planet button:hover,
 #transfer-targets button:hover,
 #destroy-fleet button:hover {
   background: rgb(45, 45, 45);
   border: 1px solid #545454;
 }
 
+#colonise-planet input,
 #transfer-targets input {
   height: 23px;
   font-size: 12px;
@@ -1601,6 +1604,7 @@ dgt-fleet-orders-list-panel {
   text-align: left;
 }
 
+#colonise-planet form label,
 #transfer-targets label {
   float: left;
   height: 23px;
