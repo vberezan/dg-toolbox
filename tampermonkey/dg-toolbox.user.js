@@ -53,50 +53,50 @@ function loadSetups(windowURL) {
 function loadCustomStyling() {
     loadResource({
         tagName: 'script',
-        src: 'https://cdn.jsdelivr.net/gh/vberezan/dg-toolbox/tampermonkey/parts/dg-toolbox-custom-styling.70.js',
+        src: 'https://cdn.jsdelivr.net/gh/vberezan/dg-toolbox/tampermonkey/parts/dg-toolbox-custom-styling.112.js',
         rel: 'text/javascript'
     }).onload = function () {
         applyCustomStyling();
-    }
 
-    loadResource({
-        tagName: 'script',
-        src: 'https://cdn.jsdelivr.net/gh/vberezan/dg-toolbox/tampermonkey/parts/dg-toolbox-replace-icons-with-fa-icons.10.js',
-        rel: 'text/javascript'
-    }).onload = function () {
-        replaceIconsWithFAIcons();
-    }
+        loadResource({
+            tagName: 'script',
+            src: 'https://cdn.jsdelivr.net/gh/vberezan/dg-toolbox/tampermonkey/parts/dg-toolbox-replace-icons-with-fa-icons.10.js',
+            rel: 'text/javascript'
+        }).onload = function () {
+            replaceIconsWithFAIcons();
+        }
 
-    loadResource({
-        tagName: 'script',
-        src: 'https://cdn.jsdelivr.net/gh/vberezan/dg-toolbox/tampermonkey/parts/dg-toolbox-replace-icons-with-images.18.js',
-        rel: 'text/javascript'
-    }).onload = function () {
-        replaceIconsWithImages();
-    }
+        loadResource({
+            tagName: 'script',
+            src: 'https://cdn.jsdelivr.net/gh/vberezan/dg-toolbox/tampermonkey/parts/dg-toolbox-replace-icons-with-images.30.js',
+            rel: 'text/javascript'
+        }).onload = function () {
+            replaceIconsWithImages();
+        }
 
-    loadResource({
-        tagName: 'script',
-        src: 'https://cdn.jsdelivr.net/gh/vberezan/dg-toolbox/tampermonkey/parts/dg-toolbox-replace-planets-images.6.js',
-        rel: 'text/javascript'
-    }).onload = function () {
-        replacePlanetsImages();
-    }
+        loadResource({
+            tagName: 'script',
+            src: 'https://cdn.jsdelivr.net/gh/vberezan/dg-toolbox/tampermonkey/parts/dg-toolbox-replace-planets-images.6.js',
+            rel: 'text/javascript'
+        }).onload = function () {
+            replacePlanetsImages();
+        }
 
-    loadResource({
-        tagName: 'script',
-        src: 'https://cdn.jsdelivr.net/gh/vberezan/dg-toolbox/tampermonkey/parts/dg-toolbox-replace-structures-images.7.js',
-        rel: 'text/javascript'
-    }).onload = function () {
-        replaceStructuresImages();
-    }
+        loadResource({
+            tagName: 'script',
+            src: 'https://cdn.jsdelivr.net/gh/vberezan/dg-toolbox/tampermonkey/parts/dg-toolbox-replace-structures-images.7.js',
+            rel: 'text/javascript'
+        }).onload = function () {
+            replaceStructuresImages();
+        }
 
-    loadResource({
-        tagName: 'script',
-        src: 'https://cdn.jsdelivr.net/gh/vberezan/dg-toolbox/tampermonkey/parts/dg-toolbox-replace-ships-images.7.js',
-        rel: 'text/javascript'
-    }).onload = function () {
-        replaceShipsImages();
+        loadResource({
+            tagName: 'script',
+            src: 'https://cdn.jsdelivr.net/gh/vberezan/dg-toolbox/tampermonkey/parts/dg-toolbox-replace-ships-images.7.js',
+            rel: 'text/javascript'
+        }).onload = function () {
+            replaceShipsImages();
+        }
     }
 }
 
@@ -123,7 +123,7 @@ function loadAngular() {
 function loadGlobalAngularStyling() {
     let angular = [{
         tagName: 'link',
-        href: 'https://cdn.jsdelivr.net/gh/vberezan/dg-toolbox/angular/toolbox-app/dist/toolbox-app/styles.6bf304f260336117.css',
+        href: 'https://cdn.jsdelivr.net/gh/vberezan/dg-toolbox/angular/toolbox-app/dist/toolbox-app/styles.b2a06c72a312c3bd.css',
         rel: 'stylesheet'
     }];
 
@@ -172,7 +172,7 @@ function loadGlobalAngularStyling() {
             }
         }
 
-        localStorage.setItem('version', 'v1.0.18');
+        localStorage.setItem('version', 'v1.1.0');
     });
 
     window.unload = function() {
