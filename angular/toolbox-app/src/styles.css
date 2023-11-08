@@ -1973,6 +1973,30 @@ dgt-fleet-orders-list-panel {
   border-radius: 5px;
 }
 
+#fleetHeader {
+  border-radius: 5px;
+}
+
+#fleetHeader > .left {
+  margin-left: 5px;
+}
+
+#fleetHeader > .left coords {
+  border: none !important;
+  background: transparent !important;
+  margin: 0 !important;
+  line-height: 36px !important;
+  height: 38px !important;
+}
+
+#fleetHeader > .left coords > div {
+  line-height: 32px;
+}
+
+#fleetHeader > .left coords > div img {
+  vertical-align: middle;
+}
+
 #target-transfer .transferRow > .left:not(.text) {
   float: right !important;
 }
