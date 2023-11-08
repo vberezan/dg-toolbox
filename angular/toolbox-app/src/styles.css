@@ -2033,6 +2033,16 @@ dgt-fleet-orders-list-panel {
   border: 1px solid #545454;
 }
 
+#transferDrop {
+  height: 30px !important;
+  width: 170px !important;
+}
+
+#source-transfer .header > .right {
+  height: 30px;
+  line-height: 30px;
+  margin-top: 3px;
+}
 
 /*************/
 
