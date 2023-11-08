@@ -1349,10 +1349,9 @@ dgt-fleet-orders-list-panel {
   padding: 5px !important;
 }
 
-#fleets-list > div {
+#fleets-list > #fleetList {
   border-radius: 5px;
   border: 1px solid #5e5e5e;
-  background: rgb(75, 75, 75);
   padding: 0 !important;
   margin: 0 !important;
 }
