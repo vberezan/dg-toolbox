@@ -23,6 +23,10 @@ function replaceIconsWithImages() {
     replaceImgWithImg('/images/units/research/planet_limit.png', 'https://i.imgur.com/48zh1A4.jpg');
     replaceImgWithImg('/images/units/research/queue.png', 'https://i.imgur.com/xtzqCN0.jpg');
 
+    replaceImgWithImgByQuery('#fleetQueue .header img', 'https://i.imgur.com/4ClCtQl.png');
+    replaceImgWithImgByQuery('.fleetLeft .fleetLeftInner .header img', 'https://i.imgur.com/HcC4l22.png');
+    replaceImgWithImgByQuery('.fleetLeft form .header img', 'https://i.imgur.com/3r7Evsy.png');
+
     replaceImgWithImgByQuery('a>img[src="/images/buttons/production.png"]', 'https://i.imgur.com/LiZFpvY.png');
     replaceImgWithImgByQuery('div>img[src="/images/buttons/production.png"]', 'https://i.imgur.com/Es3futz.png');
     replaceImgWithImgByQuery('div>img[src="/images/buttons/training.png"]', 'https://i.imgur.com/adkgAMo.png');
@@ -35,4 +39,5 @@ function replaceIconsWithImages() {
     replaceImgWithImgByQuery('a>img[src="/images/buttons/construction.png"]', 'https://i.imgur.com/1Ph3T54.png');
     replaceImgWithImgByQuery('div>img[src="/images/buttons/construction.png"]', 'https://i.imgur.com/5iLvLxv.png');
     replaceImgWithImgByQuery('div>img[src="/images/buttons/construct.png"]', 'https://i.imgur.com/5iLvLxv.png');
+
 }
