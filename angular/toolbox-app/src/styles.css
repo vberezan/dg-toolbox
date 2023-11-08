@@ -1533,12 +1533,24 @@ dgt-fleet-orders-list-panel {
   padding: 5px !important;
 }
 
+#fleetQueue form .entry {
+  padding: 5px !important;
+}
+
 #fleetQueue form .entry .nameColumn {
   width: 380px !important;
   padding: 0 !important;
 }
 #fleetQueue form .entry .nameColumn div {
   font-weight: normal !important;
+}
+
+#fleetQueue form .entry .nameColumn .width50 {
+  width: 30px !important;
+}
+
+#fleetQueue form .entry .nameColumn .width30 {
+  width: 10px !important;
 }
 
 
