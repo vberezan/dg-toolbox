@@ -1763,6 +1763,8 @@ dgt-fleet-orders-list-panel {
   width: 21px;
   height: 21px;
   margin-left: 0 !important;
+  border: 1px solid #767676;
+  border-radius: 3px;
 }
 
 #queue-actions-right .resource-entry > div:last-child {
