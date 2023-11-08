@@ -1418,15 +1418,16 @@ dgt-fleet-orders-list-panel {
 }
 
 /*************/
-
+#queue-actions-right .header,
+#queue-actions-left .header,
 #fleetQueue .header {
   padding: 5px !important;
 }
 
-.fleetLeft .fleetLeftInner .header img,
-.fleetLeft form .header img,
-.fleetRight>.fleetRight:first-child .header img,
-.fleetRight>.fleetRight:last-child .header img,
+#queue-actions-left .fleetLeftInner .header img,
+#queue-actions-left form .header img,
+#queue-actions-right > .fleetRight:first-child .header img,
+#queue-actions-right > .fleetRight:last-child .header img,
 #fleetQueue .header img {
   float: left;
   margin-right: 6px;
