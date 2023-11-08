@@ -1433,11 +1433,14 @@ dgt-fleet-orders-list-panel {
 #queue-actions-left {
   width: 550px !important;
   border-top: none !important;
+  border-bottom-left-radius: 5px !important;
+  border-bottom-right-radius: 5px !important;
 }
 
 #queue-actions-left .fleetLeftInner {
   border: none !important;
   width: 550px !important;
+  margin-bottom: 0 !important;
 }
 
 #queue-actions-right .header,
@@ -1469,6 +1472,12 @@ dgt-fleet-orders-list-panel {
 
 #queue-actions-left > .header {
   display: none !important;
+}
+
+#queue-actions-left > div > form > div {
+  margin:0 !important;
+  width: 275px !important;
+  border-bottom: none !important;
 }
 
 /*************/
