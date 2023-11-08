@@ -6,6 +6,8 @@ function detach(node) {
     return null;
 }
 function applyCustomStyling() {
+    let windowURL = window.location.pathname.split(/\//g);
+
     if (document.querySelector('#queue .researchTitle')) {
         document.querySelectorAll('#queue .researchTitle')[document.querySelectorAll('#queue .researchTitle').length - 1].style.height = '120px';
     }
@@ -174,7 +176,6 @@ function applyCustomStyling() {
     }
 
     //// -- changelog
-    let windowURL = window.location.pathname.split(/\//g);
     if (windowURL.length === 2 && windowURL[1].trim().length === 0) {
         let generalInfo = document.createElement('div');
         generalInfo.id = 'general-info';
