@@ -28,13 +28,6 @@ function replaceIconsWithImages() {
     replaceImgWithImgByQuery('#fleetQueue .header img', 'https://i.imgur.com/4ClCtQl.png');
     replaceImgWithImgByQuery('#queue-actions-left .fleetLeftInner .header img', 'https://i.imgur.com/HcC4l22.png');
     replaceImgWithImgByQuery('#queue-actions-left form .header img', 'https://i.imgur.com/3r7Evsy.png');
-
-    document.querySelectorAll('#queue-actions-right > .fleetRight').forEach((section) => {
-        if (section.querySelector('.header')) {
-            section.id = section.querySelector('.header').textContent.trim().toLowerCase().replace(/\s+/g, '-');
-        }
-    });
-
     replaceImgWithImgByQuery('#current-action .header img', 'https://i.imgur.com/4ClCtQl.png');
     replaceImgWithImgByQuery('#transfer-targets .header img', 'https://i.imgur.com/3r7Evsy.png');
     replaceImgWithImgByQuery('#destroy-fleet .header img', 'https://i.imgur.com/UQ0X6vH.png');

@@ -348,5 +348,11 @@ function applyCustomStyling() {
                input.prepend(detach(input.querySelector('.amount').nextElementSibling));
             });
         }
+
+        document.querySelectorAll('#queue-actions-right > .fleetRight').forEach((section) => {
+            if (section.querySelector('.header')) {
+                section.id = section.querySelector('.header').textContent.trim().toLowerCase().replace(/\s+/g, '-');
+            }
+        });
     }
 }
