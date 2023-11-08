@@ -62,9 +62,21 @@ export class NavigationMatrixService {
     let source:string = await firstValueFrom(this.httpClient.get('https://andromeda.darkgalaxy.com/navigation/' + galaxy + '/' + sector + '/' + system, {responseType: 'text'}));
 
     let dp: DOMParser = new DOMParser();
+    let dd: Document = dp.parseFromString(source, 'text/html');
+    dd.querySelectorAll('.navigation .planets').forEach(planet => {
+      let display: string = planet.querySelector('.coords span').textContent.trim();
 
-    let dd = dp.parseFromString(source, 'text/html');
-    console.log(dd.querySelector('.hostile'));
+      if (planet.classList.contains('neutral')) {
+        display += ' - Uninhabited';
+      } else {
+        if (planet.querySelector('.allianceName')) {
+          display += ' - ' + planet.querySelector('.allianceName').textContent.trim();
+        }
 
+        display += planet.querySelector('.playerName').textContent.trim();
+      }
+
+      console.log(display);
+    });
   }
 }
