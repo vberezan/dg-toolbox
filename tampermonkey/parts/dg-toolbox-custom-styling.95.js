@@ -294,8 +294,8 @@ function applyCustomStyling() {
         document.querySelector('#fleetQueue').nextElementSibling.id = 'queue-actions-left';
         document.querySelector('#fleetQueue').previousElementSibling.id = 'queue-actions-right';
 
-        if (document.querySelector('#queue-actions-left .coordsInput:nth-child(1) form input')) {
-            let coordsWrapper = document.querySelector('#queue-actions-left .coordsInput:nth-child(1) form input').parentElement;
+        if (document.querySelector('#queue-actions-left .coordsInput form input')) {
+            let coordsWrapper = document.querySelector('#queue-actions-left .coordsInput form input').parentElement;
             coordsWrapper.id = 'fleet-move-coords';
             coordsWrapper.previousElementSibling.id = 'fleet-move-coords-icon';
             coordsWrapper.nextElementSibling.nextElementSibling.id = 'fleet-radio-check';
