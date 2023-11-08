@@ -1877,6 +1877,45 @@ dgt-fleet-orders-list-panel {
   float: left !important;
 }
 
+.fleet-navigation {
+  border: none;
+  height: 0;
+  padding: 0;
+  margin: 0 !important;
+  float: left;
+  width: auto;
+}
+
+#fleet-right-nav {
+  width: 26px !important;
+  height: 26px !important;
+  font-size: 22px !important;
+  line-height: 34px !important;
+  padding: 0 !important;
+  margin-top: 5px !important;
+  margin-left: 0 !important;
+  margin-right: 5px !important;
+  text-align: center !important;
+  background: transparent !important;
+  border: none !important;
+  float: left !important;
+}
+
+#fleet-left-nav {
+  width: 26px !important;
+  height: 26px !important;
+  font-size: 22px !important;
+  line-height: 34px !important;
+  padding: 0 !important;
+  margin-top: 5px !important;
+  margin-left: 5px !important;
+  margin-right: 0 !important;
+  text-align: center !important;
+  background: transparent !important;
+  border: none !important;
+  float: left !important;
+}
+
 /*************/
 
 #planet-scan-form > div {
