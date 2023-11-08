@@ -317,5 +317,13 @@ function applyCustomStyling() {
             document.querySelector('#queue-actions-left .coordsInput:nth-child(3) form input').parentElement.id = 'fleet-wait';
             document.querySelector('#queue-actions-left .coordsInput:nth-child(3) form input').parentElement.previousElementSibling.id = 'fleet-wait-icon';
         }
+
+        document.querySelectorAll('#queue-actions-right .fleetRight:last-child .entry>.structureImage').forEach(structImg => {
+            structImg.parentElement.classList.add('ship-entry');
+        });
+
+        document.querySelectorAll('#queue-actions-right .fleetRight:last-child .entry>:not(.structureImage):first-child') .forEach(structImg => {
+            structImg.parentElement.classList.add('resource-entry');
+        });
     }
 }
