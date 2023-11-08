@@ -1562,9 +1562,13 @@ dgt-fleet-orders-list-panel {
   font-weight: normal !important;
 }
 
-#fleetQueue .tableHeader .width50,
-#fleetQueue form .width50 {
+#fleetQueue .tableHeader .width50 {
   width: 30px !important;
+}
+
+#fleetQueue form .width50 {
+  width: 28px !important;
+  padding-left: 2px !important;
 }
 
 #fleetQueue .tableHeader .width30,
