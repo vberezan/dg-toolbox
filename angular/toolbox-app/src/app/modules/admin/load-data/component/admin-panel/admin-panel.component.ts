@@ -12,7 +12,7 @@ export class AdminPanelComponent {
   constructor() {
     console.log(this.navigationMatrixService.generateNavigationCoordinates());
 
-    this.navigationMatrixService.extractData(1,1,1);
+    console.log(JSON.stringify(this.navigationMatrixService.extractData(1,1,1)));
   }
 
 }
