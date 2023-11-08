@@ -158,9 +158,12 @@ function applyCustomStyling() {
         }
     }
 
-    if (document.querySelector('#buttonBlock')) {
-        document.querySelector('#buttonBlock a:first-child span').textContent = 'Structures';
-        document.querySelector('#buttonBlock #converter span').textContent = 'Energy Converter';
+
+    if (windowURL[1] === 'planet') {
+        if (document.querySelector('#buttonBlock')) {
+            document.querySelector('#buttonBlock a:first-child span').textContent = 'Structures';
+            document.querySelector('#buttonBlock #converter span').textContent = 'Energy Converter';
+        }
     }
 
     if(document.querySelector('#header')) {
