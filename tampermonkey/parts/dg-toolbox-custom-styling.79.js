@@ -297,7 +297,7 @@ function applyCustomStyling() {
         if (document.querySelector('#queue-actions-left .coordsInput:nth-child(1) form input')) {
             let coordsWrapper = document.querySelector('#queue-actions-left .coordsInput:nth-child(1) form input').parentElement;
             coordsWrapper.id = 'fleet-move-coords';
-            coordsWrapper.previousSibling.id = 'fleet-move-coords-icon';
+            coordsWrapper.previousElementSibling.id = 'fleet-move-coords-icon';
 
             coordsWrapper.innerHTML = coordsWrapper.querySelector('input:nth-child(1)').outerHTML +
                 ':' +
@@ -310,12 +310,12 @@ function applyCustomStyling() {
 
         if (document.querySelector('#queue-actions-left .coordsInput:nth-child(2) form select')) {
             document.querySelector('#queue-actions-left .coordsInput:nth-child(2) form select').parentElement.id = 'fleet-move-planet';
-            document.querySelector('#queue-actions-left .coordsInput:nth-child(2) form select').parentElement.previousSibling.id = 'fleet-move-planet-icon';
+            document.querySelector('#queue-actions-left .coordsInput:nth-child(2) form select').parentElement.previousElementSibling.id = 'fleet-move-planet-icon';
         }
 
         if (document.querySelector('#queue-actions-left .coordsInput:nth-child(3) form input')) {
             document.querySelector('#queue-actions-left .coordsInput:nth-child(3) form input').parentElement.id = 'fleet-wait';
-            document.querySelector('#queue-actions-left .coordsInput:nth-child(3) form input').parentElement.previousSibling.id = 'fleet-wait-icon';
+            document.querySelector('#queue-actions-left .coordsInput:nth-child(3) form input').parentElement.previousElementSibling.id = 'fleet-wait-icon';
         }
     }
 }
