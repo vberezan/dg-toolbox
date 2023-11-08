@@ -1804,6 +1804,7 @@ dgt-fleet-orders-list-panel {
   border-bottom-left-radius: 3px;
 }
 
+#source-transfer .transferRow .left.text,
 #queue-actions-left .transferRow .left.text {
   height: 23px;
   line-height: 23px !important;
@@ -1930,6 +1931,15 @@ dgt-fleet-orders-list-panel {
 #fleet-left-nav:hover svg,
 #fleet-right-nav:hover svg {
   fill: #ffffffcf !important;
+}
+
+#target-transfer {
+  width: 462px;
+}
+
+#source-transfer {
+  width: 461px;
+  float: right;
 }
 
 /*************/
