@@ -296,6 +296,7 @@ function applyCustomStyling() {
 
         if (document.querySelector('#queue-actions-left form:first-child input')) {
             let coordsWrapper = document.querySelector('#queue-actions-left form:first-child input').parentElement;
+            coordsWrapper.id = 'fleet-move-coords';
 
             coordsWrapper.innerHTML = coordsWrapper.querySelector('input:nth-child(1)').outerHTML +
                 ':' +
