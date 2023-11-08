@@ -261,6 +261,7 @@ function applyCustomStyling() {
 
     // -- flet
     if (windowURL[1] === 'fleet') {
-        document.querySelector('#fleetQueue').nextElementSibling.id = 'queue-actions';
+        document.querySelector('#fleetQueue').nextElementSibling.id = 'queue-actions-left';
+        document.querySelector('#fleetQueue').previousElementSibling.id = 'queue-actions-right';
     }
 }
