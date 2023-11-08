@@ -31,7 +31,7 @@ function replaceIconsWithImages() {
 
     document.querySelectorAll('#queue-actions-right > .fleetRight').forEach((section) => {
         if (section.querySelector('.header')) {
-            section.id = section.textContent.trim().toLowerCase().replace(/\s+/g, '-');
+            section.id = section.querySelector('.header').textContent.trim().toLowerCase().replace(/\s+/g, '-');
         }
     });
 
