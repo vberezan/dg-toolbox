@@ -1737,19 +1737,36 @@ dgt-fleet-orders-list-panel {
   padding: 5px !important;
 }
 
-#queue-actions-right .entry .structureImage {
+#queue-actions-right .ship-entry .structureImage {
   width: 32px !important;
   height: 32px !important;
+  margin-right: 5px !important;
 }
 
-#queue-actions-right .entry .structureImage img {
+#queue-actions-right .ship-entry .structureImage img {
   width: 30px;
   height: 30px;
   margin-left: 0 !important;
 }
 
-#queue-actions-right .entry > div:last-child {
+#queue-actions-right .ship-entry > div:last-child {
   line-height: 32px !important;
+}
+
+#queue-actions-right .resource-entry .left:first-child {
+  width: 23px !important;
+  height: 23px !important;
+  margin-right: 5px !important;
+}
+
+#queue-actions-right .resource-entry .left:first-child img {
+  width: 21px;
+  height: 21px;
+  margin-left: 0 !important;
+}
+
+#queue-actions-right .resource-entry > div:last-child {
+  line-height: 23px !important;
 }
 
 /*************/
