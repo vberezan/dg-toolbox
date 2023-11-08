@@ -855,7 +855,7 @@ label.queueDestroyButton {
   font-size: 18px !important;
   height: 32px !important;
   margin: auto !important;
-  display: flex !important;
+  display: inline-flex !important;
   align-items: center !important;
 }
 
@@ -864,7 +864,7 @@ label.queueDestroyButton {
   font-size: 18px !important;
   height: 34px !important;
   margin: auto !important;
-  display: flex !important;
+  display: inline-flex !important;
   align-items: center !important;
 }
 
@@ -1096,6 +1096,15 @@ label.queueDestroyButton:hover {
 
 #completed .header {
   padding: 5px !important;
+}
+
+#completed form label {
+  background: none !important;
+  font-size: 18px !important;
+  height: 50px !important;
+  margin: auto !important;
+  display: inline-flex !important;
+  align-items: center !important;
 }
 
 /*******/
