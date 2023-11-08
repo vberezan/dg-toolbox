@@ -364,5 +364,15 @@ function applyCustomStyling() {
             document.querySelector('#destroy-fleet input[type="submit"]').parentElement.append(newButton);
             document.querySelector('#destroy-fleet input[type="submit"]').remove();
         }
+
+        if (document.querySelector('#transfer-targets')) {
+            let newButton = document.createElement('button');
+            newButton.type = 'submit';
+            newButton.classList.add('text-button');
+            newButton.innerHTML = 'Create';
+
+            document.querySelector('#transfer-targets input[type="submit"]').parentElement.append(newButton);
+            document.querySelector('#transfer-targets input[type="submit"]').remove();
+        }
     }
 }

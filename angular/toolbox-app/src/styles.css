@@ -1549,13 +1549,34 @@ dgt-fleet-orders-list-panel {
 }
 
 #destroy-fleet .lightBorderBottom {
-  background: #FF3B303B !important;
+  background: #6a3c39 !important;
   color: #ffffffad !important;
 }
 
 #destroy-fleet .lightBorderBottom span {
   color: #ffffffad !important;
   font-weight: bold;
+}
+
+#transfer-targets button,
+#destroy-fleet button {
+  padding: 0 15px;
+  border: 1px solid #767676;
+  border-radius: 3px;
+  background: transparent;
+  cursor: pointer;
+  width: auto;
+  margin: 0;
+  height: 24px;
+  line-height: 20px;
+  font-size: 13px;
+  float: left;
+}
+
+#transfer-targets button:hover,
+#destroy-fleet button:hover {
+  background: rgb(45, 45, 45);
+  border: 1px solid #545454;
 }
 
 #queue-actions-right {
