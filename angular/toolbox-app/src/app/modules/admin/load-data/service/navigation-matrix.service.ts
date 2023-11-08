@@ -59,7 +59,9 @@ export class NavigationMatrixService {
   }
 
   async extractData(galaxy: number, sector: number, system: number): Promise<void> {
-    let source = await firstValueFrom(this.httpClient.get('https://andromeda.darkgalaxy.com/navigation/' + galaxy + '/' + sector + '/' + system, {responseType: 'text'}));
+    let source:string = await firstValueFrom(this.httpClient.get('https://andromeda.darkgalaxy.com/navigation/' + galaxy + '/' + sector + '/' + system, {responseType: 'text'}));
+
+    console.log(source);
     console.log(JSON.stringify(source));
   }
 }
