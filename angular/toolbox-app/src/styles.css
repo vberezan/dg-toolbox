@@ -1545,11 +1545,11 @@ dgt-fleet-orders-list-panel {
   font-weight: normal !important;
 }
 
-#fleetQueue form .entry .nameColumn .width50 {
+#fleetQueue form .entry .width50 {
   width: 30px !important;
 }
 
-#fleetQueue form .entry .nameColumn .width30 {
+#fleetQueue form .entry .width30 {
   width: 10px !important;
 }
 
