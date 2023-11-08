@@ -1695,6 +1695,14 @@ dgt-fleet-orders-list-panel {
   border-bottom: 1px solid #5e5e5e;
 }
 
+#queue-actions-left .fleetLeftInnerSmall .title:first-child {
+  width: 93px;
+}
+
+#queue-actions-left .amount {
+  width: 63px !important;
+}
+
 #queue-actions-left .amount input {
   height: 23px;
   font-size: 12px;
@@ -1726,7 +1734,6 @@ dgt-fleet-orders-list-panel {
   width: 21px;
   height: 21px;
   border: 1px solid #545454;
-  border-right: none !important;
   border-top-left-radius: 3px;
   border-bottom-left-radius: 3px;
 }
@@ -1816,6 +1823,7 @@ dgt-shared-scans-collector {
 #planet-scan-form .tableHeader {
   display: flex !important;
   border-bottom: 1px solid #787878 !important;
+
 }
 
 #planet-scan-form .tableHeader div:first-child {
