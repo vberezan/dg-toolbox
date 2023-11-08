@@ -61,11 +61,6 @@ export class NavigationMatrixService {
   async extractData(galaxy: number, sector: number, system: number): Promise<void> {
     let source:string = await firstValueFrom(this.httpClient.get('https://andromeda.darkgalaxy.com/navigation/' + galaxy + '/' + sector + '/' + system, {responseType: 'text'}));
 
-    let planets: string[] = source.split('<span style="font-style: normal; color: #fff">');
-
-    for (let i: number = 1; i < planets.length; i++) {
-      console.log(planets[i].substring(0, planets[i].indexOf('<')));
-      console.log(planets[i].substring(planets[i].indexOf('">['), planets[i].indexOf(']</div>')));
-    }
+    console.log(document.createElement(source));
   }
 }
