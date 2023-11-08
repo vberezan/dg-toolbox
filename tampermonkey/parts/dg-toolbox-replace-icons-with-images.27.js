@@ -37,7 +37,7 @@ function replaceIconsWithImages() {
 
     replaceImgWithImgByQuery('#current-action .header img', 'https://i.imgur.com/4ClCtQl.png');
     replaceImgWithImgByQuery('#transfer-targets .header img', 'https://i.imgur.com/3r7Evsy.png');
-    replaceImgWithImgByQuery('#destroy-fleet .header img', 'https://i.imgur.com/tZTdZTC.png');
+    replaceImgWithImgByQuery('#destroy-fleet .header img', 'https://i.imgur.com/UQ0X6vH.png');
     replaceImgWithImgByQuery('#fleet-composition.header img', 'https://i.imgur.com/5Byl54Z.png');
 
     replaceImgWithImgByQuery('a>img[src="/images/buttons/production.png"]', 'https://i.imgur.com/LiZFpvY.png');
