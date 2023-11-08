@@ -1619,6 +1619,27 @@ dgt-fleet-orders-list-panel {
   align-items: center !important;
 }
 
+#fleet-move-coords {
+  display: flex;
+}
+
+#fleet-move-coords input {
+  height: 23px;
+  font-size: 12px;
+  background: rgba(0,0,0,.4);
+  color: #fff;
+  border: none !important;
+  margin: 0 3px;
+  border-radius: 3px;
+  display: block;
+  box-sizing: border-box;
+  padding: 3px 5px;
+  overflow: hidden;
+  float: left;
+  line-height: 18px;
+  width: 25px;
+  text-align: center;
+}
 
 /*************/
 
