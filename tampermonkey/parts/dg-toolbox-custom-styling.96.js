@@ -309,14 +309,14 @@ function applyCustomStyling() {
                 coordsWrapper.querySelector('input:nth-child(4)').outerHTML;
         }
 
-        if (document.querySelector('#queue-actions-left .coordsInput:nth-child(2) form select')) {
-            document.querySelector('#queue-actions-left .coordsInput:nth-child(2) form select').parentElement.id = 'fleet-move-planet';
-            document.querySelector('#queue-actions-left .coordsInput:nth-child(2) form select').parentElement.previousElementSibling.id = 'fleet-move-planet-icon';
+        if (document.querySelector('#queue-actions-left .coordsInput form select')) {
+            document.querySelector('#queue-actions-left .coordsInput form select').parentElement.id = 'fleet-move-planet';
+            document.querySelector('#queue-actions-left .coordsInput form select').parentElement.previousElementSibling.id = 'fleet-move-planet-icon';
         }
 
-        if (document.querySelector('#queue-actions-left .coordsInput:nth-child(3) form input')) {
-            document.querySelector('#queue-actions-left .coordsInput:nth-child(3) form input').parentElement.id = 'fleet-wait';
-            document.querySelector('#queue-actions-left .coordsInput:nth-child(3) form input').parentElement.previousElementSibling.id = 'fleet-wait-icon';
+        if (document.querySelector('#queue-actions-left .coordsInput form input[name="count"]')) {
+            document.querySelector('#queue-actions-left .coordsInput form input[name="count"]').parentElement.id = 'fleet-wait';
+            document.querySelector('#queue-actions-left .coordsInput form input[name="count"]').parentElement.previousElementSibling.id = 'fleet-wait-icon';
         }
 
         document.querySelectorAll('#queue-actions-right .fleetRight:last-child .entry>.structureImage').forEach(structImg => {
