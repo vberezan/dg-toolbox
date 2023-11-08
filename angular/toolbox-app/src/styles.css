@@ -1695,7 +1695,7 @@ dgt-fleet-orders-list-panel {
   border-bottom: 1px solid #5e5e5e;
 }
 
-#queue-actions-right .amount input {
+#queue-actions-left .amount input {
   height: 23px;
   font-size: 12px;
   background: rgba(0,0,0,.4);
