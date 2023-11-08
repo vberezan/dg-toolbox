@@ -1981,7 +1981,7 @@ dgt-fleet-orders-list-panel {
   margin-left: 5px;
 }
 
-#fleetHeader > .left coords {
+#fleetHeader > .left .coords {
   border: none !important;
   background: transparent !important;
   margin: 0 !important;
@@ -1989,11 +1989,11 @@ dgt-fleet-orders-list-panel {
   height: 38px !important;
 }
 
-#fleetHeader > .left coords > div {
+#fleetHeader > .left .coords > div {
   line-height: 32px;
 }
 
-#fleetHeader > .left coords > div img {
+#fleetHeader > .left .coords > div img {
   vertical-align: middle;
 }
 
@@ -2008,7 +2008,7 @@ dgt-fleet-orders-list-panel {
   background: transparent;
   cursor: pointer;
   width: auto;
-  margin: 0 2px 0 0x !important;
+  margin: 0 2px 0 0 !important;
   height: 24px;
   line-height: 20px;
   font-size: 13px;
