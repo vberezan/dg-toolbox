@@ -1792,6 +1792,11 @@ dgt-fleet-orders-list-panel {
   font-size: 13px;
 }
 
+#queue-actions-left button:hover {
+  background: rgba(53,49,49,1);
+  border: 1px solid rgb(53,49,49,1) !important;
+}
+
 #queue-actions-left #fleet-radio-check div:first-child {
   line-height: 22px !important;
 }
