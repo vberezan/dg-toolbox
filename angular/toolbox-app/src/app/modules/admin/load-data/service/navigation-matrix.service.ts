@@ -1,87 +1,84 @@
-import {inject, Injectable} from '@angular/core';
+import {inject, Injectable, Optional} from '@angular/core';
 import {firstValueFrom} from "rxjs";
 import {HttpClient} from "@angular/common/http";
 
 @Injectable({
-  providedIn: 'root'
+    providedIn: 'root'
 })
 export class NavigationMatrixService {
-  private httpClient: HttpClient = inject(HttpClient);
+    private httpClient: HttpClient = inject(HttpClient);
+    private readonly GALAXIES: number = 49;
+    private readonly G1_SECTORS: number = 25;
+    private readonly INNER_SECTORS: number = 6;
+    private readonly OUTER_SECTORS: number = 2;
+    private readonly SYSTEMS: number = 4;
 
-  constructor() {
-  }
-
-  private delay = async (ms: number) => new Promise(res => setTimeout(res, ms));
-
-  generateNavigationCoordinates(): string[] {
-    let result: string[] = [];
-    const galaxies: number = 49;
-    const g1Sectors: number = 25;
-    const innerSectors: number = 6;
-    const outerSectors: number = 2;
-    const systems: number = 4;
-    const g1Planets: number = 12;
-    const innerPlanets: number = 9;
-    const outerPlanets: number = 9;
-
-    for (let galaxy: number = 1; galaxy <= galaxies; galaxy++) {
-      if (galaxy === 1) {
-        for (let sector: number = 1; sector <= g1Sectors; sector++) {
-          for (let system: number = 1; system <= systems; system++) {
-            for (let planet: number = 1; planet <= g1Planets; planet++) {
-              result.push(galaxy + '.' + sector + '.' + system + '.' + planet);
-            }
-          }
-        }
-      }
-
-      if (galaxy > 1 && galaxy < 14) {
-        for (let sector: number = 1; sector <= innerSectors; sector++) {
-          for (let system: number = 1; system <= systems; system++) {
-            for (let planet: number = 1; planet <= innerPlanets; planet++) {
-              result.push(galaxy + '.' + sector + '.' + system + '.' + planet);
-            }
-          }
-        }
-      }
-
-      if (galaxy >= 14) {
-        for (let sector: number = 1; sector <= outerSectors; sector++) {
-          for (let system: number = 1; system <= systems; system++) {
-            for (let planet: number = 1; planet <= outerPlanets; planet++) {
-              result.push(galaxy + '.' + sector + '.' + system + '.' + planet);
-            }
-          }
-        }
-      }
+    constructor() {
     }
 
+    private delay = async (ms: number) => new Promise(res => setTimeout(res, ms));
 
-    return result;
-  }
+    async extractGalaxies(@Optional() galaxies: number[] = []): Promise<void> {
+        let scanGalaxies: number[] = galaxies.length > 0 ? [...galaxies] : [...this.allGalaxies()];
 
-  async extractData(galaxy: number, sector: number, system: number): Promise<void> {
-    console.log('Waiting for 5s...');
-    await this.delay(5000);
+        for (let g: number = 1; g <= scanGalaxies.length; g++) {
+            if (g === 1) {
+                for (let se: number = 1; se <= this.G1_SECTORS; se++) {
+                    for (let sy: number = 1; sy <= this.SYSTEMS; sy++) {
+                        await this.extractData(g, se, sy);
+                    }
+                }
+            }
 
-    let source:string = await firstValueFrom(this.httpClient.get('https://andromeda.darkgalaxy.com/navigation/' + galaxy + '/' + sector + '/' + system, {responseType: 'text'}));
+            if (g > 1 && g < 14) {
+                for (let se: number = 1; se <= this.INNER_SECTORS; se++) {
+                    for (let sy: number = 1; sy <= this.SYSTEMS; sy++) {
+                        await this.extractData(g, se, sy);
+                    }
+                }
+            }
 
-    let dp: DOMParser = new DOMParser();
-    let dd: Document = dp.parseFromString(source, 'text/html');
-    dd.querySelectorAll('.navigation .planets').forEach(planet => {
-      let display: string = planet.querySelector('.coords span').textContent.trim() + ' - ';
+            if (g >= 14) {
+                for (let se: number = 1; se <= this.OUTER_SECTORS; se++) {
+                    for (let sy: number = 1; sy <= this.SYSTEMS; sy++) {
+                        await this.extractData(g, se, sy);
+                    }
+                }
+            }
+        }
+    }
 
-      if (planet.classList.contains('neutral')) {
-        display += 'Uninhabited';
-      } else {
-        if (planet.querySelector('.allianceName')) {
-          display += planet.querySelector('.allianceName').textContent.trim();
+    private allGalaxies(): number[] {
+        let result: number[] = [];
+
+        for (let i = 1; i <= this.GALAXIES; i++) {
+            result.push(i);
         }
 
-        display += planet.querySelector('.playerName').textContent.trim();
-      }
+        return result
+    }
 
-      console.log(display);
-    });
-  }
+    private async extractData(galaxy: number, sector: number, system: number): Promise<void> {
+        await this.delay(Math.random() * 5000);
+
+        let source: string = await firstValueFrom(this.httpClient.get('https://andromeda.darkgalaxy.com/navigation/' + galaxy + '/' + sector + '/' + system, {responseType: 'text'}));
+
+        let dp: DOMParser = new DOMParser();
+        let dd: Document = dp.parseFromString(source, 'text/html');
+        dd.querySelectorAll('.navigation .planets').forEach(planet => {
+            let display: string = planet.querySelector('.coords span').textContent.trim() + ' - ';
+
+            if (planet.classList.contains('neutral')) {
+                display += 'Uninhabited';
+            } else {
+                if (planet.querySelector('.allianceName')) {
+                    display += planet.querySelector('.allianceName').textContent.trim();
+                }
+
+                display += planet.querySelector('.playerName').textContent.trim();
+            }
+
+            console.log(display);
+        });
+    }
 }
