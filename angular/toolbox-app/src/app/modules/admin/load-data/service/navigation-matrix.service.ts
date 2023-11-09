@@ -59,7 +59,11 @@ export class NavigationMatrixService {
     }
 
     private async extractData(galaxy: number, sector: number, system: number): Promise<void> {
-        await this.delay(Math.random() * 5000);
+        const delayMs:number = Math.random() * 5000;
+
+        console.log("Extracting system " + galaxy + '.' + sector + '.' + system + ' after a delay of ' + delayMs + 'ms');
+
+        await this.delay(delayMs);
 
         let source: string = await firstValueFrom(this.httpClient.get('https://andromeda.darkgalaxy.com/navigation/' + galaxy + '/' + sector + '/' + system, {responseType: 'text'}));
 
