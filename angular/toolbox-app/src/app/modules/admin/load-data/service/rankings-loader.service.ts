@@ -34,6 +34,8 @@ export class RankingsLoaderService {
     let dom: Document = new DOMParser().parseFromString(source, 'text/html');
     const pages:number = parseInt(dom.querySelector('.right.lightBorder.opacDarkBackground.padding').textContent.trim().split('of')[dom.querySelector('.right.lightBorder.opacDarkBackground.padding').textContent.trim().split('of').length - 1].trim());
 
+    console.log(pages);
+
     for (let page: number = 1; page <= pages; page++) {
       if (!isScanActive) {
         break;

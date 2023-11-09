@@ -9,6 +9,7 @@ import {RankingsLoaderService} from "../../service/rankings-loader.service";
 })
 export class AdminPanelComponent {
   @ViewChild('planetsLoadModal') planetsLoadModal: ElementRef;
+  @ViewChild('rankingsLoadModal') rankingsLoadModal: ElementRef;
   @ViewChild('progress') progressBar: ElementRef;
   @ViewChild('planetCounter') planetCounter: ElementRef;
   private navigationLoaderService: NavigationLoaderService = inject(NavigationLoaderService);
@@ -67,5 +68,7 @@ export class AdminPanelComponent {
     document.body.classList.remove('dgt-overlay-open');
     this.planetsLoadModal.nativeElement.classList.add('hide');
     this.planetsLoadModal.nativeElement.classList.remove('show');
+    this.rankingsLoadModal.nativeElement.classList.add('hide');
+    this.rankingsLoadModal.nativeElement.classList.remove('show');
   }
 }
