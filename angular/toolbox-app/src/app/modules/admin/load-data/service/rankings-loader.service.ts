@@ -90,13 +90,11 @@ export class RankingsLoaderService {
     if (isScanActive) {
       playerStats.forEach((playerStats: PlayerStats, playerId: number): void => {
         let planetsSubscription: Subscription = collectionData(
-          query(playersRef,
+          query(planetsRef,
             where('playerId', '==', playerId)
           )
         ).subscribe((items: DocumentData[]): void => {
           let planets: PlanetStats[] = Object.assign([], items);
-          console.log(planets);
-
           planets.forEach((planetStats: PlanetStats): void => {
             playerStats.planets.push(planetStats.location);
           });
