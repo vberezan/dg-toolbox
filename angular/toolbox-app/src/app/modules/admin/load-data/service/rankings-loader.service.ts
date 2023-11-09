@@ -43,19 +43,22 @@ export class RankingsLoaderService {
       source = await firstValueFrom(this.httpClient.get(this.PLAYER_RANKINGS_URL + page, {responseType: 'text'}));
       dom = new DOMParser().parseFromString(source, 'text/html');
 
-      dom.querySelectorAll('.playerRankingsList .entry').forEach((row: any) => {
+      dom.querySelectorAll('.playerRankingsList .entry').forEach((row: any): void => {
+        console.log('xxxxx');
         const playerId: number = parseInt(row.querySelector('.playerName').attributes['playerId'].value.trim());
+        console.log(playerId);
 
         if (!playerStats.has(playerId)) {
           playerStats.set(playerId, new PlayerStats());
         }
 
+        console.log('yyyyyyy');
+
         let player: PlayerStats = playerStats.get(playerId);
 
+        console.log(player);
+
         player.playerId = playerId;
-
-        console.log(playerId);
-
         player.name = row.querySelector('.playerName').textContent.trim().toLowerCase();
         player.rank = parseInt(row.querySelector('.rank').textContent.trim().replace(/,/g, ''));
         player.score = parseInt(row.querySelector('.score').textContent.trim().replace(/,/g, ''));
@@ -70,9 +73,6 @@ export class RankingsLoaderService {
         let player: PlayerStats = playerStats.get(playerId);
 
         player.combatScore = parseInt(row.querySelector('.score').textContent.trim().replace(/,/g, ''));
-
-        console.log(player.combatScore);
-
         player.combinedScore = player.combatScore + player.score;
       });
 
