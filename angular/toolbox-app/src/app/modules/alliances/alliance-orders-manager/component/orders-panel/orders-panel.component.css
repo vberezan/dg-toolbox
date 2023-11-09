@@ -305,5 +305,9 @@ span.score {
 .dgt-orders-manager-panel.tl div.name-wrapper,
 .dgt-orders-manager-panel.admin div.name-wrapper {
   width: 150px;
-  min-width: 200px !important;
+  min-width: 210px !important;
+}
+
+.player span.value {
+  color: #7bbd1a !important;
 }

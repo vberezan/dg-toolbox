@@ -24,9 +24,9 @@
             </form>
           </div>
         </div>
-        <span class="score stats">Score: 400,000</span>
-        <span class="combat-score stats">Combat: 55,000,000</span>
-        <span class="planets stats">Planets: 44</span>
+        <span class="score stats">Score: <span class="score-value">400,000</span></span>
+        <span class="combat-score stats">Combat: <span class="score-value">55,000,000</span></span>
+        <span class="planets stats">Planets: <span class="score-value">44</span></span>
         <span *ngIf="member.kickEta != null" class="kick-eta">[{{member.kickEta}}]</span>
         <span *ngIf="member.note != null && member.note.length > 0 && (userRole === UserRole.TEAM_LEADER)" class="note">Note: {{member.note}}</span>
         <div *ngIf="userRole === UserRole.ADMIN" class="note-update">
