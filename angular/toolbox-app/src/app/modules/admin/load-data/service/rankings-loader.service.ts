@@ -33,7 +33,7 @@ export class RankingsLoaderService {
 
     let isScanActive: boolean = true;
 
-    cancelScanEmitter.subscribe((value: boolean): void => {
+    let cancelSubscription: Subscription = cancelScanEmitter.subscribe((value: boolean): void => {
       isScanActive = !value;
     });
 
@@ -92,7 +92,7 @@ export class RankingsLoaderService {
         await this.delay(scanDelay);
       }
 
-
+      cancelSubscription.unsubscribe();
     }
 
     // if (isScanActive) {

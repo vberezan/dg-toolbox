@@ -1,6 +1,7 @@
 import {Component, ElementRef, EventEmitter, inject, ViewChild} from '@angular/core';
 import {NavigationLoaderService} from "../../service/navigation-loader.service";
 import {RankingsLoaderService} from "../../service/rankings-loader.service";
+import {Subscription} from "rxjs";
 
 @Component({
   selector: 'dgt-admin-load-data-panel',
@@ -17,6 +18,10 @@ export class AdminPanelComponent {
   private navigationLoaderService: NavigationLoaderService = inject(NavigationLoaderService);
   private rankingsLoaderService: RankingsLoaderService = inject(RankingsLoaderService);
   private cancelScanEmitter: EventEmitter<boolean> = new EventEmitter<boolean>();
+
+  private systemCountSubscription: Subscription;
+  private planetsCountSubscription: Subscription;
+  private rankingsCountSubscription: Subscription;
 
   protected controls: {
     galaxies: string
@@ -42,13 +47,13 @@ export class AdminPanelComponent {
     this.planetsLoadModal.nativeElement.classList.remove('hide');
     document.body.classList.add('dgt-overlay-open');
 
-    this.navigationLoaderService.systemScanEmitter.subscribe((value: {'total':number, 'system': number}): void => {
+    this.systemCountSubscription = this.navigationLoaderService.systemScanEmitter.subscribe((value: {'total':number, 'system': number}): void => {
       this.loadedSystem = 'Loading ' + value + '/' + value.total + ' system: ';
       this.planetPercentage = Math.floor((value.system * 100) / value.total);
       this.planetProgressBar.nativeElement.style.width = this.planetPercentage + '%';
     });
 
-    this.navigationLoaderService.planetScanEmitter.subscribe((value: string): void => {
+    this.planetsCountSubscription = this.navigationLoaderService.planetScanEmitter.subscribe((value: string): void => {
       this.planetCounter.nativeElement.style.visibility = 'hidden';
       this.loadedPlanet = value;
       this.planetCounter.nativeElement.style.visibility = 'visible';
@@ -56,9 +61,7 @@ export class AdminPanelComponent {
 
     await this.navigationLoaderService.scanNavigationScreen(this.cancelScanEmitter, galaxies);
 
-    document.body.classList.remove('dgt-overlay-open');
-    this.planetsLoadModal.nativeElement.classList.add('hide');
-    this.planetsLoadModal.nativeElement.classList.remove('show');
+    this.cancelScan();
   }
 
   async scanRankingsScreens(): Promise<void> {
@@ -70,7 +73,7 @@ export class AdminPanelComponent {
     document.body.classList.add('dgt-overlay-open');
 
 
-    this.rankingsLoaderService.playersRankingsEmitter.subscribe((value: {'total':number, 'page': number}): void => {
+    this.rankingsCountSubscription = this.rankingsLoaderService.playersRankingsEmitter.subscribe((value: {'total':number, 'page': number}): void => {
       this.loadedRankings = 'Loading ' + value.page + '/' + value.total + ' ranking page';
       this.playersPercentage = Math.floor((value.page * 100) / value.total);
       this.playersProgressBar.nativeElement.style.width = this.playersPercentage + '%';
@@ -79,6 +82,8 @@ export class AdminPanelComponent {
 
     await this.rankingsLoaderService.scanPlayerRankingsScreens(this.cancelScanEmitter);
     // await this.rankingsLoaderService.scanAllianceRankingsScreens();
+
+    this.cancelScan();
   }
 
   cancelScan(): void {
@@ -88,5 +93,17 @@ export class AdminPanelComponent {
     this.planetsLoadModal.nativeElement.classList.remove('show');
     this.rankingsLoadModal.nativeElement.classList.add('hide');
     this.rankingsLoadModal.nativeElement.classList.remove('show');
+
+    if (this.systemCountSubscription) {
+      this.systemCountSubscription.unsubscribe();
+    }
+
+    if (this.planetsCountSubscription) {
+      this.planetsCountSubscription.unsubscribe();
+    }
+
+    if (this.rankingsCountSubscription) {
+      this.rankingsCountSubscription.unsubscribe();
+    }
   }
 }

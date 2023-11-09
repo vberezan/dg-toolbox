@@ -1,5 +1,5 @@
 import {EventEmitter, inject, Injectable, Optional} from '@angular/core';
-import {firstValueFrom} from "rxjs";
+import {firstValueFrom, Subscription} from "rxjs";
 import {HttpClient} from "@angular/common/http";
 import {collection, doc, Firestore, setDoc} from "@angular/fire/firestore";
 import {PlanetStats} from "../../../../shared/model/stats/planet-stats.model";
@@ -31,7 +31,7 @@ export class NavigationLoaderService {
     let scannedSystems: number = 0;
     let isScanActive: boolean = true;
 
-    cancelScanEmitter.subscribe((value: boolean): void => {
+    let cancelSubscription: Subscription = cancelScanEmitter.subscribe((value: boolean): void => {
       isScanActive = !value;
     });
 
@@ -74,6 +74,8 @@ export class NavigationLoaderService {
         }
       }
     }
+
+    cancelSubscription.unsubscribe();
   }
 
   totalSystemsNr(galaxies: number[]): number {
