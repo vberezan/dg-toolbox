@@ -11,11 +11,13 @@ export class AdminPanelComponent {
 
 
   constructor() {
-    this.navigationMatrixService.extractData(1,1,1).then(value => {
-      this.navigationMatrixService.extractData(1,1,2);
-    }).then(value => {
-      this.navigationMatrixService.extractData(1,1,3);
-    });
+    this.execute();
+  }
+
+  async execute(): Promise<void> {
+    for (let i = 1; i <= 5; i++) {
+      await this.navigationMatrixService.extractData(1, 1, i);
+    }
   }
 
 }
