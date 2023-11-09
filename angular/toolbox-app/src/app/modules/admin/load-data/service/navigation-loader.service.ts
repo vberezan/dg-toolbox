@@ -131,6 +131,8 @@ export class NavigationLoaderService {
         } else {
           if (planet.querySelector('.allianceName')) {
             stats.alliance = planet.querySelector('.allianceName').textContent.trim().toLowerCase().replace(/\[/g, '').replace(/]/g, '');
+          } else {
+            stats.alliance = '-';
           }
 
           stats.owner = planet.querySelector('.playerName').textContent.trim().toLowerCase();

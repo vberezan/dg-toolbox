@@ -56,7 +56,11 @@ export class RankingsLoaderService {
         player.name = row.querySelector('.playerName').textContent.trim().toLowerCase();
         player.rank = parseInt(row.querySelector('.rank').textContent.trim().replace(/,/g, ''));
         player.score = parseInt(row.querySelector('.score').textContent.trim().replace(/,/g, ''));
-        player.alliance = row.querySelector('.allianceName').textContent.trim().toLowerCase().replace(/\[/g, '').replace(/]/g, '');
+        if (row.querySelector('.allianceName')) {
+          player.alliance = row.querySelector('.allianceName').textContent.trim().toLowerCase().replace(/\[/g, '').replace(/]/g, '');
+        } else {
+          player.alliance = '-';
+        }
 
         console.log(player);
       });
