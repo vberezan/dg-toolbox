@@ -125,15 +125,15 @@ export class NavigationMatrixService {
 
 
         if (planet.classList.contains('neutral')) {
-          stats.owner = 'Uninhabited';
+          stats.owner = 'none';
           stats.playerId = -1;
           stats.alliance = '-'
         } else {
           if (planet.querySelector('.allianceName')) {
-            stats.alliance = planet.querySelector('.allianceName').textContent.trim();
+            stats.alliance = planet.querySelector('.allianceName').textContent.trim().toLowerCase().replace(/\[/g, '').replace(/]/g, '');
           }
 
-          stats.owner = planet.querySelector('.playerName').textContent.trim();
+          stats.owner = planet.querySelector('.playerName').textContent.trim().toLowerCase();
           stats.playerId = parseInt(planet.querySelector('.playerName').attributes['playerId'].value.trim());
         }
 
