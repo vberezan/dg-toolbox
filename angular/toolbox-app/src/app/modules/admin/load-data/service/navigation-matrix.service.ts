@@ -13,12 +13,10 @@ export class NavigationMatrixService {
   private readonly INNER_SECTORS: number = 6;
   private readonly OUTER_SECTORS: number = 2;
   private readonly SYSTEMS: number = 4;
-  private _navigationMatrixLoadEmitter: EventEmitter<number> = new EventEmitter();
+  private _navigationMatrixSystemLoadEmitter: EventEmitter<number> = new EventEmitter();
+  private _navigationMatrixPlanetLoadEmitter: EventEmitter<string> = new EventEmitter();
 
-  constructor() {
-  }
-
-  private delay = async (ms: number) => new Promise(res => setTimeout(res, ms));
+  private delay = async (ms: number): Promise<unknown> => new Promise(res => setTimeout(res, ms));
 
   async extractGalaxies(@Optional() galaxies: number[] = []): Promise<void> {
     let scanGalaxies: number[] = this.filterValidGalaxies(galaxies);
@@ -30,7 +28,7 @@ export class NavigationMatrixService {
         for (let se: number = 1; se <= this.G1_SECTORS; se++) {
           for (let sy: number = 1; sy <= this.SYSTEMS; sy++) {
             await this.extractData(scanGalaxies[g], se, sy);
-            this._navigationMatrixLoadEmitter.emit(++executed);
+            this._navigationMatrixSystemLoadEmitter.emit(++executed);
           }
         }
       }
@@ -39,7 +37,7 @@ export class NavigationMatrixService {
         for (let se: number = 1; se <= this.INNER_SECTORS; se++) {
           for (let sy: number = 1; sy <= this.SYSTEMS; sy++) {
             await this.extractData(scanGalaxies[g], se, sy);
-            this._navigationMatrixLoadEmitter.emit(++executed);
+            this._navigationMatrixSystemLoadEmitter.emit(++executed);
           }
         }
       }
@@ -48,7 +46,7 @@ export class NavigationMatrixService {
         for (let se: number = 1; se <= this.OUTER_SECTORS; se++) {
           for (let sy: number = 1; sy <= this.SYSTEMS; sy++) {
             await this.extractData(scanGalaxies[g], se, sy);
-            this._navigationMatrixLoadEmitter.emit(++executed);
+            this._navigationMatrixSystemLoadEmitter.emit(++executed);
           }
         }
       }
@@ -113,8 +111,11 @@ export class NavigationMatrixService {
 
     let dp: DOMParser = new DOMParser();
     let dd: Document = dp.parseFromString(source, 'text/html');
-    dd.querySelectorAll('.navigation .planets').forEach(planet => {
-      let display: string = planet.querySelector('.coords span').textContent.trim() + ' - ';
+    dd.querySelectorAll('.navigation .planets').forEach((planet: any): void => {
+      let coords = planet.querySelector('.coords span').textContent.trim();
+      this.navigationMatrixPlanetLoadEmitter.emit(coords);
+
+      let display: string = coords + ' - ';
 
       if (planet.classList.contains('neutral')) {
         display += 'Uninhabited';
@@ -130,7 +131,12 @@ export class NavigationMatrixService {
     });
   }
 
-  get navigationMatrixLoadEmitter(): EventEmitter<number> {
-    return this._navigationMatrixLoadEmitter;
+  get navigationMatrixSystemLoadEmitter(): EventEmitter<number> {
+    return this._navigationMatrixSystemLoadEmitter;
+  }
+
+
+  get navigationMatrixPlanetLoadEmitter(): EventEmitter<string> {
+    return this._navigationMatrixPlanetLoadEmitter;
   }
 }

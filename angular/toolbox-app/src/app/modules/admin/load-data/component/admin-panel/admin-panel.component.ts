@@ -17,7 +17,8 @@ export class AdminPanelComponent {
     galaxies: ''
   }
 
-  protected message: string;
+  protected loadedSystem: string;
+  protected loadedPlanet: string = 'x.x.x.x';
   protected donePercentage: number = 0;
 
   async scanGalaxies(): Promise<void> {
@@ -25,17 +26,21 @@ export class AdminPanelComponent {
       return parseInt(item, 10);
     });
     let estimatedCalls:number = this.navigationMatrixService.estimatedNumberOfCalls(galaxies);
-    this.message = '0/' + estimatedCalls;
+    this.loadedSystem = 'Loading 0/' + estimatedCalls + ' systems...';
 
     document.body.classList.add('dgt-overlay-open');
     this.planetsLoadModal.nativeElement.classList.add('show');
     this.planetsLoadModal.nativeElement.classList.remove('hide');
 
-    this.navigationMatrixService.navigationMatrixLoadEmitter.subscribe((value: number): void => {
-      this.message = 'Loading ' + value + '/' + estimatedCalls;
+    this.navigationMatrixService.navigationMatrixSystemLoadEmitter.subscribe((value: number): void => {
+      this.loadedSystem = 'Loading ' + value + '/' + estimatedCalls + ' systems...';
       this.donePercentage = Math.floor((value * 100) / estimatedCalls);
       this.progressBar.nativeElement.style.width = this.donePercentage + '%';
-    })
+    });
+
+    this.navigationMatrixService.navigationMatrixPlanetLoadEmitter.subscribe((value: string): void => {
+      this.loadedPlanet = value;
+    });
 
     await this.navigationMatrixService.extractGalaxies(galaxies);
 

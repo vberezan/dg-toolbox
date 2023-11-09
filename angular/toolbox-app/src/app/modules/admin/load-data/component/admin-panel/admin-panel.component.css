@@ -53,3 +53,7 @@ span.percentage {
   color: #000;
   font-size: 14px;
 }
+
+span.planet-counter {
+  transition: all .3s;
+}

@@ -18,7 +18,10 @@
 </div>
 <div id="dgt-load-planets-overlay-modal" class="hide dgt-overlay-modal" #planetsLoadModal>
   <div class="dgt-display-info">
-    <div class="counter"><span>{{message}}</span></div>
+    <div class="counter">
+      <span class="system-counter">{{loadedSystem}} - </span>
+      <span class="planet-counter">{{loadedPlanet}}</span>
+    </div>
     <div class="progressbar">
       <span class="percentage">{{donePercentage}}%</span>
       <span class="progress" #progress></span>
