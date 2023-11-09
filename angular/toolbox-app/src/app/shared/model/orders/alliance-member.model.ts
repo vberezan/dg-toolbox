@@ -3,6 +3,33 @@ export class AllianceMember {
   private _note: string;
   private _dgId: string;
   private _kickEta: string;
+  private _score: number;
+  private _combatScore: number;
+  private _planets: number;
+
+  get score(): number {
+    return this._score;
+  }
+
+  set score(value: number) {
+    this._score = value;
+  }
+
+  get combatScore(): number {
+    return this._combatScore;
+  }
+
+  set combatScore(value: number) {
+    this._combatScore = value;
+  }
+
+  get planets(): number {
+    return this._planets;
+  }
+
+  set planets(value: number) {
+    this._planets = value;
+  }
 
   get kickEta(): string {
     return this._kickEta;
@@ -41,7 +68,10 @@ export class AllianceMember {
       name: this.name,
       note: this.note,
       dgId: this.dgId,
-      kickEta: this.kickEta
+      kickEta: this.kickEta,
+      planets: this.planets,
+      score: this.score,
+      combatScore: this.combatScore
     }
   }
 }
