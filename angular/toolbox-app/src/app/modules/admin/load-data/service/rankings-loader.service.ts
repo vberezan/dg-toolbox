@@ -98,28 +98,32 @@ export class RankingsLoaderService {
     let savedRankings: number = 0;
     playersStats.forEach((playerStats: PlayerStats, playerId: number): void => {
       if (isScanActive) {
-        let planetsSubscription: Subscription = collectionData(
-          query(planetsRef,
-            where('playerId', '==', playerId)
-          )
-        ).subscribe((items: DocumentData[]): void => {
-          let planets: PlanetStats[] = Object.assign([], items);
-          planets.forEach((planetStats: PlanetStats): void => {
-            playerStats.planets.push(planetStats.location);
+        setTimeout((): void => {
+          let planetsSubscription: Subscription = collectionData(
+            query(planetsRef,
+              where('playerId', '==', playerId)
+            )
+          ).subscribe((items: DocumentData[]): void => {
+            let planets: PlanetStats[] = Object.assign([], items);
+            planets.forEach((planetStats: PlanetStats): void => {
+              playerStats.planets.push(planetStats.location);
+            });
+
+            setDoc(doc(playersRef, playerId.toString()), JSON.parse(JSON.stringify(playerStats)))
+              .then((): void => {
+                this._playersRankingsEmitter.emit({'action': 'save', 'page': ++savedRankings, 'total': playersStats.size});
+              }).catch((error): void => {
+                console.log(error);
+              }
+            );
+
+            planetsSubscription.unsubscribe();
           });
-
-          setDoc(doc(playersRef, playerId.toString()), JSON.parse(JSON.stringify(playerStats)))
-            .then((): void => {
-              this._playersRankingsEmitter.emit({'action': 'save', 'page': ++savedRankings, 'total': playersStats.size});
-            }).catch((error): void => {
-              console.log(error);
-            }
-          );
-
-          planetsSubscription.unsubscribe();
-        });
+        }, 50 * savedRankings);
       }
     });
+
+    await this.delay(scanDelay);
   }
 
   async scanAllianceRankingsScreens(): Promise<void> {
