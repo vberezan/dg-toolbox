@@ -25,6 +25,7 @@ export class AdminPanelComponent {
       return parseInt(item, 10);
     });
     let estimatedCalls:number = this.navigationMatrixService.estimatedNumberOfCalls(galaxies);
+    this.message = '0/' + estimatedCalls;
 
     document.body.classList.add('dgt-overlay-open');
     this.planetsLoadModal.nativeElement.classList.add('show');
