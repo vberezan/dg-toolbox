@@ -34,8 +34,6 @@ export class RankingsLoaderService {
     let dom: Document = new DOMParser().parseFromString(source, 'text/html');
     const pages:number = parseInt(dom.querySelector('.right.lightBorder.opacDarkBackground.padding').textContent.trim().split('of')[dom.querySelector('.right.lightBorder.opacDarkBackground.padding').textContent.trim().split('of').length - 1].trim());
 
-    console.log(pages);
-
     for (let page: number = 1; page <= pages; page++) {
       if (!isScanActive) {
         break;
@@ -55,6 +53,9 @@ export class RankingsLoaderService {
         let player: PlayerStats = playerStats.get(playerId);
 
         player.playerId = playerId;
+
+        console.log(playerId);
+
         player.name = row.querySelector('.playerName').textContent.trim().toLowerCase();
         player.rank = parseInt(row.querySelector('.rank').textContent.trim().replace(/,/g, ''));
         player.score = parseInt(row.querySelector('.score').textContent.trim().replace(/,/g, ''));
@@ -69,6 +70,9 @@ export class RankingsLoaderService {
         let player: PlayerStats = playerStats.get(playerId);
 
         player.combatScore = parseInt(row.querySelector('.score').textContent.trim().replace(/,/g, ''));
+
+        console.log(player.combatScore);
+
         player.combinedScore = player.combatScore + player.score;
       });
 
