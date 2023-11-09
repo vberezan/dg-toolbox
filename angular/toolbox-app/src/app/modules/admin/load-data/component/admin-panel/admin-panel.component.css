@@ -21,12 +21,14 @@
 }
 
 .progressbar {
+  display: block;
+  border-radius: 5px;
   position: relative;
   max-width: 200px;
   width: 100%;
-  margin: 30px auto 0;
-  height: 30px;
-  background: #274545;
+  margin: 0 auto;
+  height: 20px;
+  background: rgb(75,75,75);
   overflow: hidden;
 }
 
@@ -36,7 +38,17 @@ span.progress {
   top: 0;
   bottom: 0;
   width: 0;
-  background: #326666;
   transition: all .3s;
   height: 100%;
+  background: #576740;
+}
+
+span.percentage {
+  float: left;
+  background: transparent;
+  z-index: 9999;
+  height: 100%;
+  line-height: 20px;
+  color: #fff;
+  font-size: 15px;
 }
