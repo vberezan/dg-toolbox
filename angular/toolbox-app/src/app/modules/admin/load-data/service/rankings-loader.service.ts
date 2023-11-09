@@ -103,7 +103,6 @@ export class RankingsLoaderService {
       doc(configRef, 'last-navigation-scan-turn')
     ).subscribe((item: DocumentData): void => {
       let navigationScanTurn: number = Object.assign({value: 0}, item).value;
-      console.log(navigationScanTurn);
 
       // -- get last player rankings scan turn
       let rankingsSubscription: Subscription = docData(
