@@ -16,19 +16,26 @@ export class NavigationMatrixService {
   private _navigationMatrixSystemLoadEmitter: EventEmitter<number> = new EventEmitter();
   private _navigationMatrixPlanetLoadEmitter: EventEmitter<string> = new EventEmitter();
 
-  async extractGalaxies(@Optional() galaxies: number[] = []): Promise<void> {
+  async extractGalaxies(cancelEmitter: EventEmitter<boolean>, @Optional() galaxies: number[] = []): Promise<void> {
     const delayMs: number = 1500 + Math.floor(Math.random() * 1500);
     let scanGalaxies: number[] = this.filterValidGalaxies(galaxies);
     let executed: number = 0;
+    let active: boolean = true;
+
+    cancelEmitter.subscribe((value: boolean): void => {
+      active = !value;
+    });
 
     for (let g: number = 0; g < scanGalaxies.length; g++) {
 
       if (scanGalaxies[g] === 1) {
         for (let se: number = 1; se <= this.G1_SECTORS; se++) {
           for (let sy: number = 1; sy <= this.SYSTEMS; sy++) {
-            await this.extractData(scanGalaxies[g], se, sy);
-            this._navigationMatrixSystemLoadEmitter.emit(++executed);
-            await this.delay(delayMs);
+            if (active) {
+              await this.extractData(scanGalaxies[g], se, sy);
+              this._navigationMatrixSystemLoadEmitter.emit(++executed);
+              await this.delay(delayMs);
+            }
           }
         }
       }
@@ -36,9 +43,11 @@ export class NavigationMatrixService {
       if (scanGalaxies[g] > 1 && scanGalaxies[g] < 14) {
         for (let se: number = 1; se <= this.INNER_SECTORS; se++) {
           for (let sy: number = 1; sy <= this.SYSTEMS; sy++) {
-            await this.extractData(scanGalaxies[g], se, sy);
-            this._navigationMatrixSystemLoadEmitter.emit(++executed);
-            await this.delay(delayMs);
+            if (active) {
+              await this.extractData(scanGalaxies[g], se, sy);
+              this._navigationMatrixSystemLoadEmitter.emit(++executed);
+              await this.delay(delayMs);
+            }
           }
         }
       }
@@ -46,9 +55,11 @@ export class NavigationMatrixService {
       if (scanGalaxies[g] >= 14) {
         for (let se: number = 1; se <= this.OUTER_SECTORS; se++) {
           for (let sy: number = 1; sy <= this.SYSTEMS; sy++) {
-            await this.extractData(scanGalaxies[g], se, sy);
-            this._navigationMatrixSystemLoadEmitter.emit(++executed);
-            await this.delay(delayMs);
+            if (active) {
+              await this.extractData(scanGalaxies[g], se, sy);
+              this._navigationMatrixSystemLoadEmitter.emit(++executed);
+              await this.delay(delayMs);
+            }
           }
         }
       }
@@ -124,8 +135,11 @@ export class NavigationMatrixService {
 
           display += planet.querySelector('.playerName').textContent.trim();
         }
+
+        console.log((coords));
       }, 100 * index);
     });
+
   }
 
   get navigationMatrixSystemLoadEmitter(): EventEmitter<number> {
