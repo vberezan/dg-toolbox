@@ -57,12 +57,14 @@ export class RankingsLoaderService {
         player.rank = parseInt(row.querySelector('.rank').textContent.trim().replace(/,/g, ''));
         player.score = parseInt(row.querySelector('.score').textContent.trim().replace(/,/g, ''));
         player.alliance = row.querySelector('.allianceName').textContent.trim().toLowerCase().replace(/\[/g, '').replace(/]/g, '');
+
+        console.log(player);
       });
 
       source = await firstValueFrom(this.httpClient.get(this.PLAYER_COMBAT_RANKINGS_URL + page, {responseType: 'text'}));
       dom = new DOMParser().parseFromString(source, 'text/html');
 
-      dom.querySelectorAll('.rankingsList .entry').forEach((row: any) => {
+      dom.querySelectorAll('.rankingsList .entry').forEach((row: any): void => {
         const playerId: number = parseInt(row.querySelector('.playerName').attributes['playerId'].value.trim());
         let player: PlayerStats = playerStats.get(playerId);
 
