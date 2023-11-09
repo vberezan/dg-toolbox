@@ -73,12 +73,10 @@ export class OrdersPanelComponent implements OnDestroy {
             'planets': number
           }): void => {
             this.allianceMembers.forEach((member: AllianceMember): void=> {
-              if (member.name === value.name) {
+              if (member.name.toLowerCase() === value.name) {
                 member.score = value.score;
                 member.combatScore = value.combatScore;
                 member.planets = value.planets;
-
-                console.log(value);
               }
             });
             this.changeDetection.detectChanges();
