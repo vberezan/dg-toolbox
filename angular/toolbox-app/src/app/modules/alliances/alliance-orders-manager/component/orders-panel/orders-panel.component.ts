@@ -72,8 +72,6 @@ export class OrdersPanelComponent implements OnDestroy {
             'combatScore': number,
             'planets': number
           }): void => {
-            console.log(value);
-
             this.allianceMembers.forEach((member: AllianceMember): void=> {
               if (parseInt(member.dgId) === value.playerId) {
                 member.score = value.score;
@@ -81,6 +79,8 @@ export class OrdersPanelComponent implements OnDestroy {
                 member.planets = value.planets;
               }
             });
+
+            this.changeDetection.detectChanges();
           });
 
           if (!this.initialized) {
