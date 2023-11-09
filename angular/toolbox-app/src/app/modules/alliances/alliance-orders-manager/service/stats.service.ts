@@ -4,6 +4,8 @@ import {Subscription} from "rxjs";
 import {DocumentData} from "@angular/fire/compat/firestore";
 import {PlayerStats} from "../../../../shared/model/stats/player-stats.model";
 import {AllianceMember} from "../../../../shared/model/orders/alliance-member.model";
+import {hooks} from "prismjs";
+
 
 @Injectable({
   providedIn: 'root'
@@ -23,12 +25,15 @@ export class StatsService {
     const ids: string[] = allianceMembers.map((member: AllianceMember) => member.dgId);
 
 
+    console.log(ids);
+
     let planetsSubscription: Subscription = collectionData(
       query(playersRef,
         where('playerId', 'in', ids)
       )
     ).subscribe((items: DocumentData[]): void => {
       let players: PlayerStats[] = Object.assign([], items);
+      console.log(players.length);
 
       players.forEach((playerStats: PlayerStats) => {
         this.statsEventEmitter.emit({
