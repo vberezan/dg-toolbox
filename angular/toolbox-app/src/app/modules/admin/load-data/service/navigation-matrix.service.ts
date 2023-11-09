@@ -22,26 +22,26 @@ export class NavigationMatrixService {
         let scanGalaxies: number[] = galaxies.length > 0 ? [...galaxies] : [...this.allGalaxies()];
 
         for (let g: number = 1; g <= scanGalaxies.length; g++) {
-            if (g === 1) {
+            if (scanGalaxies[g] === 1) {
                 for (let se: number = 1; se <= this.G1_SECTORS; se++) {
                     for (let sy: number = 1; sy <= this.SYSTEMS; sy++) {
-                        await this.extractData(g, se, sy);
+                        await this.extractData(scanGalaxies[g], se, sy);
                     }
                 }
             }
 
-            if (g > 1 && g < 14) {
+            if (scanGalaxies[g] > 1 && scanGalaxies[g] < 14) {
                 for (let se: number = 1; se <= this.INNER_SECTORS; se++) {
                     for (let sy: number = 1; sy <= this.SYSTEMS; sy++) {
-                        await this.extractData(g, se, sy);
+                        await this.extractData(scanGalaxies[g], se, sy);
                     }
                 }
             }
 
-            if (g >= 14) {
+            if (scanGalaxies[g] >= 14) {
                 for (let se: number = 1; se <= this.OUTER_SECTORS; se++) {
                     for (let sy: number = 1; sy <= this.SYSTEMS; sy++) {
-                        await this.extractData(g, se, sy);
+                        await this.extractData(scanGalaxies[g], se, sy);
                     }
                 }
             }
