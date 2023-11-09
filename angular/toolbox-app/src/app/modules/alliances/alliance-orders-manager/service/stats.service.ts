@@ -12,9 +12,9 @@ import {hooks} from "prismjs";
 })
 export class StatsService {
   private firestore: Firestore = inject(Firestore);
-  private _statsEventEmitter: EventEmitter<{ 'playerId': number, 'score': number, 'combatScore': number, 'planets': number }>
+  private _statsEventEmitter: EventEmitter<{ 'name': string, 'score': number, 'combatScore': number, 'planets': number }>
     = new EventEmitter<{
-    'playerId': number,
+    'name': string,
     'score': number,
     'combatScore': number,
     'planets': number
@@ -33,7 +33,7 @@ export class StatsService {
 
       players.forEach((playerStats: PlayerStats) => {
         this.statsEventEmitter.emit({
-          'playerId': playerStats.playerId,
+          'name': playerStats.name,
           'score': playerStats.score,
           'combatScore': playerStats.combatScore,
           'planets': playerStats.planets.length
@@ -45,7 +45,7 @@ export class StatsService {
   }
 
 
-  get statsEventEmitter(): EventEmitter<{ 'playerId': number, score: number; "combatScore": number; planets: number }> {
+  get statsEventEmitter(): EventEmitter<{ 'name': string, score: number; "combatScore": number; planets: number }> {
     return this._statsEventEmitter;
   }
 }

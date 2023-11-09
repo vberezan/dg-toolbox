@@ -67,19 +67,18 @@ export class OrdersPanelComponent implements OnDestroy {
           this.dgAPI.cleanAlianceMembers();
 
           this.statsService.statsEventEmitter.subscribe((value: {
-            'playerId': number,
+            'name': string,
             'score': number,
             'combatScore': number,
             'planets': number
           }): void => {
             this.allianceMembers.forEach((member: AllianceMember): void=> {
-              if (parseInt(member.dgId) === value.playerId) {
+              if (member.name === value.name) {
                 member.score = value.score;
                 member.combatScore = value.combatScore;
                 member.planets = value.planets;
               }
             });
-
             this.changeDetection.detectChanges();
           });
 
