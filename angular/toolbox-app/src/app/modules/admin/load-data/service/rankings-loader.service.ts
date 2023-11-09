@@ -1,6 +1,6 @@
 import {EventEmitter, inject, Injectable} from '@angular/core';
 import {HttpClient} from "@angular/common/http";
-import {collection, collectionData, doc, Firestore, query, setDoc, where} from "@angular/fire/firestore";
+import {collection, collectionData, doc, docData, Firestore, query, setDoc, where} from "@angular/fire/firestore";
 import {DarkgalaxyApiService} from "../../../darkgalaxy-ui-parser/service/darkgalaxy-api.service";
 import {firstValueFrom, Subscription} from "rxjs";
 import {PlayerStats} from "../../../../shared/model/stats/player-stats.model";
@@ -29,6 +29,7 @@ export class RankingsLoaderService {
     const scanDelay: number = 1500 + Math.floor(Math.random() * 1500);
     const playersRef: any = collection(this.firestore, 'players');
     const planetsRef: any = collection(this.firestore, 'planets');
+    const configRef: any = collection(this.firestore, 'config');
 
 
     let isScanActive: boolean = true;
@@ -95,32 +96,53 @@ export class RankingsLoaderService {
       cancelSubscription.unsubscribe();
     }
 
-    let savedRankings: number = 0;
-    playersStats.forEach((playerStats: PlayerStats, playerId: number): void => {
-      if (isScanActive) {
-        setTimeout((): void => {
-          let planetsSubscription: Subscription = collectionData(
-            query(planetsRef,
-              where('playerId', '==', playerId)
-            )
-          ).subscribe((items: DocumentData[]): void => {
-            let planets: PlanetStats[] = Object.assign([], items);
-            planets.forEach((planetStats: PlanetStats): void => {
-              playerStats.planets.push(planetStats.location);
-            });
 
-            setDoc(doc(playersRef, playerId.toString()), JSON.parse(JSON.stringify(playerStats)))
-              .then((): void => {
-                this._playersRankingsEmitter.emit({'action': 'save', 'page': ++savedRankings, 'total': playersStats.size});
-              }).catch((error): void => {
-                console.log(error);
-              }
-            );
+    // -- FIXME: do it more elegant, without so many subscriptions
+    // -- get last navigation scan turn
+    let navigationSubscription: Subscription = docData(
+      doc(configRef, 'last-navigation-scan-turn'),
+    ).subscribe((item: DocumentData): void => {
+      let navigationScanTurn: number = Object.assign({value: 0}, item).value;
 
-            planetsSubscription.unsubscribe();
+      // -- get last player rankings scan turn
+      let rankingsSubscription: Subscription = docData(
+        doc(configRef, 'last-player-rankings-scan-turn'),
+      ).subscribe((item: DocumentData): void => {
+        let playerRankingsScanTurn: number = Object.assign({value: 0}, item).value;
+
+        // -- if there is a newer navigation scan, update player rankings planets
+        if (navigationScanTurn >= playerRankingsScanTurn) {
+          let savedRankings: number = 0;
+          playersStats.forEach((playerStats: PlayerStats, playerId: number): void => {
+            if (isScanActive) {
+              setTimeout((): void => {
+                let planetsSubscription: Subscription = collectionData(
+                  query(planetsRef,
+                    where('playerId', '==', playerId)
+                  )
+                ).subscribe((items: DocumentData[]): void => {
+                  let planets: PlanetStats[] = Object.assign([], items);
+                  planets.forEach((planetStats: PlanetStats): void => {
+                    playerStats.planets.push(planetStats.location);
+                  });
+
+                  setDoc(doc(playersRef, playerId.toString()), JSON.parse(JSON.stringify(playerStats)))
+                    .then((): void => {
+                      this._playersRankingsEmitter.emit({'action': 'save', 'page': ++savedRankings, 'total': playersStats.size});
+                    }).catch((error): void => {
+                      console.log(error);
+                    }
+                  );
+
+                  planetsSubscription.unsubscribe();
+                });
+              }, 50 * savedRankings);
+            }
           });
-        }, 50 * savedRankings);
-      }
+        }
+        rankingsSubscription.unsubscribe();
+      });
+      navigationSubscription.unsubscribe();
     });
 
     await this.delay(10000);

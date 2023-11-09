@@ -75,5 +75,6 @@ export class BadgeService implements OnDestroy {
 
   ngOnDestroy(): void {
     this.ordersSubscription.unsubscribe();
+    this.configSubscription.unsubscribe();
   }
 }

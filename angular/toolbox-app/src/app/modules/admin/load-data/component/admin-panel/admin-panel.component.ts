@@ -53,6 +53,7 @@ export class AdminPanelComponent {
       'system': number
     }): void => {
       this.loadedSystem = 'Loading ' + value.system + '/' + value.total + ' system: ';
+      this.changeDetection.detectChanges();
       this.planetPercentage = Math.floor((value.system * 100) / value.total);
       this.planetProgressBar.nativeElement.style.width = this.planetPercentage + '%';
     });
