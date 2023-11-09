@@ -35,7 +35,7 @@ export class AdminPanelComponent {
       return parseInt(item, 10);
     });
 
-    this.loadedSystem = 'Loading 0/? system: ';
+    this.loadedSystem = 'Loading planet systems: ';
 
     this.planetProgressBar.nativeElement.style.width = '0%';
     this.planetsLoadModal.nativeElement.classList.add('show');
@@ -63,7 +63,7 @@ export class AdminPanelComponent {
 
   async scanRankingsScreens(): Promise<void> {
     this.playersProgressBar.nativeElement.style.width = '0%';
-    this.loadedRankings = 'Loading 0/? ranking page';
+    this.loadedRankings = 'Loading ranking pages';
 
     this.rankingsLoadModal.nativeElement.classList.add('show');
     this.rankingsLoadModal.nativeElement.classList.remove('hide');
