@@ -63,6 +63,8 @@ export class RankingsLoaderService {
         }
       });
 
+      console.log(playerStats);
+
       source = await firstValueFrom(this.httpClient.get(this.PLAYER_COMBAT_RANKINGS_URL + page, {responseType: 'text'}));
       dom = new DOMParser().parseFromString(source, 'text/html');
 
@@ -73,6 +75,8 @@ export class RankingsLoaderService {
         player.combatScore = parseInt(row.querySelector('.score').textContent.trim().replace(/,/g, ''));
         player.combinedScore = player.combatScore + player.score;
       });
+
+      console.log(playerStats);
 
       await this.delay(scanDelay);
     }
