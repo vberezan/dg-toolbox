@@ -4,6 +4,11 @@ import {BrowserModule} from "@angular/platform-browser";
 import { HttpClientModule} from "@angular/common/http";
 import { AllianceListDirective } from './directive/alliance-list.directive';
 import {FormsModule} from "@angular/forms";
+import {getApp, initializeApp, provideFirebaseApp} from "@angular/fire/app";
+import {environment} from "../../../../environments/environment";
+import {getAuth, provideAuth} from "@angular/fire/auth";
+import {getFirestore, provideFirestore} from "@angular/fire/firestore";
+import {initializeAppCheck, provideAppCheck, ReCaptchaV3Provider} from "@angular/fire/app-check";
 
 
 
@@ -11,7 +16,16 @@ import {FormsModule} from "@angular/forms";
   imports: [
     BrowserModule,
     FormsModule,
-    HttpClientModule
+    HttpClientModule,
+    provideFirebaseApp(() => initializeApp(environment.firebase)),
+    provideAuth(() => getAuth()),
+    provideFirestore(() => getFirestore()),
+    provideAppCheck(() => initializeAppCheck(getApp(),
+      {
+        provider: new ReCaptchaV3Provider(environment.firebase.appCheck.recaptchaSiteKey),
+        isTokenAutoRefreshEnabled: true
+      })
+    ),
   ],
   declarations: [
     AdminPanelComponent,

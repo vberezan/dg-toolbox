@@ -1,12 +1,18 @@
 import {EventEmitter, inject, Injectable, Optional} from '@angular/core';
-import {firstValueFrom} from "rxjs";
+import {firstValueFrom, Subscription} from "rxjs";
 import {HttpClient} from "@angular/common/http";
+import {collection, doc, Firestore, updateDoc} from "@angular/fire/firestore";
+import {PlanetStats} from "../../../../shared/model/stats/planet-stats.model";
+import {DarkgalaxyApiService} from "../../../darkgalaxy-ui-parser/service/darkgalaxy-api.service";
 
 @Injectable({
   providedIn: 'root'
 })
 export class NavigationMatrixService {
   private httpClient: HttpClient = inject(HttpClient);
+  private firestore: Firestore = inject(Firestore);
+  private dgAPI: DarkgalaxyApiService = inject(DarkgalaxyApiService);
+
   private readonly NAVIGATION_BASE_URL: string = 'https://andromeda.darkgalaxy.com/navigation/';
   private readonly GALAXIES: number = 49;
   private readonly G1_SECTORS: number = 25;
@@ -15,12 +21,14 @@ export class NavigationMatrixService {
   private readonly SYSTEMS: number = 4;
   private _navigationMatrixSystemLoadEmitter: EventEmitter<number> = new EventEmitter();
   private _navigationMatrixPlanetLoadEmitter: EventEmitter<string> = new EventEmitter();
+  private planetsSubscription: Subscription;
 
-  async extractGalaxies(cancelEmitter: EventEmitter<boolean>, @Optional() galaxies: number[] = []): Promise<void> {
+  public async extractGalaxies(cancelEmitter: EventEmitter<boolean>, @Optional() galaxies: number[] = []): Promise<void> {
     const delayMs: number = 1500 + Math.floor(Math.random() * 1500);
     let scanGalaxies: number[] = this.filterValidGalaxies(galaxies);
     let executed: number = 0;
     let active: boolean = true;
+    let planetsRef: any = collection(this.firestore, 'planets');
 
     cancelEmitter.subscribe((value: boolean): void => {
       active = !value;
@@ -32,7 +40,7 @@ export class NavigationMatrixService {
         for (let se: number = 1; se <= this.G1_SECTORS; se++) {
           for (let sy: number = 1; sy <= this.SYSTEMS; sy++) {
             if (active) {
-              await this.extractData(scanGalaxies[g], se, sy);
+              await this.loadData(scanGalaxies[g], se, sy, planetsRef);
               this._navigationMatrixSystemLoadEmitter.emit(++executed);
               await this.delay(delayMs);
             }
@@ -44,7 +52,7 @@ export class NavigationMatrixService {
         for (let se: number = 1; se <= this.INNER_SECTORS; se++) {
           for (let sy: number = 1; sy <= this.SYSTEMS; sy++) {
             if (active) {
-              await this.extractData(scanGalaxies[g], se, sy);
+              await this.loadData(scanGalaxies[g], se, sy, planetsRef);
               this._navigationMatrixSystemLoadEmitter.emit(++executed);
               await this.delay(delayMs);
             }
@@ -56,7 +64,7 @@ export class NavigationMatrixService {
         for (let se: number = 1; se <= this.OUTER_SECTORS; se++) {
           for (let sy: number = 1; sy <= this.SYSTEMS; sy++) {
             if (active) {
-              await this.extractData(scanGalaxies[g], se, sy);
+              await this.loadData(scanGalaxies[g], se, sy, planetsRef);
               this._navigationMatrixSystemLoadEmitter.emit(++executed);
               await this.delay(delayMs);
             }
@@ -65,17 +73,6 @@ export class NavigationMatrixService {
       }
     }
   }
-
-  private allGalaxies(): number[] {
-    let result: number[] = [];
-
-    for (let i = 1; i <= this.GALAXIES; i++) {
-      result.push(i);
-    }
-
-    return result
-  }
-
   public estimatedNumberOfCalls(galaxies: number[]): number {
     let result: number = 0;
     let scanGalaxies: number[] = this.filterValidGalaxies(galaxies);
@@ -97,6 +94,63 @@ export class NavigationMatrixService {
     return result;
   }
 
+  private allGalaxies(): number[] {
+    let result: number[] = [];
+
+    for (let i = 1; i <= this.GALAXIES; i++) {
+      result.push(i);
+    }
+
+    return result
+  }
+
+  private async loadData(galaxy: number, sector: number, system: number, planetsRef: any): Promise<void> {
+    let source: string = await firstValueFrom(this.httpClient.get(this.NAVIGATION_BASE_URL + galaxy + '/' + sector + '/' + system, {responseType: 'text'}));
+
+    let dp: DOMParser = new DOMParser();
+    let dd: Document = dp.parseFromString(source, 'text/html');
+    dd.querySelectorAll('.navigation .planets').forEach((planet: any, index:number): void => {
+      setTimeout((): void => {
+        let stats: PlanetStats = new PlanetStats();
+
+        let coords = planet.querySelector('.coords span').textContent.trim();
+        let splitCoords = coords.split(/\./);
+        this.navigationMatrixPlanetLoadEmitter.emit(coords);
+
+        stats.location = coords;
+        stats.galaxy = splitCoords[0];
+        stats.sector = splitCoords[1];
+        stats.system = splitCoords[2];
+        stats.planet = splitCoords[3];
+
+
+        if (planet.classList.contains('neutral')) {
+          stats.owner = 'Uninhabited';
+          stats.alliance = '-'
+        } else {
+          if (planet.querySelector('.allianceName')) {
+            stats.alliance = planet.querySelector('.allianceName').textContent.trim();
+          }
+
+          stats.owner = planet.querySelector('.playerName').textContent.trim();
+        }
+
+        stats.turn = this.dgAPI.gameTurn();
+        updateDoc(doc(planet, stats.location), JSON.parse(JSON.stringify(stats)))
+          .catch((error): void => {
+            console.log(error);
+          });
+      }, 100 * index);
+    });
+
+  }
+
+  private delay = async (ms: number): Promise<unknown> => new Promise(res => setTimeout(res, ms));
+
+  private sleep(ms: number) {
+    return new Promise(resolve => setTimeout(resolve, ms));
+  }
+
   private filterValidGalaxies(galaxies: number[]): number[] {
     let scanGalaxies: number[] = [];
 
@@ -113,35 +167,6 @@ export class NavigationMatrixService {
     return scanGalaxies;
   }
 
-  private async extractData(galaxy: number, sector: number, system: number): Promise<void> {
-    let source: string = await firstValueFrom(this.httpClient.get(this.NAVIGATION_BASE_URL + galaxy + '/' + sector + '/' + system, {responseType: 'text'}));
-
-    let dp: DOMParser = new DOMParser();
-    let dd: Document = dp.parseFromString(source, 'text/html');
-    dd.querySelectorAll('.navigation .planets').forEach((planet: any, index:number): void => {
-      setTimeout((): void => {
-        let coords = planet.querySelector('.coords span').textContent.trim();
-
-        this.navigationMatrixPlanetLoadEmitter.emit(coords);
-
-        let display: string = coords + ' - ';
-
-        if (planet.classList.contains('neutral')) {
-          display += 'Uninhabited';
-        } else {
-          if (planet.querySelector('.allianceName')) {
-            display += planet.querySelector('.allianceName').textContent.trim();
-          }
-
-          display += planet.querySelector('.playerName').textContent.trim();
-        }
-
-        console.log((coords));
-      }, 100 * index);
-    });
-
-  }
-
   get navigationMatrixSystemLoadEmitter(): EventEmitter<number> {
     return this._navigationMatrixSystemLoadEmitter;
   }
@@ -151,9 +176,4 @@ export class NavigationMatrixService {
     return this._navigationMatrixPlanetLoadEmitter;
   }
 
-  private delay = async (ms: number): Promise<unknown> => new Promise(res => setTimeout(res, ms));
-
-  private sleep(ms: number) {
-    return new Promise(resolve => setTimeout(resolve, ms));
-  }
 }
