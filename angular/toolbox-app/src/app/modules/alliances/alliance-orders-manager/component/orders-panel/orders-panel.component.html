@@ -28,8 +28,7 @@
         <span class="combat-score stats">Combat: 55,000,000</span>
         <span class="planets stats">Planets: 44</span>
         <span *ngIf="member.kickEta != null" class="kick-eta">[{{member.kickEta}}]</span>
-        <span *ngIf="member.note != null && member.note.length > 0 && (userRole === UserRole.TEAM_LEADER)"
-              class="note">Note: {{member.note}}</span>
+        <span *ngIf="member.note != null && member.note.length > 0 && (userRole === UserRole.TEAM_LEADER)" class="note">Note: {{member.note}}</span>
         <div *ngIf="userRole === UserRole.ADMIN" class="note-update">
           <span class="label">Note:</span>
           <form (ngSubmit)="onSubmitUpdateNote($event)" #f="ngForm" action="{{member.dgId | updateNoteFormatter}}" method="post">
