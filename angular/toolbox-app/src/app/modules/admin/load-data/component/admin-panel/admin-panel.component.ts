@@ -11,9 +11,11 @@ export class AdminPanelComponent {
 
 
   constructor() {
-    this.navigationMatrixService.extractData(1,1,1);
-    this.navigationMatrixService.extractData(1,1,2);
-    this.navigationMatrixService.extractData(1,1,3);
+    this.navigationMatrixService.extractData(1,1,1).then(value => {
+      this.navigationMatrixService.extractData(1,1,2);
+    }).then(value => {
+      this.navigationMatrixService.extractData(1,1,3);
+    });
   }
 
 }
