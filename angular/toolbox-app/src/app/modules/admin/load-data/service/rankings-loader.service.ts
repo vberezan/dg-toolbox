@@ -56,6 +56,7 @@ export class RankingsLoaderService {
         player.name = row.querySelector('.playerName').textContent.trim().toLowerCase();
         player.rank = parseInt(row.querySelector('.rank').textContent.trim().replace(/,/g, ''));
         player.score = parseInt(row.querySelector('.score').textContent.trim().replace(/,/g, ''));
+        player.combinedScore = player.combatScore + player.score;
         if (row.querySelector('.allianceName')) {
           player.alliance = row.querySelector('.allianceName').textContent.trim().toLowerCase().replace(/\[/g, '').replace(/]/g, '');
         } else {
@@ -68,9 +69,12 @@ export class RankingsLoaderService {
 
       dom.querySelectorAll('.rankingsList .entry').forEach((row: any): void => {
         const playerId: number = parseInt(row.querySelector('.playerName').attributes['playerId'].value.trim());
-        let player: PlayerStats = playerStats.get(playerId);
 
-        console.log(player);
+        if (!playerStats.has(playerId)) {
+          playerStats.set(playerId, new PlayerStats());
+        }
+
+        let player: PlayerStats = playerStats.get(playerId);
 
         player.combatScore = parseInt(row.querySelector('.score').textContent.trim().replace(/,/g, ''));
         player.combinedScore = player.combatScore + player.score;
