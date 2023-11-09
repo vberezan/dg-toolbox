@@ -10,6 +10,8 @@ export class AdminPanelComponent {
     private navigationMatrixService: NavigationMatrixService = inject(NavigationMatrixService);
     protected controls: {
         galaxies: string
+    } = {
+        galaxies: ''
     }
 
     async execute(galaxies: number[]): Promise<void> {
