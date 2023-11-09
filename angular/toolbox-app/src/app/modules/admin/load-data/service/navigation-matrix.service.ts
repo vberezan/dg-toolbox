@@ -153,13 +153,13 @@ export class NavigationMatrixService {
   private filterValidGalaxies(galaxies: number[]): number[] {
     let scanGalaxies: number[] = [];
 
-    if (galaxies.length === 1 && galaxies[0] === 1111) {
+    if (galaxies.length === 1 && galaxies[0] === 149) {
       scanGalaxies.push(...this.allGalaxies());
-    } else if (galaxies.length === 1 && galaxies[0] === 2222) {
+    } else if (galaxies.length === 1 && galaxies[0] === 213) {
       for (let g: number = 2; g <= 13; g++) {
         scanGalaxies.push(g);
       }
-    } else if (galaxies.length === 1 && galaxies[0] === 3333) {
+    } else if (galaxies.length === 1 && galaxies[0] === 1449) {
       for (let g: number = 14; g <= 49; g++) {
         scanGalaxies.push(g);
       }

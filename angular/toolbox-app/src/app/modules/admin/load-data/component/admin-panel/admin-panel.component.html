@@ -5,9 +5,17 @@
   <div class="noPadding ofHidden">
     <div id="admin-load-planets" style="padding: 3px; font-weight: bold">
       <form>
-        <input [(ngModel)]="controls.galaxies" type="text" placeholder="Galaxy list..." dgtAllianceList/>
-        <button (click)="scanGalaxies();" type="submit">Load Galaxies</button>
+        <input [(ngModel)]="controls.galaxies" type="text" placeholder="Galaxies (Ex: 1,2)" dgtAllianceList/>
+        <button (click)="scanGalaxies();" type="submit">Load</button>
       </form>
+      <span class="usage-warning">Use these loads with caution. They are very expensive for both server and Firestore!</span>
+      <ul id="load-planets-example">
+        <li>1,2 - will load G01 and G02</li>
+        <li>34 - will load G34</li>
+        <li>213 - will load first ring (G02-G13)</li>
+        <li>1449 - will load second ring (G14-G49)</li>
+        <li>149 - will load everything (G01-G49)</li>
+      </ul>
     </div>
     <div id="admin-load-rankings" style="padding: 3px; font-weight: bold">
       <form>
