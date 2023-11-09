@@ -9,6 +9,7 @@ import {NavigationMatrixService} from "../../service/navigation-matrix.service";
 export class AdminPanelComponent {
   @ViewChild('planetsLoadModal') planetsLoadModal: ElementRef;
   @ViewChild('progress') progressBar: ElementRef;
+  @ViewChild('planetCounter') planetCounter: ElementRef;
   private navigationMatrixService: NavigationMatrixService = inject(NavigationMatrixService);
 
   protected controls: {
@@ -39,7 +40,9 @@ export class AdminPanelComponent {
     });
 
     this.navigationMatrixService.navigationMatrixPlanetLoadEmitter.subscribe((value: string): void => {
+      this.planetCounter.nativeElement.style.visibility = 'hidden';
       this.loadedPlanet = value;
+      this.planetCounter.nativeElement.style.visibility = 'visible';
     });
 
     await this.navigationMatrixService.extractGalaxies(galaxies);
