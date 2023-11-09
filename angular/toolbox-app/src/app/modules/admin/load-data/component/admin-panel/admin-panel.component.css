@@ -57,3 +57,9 @@ span.percentage {
 span.planet-counter {
   transition: all .1s;
 }
+
+#load-planets-example {
+  font-weight: normal !important;
+  background: #576740 !important;
+  color: #ffffffad !important;
+}
