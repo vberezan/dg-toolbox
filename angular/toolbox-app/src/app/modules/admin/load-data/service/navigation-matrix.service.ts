@@ -100,7 +100,6 @@ export class NavigationMatrixService {
 
   private async extractData(galaxy: number, sector: number, system: number): Promise<void> {
     const delayMs: number = 1500 + Math.floor(Math.random() * 1500);
-    await this.delay(delayMs);
 
     let source: string = await firstValueFrom(this.httpClient.get(this.NAVIGATION_BASE_URL + galaxy + '/' + sector + '/' + system, {responseType: 'text'}));
 
@@ -125,6 +124,8 @@ export class NavigationMatrixService {
         }
       }, 100 * index);
     });
+
+    await this.delay(delayMs);
   }
 
   get navigationMatrixSystemLoadEmitter(): EventEmitter<number> {
