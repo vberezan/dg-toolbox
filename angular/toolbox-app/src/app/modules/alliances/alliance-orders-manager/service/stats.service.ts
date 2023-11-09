@@ -24,12 +24,16 @@ export class StatsService {
     const playersRef: any = collection(this.firestore, 'players');
     const names: string[] = allianceMembers.map((member: AllianceMember) => member.name.toLowerCase());
 
+    console.log(names);
+
     let planetsSubscription: Subscription = collectionData(
       query(playersRef,
         where('name', 'in', names)
       )
     ).subscribe((items: DocumentData[]): void => {
       let players: PlayerStats[] = Object.assign([], items);
+
+      console.log(players.map((player: PlayerStats) => player.name));
 
       players.forEach((playerStats: PlayerStats) => {
         this.statsEventEmitter.emit({
