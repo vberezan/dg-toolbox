@@ -156,9 +156,13 @@ export class NavigationMatrixService {
     if (galaxies.length === 1 && galaxies[0] === 1111) {
       scanGalaxies.push(...this.allGalaxies());
     } else if (galaxies.length === 1 && galaxies[0] === 2222) {
-      scanGalaxies.push(2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13);
+      for (let g: number = 2; g <= 13; g++) {
+        scanGalaxies.push(g);
+      }
     } else if (galaxies.length === 1 && galaxies[0] === 3333) {
-      scanGalaxies.push(14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25, 26, 27, 28, 29, 30, 31, 32, 33, 34, 35, 36, 37, 38, 39, 40, 41, 42, 43, 44, 45, 46, 47, 48, 49);
+      for (let g: number = 14; g <= 49; g++) {
+        scanGalaxies.push(g);
+      }
     } else {
       for (let g: number = 0; g < galaxies.length; g++) {
         if (galaxies[g] > 0 && galaxies[g] <= this.GALAXIES) {
