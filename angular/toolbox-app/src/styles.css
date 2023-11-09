@@ -79,6 +79,7 @@
   height: 100%;
   position: absolute;
   background: rgba(0, 0, 0, 0.75);
+  z-index: 999999999;
 }
 
 .dgt-overlay-open {
