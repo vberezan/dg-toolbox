@@ -136,7 +136,7 @@ export class NavigationMatrixService {
         }
 
         stats.turn = this.dgAPI.gameTurn();
-        updateDoc(doc(planetsRef, stats.location), JSON.parse(JSON.stringify(stats)))
+        setDoc(doc(planetsRef, stats.location), JSON.parse(JSON.stringify(stats)))
           .catch((error): void => {
             console.log(error);
           });
@@ -146,10 +146,6 @@ export class NavigationMatrixService {
   }
 
   private delay = async (ms: number): Promise<unknown> => new Promise(res => setTimeout(res, ms));
-
-  private sleep(ms: number) {
-    return new Promise(resolve => setTimeout(resolve, ms));
-  }
 
   private filterValidGalaxies(galaxies: number[]): number[] {
     let scanGalaxies: number[] = [];
