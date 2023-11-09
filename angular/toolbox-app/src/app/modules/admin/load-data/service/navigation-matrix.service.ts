@@ -24,6 +24,8 @@ export class NavigationMatrixService {
     let scanGalaxies: number[] = this.filterValidGalaxies(galaxies);
     let executed: number = 0;
 
+    console.log(scanGalaxies);
+
     for (let g: number = 0; g < scanGalaxies.length; g++) {
 
       if (scanGalaxies[g] === 1) {
