@@ -77,6 +77,8 @@ export class OrdersPanelComponent implements OnDestroy {
                 member.score = value.score;
                 member.combatScore = value.combatScore;
                 member.planets = value.planets;
+
+                console.log(value);
               }
             });
             this.changeDetection.detectChanges();
