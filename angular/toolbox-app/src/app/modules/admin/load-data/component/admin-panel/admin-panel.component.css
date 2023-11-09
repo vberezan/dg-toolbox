@@ -38,4 +38,5 @@ span.progress {
   width: 0;
   background: #326666;
   transition: all .3s;
+  height: 100%;
 }

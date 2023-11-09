@@ -18,6 +18,7 @@ export class AdminPanelComponent {
   }
 
   protected message: string;
+  protected donePercentage: number = 0;
 
   async scanGalaxies(): Promise<void> {
     let galaxies: number[] = this.controls.galaxies.trim().split(',').map(function (item: string) {
@@ -31,7 +32,8 @@ export class AdminPanelComponent {
 
     this.navigationMatrixService.navigationMatrixLoadEmitter.subscribe((value: number): void => {
       this.message = 'Loading ' + value + '/' + estimatedCalls;
-      this.progressBar.nativeElement.style.width = Math.floor((value * 100) / estimatedCalls) + '%';
+      this.donePercentage = Math.floor((value * 100) / estimatedCalls);
+      this.progressBar.nativeElement.style.width = this.donePercentage + '%';
     })
 
     await this.navigationMatrixService.extractGalaxies(galaxies);
