@@ -47,7 +47,10 @@ export class AdminPanelComponent {
     this.planetsLoadModal.nativeElement.classList.remove('hide');
     document.body.classList.add('dgt-overlay-open');
 
-    this.systemCountSubscription = this.navigationLoaderService.systemScanEmitter.subscribe((value: {'total':number, 'system': number}): void => {
+    this.systemCountSubscription = this.navigationLoaderService.systemScanEmitter.subscribe((value: {
+      'total': number,
+      'system': number
+    }): void => {
       this.loadedSystem = 'Loading ' + value.system + '/' + value.total + ' system: ';
       this.planetPercentage = Math.floor((value.system * 100) / value.total);
       this.planetProgressBar.nativeElement.style.width = this.planetPercentage + '%';
@@ -73,10 +76,30 @@ export class AdminPanelComponent {
     document.body.classList.add('dgt-overlay-open');
 
 
-    this.rankingsCountSubscription = this.rankingsLoaderService.playersRankingsEmitter.subscribe((value: {'total':number, 'page': number}): void => {
-      this.loadedRankings = 'Loading ' + value.page + '/' + value.total + ' ranking page';
-      this.playersPercentage = Math.floor((value.page * 100) / value.total);
-      this.playersProgressBar.nativeElement.style.width = this.playersPercentage + '%';
+    this.rankingsCountSubscription = this.rankingsLoaderService.playersRankingsEmitter.subscribe((value: {
+      'total': number,
+      'page': number,
+      'action': string
+    }): void => {
+      switch (value.action) {
+        case 'load': {
+          this.loadedRankings = 'Loading ' + value.page + '/' + value.total + ' ranking page';
+          this.playersPercentage = Math.floor((value.page * 100) / value.total);
+          this.playersProgressBar.nativeElement.style.width = this.playersPercentage + '%';
+          break;
+        }
+        case 'save': {
+          this.loadedRankings = 'Saving ' + value.page + '/' + value.total + ' ranking';
+          this.playersPercentage = Math.floor((value.page * 100) / value.total);
+          this.playersProgressBar.nativeElement.style.width = this.playersPercentage + '%';
+          break;
+        }
+        default : {
+          break;
+        }
+
+      }
+
     });
 
 

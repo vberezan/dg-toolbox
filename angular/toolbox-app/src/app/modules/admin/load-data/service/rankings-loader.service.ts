@@ -5,7 +5,6 @@ import {DarkgalaxyApiService} from "../../../darkgalaxy-ui-parser/service/darkga
 import {firstValueFrom, Subscription} from "rxjs";
 import {PlayerStats} from "../../../../shared/model/stats/player-stats.model";
 import {DocumentData} from "@angular/fire/compat/firestore";
-import {PlanetScan} from "../../../../shared/model/scans/shared-scans-planet-scan.model";
 import {PlanetStats} from "../../../../shared/model/stats/planet-stats.model";
 
 @Injectable({
@@ -22,7 +21,8 @@ export class RankingsLoaderService {
   private firestore: Firestore = inject(Firestore);
   private dgAPI: DarkgalaxyApiService = inject(DarkgalaxyApiService);
 
-  private _playersRankingsEmitter: EventEmitter<{'total':number, 'page': number}> = new EventEmitter<{'total':number, 'page': number}>();
+  private _playersRankingsEmitter: EventEmitter<{ 'total': number, 'page': number, 'action': string }>
+    = new EventEmitter<{ 'total': number, 'page': number, 'action': string }>();
 
 
   async scanPlayerRankingsScreens(cancelScanEmitter: EventEmitter<boolean>): Promise<void> {
@@ -38,7 +38,7 @@ export class RankingsLoaderService {
     });
 
     let scannedRankings: number = 0;
-    let playerStats: Map<number, PlayerStats> = new Map<number, PlayerStats>();
+    let playersStats: Map<number, PlayerStats> = new Map<number, PlayerStats>();
     let source: string = await firstValueFrom(this.httpClient.get(this.PLAYER_RANKINGS_URL, {responseType: 'text'}));
     let dom: Document = new DOMParser().parseFromString(source, 'text/html');
     const pages: number = parseInt(dom.querySelector('.right.lightBorder.opacDarkBackground.padding').textContent.trim().split('of')[dom.querySelector('.right.lightBorder.opacDarkBackground.padding').textContent.trim().split('of').length - 1].trim());
@@ -51,11 +51,11 @@ export class RankingsLoaderService {
         dom.querySelectorAll('.rankingsList .entry').forEach((row: any): void => {
           const playerId: number = parseInt(row.querySelector('.playerName').attributes['playerId'].value.trim());
 
-          if (!playerStats.has(playerId)) {
-            playerStats.set(playerId, new PlayerStats());
+          if (!playersStats.has(playerId)) {
+            playersStats.set(playerId, new PlayerStats());
           }
 
-          let player: PlayerStats = playerStats.get(playerId);
+          let player: PlayerStats = playersStats.get(playerId);
 
           player.playerId = playerId;
           player.name = row.querySelector('.playerName').textContent.trim().toLowerCase();
@@ -69,7 +69,7 @@ export class RankingsLoaderService {
           }
         });
 
-        this._playersRankingsEmitter.emit({'page': ++scannedRankings, 'total': 2*pages});
+        this._playersRankingsEmitter.emit({'action': 'load', 'page': ++scannedRankings, 'total': 2 * pages});
         await this.delay(scanDelay);
 
         source = await firstValueFrom(this.httpClient.get(this.PLAYER_COMBAT_RANKINGS_URL + page, {responseType: 'text'}));
@@ -78,44 +78,48 @@ export class RankingsLoaderService {
         dom.querySelectorAll('.rankingsList .entry').forEach((row: any): void => {
           const playerId: number = parseInt(row.querySelector('.playerName').attributes['playerId'].value.trim());
 
-          if (!playerStats.has(playerId)) {
-            playerStats.set(playerId, new PlayerStats());
+          if (!playersStats.has(playerId)) {
+            playersStats.set(playerId, new PlayerStats());
           }
 
-          let player: PlayerStats = playerStats.get(playerId);
+          let player: PlayerStats = playersStats.get(playerId);
 
           player.combatScore = parseInt(row.querySelector('.score').textContent.trim().replace(/,/g, ''));
           player.combinedScore = player.combatScore + player.score;
         });
 
-        this._playersRankingsEmitter.emit({'page': ++scannedRankings, 'total': 2*pages});
+        this._playersRankingsEmitter.emit({'action': 'load', 'page': ++scannedRankings, 'total': 2 * pages});
         await this.delay(scanDelay);
       }
 
       cancelSubscription.unsubscribe();
     }
 
-    // if (isScanActive) {
-    //   playerStats.forEach((playerStats: PlayerStats, playerId: number): void => {
-    //     let planetsSubscription: Subscription = collectionData(
-    //       query(planetsRef,
-    //         where('playerId', '==', playerId)
-    //       )
-    //     ).subscribe((items: DocumentData[]): void => {
-    //       let planets: PlanetStats[] = Object.assign([], items);
-    //       planets.forEach((planetStats: PlanetStats): void => {
-    //         playerStats.planets.push(planetStats.location);
-    //       });
-    //
-    //       setDoc(doc(playersRef, playerId.toString()), JSON.parse(JSON.stringify(playerStats)))
-    //         .catch((error): void => {
-    //           console.log(error);
-    //         });
-    //
-    //       planetsSubscription.unsubscribe();
-    //     });
-    //   });
-    // }
+    let savedRankings: number = 0;
+    playersStats.forEach((playerStats: PlayerStats, playerId: number): void => {
+      if (isScanActive) {
+        let planetsSubscription: Subscription = collectionData(
+          query(planetsRef,
+            where('playerId', '==', playerId)
+          )
+        ).subscribe((items: DocumentData[]): void => {
+          let planets: PlanetStats[] = Object.assign([], items);
+          planets.forEach((planetStats: PlanetStats): void => {
+            playerStats.planets.push(planetStats.location);
+          });
+
+          setDoc(doc(playersRef, playerId.toString()), JSON.parse(JSON.stringify(playerStats)))
+            .then((): void => {
+              this._playersRankingsEmitter.emit({'action': 'save', 'page': ++savedRankings, 'total': playersStats.size});
+            }).catch((error): void => {
+              console.log(error);
+            }
+          );
+
+          planetsSubscription.unsubscribe();
+        });
+      }
+    });
   }
 
   async scanAllianceRankingsScreens(): Promise<void> {
@@ -125,7 +129,7 @@ export class RankingsLoaderService {
   private delay = async (ms: number): Promise<unknown> => new Promise(res => setTimeout(res, ms));
 
 
-  get playersRankingsEmitter(): EventEmitter<{'total':number, 'page': number}> {
+  get playersRankingsEmitter(): EventEmitter<{ 'total': number, 'page': number, 'action': string }> {
     return this._playersRankingsEmitter;
   }
 }
