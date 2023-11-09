@@ -62,4 +62,8 @@ span.planet-counter {
   font-weight: normal !important;
   background: #576740 !important;
   color: #ffffffad !important;
+  font-size: 11px;
+  text-align: justify;
+  padding: 5px;
+  border-radius: 3px;
 }
