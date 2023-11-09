@@ -61,8 +61,10 @@ export class NavigationMatrixService {
   }
 
   async extractData(galaxy: number, sector: number, system: number): Promise<void> {
+    console.log('Waiting for 5s...');
+    await this.delay(5000);
 
-    let source: string = await firstValueFrom(this.httpClient.get('https://andromeda.darkgalaxy.com/navigation/' + galaxy + '/' + sector + '/' + system, {responseType: 'text'}));
+    let source:string = await firstValueFrom(this.httpClient.get('https://andromeda.darkgalaxy.com/navigation/' + galaxy + '/' + sector + '/' + system, {responseType: 'text'}));
 
     let dp: DOMParser = new DOMParser();
     let dd: Document = dp.parseFromString(source, 'text/html');
