@@ -6,7 +6,7 @@
     <div id="admin-load-planets" style="padding: 3px; font-weight: bold">
       <form>
         <input [(ngModel)]="controls.galaxies" type="text" placeholder="Galaxy list..." dgtAllianceList/>
-        <dialog #loadingDialog><button (click)="loadingDialog.close()">
+        <dialog id="loading-modal" #loadingDialog><button (click)="loadingDialog.close()">
           OK
         </button></dialog>
         <button (click)="loadingDialog.show(); scanGalaxies();" type="submit">Load Galaxies</button>
