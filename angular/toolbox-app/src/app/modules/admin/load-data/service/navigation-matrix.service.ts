@@ -1,7 +1,7 @@
 import {EventEmitter, inject, Injectable, Optional} from '@angular/core';
 import {firstValueFrom, Subscription} from "rxjs";
 import {HttpClient} from "@angular/common/http";
-import {addDoc, collection, doc, Firestore, setDoc, updateDoc} from "@angular/fire/firestore";
+import {collection, doc, Firestore, setDoc} from "@angular/fire/firestore";
 import {PlanetStats} from "../../../../shared/model/stats/planet-stats.model";
 import {DarkgalaxyApiService} from "../../../darkgalaxy-ui-parser/service/darkgalaxy-api.service";
 
@@ -73,6 +73,7 @@ export class NavigationMatrixService {
       }
     }
   }
+
   public estimatedNumberOfCalls(galaxies: number[]): number {
     let result: number = 0;
     let scanGalaxies: number[] = this.filterValidGalaxies(galaxies);
@@ -109,7 +110,7 @@ export class NavigationMatrixService {
 
     let dp: DOMParser = new DOMParser();
     let dd: Document = dp.parseFromString(source, 'text/html');
-    dd.querySelectorAll('.navigation .planets').forEach((planet: any, index:number): void => {
+    dd.querySelectorAll('.navigation .planets').forEach((planet: any, index: number): void => {
       setTimeout((): void => {
         let stats: PlanetStats = new PlanetStats();
 
@@ -152,8 +153,12 @@ export class NavigationMatrixService {
   private filterValidGalaxies(galaxies: number[]): number[] {
     let scanGalaxies: number[] = [];
 
-    if (galaxies.length === 1 && galaxies[0] === 2023) {
+    if (galaxies.length === 1 && galaxies[0] === 1111) {
       scanGalaxies.push(...this.allGalaxies());
+    } else if (galaxies.length === 1 && galaxies[0] === 2222) {
+      scanGalaxies.push(2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13);
+    } else if (galaxies.length === 1 && galaxies[0] === 3333) {
+      scanGalaxies.push(14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25, 26, 27, 28, 29, 30, 31, 32, 33, 34, 35, 36, 37, 38, 39, 40, 41, 42, 43, 44, 45, 46, 47, 48, 49);
     } else {
       for (let g: number = 0; g < galaxies.length; g++) {
         if (galaxies[g] > 0 && galaxies[g] <= this.GALAXIES) {
