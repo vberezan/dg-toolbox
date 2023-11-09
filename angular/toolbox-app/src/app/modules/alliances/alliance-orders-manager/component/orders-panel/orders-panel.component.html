@@ -13,14 +13,16 @@
   <div *ngIf="userRole === UserRole.TEAM_LEADER || userRole === UserRole.ADMIN" class="dgt-orders-manager-panel admin">
     <div *ngFor="let member of allianceMembers; index as idx" class="dgt-orders-manager-member">
       <div class="player">
-        <span class="name">{{member.name}}</span>
-        <div *ngIf="member.kickEta == null && userRole === UserRole.ADMIN" class="dgt-orders-manager-kick">
-          <form (ngSubmit)="onSubmitKickMember($event)" #f="ngForm" action="/alliances/kick/" method="post">
-            <input type="hidden" name="{{member.dgId | kickMemberFormatter}}" value="Kick Member"/>
-            <button type="submit">
-              <fa-icon [icon]="['far','circle-xmark']"/>
-            </button>
-          </form>
+        <div class="name-wrapper">
+          <span class="name">{{member.name}}</span>
+          <div *ngIf="member.kickEta == null && userRole === UserRole.ADMIN" class="dgt-orders-manager-kick">
+            <form (ngSubmit)="onSubmitKickMember($event)" #f="ngForm" action="/alliances/kick/" method="post">
+              <input type="hidden" name="{{member.dgId | kickMemberFormatter}}" value="Kick Member"/>
+              <button type="submit">
+                <fa-icon [icon]="['far','circle-xmark']"/>
+              </button>
+            </form>
+          </div>
         </div>
         <span class="score stats">Score: 400,000</span>
         <span class="combat-score stats">Combat: 55,000,000</span>

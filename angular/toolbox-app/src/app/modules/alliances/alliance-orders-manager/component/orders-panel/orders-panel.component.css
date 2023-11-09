@@ -68,7 +68,8 @@ span.instructions {
 }
 
 .dgt-orders-manager-member .name {
-  font-size: 16px;
+  font-size: 14px;
+  line-height: 22px;
   color: #ffd46f;
   float: left;
 }
@@ -291,5 +292,16 @@ span.stats {
   color: #fff !important;
   font-size: 12px !important;
   font-weight: normal !important;
+  margin-left: 30px;
+  line-height: 22px;
+}
+
+span.score {
   margin-left: 10px !important;
+}
+
+div.name-wrapper {
+  width: 100px;
+  overflow: hidden;
+  min-width: 100px !important;
 }
