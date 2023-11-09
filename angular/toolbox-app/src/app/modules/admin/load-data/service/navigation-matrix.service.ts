@@ -102,9 +102,6 @@ export class NavigationMatrixService {
 
   private async extractData(galaxy: number, sector: number, system: number): Promise<void> {
     const delayMs: number = 2500 + Math.floor(Math.random() * 2500);
-
-    console.log("Extracting system " + galaxy + '.' + sector + '.' + system + ' after ' + delayMs + 'ms');
-
     await this.delay(delayMs);
 
     let source: string = await firstValueFrom(this.httpClient.get(this.NAVIGATION_BASE_URL + galaxy + '/' + sector + '/' + system, {responseType: 'text'}));
@@ -114,6 +111,9 @@ export class NavigationMatrixService {
     dd.querySelectorAll('.navigation .planets').forEach((planet: any): void => {
       let coords = planet.querySelector('.coords span').textContent.trim();
       this.navigationMatrixPlanetLoadEmitter.emit(coords);
+      setTimeout(() => {
+        console.log('sleeping');
+      }, 100);
 
       let display: string = coords + ' - ';
 
