@@ -1,7 +1,7 @@
 import {EventEmitter, inject, Injectable, Optional} from '@angular/core';
 import {firstValueFrom, Subscription} from "rxjs";
 import {HttpClient} from "@angular/common/http";
-import {collection, doc, Firestore, updateDoc} from "@angular/fire/firestore";
+import {addDoc, collection, doc, Firestore, setDoc, updateDoc} from "@angular/fire/firestore";
 import {PlanetStats} from "../../../../shared/model/stats/planet-stats.model";
 import {DarkgalaxyApiService} from "../../../darkgalaxy-ui-parser/service/darkgalaxy-api.service";
 
@@ -136,7 +136,7 @@ export class NavigationMatrixService {
         }
 
         stats.turn = this.dgAPI.gameTurn();
-        updateDoc(doc(planet, stats.location), JSON.parse(JSON.stringify(stats)))
+        setDoc(doc(planet, stats.location), JSON.parse(JSON.stringify(stats)))
           .catch((error): void => {
             console.log(error);
           });
