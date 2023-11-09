@@ -41,10 +41,9 @@ export class RankingsLoaderService {
 
       let playerStats: Map<number, PlayerStats> = new Map<number, PlayerStats>();
       source = await firstValueFrom(this.httpClient.get(this.PLAYER_RANKINGS_URL + page, {responseType: 'text'}));
-      console.log(source);
       dom = new DOMParser().parseFromString(source, 'text/html');
 
-      dom.querySelectorAll('.playerRankingsList .entry').forEach((row: any): void => {
+      dom.querySelectorAll('.rankingsList .entry').forEach((row: any): void => {
         const playerId: number = parseInt(row.querySelector('.playerName').attributes['playerId'].value.trim());
 
         if (!playerStats.has(playerId)) {
