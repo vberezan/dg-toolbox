@@ -19,3 +19,23 @@
   width: 100%;
   display: block;
 }
+
+.progressbar {
+  position: relative;
+  max-width: 200px;
+  width: 100%;
+  margin: 30px auto 0;
+  height: 30px;
+  background: #274545;
+  overflow: hidden;
+}
+
+span.progress {
+  position: absolute;
+  left: 0;
+  top: 0;
+  bottom: 0;
+  width: 0;
+  background: #326666;
+  transition: all .3s;
+}

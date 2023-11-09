@@ -8,6 +8,7 @@ import {NavigationMatrixService} from "../../service/navigation-matrix.service";
 })
 export class AdminPanelComponent {
   @ViewChild('planetsLoadModal') planetsLoadModal: ElementRef;
+  @ViewChild('progress') progressBar: ElementRef;
   private navigationMatrixService: NavigationMatrixService = inject(NavigationMatrixService);
 
   protected controls: {
@@ -19,20 +20,22 @@ export class AdminPanelComponent {
   protected message: string;
 
   async scanGalaxies(): Promise<void> {
+    let galaxies: number[] = this.controls.galaxies.trim().split(',').map(function (item: string) {
+      return parseInt(item, 10);
+    });
+    let estimatedCalls = this.navigationMatrixService.estimatedNumberOfCalls(galaxies);
+
     document.body.classList.add('dgt-overlay-open');
     this.planetsLoadModal.nativeElement.classList.add('show');
     this.planetsLoadModal.nativeElement.classList.remove('hide');
 
-    this.navigationMatrixService.navigationMatrixLoadEmitter.subscribe((value: string): void => {
-      this.message = value;
+    this.navigationMatrixService.navigationMatrixLoadEmitter.subscribe((value: number): void => {
+      this.message = 'Loading ' + value + '/' + estimatedCalls;
+      this.progressBar.nativeElement.css({'width' : Math.floor((estimatedCalls * 100) / value) + '%'});
     })
 
     await this.navigationMatrixService
-      .extractGalaxies(
-        this.controls.galaxies.trim().split(',').map(function (item: string) {
-          return parseInt(item, 10);
-        })
-      );
+      .extractGalaxies();
 
     document.body.classList.remove('dgt-overlay-open');
     this.planetsLoadModal.nativeElement.classList.add('hide');

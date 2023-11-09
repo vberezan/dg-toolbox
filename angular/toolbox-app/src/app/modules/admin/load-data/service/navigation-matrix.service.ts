@@ -13,7 +13,7 @@ export class NavigationMatrixService {
   private readonly INNER_SECTORS: number = 6;
   private readonly OUTER_SECTORS: number = 2;
   private readonly SYSTEMS: number = 4;
-  private _navigationMatrixLoadEmitter: EventEmitter<String> = new EventEmitter();
+  private _navigationMatrixLoadEmitter: EventEmitter<number> = new EventEmitter();
 
   constructor() {
   }
@@ -21,31 +21,16 @@ export class NavigationMatrixService {
   private delay = async (ms: number) => new Promise(res => setTimeout(res, ms));
 
   async extractGalaxies(@Optional() galaxies: number[] = []): Promise<void> {
-    let scanGalaxies: number[] = [];
+    let scanGalaxies: number[] = this.filterValidGalaxies(galaxies);
     let executed: number = 0;
 
-    if (galaxies.length > 0) {
-      for (let g: number = 0; g < galaxies.length; g++) {
-        if (galaxies[g] > 0 && galaxies[g] <= this.GALAXIES) {
-          scanGalaxies.push(galaxies[g]);
-        }
-      }
-    } else {
-      scanGalaxies.push(...this.allGalaxies());
-    }
-
-    let calls: number = this.estimatedNumberOfCalls(scanGalaxies);
-
-    console.log("Scanning galaxies: [" + scanGalaxies.toString() + "]. Estimated number of calls: " + calls);
-
     for (let g: number = 0; g < scanGalaxies.length; g++) {
-      console.log("Galaxy " + scanGalaxies[g] + " scan started!");
 
       if (scanGalaxies[g] === 1) {
         for (let se: number = 1; se <= this.G1_SECTORS; se++) {
           for (let sy: number = 1; sy <= this.SYSTEMS; sy++) {
             await this.extractData(scanGalaxies[g], se, sy);
-            this._navigationMatrixLoadEmitter.emit('' + ++executed + '/' + calls);
+            this._navigationMatrixLoadEmitter.emit(++executed);
           }
         }
       }
@@ -54,7 +39,7 @@ export class NavigationMatrixService {
         for (let se: number = 1; se <= this.INNER_SECTORS; se++) {
           for (let sy: number = 1; sy <= this.SYSTEMS; sy++) {
             await this.extractData(scanGalaxies[g], se, sy);
-            this._navigationMatrixLoadEmitter.emit('' + ++executed + '/' + calls);
+            this._navigationMatrixLoadEmitter.emit(++executed);
           }
         }
       }
@@ -63,12 +48,10 @@ export class NavigationMatrixService {
         for (let se: number = 1; se <= this.OUTER_SECTORS; se++) {
           for (let sy: number = 1; sy <= this.SYSTEMS; sy++) {
             await this.extractData(scanGalaxies[g], se, sy);
-            this._navigationMatrixLoadEmitter.emit('' + ++executed + '/' + calls);
+            this._navigationMatrixLoadEmitter.emit(++executed);
           }
         }
       }
-
-      console.log("Galaxy " + scanGalaxies[g] + " scan finished!");
     }
   }
 
@@ -82,24 +65,41 @@ export class NavigationMatrixService {
     return result
   }
 
-  private estimatedNumberOfCalls(galaxies: number[]): number {
+  public estimatedNumberOfCalls(galaxies: number[]): number {
     let result: number = 0;
+    let scanGalaxies: number[] = this.filterValidGalaxies(galaxies);
 
-    for (let g: number = 0; g < galaxies.length; g++) {
-      if (galaxies[g] === 1) {
+    for (let g: number = 0; g < scanGalaxies.length; g++) {
+      if (scanGalaxies[g] === 1) {
         result += this.G1_SECTORS * this.SYSTEMS;
       }
 
-      if (galaxies[g] > 1 && galaxies[g] < 14) {
+      if (scanGalaxies[g] > 1 && scanGalaxies[g] < 14) {
         result += this.INNER_SECTORS * this.SYSTEMS;
       }
 
-      if (galaxies[g] >= 14) {
+      if (scanGalaxies[g] >= 14) {
         result += this.OUTER_SECTORS * this.SYSTEMS;
       }
     }
 
     return result;
+  }
+
+  private filterValidGalaxies(galaxies: number[]): number[] {
+    let scanGalaxies: number[] = [];
+
+    if (galaxies.length > 0) {
+      for (let g: number = 0; g < galaxies.length; g++) {
+        if (galaxies[g] > 0 && galaxies[g] <= this.GALAXIES) {
+          scanGalaxies.push(galaxies[g]);
+        }
+      }
+    } else {
+      scanGalaxies.push(...this.allGalaxies());
+    }
+
+    return scanGalaxies;
   }
 
   private async extractData(galaxy: number, sector: number, system: number): Promise<void> {
@@ -130,7 +130,7 @@ export class NavigationMatrixService {
     });
   }
 
-  get navigationMatrixLoadEmitter(): EventEmitter<String> {
+  get navigationMatrixLoadEmitter(): EventEmitter<number> {
     return this._navigationMatrixLoadEmitter;
   }
 }
