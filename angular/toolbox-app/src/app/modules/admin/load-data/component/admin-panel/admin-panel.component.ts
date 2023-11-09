@@ -24,6 +24,7 @@ export class AdminPanelComponent {
     galaxies: ''
   }
 
+  protected loadedRankings: string;
   protected loadedSystem: string;
   protected loadedPlanet: string = 'x.x.x.x';
   protected planetPercentage: number = 0;
@@ -34,17 +35,16 @@ export class AdminPanelComponent {
       return parseInt(item, 10);
     });
 
-    let totalSystemsNr:number = this.navigationLoaderService.totalSystemsNr(galaxies);
-    this.loadedSystem = 'Loading 0/' + totalSystemsNr + ' systems: ';
+    this.loadedSystem = 'Loading 0/? system: ';
 
     this.planetProgressBar.nativeElement.style.width = '0%';
-    document.body.classList.add('dgt-overlay-open');
     this.planetsLoadModal.nativeElement.classList.add('show');
     this.planetsLoadModal.nativeElement.classList.remove('hide');
+    document.body.classList.add('dgt-overlay-open');
 
-    this.navigationLoaderService.systemScanEmitter.subscribe((value: number): void => {
-      this.loadedSystem = 'Loading ' + value + '/' + totalSystemsNr + ' systems: ';
-      this.planetPercentage = Math.floor((value * 100) / totalSystemsNr);
+    this.navigationLoaderService.systemScanEmitter.subscribe((value: {'total':number, 'system': number}): void => {
+      this.loadedSystem = 'Loading ' + value + '/' + value.total + ' system: ';
+      this.planetPercentage = Math.floor((value.system * 100) / value.total);
       this.planetProgressBar.nativeElement.style.width = this.planetPercentage + '%';
     });
 
@@ -62,9 +62,20 @@ export class AdminPanelComponent {
   }
 
   async scanRankingsScreens(): Promise<void> {
-    document.body.classList.add('dgt-overlay-open');
+    this.playersProgressBar.nativeElement.style.width = '0%';
+    this.loadedRankings = 'Loading 0/? ranking page';
+
     this.rankingsLoadModal.nativeElement.classList.add('show');
     this.rankingsLoadModal.nativeElement.classList.remove('hide');
+    document.body.classList.add('dgt-overlay-open');
+
+
+    this.rankingsLoaderService.playersRankingsEmitter.subscribe((value: {'total':number, 'page': number}): void => {
+      this.loadedRankings = 'Loading ' + value.page + '/' + value.total + ' ranking page';
+      this.playersPercentage = Math.floor((value.page * 100) / value.total);
+      this.playersProgressBar.nativeElement.style.width = this.playersPercentage + '%';
+    });
+
 
     await this.rankingsLoaderService.scanPlayerRankingsScreens(this.cancelScanEmitter);
     // await this.rankingsLoaderService.scanAllianceRankingsScreens();

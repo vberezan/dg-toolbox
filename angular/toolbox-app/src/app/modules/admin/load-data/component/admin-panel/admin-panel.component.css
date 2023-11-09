@@ -1,7 +1,14 @@
+#dgt-load-planets-overlay-modal {
+  height: 90px;
+}
+
+#dgt-load-rankings-overlay-modal {
+  height: 90px;
+}
+
 .dgt-display-info {
   margin: auto;
   width: 300px;
-  height: 90px;
   left: calc(50% - 150px);
   top: calc(50% - 45px);
   border: 1px solid #676767;
