@@ -67,3 +67,7 @@ span.planet-counter {
   padding: 5px;
   border-radius: 3px;
 }
+
+#load-planets-example .usage-warning {
+  float: left;
+}
