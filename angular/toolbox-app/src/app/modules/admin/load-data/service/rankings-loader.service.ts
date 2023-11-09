@@ -36,56 +36,54 @@ export class RankingsLoaderService {
     const pages:number = parseInt(dom.querySelector('.right.lightBorder.opacDarkBackground.padding').textContent.trim().split('of')[dom.querySelector('.right.lightBorder.opacDarkBackground.padding').textContent.trim().split('of').length - 1].trim());
 
     for (let page: number = 1; page <= pages; page++) {
-      if (!isScanActive) {
-        break;
+      if (isScanActive) {
+        source = await firstValueFrom(this.httpClient.get(this.PLAYER_RANKINGS_URL + page, {responseType: 'text'}));
+        dom = new DOMParser().parseFromString(source, 'text/html');
+
+        dom.querySelectorAll('.rankingsList .entry').forEach((row: any): void => {
+          const playerId: number = parseInt(row.querySelector('.playerName').attributes['playerId'].value.trim());
+
+          if (!playerStats.has(playerId)) {
+            playerStats.set(playerId, new PlayerStats());
+          }
+
+          let player: PlayerStats = playerStats.get(playerId);
+
+          player.playerId = playerId;
+          player.name = row.querySelector('.playerName').textContent.trim().toLowerCase();
+          player.rank = parseInt(row.querySelector('.rank').textContent.trim().replace(/,/g, ''));
+          player.score = parseInt(row.querySelector('.score').textContent.trim().replace(/,/g, ''));
+          player.combinedScore = player.combatScore + player.score;
+          if (row.querySelector('.allianceName')) {
+            player.alliance = row.querySelector('.allianceName').textContent.trim().toLowerCase().replace(/\[/g, '').replace(/]/g, '');
+          } else {
+            player.alliance = '-';
+          }
+        });
+
+        source = await firstValueFrom(this.httpClient.get(this.PLAYER_COMBAT_RANKINGS_URL + page, {responseType: 'text'}));
+        dom = new DOMParser().parseFromString(source, 'text/html');
+
+        dom.querySelectorAll('.rankingsList .entry').forEach((row: any): void => {
+          const playerId: number = parseInt(row.querySelector('.playerName').attributes['playerId'].value.trim());
+
+          if (!playerStats.has(playerId)) {
+            playerStats.set(playerId, new PlayerStats());
+          }
+
+          let player: PlayerStats = playerStats.get(playerId);
+
+          player.combatScore = parseInt(row.querySelector('.score').textContent.trim().replace(/,/g, ''));
+          player.combinedScore = player.combatScore + player.score;
+        });
+
+        console.log(playerStats);
+
+        await this.delay(scanDelay);
       }
-
-      source = await firstValueFrom(this.httpClient.get(this.PLAYER_RANKINGS_URL + page, {responseType: 'text'}));
-      dom = new DOMParser().parseFromString(source, 'text/html');
-
-      dom.querySelectorAll('.rankingsList .entry').forEach((row: any): void => {
-        const playerId: number = parseInt(row.querySelector('.playerName').attributes['playerId'].value.trim());
-
-        if (!playerStats.has(playerId)) {
-          playerStats.set(playerId, new PlayerStats());
-        }
-
-        let player: PlayerStats = playerStats.get(playerId);
-
-        player.playerId = playerId;
-        player.name = row.querySelector('.playerName').textContent.trim().toLowerCase();
-        player.rank = parseInt(row.querySelector('.rank').textContent.trim().replace(/,/g, ''));
-        player.score = parseInt(row.querySelector('.score').textContent.trim().replace(/,/g, ''));
-        player.combinedScore = player.combatScore + player.score;
-        if (row.querySelector('.allianceName')) {
-          player.alliance = row.querySelector('.allianceName').textContent.trim().toLowerCase().replace(/\[/g, '').replace(/]/g, '');
-        } else {
-          player.alliance = '-';
-        }
-      });
-
-      source = await firstValueFrom(this.httpClient.get(this.PLAYER_COMBAT_RANKINGS_URL + page, {responseType: 'text'}));
-      dom = new DOMParser().parseFromString(source, 'text/html');
-
-      dom.querySelectorAll('.rankingsList .entry').forEach((row: any): void => {
-        const playerId: number = parseInt(row.querySelector('.playerName').attributes['playerId'].value.trim());
-
-        if (!playerStats.has(playerId)) {
-          playerStats.set(playerId, new PlayerStats());
-        }
-
-        let player: PlayerStats = playerStats.get(playerId);
-
-        player.combatScore = parseInt(row.querySelector('.score').textContent.trim().replace(/,/g, ''));
-        player.combinedScore = player.combatScore + player.score;
-      });
-
-      console.log(playerStats);
-
-      await this.delay(scanDelay);
     }
 
-    if (!isScanActive) {
+    if (isScanActive) {
       playerStats.forEach((playerStats: PlayerStats, playerId: number): void => {
         setDoc(doc(playersRef, playerId.toString()), JSON.parse(JSON.stringify(playerStats)))
           .catch((error): void => {
