@@ -23,7 +23,7 @@ export class AdminPanelComponent {
     let modal: HTMLElement = document.createElement('div');
     modal.id = 'dgt-overlay-modal';
 
-    document.body.classList.add('.dgt-overlay-open');
+    document.body.classList.add('dgt-overlay-open');
     document.body.prepend(modal);
 
 
@@ -31,7 +31,7 @@ export class AdminPanelComponent {
       return parseInt(item, 10);
     }));
 
-    document.body.classList.remove('.dgt-overlay-open');
-    document.querySelector(modal.id).remove();
+    document.body.classList.remove('dgt-overlay-open');
+    document.getElementById('dgt-overlay-modal').remove();
   }
 }
