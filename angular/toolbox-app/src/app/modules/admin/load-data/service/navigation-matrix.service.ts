@@ -111,9 +111,10 @@ export class NavigationMatrixService {
     dd.querySelectorAll('.navigation .planets').forEach((planet: any): void => {
       let coords = planet.querySelector('.coords span').textContent.trim();
       this.navigationMatrixPlanetLoadEmitter.emit(coords);
+
       setTimeout(() => {
         console.log('sleeping');
-      }, 100);
+      }, 1000);
 
       let display: string = coords + ' - ';
 
