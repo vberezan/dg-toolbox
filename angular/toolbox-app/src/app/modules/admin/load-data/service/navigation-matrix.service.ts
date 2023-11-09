@@ -17,6 +17,7 @@ export class NavigationMatrixService {
   private _navigationMatrixPlanetLoadEmitter: EventEmitter<string> = new EventEmitter();
 
   async extractGalaxies(@Optional() galaxies: number[] = []): Promise<void> {
+    const delayMs: number = 1500 + Math.floor(Math.random() * 1500);
     let scanGalaxies: number[] = this.filterValidGalaxies(galaxies);
     let executed: number = 0;
 
@@ -27,6 +28,7 @@ export class NavigationMatrixService {
           for (let sy: number = 1; sy <= this.SYSTEMS; sy++) {
             await this.extractData(scanGalaxies[g], se, sy);
             this._navigationMatrixSystemLoadEmitter.emit(++executed);
+            await this.delay(delayMs);
           }
         }
       }
@@ -36,6 +38,7 @@ export class NavigationMatrixService {
           for (let sy: number = 1; sy <= this.SYSTEMS; sy++) {
             await this.extractData(scanGalaxies[g], se, sy);
             this._navigationMatrixSystemLoadEmitter.emit(++executed);
+            await this.delay(delayMs);
           }
         }
       }
@@ -45,6 +48,7 @@ export class NavigationMatrixService {
           for (let sy: number = 1; sy <= this.SYSTEMS; sy++) {
             await this.extractData(scanGalaxies[g], se, sy);
             this._navigationMatrixSystemLoadEmitter.emit(++executed);
+            await this.delay(delayMs);
           }
         }
       }
@@ -99,8 +103,6 @@ export class NavigationMatrixService {
   }
 
   private async extractData(galaxy: number, sector: number, system: number): Promise<void> {
-    const delayMs: number = 1500 + Math.floor(Math.random() * 1500);
-
     let source: string = await firstValueFrom(this.httpClient.get(this.NAVIGATION_BASE_URL + galaxy + '/' + sector + '/' + system, {responseType: 'text'}));
 
     let dp: DOMParser = new DOMParser();
@@ -124,8 +126,6 @@ export class NavigationMatrixService {
         }
       }, 100 * index);
     });
-
-    await this.delay(delayMs);
   }
 
   get navigationMatrixSystemLoadEmitter(): EventEmitter<number> {
