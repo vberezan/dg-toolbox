@@ -22,7 +22,6 @@ export class NavigationMatrixService {
 
   async extractGalaxies(@Optional() galaxies: number[] = []): Promise<void> {
     let scanGalaxies: number[] = [];
-    let calls: number = this.estimatedNumberOfCalls(scanGalaxies);
     let executed: number = 0;
 
     if (galaxies.length > 0) {
@@ -34,6 +33,8 @@ export class NavigationMatrixService {
     } else {
       scanGalaxies.push(...this.allGalaxies());
     }
+
+    let calls: number = this.estimatedNumberOfCalls(scanGalaxies);
 
     console.log("Scanning galaxies: [" + scanGalaxies.toString() + "]. Estimated number of calls: " + calls);
 
