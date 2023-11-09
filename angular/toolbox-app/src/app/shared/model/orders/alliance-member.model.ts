@@ -3,7 +3,7 @@ export class AllianceMember {
   private _note: string;
   private _dgId: string;
   private _kickEta: string;
-  private _score: number;
+  private _score: number = 0;
   private _combatScore: number;
   private _planets: number;
 
