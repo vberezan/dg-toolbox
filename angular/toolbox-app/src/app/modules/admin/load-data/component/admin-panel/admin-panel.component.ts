@@ -83,15 +83,13 @@ export class AdminPanelComponent {
     }): void => {
       switch (value.action) {
         case 'load': {
-          this.loadedRankings = 'Loading ' + value.page + '/' + value.total + ' ranking page';
+          this.loadedRankings = 'Saving ' + value.page + '/' + value.total + ' ranking page';
           this.playersPercentage = Math.floor((value.page * 100) / value.total);
           this.playersProgressBar.nativeElement.style.width = this.playersPercentage + '%';
           break;
         }
         case 'save': {
-          console.log(this.loadedRankings);
-          this.loadedRankings = 'Saving ' + value.page + '/' + value.total + ' ranking page';
-
+          this.loadedRankings = 'Loading ' + value.page + '/' + value.total + ' ranking page';
           this.playersPercentage = Math.floor((value.page * 100) / value.total);
           this.playersProgressBar.nativeElement.style.width = this.playersPercentage + '%';
           break;
