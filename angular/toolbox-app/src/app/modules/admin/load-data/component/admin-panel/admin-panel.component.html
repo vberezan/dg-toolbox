@@ -5,8 +5,8 @@
   <div class="noPadding ofHidden">
     <div id="admin-load-planets" style="padding: 3px; font-weight: bold">
       <form>
-        <input type="text" placeholder="Galaxy list..." />
-        <button type="submit">Load Galaxies</button>
+        <input [(ngModel)]="controls.galaxies" type="text" placeholder="Galaxy list..." dgtAllianceList/>
+        <button (click)="scanGalaxies()" type="submit">Load Galaxies</button>
       </form>
       <button type="button">Load All Galaxies</button>
     </div>
