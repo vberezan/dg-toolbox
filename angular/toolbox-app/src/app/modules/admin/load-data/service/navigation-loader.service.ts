@@ -1,5 +1,5 @@
 import {EventEmitter, inject, Injectable, Optional} from '@angular/core';
-import {firstValueFrom, Subscription} from "rxjs";
+import {firstValueFrom} from "rxjs";
 import {HttpClient} from "@angular/common/http";
 import {collection, doc, Firestore, setDoc} from "@angular/fire/firestore";
 import {PlanetStats} from "../../../../shared/model/stats/planet-stats.model";
@@ -8,65 +8,65 @@ import {DarkgalaxyApiService} from "../../../darkgalaxy-ui-parser/service/darkga
 @Injectable({
   providedIn: 'root'
 })
-export class NavigationMatrixService {
-  private httpClient: HttpClient = inject(HttpClient);
-  private firestore: Firestore = inject(Firestore);
-  private dgAPI: DarkgalaxyApiService = inject(DarkgalaxyApiService);
-
+export class NavigationLoaderService {
   private readonly NAVIGATION_BASE_URL: string = 'https://andromeda.darkgalaxy.com/navigation/';
   private readonly GALAXIES: number = 49;
   private readonly G1_SECTORS: number = 25;
   private readonly INNER_SECTORS: number = 6;
   private readonly OUTER_SECTORS: number = 2;
   private readonly SYSTEMS: number = 4;
-  private _navigationMatrixSystemLoadEmitter: EventEmitter<number> = new EventEmitter();
-  private _navigationMatrixPlanetLoadEmitter: EventEmitter<string> = new EventEmitter();
-  private planetsSubscription: Subscription;
 
-  public async extractGalaxies(cancelEmitter: EventEmitter<boolean>, @Optional() galaxies: number[] = []): Promise<void> {
-    const delayMs: number = 1500 + Math.floor(Math.random() * 1500);
-    let scanGalaxies: number[] = this.filterValidGalaxies(galaxies);
-    let executed: number = 0;
-    let active: boolean = true;
-    let planetsRef: any = collection(this.firestore, 'planets');
+  private httpClient: HttpClient = inject(HttpClient);
+  private firestore: Firestore = inject(Firestore);
+  private dgAPI: DarkgalaxyApiService = inject(DarkgalaxyApiService);
 
-    cancelEmitter.subscribe((value: boolean): void => {
-      active = !value;
+  private _systemScanEmitter: EventEmitter<number> = new EventEmitter();
+  private _planetScanEmitter: EventEmitter<string> = new EventEmitter();
+
+  async scanNavigationScreen(cancelScanEmitter: EventEmitter<boolean>, @Optional() galaxies: number[] = []): Promise<void> {
+    const scanDelay: number = 1500 + Math.floor(Math.random() * 1500);
+    const planetsRef: any = collection(this.firestore, 'planets');
+    const validGalaxies: number[] = this.filterValidGalaxies(galaxies);
+
+    let scannedSystems: number = 0;
+    let isScanActive: boolean = true;
+
+    cancelScanEmitter.subscribe((value: boolean): void => {
+      isScanActive = !value;
     });
 
-    for (let g: number = 0; g < scanGalaxies.length; g++) {
-
-      if (scanGalaxies[g] === 1) {
+    for (let g: number = 0; g < validGalaxies.length; g++) {
+      if (validGalaxies[g] === 1) {
         for (let se: number = 1; se <= this.G1_SECTORS; se++) {
           for (let sy: number = 1; sy <= this.SYSTEMS; sy++) {
-            if (active) {
-              await this.loadData(scanGalaxies[g], se, sy, planetsRef);
-              this._navigationMatrixSystemLoadEmitter.emit(++executed);
-              await this.delay(delayMs);
+            if (isScanActive) {
+              await this.parseAndSave(validGalaxies[g], se, sy, planetsRef);
+              this._systemScanEmitter.emit(++scannedSystems);
+              await this.delay(scanDelay);
             }
           }
         }
       }
 
-      if (scanGalaxies[g] > 1 && scanGalaxies[g] < 14) {
+      if (validGalaxies[g] > 1 && validGalaxies[g] < 14) {
         for (let se: number = 1; se <= this.INNER_SECTORS; se++) {
           for (let sy: number = 1; sy <= this.SYSTEMS; sy++) {
-            if (active) {
-              await this.loadData(scanGalaxies[g], se, sy, planetsRef);
-              this._navigationMatrixSystemLoadEmitter.emit(++executed);
-              await this.delay(delayMs);
+            if (isScanActive) {
+              await this.parseAndSave(validGalaxies[g], se, sy, planetsRef);
+              this._systemScanEmitter.emit(++scannedSystems);
+              await this.delay(scanDelay);
             }
           }
         }
       }
 
-      if (scanGalaxies[g] >= 14) {
+      if (validGalaxies[g] >= 14) {
         for (let se: number = 1; se <= this.OUTER_SECTORS; se++) {
           for (let sy: number = 1; sy <= this.SYSTEMS; sy++) {
-            if (active) {
-              await this.loadData(scanGalaxies[g], se, sy, planetsRef);
-              this._navigationMatrixSystemLoadEmitter.emit(++executed);
-              await this.delay(delayMs);
+            if (isScanActive) {
+              await this.parseAndSave(validGalaxies[g], se, sy, planetsRef);
+              this._systemScanEmitter.emit(++scannedSystems);
+              await this.delay(scanDelay);
             }
           }
         }
@@ -74,9 +74,9 @@ export class NavigationMatrixService {
     }
   }
 
-  public estimatedNumberOfCalls(galaxies: number[]): number {
+  totalSystemsNr(galaxies: number[]): number {
     let result: number = 0;
-    let scanGalaxies: number[] = this.filterValidGalaxies(galaxies);
+    const scanGalaxies: number[] = this.filterValidGalaxies(galaxies);
 
     for (let g: number = 0; g < scanGalaxies.length; g++) {
       if (scanGalaxies[g] === 1) {
@@ -105,18 +105,17 @@ export class NavigationMatrixService {
     return result
   }
 
-  private async loadData(galaxy: number, sector: number, system: number, planetsRef: any): Promise<void> {
-    let source: string = await firstValueFrom(this.httpClient.get(this.NAVIGATION_BASE_URL + galaxy + '/' + sector + '/' + system, {responseType: 'text'}));
+  private async parseAndSave(galaxy: number, sector: number, system: number, planetsRef: any): Promise<void> {
+    const source: string = await firstValueFrom(this.httpClient.get(this.NAVIGATION_BASE_URL + galaxy + '/' + sector + '/' + system, {responseType: 'text'}));
+    const dom: Document = new DOMParser().parseFromString(source, 'text/html');
 
-    let dp: DOMParser = new DOMParser();
-    let dd: Document = dp.parseFromString(source, 'text/html');
-    dd.querySelectorAll('.navigation .planets').forEach((planet: any, index: number): void => {
+    dom.querySelectorAll('.navigation .planets').forEach((planet: any, index: number): void => {
       setTimeout((): void => {
         let stats: PlanetStats = new PlanetStats();
 
-        let coords = planet.querySelector('.coords span').textContent.trim();
-        let splitCoords = coords.split(/\./);
-        this.navigationMatrixPlanetLoadEmitter.emit(coords);
+        const coords = planet.querySelector('.coords span').textContent.trim();
+        const splitCoords = coords.split(/\./);
+        this.planetScanEmitter.emit(coords);
 
         stats.location = coords;
         stats.galaxy = parseInt(splitCoords[0]);
@@ -174,13 +173,13 @@ export class NavigationMatrixService {
     return scanGalaxies;
   }
 
-  get navigationMatrixSystemLoadEmitter(): EventEmitter<number> {
-    return this._navigationMatrixSystemLoadEmitter;
+  get systemScanEmitter(): EventEmitter<number> {
+    return this._systemScanEmitter;
   }
 
 
-  get navigationMatrixPlanetLoadEmitter(): EventEmitter<string> {
-    return this._navigationMatrixPlanetLoadEmitter;
+  get planetScanEmitter(): EventEmitter<string> {
+    return this._planetScanEmitter;
   }
 
 }
