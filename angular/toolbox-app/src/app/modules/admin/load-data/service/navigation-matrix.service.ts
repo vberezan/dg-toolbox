@@ -89,14 +89,14 @@ export class NavigationMatrixService {
   private filterValidGalaxies(galaxies: number[]): number[] {
     let scanGalaxies: number[] = [];
 
-    if (galaxies.length > 0) {
+    if (galaxies.length === 1 && galaxies[0] === 2023) {
+      scanGalaxies.push(...this.allGalaxies());
+    } else {
       for (let g: number = 0; g < galaxies.length; g++) {
         if (galaxies[g] > 0 && galaxies[g] <= this.GALAXIES) {
           scanGalaxies.push(galaxies[g]);
         }
       }
-    } else {
-      scanGalaxies.push(...this.allGalaxies());
     }
 
     return scanGalaxies;
