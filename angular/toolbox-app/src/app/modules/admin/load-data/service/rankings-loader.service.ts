@@ -123,7 +123,7 @@ export class RankingsLoaderService {
       }
     });
 
-    await this.delay(scanDelay);
+    await this.delay(10000);
   }
 
   async scanAllianceRankingsScreens(): Promise<void> {
