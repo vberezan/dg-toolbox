@@ -30,6 +30,7 @@ export class RankingsLoaderService {
       isScanActive = !value;
     });
 
+    let playerStats: Map<number, PlayerStats> = new Map<number, PlayerStats>();
     let source: string = await firstValueFrom(this.httpClient.get(this.PLAYER_RANKINGS_URL, {responseType: 'text'}));
     let dom: Document = new DOMParser().parseFromString(source, 'text/html');
     const pages:number = parseInt(dom.querySelector('.right.lightBorder.opacDarkBackground.padding').textContent.trim().split('of')[dom.querySelector('.right.lightBorder.opacDarkBackground.padding').textContent.trim().split('of').length - 1].trim());
@@ -39,7 +40,6 @@ export class RankingsLoaderService {
         break;
       }
 
-      let playerStats: Map<number, PlayerStats> = new Map<number, PlayerStats>();
       source = await firstValueFrom(this.httpClient.get(this.PLAYER_RANKINGS_URL + page, {responseType: 'text'}));
       dom = new DOMParser().parseFromString(source, 'text/html');
 
@@ -61,8 +61,6 @@ export class RankingsLoaderService {
         } else {
           player.alliance = '-';
         }
-
-        console.log(player);
       });
 
       source = await firstValueFrom(this.httpClient.get(this.PLAYER_COMBAT_RANKINGS_URL + page, {responseType: 'text'}));
@@ -76,16 +74,16 @@ export class RankingsLoaderService {
         player.combinedScore = player.combatScore + player.score;
       });
 
-      if (!isScanActive) {
-        playerStats.forEach((playerStats: PlayerStats, playerId: number): void => {
-          setDoc(doc(playersRef, playerId.toString()), JSON.parse(JSON.stringify(playerStats)))
-            .catch((error): void => {
-              console.log(error);
-            });
-        });
-      }
-
       await this.delay(scanDelay);
+    }
+
+    if (!isScanActive) {
+      playerStats.forEach((playerStats: PlayerStats, playerId: number): void => {
+        setDoc(doc(playersRef, playerId.toString()), JSON.parse(JSON.stringify(playerStats)))
+          .catch((error): void => {
+            console.log(error);
+          });
+      });
     }
   }
 
