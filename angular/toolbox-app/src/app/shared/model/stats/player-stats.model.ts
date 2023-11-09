@@ -3,7 +3,7 @@ export class PlayerStats {
   private _score: number;
   private _combatScore: number;
   private _combinedScore: number;
-  private _planets: string[];
+  private _planets: string[] = [];
   private _name: string;
   private _rank: number;
   private _alliance: string;
