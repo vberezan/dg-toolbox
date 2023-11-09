@@ -6,10 +6,11 @@
     <div id="admin-load-planets" style="padding: 3px; font-weight: bold">
       <form>
         <input [(ngModel)]="controls.galaxies" type="text" placeholder="Galaxies (Ex: 1,2)" dgtAllianceList/>
-        <button (click)="scanGalaxies();" type="submit">Load</button>
+        <button (click)="scanGalaxies();" type="submit">Scan</button>
       </form>
       <div id="load-planets-example">
-        <span class="usage-warning">Use this functionality with caution. Loads are very expensive for DG server and DGT database!</span>
+        <span class="usage-warning">Use this with caution. Universe scan it's a very expensive operation for both DG server and DGT database!</span>
+        <span class="usage-warning">Usage example:</span>
         <ul>
           <li>1,2 - G01 and G02</li>
           <li>34 - G34</li>
