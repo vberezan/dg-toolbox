@@ -7,7 +7,6 @@ import {AuthState} from "../../../../shared/model/authentication/auth-state.mode
 import {LocalStorageService} from "../../../local-storage-manager/service/local-storage.service";
 import {LocalStorageKeys} from "../../../../shared/model/local-storage/local-storage-keys";
 import {Analytics, logEvent} from "@angular/fire/analytics";
-import {ChangelogService} from "../../../changelog/service/changelog.service";
 
 @Component({
   selector: 'dgt-navbar',
@@ -36,7 +35,7 @@ export class MenuComponent implements OnDestroy {
 
     if (event[1].length === 0) {
       logEvent(this.analytics, '/home');
-    } else if (event[event.length-2] === 'comms') {
+    } else if (event[event.length - 2] === 'comms') {
       logEvent(this.analytics, '/scan');
     } else {
       logEvent(this.analytics, '/' + event[1]);

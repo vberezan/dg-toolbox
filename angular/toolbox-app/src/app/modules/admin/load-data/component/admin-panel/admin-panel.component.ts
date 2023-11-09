@@ -1,4 +1,4 @@
-import {Component, ElementRef, EventEmitter, inject, ViewChild} from '@angular/core';
+import {ChangeDetectorRef, Component, ElementRef, EventEmitter, inject, ViewChild} from '@angular/core';
 import {NavigationLoaderService} from "../../service/navigation-loader.service";
 import {RankingsLoaderService} from "../../service/rankings-loader.service";
 import {Subscription} from "rxjs";
@@ -17,6 +17,7 @@ export class AdminPanelComponent {
 
   private navigationLoaderService: NavigationLoaderService = inject(NavigationLoaderService);
   private rankingsLoaderService: RankingsLoaderService = inject(RankingsLoaderService);
+  private changeDetection: ChangeDetectorRef = inject(ChangeDetectorRef);
   private cancelScanEmitter: EventEmitter<boolean> = new EventEmitter<boolean>();
 
   private systemCountSubscription: Subscription;
@@ -83,13 +84,15 @@ export class AdminPanelComponent {
     }): void => {
       switch (value.action) {
         case 'load': {
-          this.loadedRankings = 'Saving ' + value.page + '/' + value.total + ' ranking page';
+          this.loadedRankings = 'Loading ' + value.page + '/' + value.total + ' ranking page';
+          this.changeDetection.detectChanges();
           this.playersPercentage = Math.floor((value.page * 100) / value.total);
           this.playersProgressBar.nativeElement.style.width = this.playersPercentage + '%';
           break;
         }
         case 'save': {
-          this.loadedRankings = 'Loading ' + value.page + '/' + value.total + ' ranking page';
+          this.loadedRankings = 'Saving ' + value.page + '/' + value.total + ' ranking page';
+          this.changeDetection.detectChanges();
           this.playersPercentage = Math.floor((value.page * 100) / value.total);
           this.playersProgressBar.nativeElement.style.width = this.playersPercentage + '%';
           break;
