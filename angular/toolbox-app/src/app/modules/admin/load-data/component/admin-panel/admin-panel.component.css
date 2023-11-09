@@ -59,15 +59,23 @@ span.planet-counter {
 }
 
 #load-planets-example {
+  display: table;
+}
+
+#load-planets-example {
   font-weight: normal !important;
   background: #576740 !important;
   color: #ffffffad !important;
   font-size: 11px;
-  text-align: justify;
+  text-align: left;
   padding: 5px;
   border-radius: 3px;
 }
 
 #load-planets-example .usage-warning {
+  float: left;
+}
+
+#load-planets-example ul {
   float: left;
 }
