@@ -23,7 +23,7 @@ export class AdminPanelComponent {
     let galaxies: number[] = this.controls.galaxies.trim().split(',').map(function (item: string) {
       return parseInt(item, 10);
     });
-    let estimatedCalls = this.navigationMatrixService.estimatedNumberOfCalls(galaxies);
+    let estimatedCalls:number = this.navigationMatrixService.estimatedNumberOfCalls(galaxies);
 
     document.body.classList.add('dgt-overlay-open');
     this.planetsLoadModal.nativeElement.classList.add('show');
@@ -34,8 +34,7 @@ export class AdminPanelComponent {
       this.progressBar.nativeElement.style.width = Math.floor((value * 100) / estimatedCalls) + '%';
     })
 
-    await this.navigationMatrixService
-      .extractGalaxies();
+    await this.navigationMatrixService.extractGalaxies(galaxies);
 
     document.body.classList.remove('dgt-overlay-open');
     this.planetsLoadModal.nativeElement.classList.add('hide');
