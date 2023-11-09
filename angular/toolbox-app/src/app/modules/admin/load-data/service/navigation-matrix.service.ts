@@ -110,7 +110,6 @@ export class NavigationMatrixService {
       let coords = planet.querySelector('.coords span').textContent.trim();
 
       this.navigationMatrixPlanetLoadEmitter.emit(coords);
-      this.sleep(100);
 
       let display: string = coords + ' - ';
 
@@ -123,8 +122,6 @@ export class NavigationMatrixService {
 
         display += planet.querySelector('.playerName').textContent.trim();
       }
-
-      console.log(display);
     });
   }
 

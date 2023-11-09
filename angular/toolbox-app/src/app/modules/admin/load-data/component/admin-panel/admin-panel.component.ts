@@ -43,6 +43,8 @@ export class AdminPanelComponent {
       this.planetCounter.nativeElement.style.visibility = 'hidden';
       this.loadedPlanet = value;
       this.planetCounter.nativeElement.style.visibility = 'visible';
+
+      console.log(value);
     });
 
     await this.navigationMatrixService.extractGalaxies(galaxies);
