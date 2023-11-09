@@ -48,7 +48,7 @@ export class AdminPanelComponent {
     document.body.classList.add('dgt-overlay-open');
 
     this.systemCountSubscription = this.navigationLoaderService.systemScanEmitter.subscribe((value: {'total':number, 'system': number}): void => {
-      this.loadedSystem = 'Loading ' + value + '/' + value.total + ' system: ';
+      this.loadedSystem = 'Loading ' + value.system + '/' + value.total + ' system: ';
       this.planetPercentage = Math.floor((value.system * 100) / value.total);
       this.planetProgressBar.nativeElement.style.width = this.planetPercentage + '%';
     });
