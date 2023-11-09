@@ -15,7 +15,7 @@ export class AdminPanelComponent {
   }
 
   async execute(): Promise<void> {
-    await this.navigationMatrixService.extractGalaxies([49]);
+    await this.navigationMatrixService.extractGalaxies([48, 49]);
   }
 
 }
