@@ -22,7 +22,7 @@ export class StatsService {
 
   loadStats(allianceMembers: AllianceMember[]): void {
     const playersRef: any = collection(this.firestore, 'players');
-    const ids: string[] = allianceMembers.map((member: AllianceMember) => member.dgId);
+    const ids: number[] = allianceMembers.map((member: AllianceMember) => parseInt(member.dgId));
 
 
     console.log(ids);
