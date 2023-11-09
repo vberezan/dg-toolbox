@@ -1,6 +1,5 @@
-import {Component, ElementRef, inject} from '@angular/core';
+import {Component, ElementRef, inject, ViewChild} from '@angular/core';
 import {NavigationMatrixService} from "../../service/navigation-matrix.service";
-import {doc} from "@angular/fire/firestore";
 
 @Component({
   selector: 'dgt-admin-load-data-panel',
@@ -8,6 +7,7 @@ import {doc} from "@angular/fire/firestore";
   styleUrls: ['./admin-panel.component.css']
 })
 export class AdminPanelComponent {
+  @ViewChild('planetsLoadModal') planetsLoadModal: ElementRef;
   private navigationMatrixService: NavigationMatrixService = inject(NavigationMatrixService);
   protected controls: {
     galaxies: string
@@ -21,15 +21,15 @@ export class AdminPanelComponent {
 
   async scanGalaxies(): Promise<void> {
     document.body.classList.add('dgt-overlay-open');
-    document.getElementById('dgt-overlay-modal').classList.add('show');
-    document.getElementById('dgt-overlay-modal').classList.remove('hide');
+    this.planetsLoadModal.nativeElement.classList.add('show');
+    this.planetsLoadModal.nativeElement.classList.remove('hide');
 
     await this.execute(this.controls.galaxies.trim().split(',').map(function (item: string) {
       return parseInt(item, 10);
     }));
 
     document.body.classList.remove('dgt-overlay-open');
-    document.getElementById('dgt-overlay-modal').classList.add('hide');
-    document.getElementById('dgt-overlay-modal').classList.remove('show');
+    this.planetsLoadModal.nativeElement.classList.add('hide');
+    this.planetsLoadModal.nativeElement.classList.remove('show');
   }
 }
