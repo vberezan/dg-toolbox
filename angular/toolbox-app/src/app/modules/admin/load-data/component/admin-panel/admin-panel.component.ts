@@ -31,7 +31,7 @@ export class AdminPanelComponent {
 
     this.navigationMatrixService.navigationMatrixLoadEmitter.subscribe((value: number): void => {
       this.message = 'Loading ' + value + '/' + estimatedCalls;
-      this.progressBar.nativeElement.css({'width' : Math.floor((estimatedCalls * 100) / value) + '%'});
+      this.progressBar.nativeElement.style.width = Math.floor((estimatedCalls * 100) / value) + '%';
     })
 
     await this.navigationMatrixService
