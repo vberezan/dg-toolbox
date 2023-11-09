@@ -136,7 +136,7 @@ export class NavigationMatrixService {
         }
 
         stats.turn = this.dgAPI.gameTurn();
-        setDoc(doc(planet, stats.location), JSON.parse(JSON.stringify(stats)))
+        updateDoc(doc(planetsRef, stats.location), JSON.parse(JSON.stringify(stats)))
           .catch((error): void => {
             console.log(error);
           });
