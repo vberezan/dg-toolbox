@@ -21,7 +21,6 @@ export class RankingsLoaderService {
 
 
   async scanPlayerRankingsScreens(cancelScanEmitter: EventEmitter<boolean>): Promise<void> {
-    const pages = parseInt(document.querySelector('.right.lightBorder.opacDarkBackground.padding').textContent.trim().split('of')[document.querySelector('.right.lightBorder.opacDarkBackground.padding').textContent.trim().split('of').length - 1].trim());
     const scanDelay: number = 1500 + Math.floor(Math.random() * 1500);
     const playersRef: any = collection(this.firestore, 'players');
 
@@ -31,14 +30,18 @@ export class RankingsLoaderService {
       isScanActive = !value;
     });
 
+    let source: string = await firstValueFrom(this.httpClient.get(this.PLAYER_RANKINGS_URL, {responseType: 'text'}));
+    let dom: Document = new DOMParser().parseFromString(source, 'text/html');
+    const pages:number = parseInt(dom.querySelector('.right.lightBorder.opacDarkBackground.padding').textContent.trim().split('of')[dom.querySelector('.right.lightBorder.opacDarkBackground.padding').textContent.trim().split('of').length - 1].trim());
+
     for (let page: number = 1; page <= pages; page++) {
       if (!isScanActive) {
         break;
       }
 
       let playerStats: Map<number, PlayerStats> = new Map<number, PlayerStats>();
-      let source: string = await firstValueFrom(this.httpClient.get(this.PLAYER_RANKINGS_URL + page, {responseType: 'text'}));
-      let dom: Document = new DOMParser().parseFromString(source, 'text/html');
+      source = await firstValueFrom(this.httpClient.get(this.PLAYER_RANKINGS_URL + page, {responseType: 'text'}));
+      dom = new DOMParser().parseFromString(source, 'text/html');
 
       dom.querySelectorAll('.playerRankingsList .entry').forEach((row: any) => {
         const playerId: number = parseInt(row.querySelector('.playerName').attributes['playerId'].value.trim());
@@ -75,6 +78,8 @@ export class RankingsLoaderService {
             });
         });
       }
+
+      await this.delay(scanDelay);
     }
   }
 
