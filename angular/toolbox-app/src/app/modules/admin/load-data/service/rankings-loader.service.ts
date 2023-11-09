@@ -81,33 +81,31 @@ export class RankingsLoaderService {
           player.combinedScore = player.combatScore + player.score;
         });
 
-        console.log(playerStats);
-
         await this.delay(scanDelay);
       }
     }
 
-    if (isScanActive) {
-      playerStats.forEach((playerStats: PlayerStats, playerId: number): void => {
-        let planetsSubscription: Subscription = collectionData(
-          query(planetsRef,
-            where('playerId', '==', playerId)
-          )
-        ).subscribe((items: DocumentData[]): void => {
-          let planets: PlanetStats[] = Object.assign([], items);
-          planets.forEach((planetStats: PlanetStats): void => {
-            playerStats.planets.push(planetStats.location);
-          });
-
-          setDoc(doc(playersRef, playerId.toString()), JSON.parse(JSON.stringify(playerStats)))
-            .catch((error): void => {
-              console.log(error);
-            });
-
-          planetsSubscription.unsubscribe();
-        });
-      });
-    }
+    // if (isScanActive) {
+    //   playerStats.forEach((playerStats: PlayerStats, playerId: number): void => {
+    //     let planetsSubscription: Subscription = collectionData(
+    //       query(planetsRef,
+    //         where('playerId', '==', playerId)
+    //       )
+    //     ).subscribe((items: DocumentData[]): void => {
+    //       let planets: PlanetStats[] = Object.assign([], items);
+    //       planets.forEach((planetStats: PlanetStats): void => {
+    //         playerStats.planets.push(planetStats.location);
+    //       });
+    //
+    //       setDoc(doc(playersRef, playerId.toString()), JSON.parse(JSON.stringify(playerStats)))
+    //         .catch((error): void => {
+    //           console.log(error);
+    //         });
+    //
+    //       planetsSubscription.unsubscribe();
+    //     });
+    //   });
+    // }
   }
 
   async scanAllianceRankingsScreens(): Promise<void> {

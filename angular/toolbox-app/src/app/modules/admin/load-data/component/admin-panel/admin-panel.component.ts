@@ -10,8 +10,10 @@ import {RankingsLoaderService} from "../../service/rankings-loader.service";
 export class AdminPanelComponent {
   @ViewChild('planetsLoadModal') planetsLoadModal: ElementRef;
   @ViewChild('rankingsLoadModal') rankingsLoadModal: ElementRef;
-  @ViewChild('progress') progressBar: ElementRef;
+  @ViewChild('planetProgressBar') planetProgressBar: ElementRef;
+  @ViewChild('playersProgressBar') playersProgressBar: ElementRef;
   @ViewChild('planetCounter') planetCounter: ElementRef;
+
   private navigationLoaderService: NavigationLoaderService = inject(NavigationLoaderService);
   private rankingsLoaderService: RankingsLoaderService = inject(RankingsLoaderService);
   private cancelScanEmitter: EventEmitter<boolean> = new EventEmitter<boolean>();
@@ -24,7 +26,8 @@ export class AdminPanelComponent {
 
   protected loadedSystem: string;
   protected loadedPlanet: string = 'x.x.x.x';
-  protected donePercentage: number = 0;
+  protected planetPercentage: number = 0;
+  protected playersPercentage: number = 0;
 
   async scanNavigationScreen(): Promise<void> {
     let galaxies: number[] = this.controls.galaxies.trim().split(',').map(function (item: string) {
@@ -34,15 +37,15 @@ export class AdminPanelComponent {
     let totalSystemsNr:number = this.navigationLoaderService.totalSystemsNr(galaxies);
     this.loadedSystem = 'Loading 0/' + totalSystemsNr + ' systems: ';
 
-    this.progressBar.nativeElement.style.width = '0%';
+    this.planetProgressBar.nativeElement.style.width = '0%';
     document.body.classList.add('dgt-overlay-open');
     this.planetsLoadModal.nativeElement.classList.add('show');
     this.planetsLoadModal.nativeElement.classList.remove('hide');
 
     this.navigationLoaderService.systemScanEmitter.subscribe((value: number): void => {
       this.loadedSystem = 'Loading ' + value + '/' + totalSystemsNr + ' systems: ';
-      this.donePercentage = Math.floor((value * 100) / totalSystemsNr);
-      this.progressBar.nativeElement.style.width = this.donePercentage + '%';
+      this.planetPercentage = Math.floor((value * 100) / totalSystemsNr);
+      this.planetProgressBar.nativeElement.style.width = this.planetPercentage + '%';
     });
 
     this.navigationLoaderService.planetScanEmitter.subscribe((value: string): void => {
@@ -59,6 +62,10 @@ export class AdminPanelComponent {
   }
 
   async scanRankingsScreens(): Promise<void> {
+    document.body.classList.add('dgt-overlay-open');
+    this.rankingsLoadModal.nativeElement.classList.add('show');
+    this.rankingsLoadModal.nativeElement.classList.remove('hide');
+
     await this.rankingsLoaderService.scanPlayerRankingsScreens(this.cancelScanEmitter);
     // await this.rankingsLoaderService.scanAllianceRankingsScreens();
   }

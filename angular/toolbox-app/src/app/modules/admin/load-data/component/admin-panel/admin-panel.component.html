@@ -34,8 +34,8 @@
       <span class="planet-counter" #planetCounter>{{loadedPlanet}}</span>
     </div>
     <div class="progressbar">
-      <span class="percentage">{{donePercentage}}%</span>
-      <span class="progress" #progress></span>
+      <span class="percentage">{{planetPercentage}}%</span>
+      <span class="progress" #planetProgressBar></span>
     </div>
     <div class="actions">
       <button type="button" (click)="cancelScan()">Cancel</button>
@@ -45,6 +45,10 @@
 
 <div id="dgt-load-rankings-overlay-modal" class="hide dgt-overlay-modal" #rankingsLoadModal>
   <div class="dgt-display-info">
+    <div class="progressbar">
+      <span class="percentage"></span>
+      <span class="progress" #playersProgressBar></span>
+    </div>
     <div class="actions">
       <button type="button" (click)="cancelScan()">Cancel</button>
     </div>
