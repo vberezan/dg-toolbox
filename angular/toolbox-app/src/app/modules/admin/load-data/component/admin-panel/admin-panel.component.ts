@@ -20,18 +20,16 @@ export class AdminPanelComponent {
   }
 
   async scanGalaxies(): Promise<void> {
-    let modal: HTMLElement = document.createElement('div');
-    modal.id = 'dgt-overlay-modal';
-
     document.body.classList.add('dgt-overlay-open');
-    document.body.prepend(modal);
-
+    document.getElementById('dgt-overlay-modal').classList.add('show');
+    document.getElementById('dgt-overlay-modal').classList.remove('hide');
 
     await this.execute(this.controls.galaxies.trim().split(',').map(function (item: string) {
       return parseInt(item, 10);
     }));
 
     document.body.classList.remove('dgt-overlay-open');
-    document.getElementById('dgt-overlay-modal').remove();
+    document.getElementById('dgt-overlay-modal').classList.add('hide');
+    document.getElementById('dgt-overlay-modal').classList.remove('show');
   }
 }
