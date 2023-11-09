@@ -7,6 +7,7 @@ import {HttpClient} from "@angular/common/http";
 })
 export class NavigationMatrixService {
     private httpClient: HttpClient = inject(HttpClient);
+    private readonly NAVIGATION_BASE_URL: string = 'https://andromeda.darkgalaxy.com/navigation/';
     private readonly GALAXIES: number = 49;
     private readonly G1_SECTORS: number = 25;
     private readonly INNER_SECTORS: number = 6;
@@ -21,7 +22,9 @@ export class NavigationMatrixService {
     async extractGalaxies(@Optional() galaxies: number[] = []): Promise<void> {
         let scanGalaxies: number[] = galaxies.length > 0 ? [...galaxies] : [...this.allGalaxies()];
 
-        for (let g: number = 1; g <= scanGalaxies.length; g++) {
+        console.log(scanGalaxies);
+
+        for (let g: number = 0; g <= scanGalaxies.length; g++) {
             if (scanGalaxies[g] === 1) {
                 for (let se: number = 1; se <= this.G1_SECTORS; se++) {
                     for (let sy: number = 1; sy <= this.SYSTEMS; sy++) {
@@ -65,7 +68,7 @@ export class NavigationMatrixService {
 
         await this.delay(delayMs);
 
-        let source: string = await firstValueFrom(this.httpClient.get('https://andromeda.darkgalaxy.com/navigation/' + galaxy + '/' + sector + '/' + system, {responseType: 'text'}));
+        let source: string = await firstValueFrom(this.httpClient.get(this.NAVIGATION_BASE_URL + galaxy + '/' + sector + '/' + system, {responseType: 'text'}));
 
         let dp: DOMParser = new DOMParser();
         let dd: Document = dp.parseFromString(source, 'text/html');
