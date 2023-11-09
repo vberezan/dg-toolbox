@@ -94,7 +94,10 @@ export class RankingsLoaderService {
             where('playerId', '==', playerId)
           )
         ).subscribe((items: DocumentData[]): void => {
-          Object.assign([], items).forEach((planetStats: PlanetStats): void => {
+          let planets: PlanetStats[] = Object.assign([], items);
+          console.log(planets);
+
+          planets.forEach((planetStats: PlanetStats): void => {
             playerStats.planets.push(planetStats.location);
           });
 
