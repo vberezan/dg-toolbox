@@ -11,6 +11,7 @@ import {AuthState} from "../../../../../shared/model/authentication/auth-state.m
 import {UserRole} from "../../../../../shared/model/authentication/user-role";
 import {LocalStorageService} from "../../../../local-storage-manager/service/local-storage.service";
 import {LocalStorageKeys} from "../../../../../shared/model/local-storage/local-storage-keys";
+import {StatsService} from "../../service/stats.service";
 
 
 @Component({
@@ -26,6 +27,7 @@ export class OrdersPanelComponent implements OnDestroy {
   private authService: AuthService = inject(AuthService);
   private changeDetection: ChangeDetectorRef = inject(ChangeDetectorRef);
   private localStorageService: LocalStorageService = inject(LocalStorageService);
+  private statsService: StatsService = inject(StatsService);
 
   protected allianceMembers: AllianceMember[];
   protected orders: Map<string, Observable<AllianceOrder[]>> = new Map<string, Observable<AllianceOrder[]>>();
@@ -64,6 +66,21 @@ export class OrdersPanelComponent implements OnDestroy {
         if (state.role === UserRole.ADMIN || state.role === UserRole.TEAM_LEADER) {
           this.dgAPI.cleanAlianceMembers();
 
+          this.statsService.statsEventEmitter.subscribe((value: {
+            'playerId': number,
+            'score': number,
+            'combatScore': number,
+            'planets': number
+          }): void => {
+            this.allianceMembers.forEach((member: AllianceMember) => {
+              if (parseInt(member.dgId) === value.playerId) {
+                member.score = value.score;
+                member.combatScore = value.combatScore;
+                member.planets = value.planets;
+              }
+            });
+          });
+
           if (!this.initialized) {
             this.allianceMembers.forEach((member: AllianceMember): void => {
               this.orders.set(member.name.toLowerCase(), new Observable<AllianceOrder[]>((observer: Subscriber<AllianceOrder[]>): void => {
@@ -71,10 +88,7 @@ export class OrdersPanelComponent implements OnDestroy {
               }));
             });
 
-            this.allianceMembers.forEach((member: AllianceMember): void => {
-              member.score = 1000;
-              member.combatScore = 1000;
-            });
+            this.statsService.loadStats(this.allianceMembers);
 
             this.initialized = true;
           }

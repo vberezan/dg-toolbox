@@ -45,30 +45,33 @@ export class OrderService implements OnDestroy {
 
     let ordersRef: any = collection(this.firestore, 'orders');
 
-    this.ordersSubscriptions.set(user, collectionData<DocumentData, string>(
-      query(ordersRef,
-        where('user', '==', user),
-        orderBy('executed', 'asc'),
-        orderBy('wait', 'asc')
-      ), {idField: 'id'}
-    ).subscribe((items: DocumentData[]) => {
-      let orders: AllianceOrder[] = Object.assign([], items);
+    this.ordersSubscriptions.set(
+      user,
+      collectionData<DocumentData, string>(
+        query(ordersRef,
+          where('user', '==', user),
+          orderBy('executed', 'asc'),
+          orderBy('wait', 'asc')
+        ), {idField: 'id'}
+      ).subscribe((items: DocumentData[]) => {
+        let orders: AllianceOrder[] = Object.assign([], items);
 
-      orders.forEach((order: AllianceOrder) => {
-        order.wait -= (turn - order.turn);
+        orders.forEach((order: AllianceOrder) => {
+          order.wait -= (turn - order.turn);
+        })
+
+        observer.next(orders);
+
+        if (document.querySelector('dgt-alliance-orders-manager-panel .dgt-spinner-container.member')) {
+          document.querySelectorAll('dgt-alliance-orders-manager-panel .dgt-spinner-container.member').forEach((spinner: Element): void => {
+            spinner.classList.add('hide');
+            spinner.classList.remove('show');
+          });
+        }
+
+        changeDetection.detectChanges();
       })
-
-      observer.next(orders);
-
-      if (document.querySelector('dgt-alliance-orders-manager-panel .dgt-spinner-container.member')) {
-        document.querySelectorAll('dgt-alliance-orders-manager-panel .dgt-spinner-container.member').forEach((spinner: Element): void => {
-          spinner.classList.add('hide');
-          spinner.classList.remove('show');
-        });
-      }
-
-      changeDetection.detectChanges();
-    }));
+    );
   }
 
   ngOnDestroy() {

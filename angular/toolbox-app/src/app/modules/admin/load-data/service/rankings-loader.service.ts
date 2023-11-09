@@ -149,7 +149,7 @@ export class RankingsLoaderService {
                     where('playerId', '==', playerId),
                     limit(1)
                   )
-                ).subscribe((items: DocumentData): void => {
+                ).subscribe((items: DocumentData[]): void => {
                   let player: PlayerStats = Object.assign(new PlayerStats(), items[0]);
                   playerStats.planets = player.planets;
 
