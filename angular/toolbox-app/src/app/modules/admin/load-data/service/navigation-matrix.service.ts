@@ -21,10 +21,11 @@ export class NavigationMatrixService {
 
     async extractGalaxies(@Optional() galaxies: number[] = []): Promise<void> {
         let scanGalaxies: number[] = galaxies.length > 0 ? [...galaxies] : [...this.allGalaxies()];
-        console.log("Scanning galaxies: " + scanGalaxies.toString());
+        console.log("Scanning galaxies: [" + scanGalaxies.toString() + "]");
 
-        for (let g: number = 0; g <= scanGalaxies.length; g++) {
+        for (let g: number = 0; g < scanGalaxies.length; g++) {
             console.log("Galaxy " + scanGalaxies[g] + 'scan started!');
+
             if (scanGalaxies[g] === 1) {
                 for (let se: number = 1; se <= this.G1_SECTORS; se++) {
                     for (let sy: number = 1; sy <= this.SYSTEMS; sy++) {
@@ -49,7 +50,7 @@ export class NavigationMatrixService {
                 }
             }
 
-            console.log("Galaxy " + scanGalaxies[g] + 'scan finished!');
+            console.log("Galaxy " + scanGalaxies[g] + " scan finished!");
         }
     }
 
