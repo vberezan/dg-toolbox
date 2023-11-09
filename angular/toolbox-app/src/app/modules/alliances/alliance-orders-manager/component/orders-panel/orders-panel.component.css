@@ -286,3 +286,10 @@ span.note {
 .dgt-spinner-container.member .dgt-spinner {
   top: 10px !important;
 }
+
+span.stats {
+  color: #fff !important;
+  font-size: 12px !important;
+  font-weight: normal !important;
+  margin-left: 10px !important;
+}

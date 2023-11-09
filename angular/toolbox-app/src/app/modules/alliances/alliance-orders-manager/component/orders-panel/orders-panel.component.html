@@ -14,9 +14,6 @@
     <div *ngFor="let member of allianceMembers; index as idx" class="dgt-orders-manager-member">
       <div class="player">
         <span class="name">{{member.name}}</span>
-        <span class="score">Score: 400,000</span>
-        <span class="combat-score">Combat: 55,000,000</span>
-        <span class="planets">Planets: 44</span>
         <div *ngIf="member.kickEta == null && userRole === UserRole.ADMIN" class="dgt-orders-manager-kick">
           <form (ngSubmit)="onSubmitKickMember($event)" #f="ngForm" action="/alliances/kick/" method="post">
             <input type="hidden" name="{{member.dgId | kickMemberFormatter}}" value="Kick Member"/>
@@ -25,6 +22,9 @@
             </button>
           </form>
         </div>
+        <span class="score stats">Score: 400,000</span>
+        <span class="combat-score stats">Combat: 55,000,000</span>
+        <span class="planets stats">Planets: 44</span>
         <span *ngIf="member.kickEta != null" class="kick-eta">[{{member.kickEta}}]</span>
         <span *ngIf="member.note != null && member.note.length > 0 && (userRole === UserRole.TEAM_LEADER)"
               class="note">Note: {{member.note}}</span>
