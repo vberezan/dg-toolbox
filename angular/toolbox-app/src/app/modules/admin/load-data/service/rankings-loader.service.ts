@@ -1,9 +1,12 @@
 import {EventEmitter, inject, Injectable} from '@angular/core';
 import {HttpClient} from "@angular/common/http";
-import {collection, doc, Firestore, setDoc} from "@angular/fire/firestore";
+import {collection, collectionData, doc, Firestore, query, setDoc, where} from "@angular/fire/firestore";
 import {DarkgalaxyApiService} from "../../../darkgalaxy-ui-parser/service/darkgalaxy-api.service";
-import {firstValueFrom} from "rxjs";
+import {firstValueFrom, Subscription} from "rxjs";
 import {PlayerStats} from "../../../../shared/model/stats/player-stats.model";
+import {DocumentData} from "@angular/fire/compat/firestore";
+import {PlanetScan} from "../../../../shared/model/scans/shared-scans-planet-scan.model";
+import {PlanetStats} from "../../../../shared/model/stats/planet-stats.model";
 
 @Injectable({
   providedIn: 'root'
@@ -23,6 +26,7 @@ export class RankingsLoaderService {
   async scanPlayerRankingsScreens(cancelScanEmitter: EventEmitter<boolean>): Promise<void> {
     const scanDelay: number = 1500 + Math.floor(Math.random() * 1500);
     const playersRef: any = collection(this.firestore, 'players');
+    const planetsRef: any = collection(this.firestore, 'planets');
 
     let isScanActive: boolean = true;
 
@@ -85,10 +89,22 @@ export class RankingsLoaderService {
 
     if (isScanActive) {
       playerStats.forEach((playerStats: PlayerStats, playerId: number): void => {
-        setDoc(doc(playersRef, playerId.toString()), JSON.parse(JSON.stringify(playerStats)))
-          .catch((error): void => {
-            console.log(error);
+        let planetsSubscription: Subscription = collectionData(
+          query(playersRef,
+            where('playerId', '==', playerId)
+          )
+        ).subscribe((items: DocumentData[]): void => {
+          Object.assign([], items).forEach((planetStats: PlanetStats): void => {
+            playerStats.planets.push(planetStats.location);
           });
+
+          setDoc(doc(playersRef, playerId.toString()), JSON.parse(JSON.stringify(playerStats)))
+            .catch((error): void => {
+              console.log(error);
+            });
+
+          planetsSubscription.unsubscribe();
+        });
       });
     }
   }
