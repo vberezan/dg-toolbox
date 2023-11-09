@@ -16,8 +16,6 @@ export class NavigationMatrixService {
   private _navigationMatrixSystemLoadEmitter: EventEmitter<number> = new EventEmitter();
   private _navigationMatrixPlanetLoadEmitter: EventEmitter<string> = new EventEmitter();
 
-  private delay = async (ms: number): Promise<unknown> => new Promise(res => setTimeout(res, ms));
-
   async extractGalaxies(@Optional() galaxies: number[] = []): Promise<void> {
     let scanGalaxies: number[] = this.filterValidGalaxies(galaxies);
     let executed: number = 0;
@@ -110,11 +108,9 @@ export class NavigationMatrixService {
     let dd: Document = dp.parseFromString(source, 'text/html');
     dd.querySelectorAll('.navigation .planets').forEach((planet: any): void => {
       let coords = planet.querySelector('.coords span').textContent.trim();
-      this.navigationMatrixPlanetLoadEmitter.emit(coords);
 
-      setTimeout(() => {
-        console.log('sleeping');
-      }, 1000);
+      this.navigationMatrixPlanetLoadEmitter.emit(coords);
+      this.sleep(100);
 
       let display: string = coords + ' - ';
 
@@ -139,5 +135,10 @@ export class NavigationMatrixService {
 
   get navigationMatrixPlanetLoadEmitter(): EventEmitter<string> {
     return this._navigationMatrixPlanetLoadEmitter;
+  }
+
+  private delay = async (ms: number): Promise<unknown> => new Promise(res => setTimeout(res, ms));
+  private sleep(ms: number) {
+    return new Promise(resolve => setTimeout(resolve, ms));
   }
 }

@@ -27,14 +27,14 @@ export class AdminPanelComponent {
       return parseInt(item, 10);
     });
     let estimatedCalls:number = this.navigationMatrixService.estimatedNumberOfCalls(galaxies);
-    this.loadedSystem = 'Loading 0/' + estimatedCalls + ' systems...';
+    this.loadedSystem = 'Loading 0/' + estimatedCalls + ' systems: ';
 
     document.body.classList.add('dgt-overlay-open');
     this.planetsLoadModal.nativeElement.classList.add('show');
     this.planetsLoadModal.nativeElement.classList.remove('hide');
 
     this.navigationMatrixService.navigationMatrixSystemLoadEmitter.subscribe((value: number): void => {
-      this.loadedSystem = 'Loading ' + value + '/' + estimatedCalls + ' systems...';
+      this.loadedSystem = 'Loading ' + value + '/' + estimatedCalls + ' systems: ';
       this.donePercentage = Math.floor((value * 100) / estimatedCalls);
       this.progressBar.nativeElement.style.width = this.donePercentage + '%';
     });
