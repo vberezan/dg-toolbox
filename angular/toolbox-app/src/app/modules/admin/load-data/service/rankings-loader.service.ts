@@ -103,15 +103,19 @@ export class RankingsLoaderService {
       doc(configRef, 'last-navigation-scan-turn'),
     ).subscribe((item: DocumentData): void => {
       let navigationScanTurn: number = Object.assign({value: 0}, item).value;
+      console.log(navigationScanTurn);
 
       // -- get last player rankings scan turn
       let rankingsSubscription: Subscription = docData(
         doc(configRef, 'last-player-rankings-scan-turn'),
       ).subscribe((item: DocumentData): void => {
         let playerRankingsScanTurn: number = Object.assign({value: 0}, item).value;
+        console.log(playerRankingsScanTurn)
 
         // -- if there is a newer navigation scan, update player rankings planets
         if (navigationScanTurn >= playerRankingsScanTurn) {
+          console.log('Player planets must be updated');
+
           let savedRankings: number = 0;
           playersStats.forEach((playerStats: PlayerStats, playerId: number): void => {
             if (isScanActive) {
@@ -139,6 +143,8 @@ export class RankingsLoaderService {
               }, 50 * savedRankings);
             }
           });
+        } else {
+          console.log('Players have the last version of navigation data');
         }
         rankingsSubscription.unsubscribe();
       });
