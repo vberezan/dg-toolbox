@@ -19,9 +19,10 @@ export class NavigationMatrixService {
 
     private delay = async (ms: number) => new Promise(res => setTimeout(res, ms));
 
-    async extractGalaxies(@Optional() galaxies: number[] = []): Promise<void> {
+    async extractGalaxies(message: string, @Optional() galaxies: number[] = []): Promise<void> {
         let scanGalaxies: number[] = [];
         let calls: number = this.estimatedNumberOfCalls(scanGalaxies);
+        message = '' + calls;
 
         if (galaxies.length > 0) {
             for (let g: number = 0; g < galaxies.length; g++) {

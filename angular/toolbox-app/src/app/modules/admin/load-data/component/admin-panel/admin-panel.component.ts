@@ -9,24 +9,27 @@ import {NavigationMatrixService} from "../../service/navigation-matrix.service";
 export class AdminPanelComponent {
   @ViewChild('planetsLoadModal') planetsLoadModal: ElementRef;
   private navigationMatrixService: NavigationMatrixService = inject(NavigationMatrixService);
+
   protected controls: {
     galaxies: string
   } = {
     galaxies: ''
   }
 
-  async execute(galaxies: number[]): Promise<void> {
-    return this.navigationMatrixService.extractGalaxies(galaxies);
-  }
+  protected message: string;
 
   async scanGalaxies(): Promise<void> {
     document.body.classList.add('dgt-overlay-open');
     this.planetsLoadModal.nativeElement.classList.add('show');
     this.planetsLoadModal.nativeElement.classList.remove('hide');
 
-    await this.execute(this.controls.galaxies.trim().split(',').map(function (item: string) {
-      return parseInt(item, 10);
-    }));
+    await this.navigationMatrixService
+      .extractGalaxies(
+        this.message,
+        this.controls.galaxies.trim().split(',').map(function (item: string) {
+          return parseInt(item, 10);
+        })
+      );
 
     document.body.classList.remove('dgt-overlay-open');
     this.planetsLoadModal.nativeElement.classList.add('hide');
