@@ -13,26 +13,20 @@
   position: absolute;
 }
 
-.dgt-display-info span {
-  color: #000;
-  position: relative;
-  width: 100%;
-  display: block;
-}
-
 .progressbar {
+  position: relative;
   display: block;
   border-radius: 5px;
-  position: relative;
   max-width: 200px;
   width: 100%;
-  margin: 0 auto;
+  margin: 10px auto;
   height: 20px;
   background: rgb(75,75,75);
   overflow: hidden;
 }
 
 span.progress {
+  display: block;
   position: absolute;
   left: 0;
   top: 0;
@@ -44,6 +38,8 @@ span.progress {
 }
 
 span.percentage {
+  width: 100%;
+  position: relative;
   float: left;
   background: transparent;
   z-index: 9999;
@@ -51,4 +47,9 @@ span.percentage {
   line-height: 20px;
   color: #fff;
   font-size: 15px;
+}
+
+.counter span {
+  color: #000;
+  font-size: 14px;
 }
