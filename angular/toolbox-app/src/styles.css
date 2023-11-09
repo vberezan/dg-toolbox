@@ -69,10 +69,31 @@
   }
 }
 
-/******/
+.dgt-overlay-modal {
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  width: 100%;
+  height: 100%;
+  position: absolute;
+  background: rgba(0, 0, 0, 0.75);
+  z-index: 999999999;
+}
+
+.dgt-overlay-modal.show {
+  display: flex !important;
+}
+
+.dgt-overlay-modal.hide {
+  display: none !important;
+}
+
 .dgt-overlay-open {
   overflow: hidden !important;
 }
+
+/******/
 
 #dgt-credits {
   color: #909090;
@@ -2325,22 +2346,3 @@ dgt-shared-scans-collector {
   color: #a2a2a2 !important;
 }
 
-#dgt-overlay-modal.show {
-  display: flex !important;
-}
-
-#dgt-overlay-modal.hide {
-  display: none !important;
-}
-
-#dgt-overlay-modal {
-  top: 0;
-  bottom: 0;
-  left: 0;
-  right: 0;
-  width: 100%;
-  height: 100%;
-  position: absolute;
-  background: rgba(0, 0, 0, 0.75);
-  z-index: 999999999;
-}
