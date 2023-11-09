@@ -1,7 +1,8 @@
 .dgt-display-info {
   margin: auto;
-  width: 50%;
+  width: 100px;
   border: 1px solid #676767;
   border-radius: 5px;
   padding: 10px;
+  background: #ffffff;
 }

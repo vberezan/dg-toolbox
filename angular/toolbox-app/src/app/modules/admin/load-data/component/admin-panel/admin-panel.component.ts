@@ -23,9 +23,12 @@ export class AdminPanelComponent {
     this.planetsLoadModal.nativeElement.classList.add('show');
     this.planetsLoadModal.nativeElement.classList.remove('hide');
 
+    this.navigationMatrixService.navigationMatrixLoadEmitter.subscribe((value: string): void => {
+      this.message = value;
+    })
+
     await this.navigationMatrixService
       .extractGalaxies(
-        this.message,
         this.controls.galaxies.trim().split(',').map(function (item: string) {
           return parseInt(item, 10);
         })
