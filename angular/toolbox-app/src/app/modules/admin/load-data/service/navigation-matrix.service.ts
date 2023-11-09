@@ -118,14 +118,15 @@ export class NavigationMatrixService {
         this.navigationMatrixPlanetLoadEmitter.emit(coords);
 
         stats.location = coords;
-        stats.galaxy = splitCoords[0];
-        stats.sector = splitCoords[1];
-        stats.system = splitCoords[2];
-        stats.planet = splitCoords[3];
+        stats.galaxy = parseInt(splitCoords[0]);
+        stats.sector = parseInt(splitCoords[1]);
+        stats.system = parseInt(splitCoords[2]);
+        stats.planet = parseInt(splitCoords[3]);
 
 
         if (planet.classList.contains('neutral')) {
           stats.owner = 'Uninhabited';
+          stats.playerId = -1;
           stats.alliance = '-'
         } else {
           if (planet.querySelector('.allianceName')) {
@@ -133,6 +134,7 @@ export class NavigationMatrixService {
           }
 
           stats.owner = planet.querySelector('.playerName').textContent.trim();
+          stats.playerId = parseInt(planet.querySelector('.playerName').attributes['playerId'].value.trim());
         }
 
         stats.turn = this.dgAPI.gameTurn();

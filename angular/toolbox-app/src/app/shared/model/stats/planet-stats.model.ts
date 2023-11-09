@@ -6,9 +6,17 @@ export class PlanetStats {
   private _sector: number;
   private _planet: number;
   private _owner: string;
+  private _playerId: number;
   private _alliance: string;
   private _turn: number;
 
+  get playerId(): number {
+    return this._playerId;
+  }
+
+  set playerId(value: number) {
+    this._playerId = value;
+  }
 
   get location(): string {
     return this._location;
@@ -83,7 +91,8 @@ export class PlanetStats {
       galaxy: this.galaxy,
       system: this.system,
       sector: this.sector,
-      planet: this.planet
+      planet: this.planet,
+      playerId: this.playerId
     }
   }
 }
