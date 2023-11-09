@@ -106,22 +106,24 @@ export class NavigationMatrixService {
 
     let dp: DOMParser = new DOMParser();
     let dd: Document = dp.parseFromString(source, 'text/html');
-    dd.querySelectorAll('.navigation .planets').forEach((planet: any): void => {
-      let coords = planet.querySelector('.coords span').textContent.trim();
+    dd.querySelectorAll('.navigation .planets').forEach((planet: any, index:number): void => {
+      setTimeout((): void => {
+        let coords = planet.querySelector('.coords span').textContent.trim();
 
-      this.navigationMatrixPlanetLoadEmitter.emit(coords);
+        this.navigationMatrixPlanetLoadEmitter.emit(coords);
 
-      let display: string = coords + ' - ';
+        let display: string = coords + ' - ';
 
-      if (planet.classList.contains('neutral')) {
-        display += 'Uninhabited';
-      } else {
-        if (planet.querySelector('.allianceName')) {
-          display += planet.querySelector('.allianceName').textContent.trim();
+        if (planet.classList.contains('neutral')) {
+          display += 'Uninhabited';
+        } else {
+          if (planet.querySelector('.allianceName')) {
+            display += planet.querySelector('.allianceName').textContent.trim();
+          }
+
+          display += planet.querySelector('.playerName').textContent.trim();
         }
-
-        display += planet.querySelector('.playerName').textContent.trim();
-      }
+      }, 100 * index);
     });
   }
 
@@ -135,6 +137,7 @@ export class NavigationMatrixService {
   }
 
   private delay = async (ms: number): Promise<unknown> => new Promise(res => setTimeout(res, ms));
+
   private sleep(ms: number) {
     return new Promise(resolve => setTimeout(resolve, ms));
   }
