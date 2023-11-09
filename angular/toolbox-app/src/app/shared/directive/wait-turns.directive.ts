@@ -25,14 +25,14 @@ export class WaitTurnsDirective {
     let current: string = this.el.nativeElement.value + event.key;
 
     if (!this.regex.test(current)) {
-      event.preventDefault()
+      event.preventDefault();
     }
   }
 
   @HostListener('paste', ['$event'])
   validatePaste(event: ClipboardEvent): void {
     if (!this.regex.test(event.clipboardData.getData('text'))) {
-      event.preventDefault()
+      event.preventDefault();
     }
   }
 }
