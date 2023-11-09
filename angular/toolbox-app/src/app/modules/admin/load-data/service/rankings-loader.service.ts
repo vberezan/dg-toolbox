@@ -1,6 +1,6 @@
 import {EventEmitter, inject, Injectable} from '@angular/core';
 import {HttpClient} from "@angular/common/http";
-import {collection, collectionData, doc, docData, Firestore, query, setDoc, where} from "@angular/fire/firestore";
+import {collection, collectionData, doc, docData, Firestore, limit, query, setDoc, updateDoc, where} from "@angular/fire/firestore";
 import {DarkgalaxyApiService} from "../../../darkgalaxy-ui-parser/service/darkgalaxy-api.service";
 import {firstValueFrom, Subscription} from "rxjs";
 import {PlayerStats} from "../../../../shared/model/stats/player-stats.model";
@@ -100,22 +100,19 @@ export class RankingsLoaderService {
     // -- FIXME: do it more elegant, without so many subscriptions
     // -- get last navigation scan turn
     let navigationSubscription: Subscription = docData(
-      doc(configRef, 'last-navigation-scan-turn'),
+      doc(configRef, 'last-navigation-scan-turn')
     ).subscribe((item: DocumentData): void => {
       let navigationScanTurn: number = Object.assign({value: 0}, item).value;
       console.log(navigationScanTurn);
 
       // -- get last player rankings scan turn
       let rankingsSubscription: Subscription = docData(
-        doc(configRef, 'last-player-rankings-scan-turn'),
+        doc(configRef, 'last-player-rankings-scan-turn')
       ).subscribe((item: DocumentData): void => {
         let playerRankingsScanTurn: number = Object.assign({value: 0}, item).value;
-        console.log(playerRankingsScanTurn)
 
         // -- if there is a newer navigation scan, update player rankings planets
         if (navigationScanTurn >= playerRankingsScanTurn) {
-          console.log('Player planets must be updated');
-
           let savedRankings: number = 0;
           playersStats.forEach((playerStats: PlayerStats, playerId: number): void => {
             if (isScanActive) {
@@ -144,7 +141,32 @@ export class RankingsLoaderService {
             }
           });
         } else {
-          console.log('Players have the last version of navigation data');
+          let savedRankings: number = 0;
+          playersStats.forEach((playerStats: PlayerStats, playerId: number): void => {
+            if (isScanActive) {
+              setTimeout((): void => {
+                let planetsSubscription: Subscription = collectionData(
+                  query(playersRef,
+                    where('playerId', '==', playerId),
+                    limit(1)
+                  )
+                ).subscribe((items: DocumentData): void => {
+                  let player: PlayerStats = Object.assign(new PlayerStats(), items[0]);
+                  playerStats.planets = player.planets;
+
+                  updateDoc(doc(playersRef, playerId.toString()), JSON.parse(JSON.stringify(playerStats)))
+                    .then((): void => {
+                      this._playersRankingsEmitter.emit({'action': 'save', 'page': ++savedRankings, 'total': playersStats.size});
+                    }).catch((error): void => {
+                      console.log(error);
+                    }
+                  );
+
+                  planetsSubscription.unsubscribe();
+                });
+              }, 50 * savedRankings);
+            }
+          });
         }
         rankingsSubscription.unsubscribe();
       });
