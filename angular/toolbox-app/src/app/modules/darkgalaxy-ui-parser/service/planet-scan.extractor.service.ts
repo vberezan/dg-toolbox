@@ -102,7 +102,7 @@ export class PlanetScanExtractorService implements DataExtractor {
       let resources:NodeListOf<Element> = base.querySelectorAll('.planetHeadSection .resource > span');
 
       // -- check if the planet was not emptied
-      if (resources.length > 2) {
+      if (resources.length > 4) {
         let availableWorkers: string = resources[4].textContent.trim().split(/\s+/)[0];
         result.planetScan.workers.available = parseInt(availableWorkers.substring(1, availableWorkers.length).replace(/,/g, ''));
         result.planetScan.workers.currentNumber = parseInt(resources[3].textContent.trim().split(/\//g)[0].replace(/,/g, ''));
