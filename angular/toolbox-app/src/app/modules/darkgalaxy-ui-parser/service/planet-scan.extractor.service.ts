@@ -22,22 +22,27 @@ export class PlanetScanExtractorService implements DataExtractor {
     let base: Element = document.querySelectorAll('#contentBox #planetHeader')[1];
     let scanType: ScanType;
 
-    switch (base.querySelectorAll('.planetHeadSection .resource > span').length) {
-      case 5: {
-        scanType = ScanType.SURFACE;
-        break;
+    document.querySelectorAll('input[name="scanId"]').forEach((input: Element, index: number): void => {
+      if (input.hasAttribute('checked')) {
+        switch (index) {
+          case 0: {
+            scanType = ScanType.SURFACE;
+            break;
+          }
+          case 1: {
+            scanType = ScanType.RESOURCE;
+            break;
+          }
+          case 2: {
+            scanType = ScanType.FLEET;
+            break;
+          }
+          default:
+            scanType = ScanType.UNKNOWN;
+        }
       }
-      case 2: {
-        scanType = ScanType.RESOURCE;
-        break;
-      }
-      case 0: {
-        scanType = ScanType.FLEET;
-        break;
-      }
-      default:
-        scanType = ScanType.UNKNOWN;
-    }
+    })
+
 
     let result: PlanetScanEvent = new PlanetScanEvent(planetScan, scanType);
 
