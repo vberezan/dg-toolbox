@@ -27,11 +27,11 @@ export class PlanetScanExtractorService implements DataExtractor {
         console.log(index);
         switch (index) {
           case 0: {
-            scanType = ScanType.SURFACE;
+            scanType = ScanType.RESOURCE;
             break;
           }
           case 1: {
-            scanType = ScanType.RESOURCE;
+            scanType = ScanType.SURFACE;
             break;
           }
           case 2: {
