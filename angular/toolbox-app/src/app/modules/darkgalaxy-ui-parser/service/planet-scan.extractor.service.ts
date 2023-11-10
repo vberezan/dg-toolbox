@@ -24,6 +24,7 @@ export class PlanetScanExtractorService implements DataExtractor {
 
     document.querySelectorAll('input[name="scanId"]').forEach((input: Element, index: number): void => {
       if (input.hasAttribute('checked')) {
+        console.log(index);
         switch (index) {
           case 0: {
             scanType = ScanType.SURFACE;
