@@ -39,7 +39,6 @@ export class RankingsLoaderService {
     });
 
     let scannedRankings: number = 0;
-    let savedRankings: number = 0;
     let playersStats: Map<number, PlayerStats> = new Map<number, PlayerStats>();
     let source: string = await firstValueFrom(this.httpClient.get(this.PLAYER_RANKINGS_URL, {responseType: 'text'}));
     let dom: Document = new DOMParser().parseFromString(source, 'text/html');
@@ -100,6 +99,7 @@ export class RankingsLoaderService {
 
     // -- FIXME: do it more elegant, without so many subscriptions
     // -- get last navigation scan turn
+    let savedRankings: number = 0;
     let navigationSubscription: Subscription = docData(
       doc(configRef, 'last-navigation-scan-turn')
     ).subscribe((item: DocumentData): void => {
@@ -113,7 +113,6 @@ export class RankingsLoaderService {
 
         // -- if there is a newer navigation scan, update player rankings planets
         if (navigationScanTurn >= playerRankingsScanTurn) {
-          let savedRankings: number = 0;
           playersStats.forEach((playerStats: PlayerStats, playerId: number): void => {
             if (isScanActive) {
               setTimeout((): void => {
@@ -127,7 +126,6 @@ export class RankingsLoaderService {
                     playerStats.planets.push(planetStats.location);
                   });
 
-                  savedRankings++;
                   setDoc(doc(playersRef, playerId.toString()), JSON.parse(JSON.stringify(playerStats)))
                     .then((): void => {
                       this._playersRankingsEmitter.emit({'action': 'save', 'page': ++savedRankings, 'total': playersStats.size});
@@ -155,7 +153,6 @@ export class RankingsLoaderService {
                   let player: PlayerStats = Object.assign(new PlayerStats(), items[0]);
                   playerStats.planets = player.planets;
 
-                  savedRankings++;
                   updateDoc(doc(playersRef, playerId.toString()), JSON.parse(JSON.stringify(playerStats)))
                     .then((): void => {
                       this._playersRankingsEmitter.emit({'action': 'save', 'page': ++savedRankings, 'total': playersStats.size});
