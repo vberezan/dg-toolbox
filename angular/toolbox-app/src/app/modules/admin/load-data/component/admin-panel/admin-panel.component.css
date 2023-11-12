@@ -86,3 +86,8 @@ span.planet-counter {
 #load-planets-example ul {
   float: left;
 }
+
+#admin-load-planets {
+  padding: 5px;
+  font-weight: bold;
+}

@@ -39,6 +39,7 @@ export class RankingsLoaderService {
     });
 
     let scannedRankings: number = 0;
+    let savedRankings: number = 0;
     let playersStats: Map<number, PlayerStats> = new Map<number, PlayerStats>();
     let source: string = await firstValueFrom(this.httpClient.get(this.PLAYER_RANKINGS_URL, {responseType: 'text'}));
     let dom: Document = new DOMParser().parseFromString(source, 'text/html');
@@ -126,6 +127,7 @@ export class RankingsLoaderService {
                     playerStats.planets.push(planetStats.location);
                   });
 
+                  savedRankings++;
                   setDoc(doc(playersRef, playerId.toString()), JSON.parse(JSON.stringify(playerStats)))
                     .then((): void => {
                       this._playersRankingsEmitter.emit({'action': 'save', 'page': ++savedRankings, 'total': playersStats.size});
@@ -153,6 +155,7 @@ export class RankingsLoaderService {
                   let player: PlayerStats = Object.assign(new PlayerStats(), items[0]);
                   playerStats.planets = player.planets;
 
+                  savedRankings++;
                   updateDoc(doc(playersRef, playerId.toString()), JSON.parse(JSON.stringify(playerStats)))
                     .then((): void => {
                       this._playersRankingsEmitter.emit({'action': 'save', 'page': ++savedRankings, 'total': playersStats.size});
@@ -172,7 +175,10 @@ export class RankingsLoaderService {
       navigationSubscription.unsubscribe();
     });
 
-    await this.delay(10000);
+    while (savedRankings < playersStats.size) {
+      console.log(savedRankings);
+      await this.delay(1000);
+    }
   }
 
   async scanAllianceRankingsScreens(): Promise<void> {

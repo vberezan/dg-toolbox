@@ -43,8 +43,6 @@ export class PlanetScanExtractorService implements DataExtractor {
       }
     })
 
-    console.log(scanType);
-
     let result: PlanetScanEvent = new PlanetScanEvent(planetScan, scanType);
 
     if (scanType !== ScanType.UNKNOWN) {
