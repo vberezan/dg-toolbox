@@ -99,7 +99,6 @@ export class RankingsLoaderService {
 
     // -- FIXME: do it more elegant, without so many subscriptions
     // -- get last navigation scan turn
-    let savedRankings: number = 0;
     let navigationSubscription: Subscription = docData(
       doc(configRef, 'last-navigation-scan-turn')
     ).subscribe((item: DocumentData): void => {
@@ -113,6 +112,7 @@ export class RankingsLoaderService {
 
         // -- if there is a newer navigation scan, update player rankings planets
         if (navigationScanTurn >= playerRankingsScanTurn) {
+          let savedRankings: number = 0;
           playersStats.forEach((playerStats: PlayerStats, playerId: number): void => {
             if (isScanActive) {
               setTimeout((): void => {
@@ -172,10 +172,7 @@ export class RankingsLoaderService {
       navigationSubscription.unsubscribe();
     });
 
-    while (savedRankings < playersStats.size) {
-      console.log(savedRankings);
-      await this.delay(1000);
-    }
+    await this.delay(75 * playersStats.size);
   }
 
   async scanAllianceRankingsScreens(): Promise<void> {
