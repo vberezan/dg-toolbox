@@ -153,6 +153,8 @@ export class RankingsLoaderService {
                   let player: PlayerStats = Object.assign(new PlayerStats(), items[0]);
                   playerStats.planets = player.planets;
 
+                  console.log(playerStats.playerId);
+
                   updateDoc(doc(playersRef, playerId.toString()), JSON.parse(JSON.stringify(playerStats)))
                     .then((): void => {
                       this._playersRankingsEmitter.emit({'action': 'save', 'page': ++savedRankings, 'total': playersStats.size});
