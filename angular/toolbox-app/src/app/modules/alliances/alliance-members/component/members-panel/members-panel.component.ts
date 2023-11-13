@@ -1,4 +1,4 @@
-import {AfterViewInit, ChangeDetectorRef, Component, ElementRef, inject, OnDestroy, ViewChild} from '@angular/core';
+import {AfterViewInit, Component, ElementRef, inject, OnDestroy, ViewChild} from '@angular/core';
 import {DarkgalaxyApiService} from "../../../../darkgalaxy-ui-parser/service/darkgalaxy-api.service";
 import {AuthService} from "../../../../authentication/service/auth.service";
 import {Observable, Subscriber} from "rxjs";
@@ -20,9 +20,11 @@ import {MembersPanelService} from "../../service/members-panel.service";
   styleUrls: ['./members-panel.component.css']
 })
 export class MembersPanelComponent implements OnDestroy, AfterViewInit {
+  @ViewChild('dgtSpinner') loadSpinner: ElementRef;
+  @ViewChild('dgtMainContainer') mainContainer: ElementRef;
+
   private dgAPI: DarkgalaxyApiService = inject(DarkgalaxyApiService);
   private authService: AuthService = inject(AuthService);
-  private changeDetection: ChangeDetectorRef = inject(ChangeDetectorRef);
   private localStorageService: LocalStorageService = inject(LocalStorageService);
   private statsService: StatsService = inject(StatsService);
   private membersPanelService: MembersPanelService = inject(MembersPanelService);
@@ -49,9 +51,6 @@ export class MembersPanelComponent implements OnDestroy, AfterViewInit {
         this.statsService.statsEventEmitter.subscribe((stats: AllianceMemberStats): void => {
           this.membersPanelService.setStats(this.allianceMembers, stats);
           this.membersPanelService.sortMembersByScore(this.allianceMembers);
-          if (this.membersPanelService.showComponent()) {
-            this.changeDetection.detectChanges();
-          }
         });
 
         this.statsService.loadStats(this.allianceMembers);
@@ -62,14 +61,12 @@ export class MembersPanelComponent implements OnDestroy, AfterViewInit {
     this.authService.checkLoginValidity();
   }
 
-  ngOnDestroy(): void {
-    this.authService.authState.unsubscribe();
+  ngAfterViewInit() {
+    this.membersPanelService.showComponent(this.loadSpinner, this.mainContainer);
   }
 
-  ngAfterViewInit() {
-    if (this.membersPanelService.showComponent()) {
-      this.changeDetection.detectChanges();
-    }
+  ngOnDestroy(): void {
+    this.authService.authState.unsubscribe();
   }
 
   onSubmitKickMember(event: any): void {
