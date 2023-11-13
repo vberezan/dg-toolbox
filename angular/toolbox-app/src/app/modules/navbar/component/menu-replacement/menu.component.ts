@@ -57,7 +57,7 @@ export class MenuComponent implements OnDestroy {
       this.active = state.status;
 
       if (state.status && !this.initialized) {
-        this.globalConfigService.setStatsLastUpdateTurns();
+        this.globalConfigService.checkAndCachePlayersRankings();
 
         this.initialized = true;
       }

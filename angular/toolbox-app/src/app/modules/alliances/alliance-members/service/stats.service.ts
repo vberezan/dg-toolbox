@@ -8,6 +8,8 @@ import {AllianceMemberStats} from "../../../../shared/model/alliances/alliance-m
 import {LocalStorageService} from "../../../local-storage-manager/service/local-storage.service";
 import {LocalStorageKeys} from "../../../../shared/model/local-storage/local-storage-keys";
 import {DarkgalaxyApiService} from "../../../darkgalaxy-ui-parser/service/darkgalaxy-api.service";
+import {hooks} from "prismjs";
+import {PlayerStatsCache} from "../../../../shared/model/stats/player-stats-cache.model";
 
 
 @Injectable({
@@ -20,15 +22,26 @@ export class StatsService {
   private _statsEventEmitter: EventEmitter<AllianceMemberStats> = new EventEmitter<AllianceMemberStats>();
 
   loadStats(allianceMembers: AllianceMember[]): void {
+    let names: string[] = allianceMembers.map((member) => member.name.toLowerCase());
 
-    if (this.localStorageService.get(LocalStorageKeys.PLAYER_STATS) &&
+    if (this.localStorageService.get(LocalStorageKeys.PLAYERS_STATS) &&
       (this.localStorageService.get(LocalStorageKeys.LAST_PLAYERS_RANKINGS_UPDATE_TURN) < this.dgAPI.gameTurn())) {
-      this.localStorageService.get(LocalStorageKeys.PLAYER_STATS).forEach((stat: AllianceMemberStats): void => {
-        this._statsEventEmitter.emit(stat);
+
+      this.localStorageService.get(LocalStorageKeys.PLAYERS_STATS).forEach((playerStats: PlayerStatsCache): void => {
+
+        let event: AllianceMemberStats = new AllianceMemberStats();
+        event.name = playerStats.name;
+        event.score = playerStats.score;
+        event.combatScore = playerStats.combatScore;
+        event.rank = playerStats.rank;
+        event.planets = playerStats.planets;
+
+        if (names.indexOf(playerStats.name.toLowerCase()) >= 0) {
+          this._statsEventEmitter.emit(event);
+        }
       });
     } else {
       const playersRef: any = collection(this.firestore, 'players');
-      const names: string[] = allianceMembers.map((member: AllianceMember) => member.name.toLowerCase());
 
       let planetsSubscription: Subscription = collectionData(
         query(playersRef,
@@ -46,11 +59,14 @@ export class StatsService {
           event.rank = playerStats.rank;
           event.planets = playerStats.planets.length;
 
+          if (names.indexOf(playerStats.name.toLowerCase()) >= 0) {
+            this._statsEventEmitter.emit(event);
+          }
+
           cache.push(event);
-          this._statsEventEmitter.emit(event);
         });
 
-        this.localStorageService.cache(LocalStorageKeys.PLAYER_STATS, cache);
+        this.localStorageService.cache(LocalStorageKeys.PLAYERS_STATS, cache);
 
         planetsSubscription.unsubscribe();
       });
