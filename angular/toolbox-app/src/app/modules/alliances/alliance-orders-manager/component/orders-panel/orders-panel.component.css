@@ -1,3 +1,30 @@
+.dgt-orders-manager-member {
+  background: rgba(87, 87, 87, 0.72);
+  width: calc(100% - 10px);
+  border-radius: 5px;
+  margin-bottom: 5px;
+  padding: 5px 5px 10px;
+}
+
+.dgt-orders-manager-member .player {
+  width: calc(100% - 10px);
+  float: left;
+  border-bottom: 1px solid rgba(0,0,0,.25);
+  font-weight: bold;
+  margin-left: 5px;
+  margin-bottom: 5px;
+  padding-bottom: 5px;
+}
+
+.dgt-orders-manager-member .kick-eta {
+  font-size: 14px;
+  line-height: 20px;
+  margin-left: 5px;
+  color: #ffffffad;
+  font-weight: normal !important;
+  float: left;
+}
+
 .dgt-orders-manager-panel,
 .dgt-orders-manager-panel div {
   float: left;
@@ -124,13 +151,4 @@ span.score {
   width: auto;
   display: inline-block;
   min-width: 100px;
-}
-
-.kick-eta {
-  font-size: 14px;
-  line-height: 20px;
-  margin-left: 5px;
-  color: #ffffffad;
-  font-weight: normal !important;
-  float: left;
 }
