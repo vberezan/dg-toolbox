@@ -175,6 +175,11 @@ export class RankingsLoaderService {
     });
 
     await this.delay(75 * playersStats.size);
+
+    updateDoc(doc(configRef, ' last-players-rankings-update-turn '), JSON.parse(JSON.stringify({'value': this.dgAPI.gameTurn()})))
+      .catch((e): void => {
+        console.log(e);
+      });
   }
 
   async scanAllianceRankingsScreens(): Promise<void> {
