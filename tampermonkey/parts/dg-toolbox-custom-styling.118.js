@@ -27,7 +27,7 @@ function applyCustomStyling() {
     });
 
     document.querySelectorAll('.coords > span').forEach((coord) => {
-        original: [] = coord.split(/\./);
+        original: [] = coord.textContent.split(/\./);
         fixed: string = '';
 
 
@@ -35,6 +35,8 @@ function applyCustomStyling() {
             fix += ('0' + original[i]).slice(-2) + '.';
         }
         fix += ('0' + original[original.length - 1]).slice(-2);
+
+        coord.innerHTML = fix;
     });
 
     document.querySelectorAll('.resource span').forEach((resource) => {
