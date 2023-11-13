@@ -4,7 +4,7 @@ export class AllianceMember {
   private _name: string;
   private _dgId: string;
   private _kickEta: string;
-  private _stats: AllianceMemberStats;
+  private _stats: AllianceMemberStats = new AllianceMemberStats();
 
 
   get stats(): AllianceMemberStats {
