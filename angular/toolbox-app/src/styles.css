@@ -369,6 +369,7 @@ span.hostile {
   margin-bottom: 0 !important;
 }
 
+#planetList em.neutral,
 #planetList > #planetList .resource {
   font-style: normal !important;
 }
