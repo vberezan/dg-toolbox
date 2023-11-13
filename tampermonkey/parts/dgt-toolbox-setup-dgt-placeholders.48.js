@@ -37,7 +37,7 @@ function setUpAllianceOrdersManagerPanel(windowURL) {
                     allianceBox.querySelector('.playerList').style.display = 'none';
                     allianceBox.querySelector('.plainHeader').style.display = 'none';
 
-                    allianceBox.append(document.createElement('members-panel.component.ts'));
+                    allianceBox.append(document.createElement('dgt-alliance-members'));
                 } else if (allianceBox.querySelector('.plainHeader') &&
                     allianceBox.querySelector('.plainHeader').childNodes[0].textContent.trim().toLowerCase() === 'alliance announcement') {
                     allianceBox.querySelector('.plainHeader').style.display = 'none';
