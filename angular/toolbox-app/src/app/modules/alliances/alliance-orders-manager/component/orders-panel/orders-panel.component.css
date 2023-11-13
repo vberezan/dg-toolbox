@@ -1,131 +1,6 @@
-input,
-textarea {
-  height: 28px;
-  font-size: 12px;
-  background: rgba(0, 0, 0, .40);
-  color: #fff;
-  border: none !important;
-  text-align: left;
-  margin: 0;
-  border-radius: 3px;
-  display: block;
-  box-sizing: border-box;
-  padding: 3px 5px 3px 5px;
-  overflow: hidden;
-  float: left;
-  line-height: 18px;
-}
-
-textarea {
-  padding: 5px !important;
-}
-
-.target > input {
-  width: 75px;
-  margin-right: 20px;
-}
-
-.wait > input {
-  width: 30px;
-  margin-right: 20px;
-}
-
-.instructions > textarea {
-  margin-right: 5px;
-  width: 370px;
-}
-
-span.target,
-span.wait,
-span.instructions {
-  float: left;
-  line-height: 26px;
-  margin-right: 5px;
-}
-
-.dgt-orders-launcher {
-  width: calc(100% - 10px);
-  margin-left: 5px;
-  margin-right: 5px;
-}
-
-.dgt-orders-manager-member {
-  background: rgba(87, 87, 87, 0.72);
-  width: calc(100% - 10px);
-  border-radius: 5px;
-  margin-bottom: 5px;
-  padding: 5px 5px 10px;
-}
-
-.dgt-orders-manager-member .player {
-  width: calc(100% - 10px);
-  float: left;
-  border-bottom: 1px solid rgba(0,0,0,.25);
-  font-weight: bold;
-  margin-left: 5px;
-  margin-bottom: 5px;
-  padding-bottom: 5px;
-}
-
-.dgt-orders-manager-member .name {
-  font-size: 14px;
-  line-height: 22px;
-  color: #ffd46f;
-  float: left;
-}
-
-.dgt-orders-manager-member .note {
-  color: #ffffffad;
-  font-weight: normal !important;
-  float: right;
-
-}
-
-.dgt-orders-manager-member .kick-eta {
-  font-size: 14px;
-  line-height: 20px;
-  margin-left: 5px;
-  color: #ffffffad;
-  font-weight: normal !important;
-  float: left;
-}
-
 .dgt-orders-manager-panel,
 .dgt-orders-manager-panel div {
   float: left;
-}
-
-.dgt-orders-history-details {
-  border: 1px solid transparent;
-  width: calc(100% - 12px);
-  border-radius: 5px;
-  padding: 3px 5px;
-  margin-top: 5px;
-}
-
-.dgt-orders-history-details:nth-child(2) {
-  margin-top: 10px !important;
-}
-
-.dgt-orders-history-details span {
-  line-height: 22px;
-}
-
-.dgt-orders-history-details span.label {
-  margin-right: 5px;
-}
-
-.dgt-orders-history-details span.value {
-  color: #ffffffad;
-  margin-right: 20px;
-}
-
-.dgt-orders-history-details.executed {
-  background: #7BBD1A3D;
-}
-
-.dgt-orders-history-details.in-progress {
-  background: #FF3B303B;
 }
 
 .dgt-orders-history {
@@ -140,17 +15,8 @@ span.instructions {
   font-weight: normal;
 }
 
-.dgt-orders-history .target {
-  min-width: 135px;
-  margin-left: 2px;
-}
-
-.dgt-orders-history .wait {
-  min-width: 70px;
-}
-
 .dgt-orders-manager-kick {
-  float: right;
+  float: right !important;
 }
 
 .dgt-orders-manager-kick button {
@@ -177,73 +43,12 @@ span.instructions {
   color: #ffffffcf !important;
 }
 
-.delete {
-  float: right !important;
-  margin-right: 2px;
-}
-
-.delete button fa-icon {
-  color: #c8a960a1 !important;
-  font-size: 16px !important;
-  line-height: 22px;
-}
-
-
-.delete button:hover fa-icon {
-  color: #ffd46fd4 !important;
-}
-
-.note-update button {
-  height: 22px;
-}
-
-.create button {
-  height: 28px;
-}
-
-.note-update button fa-icon,
-.create button fa-icon {
-  color: #a2a2a2 !important;
-  font-size: 20px !important;
-  line-height: 22px;
-}
-
-.note-update button:hover fa-icon,
-.create button:hover fa-icon {
-  color: #ffffffcf !important;
-}
-
-.note-update {
-  float: right !important;
-}
-
-.note-update .label {
-  float: left;
-  font-weight: normal;
-  line-height: 22px;
-  margin-right: 5px;
-}
-
-.note-update form {
-  float: left;
-}
-
-.note-update input {
-  height: 22px;
-  margin-right: 5px;
-  border-radius: 4px;
-  width: 100px;
-}
-
-span.note {
-  line-height: 20px;
-}
 
 .dgt-orders-manager-panel.user span.name {
-  color: #ffffffad !important;
   font-weight: normal !important;
-  width: 35%;
   font-size: 1em !important;
+  width: 175px !important;
+  color: #ffd46f;
 }
 
 .dgt-orders-manager-panel.user .player {
@@ -321,7 +126,11 @@ span.score {
   min-width: 100px;
 }
 
-.player.user .name {
-  width: 175px !important;
-  color: #ffd46f;
+.kick-eta {
+  font-size: 14px;
+  line-height: 20px;
+  margin-left: 5px;
+  color: #ffffffad;
+  font-weight: normal !important;
+  float: left;
 }
