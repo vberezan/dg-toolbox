@@ -10,6 +10,7 @@ import {DarkgalaxyUiParserModule} from "./app/modules/darkgalaxy-ui-parser/darkg
 import {LocalStorageManagerModule} from "./app/modules/local-storage-manager/local-storage-manager.module";
 import {ChangelogModule} from "./app/modules/changelog/changelog.module";
 import {LoadDataModule} from "./app/modules/admin/load-data/load-data.module";
+import {AllianceRankingsModule} from "./app/modules/alliances/alliance-rankings/alliance-rankings.module";
 
 const platform: PlatformRef = platformBrowserDynamic();
 let windowURL: string[] = window.location.pathname.split(/\//g);
@@ -44,3 +45,9 @@ if (windowURL[1] === 'navigation' && (windowURL.length === 6 && !isNaN(+windowUR
 if (windowURL[1] === 'alliances') {
   platform.bootstrapModule(AllianceMembersModule).catch(err => console.error(err));
 }
+
+// -- alliances rankings
+if (windowURL[1] === 'rankings' && windowURL[2] === 'alliances') {
+  platform.bootstrapModule(AllianceRankingsModule).catch(err => console.error(err));
+}
+

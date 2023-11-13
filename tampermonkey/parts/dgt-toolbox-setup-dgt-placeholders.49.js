@@ -1,3 +1,4 @@
+import {query} from '@angular/fire/firestore';
 
 function setUpLocalStorageManager() {
     document.body.prepend(document.createElement('dgt-local-storage-manager'));
@@ -47,6 +48,14 @@ function setUpAllianceOrdersManagerPanel(windowURL) {
                     }
                 }
             });
+        }
+    }
+}
+
+function setUpRankings(windowURL) {
+    if (windowURL[1] === 'rankings' && windowURL[2] === 'alliances') {
+        if (document.querySelector('.rankingsList')) {
+            document.querySelector('.rankingsList').parentElement.append('dgt-alliance-rankings');
         }
     }
 }

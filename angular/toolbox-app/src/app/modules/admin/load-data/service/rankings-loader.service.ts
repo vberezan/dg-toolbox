@@ -110,8 +110,8 @@ export class RankingsLoaderService {
       ).subscribe((item: DocumentData): void => {
         let playerRankingsScanTurn: number = Object.assign({value: 0}, item).value;
 
-        // -- if there is a newer navigation scan, update player rankings planets
-        if (navigationScanTurn >= playerRankingsScanTurn) {
+        // -- if there is a newer planets scan, update player rankings planets
+        if (navigationScanTurn > playerRankingsScanTurn || (navigationScanTurn == playerRankingsScanTurn && navigationScanTurn == this.dgAPI.gameTurn())) {
           let savedRankings: number = 0;
           playersStats.forEach((playerStats: PlayerStats, playerId: number): void => {
             if (isScanActive) {
