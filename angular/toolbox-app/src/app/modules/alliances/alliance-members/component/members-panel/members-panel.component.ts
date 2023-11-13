@@ -38,10 +38,9 @@ export class MembersPanelComponent implements OnDestroy {
     library.addIcons(farCircleXmark);
 
     this.authService.authState.subscribe((state: AuthState): void => {
-      this.active = state.status;
-
       if (state.status && !this.initialized) {
         this.allianceMembers = this.dgAPI.allianceMembers(true);
+        this.active = state.status;
 
         this.role = new Observable<string>((observer: Subscriber<string>): void => {
           observer.next(state.role);
