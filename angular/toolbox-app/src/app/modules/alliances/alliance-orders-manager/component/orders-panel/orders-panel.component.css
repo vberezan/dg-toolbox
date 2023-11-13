@@ -139,6 +139,7 @@ span.name {
   color: #7bbd1a !important;
 }
 
+.player.user .rank,
 .player.user .score,
 .player.user .planets,
 .player.user .combat-score {

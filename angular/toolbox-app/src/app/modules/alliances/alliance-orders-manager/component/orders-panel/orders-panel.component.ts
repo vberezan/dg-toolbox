@@ -53,6 +53,7 @@ export class OrdersPanelComponent implements OnDestroy {
           'name': string,
           'score': number,
           'combatScore': number,
+          'rank': number,
           'planets': number
         }): void => {
           this.allianceMembers.forEach((member: AllianceMember): void => {
@@ -60,6 +61,7 @@ export class OrdersPanelComponent implements OnDestroy {
               member.score = value.score;
               member.combatScore = value.combatScore;
               member.planets = value.planets;
+              member.rank = value.rank;
             }
           });
 

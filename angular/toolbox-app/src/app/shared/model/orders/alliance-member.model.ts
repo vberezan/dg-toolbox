@@ -6,6 +6,15 @@ export class AllianceMember {
   private _score: number = 0;
   private _combatScore: number;
   private _planets: number;
+  private _rank: number;
+
+  get rank(): number {
+    return this._rank;
+  }
+
+  set rank(value: number) {
+    this._rank = value;
+  }
 
   get score(): number {
     return this._score;

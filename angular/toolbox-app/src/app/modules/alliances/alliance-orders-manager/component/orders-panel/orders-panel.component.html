@@ -10,6 +10,7 @@
         <span class="score stats">Score: <span class="value">{{member.score}}</span></span>
         <span class="combat-score stats">Combat: <span class="value">{{member.combatScore}}</span></span>
         <span class="planets stats">Planets: <span class="value">{{member.planets}}</span></span>
+        <span class="rank stats">Rank: <span class="value">{{member.rank}}</span></span>
         <div *ngIf="member.kickEta == null && userRole === UserRole.ADMIN" class="dgt-orders-manager-kick">
           <form (ngSubmit)="onSubmitKickMember($event)" #f="ngForm" action="/alliances/kick/" method="post">
             <input type="hidden" name="{{member.dgId | kickMemberFormatter}}" value="Kick Member"/>

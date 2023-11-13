@@ -4,7 +4,6 @@ import {Subscription} from "rxjs";
 import {DocumentData} from "@angular/fire/compat/firestore";
 import {PlayerStats} from "../../../../shared/model/stats/player-stats.model";
 import {AllianceMember} from "../../../../shared/model/orders/alliance-member.model";
-import {hooks} from "prismjs";
 
 
 @Injectable({
@@ -12,11 +11,12 @@ import {hooks} from "prismjs";
 })
 export class StatsService {
   private firestore: Firestore = inject(Firestore);
-  private _statsEventEmitter: EventEmitter<{ 'name': string, 'score': number, 'combatScore': number, 'planets': number }>
+  private _statsEventEmitter: EventEmitter<{ 'name': string, 'score': number, 'combatScore': number, 'rank': number, 'planets': number }>
     = new EventEmitter<{
     'name': string,
     'score': number,
     'combatScore': number,
+    'rank': number,
     'planets': number
   }>();
 
@@ -36,6 +36,7 @@ export class StatsService {
           'name': playerStats.name,
           'score': playerStats.score,
           'combatScore': playerStats.combatScore,
+          'rank': playerStats.rank,
           'planets': playerStats.planets.length
         });
       });
@@ -45,7 +46,7 @@ export class StatsService {
   }
 
 
-  get statsEventEmitter(): EventEmitter<{ 'name': string, score: number; "combatScore": number; planets: number }> {
+  get statsEventEmitter(): EventEmitter<{ 'name': string, score: number; "combatScore": number; "rank": number; planets: number }> {
     return this._statsEventEmitter;
   }
 }
