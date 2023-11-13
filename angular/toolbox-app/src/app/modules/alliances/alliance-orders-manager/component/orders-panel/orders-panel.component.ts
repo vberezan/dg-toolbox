@@ -1,4 +1,4 @@
-import {ChangeDetectorRef, Component, inject, OnDestroy} from '@angular/core';
+import {ChangeDetectorRef, Component, ElementRef, inject, OnDestroy, ViewChild} from '@angular/core';
 import {OrderService} from "../../service/order.service";
 import {AllianceOrder} from "../../../../../shared/model/orders/alliance-order.model";
 import {DarkgalaxyApiService} from "../../../../darkgalaxy-ui-parser/service/darkgalaxy-api.service";
@@ -20,6 +20,8 @@ import {StatsService} from "../../service/stats.service";
   styleUrls: ['./orders-panel.component.css']
 })
 export class OrdersPanelComponent implements OnDestroy {
+  @ViewChild('dgtSpinner') loadSpinner: ElementRef;
+
   protected readonly UserRole = UserRole;
 
   private orderService: OrderService = inject(OrderService);
@@ -47,8 +49,9 @@ export class OrdersPanelComponent implements OnDestroy {
     library.addIcons(farCircleXmark, farCircleRight);
 
     this.authService.authState.subscribe((state: AuthState): void => {
-      document.querySelector('dgt-alliance-orders-manager-panel .dgt-spinner-container').classList.add('show');
-      document.querySelector('dgt-alliance-orders-manager-panel .dgt-spinner-container').classList.remove('hide');
+      this.loadSpinner.nativeElement.classList.add('show');
+      this.loadSpinner.nativeElement.classList.remove('hide');
+
       this.allianceMembers = this.dgAPI.allianceMembers(true);
 
       if (state.status) {
@@ -85,8 +88,8 @@ export class OrdersPanelComponent implements OnDestroy {
             }
           }
 
-          document.querySelector('dgt-alliance-orders-manager-panel .dgt-spinner-container').classList.add('hide');
-          document.querySelector('dgt-alliance-orders-manager-panel .dgt-spinner-container').classList.remove('show');
+          this.loadSpinner.nativeElement.classList.add('hide');
+          this.loadSpinner.nativeElement.classList.remove('show');
 
           this.changeDetection.detectChanges();
         });
