@@ -1,59 +1,61 @@
-<div class="opacBackground lightBorder noPadding seperatorLarge">
-  <div class="opacDarkBackground padding">
-    <b>DGT Admin Panel</b>
-  </div>
-  <div class="noPadding ofHidden">
-    <div id="admin-load-planets">
-      <form>
-        <input [(ngModel)]="controls.galaxies" type="text" placeholder="Galaxies (Ex: 1,2)" dgtAllianceList/>
-        <button (click)="scanNavigationScreen();" type="submit">Scan</button>
-      </form>
-      <div id="load-planets-example">
-        <span class="usage-warning">Use this with caution. Universe scan it's a very expensive operation for both DG server and DGT database!</span>
-        <span class="usage-warning">Usage examples:</span>
-        <ul>
-          <li>1,2 - G01 and G02</li>
-          <li>34 - G34</li>
-          <li>special: 213 - first ring (G02-G13)</li>
-          <li>special: 1449 - second ring (G14-G49)</li>
-          <li>special: 149 - everything (G01-G49)</li>
-        </ul>
+<ng-container *ngIf="false">
+  <div class="opacBackground lightBorder noPadding seperatorLarge">
+    <div class="opacDarkBackground padding">
+      <b>DGT Admin Panel</b>
+    </div>
+    <div class="noPadding ofHidden">
+      <div id="admin-load-planets">
+        <form>
+          <input [(ngModel)]="controls.galaxies" type="text" placeholder="Galaxies (Ex: 1,2)" dgtAllianceList/>
+          <button (click)="scanNavigationScreen();" type="submit">Scan</button>
+        </form>
+        <div id="load-planets-example">
+          <span class="usage-warning">Use this with caution. Universe scan it's a very expensive operation for both DG server and DGT database!</span>
+          <span class="usage-warning">Usage examples:</span>
+          <ul>
+            <li>1,2 - G01 and G02</li>
+            <li>34 - G34</li>
+            <li>special: 213 - first ring (G02-G13)</li>
+            <li>special: 1449 - second ring (G14-G49)</li>
+            <li>special: 149 - everything (G01-G49)</li>
+          </ul>
+        </div>
+      </div>
+      <div id="admin-load-rankings" style="padding: 3px; font-weight: bold">
+        <form>
+          <button (click)="scanRankingsScreens()" type="submit">Load Rankings</button>
+        </form>
       </div>
     </div>
-    <div id="admin-load-rankings" style="padding: 3px; font-weight: bold">
-      <form>
-        <button (click)="scanRankingsScreens()" type="submit">Load Rankings</button>
-      </form>
+  </div>
+  <div id="dgt-load-planets-overlay-modal" class="hide dgt-overlay-modal" #planetsLoadModal>
+    <div class="dgt-display-info">
+      <div class="counter">
+        <span class="system-counter">{{loadedSystem}}</span>
+        <span class="planet-counter" #planetCounter>{{loadedPlanet}}</span>
+      </div>
+      <div class="progressbar">
+        <span class="percentage">{{planetPercentage}}%</span>
+        <span class="progress" #planetProgressBar></span>
+      </div>
+      <div class="actions">
+        <button type="button" (click)="cancelScan()">Cancel</button>
+      </div>
     </div>
   </div>
-</div>
-<div id="dgt-load-planets-overlay-modal" class="hide dgt-overlay-modal" #planetsLoadModal>
-  <div class="dgt-display-info">
-    <div class="counter">
-      <span class="system-counter">{{loadedSystem}}</span>
-      <span class="planet-counter" #planetCounter>{{loadedPlanet}}</span>
-    </div>
-    <div class="progressbar">
-      <span class="percentage">{{planetPercentage}}%</span>
-      <span class="progress" #planetProgressBar></span>
-    </div>
-    <div class="actions">
-      <button type="button" (click)="cancelScan()">Cancel</button>
-    </div>
-  </div>
-</div>
 
-<div id="dgt-load-rankings-overlay-modal" class="hide dgt-overlay-modal" #rankingsLoadModal>
-  <div class="dgt-display-info">
-    <div class="counter">
-      <span class="rankings-counter">{{loadedRankings}}</span>
-    </div>
-    <div class="progressbar">
-      <span class="percentage">{{playersPercentage}}%</span>
-      <span class="progress" #playersProgressBar></span>
-    </div>
-    <div class="actions">
-      <button type="button" (click)="cancelScan()">Cancel</button>
+  <div id="dgt-load-rankings-overlay-modal" class="hide dgt-overlay-modal" #rankingsLoadModal>
+    <div class="dgt-display-info">
+      <div class="counter">
+        <span class="rankings-counter">{{loadedRankings}}</span>
+      </div>
+      <div class="progressbar">
+        <span class="percentage">{{playersPercentage}}%</span>
+        <span class="progress" #playersProgressBar></span>
+      </div>
+      <div class="actions">
+        <button type="button" (click)="cancelScan()">Cancel</button>
+      </div>
     </div>
   </div>
-</div>
+</ng-container>
