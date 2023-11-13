@@ -55,7 +55,11 @@ export class MembersPanelComponent implements OnDestroy {
 
           console.log('y');
           this.membersPanelService.sortMembersByScore(this.allianceMembers);
+
+          console.log('z');
           this.membersPanelService.showComponent(this.loadSpinner, this.mainContainer);
+
+          console.log('t');
           this.changeDetection.detectChanges();
         });
 
