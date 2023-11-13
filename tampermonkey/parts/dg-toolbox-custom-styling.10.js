@@ -26,7 +26,7 @@ function applyCustomStyling() {
         }
     });
 
-    document.querySelectorAll('.resource span').forEach((resource) => {
+    document.querySelectorAll('.resource span, em.neutral').forEach((resource) => {
         resource.innerHTML = resource.innerHTML.replace(/\(/g, '[').replace(/\)/g, ']');
     });
 
