@@ -27,9 +27,9 @@ export class StatsService {
       event.rank = playerStats.rank;
       event.planets = playerStats.planets;
 
-      if (names.indexOf(playerStats.name.toLowerCase()) >= 0) {
-        this._statsEventEmitter.emit(event);
-      }
+      // if (names.indexOf(playerStats.name.toLowerCase()) >= 0) {
+      //   this._statsEventEmitter.emit(event);
+      // }
     });
   }
 
