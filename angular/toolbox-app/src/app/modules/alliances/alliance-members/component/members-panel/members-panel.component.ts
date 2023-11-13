@@ -83,7 +83,6 @@ export class MembersPanelComponent implements OnDestroy {
           this.changeDetection.detectChanges();
         });
 
-        console.log('x');
         this.statsService.loadStats(this.allianceMembers);
         this.initialized = true;
       }

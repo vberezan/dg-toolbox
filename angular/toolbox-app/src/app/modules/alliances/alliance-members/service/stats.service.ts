@@ -19,8 +19,6 @@ export class StatsService {
     const playersRef: any = collection(this.firestore, 'players');
     const names: string[] = allianceMembers.map((member: AllianceMember) => member.name.toLowerCase());
 
-    console.log(names);
-
     let planetsSubscription: Subscription = collectionData(
       query(playersRef,
         where('name', 'in', names)
@@ -39,9 +37,9 @@ export class StatsService {
 
         this._statsEventEmitter.emit(stats);
       });
-    });
 
-    planetsSubscription.unsubscribe();
+      planetsSubscription.unsubscribe();
+    });
   }
 
 
