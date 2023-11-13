@@ -63,8 +63,6 @@ export class OrdersPanelComponent implements OnDestroy {
           observer.complete();
         });
 
-        this.dgAPI.cleanAlianceMembers();
-
         this.statsService.statsEventEmitter.subscribe((value: {
           'name': string,
           'score': number,
@@ -93,6 +91,8 @@ export class OrdersPanelComponent implements OnDestroy {
         });
 
         if (state.role === UserRole.ADMIN || state.role === UserRole.TEAM_LEADER) {
+          this.dgAPI.cleanAlianceMembers();
+
           if (!this.initialized) {
             this.allianceMembers.forEach((member: AllianceMember): void => {
               this.orders.set(member.name.toLowerCase(), new Observable<AllianceOrder[]>((observer: Subscriber<AllianceOrder[]>): void => {
