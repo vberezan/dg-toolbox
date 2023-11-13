@@ -27,8 +27,8 @@ function applyCustomStyling() {
     });
 
     document.querySelectorAll('.coords > span').forEach((coord) => {
-        original: [] = coord.textContent.split(/\./);
-        fixed: string = '';
+        let original = coord.textContent.split(/\./);
+        let fixed = '';
 
 
         for (let i = 0; i < original.length - 1; i++) {
