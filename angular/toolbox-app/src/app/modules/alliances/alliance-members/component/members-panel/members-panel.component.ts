@@ -38,13 +38,9 @@ export class MembersPanelComponent implements OnDestroy {
     library.addIcons(farCircleXmark);
 
     this.authService.authState.subscribe((state: AuthState): void => {
-      console.log(state.status);
-
       if (state.status && !this.initialized) {
         this.allianceMembers = this.dgAPI.allianceMembers(true);
         this.active = state.status;
-
-        console.log(this.allianceMembers);
 
         this.role = new Observable<string>((observer: Subscriber<string>): void => {
           observer.next(state.role);
@@ -52,6 +48,7 @@ export class MembersPanelComponent implements OnDestroy {
         });
 
         this.statsService.statsEventEmitter.subscribe((value: AllianceMemberStats): void => {
+          console.log(value);
           this.allianceMembers.forEach((member: AllianceMember): void => {
             if (member.name.toLowerCase() === value.name) {
               member.stats.score = value.score;
@@ -86,6 +83,7 @@ export class MembersPanelComponent implements OnDestroy {
           this.changeDetection.detectChanges();
         });
 
+        console.log('x');
         this.statsService.loadStats(this.allianceMembers);
         this.initialized = true;
       }
