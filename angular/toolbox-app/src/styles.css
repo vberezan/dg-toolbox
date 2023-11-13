@@ -101,6 +101,10 @@
   margin-left: 11px;
 }
 
+#dgt-credits span {
+  float: left;
+}
+
 /* Override game rules section */
 body {
   visibility: hidden;
