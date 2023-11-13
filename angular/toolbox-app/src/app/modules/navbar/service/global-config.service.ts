@@ -20,6 +20,7 @@ export class GlobalConfigService {
     ).subscribe((item: DocumentData): void => {
       if (this.localStorageService.get(LocalStorageKeys.LAST_PLAYERS_RANKINGS_UPDATE_TURN) &&
         (this.localStorageService.get(LocalStorageKeys.LAST_PLAYERS_RANKINGS_UPDATE_TURN) == Object.assign({value: 0}, item).value)) {
+        playerSubscription.unsubscribe();
         return;
       } else {
         let planetsSubscription: Subscription = collectionData(
