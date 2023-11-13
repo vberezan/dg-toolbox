@@ -145,5 +145,5 @@ span.name {
 .player.user .combat-score {
   width: auto;
   display: inline-block;
-  min-width: 100px;
+  min-width: 75px;
 }
