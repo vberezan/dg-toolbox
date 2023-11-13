@@ -100,13 +100,13 @@ export class RankingsLoaderService {
     // -- FIXME: do it more elegant, without so many subscriptions
     // -- get last navigation scan turn
     let navigationSubscription: Subscription = docData(
-      doc(configRef, 'last-navigation-scan-turn')
+      doc(configRef, 'last-planets-update-turn')
     ).subscribe((item: DocumentData): void => {
       let navigationScanTurn: number = Object.assign({value: 0}, item).value;
 
       // -- get last player rankings scan turn
       let rankingsSubscription: Subscription = docData(
-        doc(configRef, 'last-player-rankings-scan-turn')
+        doc(configRef, 'last-players-rankings-update-turn')
       ).subscribe((item: DocumentData): void => {
         let playerRankingsScanTurn: number = Object.assign({value: 0}, item).value;
 
