@@ -52,7 +52,7 @@ export class OrdersPanelComponent implements OnDestroy {
       this.loadSpinner.nativeElement.classList.add('show');
       this.loadSpinner.nativeElement.classList.remove('hide');
 
-      this.allianceMembers = this.dgAPI.allianceMembers(true);
+      // this.allianceMembers = this.dgAPI.allianceMembers(true);
 
       if (state.status) {
         this.controls.target = [];
