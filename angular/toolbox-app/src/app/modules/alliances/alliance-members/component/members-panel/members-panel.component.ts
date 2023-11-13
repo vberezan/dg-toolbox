@@ -11,6 +11,7 @@ import {LocalStorageService} from "../../../../local-storage-manager/service/loc
 import {LocalStorageKeys} from "../../../../../shared/model/local-storage/local-storage-keys";
 import {StatsService} from "../../service/stats.service";
 import {AllianceMemberStats} from "../../../../../shared/model/alliances/alliance-member-stats.model";
+import {MembersPanelService} from "../../service/members-panel.service";
 
 
 @Component({
@@ -27,6 +28,7 @@ export class MembersPanelComponent implements OnDestroy {
   private changeDetection: ChangeDetectorRef = inject(ChangeDetectorRef);
   private localStorageService: LocalStorageService = inject(LocalStorageService);
   private statsService: StatsService = inject(StatsService);
+  private membersPanelService: MembersPanelService = inject(MembersPanelService);
 
   public active: boolean = false;
   private initialized: boolean = false;
@@ -57,17 +59,7 @@ export class MembersPanelComponent implements OnDestroy {
             }
           });
 
-          for (let i: number = 0; i < this.allianceMembers.length - 1; i++) {
-            for (let j: number = i + 1; j < this.allianceMembers.length; j++) {
-              if (this.allianceMembers[i].stats && this.allianceMembers[j].stats &&
-                this.allianceMembers[i].stats.score < this.allianceMembers[j].stats.score) {
-
-                let aux: AllianceMember = this.allianceMembers[i];
-                this.allianceMembers[i] = this.allianceMembers[j];
-                this.allianceMembers[j] = aux;
-              }
-            }
-          }
+          this.membersPanelService.sortMembersByScore(this.allianceMembers);
 
           if (this.loadSpinner.nativeElement.classList.contains('show')) {
             this.loadSpinner.nativeElement.classList.add('hide');
