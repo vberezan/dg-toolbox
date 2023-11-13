@@ -92,46 +92,11 @@ export class OrdersPanelComponent implements OnDestroy {
         });
 
         this.statsService.loadStats(this.allianceMembers);
-
-        // if (state.role === UserRole.ADMIN || state.role === UserRole.TEAM_LEADER) {
-        //   this.dgAPI.cleanAlianceMembers();
-        //
-        //   if (!this.initialized) {
-        //     this.allianceMembers.forEach((member: AllianceMember): void => {
-        //       this.orders.set(member.name.toLowerCase(), new Observable<AllianceOrder[]>((observer: Subscriber<AllianceOrder[]>): void => {
-        //         this.orderService.getAllOrders(member.name.toLowerCase(), this.dgAPI.gameTurn(), this.changeDetection, observer);
-        //       }));
-        //     });
-        //
-        //     this.initialized = true;
-        //   }
-        // }
       }
-
-      // if (document.querySelector('dgt-alliance-orders-manager-panel .dgt-spinner-container.main')) {
-      //   document.querySelector('dgt-alliance-orders-manager-panel .dgt-spinner-container.main').classList.add('hide');
-      //   document.querySelector('dgt-alliance-orders-manager-panel .dgt-spinner-container.main').classList.remove('show');
-      // }
     });
 
     this.authService.checkLoginValidity();
   }
-
-  // createOrder(idx: number): void {
-  //   let allianceOrder: AllianceOrder = new AllianceOrder();
-  //   allianceOrder.wait = this.controls.wait[idx]
-  //   allianceOrder.instructions = this.controls.instructions[idx];
-  //   allianceOrder.target = this.controls.target[idx];
-  //   allianceOrder.executed = false;
-  //   allianceOrder.turn = this.dgAPI.gameTurn();
-  //   allianceOrder.user = this.allianceMembers[idx].name.toLowerCase();
-  //
-  //   this.orderService.updateOrder(allianceOrder);
-  // }
-  //
-  // deleteOrder(id: string): void {
-  //   this.orderService.deleteOrder(id);
-  // }
 
   ngOnDestroy(): void {
     this.authService.authState.unsubscribe();

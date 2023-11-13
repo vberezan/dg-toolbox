@@ -6,7 +6,6 @@ import {NavigationScansModule} from "./app/modules/scans/navigation-scans/naviga
 import {AuthenticationModule} from "./app/modules/authentication/authentication.module";
 import {PlatformRef} from "@angular/core";
 import {AllianceOrdersManagerModule} from "./app/modules/alliances/alliance-orders-manager/alliance-orders-manager.module";
-import {FleetOrdersDisplayModule} from "./app/modules/alliances/fleet-orders-display/fleet-orders-display.module";
 import {DarkgalaxyUiParserModule} from "./app/modules/darkgalaxy-ui-parser/darkgalaxy-ui-parser.module";
 import {LocalStorageManagerModule} from "./app/modules/local-storage-manager/local-storage-manager.module";
 import {ChangelogModule} from "./app/modules/changelog/changelog.module";
@@ -45,8 +44,3 @@ if (windowURL[1] === 'navigation' && (windowURL.length === 6 && !isNaN(+windowUR
 if (windowURL[1] === 'alliances') {
   platform.bootstrapModule(AllianceOrdersManagerModule).catch(err => console.error(err));
 }
-
-// -- fleets
-// if (windowURL[1] === 'fleets') {
-//   platform.bootstrapModule(FleetOrdersDisplayModule).catch(err => console.error(err));
-// }
