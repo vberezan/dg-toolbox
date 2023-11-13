@@ -26,8 +26,7 @@ export class StatsService {
       event.planets = playerStats.planets;
 
       if (names.indexOf(event.name.toLowerCase()) >= 0) {
-        console.log(event);
-        // this._statsEventEmitter.emit(event);
+        this._statsEventEmitter.emit(event);
       }
     });
   }
