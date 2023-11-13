@@ -24,7 +24,7 @@ function applyCustomStyling() {
 
             let coords = planet.querySelector('.nameRow .coords span').textContent.trim();
             planet.querySelector('.nameRow .coords').remove();
-            let newCoords = document.createElement(span);
+            let newCoords = document.createElement('span');
             newCoords.innerHTML = coords;
             newCoords.classList.add('dgt-planet-new-coords');
 
