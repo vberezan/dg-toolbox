@@ -149,10 +149,11 @@ span.instructions {
   min-width: 70px;
 }
 
-.create > button,
-.note-update button,
-.dgt-orders-manager-kick button,
-.delete button {
+.dgt-orders-manager-kick {
+  float: right;
+}
+
+.dgt-orders-manager-kick button {
   margin: 0 !important;
   padding: 0;
   border: none;
