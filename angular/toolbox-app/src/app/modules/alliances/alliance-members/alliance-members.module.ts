@@ -9,8 +9,6 @@ import {getAuth, provideAuth} from "@angular/fire/auth";
 import {getFirestore, provideFirestore} from "@angular/fire/firestore";
 import {initializeAppCheck, provideAppCheck, ReCaptchaV3Provider} from "@angular/fire/app-check";
 import {FontAwesomeModule} from "@fortawesome/angular-fontawesome";
-import {NavigationTargetDirective} from "../../../shared/directive/navigation-target.directive";
-import {WaitTurnsDirective} from "../../../shared/directive/wait-turns.directive";
 import {KickMemberFormatterPipe} from './pipe/kick-member-formatter.pipe';
 
 
@@ -31,12 +29,7 @@ import {KickMemberFormatterPipe} from './pipe/kick-member-formatter.pipe';
   ],
   declarations: [
     MembersPanelComponent,
-    NavigationTargetDirective,
-    WaitTurnsDirective,
     KickMemberFormatterPipe
-  ],
-  providers: [
-    OrderService
   ],
   bootstrap: [MembersPanelComponent]
 })
