@@ -37,8 +37,8 @@ export class OrdersPanelComponent implements OnDestroy {
     library.addIcons(farCircleXmark, farCircleRight);
 
     this.authService.authState.subscribe((state: AuthState): void => {
-      this.loadSpinner.nativeElement.classList.add('show');
-      this.loadSpinner.nativeElement.classList.remove('hide');
+      // this.loadSpinner.nativeElement.classList.add('show');
+      // this.loadSpinner.nativeElement.classList.remove('hide');
 
       this.allianceMembers = this.dgAPI.allianceMembers(true);
 
