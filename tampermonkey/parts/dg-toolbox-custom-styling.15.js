@@ -186,7 +186,7 @@ function applyCustomStyling() {
             playerRankingsUpdate = JSON.parse(localStorage.getItem('last-players-rankings-update')).value;
         }
         if (localStorage.getItem('last-planets-update')) {
-            playerRankingsUpdate = JSON.parse(localStorage.getItem('last-players-rankings-update')).value;
+            planetsRankingsUpdate = JSON.parse(localStorage.getItem('last-planets-update')).value;
         }
 
 
