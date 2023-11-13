@@ -30,7 +30,7 @@ export class GlobalConfigService {
 
           console.log(stats);
 
-          stats.forEach((stat: PlayerStats) => {
+          stats.forEach((stat: PlayerStats): void => {
             let psc: PlayerStatsCache = new PlayerStatsCache();
             psc.playerId = stat.playerId;
             psc.rank = stat.rank;
@@ -40,6 +40,8 @@ export class GlobalConfigService {
             psc.combatScore = stat.combatScore;
             psc.combinedScore = stat.combinedScore;
             psc.score = stat.score;
+
+            cache.push(psc);
           });
 
           this.localStorageService.cache(LocalStorageKeys.PLAYERS_STATS, cache);
