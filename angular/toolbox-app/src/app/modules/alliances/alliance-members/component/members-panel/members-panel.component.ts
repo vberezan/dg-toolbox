@@ -56,6 +56,8 @@ export class MembersPanelComponent implements OnDestroy {
           'planets': number
         }): void => {
           this.allianceMembers.forEach((member: AllianceMember): void => {
+            console.log(member);
+
             if (member.name.toLowerCase() === value.name) {
               member.stats = new AllianceMemberStats();
               member.stats.score = value.score;
@@ -65,8 +67,8 @@ export class MembersPanelComponent implements OnDestroy {
             }
           });
 
-          for (let i = 0; i < this.allianceMembers.length - 1; i++) {
-            for (let j = i + 1; j < this.allianceMembers.length; j++) {
+          for (let i: number = 0; i < this.allianceMembers.length - 1; i++) {
+            for (let j: number = i + 1; j < this.allianceMembers.length; j++) {
               if (this.allianceMembers[i].stats.score < this.allianceMembers[j].stats.score) {
                 let aux: AllianceMember = this.allianceMembers[i];
                 this.allianceMembers[i] = this.allianceMembers[j];
