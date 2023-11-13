@@ -119,12 +119,8 @@ span.stats {
   color: #fff !important;
   font-size: 12px !important;
   font-weight: normal !important;
-  margin-left: 20px;
+  margin-left: 0;
   line-height: 22px;
-}
-
-span.score {
-  margin-left: 10px !important;
 }
 
 span.name {
@@ -145,5 +141,5 @@ span.name {
 .player.user .combat-score {
   width: auto;
   display: inline-block;
-  min-width: 75px;
+  min-width: 100px;
 }
