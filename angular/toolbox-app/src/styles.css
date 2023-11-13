@@ -336,6 +336,7 @@ span.hostile {
 
 #planetList .planetHeadSection .planetName a {
   color: #ffd46f !important;
+  margin-left: 5px;
 }
 
 #planetList > #planetList .locationWrapper .paddingMid {
@@ -472,6 +473,22 @@ span.hostile {
 
 #planetList > #planetList .resourceLine .resource {
   width: calc(25% - 15px) !important;
+}
+
+#planetList > #planetList .planetImage a {
+  display: flex;
+}
+
+#planetList > #planetList .planetImage .dgt-planet-new-coords {
+  position: absolute;
+  width: 65px;
+  margin-top: 55px;
+  font-size: 11px;
+  padding: 3px 5px;
+  background: #0000004f;
+  border-bottom-left-radius: 5px;
+  color: #ffffffad;
+  text-align: center;
 }
 
 /******/
