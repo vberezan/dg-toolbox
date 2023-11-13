@@ -32,6 +32,14 @@
   float: left;
 }
 
+.dgt-orders-manager-panel.show {
+  display: block;
+}
+
+.dgt-orders-manager-panel.hide {
+  display: none;
+}
+
 .dgt-orders-manager-panel,
 .dgt-orders-manager-panel div {
   float: left;
@@ -77,15 +85,6 @@
   color: #ffffffcf !important;
 }
 
-
-.dgt-orders-manager-panel.user span.name {
-  font-weight: normal !important;
-  font-size: 1em !important;
-  width: 175px !important;
-  display: inline-block;
-  color: #ffd46f;
-}
-
 .dgt-orders-manager-panel.user .player {
   margin-bottom: 0 !important;
 }
@@ -116,21 +115,6 @@
   border-bottom: none !important;
 }
 
-.dgt-orders-manager-panel.user span.note {
-  line-height: 16px !important;
-  width: 65%;
-  text-align: left;
-  font-size: 1em !important;
-}
-.dgt-spinner-container.member {
-  position: relative;
-  margin-top: 5px;
-}
-
-.dgt-spinner-container.member .dgt-spinner {
-  top: 10px !important;
-}
-
 span.stats {
   color: #fff !important;
   font-size: 12px !important;
@@ -143,10 +127,12 @@ span.score {
   margin-left: 10px !important;
 }
 
-.dgt-orders-manager-panel.tl div.name-wrapper,
-.dgt-orders-manager-panel.admin div.name-wrapper {
-  width: 150px;
-  min-width: 210px !important;
+span.name {
+  font-weight: normal !important;
+  font-size: 1em !important;
+  width: 175px !important;
+  display: inline-block;
+  color: #ffd46f;
 }
 
 .player span.value {
