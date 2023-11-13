@@ -55,7 +55,7 @@ function setUpAllianceOrdersManagerPanel(windowURL) {
 function setUpRankings(windowURL) {
     if (windowURL[1] === 'rankings' && windowURL[2] === 'alliances') {
         if (document.querySelector('.rankingsList')) {
-            document.querySelector('.rankingsList').parentElement.append('dgt-alliance-rankings');
+            document.querySelector('.rankingsList').parentElement.append(document.createElement('dgt-alliance-rankings'));
         }
     }
 }
