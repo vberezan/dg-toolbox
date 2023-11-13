@@ -26,7 +26,7 @@ function applyCustomStyling() {
         }
     });
 
-    document.querySelectorAll('.coords > span').forEach((coord) => {
+    document.querySelectorAll('.coords > span:first-child').forEach((coord) => {
         let original = coord.textContent.split(/\./);
         let fixed = '';
 
