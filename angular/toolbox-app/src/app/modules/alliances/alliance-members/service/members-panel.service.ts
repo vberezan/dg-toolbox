@@ -22,6 +22,9 @@ export class MembersPanelService {
   }
 
   showComponent(loadSpinner: ElementRef, mainContainer: ElementRef): void {
+    console.log(loadSpinner.nativeElement);
+    console.log(mainContainer.nativeElement);
+
     if (loadSpinner.nativeElement && loadSpinner.nativeElement.classList.contains('show')) {
       loadSpinner.nativeElement.classList.add('hide');
       loadSpinner.nativeElement.classList.remove('show');
