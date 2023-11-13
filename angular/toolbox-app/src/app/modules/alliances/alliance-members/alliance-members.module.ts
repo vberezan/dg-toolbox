@@ -1,5 +1,5 @@
 import {NgModule} from '@angular/core';
-import {OrdersPanelComponent} from './component/orders-panel/orders-panel.component';
+import {MembersPanelComponent} from './component/members-panel/members-panel.component';
 import {BrowserModule} from "@angular/platform-browser";
 import {FormsModule} from "@angular/forms";
 import {OrderService} from "./service/order.service";
@@ -12,7 +12,6 @@ import {FontAwesomeModule} from "@fortawesome/angular-fontawesome";
 import {NavigationTargetDirective} from "../../../shared/directive/navigation-target.directive";
 import {WaitTurnsDirective} from "../../../shared/directive/wait-turns.directive";
 import {KickMemberFormatterPipe} from './pipe/kick-member-formatter.pipe';
-import { UpdateNoteFormatterPipe } from './pipe/update-note-formatter.pipe';
 
 
 @NgModule({
@@ -31,16 +30,15 @@ import { UpdateNoteFormatterPipe } from './pipe/update-note-formatter.pipe';
     )
   ],
   declarations: [
-    OrdersPanelComponent,
+    MembersPanelComponent,
     NavigationTargetDirective,
     WaitTurnsDirective,
-    KickMemberFormatterPipe,
-    UpdateNoteFormatterPipe
+    KickMemberFormatterPipe
   ],
   providers: [
     OrderService
   ],
-  bootstrap: [OrdersPanelComponent]
+  bootstrap: [MembersPanelComponent]
 })
-export class AllianceOrdersManagerModule {
+export class AllianceMembersModule {
 }

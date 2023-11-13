@@ -5,7 +5,7 @@
   margin-bottom: 5px;
 }
 
-.dgt-orders-manager-member {
+.dgt-alliance-members-member {
   background: rgba(87, 87, 87, 0.72);
   width: calc(100% - 10px);
   border-radius: 5px;
@@ -13,7 +13,7 @@
   padding: 5px 5px 10px;
 }
 
-.dgt-orders-manager-member .player {
+.dgt-alliance-members-member .player {
   width: calc(100% - 10px);
   float: left;
   border-bottom: 1px solid rgba(0,0,0,.25);
@@ -23,7 +23,7 @@
   padding-bottom: 5px;
 }
 
-.dgt-orders-manager-member .kick-eta {
+.dgt-alliance-members-member .kick-eta {
   font-size: 14px;
   line-height: 20px;
   margin-left: 5px;
@@ -32,36 +32,24 @@
   float: left;
 }
 
-.dgt-orders-manager-panel.show {
+.dgt-alliance-members-panel.show {
   display: block;
 }
 
-.dgt-orders-manager-panel.hide {
+.dgt-alliance-members-panel.hide {
   display: none;
 }
 
-.dgt-orders-manager-panel,
-.dgt-orders-manager-panel div {
+.dgt-alliance-members-panel,
+.dgt-alliance-members-panel div {
   float: left;
 }
 
-.dgt-orders-history {
-  width: calc(100% - 10px) !important;
-  margin-left: 5px;
-  margin-right: 5px;
-  position: relative;
-}
-
-.dgt-orders-history .label {
-  color: #ffffffad;
-  font-weight: normal;
-}
-
-.dgt-orders-manager-kick {
+.dgt-alliance-members-kick {
   float: right !important;
 }
 
-.dgt-orders-manager-kick button {
+.dgt-alliance-members-kick button {
   margin: 0 !important;
   padding: 0;
   border: none;
@@ -71,47 +59,47 @@
   cursor: pointer;
 }
 
-.dgt-orders-manager-kick button {
+.dgt-alliance-members-kick button {
   margin-left: 5px !important;
 }
 
-.dgt-orders-manager-kick button fa-icon {
+.dgt-alliance-members-kick button fa-icon {
   color: #a2a2a2 !important;
   font-size: 14px !important;
   line-height: 22px;
 }
 
-.dgt-orders-manager-kick button:hover fa-icon {
+.dgt-alliance-members-kick button:hover fa-icon {
   color: #ffffffcf !important;
 }
 
-.dgt-orders-manager-panel.user .player {
+.dgt-alliance-members-panel.user .player {
   margin-bottom: 0 !important;
 }
 
-.dgt-orders-manager-panel.user .dgt-orders-manager-member {
+.dgt-alliance-members-panel.user .dgt-alliance-members-member {
   margin: 0 !important;
   border-radius: 0 !important;
   padding-bottom: 0 !important;
 }
 
-.dgt-orders-manager-panel.user .dgt-orders-manager-member:first-child {
+.dgt-alliance-members-panel.user .dgt-alliance-members-member:first-child {
   border-top-left-radius: 5px !important;
   border-top-right-radius: 5px !important;
   padding-top: 5px !important;
 }
 
-.dgt-orders-manager-panel.user .dgt-orders-manager-member:last-child {
+.dgt-alliance-members-panel.user .dgt-alliance-members-member:last-child {
   border-bottom-left-radius: 5px !important;
   border-bottom-right-radius: 5px !important;
   padding-bottom: 5px !important;
 }
-.dgt-orders-manager-member:last-child {
+.dgt-alliance-members-member:last-child {
   margin-bottom: 0 !important;
 }
 
 
-.dgt-orders-manager-panel.user .dgt-orders-manager-member:last-child .player {
+.dgt-alliance-members-panel.user .dgt-alliance-members-member:last-child .player {
   border-bottom: none !important;
 }
 

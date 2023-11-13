@@ -1,5 +1,4 @@
 import {ChangeDetectorRef, Component, ElementRef, inject, OnDestroy, ViewChild} from '@angular/core';
-import {AllianceOrder} from "../../../../../shared/model/orders/alliance-order.model";
 import {DarkgalaxyApiService} from "../../../../darkgalaxy-ui-parser/service/darkgalaxy-api.service";
 import {AuthService} from "../../../../authentication/service/auth.service";
 import {Observable, Subscriber} from "rxjs";
@@ -14,11 +13,11 @@ import {StatsService} from "../../service/stats.service";
 
 
 @Component({
-  selector: 'dgt-alliance-orders-manager-panel',
-  templateUrl: './orders-panel.component.html',
-  styleUrls: ['./orders-panel.component.css']
+  selector: 'dgt-alliance-members',
+  templateUrl: './members-panel.component.html',
+  styleUrls: ['./members-panel.component.css']
 })
-export class OrdersPanelComponent implements OnDestroy {
+export class MembersPanelComponent implements OnDestroy {
   @ViewChild('dgtSpinner') loadSpinner: ElementRef;
   @ViewChild('dgtMainContainer') mainContainer: ElementRef;
 
@@ -32,7 +31,6 @@ export class OrdersPanelComponent implements OnDestroy {
   private initialized: boolean = false;
   protected readonly UserRole = UserRole;
   protected allianceMembers: AllianceMember[];
-  protected orders: Map<string, Observable<AllianceOrder[]>> = new Map<string, Observable<AllianceOrder[]>>();
   protected role: Observable<string>;
 
   constructor(library: FaIconLibrary) {
