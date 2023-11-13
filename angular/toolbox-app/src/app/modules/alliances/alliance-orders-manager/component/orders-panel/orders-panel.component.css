@@ -1,3 +1,10 @@
+.dgt-spinner-container {
+  width: 100% !important;
+  height: 58px;
+  position: relative;
+  margin-bottom: 5px;
+}
+
 .dgt-orders-manager-member {
   background: rgba(87, 87, 87, 0.72);
   width: calc(100% - 10px);
