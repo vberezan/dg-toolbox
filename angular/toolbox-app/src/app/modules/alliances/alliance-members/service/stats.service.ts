@@ -23,7 +23,7 @@ export class StatsService {
       event.score = playerStats.score;
       event.combatScore = playerStats.combatScore;
       event.rank = playerStats.rank;
-      event.planets = playerStats.planets;
+      event.planets = playerStats.planets + 1;
 
       if (names.indexOf(event.name.toLowerCase()) >= 0) {
         this._statsEventEmitter.emit(event);
