@@ -52,10 +52,10 @@ export class GlobalConfigService {
     });
 
     let planetsSubscription: Subscription = docData(
-      doc(collection(this.firestore, 'config'), 'last-players-rankings-update-turn')
+      doc(collection(this.firestore, 'config'), 'last-planets-update-turn')
     ).subscribe((item: DocumentData): void => {
       this.localStorageService.cache(LocalStorageKeys.LAST_PLANETS_UPDATE_TURN, Object.assign({value: 0}, item).value);
-      playerSubscription.unsubscribe();
+      planetsSubscription.unsubscribe();
     });
   }
 }
