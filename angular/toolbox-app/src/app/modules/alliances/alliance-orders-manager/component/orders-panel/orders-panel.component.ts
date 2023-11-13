@@ -20,6 +20,7 @@ import {StatsService} from "../../service/stats.service";
 })
 export class OrdersPanelComponent implements OnDestroy {
   @ViewChild('dgtSpinner') loadSpinner: ElementRef;
+  @ViewChild('dgtMainContainer') mainContainer: ElementRef;
 
   private dgAPI: DarkgalaxyApiService = inject(DarkgalaxyApiService);
   private authService: AuthService = inject(AuthService);
@@ -74,6 +75,8 @@ export class OrdersPanelComponent implements OnDestroy {
 
           this.loadSpinner.nativeElement.classList.add('hide');
           this.loadSpinner.nativeElement.classList.remove('show');
+          this.mainContainer.nativeElement.classList.add('show');
+          this.mainContainer.nativeElement.classList.remove('hide');
 
           this.changeDetection.detectChanges();
         });
@@ -95,10 +98,4 @@ export class OrdersPanelComponent implements OnDestroy {
     this.localStorageService.remove(LocalStorageKeys.ALLIANCE_MEMBERS);
     event.target.submit();
   }
-
-  onSubmitUpdateNote(event: any) {
-    this.localStorageService.remove(LocalStorageKeys.ALLIANCE_MEMBERS);
-    event.target.submit();
-  }
-
 }
