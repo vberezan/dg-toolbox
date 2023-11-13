@@ -56,8 +56,6 @@ export class MembersPanelComponent implements OnDestroy {
           'planets': number
         }): void => {
           this.allianceMembers.forEach((member: AllianceMember): void => {
-            console.log(member);
-
             if (member.name.toLowerCase() === value.name) {
               member.stats = new AllianceMemberStats();
               member.stats.score = value.score;
