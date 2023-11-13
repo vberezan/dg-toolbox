@@ -18,6 +18,8 @@ export class StatsService {
 
     this.localStorageService.get(LocalStorageKeys.PLAYERS_STATS).forEach((playerStats: PlayerStatsCache): void => {
 
+      console.log(playerStats);
+
       let event: AllianceMemberStats = new AllianceMemberStats();
       event.name = playerStats.name;
       event.score = playerStats.score;

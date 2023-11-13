@@ -28,8 +28,6 @@ export class GlobalConfigService {
           let stats: PlayerStats[] = Object.assign([], items);
           let cache: PlayerStatsCache[] = [];
 
-          console.log(stats);
-
           stats.forEach((stat: PlayerStats): void => {
             let psc: PlayerStatsCache = new PlayerStatsCache();
             psc.playerId = stat.playerId;
