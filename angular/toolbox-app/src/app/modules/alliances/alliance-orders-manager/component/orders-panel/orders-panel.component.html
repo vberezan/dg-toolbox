@@ -1,4 +1,4 @@
-<div class="dgt-spinner-container" #dgtSpinner>
+<div class="dgt-spinner-container show" #dgtSpinner>
   <span class="dgt-spinner"></span>
 </div>
 <div class="dgt-orders-manager-panel user">
@@ -13,7 +13,7 @@
   </div>
 </div>
 <ng-container *ngIf="(role | async) as userRole">
-  <div *ngIf="userRole === UserRole.TEAM_LEADER || userRole === UserRole.ADMIN" class="dgt-orders-manager-panel admin">
+  <div *ngIf="userRole === UserRole.ADMIN" class="dgt-orders-manager-panel admin">
     <div *ngFor="let member of allianceMembers; index as idx" class="dgt-orders-manager-member">
       <div class="player">
         <div class="name-wrapper">
@@ -31,7 +31,7 @@
         <span class="combat-score stats">Combat: <span class="value">{{member.combatScore}}</span></span>
         <span class="planets stats">Planets: <span class="value">{{member.planets}}</span></span>
         <span *ngIf="member.kickEta != null" class="kick-eta">[{{member.kickEta}}]</span>
-        <span *ngIf="member.note != null && member.note.length > 0 && (userRole === UserRole.TEAM_LEADER)" class="note">Note: {{member.note}}</span>
+        <span *ngIf="member.note != null && member.note.length > 0" class="note">Note: {{member.note}}</span>
         <div *ngIf="userRole === UserRole.ADMIN" class="note-update">
           <span class="label">Note:</span>
           <form (ngSubmit)="onSubmitUpdateNote($event)" #f="ngForm" action="{{member.dgId | updateNoteFormatter}}" method="post">

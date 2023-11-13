@@ -21,14 +21,13 @@ import {StatsService} from "../../service/stats.service";
 export class OrdersPanelComponent implements OnDestroy {
   @ViewChild('dgtSpinner') loadSpinner: ElementRef;
 
-  protected readonly UserRole = UserRole;
-
   private dgAPI: DarkgalaxyApiService = inject(DarkgalaxyApiService);
   private authService: AuthService = inject(AuthService);
   private changeDetection: ChangeDetectorRef = inject(ChangeDetectorRef);
   private localStorageService: LocalStorageService = inject(LocalStorageService);
   private statsService: StatsService = inject(StatsService);
 
+  protected readonly UserRole = UserRole;
   protected allianceMembers: AllianceMember[];
   protected orders: Map<string, Observable<AllianceOrder[]>> = new Map<string, Observable<AllianceOrder[]>>();
   protected role: Observable<string>;
@@ -37,9 +36,6 @@ export class OrdersPanelComponent implements OnDestroy {
     library.addIcons(farCircleXmark, farCircleRight);
 
     this.authService.authState.subscribe((state: AuthState): void => {
-      // this.loadSpinner.nativeElement.classList.add('show');
-      // this.loadSpinner.nativeElement.classList.remove('hide');
-
       this.allianceMembers = this.dgAPI.allianceMembers(true);
 
       if (state.status) {
