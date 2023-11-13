@@ -89,6 +89,7 @@ export class OrdersPanelComponent implements OnDestroy {
 
           this.changeDetection.detectChanges();
         });
+        this.statsService.loadStats(this.allianceMembers);
 
         if (state.role === UserRole.ADMIN || state.role === UserRole.TEAM_LEADER) {
           this.dgAPI.cleanAlianceMembers();
@@ -99,8 +100,6 @@ export class OrdersPanelComponent implements OnDestroy {
                 this.orderService.getAllOrders(member.name.toLowerCase(), this.dgAPI.gameTurn(), this.changeDetection, observer);
               }));
             });
-
-            this.statsService.loadStats(this.allianceMembers);
 
             this.initialized = true;
           }
