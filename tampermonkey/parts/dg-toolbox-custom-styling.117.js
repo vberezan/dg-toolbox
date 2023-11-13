@@ -24,7 +24,17 @@ function applyCustomStyling() {
         if (planet.querySelectorAll('.planetHeadSection').length > 3) {
             planet.querySelector('.planetImage').classList.add('dgt-no-bottom-radius');
         }
+    });
 
+    document.querySelectorAll('.coords > span').forEach((coord) => {
+        original: [] = coord.split(/\./);
+        fixed: string = '';
+
+
+        for (let i = 0; i < original.length - 1; i++) {
+            fix += ('0' + original[i]).slice(-2) + '.';
+        }
+        fix += ('0' + original[original.length - 1]).slice(-2);
     });
 
     document.querySelectorAll('.resource span').forEach((resource) => {
