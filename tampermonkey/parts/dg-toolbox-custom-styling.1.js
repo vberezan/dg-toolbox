@@ -32,11 +32,12 @@ function applyCustomStyling() {
 
 
         for (let i = 0; i < original.length - 1; i++) {
-            fix += ('0' + original[i]).slice(-2) + '.';
+            fixed += ('0' + original[i]).slice(-2) + '.';
         }
-        fix += ('0' + original[original.length - 1]).slice(-2);
 
-        coord.innerHTML = fix;
+        fixed += ('0' + original[original.length - 1]).slice(-2);
+
+        coord.innerHTML = fixed;
     });
 
     document.querySelectorAll('.resource span').forEach((resource) => {
