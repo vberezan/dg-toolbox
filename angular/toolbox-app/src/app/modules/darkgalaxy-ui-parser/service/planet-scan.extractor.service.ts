@@ -22,22 +22,26 @@ export class PlanetScanExtractorService implements DataExtractor {
     let base: Element = document.querySelectorAll('#contentBox #planetHeader')[1];
     let scanType: ScanType;
 
-    switch (base.querySelectorAll('.planetHeadSection .resource > span').length) {
-      case 5: {
-        scanType = ScanType.SURFACE;
-        break;
+    document.querySelectorAll('input[name="scanId"]').forEach((input: Element, index: number): void => {
+      if (input.hasAttribute('checked')) {
+        switch (index) {
+          case 0: {
+            scanType = ScanType.RESOURCE;
+            break;
+          }
+          case 1: {
+            scanType = ScanType.SURFACE;
+            break;
+          }
+          case 2: {
+            scanType = ScanType.FLEET;
+            break;
+          }
+          default:
+            scanType = ScanType.UNKNOWN;
+        }
       }
-      case 2: {
-        scanType = ScanType.RESOURCE;
-        break;
-      }
-      case 0: {
-        scanType = ScanType.FLEET;
-        break;
-      }
-      default:
-        scanType = ScanType.UNKNOWN;
-    }
+    })
 
     let result: PlanetScanEvent = new PlanetScanEvent(planetScan, scanType);
 
@@ -93,11 +97,16 @@ export class PlanetScanExtractorService implements DataExtractor {
         result.planetScan.resources[index].abundance = parseInt(abundance.textContent.trim());
       });
 
-      let availableWorkers = base.querySelectorAll('.planetHeadSection .resource > span')[4].textContent.trim().split(/\s+/)[0];
-      result.planetScan.workers.currentNumber = parseInt(base.querySelectorAll('.planetHeadSection .resource > span')[3].textContent.trim().split(/\//g)[0].replace(/,/g, ''));
-      result.planetScan.workers.maximumNumber = parseInt(base.querySelectorAll('.planetHeadSection .resource > span')[3].textContent.trim().split(/\//g)[1].replace(/,/g, ''));
-      result.planetScan.workers.available = parseInt(availableWorkers.substring(1, availableWorkers.length).replace(/,/g, ''));
-      result.planetScan.soldiers = parseInt(base.querySelectorAll('.planetHeadSection .resource > span')[2].textContent.trim().replace(/,/g, ''));
+      let resources:NodeListOf<Element> = base.querySelectorAll('.planetHeadSection .resource > span');
+
+      // -- check if the planet was not emptied
+      if (resources.length > 4) {
+        let availableWorkers: string = resources[4].textContent.trim().split(/\s+/)[0];
+        result.planetScan.workers.available = parseInt(availableWorkers.substring(1, availableWorkers.length).replace(/,/g, ''));
+        result.planetScan.workers.currentNumber = parseInt(resources[3].textContent.trim().split(/\//g)[0].replace(/,/g, ''));
+        result.planetScan.workers.maximumNumber = parseInt(resources[3].textContent.trim().split(/\//g)[1].replace(/,/g, ''));
+        result.planetScan.soldiers = parseInt(resources[2].textContent.trim().replace(/,/g, ''));
+      }
 
       base.parentElement.querySelectorAll('div.entry > .left:not(.structureImageSmall)').forEach((structure: Element) => {
         result.planetScan.structures.push(

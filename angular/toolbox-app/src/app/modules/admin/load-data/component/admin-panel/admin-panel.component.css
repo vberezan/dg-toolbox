@@ -1,0 +1,93 @@
+#dgt-load-planets-overlay-modal .dgt-display-info{
+  height: 90px;
+}
+
+#dgt-load-rankings-overlay-modal .dgt-display-info {
+  height: 90px;
+}
+
+.dgt-display-info {
+  margin: auto;
+  width: 300px;
+  left: calc(50% - 150px);
+  top: calc(50% - 45px);
+  border: 1px solid #676767;
+  border-radius: 5px;
+  padding: 10px;
+  vertical-align: middle;
+  text-align: center;
+  background: #ffffff;
+  position: fixed;
+}
+
+.progressbar {
+  position: relative;
+  display: block;
+  border-radius: 5px;
+  max-width: 200px;
+  width: 100%;
+  margin: 10px auto;
+  height: 20px;
+  background: rgb(75,75,75);
+  overflow: hidden;
+}
+
+span.progress {
+  display: block;
+  position: absolute;
+  left: 0;
+  top: 0;
+  bottom: 0;
+  width: 0;
+  transition: all .3s;
+  height: 100%;
+  background: #576740;
+}
+
+span.percentage {
+  width: 100%;
+  position: relative;
+  float: left;
+  background: transparent;
+  z-index: 9999;
+  height: 100%;
+  line-height: 20px;
+  color: #fff;
+  font-size: 15px;
+}
+
+.counter span {
+  color: #000;
+  font-size: 14px;
+}
+
+span.planet-counter {
+  transition: all .1s;
+}
+
+#load-planets-example {
+  display: table;
+}
+
+#load-planets-example {
+  font-weight: normal !important;
+  background: #576740 !important;
+  color: #ffffffad !important;
+  font-size: 11px;
+  text-align: left;
+  padding: 5px;
+  border-radius: 3px;
+}
+
+#load-planets-example .usage-warning {
+  float: left;
+}
+
+#load-planets-example ul {
+  float: left;
+}
+
+#admin-load-planets {
+  padding: 5px;
+  font-weight: bold;
+}

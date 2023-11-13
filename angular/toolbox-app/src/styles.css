@@ -69,7 +69,32 @@
   }
 }
 
+.dgt-overlay-modal {
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  width: 200%;
+  height: 200%;
+  position: absolute;
+  background: rgba(0, 0, 0, 0.75);
+  z-index: 999999999;
+}
+
+.dgt-overlay-modal.show {
+  display: flex !important;
+}
+
+.dgt-overlay-modal.hide {
+  display: none !important;
+}
+
+.dgt-overlay-open {
+  overflow: hidden !important;
+}
+
 /******/
+
 #dgt-credits {
   color: #909090;
   font-size: 11px;
@@ -2320,3 +2345,4 @@ dgt-shared-scans-collector {
   font-size: 14px;
   color: #a2a2a2 !important;
 }
+

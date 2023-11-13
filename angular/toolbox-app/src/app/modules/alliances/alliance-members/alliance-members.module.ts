@@ -1,18 +1,14 @@
 import {NgModule} from '@angular/core';
-import {OrdersPanelComponent} from './component/orders-panel/orders-panel.component';
+import {MembersPanelComponent} from './component/members-panel/members-panel.component';
 import {BrowserModule} from "@angular/platform-browser";
 import {FormsModule} from "@angular/forms";
-import {OrderService} from "./service/order.service";
 import {getApp, initializeApp, provideFirebaseApp} from "@angular/fire/app";
 import {environment} from "../../../../environments/environment";
 import {getAuth, provideAuth} from "@angular/fire/auth";
 import {getFirestore, provideFirestore} from "@angular/fire/firestore";
 import {initializeAppCheck, provideAppCheck, ReCaptchaV3Provider} from "@angular/fire/app-check";
 import {FontAwesomeModule} from "@fortawesome/angular-fontawesome";
-import {NavigationTargetDirective} from "../../../shared/directive/navigation-target.directive";
-import {WaitTurnsDirective} from "../../../shared/directive/wait-turns.directive";
 import {KickMemberFormatterPipe} from './pipe/kick-member-formatter.pipe';
-import { UpdateNoteFormatterPipe } from './pipe/update-note-formatter.pipe';
 
 
 @NgModule({
@@ -31,16 +27,10 @@ import { UpdateNoteFormatterPipe } from './pipe/update-note-formatter.pipe';
     )
   ],
   declarations: [
-    OrdersPanelComponent,
-    NavigationTargetDirective,
-    WaitTurnsDirective,
-    KickMemberFormatterPipe,
-    UpdateNoteFormatterPipe
+    MembersPanelComponent,
+    KickMemberFormatterPipe
   ],
-  providers: [
-    OrderService
-  ],
-  bootstrap: [OrdersPanelComponent]
+  bootstrap: [MembersPanelComponent]
 })
-export class AllianceOrdersManagerModule {
+export class AllianceMembersModule {
 }

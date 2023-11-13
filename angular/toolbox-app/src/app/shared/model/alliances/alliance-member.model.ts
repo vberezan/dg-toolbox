@@ -1,8 +1,19 @@
+import {AllianceMemberStats} from "./alliance-member-stats.model";
+
 export class AllianceMember {
   private _name: string;
-  private _note: string;
   private _dgId: string;
   private _kickEta: string;
+  private _stats: AllianceMemberStats = new AllianceMemberStats();
+
+
+  get stats(): AllianceMemberStats {
+    return this._stats;
+  }
+
+  set stats(value: AllianceMemberStats) {
+    this._stats = value;
+  }
 
   get kickEta(): string {
     return this._kickEta;
@@ -20,14 +31,6 @@ export class AllianceMember {
     this._name = value;
   }
 
-  get note(): string {
-    return this._note;
-  }
-
-  set note(value: string) {
-    this._note = value;
-  }
-
   get dgId(): string {
     return this._dgId;
   }
@@ -39,9 +42,9 @@ export class AllianceMember {
   toJSON() {
     return {
       name: this.name,
-      note: this.note,
       dgId: this.dgId,
-      kickEta: this.kickEta
+      kickEta: this.kickEta,
+      stats: this.stats
     }
   }
 }

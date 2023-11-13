@@ -37,7 +37,7 @@ function setUpAllianceOrdersManagerPanel(windowURL) {
                     allianceBox.querySelector('.playerList').style.display = 'none';
                     allianceBox.querySelector('.plainHeader').style.display = 'none';
 
-                    allianceBox.append(document.createElement('dgt-alliance-orders-manager-panel'));
+                    allianceBox.append(document.createElement('dgt-alliance-members'));
                 } else if (allianceBox.querySelector('.plainHeader') &&
                     allianceBox.querySelector('.plainHeader').childNodes[0].textContent.trim().toLowerCase() === 'alliance announcement') {
                     allianceBox.querySelector('.plainHeader').style.display = 'none';
@@ -47,20 +47,6 @@ function setUpAllianceOrdersManagerPanel(windowURL) {
                     }
                 }
             });
-        }
-    }
-}
-
-function setUpFleetOrdersListPanel(windowURL) {
-    if (windowURL[1] === 'fleets' && windowURL.length === 3) {
-        if (document.querySelector('#contentBox>.header') && document.querySelector('#contentBox>.ofHidden')) {
-            document.querySelector('#contentBox>.ofHidden').id = 'fleets-list';
-
-            document.querySelector('#contentBox')
-                .insertBefore(
-                    document.createElement('dgt-fleet-orders-list-panel'),
-                    document.querySelector('#contentBox>.ofHidden')
-                );
         }
     }
 }

@@ -1,0 +1,133 @@
+.dgt-spinner-container {
+  width: 100% !important;
+  height: 58px;
+  position: relative;
+  margin-bottom: 5px;
+}
+
+.dgt-alliance-members-member {
+  background: rgba(87, 87, 87, 0.72);
+  width: calc(100% - 10px);
+  border-radius: 5px;
+  margin-bottom: 5px;
+  padding: 5px 5px 10px;
+}
+
+.dgt-alliance-members-member .player {
+  width: calc(100% - 10px);
+  float: left;
+  border-bottom: 1px solid rgba(0,0,0,.25);
+  font-weight: bold;
+  margin-left: 5px;
+  margin-bottom: 5px;
+  padding-bottom: 5px;
+}
+
+.dgt-alliance-members-member .kick-eta {
+  font-size: 14px;
+  line-height: 20px;
+  margin-left: 5px;
+  color: #ffffffad;
+  font-weight: normal !important;
+  float: left;
+}
+
+.dgt-alliance-members-panel.show {
+  display: block;
+}
+
+.dgt-alliance-members-panel.hide {
+  display: none;
+}
+
+.dgt-alliance-members-panel,
+.dgt-alliance-members-panel div {
+  float: left;
+}
+
+.dgt-alliance-members-kick {
+  float: right !important;
+}
+
+.dgt-alliance-members-kick button {
+  margin: 0 !important;
+  padding: 0;
+  border: none;
+  border-radius: 100px;
+  vertical-align: middle;
+  background: transparent;
+  cursor: pointer;
+}
+
+.dgt-alliance-members-kick button {
+  margin-left: 5px !important;
+}
+
+.dgt-alliance-members-kick button fa-icon {
+  color: #a2a2a2 !important;
+  font-size: 14px !important;
+  line-height: 22px;
+}
+
+.dgt-alliance-members-kick button:hover fa-icon {
+  color: #ffffffcf !important;
+}
+
+.dgt-alliance-members-panel.user .player {
+  margin-bottom: 0 !important;
+}
+
+.dgt-alliance-members-panel.user .dgt-alliance-members-member {
+  margin: 0 !important;
+  border-radius: 0 !important;
+  padding-bottom: 0 !important;
+}
+
+.dgt-alliance-members-panel.user .dgt-alliance-members-member:first-child {
+  border-top-left-radius: 5px !important;
+  border-top-right-radius: 5px !important;
+  padding-top: 5px !important;
+}
+
+.dgt-alliance-members-panel.user .dgt-alliance-members-member:last-child {
+  border-bottom-left-radius: 5px !important;
+  border-bottom-right-radius: 5px !important;
+  padding-bottom: 5px !important;
+}
+.dgt-alliance-members-member:last-child {
+  margin-bottom: 0 !important;
+}
+
+
+.dgt-alliance-members-panel.user .dgt-alliance-members-member:last-child .player {
+  border-bottom: none !important;
+}
+
+span.stats {
+  color: #fff !important;
+  font-size: 12px !important;
+  font-weight: normal !important;
+  margin-left: 0;
+  line-height: 22px;
+}
+
+span.name {
+  font-weight: normal !important;
+  font-size: 1em !important;
+  width: 175px !important;
+  display: inline-block;
+  color: #ffd46f;
+}
+
+.player span.value {
+  color: #7bbd1a !important;
+}
+
+.player.user .rank,
+.player.user .score,
+.player.user .planets,
+.player.user .combat-score {
+  width: auto;
+  display: inline-block;
+  min-width: 100px;
+}

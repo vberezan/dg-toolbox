@@ -7,7 +7,7 @@ import {AuthState} from "../../../../shared/model/authentication/auth-state.mode
 import {LocalStorageService} from "../../../local-storage-manager/service/local-storage.service";
 import {LocalStorageKeys} from "../../../../shared/model/local-storage/local-storage-keys";
 import {Analytics, logEvent} from "@angular/fire/analytics";
-import {ChangelogService} from "../../../changelog/service/changelog.service";
+import {GlobalConfigService} from "../../service/global-config.service";
 
 @Component({
   selector: 'dgt-navbar',
@@ -20,12 +20,11 @@ export class MenuComponent implements OnDestroy {
   private changeDetection: ChangeDetectorRef = inject(ChangeDetectorRef);
   private authService: AuthService = inject(AuthService);
   private localStorageService: LocalStorageService = inject(LocalStorageService);
+  private globalConfigService: GlobalConfigService = inject(GlobalConfigService);
   private analytics: Analytics = inject(Analytics);
 
-  protected localOrdersBadge: number = 0;
   protected localUpdateBadge: boolean = false;
 
-  public fleetOrdersNotification: Observable<number>;
   public updateAvailableNotification: Observable<boolean>;
   public active: boolean;
 
@@ -36,7 +35,7 @@ export class MenuComponent implements OnDestroy {
 
     if (event[1].length === 0) {
       logEvent(this.analytics, '/home');
-    } else if (event[event.length-2] === 'comms') {
+    } else if (event[event.length - 2] === 'comms') {
       logEvent(this.analytics, '/scan');
     } else {
       logEvent(this.analytics, '/' + event[1]);
@@ -48,7 +47,6 @@ export class MenuComponent implements OnDestroy {
       page_title: this.dgAPI.username()
     });
 
-    this.localOrdersBadge = this.localStorageService.get(LocalStorageKeys.ACTIVE_ORDERS);
     this.localUpdateBadge = this.localStorageService.get(LocalStorageKeys.UPDATE_AVAILABLE);
 
     this.updateAvailableNotification = new Observable<boolean>((observer: Subscriber<boolean>): void => {
@@ -59,9 +57,7 @@ export class MenuComponent implements OnDestroy {
       this.active = state.status;
 
       if (state.status && !this.initialized) {
-        this.fleetOrdersNotification = new Observable<number>((observer: Subscriber<number>): void => {
-          this.badgeService.checkFleetOrders(this.dgAPI.username(), observer, this.changeDetection);
-        });
+        this.globalConfigService.checkAndCachePlayersRankings();
 
         this.initialized = true;
       }

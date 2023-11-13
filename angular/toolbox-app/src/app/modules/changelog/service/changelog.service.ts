@@ -1,4 +1,4 @@
-import {ChangeDetectorRef, EventEmitter, inject, Injectable, OnDestroy} from '@angular/core';
+import {ChangeDetectorRef, inject, Injectable} from '@angular/core';
 import {collection, doc, docData, Firestore} from "@angular/fire/firestore";
 import {DocumentData} from "@angular/fire/compat/firestore";
 import {Subscriber, Subscription} from "rxjs";
@@ -8,19 +8,14 @@ import {LocalStorageKeys} from "../../../shared/model/local-storage/local-storag
 @Injectable({
   providedIn: 'root'
 })
-export class ChangelogService implements OnDestroy {
+export class ChangelogService {
   private firestore: Firestore = inject(Firestore);
   private localStorageService: LocalStorageService = inject(LocalStorageService);
-  private configSubscription: Subscription;
 
   checkVersion(changeDetection: ChangeDetectorRef, changed: Subscriber<boolean>): void {
-    if (this.configSubscription) {
-      return;
-    }
-
     let configRef: any = collection(this.firestore, 'config');
 
-    this.configSubscription = docData(
+    let configSubscription: Subscription = docData(
       doc(configRef, 'version')
     ).subscribe((item: DocumentData): void => {
       let version: string = Object.assign({value: ''}, item).value;
@@ -41,10 +36,8 @@ export class ChangelogService implements OnDestroy {
         document.querySelector('dgt-changelog .dgt-spinner-container').classList.add('hide');
         document.querySelector('dgt-changelog .dgt-spinner-container').classList.remove('show');
       }
-    });
-  }
 
-  ngOnDestroy(): void {
-    this.configSubscription.unsubscribe();
+      configSubscription.unsubscribe();
+    });
   }
 }
