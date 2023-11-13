@@ -185,6 +185,10 @@ function applyCustomStyling() {
         if (localStorage.getItem('last-players-rankings-update')) {
             playerRankingsUpdate = JSON.parse(localStorage.getItem('last-players-rankings-update')).value;
         }
+        if (localStorage.getItem('last-planets-update')) {
+            playerRankingsUpdate = JSON.parse(localStorage.getItem('last-players-rankings-update')).value;
+        }
+
 
         credits.id = 'dgt-credits';
         credits.innerHTML =
