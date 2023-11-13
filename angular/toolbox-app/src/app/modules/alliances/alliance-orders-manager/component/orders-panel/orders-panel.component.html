@@ -1,45 +1,22 @@
 <div class="dgt-spinner-container show" #dgtSpinner>
   <span class="dgt-spinner"></span>
 </div>
-<div class="dgt-orders-manager-panel user">
-  <div *ngFor="let member of allianceMembers;" class="dgt-orders-manager-member">
-    <div class="player user">
-      <span class="name">{{member.name}}</span>
-      <span class="score stats">Score: <span class="value">{{member.score}}</span></span>
-      <span class="combat-score stats">Combat: <span class="value">{{member.combatScore}}</span></span>
-      <span class="planets stats">Planets: <span class="value">{{member.planets}}</span></span>
-    </div>
-  </div>
-</div>
 <ng-container *ngIf="(role | async) as userRole">
-  <div *ngIf="userRole === UserRole.ADMIN" class="dgt-orders-manager-panel admin">
-    <div *ngFor="let member of allianceMembers; index as idx" class="dgt-orders-manager-member">
-      <div class="player">
-        <div class="name-wrapper">
-          <span class="name">{{member.name}}</span>
-          <div *ngIf="member.kickEta == null && userRole === UserRole.ADMIN" class="dgt-orders-manager-kick">
-            <form (ngSubmit)="onSubmitKickMember($event)" #f="ngForm" action="/alliances/kick/" method="post">
-              <input type="hidden" name="{{member.dgId | kickMemberFormatter}}" value="Kick Member"/>
-              <button type="submit">
-                <fa-icon [icon]="['far','circle-xmark']"/>
-              </button>
-            </form>
-          </div>
+  <div class="dgt-orders-manager-panel user">
+    <div *ngFor="let member of allianceMembers;" class="dgt-orders-manager-member">
+      <div class="player user">
+        <span class="name">{{member.name}}</span>
+        <div *ngIf="member.kickEta == null && userRole === UserRole.ADMIN" class="dgt-orders-manager-kick">
+          <form (ngSubmit)="onSubmitKickMember($event)" #f="ngForm" action="/alliances/kick/" method="post">
+            <input type="hidden" name="{{member.dgId | kickMemberFormatter}}" value="Kick Member"/>
+            <button type="submit">
+              <fa-icon [icon]="['far','circle-xmark']"/>
+            </button>
+          </form>
         </div>
         <span class="score stats">Score: <span class="value">{{member.score}}</span></span>
         <span class="combat-score stats">Combat: <span class="value">{{member.combatScore}}</span></span>
         <span class="planets stats">Planets: <span class="value">{{member.planets}}</span></span>
-        <span *ngIf="member.kickEta != null" class="kick-eta">[{{member.kickEta}}]</span>
-        <span *ngIf="member.note != null && member.note.length > 0" class="note">Note: {{member.note}}</span>
-        <div *ngIf="userRole === UserRole.ADMIN" class="note-update">
-          <span class="label">Note:</span>
-          <form (ngSubmit)="onSubmitUpdateNote($event)" #f="ngForm" action="{{member.dgId | updateNoteFormatter}}" method="post">
-            <input type="text" name="note" value="{{member.note}}" placeholder="Player Note">
-            <button type="submit">
-              <fa-icon [icon]="['far','circle-right']"/>
-            </button>
-          </form>
-        </div>
       </div>
     </div>
   </div>

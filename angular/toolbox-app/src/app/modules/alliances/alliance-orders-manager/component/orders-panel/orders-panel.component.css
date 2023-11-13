@@ -322,8 +322,5 @@ span.score {
 
 .player.user .name {
   width: 175px !important;
-}
-
-.player.user .note {
-  width: 150px !important;
+  color: #ffd46f;
 }

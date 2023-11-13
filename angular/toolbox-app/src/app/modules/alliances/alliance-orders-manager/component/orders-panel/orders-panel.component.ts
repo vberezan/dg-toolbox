@@ -4,7 +4,7 @@ import {DarkgalaxyApiService} from "../../../../darkgalaxy-ui-parser/service/dar
 import {AuthService} from "../../../../authentication/service/auth.service";
 import {Observable, Subscriber} from "rxjs";
 import {FaIconLibrary} from "@fortawesome/angular-fontawesome";
-import {faCircleRight as farCircleRight, faCircleXmark as farCircleXmark} from "@fortawesome/free-regular-svg-icons";
+import {faCircleXmark as farCircleXmark} from "@fortawesome/free-regular-svg-icons";
 import {AllianceMember} from "../../../../../shared/model/orders/alliance-member.model";
 import {AuthState} from "../../../../../shared/model/authentication/auth-state.model";
 import {UserRole} from "../../../../../shared/model/authentication/user-role";
@@ -33,7 +33,7 @@ export class OrdersPanelComponent implements OnDestroy {
   protected role: Observable<string>;
 
   constructor(library: FaIconLibrary) {
-    library.addIcons(farCircleXmark, farCircleRight);
+    library.addIcons(farCircleXmark);
 
     this.authService.authState.subscribe((state: AuthState): void => {
       this.allianceMembers = this.dgAPI.allianceMembers(true);
