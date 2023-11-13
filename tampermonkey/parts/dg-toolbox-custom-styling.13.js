@@ -23,7 +23,7 @@ function applyCustomStyling() {
             planet.querySelector('.planetImage img').setAttribute('height', 75);
 
             let coords = planet.querySelector('.nameRow .coords span').textContent.trim();
-            planet.querySelector('.nameRow .coords').remove();
+            planet.querySelector('.nameRow .coords').style.display = 'none';
             let newCoords = document.createElement('span');
             newCoords.innerHTML = coords;
             newCoords.classList.add('dgt-planet-new-coords');
