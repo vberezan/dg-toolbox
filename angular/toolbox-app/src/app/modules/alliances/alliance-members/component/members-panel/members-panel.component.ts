@@ -49,28 +49,10 @@ export class MembersPanelComponent implements OnDestroy {
           observer.complete();
         });
 
-        this.statsService.statsEventEmitter.subscribe((value: AllianceMemberStats): void => {
-          this.allianceMembers.forEach((member: AllianceMember): void => {
-            if (member.name.toLowerCase() === value.name) {
-              member.stats.score = value.score;
-              member.stats.combatScore = value.combatScore;
-              member.stats.planets = value.planets;
-              member.stats.rank = value.rank;
-            }
-          });
-
+        this.statsService.statsEventEmitter.subscribe((stats: AllianceMemberStats): void => {
+          this.membersPanelService.setStats(this.allianceMembers, stats);
           this.membersPanelService.sortMembersByScore(this.allianceMembers);
-
-          if (this.loadSpinner.nativeElement.classList.contains('show')) {
-            this.loadSpinner.nativeElement.classList.add('hide');
-            this.loadSpinner.nativeElement.classList.remove('show');
-          }
-
-          if (this.mainContainer.nativeElement.classList.contains('hide')) {
-            this.mainContainer.nativeElement.classList.add('show');
-            this.mainContainer.nativeElement.classList.remove('hide');
-          }
-
+          this.membersPanelService.showComponent(this.loadSpinner, this.mainContainer);
           this.changeDetection.detectChanges();
         });
 
