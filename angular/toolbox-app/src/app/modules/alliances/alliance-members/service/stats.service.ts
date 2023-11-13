@@ -3,7 +3,7 @@ import {collection, collectionData, Firestore, query, where} from "@angular/fire
 import {Subscription} from "rxjs";
 import {DocumentData} from "@angular/fire/compat/firestore";
 import {PlayerStats} from "../../../../shared/model/stats/player-stats.model";
-import {AllianceMember} from "../../../../shared/model/orders/alliance-member.model";
+import {AllianceMember} from "../../../../shared/model/alliances/alliance-member.model";
 
 
 @Injectable({

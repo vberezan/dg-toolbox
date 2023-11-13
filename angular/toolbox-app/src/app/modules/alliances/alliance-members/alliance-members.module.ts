@@ -2,7 +2,6 @@ import {NgModule} from '@angular/core';
 import {MembersPanelComponent} from './component/members-panel/members-panel.component';
 import {BrowserModule} from "@angular/platform-browser";
 import {FormsModule} from "@angular/forms";
-import {OrderService} from "./service/order.service";
 import {getApp, initializeApp, provideFirebaseApp} from "@angular/fire/app";
 import {environment} from "../../../../environments/environment";
 import {getAuth, provideAuth} from "@angular/fire/auth";

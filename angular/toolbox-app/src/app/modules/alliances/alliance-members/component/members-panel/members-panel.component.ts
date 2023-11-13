@@ -4,7 +4,7 @@ import {AuthService} from "../../../../authentication/service/auth.service";
 import {Observable, Subscriber} from "rxjs";
 import {FaIconLibrary} from "@fortawesome/angular-fontawesome";
 import {faCircleXmark as farCircleXmark} from "@fortawesome/free-regular-svg-icons";
-import {AllianceMember} from "../../../../../shared/model/orders/alliance-member.model";
+import {AllianceMember} from "../../../../../shared/model/alliances/alliance-member.model";
 import {AuthState} from "../../../../../shared/model/authentication/auth-state.model";
 import {UserRole} from "../../../../../shared/model/authentication/user-role";
 import {LocalStorageService} from "../../../../local-storage-manager/service/local-storage.service";
@@ -56,16 +56,16 @@ export class MembersPanelComponent implements OnDestroy {
         }): void => {
           this.allianceMembers.forEach((member: AllianceMember): void => {
             if (member.name.toLowerCase() === value.name) {
-              member.score = value.score;
-              member.combatScore = value.combatScore;
-              member.planets = value.planets;
-              member.rank = value.rank;
+              member.stats.score = value.score;
+              member.stats.combatScore = value.combatScore;
+              member.stats.planets = value.planets;
+              member.stats.rank = value.rank;
             }
           });
 
           for (let i = 0; i < this.allianceMembers.length - 1; i++) {
             for (let j = i + 1; j < this.allianceMembers.length; j++) {
-              if (this.allianceMembers[i].score < this.allianceMembers[j].score) {
+              if (this.allianceMembers[i].stats.score < this.allianceMembers[j].stats.score) {
                 let aux: AllianceMember = this.allianceMembers[i];
                 this.allianceMembers[i] = this.allianceMembers[j];
                 this.allianceMembers[j] = aux;
