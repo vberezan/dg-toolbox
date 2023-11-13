@@ -22,12 +22,12 @@ export class MembersPanelService {
   }
 
   showComponent(loadSpinner: ElementRef, mainContainer: ElementRef): void {
-    if (loadSpinner.nativeElement.classList.contains('show')) {
+    if (loadSpinner.nativeElement && loadSpinner.nativeElement.classList.contains('show')) {
       loadSpinner.nativeElement.classList.add('hide');
       loadSpinner.nativeElement.classList.remove('show');
     }
 
-    if (mainContainer.nativeElement.classList.contains('hide')) {
+    if (mainContainer.nativeElement && mainContainer.nativeElement.classList.contains('hide')) {
       mainContainer.nativeElement.classList.add('show');
       mainContainer.nativeElement.classList.remove('hide');
     }
