@@ -1,4 +1,4 @@
-import {ChangeDetectorRef, Component, ElementRef, inject, OnDestroy, ViewChild} from '@angular/core';
+import {AfterViewInit, ChangeDetectorRef, Component, ElementRef, inject, OnDestroy, ViewChild} from '@angular/core';
 import {DarkgalaxyApiService} from "../../../../darkgalaxy-ui-parser/service/darkgalaxy-api.service";
 import {AuthService} from "../../../../authentication/service/auth.service";
 import {Observable, Subscriber} from "rxjs";
@@ -19,7 +19,7 @@ import {MembersPanelService} from "../../service/members-panel.service";
   templateUrl: './members-panel.component.html',
   styleUrls: ['./members-panel.component.css']
 })
-export class MembersPanelComponent implements OnDestroy {
+export class MembersPanelComponent implements OnDestroy, AfterViewInit {
   private dgAPI: DarkgalaxyApiService = inject(DarkgalaxyApiService);
   private authService: AuthService = inject(AuthService);
   private changeDetection: ChangeDetectorRef = inject(ChangeDetectorRef);
@@ -49,8 +49,9 @@ export class MembersPanelComponent implements OnDestroy {
         this.statsService.statsEventEmitter.subscribe((stats: AllianceMemberStats): void => {
           this.membersPanelService.setStats(this.allianceMembers, stats);
           this.membersPanelService.sortMembersByScore(this.allianceMembers);
-          this.membersPanelService.showComponent();
-          // this.changeDetection.detectChanges();
+          if (this.membersPanelService.showComponent()) {
+            this.changeDetection.detectChanges();
+          }
         });
 
         this.statsService.loadStats(this.allianceMembers);
@@ -63,6 +64,12 @@ export class MembersPanelComponent implements OnDestroy {
 
   ngOnDestroy(): void {
     this.authService.authState.unsubscribe();
+  }
+
+  ngAfterViewInit() {
+    if (this.membersPanelService.showComponent()) {
+      this.changeDetection.detectChanges();
+    }
   }
 
   onSubmitKickMember(event: any): void {
