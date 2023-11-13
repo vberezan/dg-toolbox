@@ -319,3 +319,11 @@ span.score {
   display: inline-block;
   min-width: 100px;
 }
+
+.player.user .name {
+  width: 175px !important;
+}
+
+.player.user .note {
+  width: 150px !important;
+}
