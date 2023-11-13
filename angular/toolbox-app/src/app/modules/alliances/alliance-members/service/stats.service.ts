@@ -22,7 +22,9 @@ export class StatsService {
   loadStats(allianceMembers: AllianceMember[]): void {
 
     if (this.localStorageService.get(LocalStorageKeys.LAST_PLAYERS_RANKINGS_UPDATE_TURN) < this.dgAPI.gameTurn()) {
-      return this.localStorageService.get(LocalStorageKeys.PLAYER_STATS);
+      this.localStorageService.get(LocalStorageKeys.PLAYER_STATS).forEach((stat: AllianceMemberStats): void => {
+        this._statsEventEmitter.emit(stat);
+      });
     } else {
       const playersRef: any = collection(this.firestore, 'players');
       const names: string[] = allianceMembers.map((member: AllianceMember) => member.name.toLowerCase());
