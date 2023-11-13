@@ -6,11 +6,11 @@
     <div *ngFor="let member of allianceMembers;" class="dgt-alliance-members-member">
       <div class="player user">
         <span class="name">{{member.name}}</span>
-        <span class="rank stats">Rank: <span class="value">{{member.stats.rank}}</span></span>
+<!--        <span class="rank stats">Rank: <span class="value">{{member.stats.rank}}</span></span>-->
         <span *ngIf="member.kickEta != null" class="kick-eta">[{{member.kickEta}}]</span>
-        <span class="score stats">Score: <span class="value">{{member.stats.score}}</span></span>
-        <span class="combat-score stats">Combat: <span class="value">{{member.stats.combatScore}}</span></span>
-        <span class="planets stats">Planets: <span class="value">{{member.stats.planets}}</span></span>
+<!--        <span class="score stats">Score: <span class="value">{{member.stats.score}}</span></span>-->
+<!--        <span class="combat-score stats">Combat: <span class="value">{{member.stats.combatScore}}</span></span>-->
+<!--        <span class="planets stats">Planets: <span class="value">{{member.stats.planets}}</span></span>-->
         <div *ngIf="member.kickEta == null && userRole === UserRole.ADMIN" class="dgt-alliance-members-kick">
           <form (ngSubmit)="onSubmitKickMember($event)" #f="ngForm" action="/alliances/kick/" method="post">
             <input type="hidden" name="{{member.dgId | kickMemberFormatter}}" value="Kick Member"/>
