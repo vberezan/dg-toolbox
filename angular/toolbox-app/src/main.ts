@@ -47,6 +47,6 @@ if (windowURL[1] === 'alliances') {
 }
 
 // -- fleets
-if (windowURL[1] === 'fleets') {
-  platform.bootstrapModule(FleetOrdersDisplayModule).catch(err => console.error(err));
-}
+// if (windowURL[1] === 'fleets') {
+//   platform.bootstrapModule(FleetOrdersDisplayModule).catch(err => console.error(err));
+// }
