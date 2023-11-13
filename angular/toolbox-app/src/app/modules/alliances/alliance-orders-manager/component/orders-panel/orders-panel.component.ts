@@ -27,6 +27,8 @@ export class OrdersPanelComponent implements OnDestroy {
   private localStorageService: LocalStorageService = inject(LocalStorageService);
   private statsService: StatsService = inject(StatsService);
 
+  public active: boolean = false;
+  private initialized: boolean = false;
   protected readonly UserRole = UserRole;
   protected allianceMembers: AllianceMember[];
   protected orders: Map<string, Observable<AllianceOrder[]>> = new Map<string, Observable<AllianceOrder[]>>();
@@ -36,9 +38,11 @@ export class OrdersPanelComponent implements OnDestroy {
     library.addIcons(farCircleXmark);
 
     this.authService.authState.subscribe((state: AuthState): void => {
-      this.allianceMembers = this.dgAPI.allianceMembers(true);
+      this.active = state.status;
 
-      if (state.status) {
+      if (state.status && !this.initialized) {
+        this.allianceMembers = this.dgAPI.allianceMembers(true);
+
         this.role = new Observable<string>((observer: Subscriber<string>): void => {
           observer.next(state.role);
           observer.complete();
@@ -75,6 +79,8 @@ export class OrdersPanelComponent implements OnDestroy {
         });
 
         this.statsService.loadStats(this.allianceMembers);
+
+        this.initialized = true;
       }
     });
 
