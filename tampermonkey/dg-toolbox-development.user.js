@@ -1,6 +1,6 @@
 // ==UserScript==
 // @name         DarkGalaxy Toolbox
-// @version      1.1.4
+// @version      1.1.5
 // @namespace    dg-toolbox
 // @homepage     https://github.com/vberezan/dg-toolbox
 // @supportURL   https://github.com/vberezan/dg-toolbox
@@ -34,7 +34,7 @@ function loadResource(element) {
 function loadSetups(windowURL) {
     loadResource({
         tagName: 'script',
-        src: 'https://cdn.jsdelivr.net/gh/vberezan/dg-toolbox@development/tampermonkey/parts/dgt-toolbox-setup-dgt-placeholders.48.js',
+        src: 'https://cdn.jsdelivr.net/gh/vberezan/dg-toolbox@development/tampermonkey/parts/dgt-toolbox-setup-dgt-placeholders.2.js',
         rel: 'text/javascript'
     }).onload = function () {
         setUpUiParser();
@@ -46,13 +46,14 @@ function loadSetups(windowURL) {
         setUpSharedScansCollector(windowURL);
         setUpNavigationScanDataPanel(windowURL);
         setUpAllianceOrdersManagerPanel(windowURL);
+        setUpRankings(windowURL);
     }
 }
 
 function loadCustomStyling() {
     loadResource({
         tagName: 'script',
-        src: 'https://cdn.jsdelivr.net/gh/vberezan/dg-toolbox@development/tampermonkey/parts/dg-toolbox-custom-styling.116.js',
+        src: 'https://cdn.jsdelivr.net/gh/vberezan/dg-toolbox@development/tampermonkey/parts/dg-toolbox-custom-styling.15.js',
         rel: 'text/javascript'
     }).onload = function () {
         applyCustomStyling();
@@ -110,7 +111,7 @@ function loadAngular() {
         rel: 'module'
     }, {
         tagName: 'script',
-        src: 'https://cdn.jsdelivr.net/gh/vberezan/dg-toolbox@development/angular/toolbox-app/dist/toolbox-app/main.c1ec976fe085ae87.js',
+        src: 'https://cdn.jsdelivr.net/gh/vberezan/dg-toolbox@development/angular/toolbox-app/dist/toolbox-app/main.54c2f74adcd57cb5.js',
         rel: 'module'
     }];
 
@@ -122,7 +123,7 @@ function loadAngular() {
 function loadGlobalAngularStyling() {
     let angular = [{
         tagName: 'link',
-        href: 'https://cdn.jsdelivr.net/gh/vberezan/dg-toolbox@development/angular/toolbox-app/dist/toolbox-app/styles.7599c862a4406abb.css',
+        href: 'https://cdn.jsdelivr.net/gh/vberezan/dg-toolbox@development/angular/toolbox-app/dist/toolbox-app/styles.8a958403da9b6d5b.css',
         rel: 'stylesheet'
     }];
 
@@ -173,7 +174,7 @@ function loadGlobalAngularStyling() {
             }
         }
 
-        localStorage.setItem('version', 'v1.1.4');
+        localStorage.setItem('version', 'v1.1.5');
     });
 
     window.unload = function() {
