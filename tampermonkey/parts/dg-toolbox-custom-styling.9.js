@@ -26,20 +26,6 @@ function applyCustomStyling() {
         }
     });
 
-    document.querySelectorAll('.coords > span:first-child').forEach((coord) => {
-        let original = coord.textContent.split(/\./);
-        let fixed = '';
-
-
-        for (let i = 0; i < original.length - 1; i++) {
-            fixed += ('0' + original[i]).slice(-2) + '.';
-        }
-
-        fixed += ('0' + original[original.length - 1]).slice(-2);
-
-        coord.innerHTML = fixed;
-    });
-
     document.querySelectorAll('.resource span').forEach((resource) => {
         resource.innerHTML = resource.innerHTML.replace(/\(/g, '[').replace(/\)/g, ']');
     });
