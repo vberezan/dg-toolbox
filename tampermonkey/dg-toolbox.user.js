@@ -1,6 +1,6 @@
 // ==UserScript==
 // @name         DarkGalaxy Toolbox
-// @version      1.1.3
+// @version      1.1.4
 // @namespace    dg-toolbox
 // @homepage     https://github.com/vberezan/dg-toolbox
 // @supportURL   https://github.com/vberezan/dg-toolbox
@@ -34,7 +34,7 @@ function loadResource(element) {
 function loadSetups(windowURL) {
     loadResource({
         tagName: 'script',
-        src: 'https://cdn.jsdelivr.net/gh/vberezan/dg-toolbox@development/tampermonkey/parts/dgt-toolbox-setup-dgt-placeholders.46.js',
+        src: 'https://cdn.jsdelivr.net/gh/vberezan/dg-toolbox/tampermonkey/parts/dgt-toolbox-setup-dgt-placeholders.48.js',
         rel: 'text/javascript'
     }).onload = function () {
         setUpUiParser();
@@ -46,21 +46,20 @@ function loadSetups(windowURL) {
         setUpSharedScansCollector(windowURL);
         setUpNavigationScanDataPanel(windowURL);
         setUpAllianceOrdersManagerPanel(windowURL);
-        setUpFleetOrdersListPanel(windowURL);
     }
 }
 
 function loadCustomStyling() {
     loadResource({
         tagName: 'script',
-        src: 'https://cdn.jsdelivr.net/gh/vberezan/dg-toolbox@development/tampermonkey/parts/dg-toolbox-custom-styling.116.js',
+        src: 'https://cdn.jsdelivr.net/gh/vberezan/dg-toolbox/tampermonkey/parts/dg-toolbox-custom-styling.116.js',
         rel: 'text/javascript'
     }).onload = function () {
         applyCustomStyling();
 
         loadResource({
             tagName: 'script',
-            src: 'https://cdn.jsdelivr.net/gh/vberezan/dg-toolbox@development/tampermonkey/parts/dg-toolbox-replace-icons-with-fa-icons.10.js',
+            src: 'https://cdn.jsdelivr.net/gh/vberezan/dg-toolbox/tampermonkey/parts/dg-toolbox-replace-icons-with-fa-icons.10.js',
             rel: 'text/javascript'
         }).onload = function () {
             replaceIconsWithFAIcons();
@@ -68,7 +67,7 @@ function loadCustomStyling() {
 
         loadResource({
             tagName: 'script',
-            src: 'https://cdn.jsdelivr.net/gh/vberezan/dg-toolbox@development/tampermonkey/parts/dg-toolbox-replace-icons-with-images.31.js',
+            src: 'https://cdn.jsdelivr.net/gh/vberezan/dg-toolbox/tampermonkey/parts/dg-toolbox-replace-icons-with-images.31.js',
             rel: 'text/javascript'
         }).onload = function () {
             replaceIconsWithImages();
@@ -76,7 +75,7 @@ function loadCustomStyling() {
 
         loadResource({
             tagName: 'script',
-            src: 'https://cdn.jsdelivr.net/gh/vberezan/dg-toolbox@development/tampermonkey/parts/dg-toolbox-replace-planets-images.6.js',
+            src: 'https://cdn.jsdelivr.net/gh/vberezan/dg-toolbox/tampermonkey/parts/dg-toolbox-replace-planets-images.6.js',
             rel: 'text/javascript'
         }).onload = function () {
             replacePlanetsImages();
@@ -84,7 +83,7 @@ function loadCustomStyling() {
 
         loadResource({
             tagName: 'script',
-            src: 'https://cdn.jsdelivr.net/gh/vberezan/dg-toolbox@development/tampermonkey/parts/dg-toolbox-replace-structures-images.7.js',
+            src: 'https://cdn.jsdelivr.net/gh/vberezan/dg-toolbox/tampermonkey/parts/dg-toolbox-replace-structures-images.7.js',
             rel: 'text/javascript'
         }).onload = function () {
             replaceStructuresImages();
@@ -92,7 +91,7 @@ function loadCustomStyling() {
 
         loadResource({
             tagName: 'script',
-            src: 'https://cdn.jsdelivr.net/gh/vberezan/dg-toolbox@development/tampermonkey/parts/dg-toolbox-replace-ships-images.7.js',
+            src: 'https://cdn.jsdelivr.net/gh/vberezan/dg-toolbox/tampermonkey/parts/dg-toolbox-replace-ships-images.7.js',
             rel: 'text/javascript'
         }).onload = function () {
             replaceShipsImages();
@@ -103,15 +102,15 @@ function loadCustomStyling() {
 function loadAngular() {
     let angular = [{
         tagName: 'script',
-        src: 'https://cdn.jsdelivr.net/gh/vberezan/dg-toolbox@development/angular/toolbox-app/dist/toolbox-app/runtime.926d433ed3f5f1cc.js',
+        src: 'https://cdn.jsdelivr.net/gh/vberezan/dg-toolbox/angular/toolbox-app/dist/toolbox-app/runtime.926d433ed3f5f1cc.js',
         rel: 'module'
     }, {
         tagName: 'script',
-        src: 'https://cdn.jsdelivr.net/gh/vberezan/dg-toolbox@development/angular/toolbox-app/dist/toolbox-app/polyfills.8e8b88e65f8eb80f.js',
+        src: 'https://cdn.jsdelivr.net/gh/vberezan/dg-toolbox/angular/toolbox-app/dist/toolbox-app/polyfills.8e8b88e65f8eb80f.js',
         rel: 'module'
     }, {
         tagName: 'script',
-        src: 'https://cdn.jsdelivr.net/gh/vberezan/dg-toolbox@development/angular/toolbox-app/dist/toolbox-app/main.d1505f7fc750f762.js',
+        src: 'https://cdn.jsdelivr.net/gh/vberezan/dg-toolbox/angular/toolbox-app/dist/toolbox-app/main.c1ec976fe085ae87.js',
         rel: 'module'
     }];
 
@@ -123,7 +122,7 @@ function loadAngular() {
 function loadGlobalAngularStyling() {
     let angular = [{
         tagName: 'link',
-        href: 'https://cdn.jsdelivr.net/gh/vberezan/dg-toolbox@development/angular/toolbox-app/dist/toolbox-app/styles.34e4d69aecac4784.css',
+        href: 'https://cdn.jsdelivr.net/gh/vberezan/dg-toolbox/angular/toolbox-app/dist/toolbox-app/styles.7599c862a4406abb.css',
         rel: 'stylesheet'
     }];
 
@@ -134,9 +133,11 @@ function loadGlobalAngularStyling() {
 
 (function () {
     document.addEventListener("DOMContentLoaded", function (event) {
-        if (localStorage.getItem('hotfix') !== '1.0.0') {
-            localStorage.setItem('hotfix', '1.0.0');
-            localStorage.removeItem('user');
+        if (localStorage.getItem('hotfix') !== '1.0.1') {
+            localStorage.setItem('hotfix', '1.0.1');
+            localStorage.removeItem('alliance-members');
+            localStorage.removeItem('last-players-rankings-update');
+            localStorage.removeItem('player-stats');
         }
 
 
@@ -148,7 +149,7 @@ function loadGlobalAngularStyling() {
 
         loadResource({
             tagName: 'script',
-            src: 'https://cdn.jsdelivr.net/gh/vberezan/dg-toolbox@development/tampermonkey/parts/dg-toolbox-utils.4.js',
+            src: 'https://cdn.jsdelivr.net/gh/vberezan/dg-toolbox/tampermonkey/parts/dg-toolbox-utils.4.js',
             rel: 'text/javascript'
         }).onload = function () {
             if (document.getElementById('playerBox')) {
@@ -172,7 +173,7 @@ function loadGlobalAngularStyling() {
             }
         }
 
-        localStorage.setItem('version', 'v1.1.3');
+        localStorage.setItem('version', 'v1.1.4');
     });
 
     window.unload = function() {
