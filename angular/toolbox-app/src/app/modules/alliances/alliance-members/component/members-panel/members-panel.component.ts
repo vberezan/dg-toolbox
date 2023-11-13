@@ -48,13 +48,7 @@ export class MembersPanelComponent implements OnDestroy {
           observer.complete();
         });
 
-        this.statsService.statsEventEmitter.subscribe((value: {
-          'name': string,
-          'score': number,
-          'combatScore': number,
-          'rank': number,
-          'planets': number
-        }): void => {
+        this.statsService.statsEventEmitter.subscribe((value: AllianceMemberStats): void => {
           this.allianceMembers.forEach((member: AllianceMember): void => {
             if (member.name.toLowerCase() === value.name) {
               member.stats = new AllianceMemberStats();

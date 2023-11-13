@@ -4,6 +4,7 @@ import {Subscription} from "rxjs";
 import {DocumentData} from "@angular/fire/compat/firestore";
 import {PlayerStats} from "../../../../shared/model/stats/player-stats.model";
 import {AllianceMember} from "../../../../shared/model/alliances/alliance-member.model";
+import {AllianceMemberStats} from "../../../../shared/model/alliances/alliance-member-stats.model";
 
 
 @Injectable({
@@ -11,14 +12,7 @@ import {AllianceMember} from "../../../../shared/model/alliances/alliance-member
 })
 export class StatsService {
   private firestore: Firestore = inject(Firestore);
-  private _statsEventEmitter: EventEmitter<{ 'name': string, 'score': number, 'combatScore': number, 'rank': number, 'planets': number }>
-    = new EventEmitter<{
-    'name': string,
-    'score': number,
-    'combatScore': number,
-    'rank': number,
-    'planets': number
-  }>();
+  private _statsEventEmitter: EventEmitter<AllianceMemberStats> = new EventEmitter<AllianceMemberStats>();
 
   loadStats(allianceMembers: AllianceMember[]): void {
     const playersRef: any = collection(this.firestore, 'players');
@@ -31,22 +25,24 @@ export class StatsService {
     ).subscribe((items: DocumentData[]): void => {
       let players: PlayerStats[] = Object.assign([], items);
 
-      players.forEach((playerStats: PlayerStats) => {
-        this.statsEventEmitter.emit({
-          'name': playerStats.name,
-          'score': playerStats.score,
-          'combatScore': playerStats.combatScore,
-          'rank': playerStats.rank,
-          'planets': playerStats.planets.length
-        });
-      });
+      players.forEach((playerStats: PlayerStats): void => {
+        let stats: AllianceMemberStats = new AllianceMemberStats();
+        stats.name = playerStats.name;
+        stats.score = playerStats.score;
+        stats.combatScore = playerStats.combatScore;
+        stats.rank = playerStats.rank;
+        stats.planets = playerStats.planets.length;
 
-      planetsSubscription.unsubscribe();
+        this._statsEventEmitter.emit(stats);
+      });
     });
+
+    planetsSubscription.unsubscribe();
   }
 
 
-  get statsEventEmitter(): EventEmitter<{ 'name': string, score: number; "combatScore": number; "rank": number; planets: number }> {
+  get statsEventEmitter(): EventEmitter<AllianceMemberStats> {
     return this._statsEventEmitter;
   }
 }
+
