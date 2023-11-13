@@ -1,4 +1,4 @@
-import {EventEmitter, inject, Injectable, OnDestroy} from '@angular/core';
+import {EventEmitter, inject, Injectable} from '@angular/core';
 import {collection, collectionData, Firestore, query, where} from "@angular/fire/firestore";
 import {Subscription} from "rxjs";
 import {DocumentData} from "@angular/fire/compat/firestore";
@@ -21,7 +21,8 @@ export class StatsService {
 
   loadStats(allianceMembers: AllianceMember[]): void {
 
-    if (this.localStorageService.get(LocalStorageKeys.LAST_PLAYERS_RANKINGS_UPDATE_TURN) < this.dgAPI.gameTurn()) {
+    if (this.localStorageService.get(LocalStorageKeys.PLAYER_STATS) &&
+      (this.localStorageService.get(LocalStorageKeys.LAST_PLAYERS_RANKINGS_UPDATE_TURN) < this.dgAPI.gameTurn())) {
       this.localStorageService.get(LocalStorageKeys.PLAYER_STATS).forEach((stat: AllianceMemberStats): void => {
         this._statsEventEmitter.emit(stat);
       });
@@ -35,19 +36,21 @@ export class StatsService {
         )
       ).subscribe((items: DocumentData[]): void => {
         let stats: PlayerStats[] = Object.assign([], items);
+        let cache: AllianceMemberStats[] = [];
 
         stats.forEach((playerStats: PlayerStats): void => {
-          let stats: AllianceMemberStats = new AllianceMemberStats();
-          stats.name = playerStats.name;
-          stats.score = playerStats.score;
-          stats.combatScore = playerStats.combatScore;
-          stats.rank = playerStats.rank;
-          stats.planets = playerStats.planets.length;
+          let event: AllianceMemberStats = new AllianceMemberStats();
+          event.name = playerStats.name;
+          event.score = playerStats.score;
+          event.combatScore = playerStats.combatScore;
+          event.rank = playerStats.rank;
+          event.planets = playerStats.planets.length;
 
-          this._statsEventEmitter.emit(stats);
+          cache.push(event);
+          this._statsEventEmitter.emit(event);
         });
 
-        this.localStorageService.cache(LocalStorageKeys.PLAYER_STATS, stats);
+        this.localStorageService.cache(LocalStorageKeys.PLAYER_STATS, cache);
 
         planetsSubscription.unsubscribe();
       });
