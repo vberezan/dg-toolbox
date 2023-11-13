@@ -34,8 +34,6 @@ export class MembersPanelService {
   }
 
   setStats(allianceMembers: AllianceMember[], stats: AllianceMemberStats): void {
-    console.log(stats);
-
     allianceMembers.forEach((member: AllianceMember): void => {
       if (member.name.toLowerCase() === stats.name) {
         member.stats.score = stats.score;
