@@ -43,42 +43,42 @@
         </div>
       </div>
 
-      <div class="dgt-orders-launcher">
-        <div class="target">
-          <span class="target">Target:</span>
-          <input [(ngModel)]="controls.target[idx]" type="text" placeholder="Ex: 1.1.1.1" dgtNavigationTarget/>
-        </div>
-        <div class="wait">
-          <span class="wait">Wait:</span>
-          <input [(ngModel)]="controls.wait[idx]" type="text" dgtWaitTurns/>
-        </div>
-        <div class="instructions">
-          <span class="instructions">Instructions:</span>
-          <textarea [(ngModel)]="controls.instructions[idx]" placeholder="Ex: min 100xFighter"></textarea>
-        </div>
-        <div class="create">
-          <button (click)="createOrder(idx)">
-            <fa-icon [icon]="['far','circle-right']"/>
-          </button>
-        </div>
-      </div>
+<!--      <div class="dgt-orders-launcher">-->
+<!--        <div class="target">-->
+<!--          <span class="target">Target:</span>-->
+<!--          <input [(ngModel)]="controls.target[idx]" type="text" placeholder="Ex: 1.1.1.1" dgtNavigationTarget/>-->
+<!--        </div>-->
+<!--        <div class="wait">-->
+<!--          <span class="wait">Wait:</span>-->
+<!--          <input [(ngModel)]="controls.wait[idx]" type="text" dgtWaitTurns/>-->
+<!--        </div>-->
+<!--        <div class="instructions">-->
+<!--          <span class="instructions">Instructions:</span>-->
+<!--          <textarea [(ngModel)]="controls.instructions[idx]" placeholder="Ex: min 100xFighter"></textarea>-->
+<!--        </div>-->
+<!--        <div class="create">-->
+<!--          <button (click)="createOrder(idx)">-->
+<!--            <fa-icon [icon]="['far','circle-right']"/>-->
+<!--          </button>-->
+<!--        </div>-->
+<!--      </div>-->
 
-      <div class="dgt-orders-history">
-        <div class="dgt-spinner-container member">
-          <span class="dgt-spinner"></span>
-        </div>
-        <div *ngFor="let order of (orders.get(member.name.toLowerCase()) | async)" class="dgt-orders-history-details"
-             [ngClass]="{'executed' : order.executed, 'in-progress' : !order.executed}">
-          <div class="target"><span class="label">Target:</span><span class="value">{{order.target}}</span></div>
-          <div class="wait"><span class="label">Wait:</span><span class="value">{{order.wait}}</span></div>
-          <div class="instructions"><span class="label">Instructions:</span><span class="value">{{order.instructions}}</span></div>
-          <div class="delete">
-            <button (click)="deleteOrder(order.id)">
-              <fa-icon [icon]="['far','circle-xmark']"/>
-            </button>
-          </div>
-        </div>
-      </div>
+<!--      <div class="dgt-orders-history">-->
+<!--        <div class="dgt-spinner-container member">-->
+<!--          <span class="dgt-spinner"></span>-->
+<!--        </div>-->
+<!--        <div *ngFor="let order of (orders.get(member.name.toLowerCase()) | async)" class="dgt-orders-history-details"-->
+<!--             [ngClass]="{'executed' : order.executed, 'in-progress' : !order.executed}">-->
+<!--          <div class="target"><span class="label">Target:</span><span class="value">{{order.target}}</span></div>-->
+<!--          <div class="wait"><span class="label">Wait:</span><span class="value">{{order.wait}}</span></div>-->
+<!--          <div class="instructions"><span class="label">Instructions:</span><span class="value">{{order.instructions}}</span></div>-->
+<!--          <div class="delete">-->
+<!--            <button (click)="deleteOrder(order.id)">-->
+<!--              <fa-icon [icon]="['far','circle-xmark']"/>-->
+<!--            </button>-->
+<!--          </div>-->
+<!--        </div>-->
+<!--      </div>-->
     </div>
   </div>
 </ng-container>
