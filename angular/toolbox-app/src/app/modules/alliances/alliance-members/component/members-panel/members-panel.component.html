@@ -1,8 +1,8 @@
-<div class="dgt-spinner-container show" #dgtSpinner>
+<div class="dgt-spinner-container show">
   <span class="dgt-spinner"></span>
 </div>
 <ng-container *ngIf="(role | async) as userRole">
-  <div *ngIf="active" class="dgt-alliance-members-panel user hide" #dgtMainContainer>
+  <div *ngIf="active" class="dgt-alliance-members-panel user hide">
     <div *ngFor="let member of allianceMembers;" class="dgt-alliance-members-member">
       <div class="player user">
         <span class="name">{{member.name}}</span>

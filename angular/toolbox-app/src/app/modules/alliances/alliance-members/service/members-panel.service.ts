@@ -21,18 +21,18 @@ export class MembersPanelService {
     }
   }
 
-  showComponent(loadSpinner: ElementRef, mainContainer: ElementRef): void {
-    console.log(loadSpinner.nativeElement);
-    console.log(mainContainer.nativeElement);
+  showComponent(): void {
+    let loadSpinner: Element = document.querySelector('.dgt-spinner-container');
+    let mainContainer: Element = document.querySelector('.dgt-alliance-members-panel');
 
-    if (loadSpinner.nativeElement && loadSpinner.nativeElement.classList.contains('show')) {
-      loadSpinner.nativeElement.classList.add('hide');
-      loadSpinner.nativeElement.classList.remove('show');
+    if (loadSpinner && loadSpinner.classList.contains('show')) {
+      loadSpinner.classList.add('hide');
+      loadSpinner.classList.remove('show');
     }
 
-    if (mainContainer.nativeElement && mainContainer.nativeElement.classList.contains('hide')) {
-      mainContainer.nativeElement.classList.add('show');
-      mainContainer.nativeElement.classList.remove('hide');
+    if (mainContainer && mainContainer.classList.contains('hide')) {
+      mainContainer.classList.add('show');
+      mainContainer.classList.remove('hide');
     }
   }
 

@@ -20,9 +20,6 @@ import {MembersPanelService} from "../../service/members-panel.service";
   styleUrls: ['./members-panel.component.css']
 })
 export class MembersPanelComponent implements OnDestroy {
-  @ViewChild('dgtSpinner') loadSpinner: ElementRef;
-  @ViewChild('dgtMainContainer') mainContainer: ElementRef;
-
   private dgAPI: DarkgalaxyApiService = inject(DarkgalaxyApiService);
   private authService: AuthService = inject(AuthService);
   private changeDetection: ChangeDetectorRef = inject(ChangeDetectorRef);
@@ -52,8 +49,8 @@ export class MembersPanelComponent implements OnDestroy {
         this.statsService.statsEventEmitter.subscribe((stats: AllianceMemberStats): void => {
           this.membersPanelService.setStats(this.allianceMembers, stats);
           this.membersPanelService.sortMembersByScore(this.allianceMembers);
-          this.membersPanelService.showComponent(this.loadSpinner, this.mainContainer);
-          // this.changeDetection.detectChanges();
+          this.membersPanelService.showComponent();
+          this.changeDetection.detectChanges();
         });
 
         this.statsService.loadStats(this.allianceMembers);
