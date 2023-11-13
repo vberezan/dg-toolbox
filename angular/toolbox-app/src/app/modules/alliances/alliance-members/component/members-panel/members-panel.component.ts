@@ -10,6 +10,7 @@ import {UserRole} from "../../../../../shared/model/authentication/user-role";
 import {LocalStorageService} from "../../../../local-storage-manager/service/local-storage.service";
 import {LocalStorageKeys} from "../../../../../shared/model/local-storage/local-storage-keys";
 import {StatsService} from "../../service/stats.service";
+import {AllianceMemberStats} from "../../../../../shared/model/alliances/alliance-member-stats.model";
 
 
 @Component({
@@ -56,6 +57,7 @@ export class MembersPanelComponent implements OnDestroy {
         }): void => {
           this.allianceMembers.forEach((member: AllianceMember): void => {
             if (member.name.toLowerCase() === value.name) {
+              member.stats = new AllianceMemberStats();
               member.stats.score = value.score;
               member.stats.combatScore = value.combatScore;
               member.stats.planets = value.planets;
