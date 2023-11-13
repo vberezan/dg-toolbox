@@ -1929,6 +1929,7 @@ dgt-fleet-orders-list-panel {
   height: 24px;
   line-height: 20px;
   font-size: 13px;
+  min-width: 65px !important;
 }
 
 #queue-actions-left button:hover {
