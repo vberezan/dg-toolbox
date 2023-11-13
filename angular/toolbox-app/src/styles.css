@@ -485,10 +485,14 @@ span.hostile {
   margin-top: 55px;
   font-size: 11px;
   padding: 3px 5px;
-  background: #0000004f;
+  background: #00000091;
   border-bottom-left-radius: 5px;
   color: #ffffffad;
   text-align: center;
+}
+
+#planetList > #planetList .seperatorRightLarge {
+  margin-right: 0 !important;
 }
 
 /******/
