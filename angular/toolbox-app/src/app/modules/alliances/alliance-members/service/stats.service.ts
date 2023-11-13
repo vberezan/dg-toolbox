@@ -15,10 +15,11 @@ export class StatsService {
   private _statsEventEmitter: EventEmitter<AllianceMemberStats> = new EventEmitter<AllianceMemberStats>();
 
   loadStats(allianceMembers: AllianceMember[]): void {
-    console.log('y');
 
     const playersRef: any = collection(this.firestore, 'players');
     const names: string[] = allianceMembers.map((member: AllianceMember) => member.name.toLowerCase());
+
+    console.log(names);
 
     let planetsSubscription: Subscription = collectionData(
       query(playersRef,
