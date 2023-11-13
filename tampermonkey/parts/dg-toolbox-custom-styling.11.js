@@ -17,18 +17,28 @@ function applyCustomStyling() {
         document.querySelector('#addQueue .left.padding:last-child').style.width = '455px';
     }
 
-    document.querySelectorAll('#planetList > #planetList').forEach((planet) => {
-        planet.querySelector('.planetImage img').setAttribute('width', 75);
-        planet.querySelector('.planetImage img').setAttribute('height', 75);
+    if (windowURL[1] === 'planets') {
+        document.querySelectorAll('#planetList > #planetList').forEach((planet) => {
+            planet.querySelector('.planetImage img').setAttribute('width', 75);
+            planet.querySelector('.planetImage img').setAttribute('height', 75);
 
-        if (planet.querySelectorAll('.planetHeadSection').length > 3) {
-            planet.querySelector('.planetImage').classList.add('dgt-no-bottom-radius');
-        }
-    });
+            let coords = planet.querySelector('.nameRow .coords span').textContent.trim();
+            planet.querySelector('.nameRow .coords').remove();
+            let newCoords = document.createElement(span);
+            newCoords.innerHTML = coords;
+            newCoords.classList.add('dgt-planet-new-coords');
 
-    document.querySelectorAll('.resource span, em.neutral').forEach((resource) => {
-        resource.innerHTML = resource.innerHTML.replace(/\(/g, '[').replace(/\)/g, ']');
-    });
+            planet.querySelector('.planetImage a').prepend(newCoords);
+
+            if (planet.querySelectorAll('.planetHeadSection').length > 3) {
+                planet.querySelector('.planetImage').classList.add('dgt-no-bottom-radius');
+            }
+        });
+
+        document.querySelectorAll('.resource span, em.neutral').forEach((resource) => {
+            resource.innerHTML = resource.innerHTML.replace(/\(/g, '[').replace(/\)/g, ']');
+        });
+    }
 
     if (document.querySelector('#fleetHeader')) {
         document.querySelector('#fleetHeader').parentElement.querySelector('div.opacDarkBackground.left:nth-child(2)').style.marginRight = '3px';
