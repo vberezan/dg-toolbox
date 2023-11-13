@@ -25,6 +25,9 @@ export class MembersPanelService {
     let loadSpinner: Element = document.querySelector('.dgt-spinner-container');
     let mainContainer: Element = document.querySelector('.dgt-alliance-members-panel');
 
+    console.log(loadSpinner);
+    console.log(mainContainer);
+
     if (loadSpinner && loadSpinner.classList.contains('show')) {
       loadSpinner.classList.add('hide');
       loadSpinner.classList.remove('show');
