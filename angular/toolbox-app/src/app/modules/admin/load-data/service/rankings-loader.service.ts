@@ -97,84 +97,84 @@ export class RankingsLoaderService {
     }
 
 
-    // -- FIXME: do it more elegant, without so many subscriptions
-    // -- get last navigation scan turn
-    let navigationSubscription: Subscription = docData(
-      doc(configRef, 'last-navigation-scan-turn')
-    ).subscribe((item: DocumentData): void => {
-      let navigationScanTurn: number = Object.assign({value: 0}, item).value;
-
-      // -- get last player rankings scan turn
-      let rankingsSubscription: Subscription = docData(
-        doc(configRef, 'last-player-rankings-scan-turn')
-      ).subscribe((item: DocumentData): void => {
-        let playerRankingsScanTurn: number = Object.assign({value: 0}, item).value;
-
-        // -- if there is a newer navigation scan, update player rankings planets
-        if (navigationScanTurn >= playerRankingsScanTurn) {
-          let savedRankings: number = 0;
-          playersStats.forEach((playerStats: PlayerStats, playerId: number): void => {
-            if (isScanActive) {
-              setTimeout((): void => {
-                let planetsSubscription: Subscription = collectionData(
-                  query(planetsRef,
-                    where('playerId', '==', playerId)
-                  )
-                ).subscribe((items: DocumentData[]): void => {
-                  let planets: PlanetStats[] = Object.assign([], items);
-                  planets.forEach((planetStats: PlanetStats): void => {
-                    playerStats.planets.push(planetStats.location);
-                  });
-
-                  setDoc(doc(playersRef, playerId.toString()), JSON.parse(JSON.stringify(playerStats)))
-                    .then((): void => {
-                      this._playersRankingsEmitter.emit({'action': 'save', 'page': ++savedRankings, 'total': playersStats.size});
-                    }).catch((error): void => {
-                      console.log(error);
-                    }
-                  );
-
-                  planetsSubscription.unsubscribe();
-                });
-              }, 50 * savedRankings);
-            }
-          });
-        } else {
-          let savedRankings: number = 0;
-          playersStats.forEach((playerStats: PlayerStats, playerId: number): void => {
-            if (isScanActive) {
-              setTimeout((): void => {
-                let planetsSubscription: Subscription = collectionData(
-                  query(playersRef,
-                    where('playerId', '==', playerId),
-                    limit(1)
-                  )
-                ).subscribe((items: DocumentData[]): void => {
-                  let player: PlayerStats = Object.assign(new PlayerStats(), items[0]);
-                  playerStats.planets = player.planets;
-
-                  console.log(playerStats.playerId);
-
-                  updateDoc(doc(playersRef, playerId.toString()), JSON.parse(JSON.stringify(playerStats)))
-                    .then((): void => {
-                      this._playersRankingsEmitter.emit({'action': 'save', 'page': ++savedRankings, 'total': playersStats.size});
-                    }).catch((error): void => {
-                      console.log(error);
-                    }
-                  );
-
-                  planetsSubscription.unsubscribe();
-                });
-              }, 50 * savedRankings);
-            }
-          });
-        }
-        rankingsSubscription.unsubscribe();
-      });
-      navigationSubscription.unsubscribe();
-    });
-
-    await this.delay(75 * playersStats.size);
+    // // -- FIXME: do it more elegant, without so many subscriptions
+    // // -- get last navigation scan turn
+    // let navigationSubscription: Subscription = docData(
+    //   doc(configRef, 'last-navigation-scan-turn')
+    // ).subscribe((item: DocumentData): void => {
+    //   let navigationScanTurn: number = Object.assign({value: 0}, item).value;
+    //
+    //   // -- get last player rankings scan turn
+    //   let rankingsSubscription: Subscription = docData(
+    //     doc(configRef, 'last-player-rankings-scan-turn')
+    //   ).subscribe((item: DocumentData): void => {
+    //     let playerRankingsScanTurn: number = Object.assign({value: 0}, item).value;
+    //
+    //     // -- if there is a newer navigation scan, update player rankings planets
+    //     if (navigationScanTurn >= playerRankingsScanTurn) {
+    //       let savedRankings: number = 0;
+    //       playersStats.forEach((playerStats: PlayerStats, playerId: number): void => {
+    //         if (isScanActive) {
+    //           setTimeout((): void => {
+    //             let planetsSubscription: Subscription = collectionData(
+    //               query(planetsRef,
+    //                 where('playerId', '==', playerId)
+    //               )
+    //             ).subscribe((items: DocumentData[]): void => {
+    //               let planets: PlanetStats[] = Object.assign([], items);
+    //               planets.forEach((planetStats: PlanetStats): void => {
+    //                 playerStats.planets.push(planetStats.location);
+    //               });
+    //
+    //               setDoc(doc(playersRef, playerId.toString()), JSON.parse(JSON.stringify(playerStats)))
+    //                 .then((): void => {
+    //                   this._playersRankingsEmitter.emit({'action': 'save', 'page': ++savedRankings, 'total': playersStats.size});
+    //                 }).catch((error): void => {
+    //                   console.log(error);
+    //                 }
+    //               );
+    //
+    //               planetsSubscription.unsubscribe();
+    //             });
+    //           }, 50 * savedRankings);
+    //         }
+    //       });
+    //     } else {
+    //       let savedRankings: number = 0;
+    //       playersStats.forEach((playerStats: PlayerStats, playerId: number): void => {
+    //         if (isScanActive) {
+    //           setTimeout((): void => {
+    //             let planetsSubscription: Subscription = collectionData(
+    //               query(playersRef,
+    //                 where('playerId', '==', playerId),
+    //                 limit(1)
+    //               )
+    //             ).subscribe((items: DocumentData[]): void => {
+    //               let player: PlayerStats = Object.assign(new PlayerStats(), items[0]);
+    //               playerStats.planets = player.planets;
+    //
+    //               console.log(playerStats.playerId);
+    //
+    //               updateDoc(doc(playersRef, playerId.toString()), JSON.parse(JSON.stringify(playerStats)))
+    //                 .then((): void => {
+    //                   this._playersRankingsEmitter.emit({'action': 'save', 'page': ++savedRankings, 'total': playersStats.size});
+    //                 }).catch((error): void => {
+    //                   console.log(error);
+    //                 }
+    //               );
+    //
+    //               planetsSubscription.unsubscribe();
+    //             });
+    //           }, 50 * savedRankings);
+    //         }
+    //       });
+    //     }
+    //     rankingsSubscription.unsubscribe();
+    //   });
+    //   navigationSubscription.unsubscribe();
+    // });
+    //
+    // await this.delay(75 * playersStats.size);
 
     updateDoc(doc(configRef, 'last-players-rankings-update-turn '), JSON.parse(JSON.stringify({'value': this.dgAPI.gameTurn()})))
       .catch((e): void => {
