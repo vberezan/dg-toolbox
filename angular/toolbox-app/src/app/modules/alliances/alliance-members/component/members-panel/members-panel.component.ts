@@ -50,7 +50,7 @@ export class MembersPanelComponent implements OnDestroy {
           this.membersPanelService.setStats(this.allianceMembers, stats);
           this.membersPanelService.sortMembersByScore(this.allianceMembers);
           this.membersPanelService.showComponent();
-          this.changeDetection.detectChanges();
+          // this.changeDetection.detectChanges();
         });
 
         this.statsService.loadStats(this.allianceMembers);
