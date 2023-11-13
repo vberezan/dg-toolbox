@@ -329,6 +329,10 @@ span.hostile {
   line-height: 26px !important;
 }
 
+#planetList .planetHeadSection .planetName a {
+  color: #ffd46f !important;
+}
+
 #planetList > #planetList .locationWrapper .paddingMid {
   border: 1px solid #5e5e5e !important;
   padding: 0 !important;
