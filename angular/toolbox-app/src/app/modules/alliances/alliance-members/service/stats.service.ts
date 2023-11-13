@@ -18,8 +18,6 @@ export class StatsService {
 
     this.localStorageService.get(LocalStorageKeys.PLAYERS_STATS).forEach((playerStats: PlayerStatsCache): void => {
 
-      console.log(playerStats);
-
       let event: AllianceMemberStats = new AllianceMemberStats();
       event.name = playerStats.name;
       event.score = playerStats.score;
@@ -27,9 +25,10 @@ export class StatsService {
       event.rank = playerStats.rank;
       event.planets = playerStats.planets;
 
-      // if (names.indexOf(playerStats.name.toLowerCase()) >= 0) {
-      //   this._statsEventEmitter.emit(event);
-      // }
+      if (names.indexOf(event.name.toLowerCase()) >= 0) {
+        console.log(event);
+        // this._statsEventEmitter.emit(event);
+      }
     });
   }
 
