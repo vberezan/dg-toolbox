@@ -50,9 +50,10 @@ export class MembersPanelComponent implements OnDestroy {
         });
 
         this.statsService.statsEventEmitter.subscribe((stats: AllianceMemberStats): void => {
-          console.log('x: ' + stats);
-
+          console.log('x');
           this.membersPanelService.setStats(this.allianceMembers, stats);
+
+          console.log('y');
           this.membersPanelService.sortMembersByScore(this.allianceMembers);
           this.membersPanelService.showComponent(this.loadSpinner, this.mainContainer);
           this.changeDetection.detectChanges();
