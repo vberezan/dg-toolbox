@@ -1,5 +1,3 @@
-import {query} from '@angular/fire/firestore';
-
 function setUpLocalStorageManager() {
     document.body.prepend(document.createElement('dgt-local-storage-manager'));
 }
