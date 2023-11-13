@@ -25,6 +25,8 @@ export class StatsService {
     ).subscribe((items: DocumentData[]): void => {
       let players: PlayerStats[] = Object.assign([], items);
 
+      console.log(players);
+
       players.forEach((playerStats: PlayerStats): void => {
         let stats: AllianceMemberStats = new AllianceMemberStats();
         stats.name = playerStats.name;

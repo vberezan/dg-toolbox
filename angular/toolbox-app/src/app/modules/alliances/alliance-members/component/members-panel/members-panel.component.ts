@@ -69,8 +69,6 @@ export class MembersPanelComponent implements OnDestroy {
             }
           }
 
-          console.log(value);
-
           if (this.loadSpinner.nativeElement.classList.contains('show')) {
             this.loadSpinner.nativeElement.classList.add('hide');
             this.loadSpinner.nativeElement.classList.remove('show');
