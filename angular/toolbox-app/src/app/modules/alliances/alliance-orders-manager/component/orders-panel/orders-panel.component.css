@@ -241,7 +241,7 @@ span.note {
 .dgt-orders-manager-panel.user span.name {
   color: #ffffffad !important;
   font-weight: normal !important;
-  width: 35% !important;
+  width: 35%;
   font-size: 1em !important;
 }
 
