@@ -61,7 +61,8 @@ export class MembersPanelComponent implements OnDestroy {
 
           for (let i: number = 0; i < this.allianceMembers.length - 1; i++) {
             for (let j: number = i + 1; j < this.allianceMembers.length; j++) {
-              if (this.allianceMembers[i].stats && this.allianceMembers[i].stats.score < this.allianceMembers[j].stats.score) {
+              if (this.allianceMembers[i].stats && this.allianceMembers[j].stats &&
+                this.allianceMembers[i].stats.score < this.allianceMembers[j].stats.score) {
                 let aux: AllianceMember = this.allianceMembers[i];
                 this.allianceMembers[i] = this.allianceMembers[j];
                 this.allianceMembers[j] = aux;
