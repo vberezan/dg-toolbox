@@ -184,6 +184,7 @@ function applyCustomStyling() {
     if(document.querySelector('#header')) {
         let credits = document.createElement('div');
         let playerRankingsUpdate = 0;
+        let planetsRankingsUpdate = 0;
 
         if (localStorage.getItem('last-players-rankings-update')) {
             playerRankingsUpdate = JSON.parse(localStorage.getItem('last-players-rankings-update')).value;
@@ -192,7 +193,8 @@ function applyCustomStyling() {
         credits.id = 'dgt-credits';
         credits.innerHTML =
           '<span>DarkGalaxy Tools <i>' + localStorage.getItem('version') + '</i></span>' +
-          '<span>Last Player Rankings update turn: <i><b>' + playerRankingsUpdate + '</b></i></span>';
+          '<span>Rankings update turn: <i><b>' + playerRankingsUpdate + '</b></i></span>' +
+          '<span>Planets update turn: <i><b>' + planetsRankingsUpdate + '</b></i></span>';
         document.querySelector('#header .left').append(credits);
     }
 
