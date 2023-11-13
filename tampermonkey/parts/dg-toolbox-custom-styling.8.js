@@ -363,7 +363,7 @@ function applyCustomStyling() {
                 let newButton = document.createElement('button');
                 newButton.type = 'submit';
                 newButton.classList.add('text-button');
-                newButton.innerHTML = button.attributes['value'];
+                newButton.innerHTML = button.attributes['value'].value;
 
                 button.parentElement.append(newButton);
                 button.remove();
