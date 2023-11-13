@@ -40,6 +40,7 @@ export class MembersPanelComponent implements OnDestroy {
     this.authService.authState.subscribe((state: AuthState): void => {
       if (state.status && !this.initialized) {
         this.allianceMembers = this.dgAPI.allianceMembers(true);
+        console.log(this.allianceMembers);
         this.active = state.status;
 
         this.role = new Observable<string>((observer: Subscriber<string>): void => {
