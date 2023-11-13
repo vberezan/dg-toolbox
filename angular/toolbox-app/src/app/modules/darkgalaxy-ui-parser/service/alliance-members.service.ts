@@ -52,10 +52,6 @@ export class AllianceMembersService implements DataExtractor {
   }
 
   cleanAfterExtract(): void {
-    if (document.querySelector('.dgt-orders-manager-panel.user')) {
-      document.querySelector('.dgt-orders-manager-panel.user').remove();
-    }
-
     document.querySelectorAll('.allianceBox').forEach((allianceBox: any): void => {
       if (allianceBox.querySelector('.plainHeader') &&
         allianceBox.querySelector('.plainHeader').childNodes[0].textContent.trim().toLowerCase() === 'member list') {
