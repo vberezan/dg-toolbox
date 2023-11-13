@@ -1,5 +1,4 @@
 import {ChangeDetectorRef, Component, ElementRef, inject, OnDestroy, ViewChild} from '@angular/core';
-import {OrderService} from "../../service/order.service";
 import {AllianceOrder} from "../../../../../shared/model/orders/alliance-order.model";
 import {DarkgalaxyApiService} from "../../../../darkgalaxy-ui-parser/service/darkgalaxy-api.service";
 import {AuthService} from "../../../../authentication/service/auth.service";
@@ -24,7 +23,6 @@ export class OrdersPanelComponent implements OnDestroy {
 
   protected readonly UserRole = UserRole;
 
-  private orderService: OrderService = inject(OrderService);
   private dgAPI: DarkgalaxyApiService = inject(DarkgalaxyApiService);
   private authService: AuthService = inject(AuthService);
   private changeDetection: ChangeDetectorRef = inject(ChangeDetectorRef);
@@ -34,16 +32,6 @@ export class OrdersPanelComponent implements OnDestroy {
   protected allianceMembers: AllianceMember[];
   protected orders: Map<string, Observable<AllianceOrder[]>> = new Map<string, Observable<AllianceOrder[]>>();
   protected role: Observable<string>;
-  protected controls: {
-    target: string[],
-    wait: number[],
-    instructions: string[]
-  } = {
-    target: [],
-    wait: [],
-    instructions: []
-  }
-  private initialized: boolean = false;
 
   constructor(library: FaIconLibrary) {
     library.addIcons(farCircleXmark, farCircleRight);
@@ -52,13 +40,9 @@ export class OrdersPanelComponent implements OnDestroy {
       this.loadSpinner.nativeElement.classList.add('show');
       this.loadSpinner.nativeElement.classList.remove('hide');
 
-      // this.allianceMembers = this.dgAPI.allianceMembers(true);
+      this.allianceMembers = this.dgAPI.allianceMembers(true);
 
       if (state.status) {
-        this.controls.target = [];
-        this.controls.wait = [];
-        this.controls.instructions = [];
-
         this.role = new Observable<string>((observer: Subscriber<string>): void => {
           observer.next(state.role);
           observer.complete();
