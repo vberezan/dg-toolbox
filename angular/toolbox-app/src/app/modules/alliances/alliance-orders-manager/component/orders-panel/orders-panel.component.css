@@ -311,3 +311,11 @@ span.score {
 .player span.value {
   color: #7bbd1a !important;
 }
+
+.player.user .score,
+.player.user .planets,
+.player.user .combat-score {
+  width: auto;
+  display: inline-block;
+  min-width: 100px;
+}
