@@ -28,12 +28,12 @@ export class MembersPanelService {
     console.log(loadSpinner);
     console.log(mainContainer);
 
-    if (loadSpinner && loadSpinner.classList.contains('show')) {
+    if (loadSpinner != null && loadSpinner.classList.contains('show')) {
       loadSpinner.classList.add('hide');
       loadSpinner.classList.remove('show');
     }
 
-    if (mainContainer && mainContainer.classList.contains('hide')) {
+    if (mainContainer != null && mainContainer.classList.contains('hide')) {
       mainContainer.classList.add('show');
       mainContainer.classList.remove('hide');
     }
