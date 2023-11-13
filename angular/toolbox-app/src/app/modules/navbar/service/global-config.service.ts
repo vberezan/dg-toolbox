@@ -22,8 +22,6 @@ export class GlobalConfigService {
         (this.localStorageService.get(LocalStorageKeys.LAST_PLAYERS_RANKINGS_UPDATE_TURN) == Object.assign({value: 0}, item).value)) {
         return;
       } else {
-        this.localStorageService.cache(LocalStorageKeys.LAST_PLAYERS_RANKINGS_UPDATE_TURN, Object.assign({value: 0}, item).value);
-
         let planetsSubscription: Subscription = collectionData(
           query(collection(this.firestore, 'players'))
         ).subscribe((items: DocumentData[]): void => {
@@ -43,12 +41,11 @@ export class GlobalConfigService {
           });
 
           this.localStorageService.cache(LocalStorageKeys.PLAYERS_STATS, cache);
+          this.localStorageService.cache(LocalStorageKeys.LAST_PLAYERS_RANKINGS_UPDATE_TURN, Object.assign({value: 0}, item).value);
           planetsSubscription.unsubscribe();
+          playerSubscription.unsubscribe();
         });
       }
-
-      playerSubscription.unsubscribe();
-
     });
   }
 }
