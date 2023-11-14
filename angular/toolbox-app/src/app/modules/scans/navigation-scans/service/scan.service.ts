@@ -74,6 +74,10 @@ export class ScanService implements OnDestroy {
             let hb: Element = planet.querySelector('.dgt-navigation-scan-structures-data .hb');
             hb.textContent = 'HB';
           }
+          if (structureNames.includes(Structures.SPACE_TETHER)) {
+            let hg: Element = planet.querySelector('.dgt-navigation-scan-structures-data .st');
+            hg.textContent = 'ST';
+          }
           if (structureNames.includes(Structures.LIGHT_WEAPONS_FACTORY)) {
             let lw: Element = planet.querySelector('.dgt-navigation-scan-structures-data .lw');
             lw.textContent = 'LW';
@@ -89,10 +93,6 @@ export class ScanService implements OnDestroy {
           if (structureNames.includes(Structures.SPACE_DOCK)) {
             let sd: Element = planet.querySelector('.dgt-navigation-scan-structures-data .sd');
             sd.textContent = 'SD';
-          }
-          if (structureNames.includes(Structures.HOLO_GENERATOR)) {
-            let hg: Element = planet.querySelector('.dgt-navigation-scan-structures-data .hg');
-            hg.textContent = 'HG';
           }
           if (structureNames.includes(Structures.ARMY_BARRACKS)) {
             planet.querySelector('.dgt-navigation-scan-soldiers-ab').textContent = 'AB';

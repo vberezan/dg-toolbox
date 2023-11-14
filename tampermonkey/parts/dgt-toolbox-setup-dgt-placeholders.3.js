@@ -175,10 +175,10 @@ function setUpNavigationScanDataPanel(windowURL) {
                         '<td colspan="2" class="invasion-value"></td>' +
                     '</tr>' +
                     '<tr class="dgt-navigation-scan-structures-data">' +
+                        '<td class="st"></td>' +
                         '<td class="hb"></td>' +
                         '<td class="jg"></td>' +
                         '<td class="cs"></td>' +
-                        '<td class="hg"></td>' +
                     '</tr>' +
                     '<tr class="dgt-navigation-scan-structures-data">' +
                         '<td class="lw"></td>' +
