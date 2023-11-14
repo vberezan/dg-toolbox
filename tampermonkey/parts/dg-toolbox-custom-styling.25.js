@@ -168,7 +168,7 @@ function applyCustomStyling() {
             })
         }
 
-        if (document.querySelectorAll('.navigation .row .planets').length < 12) {
+        if (document.querySelectorAll('.navigation .row .planets').length < 12 && document.querySelectorAll('.navigation .row .planets').length > 0) {
             document.querySelectorAll('.navigation .row').forEach((row) => {
                row.style.paddingLeft = '120px';
             });
