@@ -401,10 +401,12 @@ function applyCustomStyling() {
 
             scanButton.type = 'submit';
             scanButton.innerHTML = 'Scan';
+            scanButton.id = 'dgt-scan-button';
             scanForm.querySelector('input[type="submit"]').parentElement.append(scanButton);
 
             scanAndNextButton.type = 'submit';
             scanAndNextButton.innerHTML = 'Scan & Next';
+            scanButton.id = 'dgt-scan-next-button';
             scanForm.querySelector('input[type="submit"]').parentElement.append(scanAndNextButton);
 
             scanForm.querySelector('input[type="submit"]').remove();
