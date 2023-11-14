@@ -4,7 +4,7 @@ import {DarkgalaxyApiService} from "../../../darkgalaxy-ui-parser/service/darkga
 import {PlanetScanEvent} from "../../../../shared/model/scans/shared-scans-planet-scan-event.model";
 import {ScanType} from "../../../../shared/model/scan-type";
 import {Resource} from "../../../../shared/model/resource.model";
-import {addDoc, collection, collectionData, doc, Firestore, limit, query, updateDoc, where} from "@angular/fire/firestore";
+import {addDoc, collection, collectionData, doc, Firestore, limit, query, setDoc, updateDoc, where} from "@angular/fire/firestore";
 import firebase from "firebase/compat";
 import {Subscription} from "rxjs";
 import DocumentData = firebase.firestore.DocumentData;
@@ -26,12 +26,13 @@ export class ScanService implements OnDestroy {
       return;
     }
 
-    let scansRef: any = collection(this.firestore, 'scans');
+    let scansRef: any = collection(this.firestore, 'scans-g' + scanEvent.planetScan.location.split(/\./)[0]);
+
     this.planetScanSubscription = collectionData<DocumentData, string>(
       query(scansRef,
         where('location', '==', scanEvent.planetScan.location),
         limit(1)
-      ), {idField: 'id'}
+      )
     ).subscribe((items: DocumentData[]): void => {
       let dbScan: PlanetScan = Object.assign(new PlanetScan(), items[0]);
 
@@ -67,13 +68,13 @@ export class ScanService implements OnDestroy {
         dbScan.fleets = scanEvent.planetScan.fleets;
       } else {
         if (items.length == 0) {
-          addDoc(scansRef, JSON.parse(JSON.stringify(dbScan)))
+          setDoc(doc(scansRef, dbScan.location), JSON.parse(JSON.stringify(dbScan)))
             .catch((error): void => {
                 console.log(error);
               }
             );
         } else {
-          updateDoc(doc(scansRef, dbScan.id), JSON.parse(JSON.stringify(dbScan)))
+          updateDoc(doc(scansRef, dbScan.location), JSON.parse(JSON.stringify(dbScan)))
             .catch((error): void => {
               console.log(error);
             });

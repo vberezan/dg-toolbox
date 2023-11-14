@@ -7,7 +7,7 @@ import {Resource} from "../../../../shared/model/resource.model";
 import {ResourceProductionFormatterPipe} from "../../../planets/planet-list-stats/pipe/resource-production-formatter.pipe";
 import {Structures} from "../../../../shared/model/structures";
 import {collection, collectionData, Firestore, query, where} from "@angular/fire/firestore";
-import {NameQuantity} from "../../../../shared/model/name-quantity.model";
+import {ResourceQuantity} from "../../../../shared/model/resource-quantity.model";
 import firebase from "firebase/compat";
 import {Subscription} from "rxjs";
 import DocumentData = firebase.firestore.DocumentData;
@@ -65,7 +65,7 @@ export class ScanService implements OnDestroy {
               .textContent = this.resourceProductionFormatterPipe.transform(resource.production).trim();
           });
 
-          let structureNames: string[] = pl.structures.map((structure: NameQuantity) => structure.name);
+          let structureNames: string[] = pl.structures.map((structure: ResourceQuantity) => structure.name);
           if (structureNames.includes(Structures.JUMP_GATE)) {
             let jg: Element = planet.querySelector('.dgt-navigation-scan-structures-data .jg');
             jg.textContent = 'JG';
