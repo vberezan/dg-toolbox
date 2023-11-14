@@ -2144,7 +2144,14 @@ dgt-shared-scans-collector {
   text-align: right;
 }
 
+#dgt-scan-buttons-wrapper {
+  padding-left: 0 !important;
+  margin-left: 5px;
+}
 
+#dgt-scan-next-button {
+  margin-left: 5px;
+}
 
 #planet-scan-form button {
   padding: 0px 15px;
