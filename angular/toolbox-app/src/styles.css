@@ -2146,11 +2146,11 @@ dgt-shared-scans-collector {
 
 #dgt-scan-buttons-wrapper {
   padding-left: 0 !important;
-  margin-left: 5px;
+  margin-left: 5px !important;
 }
 
 #dgt-scan-next-button {
-  margin-left: 5px;
+  margin-left: 5px !important;
 }
 
 #planet-scan-form button {
