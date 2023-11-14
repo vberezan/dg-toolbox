@@ -265,12 +265,12 @@ function applyCustomStyling() {
             let scanButton = document.createElement('button');
             let scanAndNextButton = document.createElement('button');
 
-            scanButton.onclick = () => {
-              console.log('normal click');
+            scanButton.onmousedown = () => {
+              window.alert('normal click');
             };
 
-            scanAndNextButton.onclick = () => {
-              console.log('click with next');
+            scanAndNextButton.onmousedown = () => {
+              window.alert('click with next');
             };
 
             scanButton.type = 'submit';
