@@ -262,10 +262,25 @@ function applyCustomStyling() {
         let scanForm = document.querySelector('.opacBackground .opacDarkBackground>form');
 
         if (scanForm) {
-            let newButton = document.createElement('button');
-            newButton.type = 'submit';
-            newButton.innerHTML = 'Scan';
-            scanForm.querySelector('input[type="submit"]').parentElement.append(newButton);
+            let scanButton = document.createElement('button');
+            let scanAndNextButton = document.createElement('button');
+
+            scanButton.onclick = () => {
+              console.log('normal click');
+            };
+
+            scanAndNextButton.onclick = () => {
+              console.log('click with next');
+            };
+
+            scanButton.type = 'submit';
+            scanButton.innerHTML = 'Scan';
+            scanForm.querySelector('input[type="submit"]').parentElement.append(scanButton);
+
+            scanAndNextButton.type = 'submit';
+            scanAndNextButton.innerHTML = 'Scan & Next';
+            scanForm.querySelector('input[type="submit"]').parentElement.append(scanAndNextButton);
+
             scanForm.querySelector('input[type="submit"]').remove();
 
             let submit = detach(scanForm.querySelector('.coordsInput>div:nth-child(3)'));

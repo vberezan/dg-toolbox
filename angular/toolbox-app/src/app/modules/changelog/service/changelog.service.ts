@@ -29,13 +29,13 @@ export class ChangelogService {
         changed.next(false);
       }
 
-      changed.complete();
-
-      changeDetection.detectChanges();
       if (document.querySelector('dgt-changelog .dgt-spinner-container')) {
         document.querySelector('dgt-changelog .dgt-spinner-container').classList.add('hide');
         document.querySelector('dgt-changelog .dgt-spinner-container').classList.remove('show');
       }
+
+      changed.complete();
+      changeDetection.detectChanges();
 
       configSubscription.unsubscribe();
     });
