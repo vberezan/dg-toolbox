@@ -262,8 +262,20 @@ function applyCustomStyling() {
         let scanForm = document.querySelector('.opacBackground .opacDarkBackground>form');
 
         if (scanForm) {
+            if (localStorage.getItem('next-scan')) {
+                let nextScan = localStorage.getItem('next-scan').split(/\./);
+
+                for (let i = 0; i < nextScan.length; i++) {
+                    scanForm.querySelector('input[name="coordinate.' + i + '"]').setAttribute('value', nextScan[i]);
+                }
+            }
+
             let scanButton = document.createElement('button');
             let scanAndNextButton = document.createElement('button');
+
+            scanButton.onmousedown = () => {
+                localStorage.removeItem('next-scan');
+            }
 
             scanAndNextButton.onmousedown = () => {
                 let galaxy = parseInt(scanForm.querySelector('input[name="coordinate.0"]').value);
