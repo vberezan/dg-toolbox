@@ -167,6 +167,12 @@ function applyCustomStyling() {
                 playerName.innerHTML = playerName.textContent.trim().substring(0,15);
             })
         }
+
+        if (document.querySelectorAll('.navigation .row .planets').length < 12 && document.querySelectorAll('.navigation .row .planets').length > 0) {
+            document.querySelectorAll('.navigation .row').forEach((row) => {
+               row.style.paddingLeft = '120px';
+            });
+        }
     }
 
 
@@ -262,10 +268,154 @@ function applyCustomStyling() {
         let scanForm = document.querySelector('.opacBackground .opacDarkBackground>form');
 
         if (scanForm) {
-            let newButton = document.createElement('button');
-            newButton.type = 'submit';
-            newButton.innerHTML = 'Scan';
-            scanForm.querySelector('input[type="submit"]').parentElement.append(newButton);
+            if (localStorage.getItem('next-scan')) {
+                let nextScan = localStorage.getItem('next-scan').split(/\./);
+
+                for (let i = 0; i < nextScan.length; i++) {
+                    scanForm.querySelector('input[name="coordinate.' + i + '"]').setAttribute('value', nextScan[i]);
+                }
+            }
+
+            let scanButton = document.createElement('button');
+            let scanAndNextButton = document.createElement('button');
+
+            scanButton.onmousedown = () => {
+                localStorage.removeItem('next-scan');
+            }
+
+            scanAndNextButton.onmousedown = () => {
+                let galaxy = parseInt(scanForm.querySelector('input[name="coordinate.0"]').value);
+                let sector = parseInt(scanForm.querySelector('input[name="coordinate.1"]').value);
+                let system = parseInt(scanForm.querySelector('input[name="coordinate.2"]').value);
+                let planet = parseInt(scanForm.querySelector('input[name="coordinate.3"]').value);
+
+                if (galaxy === 1) {
+                    if (sector < 25) {
+                        if (system < 4) {
+                            if (planet < 12) {
+                                planet++;
+                            } else {
+                                planet = 1;
+                                system++;
+                            }
+                        } else {
+                            if (planet < 12) {
+                                planet++;
+                            } else {
+                                planet = 1;
+                                system = 1;
+                                sector++;
+                            }
+                        }
+                    } else {
+                        if (system < 4) {
+                            if (planet < 12) {
+                                planet++;
+                            } else {
+                                planet = 1;
+                                system++;
+                            }
+                        } else {
+                            if (planet < 12) {
+                                planet++;
+                            } else {
+                                planet = 1;
+                                system = 1;
+                                sector = 1;
+                                galaxy++;
+                            }
+                        }
+                    }
+                } else if (galaxy >= 2 && galaxy <= 13) {
+                    if (sector < 6) {
+                        if (system < 4) {
+                            if (planet < 9) {
+                                planet++;
+                            } else {
+                                planet = 1;
+                                system++;
+                            }
+                        } else {
+                            if (planet < 9) {
+                                planet++;
+                            } else {
+                                planet = 1;
+                                system = 1;
+                                sector++;
+                            }
+                        }
+                    } else {
+                        if (system < 4) {
+                            if (planet < 9) {
+                                planet++;
+                            } else {
+                                planet = 1;
+                                system++;
+                            }
+                        } else {
+                            if (planet < 9) {
+                                planet++;
+                            } else {
+                                planet = 1;
+                                system = 1;
+                                sector = 1;
+                                galaxy++;
+                            }
+                        }
+                    }
+                } else {
+                    if (sector < 2) {
+                        if (system < 4) {
+                            if (planet < 9) {
+                                planet++;
+                            } else {
+                                planet = 1;
+                                system++;
+                            }
+                        } else {
+                            if (planet < 9) {
+                                planet++;
+                            } else {
+                                planet = 1;
+                                system = 1;
+                                sector++;
+                            }
+                        }
+                    } else {
+                        if (system < 4) {
+                            if (planet < 9) {
+                                planet++;
+                            } else {
+                                planet = 1;
+                                system++;
+                            }
+                        } else {
+                            if (planet < 9) {
+                                planet++;
+                            } else {
+                                planet = 1;
+                                system = 1;
+                                sector = 1;
+                                galaxy++;
+                            }
+                        }
+                    }
+                }
+
+                localStorage.setItem('next-scan', galaxy + '.' + sector + '.' + system + '.' + planet);
+            };
+
+            scanButton.type = 'submit';
+            scanButton.innerHTML = 'Scan';
+            scanButton.id = 'dgt-scan-button';
+            scanForm.querySelector('input[type="submit"]').parentElement.append(scanButton);
+
+            scanAndNextButton.type = 'submit';
+            scanAndNextButton.innerHTML = 'Scan & Next';
+            scanAndNextButton.id = 'dgt-scan-next-button';
+            scanForm.querySelector('input[type="submit"]').parentElement.append(scanAndNextButton);
+
+            scanForm.querySelector('input[type="submit"]').parentElement.id = 'dgt-scan-buttons-wrapper';
             scanForm.querySelector('input[type="submit"]').remove();
 
             let submit = detach(scanForm.querySelector('.coordsInput>div:nth-child(3)'));
@@ -276,13 +426,13 @@ function applyCustomStyling() {
             scanForm.querySelector('.coordsInput .coords .left:last-child').remove();
 
             scanForm.querySelector('.coordsInput>div:nth-child(2)').innerHTML =
-                scanForm.querySelector('.coordsInput>div:nth-child(2) input:nth-child(1)').outerHTML +
+                scanForm.querySelector('.coordsInput>div:nth-child(2) input[name="coordinate.0"]').outerHTML +
                 ':' +
-                scanForm.querySelector('.coordsInput>div:nth-child(2) input:nth-child(2)').outerHTML +
+                scanForm.querySelector('.coordsInput>div:nth-child(2) input[name="coordinate.1"]').outerHTML +
                 ':' +
-                scanForm.querySelector('.coordsInput>div:nth-child(2) input:nth-child(3)').outerHTML +
+                scanForm.querySelector('.coordsInput>div:nth-child(2) input[name="coordinate.2"]').outerHTML +
                 ':' +
-                scanForm.querySelector('.coordsInput>div:nth-child(2) input:nth-child(4)').outerHTML;
+                scanForm.querySelector('.coordsInput>div:nth-child(2) input[name="coordinate.3"]').outerHTML;
         }
     }
 
