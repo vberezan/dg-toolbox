@@ -409,6 +409,7 @@ function applyCustomStyling() {
             scanAndNextButton.id = 'dgt-scan-next-button';
             scanForm.querySelector('input[type="submit"]').parentElement.append(scanAndNextButton);
 
+            scanForm.querySelector('input[type="submit"]').parentElement.id = 'dgt-scan-buttons-wrapper';
             scanForm.querySelector('input[type="submit"]').remove();
 
             let submit = detach(scanForm.querySelector('.coordsInput>div:nth-child(3)'));
