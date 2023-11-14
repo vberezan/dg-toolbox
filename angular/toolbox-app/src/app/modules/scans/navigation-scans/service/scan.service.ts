@@ -122,7 +122,7 @@ export class ScanService implements OnDestroy {
             planet.querySelector('.dgt-navigation-scan-soldiers-value').textContent =
               this.decimalPipe.transform(pl.soldiers, '1.0', 'en_US');
 
-            let requiredForInvasion: number = ((pl.workers.currentNumber / 15) + (pl.soldiers / 2) * 3) + 1;
+            let requiredForInvasion: number = ((pl.workers.currentNumber / 15) + (pl.soldiers * 1.5)) + 1;
             planet.querySelector('.dgt-navigation-scan-structures-data .invasion-value').textContent =
               this.decimalPipe.transform(Math.ceil(requiredForInvasion), '1.0', 'en_US');
 
