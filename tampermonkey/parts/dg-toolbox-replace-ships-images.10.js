@@ -10,7 +10,7 @@ function replaceShipsImages() {
     replaceImgWithImg('/images/units/main/ships/fighter.gif', 'https://i.imgur.com/CHcGyYX.jpg');
     replaceImgWithImg('/images/units/main/ships/bomber.gif', 'https://i.imgur.com/fvl7c8r.jpg');
     replaceImgWithImg('/images/units/main/ships/frigate.gif', 'https://i.imgur.com/DgHPNSL.jpg');
-    replaceImgWithImg('/images/units/main/ships/invasion_ship.gif', 'https://i.imgur.com/DgHPNSL.jpg');
+    replaceImgWithImg('/images/units/main/ships/invasion_ship.gif', 'https://i.imgur.com/1MvzSLg.jpg');
 
     replaceImgWithImg('/images/units/main/ships/freighter.gif', 'https://i.imgur.com/XHA898r.jpg');
 }

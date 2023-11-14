@@ -19,6 +19,7 @@ export enum Structures {
   HEAVY_WEAPONS_FACTORY = 'heavy weapons factory',
   SPACE_DOCK = 'space dock',
   HOLO_GENERATOR = 'holo generator',
+  SPACE_TETHER = 'space tether',
   ARMY_BARRACKS = 'army barracks',
   LEISURE_CENTRE = 'leisure centre',
   MEDICAL_CENTRE = 'medical centre',

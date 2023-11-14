@@ -1,16 +1,16 @@
-import {NameQuantity} from "./name-quantity.model";
+import {ResourceQuantity} from "./resource-quantity.model";
 
 export class Fleet {
-  private _ships: NameQuantity[] = [];
+  private _ships: ResourceQuantity[] = [];
   private _owner: string;
   private _alliance: string;
   private _eta: number;
 
-  get ships(): NameQuantity[] {
+  get ships(): ResourceQuantity[] {
     return this._ships;
   }
 
-  set ships(value: NameQuantity[]) {
+  set ships(value: ResourceQuantity[]) {
     this._ships = value;
   }
 

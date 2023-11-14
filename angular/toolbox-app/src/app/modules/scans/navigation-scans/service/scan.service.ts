@@ -7,7 +7,7 @@ import {Resource} from "../../../../shared/model/resource.model";
 import {ResourceProductionFormatterPipe} from "../../../planets/planet-list-stats/pipe/resource-production-formatter.pipe";
 import {Structures} from "../../../../shared/model/structures";
 import {collection, collectionData, Firestore, query, where} from "@angular/fire/firestore";
-import {NameQuantity} from "../../../../shared/model/name-quantity.model";
+import {ResourceQuantity} from "../../../../shared/model/resource-quantity.model";
 import firebase from "firebase/compat";
 import {Subscription} from "rxjs";
 import DocumentData = firebase.firestore.DocumentData;
@@ -34,7 +34,7 @@ export class ScanService implements OnDestroy {
     let locations: string[] = summaries.map((summary: PlanetSummary) => summary.location.join('.'));
 
     this.scansSubscription = collectionData(
-      query(collection(this.firestore, 'scans'),
+      query(collection(this.firestore, 'scans-g' + locations[0].split(/\./)[0]),
         where('location', 'in', locations)
       )
     ).subscribe((items: DocumentData[]): void => {
@@ -65,7 +65,7 @@ export class ScanService implements OnDestroy {
               .textContent = this.resourceProductionFormatterPipe.transform(resource.production).trim();
           });
 
-          let structureNames: string[] = pl.structures.map((structure: NameQuantity) => structure.name);
+          let structureNames: string[] = pl.structures.map((structure: ResourceQuantity) => structure.name);
           if (structureNames.includes(Structures.JUMP_GATE)) {
             let jg: Element = planet.querySelector('.dgt-navigation-scan-structures-data .jg');
             jg.textContent = 'JG';
@@ -73,6 +73,10 @@ export class ScanService implements OnDestroy {
           if (structureNames.includes(Structures.HYPERSPACE_BEACON)) {
             let hb: Element = planet.querySelector('.dgt-navigation-scan-structures-data .hb');
             hb.textContent = 'HB';
+          }
+          if (structureNames.includes(Structures.SPACE_TETHER)) {
+            let hg: Element = planet.querySelector('.dgt-navigation-scan-structures-data .st');
+            hg.textContent = 'ST';
           }
           if (structureNames.includes(Structures.LIGHT_WEAPONS_FACTORY)) {
             let lw: Element = planet.querySelector('.dgt-navigation-scan-structures-data .lw');
@@ -89,10 +93,6 @@ export class ScanService implements OnDestroy {
           if (structureNames.includes(Structures.SPACE_DOCK)) {
             let sd: Element = planet.querySelector('.dgt-navigation-scan-structures-data .sd');
             sd.textContent = 'SD';
-          }
-          if (structureNames.includes(Structures.HOLO_GENERATOR)) {
-            let hg: Element = planet.querySelector('.dgt-navigation-scan-structures-data .hg');
-            hg.textContent = 'HG';
           }
           if (structureNames.includes(Structures.ARMY_BARRACKS)) {
             planet.querySelector('.dgt-navigation-scan-soldiers-ab').textContent = 'AB';
@@ -122,7 +122,7 @@ export class ScanService implements OnDestroy {
             planet.querySelector('.dgt-navigation-scan-soldiers-value').textContent =
               this.decimalPipe.transform(pl.soldiers, '1.0', 'en_US');
 
-            let requiredForInvasion: number = ((pl.workers.currentNumber / 15) + (pl.soldiers / 2) * 3) + 1;
+            let requiredForInvasion: number = ((pl.workers.currentNumber / 15) + (pl.soldiers * 1.5)) + 1;
             planet.querySelector('.dgt-navigation-scan-structures-data .invasion-value').textContent =
               this.decimalPipe.transform(Math.ceil(requiredForInvasion), '1.0', 'en_US');
 

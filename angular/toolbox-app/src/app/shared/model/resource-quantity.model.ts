@@ -1,4 +1,4 @@
-export class NameQuantity {
+export class ResourceQuantity {
   private _name: string;
   private _quantity: number = 0;
 
