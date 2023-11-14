@@ -142,6 +142,8 @@ export class ScanService implements OnDestroy {
           planet.querySelector('.dgt-navigation-scan-size-orbit').style.visibility = 'hidden';
         }
       });
+
+      this.scansSubscription.unsubscribe();
     });
   }
 
