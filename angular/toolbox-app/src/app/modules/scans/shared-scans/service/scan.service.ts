@@ -4,7 +4,7 @@ import {DarkgalaxyApiService} from "../../../darkgalaxy-ui-parser/service/darkga
 import {PlanetScanEvent} from "../../../../shared/model/scans/shared-scans-planet-scan-event.model";
 import {ScanType} from "../../../../shared/model/scan-type";
 import {Resource} from "../../../../shared/model/resource.model";
-import {addDoc, collection, collectionData, doc, Firestore, limit, query, setDoc, updateDoc, where} from "@angular/fire/firestore";
+import {collection, collectionData, doc, Firestore, limit, query, setDoc, updateDoc, where} from "@angular/fire/firestore";
 import firebase from "firebase/compat";
 import {Subscription} from "rxjs";
 import DocumentData = firebase.firestore.DocumentData;
@@ -33,6 +33,7 @@ export class ScanService implements OnDestroy {
         where('location', '==', scanEvent.planetScan.location),
         limit(1)
       )
+      // , {idField: 'id'} -- how to add id to the response
     ).subscribe((items: DocumentData[]): void => {
       let dbScan: PlanetScan = Object.assign(new PlanetScan(), items[0]);
 
