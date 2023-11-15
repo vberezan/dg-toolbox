@@ -1,5 +1,6 @@
 function setUpLocalStorageManager() {
     document.body.prepend(document.createElement('dgt-local-storage-manager'));
+    document.body.prepend(document.createElement('dgt-local-storage-synchronizer'));
 }
 function setUpUiParser() {
     document.body.prepend(document.createElement('dgt-darkgalaxy-ui-parser'));

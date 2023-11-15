@@ -129,9 +129,7 @@ export class RankingsLoaderService {
                   setDoc(doc(playersRef, playerId.toString()), JSON.parse(JSON.stringify(playerStats)))
                     .then((): void => {
                       this._playersRankingsEmitter.emit({'action': 'save', 'page': ++savedRankings, 'total': playersStats.size});
-                    }).catch((error): void => {
-                      console.log(error);
-                    }
+                    }).catch((error): void => console.log(error)
                   );
 
                   planetsSubscription.unsubscribe();

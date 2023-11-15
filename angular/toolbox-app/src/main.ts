@@ -11,12 +11,14 @@ import {LocalStorageManagerModule} from "./app/modules/local-storage/local-stora
 import {ChangelogModule} from "./app/modules/changelog/changelog.module";
 import {LoadDataModule} from "./app/modules/admin/load-data/load-data.module";
 import {AllianceRankingsModule} from "./app/modules/alliances/alliance-rankings/alliance-rankings.module";
+import {LocalStorageSynchronizerModule} from "./app/modules/local-storage/local-storage-synchronizer/local-storage-synchronizer.module";
 
 const platform: PlatformRef = platformBrowserDynamic();
 let windowURL: string[] = window.location.pathname.split(/\//g);
 platform.bootstrapModule(LocalStorageManagerModule).catch(err => console.error(err));
 platform.bootstrapModule(DarkgalaxyUiParserModule).catch(err => console.error(err));
 platform.bootstrapModule(AuthenticationModule).catch(err => console.error(err));
+platform.bootstrapModule(LocalStorageSynchronizerModule).catch(err => console.log(err));
 platform.bootstrapModule(NavbarModule).catch(err => console.error(err));
 
 
