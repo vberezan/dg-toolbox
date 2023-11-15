@@ -4,13 +4,8 @@
     <tr>
       <td colspan="2"><span>DGT Login</span></td>
     </tr>
-    <tr class="dgt-login-table-credentials">
-      <td><input class="dgt-login" type="text" placeholder="email" required #userName></td>
-      <td><input class="dgt-password" type="password" placeholder="password" required #userPassword></td>
-    </tr>
     <tr class="dgt-login-table-signin">
       <td colspan="2">
-        <button class="dgt-login-button" (click)="signInWithEmailAndPassword( userName.value, userPassword.value)">Login</button>
         <button class="dgt-login-with-google-button" (click)="signInWithGoogle()">
           <img src="https://i.imgur.com/kQiZ3fy.png" alt="Google Login"/>
         </button>
