@@ -32,6 +32,24 @@
   overflow: hidden;
 }
 
+.actions button {
+  padding: 0 15px;
+  border: 1px solid #767676;
+  border-radius: 3px;
+  background: rgb(75, 75, 75);
+  cursor: pointer;
+  width: auto;
+  height: 24px;
+  line-height: 20px;
+  font-size: 13px;
+  min-width: 65px !important;
+}
+
+.actions button:hover {
+  background: rgb(45, 45, 45);
+  border: 1px solid #545454;
+}
+
 span.progress {
   display: block;
   position: absolute;
@@ -41,7 +59,7 @@ span.progress {
   width: 0;
   transition: all .3s;
   height: 100%;
-  background: #576740;
+  background: #598b0f;
 }
 
 span.percentage {
@@ -71,7 +89,7 @@ span.planet-counter {
 
 #load-planets-example {
   font-weight: normal !important;
-  background: #ffd46f !important;
+  background: #576740 !important;
   color: #ffffffad !important;
   font-size: 11px;
   text-align: left;
