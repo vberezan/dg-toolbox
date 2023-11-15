@@ -1,6 +1,6 @@
 import {inject, Injectable} from '@angular/core';
 import {collection, collectionData, doc, docData, Firestore, query} from "@angular/fire/firestore";
-import {LocalStorageService} from "../../local-storage-manager/service/local-storage.service";
+import {LocalStorageService} from "../../local-storage/local-storage-manager/service/local-storage.service";
 import {DocumentData} from "@angular/fire/compat/firestore";
 import {LocalStorageKeys} from "../../../shared/model/local-storage/local-storage-keys";
 import {Subscription} from "rxjs";

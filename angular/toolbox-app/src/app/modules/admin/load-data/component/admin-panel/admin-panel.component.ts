@@ -92,7 +92,7 @@ export class AdminPanelComponent {
           break;
         }
         case 'save': {
-          this.loadedRankings = 'Saving ' + value.page + '/' + value.total + ' ranking page';
+          this.loadedRankings = 'Saving ' + value.page + '/' + value.total + ' players';
           this.changeDetection.detectChanges();
           this.playersPercentage = Math.floor((value.page * 100) / value.total);
           this.playersProgressBar.nativeElement.style.width = this.playersPercentage + '%';

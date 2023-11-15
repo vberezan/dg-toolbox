@@ -7,7 +7,7 @@ import {faCircleXmark as farCircleXmark} from "@fortawesome/free-regular-svg-ico
 import {AllianceMember} from "../../../../../shared/model/alliances/alliance-member.model";
 import {AuthState} from "../../../../../shared/model/authentication/auth-state.model";
 import {UserRole} from "../../../../../shared/model/authentication/user-role";
-import {LocalStorageService} from "../../../../local-storage-manager/service/local-storage.service";
+import {LocalStorageService} from "../../../../local-storage/local-storage-manager/service/local-storage.service";
 import {LocalStorageKeys} from "../../../../../shared/model/local-storage/local-storage-keys";
 import {StatsService} from "../../service/stats.service";
 import {AllianceMemberStats} from "../../../../../shared/model/alliances/alliance-member-stats.model";

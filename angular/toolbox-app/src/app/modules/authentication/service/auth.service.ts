@@ -7,7 +7,7 @@ import firebase from "firebase/compat";
 import {AuthState} from "../../../shared/model/authentication/auth-state.model";
 import {UserRole} from "../../../shared/model/authentication/user-role";
 import {LocalStorageKeys} from "../../../shared/model/local-storage/local-storage-keys";
-import {LocalStorageService} from "../../local-storage-manager/service/local-storage.service";
+import {LocalStorageService} from "../../local-storage/local-storage-manager/service/local-storage.service";
 import * as CryptoJS from 'crypto-js';
 import DocumentData = firebase.firestore.DocumentData;
 

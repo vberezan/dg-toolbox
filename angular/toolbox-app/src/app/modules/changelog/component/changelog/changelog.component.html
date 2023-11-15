@@ -3,7 +3,7 @@
   <div class="dgt-spinner-container">
     <span class="dgt-spinner"></span>
   </div>
-  <div *ngIf="(changed | async)" id="dgt-update">
+  <div *ngIf="(updateAvailable | async)" id="dgt-update">
     <span>There is a new update for DarkGalaxy Toolbox. <a (click)="installUpdate()" target="_blank" href="https://github.com/vberezan/dg-toolbox/raw/main/tampermonkey/dg-toolbox.user.js">Click here</a> to install it.</span>
   </div>
   <div id="dgt-update-changelog">

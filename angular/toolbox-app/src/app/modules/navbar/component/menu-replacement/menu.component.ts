@@ -4,7 +4,7 @@ import {Observable, Subscriber} from "rxjs";
 import {DarkgalaxyApiService} from "../../../darkgalaxy-ui-parser/service/darkgalaxy-api.service";
 import {AuthService} from "../../../authentication/service/auth.service";
 import {AuthState} from "../../../../shared/model/authentication/auth-state.model";
-import {LocalStorageService} from "../../../local-storage-manager/service/local-storage.service";
+import {LocalStorageService} from "../../../local-storage/local-storage-manager/service/local-storage.service";
 import {LocalStorageKeys} from "../../../../shared/model/local-storage/local-storage-keys";
 import {Analytics, logEvent} from "@angular/fire/analytics";
 import {GlobalConfigService} from "../../service/global-config.service";

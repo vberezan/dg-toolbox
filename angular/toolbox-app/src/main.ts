@@ -7,7 +7,7 @@ import {AuthenticationModule} from "./app/modules/authentication/authentication.
 import {PlatformRef} from "@angular/core";
 import {AllianceMembersModule} from "./app/modules/alliances/alliance-members/alliance-members.module";
 import {DarkgalaxyUiParserModule} from "./app/modules/darkgalaxy-ui-parser/darkgalaxy-ui-parser.module";
-import {LocalStorageManagerModule} from "./app/modules/local-storage-manager/local-storage-manager.module";
+import {LocalStorageManagerModule} from "./app/modules/local-storage/local-storage-manager/local-storage-manager.module";
 import {ChangelogModule} from "./app/modules/changelog/changelog.module";
 import {LoadDataModule} from "./app/modules/admin/load-data/load-data.module";
 import {AllianceRankingsModule} from "./app/modules/alliances/alliance-rankings/alliance-rankings.module";

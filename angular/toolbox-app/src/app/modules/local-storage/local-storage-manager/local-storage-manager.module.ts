@@ -6,7 +6,7 @@ import { getAuth, provideAuth } from '@angular/fire/auth';
 import { getAnalytics, provideAnalytics, ScreenTrackingService, UserTrackingService } from '@angular/fire/analytics';
 import {initializeAppCheck, provideAppCheck, ReCaptchaV3Provider} from '@angular/fire/app-check';
 import { getFirestore, provideFirestore } from '@angular/fire/firestore';
-import {environment} from "../../../environments/environment";
+import {environment} from "../../../../environments/environment";
 
 
 @NgModule({

@@ -1,7 +1,7 @@
 import {EventEmitter, inject, Injectable} from '@angular/core';
 import {AllianceMember} from "../../../../shared/model/alliances/alliance-member.model";
 import {AllianceMemberStats} from "../../../../shared/model/alliances/alliance-member-stats.model";
-import {LocalStorageService} from "../../../local-storage-manager/service/local-storage.service";
+import {LocalStorageService} from "../../../local-storage/local-storage-manager/service/local-storage.service";
 import {LocalStorageKeys} from "../../../../shared/model/local-storage/local-storage-keys";
 import {PlayerStatsCache} from "../../../../shared/model/stats/player-stats-cache.model";
 
