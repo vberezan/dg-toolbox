@@ -27,21 +27,21 @@ export class SynchronizerService {
     const version: string = this.localStorageService.get(LocalStorageKeys.VERSION);
     const config: any = collection(this.firestore, 'config');
 
-    if (version == null) {
-      let subscription: Subscription = docData(
-        doc(config, 'version')
-      ).subscribe((item: DocumentData): void => {
-        let newVersion: string = Object.assign({value: ''}, item).value + Math.random();
-
-        if (newVersion !== version) {
-          this.localStorageService.cache(LocalStorageKeys.UPDATE_AVAILABLE, true);
-          this.localStorageService.cache(LocalStorageKeys.VERSION, newVersion, 300000);
-        } else {
-          this.localStorageService.cache(LocalStorageKeys.UPDATE_AVAILABLE, false);
-        }
-
-        subscription.unsubscribe();
-      });
-    }
+    // if (version == null) {
+    //   let subscription: Subscription = docData(
+    //     doc(config, 'version')
+    //   ).subscribe((item: DocumentData): void => {
+    //     let newVersion: string = Object.assign({value: ''}, item).value + Math.random();
+    //
+    //     if (newVersion !== version) {
+    //       this.localStorageService.cache(LocalStorageKeys.UPDATE_AVAILABLE, true);
+    //       this.localStorageService.cache(LocalStorageKeys.VERSION, newVersion, 300000);
+    //     } else {
+    //       this.localStorageService.cache(LocalStorageKeys.UPDATE_AVAILABLE, false);
+    //     }
+    //
+    //     subscription.unsubscribe();
+    //   });
+    // }
   }
 }
