@@ -1,5 +1,5 @@
 function replaceShipsImages() {
-    replaceImgWithImg('/images/units/research/merchant.png', 'https://i.imgur.com/nxbjdv1.jpg');
+    replaceImgWithImg('/images/units/research/merchant.png', 'https://i.imgur.com/ub6WvsQ.jpg');
     replaceImgWithImg('/images/units/research/destroyer.png', 'https://i.imgur.com/h82C4EI.jpg');
     replaceImgWithImg('/images/units/research/trader.png', 'https://i.imgur.com/cO5vLsY.jpg');
     replaceImgWithImg('/images/units/research/cruiser.png', 'https://i.imgur.com/WnN7vst.jpg');
@@ -8,8 +8,8 @@ function replaceShipsImages() {
 
     replaceImgWithImg('/images/units/small/outpost_ship.gif', 'https://i.imgur.com/kbTDPUp.jpg');
     replaceImgWithImg('/images/units/main/ships/outpost_ship.gif', 'https://i.imgur.com/kbTDPUp.jpg');
-    replaceImgWithImg('/images/units/small/colonisation_ship.gif', 'https://i.imgur.com/kbTDPUp.jpg');
-    replaceImgWithImg('/images/units/main/ships/colonisation_ship.gif', 'https://i.imgur.com/kbTDPUp.jpg');
+    replaceImgWithImg('/images/units/small/colonisation_ship.gif', 'https://i.imgur.com/niEL3PF.jpg');
+    replaceImgWithImg('/images/units/main/ships/colonisation_ship.gif', 'https://i.imgur.com/niEL3PF.jpg');
     replaceImgWithImg('/images/units/small/fighter.gif', 'https://i.imgur.com/CHcGyYX.jpg');
     replaceImgWithImg('/images/units/main/ships/fighter.gif', 'https://i.imgur.com/CHcGyYX.jpg');
     replaceImgWithImg('/images/units/small/bomber.gif', 'https://i.imgur.com/fvl7c8r.jpg');
@@ -42,8 +42,8 @@ function replaceShipsImages() {
 
     replaceImgWithImg('/images/units/small/freighter.gif', 'https://i.imgur.com/XHA898r.jpg');
     replaceImgWithImg('/images/units/main/ships/freighter.gif', 'https://i.imgur.com/XHA898r.jpg');
-    replaceImgWithImg('/images/units/small/merchant.gif', 'https://i.imgur.com/nxbjdv1.png');
-    replaceImgWithImg('/images/units/main/ships/merchant.gif', 'https://i.imgur.com/nxbjdv1.jpg');
+    replaceImgWithImg('/images/units/small/merchant.gif', 'https://i.imgur.com/ub6WvsQ.jpg');
+    replaceImgWithImg('/images/units/main/ships/merchant.gif', 'https://i.imgur.com/ub6WvsQ.jpg');
     replaceImgWithImg('/images/units/small/trader.gif', 'https://i.imgur.com/cO5vLsY.jpg');
     replaceImgWithImg('/images/units/main/ships/trader.gif', 'https://i.imgur.com/cO5vLsY.jpg');
     replaceImgWithImg('/images/units/small/hulk.gif', 'https://i.imgur.com/t9bVpKK.jpg');
