@@ -8,6 +8,8 @@ function replaceShipsImages() {
 
     replaceImgWithImg('/images/units/small/outpost_ship.gif', 'https://i.imgur.com/kbTDPUp.jpg');
     replaceImgWithImg('/images/units/main/ships/outpost_ship.gif', 'https://i.imgur.com/kbTDPUp.jpg');
+    replaceImgWithImg('/images/units/small/colonisation_ship.gif', 'https://i.imgur.com/kbTDPUp.jpg');
+    replaceImgWithImg('/images/units/main/ships/colonisation_ship.gif', 'https://i.imgur.com/kbTDPUp.jpg');
     replaceImgWithImg('/images/units/small/fighter.gif', 'https://i.imgur.com/CHcGyYX.jpg');
     replaceImgWithImg('/images/units/main/ships/fighter.gif', 'https://i.imgur.com/CHcGyYX.jpg');
     replaceImgWithImg('/images/units/small/bomber.gif', 'https://i.imgur.com/fvl7c8r.jpg');
@@ -17,10 +19,10 @@ function replaceShipsImages() {
     replaceImgWithImg('/images/units/small/invasion_ship.gif', 'https://i.imgur.com/1MvzSLg.jpg');
     replaceImgWithImg('/images/units/main/ships/invasion_ship.gif', 'https://i.imgur.com/1MvzSLg.jpg');
     replaceImgWithImg('/images/units/small/destroyer.gif', 'https://i.imgur.com/h82C4EI.jpg');
-    replaceImgWithImg('/images/units/main/ships/destroyer.gif', 'https://i.imgur.com/1MvzSLg.jpg');
+    replaceImgWithImg('/images/units/main/ships/destroyer.gif', 'https://i.imgur.com/h82C4EI.jpg');
     replaceImgWithImg('/images/units/small/cruiser.gif', 'https://i.imgur.com/148Wc6k.jpg');
-    replaceImgWithImg('/images/units/main/ships/cruiser.gif', 'https://i.imgur.com/1MvzSLg.jpg');
-    replaceImgWithImg('/images/units/small/battleship.gif', 'https://i.imgur.com/1MvzSLg.jpg');
+    replaceImgWithImg('/images/units/main/ships/cruiser.gif', 'https://i.imgur.com/148Wc6k.jpg');
+    replaceImgWithImg('/images/units/small/battleship.gif', 'https://i.imgur.com/i2qZbts.jpg');
     replaceImgWithImg('/images/units/main/ships/battleship.gif', 'https://i.imgur.com/i2qZbts.jpg');
 
     replaceImgWithImg('/images/units/small/holo_projector.gif', 'https://i.imgur.com/HTxwxkb.jpg');
@@ -40,10 +42,10 @@ function replaceShipsImages() {
 
     replaceImgWithImg('/images/units/small/freighter.gif', 'https://i.imgur.com/XHA898r.jpg');
     replaceImgWithImg('/images/units/main/ships/freighter.gif', 'https://i.imgur.com/XHA898r.jpg');
-    replaceImgWithImg('/images/units/small/merchant.gif', 'https://i.imgur.com/XHA898r.jpg');
-    replaceImgWithImg('/images/units/main/ships/merchant.gif', 'https://i.imgur.com/XHA898r.jpg');
-    replaceImgWithImg('/images/units/small/trader.gif', 'https://i.imgur.com/XHA898r.jpg');
-    replaceImgWithImg('/images/units/main/ships/trader.gif', 'https://i.imgur.com/XHA898r.jpg');
-    replaceImgWithImg('/images/units/small/hulk.gif', 'https://i.imgur.com/XHA898r.jpg');
-    replaceImgWithImg('/images/units/main/ships/hulk.gif', 'https://i.imgur.com/XHA898r.jpg');
+    replaceImgWithImg('/images/units/small/merchant.gif', 'https://i.imgur.com/cO5vLsY.jpg');
+    replaceImgWithImg('/images/units/main/ships/merchant.gif', 'https://i.imgur.com/cO5vLsY.jpg');
+    replaceImgWithImg('/images/units/small/trader.gif', 'https://i.imgur.com/ZDg8HIW.jpg');
+    replaceImgWithImg('/images/units/main/ships/trader.gif', 'https://i.imgur.com/ZDg8HIW.jpg');
+    replaceImgWithImg('/images/units/small/hulk.gif', 'https://i.imgur.com/t9bVpKK.jpg');
+    replaceImgWithImg('/images/units/main/ships/hulk.gif', 'https://i.imgur.com/t9bVpKK.jpg');
 }
