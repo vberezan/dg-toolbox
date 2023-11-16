@@ -23,6 +23,21 @@ function replaceShipsImages() {
     replaceImgWithImg('/images/units/small/battleship.gif', 'https://i.imgur.com/1MvzSLg.jpg');
     replaceImgWithImg('/images/units/main/ships/battleship.gif', 'https://i.imgur.com/1MvzSLg.jpg');
 
+    replaceImgWithImg('/images/units/small/holo_projector.gif', 'https://i.imgur.com/HTxwxkb.jpg');
+    replaceImgWithImg('/images/units/main/ships/holo_projector.gif', 'https://i.imgur.com/HTxwxkb.jpg');
+    replaceImgWithImg('/images/units/small/holo_fighter.gif', 'https://i.imgur.com/7HNtQTE.jpg');
+    replaceImgWithImg('/images/units/main/ships/holo_fighter.gif', 'https://i.imgur.com/7HNtQTE.jpg');
+    replaceImgWithImg('/images/units/small/holo_bomber.gif', 'https://i.imgur.com/rP6H84i.jpg');
+    replaceImgWithImg('/images/units/main/ships/holo_bomber.gif', 'https://i.imgur.com/rP6H84i.jpg');
+    replaceImgWithImg('/images/units/small/holo_frigate.gif', 'https://i.imgur.com/3cFcX98.jpg');
+    replaceImgWithImg('/images/units/main/ships/holo_frigate.gif', 'https://i.imgur.com/3cFcX98.jpg');
+    replaceImgWithImg('/images/units/small/holo_destroyer.gif', 'https://i.imgur.com/UNP7xwd.jpg');
+    replaceImgWithImg('/images/units/main/ships/holo_destroyer.gif', 'https://i.imgur.com/UNP7xwd.jpg');
+    replaceImgWithImg('/images/units/small/holo_cruiser.gif', 'https://i.imgur.com/IMY1eLs.jpg');
+    replaceImgWithImg('/images/units/main/ships/holo_cruiser.gif', 'https://i.imgur.com/IMY1eLs.jpg');
+    replaceImgWithImg('/images/units/small/holo_battleship.gif', 'https://i.imgur.com/FrXY4vT.jpg');
+    replaceImgWithImg('/images/units/main/ships/holo_battleship.gif', 'https://i.imgur.com/FrXY4vT.jpg');
+
     replaceImgWithImg('/images/units/small/freighter.gif', 'https://i.imgur.com/XHA898r.jpg');
     replaceImgWithImg('/images/units/main/ships/freighter.gif', 'https://i.imgur.com/XHA898r.jpg');
     replaceImgWithImg('/images/units/small/merchant.gif', 'https://i.imgur.com/XHA898r.jpg');
