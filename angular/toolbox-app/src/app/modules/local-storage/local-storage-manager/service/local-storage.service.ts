@@ -14,7 +14,7 @@ export class LocalStorageService {
   }
 
   getVersion(): string {
-    return localStorage.getItem(LocalStorageKeys.VERSION);
+    return localStorage.getItem(LocalStorageKeys.LOCAL_VERSION);
   }
 
   get(key: string): any {

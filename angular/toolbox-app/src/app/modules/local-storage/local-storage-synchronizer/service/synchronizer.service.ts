@@ -24,24 +24,26 @@ export class SynchronizerService {
   }
 
   private loadVersion(): void {
-    const version: string = this.localStorageService.get(LocalStorageKeys.VERSION);
+    const localVersion: string = this.localStorageService.get(LocalStorageKeys.LOCAL_VERSION);
+    const remoteVersion: string = this.localStorageService.get(LocalStorageKeys.REMOTE_VERSION);
     const config: any = collection(this.firestore, 'config');
 
-    // if (version == null) {
-    //   let subscription: Subscription = docData(
-    //     doc(config, 'version')
-    //   ).subscribe((item: DocumentData): void => {
-    //     let newVersion: string = Object.assign({value: ''}, item).value + Math.random();
-    //
-    //     if (newVersion !== version) {
-    //       this.localStorageService.cache(LocalStorageKeys.UPDATE_AVAILABLE, true);
-    //       this.localStorageService.cache(LocalStorageKeys.VERSION, newVersion, 300000);
-    //     } else {
-    //       this.localStorageService.cache(LocalStorageKeys.UPDATE_AVAILABLE, false);
-    //     }
-    //
-    //     subscription.unsubscribe();
-    //   });
-    // }
+    if (remoteVersion == null) {
+      let subscription: Subscription = docData(
+        doc(config, 'version')
+      ).subscribe((item: DocumentData): void => {
+        let newVersion: string = Object.assign({value: ''}, item).value + Math.random();
+
+        this.localStorageService.cache(LocalStorageKeys.REMOTE_VERSION, newVersion, 300000);
+
+        if (newVersion !== localVersion) {
+          this.localStorageService.cache(LocalStorageKeys.UPDATE_AVAILABLE, true);
+        } else {
+          this.localStorageService.cache(LocalStorageKeys.UPDATE_AVAILABLE, false);
+        }
+
+        subscription.unsubscribe();
+      });
+    }
   }
 }
