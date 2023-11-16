@@ -13,7 +13,8 @@ export class SynchronizerService {
   private localStorageService: LocalStorageService = inject(LocalStorageService);
 
 
-  constructor() { }
+  constructor() {
+  }
 
   loadTurnBasedUpdates(turn: number): void {
 
@@ -24,24 +25,16 @@ export class SynchronizerService {
   }
 
   private loadVersion(): void {
-    const localVersion: string = this.localStorageService.get(LocalStorageKeys.LOCAL_VERSION);
     const remoteVersion: string = this.localStorageService.get(LocalStorageKeys.REMOTE_VERSION);
     const config: any = collection(this.firestore, 'config');
 
     if (remoteVersion == null) {
-      console.log('loaded remote version');
       let subscription: Subscription = docData(
         doc(config, 'version')
       ).subscribe((item: DocumentData): void => {
         let newVersion: string = Object.assign({value: ''}, item).value + Math.random();
 
-        this.localStorageService.cache(LocalStorageKeys.REMOTE_VERSION, newVersion, 10000);
-
-        if (newVersion !== localVersion) {
-          this.localStorageService.cache(LocalStorageKeys.UPDATE_AVAILABLE, true);
-        } else {
-          this.localStorageService.cache(LocalStorageKeys.UPDATE_AVAILABLE, false);
-        }
+        this.localStorageService.cache(LocalStorageKeys.REMOTE_VERSION, newVersion, 300000);
 
         subscription.unsubscribe();
       });
