@@ -27,9 +27,7 @@ export class SynchronizerService {
     const version: string = this.localStorageService.get(LocalStorageKeys.VERSION);
     const config: any = collection(this.firestore, 'config');
 
-    console.log(version);
-
-    if (!version) {
+    if (version == null) {
       let subscription: Subscription = docData(
         doc(config, 'version')
       ).subscribe((item: DocumentData): void => {
