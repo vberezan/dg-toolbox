@@ -198,7 +198,7 @@ function applyCustomStyling() {
 
         credits.id = 'dgt-credits';
         credits.innerHTML =
-          '<span>DarkGalaxy Tools <i>' + localStorage.getItem('version') + '</i></span>' +
+          '<span>DarkGalaxy Tools <i>' + JSON.parse(localStorage.getItem('local-version')).value + '</i></span>' +
           '<span>Rankings update turn: <i><b>' + playerRankingsUpdate + '</b></i></span>' +
           '<span>Planets update turn: <i><b>' + planetsRankingsUpdate + '</b></i></span>';
         document.querySelector('#header .left').append(credits);
