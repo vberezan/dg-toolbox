@@ -29,9 +29,6 @@ import {ChangelogService} from "../changelog/service/changelog.service";
     MenuComponent,
     ActiveTabDirective
   ],
-  providers: [
-    ChangelogService
-  ],
   bootstrap: [MenuComponent]
 })
 export class NavbarModule {

@@ -4,7 +4,7 @@ import {LocalStorageService} from "../../local-storage/local-storage-manager/ser
 import {LocalStorageKeys} from "../../../shared/model/local-storage/local-storage-keys";
 
 @Injectable({
-  providedIn: 'root'
+  providedIn: 'platform'
 })
 export class ChangelogService {
   private localStorageService: LocalStorageService = inject(LocalStorageService);
