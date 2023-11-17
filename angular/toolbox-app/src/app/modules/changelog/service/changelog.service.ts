@@ -15,7 +15,10 @@ export class ChangelogService {
 
     changeObserver.complete();
 
+    console.log(loadSpinner);
     if (loadSpinner != null && loadSpinner.nativeElement && loadSpinner.nativeElement.classList.contains('show')) {
+      console.log('hide');
+
       loadSpinner.nativeElement.classList.add('hide');
       loadSpinner.nativeElement.classList.remove('show');
     }
