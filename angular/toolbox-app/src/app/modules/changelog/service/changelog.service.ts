@@ -18,7 +18,9 @@ export class ChangelogService {
   }
 
   showComponent(loadSpinner: ElementRef): void {
+    console.log('1');
     if (loadSpinner.nativeElement && loadSpinner.nativeElement.classList.contains('show')) {
+      console.log('2');
       loadSpinner.nativeElement.classList.add('hide');
       loadSpinner.nativeElement.classList.remove('show');
     }
