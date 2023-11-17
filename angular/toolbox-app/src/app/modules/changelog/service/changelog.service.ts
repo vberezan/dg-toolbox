@@ -1,4 +1,4 @@
-import {ChangeDetectorRef, ElementRef, inject, Injectable, Optional} from '@angular/core';
+import {ChangeDetectorRef, ElementRef, inject, Injectable} from '@angular/core';
 import {Subscriber} from "rxjs";
 import {LocalStorageService} from "../../local-storage/local-storage-manager/service/local-storage.service";
 import {LocalStorageKeys} from "../../../shared/model/local-storage/local-storage-keys";
@@ -18,9 +18,7 @@ export class ChangelogService {
   }
 
   showComponent(loadSpinner: ElementRef): void {
-    console.log('1');
     if (loadSpinner.nativeElement && loadSpinner.nativeElement.classList.contains('show')) {
-      console.log('2');
       loadSpinner.nativeElement.classList.add('hide');
       loadSpinner.nativeElement.classList.remove('show');
     }
