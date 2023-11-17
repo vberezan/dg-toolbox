@@ -48,10 +48,14 @@ export class MenuComponent implements OnDestroy {
       this.changelogService.checkVersion(this.changeDetector, changeObserver);
     });
 
+    console.log('registering');
     this.changelogService.installUpdateEmitter.subscribe((installed: boolean): void => {
-      this.updateNotification.nativeElement.remove();
-      this.changeDetector.detectChanges();
-      console.log('installed: ' + !installed);
+      console.log('received true');
+
+      if (installed) {
+        this.updateNotification.nativeElement.remove();
+        this.changeDetector.detectChanges();
+      }
     });
 
     this.authService.authState.subscribe((state: AuthState): void => {
