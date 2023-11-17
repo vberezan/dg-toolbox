@@ -1,4 +1,4 @@
-import {ChangeDetectorRef, Component, ElementRef, inject, ViewChild} from '@angular/core';
+import {AfterViewInit, ChangeDetectorRef, Component, ElementRef, inject, ViewChild} from '@angular/core';
 import {ChangelogService} from "../../service/changelog.service";
 import {Observable, Subscriber} from "rxjs";
 import {LocalStorageService} from "../../../local-storage/local-storage-manager/service/local-storage.service";
@@ -9,7 +9,7 @@ import {LocalStorageKeys} from "../../../../shared/model/local-storage/local-sto
   templateUrl: './changelog.component.html',
   styleUrls: ['./changelog.component.css']
 })
-export class ChangelogComponent {
+export class ChangelogComponent implements AfterViewInit {
   @ViewChild('dgtSpinner') loadSpinner: ElementRef;
 
   private changeLogService: ChangelogService = inject(ChangelogService);
@@ -21,7 +21,7 @@ export class ChangelogComponent {
 
   constructor() {
     this.updateAvailable = new Observable<boolean>((changeObserver: Subscriber<boolean>): void => {
-      this.changeLogService.checkVersion(this.changeDetector, changeObserver, this.loadSpinner);
+      this.changeLogService.checkVersion(this.changeDetector, changeObserver);
     });
 
     this.version = this.localStorageService.get(LocalStorageKeys.LOCAL_VERSION);
@@ -30,5 +30,9 @@ export class ChangelogComponent {
   installUpdate() {
     this.localStorageService.cache(LocalStorageKeys.LOCAL_VERSION, this.localStorageService.get(LocalStorageKeys.REMOTE_VERSION));
     this.version = this.localStorageService.get(LocalStorageKeys.LOCAL_VERSION);
+  }
+
+  ngAfterViewInit() {
+    this.changeLogService.showComponent(this.loadSpinner);
   }
 }

@@ -9,20 +9,18 @@ import {LocalStorageKeys} from "../../../shared/model/local-storage/local-storag
 export class ChangelogService {
   private localStorageService: LocalStorageService = inject(LocalStorageService);
 
-  checkVersion(changeDetector: ChangeDetectorRef, changeObserver: Subscriber<boolean>, @Optional() loadSpinner: ElementRef = null): void {
+  checkVersion(changeDetector: ChangeDetectorRef, changeObserver: Subscriber<boolean>): void {
     changeObserver.next(this.localStorageService.get(LocalStorageKeys.LOCAL_VERSION) !=
       this.localStorageService.get(LocalStorageKeys.REMOTE_VERSION));
 
     changeObserver.complete();
+    changeDetector.detectChanges();
+  }
 
-    console.log(loadSpinner);
-    if (loadSpinner != null && loadSpinner.nativeElement && loadSpinner.nativeElement.classList.contains('show')) {
-      console.log('hide');
-
+  showComponent(loadSpinner: ElementRef): void {
+    if (loadSpinner.nativeElement && loadSpinner.nativeElement.classList.contains('show')) {
       loadSpinner.nativeElement.classList.add('hide');
       loadSpinner.nativeElement.classList.remove('show');
     }
-
-    changeDetector.detectChanges();
   }
 }
