@@ -47,6 +47,7 @@ export class MenuComponent implements OnDestroy {
       this.changelogService.installUpdateEmitter.subscribe((installed: boolean): void => {
         changeObserver.next(!installed);
         this.changeDetector.detectChanges();
+        console.log('installed: ' + !installed);
       });
     });
 
