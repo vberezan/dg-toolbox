@@ -32,7 +32,7 @@ export class SynchronizerService {
       let subscription: Subscription = docData(
         doc(config, 'version')
       ).subscribe((item: DocumentData): void => {
-        let newVersion: string = Object.assign({value: ''}, item).value + Math.random();
+        let newVersion: string = Object.assign({value: ''}, item).value;
 
         this.localStorageService.cache(LocalStorageKeys.REMOTE_VERSION, newVersion, 300000);
 

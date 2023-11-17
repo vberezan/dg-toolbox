@@ -6,10 +6,9 @@ import {LocalStorageKeys} from "../../../../shared/model/local-storage/local-sto
   providedIn: 'platform'
 })
 export class LocalStorageService {
-  private cachedUsername: string = null;
 
   cache(key: string, value: any, @Optional() ttl: number = 0): void {
-    const item: LocalStorageItem = new LocalStorageItem(this.username(), value, ttl);
+    const item: LocalStorageItem = new LocalStorageItem(value, ttl);
     localStorage.setItem(key, JSON.stringify(item))
   }
 
@@ -22,7 +21,7 @@ export class LocalStorageService {
 
     const item: LocalStorageItem = Object.assign(LocalStorageItem, JSON.parse(itemStr));
 
-    if ((this.username() !== item.user) || (item.ttl > 0 && (Date.now() > item.expiry))) {
+    if ((item.ttl > 0 && (Date.now() > item.expiry))) {
       localStorage.removeItem(key);
       return null;
     }
@@ -32,19 +31,5 @@ export class LocalStorageService {
 
   remove(key: string): void {
     localStorage.removeItem(key);
-  }
-
-  private username(): string {
-    if (this.cachedUsername == null) {
-      let completeName = document.querySelector('#header>#playerBox>.header>div.left:nth-child(2)').textContent.split('Welcome')[1].trim();
-
-      if (completeName.indexOf('[') == 0 && completeName.indexOf(']') == 4) {
-        completeName = completeName.substring(5, completeName.length);
-      }
-
-      this.cachedUsername = completeName.toLowerCase();
-    }
-
-    return this.cachedUsername;
   }
 }
