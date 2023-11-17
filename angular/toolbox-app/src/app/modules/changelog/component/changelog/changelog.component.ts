@@ -34,6 +34,5 @@ export class ChangelogComponent implements AfterViewInit {
 
   ngAfterViewInit(): void {
     this.changeLogService.showComponent(this.loadSpinner);
-    this.changeDetector.detectChanges();
   }
 }
