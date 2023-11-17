@@ -10,15 +10,9 @@ export class ChangelogService {
   private localStorageService: LocalStorageService = inject(LocalStorageService);
   private _installUpdateEmitter: EventEmitter<boolean> = new EventEmitter<boolean>();
 
-  private _id: number = Math.random();
-
-  get id(): number {
-    return this._id;
-  }
-
   checkVersion(changeDetector: ChangeDetectorRef, changeObserver: Subscriber<boolean>): void {
-    changeObserver.next(this.localStorageService.get(LocalStorageKeys.REMOTE_VERSION) != null &&
-      (this.localStorageService.get(LocalStorageKeys.LOCAL_VERSION) != this.localStorageService.get(LocalStorageKeys.REMOTE_VERSION)));
+    changeObserver.next(this.localStorageService.get(LocalStorageKeys.LOCAL_VERSION) !=
+      this.localStorageService.get(LocalStorageKeys.REMOTE_VERSION, false));
 
     changeObserver.complete();
     changeDetector.detectChanges();
@@ -32,7 +26,6 @@ export class ChangelogService {
   }
 
   installUpdate(): void {
-    console.log('emit ' + this._id);
     this._installUpdateEmitter.emit(true);
   }
 

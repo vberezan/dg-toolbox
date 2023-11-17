@@ -25,10 +25,9 @@ export class SynchronizerService {
   }
 
   private loadVersion(): void {
-    const remoteVersion: string = this.localStorageService.get(LocalStorageKeys.REMOTE_VERSION);
     const config: any = collection(this.firestore, 'config');
 
-    if (remoteVersion == null) {
+    if (this.localStorageService.isExpired(LocalStorageKeys.REMOTE_VERSION)) {
       let subscription: Subscription = docData(
         doc(config, 'versionv2')
       ).subscribe((item: DocumentData): void => {

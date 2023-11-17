@@ -48,10 +48,7 @@ export class MenuComponent implements OnDestroy {
       this.changelogService.checkVersion(this.changeDetector, changeObserver);
     });
 
-    console.log('registering ' + this.changelogService.id);
     this.changelogService.installUpdateEmitter.subscribe((installed: boolean): void => {
-      console.log('received ' + this.changelogService.id);
-
       if (installed) {
         this.updateNotification.nativeElement.remove();
         this.changeDetector.detectChanges();
