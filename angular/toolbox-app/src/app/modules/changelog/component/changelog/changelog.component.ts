@@ -1,4 +1,4 @@
-import {ChangeDetectorRef, Component, inject} from '@angular/core';
+import {ChangeDetectorRef, Component, ElementRef, inject, ViewChild} from '@angular/core';
 import {ChangelogService} from "../../service/changelog.service";
 import {Observable, Subscriber} from "rxjs";
 import {LocalStorageService} from "../../../local-storage/local-storage-manager/service/local-storage.service";
@@ -10,6 +10,8 @@ import {LocalStorageKeys} from "../../../../shared/model/local-storage/local-sto
   styleUrls: ['./changelog.component.css']
 })
 export class ChangelogComponent {
+  @ViewChild('dgtSpinner') loadSpinner: ElementRef;
+
   private changeLogService: ChangelogService = inject(ChangelogService);
   private changeDetector: ChangeDetectorRef = inject(ChangeDetectorRef);
   private localStorageService: LocalStorageService = inject(LocalStorageService);
@@ -19,11 +21,10 @@ export class ChangelogComponent {
 
   constructor() {
     this.updateAvailable = new Observable<boolean>((changeObserver: Subscriber<boolean>): void => {
-      this.changeLogService.checkVersion(this.changeDetector, changeObserver);
+      this.changeLogService.checkVersion(this.changeDetector, changeObserver, this.loadSpinner);
     });
 
     this.version = this.localStorageService.get(LocalStorageKeys.LOCAL_VERSION);
-    console.log(this.version);
   }
 
   installUpdate() {
