@@ -13,6 +13,8 @@ import {ChangelogService} from "../../../changelog/service/changelog.service";
   styleUrls: ['./menu.component.css']
 })
 export class MenuComponent implements OnDestroy {
+  @ViewChild('updateNotification') updateNotification: ElementRef;
+
   private dgAPI: DarkgalaxyApiService = inject(DarkgalaxyApiService);
   private changeDetector: ChangeDetectorRef = inject(ChangeDetectorRef);
   private authService: AuthService = inject(AuthService);
@@ -44,11 +46,12 @@ export class MenuComponent implements OnDestroy {
 
     this.updateAvailableNotification = new Observable<boolean>((changeObserver: Subscriber<boolean>): void => {
       this.changelogService.checkVersion(this.changeDetector, changeObserver);
-      this.changelogService.installUpdateEmitter.subscribe((installed: boolean): void => {
-        changeObserver.next(!installed);
-        this.changeDetector.detectChanges();
-        console.log('installed: ' + !installed);
-      });
+    });
+
+    this.changelogService.installUpdateEmitter.subscribe((installed: boolean): void => {
+      this.updateNotification.nativeElement.remove();
+      this.changeDetector.detectChanges();
+      console.log('installed: ' + !installed);
     });
 
     this.authService.authState.subscribe((state: AuthState): void => {
