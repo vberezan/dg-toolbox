@@ -23,6 +23,7 @@ export class ChangelogComponent {
     });
 
     this.version = this.localStorageService.get(LocalStorageKeys.LOCAL_VERSION);
+    console.log(this.version);
   }
 
   installUpdate() {
