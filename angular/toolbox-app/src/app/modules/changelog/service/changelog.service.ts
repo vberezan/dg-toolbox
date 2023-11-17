@@ -10,8 +10,8 @@ export class ChangelogService {
   private localStorageService: LocalStorageService = inject(LocalStorageService);
 
   checkVersion(changeDetector: ChangeDetectorRef, changeObserver: Subscriber<boolean>): void {
-    changeObserver.next(this.localStorageService.get(LocalStorageKeys.LOCAL_VERSION) !=
-      this.localStorageService.get(LocalStorageKeys.REMOTE_VERSION));
+    changeObserver.next(this.localStorageService.get(LocalStorageKeys.REMOTE_VERSION) != null &&
+      (this.localStorageService.get(LocalStorageKeys.LOCAL_VERSION) != this.localStorageService.get(LocalStorageKeys.REMOTE_VERSION)));
 
     changeObserver.complete();
     changeDetector.detectChanges();
