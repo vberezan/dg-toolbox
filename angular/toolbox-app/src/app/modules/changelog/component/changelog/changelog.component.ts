@@ -11,7 +11,6 @@ import {LocalStorageKeys} from "../../../../shared/model/local-storage/local-sto
 })
 export class ChangelogComponent implements AfterViewInit {
   @ViewChild('dgtSpinner') loadSpinner: ElementRef;
-
   private changeLogService: ChangelogService = inject(ChangelogService);
   private changeDetector: ChangeDetectorRef = inject(ChangeDetectorRef);
   private localStorageService: LocalStorageService = inject(LocalStorageService);
@@ -28,8 +27,7 @@ export class ChangelogComponent implements AfterViewInit {
   }
 
   installUpdate(): void {
-    this.localStorageService.cache(LocalStorageKeys.LOCAL_VERSION, this.localStorageService.get(LocalStorageKeys.REMOTE_VERSION));
-    this.version = this.localStorageService.get(LocalStorageKeys.LOCAL_VERSION);
+    this.changeLogService.installUpdate();
   }
 
   ngAfterViewInit(): void {

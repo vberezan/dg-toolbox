@@ -1,10 +1,8 @@
-import {ChangeDetectorRef, Component, inject, OnDestroy} from '@angular/core';
+import {ChangeDetectorRef, Component, ElementRef, inject, OnDestroy, ViewChild} from '@angular/core';
 import {Observable, Subscriber} from "rxjs";
 import {DarkgalaxyApiService} from "../../../darkgalaxy-ui-parser/service/darkgalaxy-api.service";
 import {AuthService} from "../../../authentication/service/auth.service";
 import {AuthState} from "../../../../shared/model/authentication/auth-state.model";
-import {LocalStorageService} from "../../../local-storage/local-storage-manager/service/local-storage.service";
-import {LocalStorageKeys} from "../../../../shared/model/local-storage/local-storage-keys";
 import {Analytics, logEvent} from "@angular/fire/analytics";
 import {GlobalConfigService} from "../../service/global-config.service";
 import {ChangelogService} from "../../../changelog/service/changelog.service";
@@ -18,7 +16,6 @@ export class MenuComponent implements OnDestroy {
   private dgAPI: DarkgalaxyApiService = inject(DarkgalaxyApiService);
   private changeDetector: ChangeDetectorRef = inject(ChangeDetectorRef);
   private authService: AuthService = inject(AuthService);
-  private localStorageService: LocalStorageService = inject(LocalStorageService);
   private globalConfigService: GlobalConfigService = inject(GlobalConfigService);
   private changelogService: ChangelogService = inject(ChangelogService);
   private analytics: Analytics = inject(Analytics);
@@ -47,6 +44,9 @@ export class MenuComponent implements OnDestroy {
 
     this.updateAvailableNotification = new Observable<boolean>((changeObserver: Subscriber<boolean>): void => {
       this.changelogService.checkVersion(this.changeDetector, changeObserver);
+      this.changelogService.installUpdateEmitter.subscribe((installed: boolean): void => {
+        changeObserver.next(!installed);
+      });
     });
 
     this.authService.authState.subscribe((state: AuthState): void => {
@@ -54,7 +54,6 @@ export class MenuComponent implements OnDestroy {
 
       if (state.status && !this.initialized) {
         this.globalConfigService.checkAndCachePlayersRankings();
-
         this.initialized = true;
       }
     });
