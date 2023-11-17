@@ -30,7 +30,7 @@ export class SynchronizerService {
 
     if (remoteVersion == null) {
       let subscription: Subscription = docData(
-        doc(config, 'version')
+        doc(config, 'versionv2')
       ).subscribe((item: DocumentData): void => {
         let newVersion: string = Object.assign({value: ''}, item).value;
 

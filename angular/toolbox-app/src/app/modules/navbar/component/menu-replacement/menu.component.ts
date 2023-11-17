@@ -23,8 +23,6 @@ export class MenuComponent implements OnDestroy {
   private changelogService: ChangelogService = inject(ChangelogService);
   private analytics: Analytics = inject(Analytics);
 
-  protected localUpdateBadge: boolean = false;
-
   public updateAvailableNotification: Observable<boolean>;
   public active: boolean;
 
@@ -46,8 +44,6 @@ export class MenuComponent implements OnDestroy {
       page_path: window.location.pathname,
       page_title: this.dgAPI.username()
     });
-
-    this.localUpdateBadge = this.localStorageService.get(LocalStorageKeys.LOCAL_VERSION) !== this.localStorageService.get(LocalStorageKeys.REMOTE_VERSION);
 
     this.updateAvailableNotification = new Observable<boolean>((changeObserver: Subscriber<boolean>): void => {
       this.changelogService.checkVersion(this.changeDetector, changeObserver);
