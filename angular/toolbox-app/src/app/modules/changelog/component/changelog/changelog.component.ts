@@ -22,7 +22,7 @@ export class ChangelogComponent {
       this.changeLogService.checkVersion(this.changeDetection, observer);
     });
 
-    this.version = this.localStorageService.getVersion();
+    this.version = this.localStorageService.get(LocalStorageKeys.LOCAL_VERSION);
   }
 
   installUpdate() {

@@ -13,10 +13,6 @@ export class LocalStorageService {
     localStorage.setItem(key, JSON.stringify(item))
   }
 
-  getVersion(): string {
-    return localStorage.getItem(LocalStorageKeys.LOCAL_VERSION);
-  }
-
   get(key: string): any {
     const itemStr: string = localStorage.getItem(key);
 

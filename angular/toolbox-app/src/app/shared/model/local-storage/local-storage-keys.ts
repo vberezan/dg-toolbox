@@ -2,7 +2,7 @@ export enum LocalStorageKeys {
   USER = 'user',
   ALLIANCE_MEMBERS = 'alliance-members',
   ACTIVE_ORDERS = 'active-orders',
-  LOCAL_VERSION = "version",
+  LOCAL_VERSION = "local-version",
   REMOTE_VERSION = "remote-version",
   UPDATE_AVAILABLE = 'update-available',
   PLAYERS_STATS = 'players-stats',

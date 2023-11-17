@@ -19,7 +19,7 @@ export class ChangelogService {
       doc(configRef, 'version')
     ).subscribe((item: DocumentData): void => {
       let version: string = Object.assign({value: ''}, item).value;
-      let localVersion: string = this.localStorageService.getVersion();
+      let localVersion: string = this.localStorageService.get(LocalStorageKeys.LOCAL_VERSION);
 
       if (localVersion !== version) {
         this.localStorageService.cache(LocalStorageKeys.UPDATE_AVAILABLE, true);
