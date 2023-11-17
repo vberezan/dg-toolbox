@@ -21,9 +21,6 @@ import {initializeAppCheck, provideAppCheck, ReCaptchaV3Provider} from "@angular
   declarations: [
     ChangelogComponent
   ],
-  providers: [
-    ChangelogService
-  ],
   bootstrap: [
     ChangelogComponent
   ]
