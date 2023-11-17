@@ -27,12 +27,13 @@ export class ChangelogComponent implements AfterViewInit {
     this.version = this.localStorageService.get(LocalStorageKeys.LOCAL_VERSION);
   }
 
-  installUpdate() {
+  installUpdate(): void {
     this.localStorageService.cache(LocalStorageKeys.LOCAL_VERSION, this.localStorageService.get(LocalStorageKeys.REMOTE_VERSION));
     this.version = this.localStorageService.get(LocalStorageKeys.LOCAL_VERSION);
   }
 
-  ngAfterViewInit() {
+  ngAfterViewInit(): void {
+    console.log(this.loadSpinner.nativeElement);
     this.changeLogService.showComponent(this.loadSpinner);
   }
 }
