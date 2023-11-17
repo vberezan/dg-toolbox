@@ -26,8 +26,8 @@ export class ChangelogService {
   }
 
   installUpdate(): void {
+    console.log('emit true');
     this._installUpdateEmitter.emit(true);
-    this.localStorageService.cache(LocalStorageKeys.LOCAL_VERSION, this.localStorageService.get(LocalStorageKeys.REMOTE_VERSION));
   }
 
   get installUpdateEmitter(): EventEmitter<boolean> {
