@@ -1,5 +1,4 @@
 import {ChangeDetectorRef, Component, inject, OnDestroy} from '@angular/core';
-import {BadgeService} from "../../service/badge.service";
 import {Observable, Subscriber} from "rxjs";
 import {DarkgalaxyApiService} from "../../../darkgalaxy-ui-parser/service/darkgalaxy-api.service";
 import {AuthService} from "../../../authentication/service/auth.service";
@@ -8,6 +7,7 @@ import {LocalStorageService} from "../../../local-storage/local-storage-manager/
 import {LocalStorageKeys} from "../../../../shared/model/local-storage/local-storage-keys";
 import {Analytics, logEvent} from "@angular/fire/analytics";
 import {GlobalConfigService} from "../../service/global-config.service";
+import {ChangelogService} from "../../../changelog/service/changelog.service";
 
 @Component({
   selector: 'dgt-navbar',
@@ -15,12 +15,12 @@ import {GlobalConfigService} from "../../service/global-config.service";
   styleUrls: ['./menu.component.css']
 })
 export class MenuComponent implements OnDestroy {
-  private badgeService: BadgeService = inject(BadgeService);
   private dgAPI: DarkgalaxyApiService = inject(DarkgalaxyApiService);
-  private changeDetection: ChangeDetectorRef = inject(ChangeDetectorRef);
+  private changeDetector: ChangeDetectorRef = inject(ChangeDetectorRef);
   private authService: AuthService = inject(AuthService);
   private localStorageService: LocalStorageService = inject(LocalStorageService);
   private globalConfigService: GlobalConfigService = inject(GlobalConfigService);
+  private changelogService: ChangelogService = inject(ChangelogService);
   private analytics: Analytics = inject(Analytics);
 
   protected localUpdateBadge: boolean = false;
@@ -47,10 +47,10 @@ export class MenuComponent implements OnDestroy {
       page_title: this.dgAPI.username()
     });
 
-    this.localUpdateBadge = this.localStorageService.get(LocalStorageKeys.UPDATE_AVAILABLE);
+    this.localUpdateBadge = this.localStorageService.get(LocalStorageKeys.LOCAL_VERSION) !== this.localStorageService.get(LocalStorageKeys.REMOTE_VERSION);
 
-    this.updateAvailableNotification = new Observable<boolean>((observer: Subscriber<boolean>): void => {
-      this.badgeService.checkVersion(observer, this.changeDetection);
+    this.updateAvailableNotification = new Observable<boolean>((changeObserver: Subscriber<boolean>): void => {
+      this.changelogService.checkVersion(this.changeDetector, changeObserver);
     });
 
     this.authService.authState.subscribe((state: AuthState): void => {

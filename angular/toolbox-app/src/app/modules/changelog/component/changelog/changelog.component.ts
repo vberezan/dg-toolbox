@@ -11,21 +11,22 @@ import {LocalStorageKeys} from "../../../../shared/model/local-storage/local-sto
 })
 export class ChangelogComponent {
   private changeLogService: ChangelogService = inject(ChangelogService);
-  private changeDetection: ChangeDetectorRef = inject(ChangeDetectorRef);
+  private changeDetector: ChangeDetectorRef = inject(ChangeDetectorRef);
   private localStorageService: LocalStorageService = inject(LocalStorageService);
 
   public updateAvailable: Observable<boolean>;
   public version: string;
 
   constructor() {
-    this.updateAvailable = new Observable<boolean>((observer: Subscriber<boolean>): void => {
-      this.changeLogService.checkVersion(this.changeDetection, observer);
+    this.updateAvailable = new Observable<boolean>((changeObserver: Subscriber<boolean>): void => {
+      this.changeLogService.checkVersion(this.changeDetector, changeObserver);
     });
 
     this.version = this.localStorageService.get(LocalStorageKeys.LOCAL_VERSION);
   }
 
   installUpdate() {
-    this.localStorageService.cache(LocalStorageKeys.UPDATE_AVAILABLE, false);
+    this.localStorageService.cache(LocalStorageKeys.LOCAL_VERSION, this.localStorageService.get(LocalStorageKeys.REMOTE_VERSION));
+    this.version = this.localStorageService.get(LocalStorageKeys.LOCAL_VERSION);
   }
 }

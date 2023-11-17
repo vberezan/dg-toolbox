@@ -4,7 +4,6 @@ export enum LocalStorageKeys {
   ACTIVE_ORDERS = 'active-orders',
   LOCAL_VERSION = "local-version",
   REMOTE_VERSION = "remote-version",
-  UPDATE_AVAILABLE = 'update-available',
   PLAYERS_STATS = 'players-stats',
   LAST_PLAYERS_RANKINGS_UPDATE_TURN = 'last-players-rankings-update',
   LAST_PLANETS_UPDATE_TURN = 'last-planets-update'
