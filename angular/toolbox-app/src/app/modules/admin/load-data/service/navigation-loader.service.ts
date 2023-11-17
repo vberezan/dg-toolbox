@@ -24,8 +24,8 @@ export class NavigationLoaderService {
   private _planetScanEmitter: EventEmitter<string> = new EventEmitter<string>();
 
   async scanNavigationScreen(cancelScanEmitter: EventEmitter<boolean>, @Optional() galaxies: number[] = []): Promise<void> {
+    const collectionData: any = collection(this.firestore, 'planets-g');
     const scanDelay: number = 1500 + Math.floor(Math.random() * 1500);
-    const planetsRef: any = collection(this.firestore, 'planets');
     const validGalaxies: number[] = this.filterValidGalaxies(galaxies);
 
     let scannedSystems: number = 0;
@@ -35,14 +35,14 @@ export class NavigationLoaderService {
       isScanActive = !value;
     });
 
-    const totalSystemNr = this.totalSystemsNr(galaxies);
+    const totalSystemNr: number = this.totalSystemsNr(galaxies);
 
     for (let g: number = 0; g < validGalaxies.length; g++) {
       if (validGalaxies[g] === 1) {
         for (let se: number = 1; se <= this.G1_SECTORS; se++) {
           for (let sy: number = 1; sy <= this.SYSTEMS; sy++) {
             if (isScanActive) {
-              await this.parseAndSave(validGalaxies[g], se, sy, planetsRef);
+              await this.parseAndSave(validGalaxies[g], se, sy, collectionData + validGalaxies[g]);
               this._systemScanEmitter.emit({'system': ++scannedSystems, 'total': totalSystemNr});
               await this.delay(scanDelay);
             }
@@ -54,7 +54,7 @@ export class NavigationLoaderService {
         for (let se: number = 1; se <= this.INNER_SECTORS; se++) {
           for (let sy: number = 1; sy <= this.SYSTEMS; sy++) {
             if (isScanActive) {
-              await this.parseAndSave(validGalaxies[g], se, sy, planetsRef);
+              await this.parseAndSave(validGalaxies[g], se, sy, collectionData + validGalaxies[g]);
               this._systemScanEmitter.emit({'system': ++scannedSystems, 'total': totalSystemNr});
               await this.delay(scanDelay);
             }
@@ -66,7 +66,7 @@ export class NavigationLoaderService {
         for (let se: number = 1; se <= this.OUTER_SECTORS; se++) {
           for (let sy: number = 1; sy <= this.SYSTEMS; sy++) {
             if (isScanActive) {
-              await this.parseAndSave(validGalaxies[g], se, sy, planetsRef);
+              await this.parseAndSave(validGalaxies[g], se, sy, collectionData + validGalaxies[g]);
               this._systemScanEmitter.emit({'system': ++scannedSystems, 'total': totalSystemNr});
               await this.delay(scanDelay);
             }
@@ -109,7 +109,7 @@ export class NavigationLoaderService {
     return result
   }
 
-  private async parseAndSave(galaxy: number, sector: number, system: number, planetsRef: any): Promise<void> {
+  private async parseAndSave(galaxy: number, sector: number, system: number, collectionData: any): Promise<void> {
     const source: string = await firstValueFrom(this.httpClient.get(this.NAVIGATION_BASE_URL + galaxy + '/' + sector + '/' + system, {responseType: 'text'}));
     const dom: Document = new DOMParser().parseFromString(source, 'text/html');
 
@@ -144,7 +144,7 @@ export class NavigationLoaderService {
         }
 
         stats.turn = this.dgAPI.gameTurn();
-        setDoc(doc(planetsRef, stats.location), JSON.parse(JSON.stringify(stats)))
+        setDoc(doc(collectionData, stats.location), JSON.parse(JSON.stringify(stats)))
           .catch((error): void => {
             console.log(error);
           });
@@ -152,8 +152,6 @@ export class NavigationLoaderService {
     });
 
   }
-
-  private delay = async (ms: number): Promise<unknown> => new Promise(res => setTimeout(res, ms));
 
   private filterValidGalaxies(galaxies: number[]): number[] {
     let scanGalaxies: number[] = [];
@@ -178,6 +176,8 @@ export class NavigationLoaderService {
 
     return scanGalaxies;
   }
+
+  private delay = async (ms: number): Promise<unknown> => new Promise(res => setTimeout(res, ms));
 
   get systemScanEmitter(): EventEmitter<{'total':number, 'system': number}> {
     return this._systemScanEmitter;

@@ -10,7 +10,7 @@ export class ChangelogService {
   private localStorageService: LocalStorageService = inject(LocalStorageService);
   private _installUpdateEmitter: EventEmitter<boolean> = new EventEmitter<boolean>();
 
-  checkVersion(changeDetector: ChangeDetectorRef, changeObserver: Subscriber<boolean>): void {
+  checkForUpdate(changeDetector: ChangeDetectorRef, changeObserver: Subscriber<boolean>): void {
     changeObserver.next(this.localStorageService.get(LocalStorageKeys.LOCAL_VERSION) !=
       this.localStorageService.get(LocalStorageKeys.REMOTE_VERSION, false));
 
@@ -23,10 +23,6 @@ export class ChangelogService {
       loadSpinner.nativeElement.classList.add('hide');
       loadSpinner.nativeElement.classList.remove('show');
     }
-  }
-
-  installUpdate(): void {
-    this._installUpdateEmitter.emit(true);
   }
 
   get installUpdateEmitter(): EventEmitter<boolean> {

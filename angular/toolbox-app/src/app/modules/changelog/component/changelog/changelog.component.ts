@@ -20,14 +20,14 @@ export class ChangelogComponent implements AfterViewInit {
 
   constructor() {
     this.updateAvailable = new Observable<boolean>((changeObserver: Subscriber<boolean>): void => {
-      this.changeLogService.checkVersion(this.changeDetector, changeObserver);
+      this.changeLogService.checkForUpdate(this.changeDetector, changeObserver);
     });
 
     this.version = this.localStorageService.get(LocalStorageKeys.LOCAL_VERSION);
   }
 
   installUpdate(): void {
-    this.changeLogService.installUpdate();
+    this.changeLogService.installUpdateEmitter.emit(true);
   }
 
   ngAfterViewInit(): void {

@@ -45,7 +45,7 @@ export class MenuComponent implements OnDestroy {
     });
 
     this.updateAvailableNotification = new Observable<boolean>((changeObserver: Subscriber<boolean>): void => {
-      this.changelogService.checkVersion(this.changeDetector, changeObserver);
+      this.changelogService.checkForUpdate(this.changeDetector, changeObserver);
     });
 
     this.changelogService.installUpdateEmitter.subscribe((installed: boolean): void => {
