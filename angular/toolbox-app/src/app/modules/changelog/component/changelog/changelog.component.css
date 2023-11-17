@@ -49,11 +49,3 @@
   position: relative;
   margin-bottom: 10px;
 }
-
-#dgt-update-changelog-container.show {
-  display: block;
-}
-
-#dgt-update-changelog-container.hide {
-  display: none;
-}

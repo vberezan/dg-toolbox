@@ -1,6 +1,6 @@
-<div id="dgt-update-changelog-container" class="show" #dgtSpinner>
+<div id="dgt-update-changelog-container">
   <h2>DarkGalaxy Tools <span>{{version}}</span></h2>
-  <div class="dgt-spinner-container">
+  <div class="dgt-spinner-container show" #dgtSpinner>
     <span class="dgt-spinner"></span>
   </div>
   <div *ngIf="(updateAvailable | async)" id="dgt-update">
