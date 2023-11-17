@@ -20,11 +20,13 @@ export class NavigationLoaderService {
   private firestore: Firestore = inject(Firestore);
   private dgAPI: DarkgalaxyApiService = inject(DarkgalaxyApiService);
 
-  private _systemScanEmitter: EventEmitter<{'total':number, 'system': number}> = new EventEmitter<{'total':number, 'system': number}>();
+  private _systemScanEmitter: EventEmitter<{ 'total': number, 'system': number }> = new EventEmitter<{
+    'total': number,
+    'system': number
+  }>();
   private _planetScanEmitter: EventEmitter<string> = new EventEmitter<string>();
 
   async scanNavigationScreen(cancelScanEmitter: EventEmitter<boolean>, @Optional() galaxies: number[] = []): Promise<void> {
-    const collectionData: any = collection(this.firestore, 'planets-g');
     const scanDelay: number = 1500 + Math.floor(Math.random() * 1500);
     const validGalaxies: number[] = this.filterValidGalaxies(galaxies);
 
@@ -38,11 +40,13 @@ export class NavigationLoaderService {
     const totalSystemNr: number = this.totalSystemsNr(galaxies);
 
     for (let g: number = 0; g < validGalaxies.length; g++) {
+      const collectionData: any = collection(this.firestore, 'planets-g' + validGalaxies[g]);
+
       if (validGalaxies[g] === 1) {
         for (let se: number = 1; se <= this.G1_SECTORS; se++) {
           for (let sy: number = 1; sy <= this.SYSTEMS; sy++) {
             if (isScanActive) {
-              await this.parseAndSave(validGalaxies[g], se, sy, collectionData + validGalaxies[g]);
+              await this.parseAndSave(validGalaxies[g], se, sy, collectionData);
               this._systemScanEmitter.emit({'system': ++scannedSystems, 'total': totalSystemNr});
               await this.delay(scanDelay);
             }
@@ -54,7 +58,7 @@ export class NavigationLoaderService {
         for (let se: number = 1; se <= this.INNER_SECTORS; se++) {
           for (let sy: number = 1; sy <= this.SYSTEMS; sy++) {
             if (isScanActive) {
-              await this.parseAndSave(validGalaxies[g], se, sy, collectionData + validGalaxies[g]);
+              await this.parseAndSave(validGalaxies[g], se, sy, collectionData);
               this._systemScanEmitter.emit({'system': ++scannedSystems, 'total': totalSystemNr});
               await this.delay(scanDelay);
             }
@@ -66,7 +70,7 @@ export class NavigationLoaderService {
         for (let se: number = 1; se <= this.OUTER_SECTORS; se++) {
           for (let sy: number = 1; sy <= this.SYSTEMS; sy++) {
             if (isScanActive) {
-              await this.parseAndSave(validGalaxies[g], se, sy, collectionData + validGalaxies[g]);
+              await this.parseAndSave(validGalaxies[g], se, sy, collectionData);
               this._systemScanEmitter.emit({'system': ++scannedSystems, 'total': totalSystemNr});
               await this.delay(scanDelay);
             }
@@ -179,7 +183,7 @@ export class NavigationLoaderService {
 
   private delay = async (ms: number): Promise<unknown> => new Promise(res => setTimeout(res, ms));
 
-  get systemScanEmitter(): EventEmitter<{'total':number, 'system': number}> {
+  get systemScanEmitter(): EventEmitter<{ 'total': number, 'system': number }> {
     return this._systemScanEmitter;
   }
 
