@@ -31,6 +31,8 @@ export class SynchronizerService {
       doc(metadataPath)
     ).subscribe((item: DocumentData): void => {
       const metadata: any = Object.assign({}, item);
+      console.log(metadata);
+
       let cache: Metadata = new Metadata();
 
       cache.dgtVersion = metadata['dgt-version'].version;
