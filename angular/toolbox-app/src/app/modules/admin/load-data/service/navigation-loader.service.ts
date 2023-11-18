@@ -201,7 +201,7 @@ export class NavigationLoaderService {
           playerPlanets.get(stats.playerId).name = stats.owner;
           playerPlanets.get(stats.playerId).playerId = stats.playerId;
 
-          console.log(JSON.stringify(playerPlanets));
+          console.log(JSON.stringify(Array.from(playerPlanets.entries())));
         }
 
         setDoc(doc(collectionPath, stats.location), JSON.parse(JSON.stringify(stats)))
