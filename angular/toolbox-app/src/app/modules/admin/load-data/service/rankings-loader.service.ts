@@ -1,12 +1,10 @@
 import {EventEmitter, inject, Injectable} from '@angular/core';
 import {HttpClient} from "@angular/common/http";
-import {collection, collectionData, doc, docData, Firestore, limit, query, setDoc, updateDoc, where} from "@angular/fire/firestore";
+import {collection, doc, docData, Firestore, setDoc, updateDoc} from "@angular/fire/firestore";
 import {DarkgalaxyApiService} from "../../../darkgalaxy-ui-parser/service/darkgalaxy-api.service";
 import {firstValueFrom, Subscription} from "rxjs";
 import {PlayerStats} from "../../../../shared/model/stats/player-stats.model";
 import {DocumentData} from "@angular/fire/compat/firestore";
-import {PlanetStats} from "../../../../shared/model/stats/planet-stats.model";
-import {PlayerPlanetsBatch} from "../../../../shared/model/stats/player-planets-batch.model";
 import {PlayerPlanetsStats} from "../../../../shared/model/stats/player-planets-stats.model";
 
 @Injectable({

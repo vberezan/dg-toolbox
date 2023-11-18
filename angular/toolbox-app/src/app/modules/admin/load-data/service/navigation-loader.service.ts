@@ -108,7 +108,7 @@ export class NavigationLoaderService {
           player.planets.forEach((batch: PlayerPlanetsBatch): void => {
             totalPlanets += batch.planets.length;
           });
-          player.total = totalPlanets;
+          player.total = totalPlanets + 1;
 
           updateDoc(doc(collectionPath, playerId.toString()), JSON.parse(JSON.stringify(player)))
             .catch((error): void => console.log(error));

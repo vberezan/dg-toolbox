@@ -1,15 +1,20 @@
 import {inject, Injectable} from '@angular/core';
 import {collection, collectionData, doc, docData, Firestore} from "@angular/fire/firestore";
 import {LocalStorageService} from "../../local-storage-manager/service/local-storage.service";
-import {Subscription} from "rxjs";
+import {firstValueFrom, Subscription} from "rxjs";
 import {DocumentData} from "@angular/fire/compat/firestore";
 import {LocalStorageKeys} from "../../../../shared/model/local-storage/local-storage-keys";
 import {PlayerStats} from "../../../../shared/model/stats/player-stats.model";
+import {HttpClient} from "@angular/common/http";
+import {AllianceMember} from "../../../../shared/model/alliances/alliance-member.model";
 
 @Injectable({
   providedIn: 'root'
 })
 export class SynchronizerService {
+  private readonly ALLIANCES_URL: string = 'https://andromeda.darkgalaxy.com/alliances/';
+
+  private httpClient: HttpClient = inject(HttpClient);
   private firestore: Firestore = inject(Firestore);
   private localStorageService: LocalStorageService = inject(LocalStorageService);
 
@@ -26,6 +31,8 @@ export class SynchronizerService {
 
       this.loadPlayersRankings(turn);
     }
+
+    this.loadAllianceMembers(turn);
   }
 
   loadLiveUpdates(): void {
@@ -54,10 +61,47 @@ export class SynchronizerService {
       .subscribe((items: DocumentData[]): void => {
         let playerStats: PlayerStats[] = Object.assign([], items);
 
-
         this.localStorageService.cache(LocalStorageKeys.PLAYERS_STATS, playerStats);
         this.localStorageService.cache(LocalStorageKeys.LAST_PLAYERS_RANKINGS_UPDATE_TURN, turn);
         subscription.unsubscribe();
       });
+  }
+
+  private async loadAllianceMembers(turn: number) {
+    const source: string = await firstValueFrom(this.httpClient.get(this.ALLIANCES_URL, {responseType: 'text'}));
+    const dom: Document = new DOMParser().parseFromString(source, 'text/html');
+    const playerStats: PlayerStats[] = this.localStorageService.get(LocalStorageKeys.PLAYERS_STATS);
+
+    if (dom.querySelector('[action="/alliances/join/"]')) {
+
+      let cache: AllianceMember[] = [];
+
+      dom.querySelectorAll('.allianceBox').forEach((allianceBox: any): void => {
+        if (allianceBox.querySelector('.plainHeader') &&
+          allianceBox.querySelector('.plainHeader').childNodes[0].textContent.trim().toLowerCase() === 'member list') {
+          allianceBox.querySelectorAll('.player').forEach((player: any): void => {
+            let allianceMember: AllianceMember = new AllianceMember();
+
+            if (player.querySelector('[action^="/alliances/note/"]') != null) {
+              let idArray = player.querySelector('[action^="/alliances/note/"]').getAttribute('action').trim().toLocaleLowerCase().split(/\//g);
+              allianceMember.dgId = idArray[idArray.length - 2];
+            }
+
+            if (player.querySelector('[action="/alliances/kick/"] input') == null && player.querySelector('.right>b') != null) {
+              allianceMember.kickEta = player.querySelector('.right>b').textContent.trim().toLowerCase();
+            }
+
+
+            if (player.querySelector('div.name') != null) {
+              allianceMember.name = player.querySelector('div.name').childNodes[0].textContent.trim();
+              allianceMember.stats = playerStats.find((playerStat: PlayerStats): boolean => playerStat.name === allianceMember.name);
+              cache.push(allianceMember);
+            }
+          });
+        }
+      });
+
+      this.localStorageService.cache(LocalStorageKeys.ALLIANCE_MEMBERS, cache, 43200000);
+    }
   }
 }

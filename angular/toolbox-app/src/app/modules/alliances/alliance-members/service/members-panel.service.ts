@@ -1,11 +1,13 @@
-import {ElementRef, Injectable} from '@angular/core';
+import {ElementRef, inject, Injectable} from '@angular/core';
 import {AllianceMember} from "../../../../shared/model/alliances/alliance-member.model";
-import {AllianceMemberStats} from "../../../../shared/model/alliances/alliance-member-stats.model";
+import {LocalStorageService} from "../../../local-storage/local-storage-manager/service/local-storage.service";
+import {LocalStorageKeys} from "../../../../shared/model/local-storage/local-storage-keys";
 
 @Injectable({
   providedIn: 'root'
 })
 export class MembersPanelService {
+  private localStorageService: LocalStorageService = inject(LocalStorageService);
 
   sortMembersByScore(allianceMembers: AllianceMember[]): void {
     for (let i: number = 0; i < allianceMembers.length - 1; i++) {
@@ -33,14 +35,17 @@ export class MembersPanelService {
     }
   }
 
-  setStats(allianceMembers: AllianceMember[], stats: AllianceMemberStats): void {
-    allianceMembers.forEach((member: AllianceMember): void => {
-      if (member.name.toLowerCase() === stats.name) {
-        member.stats.score = stats.score;
-        member.stats.combatScore = stats.combatScore;
-        member.stats.planets = stats.planets;
-        member.stats.rank = stats.rank;
+  fetchAndClean(): AllianceMember[] {
+    let result: AllianceMember[] = this.localStorageService.get(LocalStorageKeys.ALLIANCE_MEMBERS) || [];
+
+    document.querySelectorAll('.allianceBox').forEach((allianceBox: any): void => {
+      if (allianceBox.querySelector('.plainHeader') &&
+        allianceBox.querySelector('.plainHeader').childNodes[0].textContent.trim().toLowerCase() === 'member list') {
+        allianceBox.querySelector('.plainHeader').remove();
+        allianceBox.querySelector('.playerList').remove();
       }
     });
+
+    return result;
   }
 }

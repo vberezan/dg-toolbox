@@ -9,8 +9,6 @@ import {AuthState} from "../../../../../shared/model/authentication/auth-state.m
 import {UserRole} from "../../../../../shared/model/authentication/user-role";
 import {LocalStorageService} from "../../../../local-storage/local-storage-manager/service/local-storage.service";
 import {LocalStorageKeys} from "../../../../../shared/model/local-storage/local-storage-keys";
-import {StatsService} from "../../service/stats.service";
-import {AllianceMemberStats} from "../../../../../shared/model/alliances/alliance-member-stats.model";
 import {MembersPanelService} from "../../service/members-panel.service";
 
 
@@ -23,10 +21,8 @@ export class MembersPanelComponent implements OnDestroy, AfterViewInit {
   @ViewChild('dgtSpinner') loadSpinner: ElementRef;
   @ViewChild('dgtMainContainer') mainContainer: ElementRef;
 
-  private dgAPI: DarkgalaxyApiService = inject(DarkgalaxyApiService);
   private authService: AuthService = inject(AuthService);
   private localStorageService: LocalStorageService = inject(LocalStorageService);
-  private statsService: StatsService = inject(StatsService);
   private membersPanelService: MembersPanelService = inject(MembersPanelService);
 
   public active: boolean = false;
@@ -40,7 +36,7 @@ export class MembersPanelComponent implements OnDestroy, AfterViewInit {
 
     this.authService.authState.subscribe((state: AuthState): void => {
       if (state.status && !this.initialized) {
-        this.allianceMembers = this.dgAPI.allianceMembers(true);
+        this.allianceMembers = this.membersPanelService.fetchAndClean();
         this.active = state.status;
 
         this.role = new Observable<string>((observer: Subscriber<string>): void => {
@@ -48,12 +44,7 @@ export class MembersPanelComponent implements OnDestroy, AfterViewInit {
           observer.complete();
         });
 
-        this.statsService.statsEventEmitter.subscribe((stats: AllianceMemberStats): void => {
-          this.membersPanelService.setStats(this.allianceMembers, stats);
-          this.membersPanelService.sortMembersByScore(this.allianceMembers);
-        });
-
-        this.statsService.loadStats(this.allianceMembers);
+        this.membersPanelService.sortMembersByScore(this.allianceMembers);
         this.initialized = true;
       }
     });
