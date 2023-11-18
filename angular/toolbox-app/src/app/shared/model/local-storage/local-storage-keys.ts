@@ -3,6 +3,6 @@ export enum LocalStorageKeys {
   ALLIANCE_MEMBERS = 'alliance-members',
   LOCAL_VERSION = "local-version",
   PLAYERS_STATS = 'players-stats',
-  LAST_UPDATE_TURN = 'last-update-turn',
-  METADATA = 'metadata'
+  LOCAL_METADATA = 'local-metadata',
+  REMOTE_METADATA = 'remote-metadata'
 }

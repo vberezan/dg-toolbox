@@ -18,11 +18,12 @@ export class LocalStorageSynchronizerComponent {
       this.synchronizerService.updateMetadata(observer);
     }).subscribe((loaded: boolean): void => {
       if (loaded) {
-        this.synchronizerService.loadLiveUpdates();
         this.synchronizerService.loadTurnBasedUpdates(this.dgAPI.gameTurn());
 
         subscription.unsubscribe();
       }
     });
+
+    this.synchronizerService.loadLiveUpdates();
   }
 }

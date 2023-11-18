@@ -7,7 +7,6 @@ import {LocalStorageKeys} from "../../../../shared/model/local-storage/local-sto
 import {PlayerStats} from "../../../../shared/model/stats/player-stats.model";
 import {HttpClient} from "@angular/common/http";
 import {AllianceMember} from "../../../../shared/model/alliances/alliance-member.model";
-import {LastUpdateTurn} from "../../../../shared/model/local-storage/last-update-turn.model";
 import {Metadata} from "../../../../shared/model/local-storage/metadata.model";
 
 @Injectable({
@@ -38,7 +37,7 @@ export class SynchronizerService {
       cache.planetsTurn = metadata[1];
       cache.playersRankingsTurn = metadata[2];
 
-      this.localStorageService.cache(LocalStorageKeys.METADATA, cache);
+      this.localStorageService.cache(LocalStorageKeys.REMOTE_METADATA, cache);
 
       observer.next(true);
       observer.complete();
@@ -48,46 +47,26 @@ export class SynchronizerService {
   }
 
   loadTurnBasedUpdates(turn: number): void {
-    if (this.localStorageService.get(LocalStorageKeys.LAST_UPDATE_TURN) == null) {
-      this.localStorageService.cache(LocalStorageKeys.LAST_UPDATE_TURN, new LastUpdateTurn());
-    }
+    let localMetadata: Metadata = this.localStorageService.localMetadata();
+    let remoteMetadata: Metadata = this.localStorageService.get(LocalStorageKeys.REMOTE_METADATA);
 
-    let lastUpdateTurn: LastUpdateTurn = this.localStorageService.get(LocalStorageKeys.LAST_UPDATE_TURN);
 
-    if (this.localStorageService.get(LocalStorageKeys.PLAYERS_STATS) == null ||
-      lastUpdateTurn.playersRankings === 0 || turn > lastUpdateTurn.playersRankings) {
+    if (localMetadata.playersRankingsTurn.turn === 0 ||
+      remoteMetadata.playersRankingsTurn.turn > localMetadata.playersRankingsTurn.turn ||
+      remoteMetadata.playersRankingsTurn.version > localMetadata.playersRankingsTurn.version) {
+
       this.loadPlayersRankings(turn);
+      this.loadAllianceMembers(turn);
     }
 
     if (this.localStorageService.get(LocalStorageKeys.ALLIANCE_MEMBERS) == null ||
-      lastUpdateTurn.allianceMembers === 0 || turn > lastUpdateTurn.allianceMembers) {
+      localMetadata.allianceMembersTurn.turn === 0 || turn > localMetadata.allianceMembersTurn.turn) {
       this.loadAllianceMembers(turn);
     }
   }
 
   loadLiveUpdates(): void {
-    // this.loadVersion();
   }
-
-  // private loadVersion(): void {
-  //   const metadataPath: any = collection(this.firestore, 'metadata');
-  //   const documentPath: string = 'dgt-version';
-  //
-  //   if (this.localStorageService.isExpired(LocalStorageKeys.REMOTE_VERSION)) {
-  //     let subscription: Subscription = docData(
-  //       doc(metadataPath, documentPath)
-  //     ).subscribe((item: DocumentData): void => {
-  //       if (item) {
-  //         this.localStorageService.cache(LocalStorageKeys.REMOTE_VERSION, Object.assign({version: ''}, item).version, 300000);
-  //       } else {
-  //         setDoc(doc(metadataPath, documentPath), {version: this.localStorageService.get(LocalStorageKeys.LOCAL_VERSION)})
-  //           .catch((error: any): void => console.log(error));
-  //       }
-  //
-  //       subscription.unsubscribe();
-  //     });
-  //   }
-  // }
 
   private loadPlayersRankings(turn: number): void {
     const playersRankingsPath: any = collection(this.firestore, 'players-rankings');
@@ -99,9 +78,10 @@ export class SynchronizerService {
 
         this.localStorageService.cache(LocalStorageKeys.PLAYERS_STATS, playerStats);
 
-        let lastUpdateTurn: LastUpdateTurn = this.localStorageService.get(LocalStorageKeys.LAST_UPDATE_TURN);
-        lastUpdateTurn.playersRankings = turn;
-        this.localStorageService.cache(LocalStorageKeys.LAST_UPDATE_TURN, lastUpdateTurn);
+        let localMetadata: Metadata = this.localStorageService.localMetadata();
+        localMetadata.playersRankingsTurn.turn = turn;
+
+        this.localStorageService.cache(LocalStorageKeys.LOCAL_METADATA, localMetadata);
 
         subscription.unsubscribe();
       });
@@ -141,11 +121,11 @@ export class SynchronizerService {
         }
       });
 
-      let lastUpdateTurn: LastUpdateTurn = this.localStorageService.get(LocalStorageKeys.LAST_UPDATE_TURN);
-      lastUpdateTurn.allianceMembers = turn;
+      let localMetadata: Metadata = this.localStorageService.localMetadata();
+      localMetadata.allianceMembersTurn.turn = turn;
 
       this.localStorageService.cache(LocalStorageKeys.ALLIANCE_MEMBERS, cache);
-      this.localStorageService.cache(LocalStorageKeys.LAST_UPDATE_TURN, lastUpdateTurn);
+      this.localStorageService.cache(LocalStorageKeys.LOCAL_METADATA, localMetadata);
     }
   }
 }

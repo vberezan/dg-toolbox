@@ -42,8 +42,12 @@ export class LocalStorageService {
     return (item.ttl > 0 && (Date.now() > item.expiry));
   }
 
-  metadata(): Metadata {
-    return this.get(LocalStorageKeys.METADATA);
+  remoteMetadata(): Metadata {
+    return this.get(LocalStorageKeys.REMOTE_METADATA);
+  }
+
+  localMetadata(): Metadata {
+    return this.get(LocalStorageKeys.LOCAL_METADATA);
   }
 
   remove(key: string): void {
