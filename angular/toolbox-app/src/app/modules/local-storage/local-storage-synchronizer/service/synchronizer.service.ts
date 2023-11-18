@@ -30,7 +30,6 @@ export class SynchronizerService {
     let subscription: Subscription = collectionData(
       query(metadataPath)
     ).subscribe((item: DocumentData[]): void => {
-      console.log(item);
       const metadata: any = Object.assign([], item);
 
       let cache: Metadata = new Metadata();

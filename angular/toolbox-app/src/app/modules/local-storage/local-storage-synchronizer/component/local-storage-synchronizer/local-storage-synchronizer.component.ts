@@ -18,7 +18,6 @@ export class LocalStorageSynchronizerComponent {
       this.synchronizerService.updateMetadata(observer);
     }).subscribe((loaded: boolean): void => {
       if (loaded) {
-        console.log('metadata loaded');
         this.synchronizerService.loadLiveUpdates();
         this.synchronizerService.loadTurnBasedUpdates(this.dgAPI.gameTurn());
 
