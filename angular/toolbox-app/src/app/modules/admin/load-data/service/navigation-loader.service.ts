@@ -105,11 +105,11 @@ export class NavigationLoaderService {
             }
           });
 
-          updateDoc(doc(collectionPath, player.playerId.toString()), JSON.parse(JSON.stringify(player)))
-            .catch((error): void => console.log(error));
+          // updateDoc(doc(collectionPath, player.playerId.toString()), JSON.parse(JSON.stringify(player)))
+          //   .catch((error): void => console.log(error));
         } else {
-          setDoc(doc(collectionPath, player.playerId.toString()), JSON.parse(JSON.stringify(player)))
-            .catch((error): void => console.log(error));
+          // setDoc(doc(collectionPath, player.playerId.toString()), JSON.parse(JSON.stringify(player)))
+          //   .catch((error): void => console.log(error));
         }
 
         subscription.unsubscribe();
@@ -196,6 +196,8 @@ export class NavigationLoaderService {
           playerPlanets.get(stats.playerId).planets.get(galaxy).push(stats.location);
           playerPlanets.get(stats.playerId).name = stats.owner;
           playerPlanets.get(stats.playerId).playerId = stats.playerId;
+
+          console.log(JSON.stringify(playerPlanets));
         }
 
         setDoc(doc(collectionData, stats.location), JSON.parse(JSON.stringify(stats)))
