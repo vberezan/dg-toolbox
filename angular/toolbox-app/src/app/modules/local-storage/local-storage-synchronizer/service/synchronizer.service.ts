@@ -31,7 +31,7 @@ export class SynchronizerService {
       doc(metadataPath)
     ).subscribe((item: DocumentData): void => {
       const metadata: any = Object.assign({}, item);
-      console.log(metadata);
+      console.log(item);
 
       let cache: Metadata = new Metadata();
 
