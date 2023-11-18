@@ -17,7 +17,8 @@ export class SynchronizerService {
   }
 
   loadTurnBasedUpdates(turn: number): void {
-    if (this.localStorageService.get(LocalStorageKeys.ALLIANCE_MEMBERS) == null ||
+    if (this.localStorageService.get(LocalStorageKeys.PLAYERS_STATS) == null ||
+      this.localStorageService.get(LocalStorageKeys.LAST_PLAYERS_RANKINGS_UPDATE_TURN) == null ||
       turn > this.localStorageService.get(LocalStorageKeys.LAST_PLAYERS_RANKINGS_UPDATE_TURN)) {
       this.loadPlayersRankings(turn);
     }
