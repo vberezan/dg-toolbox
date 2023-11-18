@@ -193,7 +193,7 @@ export class NavigationLoaderService {
           stats.playerId = parseInt(planet.querySelector('.playerName').attributes['playerId'].value.trim());
         }
 
-        if (stats.playerId > 0) {
+        if (stats.playerId >= 0) {
           stats.turn = this.dgAPI.gameTurn();
 
           if (!playerPlanets.has(stats.playerId)) {

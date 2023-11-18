@@ -103,9 +103,9 @@ export class RankingsLoaderService {
       if (isScanActive) {
         setTimeout((): void => {
           let playerPlanetsSubscription: Subscription = docData(
-            doc(playersPlanetsPath, playerId.toString(), 'total', 'total')
+            doc(playersPlanetsPath, playerId.toString())
           ).subscribe((item: DocumentData): void => {
-            playerStats.planets = Object.assign(0, item);
+            playerStats.planets = Object.assign(new PlayerPlanetsStats(), item).total;
 
             setDoc(doc(playersRef, playerId.toString()), JSON.parse(JSON.stringify(playerStats)))
               .then((): void => {
