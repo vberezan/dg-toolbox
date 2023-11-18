@@ -132,7 +132,8 @@ export class RankingsLoaderService {
         updateDoc(doc(metadataPath, 'players-rankings-turn'), JSON.parse(JSON.stringify(updateMetadata)))
           .catch((e): void => console.log(e));
       } else {
-        setDoc(doc(metadataPath, 'players-rankings-turn'), JSON.parse(JSON.stringify(new UpdateMetadata(this.dgAPI.gameTurn(), 1))));
+        setDoc(doc(metadataPath, 'players-rankings-turn'), JSON.parse(JSON.stringify(new UpdateMetadata(this.dgAPI.gameTurn(), 1))))
+          .catch((e): void => console.log(e));
       }
 
       updateTurnSubscription.unsubscribe();

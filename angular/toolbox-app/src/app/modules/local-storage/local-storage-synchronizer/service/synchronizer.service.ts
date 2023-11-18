@@ -1,5 +1,5 @@
 import {inject, Injectable} from '@angular/core';
-import {collection, collectionData, doc, docData, Firestore, setDoc} from "@angular/fire/firestore";
+import {collection, collectionData, doc, docData, Firestore, setDoc, updateDoc} from "@angular/fire/firestore";
 import {LocalStorageService} from "../../local-storage-manager/service/local-storage.service";
 import {firstValueFrom, Subscription} from "rxjs";
 import {DocumentData} from "@angular/fire/compat/firestore";
@@ -8,6 +8,7 @@ import {PlayerStats} from "../../../../shared/model/stats/player-stats.model";
 import {HttpClient} from "@angular/common/http";
 import {AllianceMember} from "../../../../shared/model/alliances/alliance-member.model";
 import {LastUpdateTurn} from "../../../../shared/model/local-storage/last-update-turn.model";
+import {Metadata} from "../../../../shared/model/local-storage/metadata.model";
 
 @Injectable({
   providedIn: 'root'
@@ -21,6 +22,25 @@ export class SynchronizerService {
 
 
   constructor() {
+  }
+
+  updateMetadata(): void {
+    const metadataPath: any = collection(this.firestore, 'metadata');
+
+    let subscription: Subscription = docData(
+      doc(metadataPath)
+    ).subscribe((item: DocumentData): void => {
+      const metadata: any = Object.assign({}, item);
+      let cache: Metadata = new Metadata();
+
+      cache.dgtVersion = metadata['dgt-version'].version;
+      cache.planetsTurn = metadata['planetsTurn'];
+      cache.playersRankingsTurn = metadata['playersRankingsTurn'];
+
+      this.localStorageService.cache(LocalStorageKeys.METADATA, cache);
+
+      subscription.unsubscribe();
+    });
   }
 
   loadTurnBasedUpdates(turn: number): void {
@@ -47,16 +67,17 @@ export class SynchronizerService {
 
   private loadVersion(): void {
     const metadataPath: any = collection(this.firestore, 'metadata');
-    const documentPath: string = 'version';
+    const documentPath: string = 'dgt-version';
 
     if (this.localStorageService.isExpired(LocalStorageKeys.REMOTE_VERSION)) {
       let subscription: Subscription = docData(
         doc(metadataPath, documentPath)
       ).subscribe((item: DocumentData): void => {
         if (item) {
-          this.localStorageService.cache(LocalStorageKeys.REMOTE_VERSION, Object.assign({value: ''}, item).value, 300000);
+          this.localStorageService.cache(LocalStorageKeys.REMOTE_VERSION, Object.assign({version: ''}, item).version, 300000);
         } else {
-          setDoc(doc(metadataPath, documentPath), {value: this.localStorageService.get(LocalStorageKeys.LOCAL_VERSION)});
+          setDoc(doc(metadataPath, documentPath), {version: this.localStorageService.get(LocalStorageKeys.LOCAL_VERSION)})
+            .catch((error: any): void => console.log(error));
         }
 
         subscription.unsubscribe();
