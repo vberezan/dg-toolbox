@@ -111,7 +111,11 @@ export class SynchronizerService {
         }
       });
 
+      let lastUpdateTurn: LastUpdateTurn = this.localStorageService.get(LocalStorageKeys.LAST_UPDATE_TURN);
+      lastUpdateTurn.allianceMembers = turn;
+
       this.localStorageService.cache(LocalStorageKeys.ALLIANCE_MEMBERS, cache);
+      this.localStorageService.cache(LocalStorageKeys.LAST_UPDATE_TURN, lastUpdateTurn);
     }
   }
 }
