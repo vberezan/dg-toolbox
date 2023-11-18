@@ -89,7 +89,6 @@ export class NavigationLoaderService {
 
   savePlayerPlanets(playerPlanets: Map<number, PlayerPlanetsStats>): void {
     const collectionPath: any = collection(this.firestore, 'players-planets');
-    console.log(JSON.stringify(Array.from(playerPlanets.entries())));
 
     playerPlanets.forEach((player: PlayerPlanetsStats, playerId: number): void => {
       let subscription: Subscription = docData(
@@ -104,11 +103,11 @@ export class NavigationLoaderService {
             }
           });
 
-          // updateDoc(doc(collectionPath, player.playerId.toString()), JSON.parse(JSON.stringify(player)))
-          //   .catch((error): void => console.log(error));
+          updateDoc(doc(collectionPath, player.playerId.toString()), JSON.parse(JSON.stringify(player)))
+            .catch((error): void => console.log(error));
         } else {
-          // setDoc(doc(collectionPath, player.playerId.toString()), JSON.parse(JSON.stringify(player)))
-          //   .catch((error): void => console.log(error));
+          setDoc(doc(collectionPath, player.playerId.toString()), JSON.parse(JSON.stringify(player)))
+            .catch((error): void => console.log(error));
         }
 
         subscription.unsubscribe();
