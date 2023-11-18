@@ -31,14 +31,13 @@ export class SynchronizerService {
       query(metadataPath)
     ).subscribe((item: DocumentData[]): void => {
       console.log(item);
-      const metadata: any = Object.assign({}, item);
-
+      const metadata: any = Object.assign([], item);
 
       let cache: Metadata = new Metadata();
 
-      cache.dgtVersion = metadata['dgt-version'].version;
-      cache.planetsTurn = metadata['planetsTurn'];
-      cache.playersRankingsTurn = metadata['playersRankingsTurn'];
+      cache.dgtVersion = metadata[0].version;
+      cache.planetsTurn = metadata[1];
+      cache.playersRankingsTurn = metadata[2];
 
       this.localStorageService.cache(LocalStorageKeys.METADATA, cache);
 
