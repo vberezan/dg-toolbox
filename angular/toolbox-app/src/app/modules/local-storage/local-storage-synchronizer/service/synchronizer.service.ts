@@ -32,7 +32,7 @@ export class SynchronizerService {
 
     if (this.localStorageService.isExpired(LocalStorageKeys.REMOTE_VERSION)) {
       let subscription: Subscription = docData(
-        doc(collectionPath, documentPath, 'value')
+        doc(collectionPath, documentPath, 'value', 'value')
       ).subscribe((item: DocumentData): void => {
         let newVersion: string = Object.assign('', item);
 
