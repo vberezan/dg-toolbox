@@ -120,15 +120,22 @@ export class RankingsLoaderService {
 
     await this.delay(50 * playersStats.size);
 
-    docData(doc(metadataPath, 'players-rankings-turn')).subscribe((item: DocumentData): void => {
-      let updateMetadata: UpdateMetadata = Object.assign(new UpdateMetadata(0,0), item);
+    let updateTurnSubscription: Subscription = docData(doc(metadataPath, 'players-rankings-turn')).subscribe((item: DocumentData): void => {
 
-      if (updateMetadata.turn === this.dgAPI.gameTurn()) {
-        updateMetadata.version++;
+      if (item) {
+        let updateMetadata: UpdateMetadata = Object.assign(new UpdateMetadata(0, 0), item);
+
+        if (updateMetadata.turn === this.dgAPI.gameTurn()) {
+          updateMetadata.version++;
+        }
+
+        updateDoc(doc(metadataPath, 'players-rankings-turn'), JSON.parse(JSON.stringify(updateMetadata)))
+          .catch((e): void => console.log(e));
+      } else {
+        setDoc(doc(metadataPath, 'players-rankings-turn'), JSON.parse(JSON.stringify(new UpdateMetadata(this.dgAPI.gameTurn(), 1))));
       }
 
-      updateDoc(doc(metadataPath, 'players-rankings-turn'), JSON.parse(JSON.stringify(updateMetadata)))
-        .catch((e): void => console.log(e));
+      updateTurnSubscription.unsubscribe();
     });
   }
 

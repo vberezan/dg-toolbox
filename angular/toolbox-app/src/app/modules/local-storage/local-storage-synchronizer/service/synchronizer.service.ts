@@ -1,5 +1,5 @@
 import {inject, Injectable} from '@angular/core';
-import {collection, collectionData, doc, docData, Firestore} from "@angular/fire/firestore";
+import {collection, collectionData, doc, docData, Firestore, setDoc} from "@angular/fire/firestore";
 import {LocalStorageService} from "../../local-storage-manager/service/local-storage.service";
 import {firstValueFrom, Subscription} from "rxjs";
 import {DocumentData} from "@angular/fire/compat/firestore";
@@ -53,7 +53,12 @@ export class SynchronizerService {
       let subscription: Subscription = docData(
         doc(metadataPath, documentPath)
       ).subscribe((item: DocumentData): void => {
-        this.localStorageService.cache(LocalStorageKeys.REMOTE_VERSION, Object.assign({value: ''}, item).value, 300000);
+        if (item) {
+          this.localStorageService.cache(LocalStorageKeys.REMOTE_VERSION, Object.assign({value: ''}, item).value, 300000);
+        } else {
+          setDoc(doc(metadataPath, documentPath), {value: this.localStorageService.get(LocalStorageKeys.LOCAL_VERSION)});
+        }
+
         subscription.unsubscribe();
       });
     }
