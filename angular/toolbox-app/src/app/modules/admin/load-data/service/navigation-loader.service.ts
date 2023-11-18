@@ -96,11 +96,11 @@ export class NavigationLoaderService {
           where('playerId', '==', playerId),
           limit(1)
         )
-      ).subscribe((item: DocumentData[]): void => {
+      ).subscribe((items: DocumentData[]): void => {
 
-        let playerPlanetStats: PlayerPlanetsStats = Object.assign(new PlayerPlanetsStats(), item);
+        console.log('xxxxxx');
 
-        console.log(playerPlanetStats);
+        let playerPlanetStats: PlayerPlanetsStats = Object.assign(new PlayerPlanetsStats(), items);
 
         playerPlanetStats.planets.forEach((planets: string[], galaxy: number): void => {
           if (!player.planets.has(galaxy)) {
