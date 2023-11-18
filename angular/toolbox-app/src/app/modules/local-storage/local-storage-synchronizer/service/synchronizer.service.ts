@@ -36,7 +36,7 @@ export class SynchronizerService {
       ).subscribe((item: DocumentData): void => {
         let newVersion: string = Object.assign({value: ''}, item).value;
 
-        this.localStorageService.cache(LocalStorageKeys.REMOTE_VERSION, newVersion, 60000);
+        this.localStorageService.cache(LocalStorageKeys.REMOTE_VERSION, newVersion, 300000);
 
         subscription.unsubscribe();
       });

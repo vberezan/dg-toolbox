@@ -11,8 +11,9 @@ export class ChangelogService {
   private _installUpdateEmitter: EventEmitter<boolean> = new EventEmitter<boolean>();
 
   checkForUpdate(changeDetector: ChangeDetectorRef, changeObserver: Subscriber<boolean>): void {
-    changeObserver.next(this.localStorageService.get(LocalStorageKeys.LOCAL_VERSION) !=
-      this.localStorageService.get(LocalStorageKeys.REMOTE_VERSION, false));
+    let remoteVersion = this.localStorageService.get(LocalStorageKeys.REMOTE_VERSION, false);
+    let localVersion = this.localStorageService.get(LocalStorageKeys.LOCAL_VERSION)
+    changeObserver.next((remoteVersion !== null && remoteVersion !== localVersion && remoteVersion !== ''));
 
     changeObserver.complete();
     changeDetector.detectChanges();
