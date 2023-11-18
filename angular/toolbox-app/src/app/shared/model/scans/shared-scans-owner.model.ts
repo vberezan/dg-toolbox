@@ -24,7 +24,7 @@ export class Owner {
     this._alliance = value;
   }
 
-  toJSON() {
+  toJSON(): any {
     return {
       name: this.name,
       alliance: this.alliance

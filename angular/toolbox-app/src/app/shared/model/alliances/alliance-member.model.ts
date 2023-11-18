@@ -39,7 +39,7 @@ export class AllianceMember {
     this._dgId = value;
   }
 
-  toJSON() {
+  toJSON(): any {
     return {
       name: this.name,
       dgId: this.dgId,

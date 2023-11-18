@@ -72,7 +72,7 @@ export class PlayerStats {
     this._alliance = value;
   }
 
-  toJSON() {
+  toJSON(): any {
     return {
       playerId: this.playerId,
       score: this.score,

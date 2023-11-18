@@ -45,7 +45,7 @@ export class AllianceMemberStats {
     this._planets = value;
   }
 
-  toJSON() {
+  toJSON(): any {
     return {
       name: this.name,
       planets: this.planets,

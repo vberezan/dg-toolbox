@@ -72,7 +72,7 @@ export class PlayerStatsCache {
     this._planets = value;
   }
 
-  toJSON() {
+  toJSON(): any {
     return {
       playerId: this.playerId,
       score: this.score,

@@ -33,7 +33,7 @@ export class LocalStorageItem {
     this._ttl = value;
   }
 
-  toJSON() {
+  toJSON(): any {
     return {
       ttl: this.ttl,
       expiry: this.expiry,
