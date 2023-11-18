@@ -1,9 +1,28 @@
-import {PlayerPlanetStats} from "./player-planet-stats.model";
+import {PlayerPlanetsBatch} from "./player-planet-stats.model";
 
 export class PlayerPlanetsStats {
   private _playerId: number;
-  private _planets: PlayerPlanetStats[] = [];
+  private _planets: PlayerPlanetsBatch[] = [];
   private _name: string;
+  private _turn: number;
+  private _total: number;
+
+
+  get turn(): number {
+    return this._turn;
+  }
+
+  set turn(value: number) {
+    this._turn = value;
+  }
+
+  get total(): number {
+    return this._total;
+  }
+
+  set total(value: number) {
+    this._total = value;
+  }
 
   get playerId(): number {
     return this._playerId;
@@ -13,11 +32,11 @@ export class PlayerPlanetsStats {
     this._playerId = value;
   }
 
-  get planets(): PlayerPlanetStats[] {
+  get planets(): PlayerPlanetsBatch[] {
     return this._planets;
   }
 
-  set planets(value: PlayerPlanetStats[]) {
+  set planets(value: PlayerPlanetsBatch[]) {
     this._planets = value;
   }
 

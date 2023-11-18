@@ -1,4 +1,4 @@
-export class PlayerPlanetStats {
+export class PlayerPlanetsBatch {
   private _galaxy: number;
   private _planets: string[] = [];
 

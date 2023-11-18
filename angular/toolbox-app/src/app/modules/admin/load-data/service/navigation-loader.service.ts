@@ -6,7 +6,7 @@ import {PlanetStats} from "../../../../shared/model/stats/planet-stats.model";
 import {DarkgalaxyApiService} from "../../../darkgalaxy-ui-parser/service/darkgalaxy-api.service";
 import {PlayerPlanetsStats} from "../../../../shared/model/stats/player-planets-stats.model";
 import {DocumentData} from "@angular/fire/compat/firestore";
-import {PlayerPlanetStats} from "../../../../shared/model/stats/player-planet-stats.model";
+import {PlayerPlanetsBatch} from "../../../../shared/model/stats/player-planet-stats.model";
 
 @Injectable({
   providedIn: 'root'
@@ -98,17 +98,29 @@ export class NavigationLoaderService {
         if (item) {
           let playerPlanetStats: PlayerPlanetsStats = Object.assign(new PlayerPlanetsStats(), item);
 
-          playerPlanetStats.planets.forEach((planets: PlayerPlanetStats): void => {
-            let hasGalaxy: boolean = player.planets.some((planetStat: PlayerPlanetStats): boolean => planetStat.galaxy === planets.galaxy);
+          playerPlanetStats.planets.forEach((batch: PlayerPlanetsBatch): void => {
+            let hasGalaxy: boolean = player.planets.some((planetsBatch: PlayerPlanetsBatch): boolean => planetsBatch.galaxy === batch.galaxy);
 
             if (!hasGalaxy) {
-              player.planets.push(planets);
+              player.planets.push(batch);
             }
           })
+
+          let totalPlanets: number = 0;
+          player.planets.forEach((batch: PlayerPlanetsBatch): void => {
+            totalPlanets += batch.planets.length;
+          });
+          player.total = totalPlanets;
 
           updateDoc(doc(collectionPath, playerId.toString()), JSON.parse(JSON.stringify(player)))
             .catch((error): void => console.log(error));
         } else {
+          let totalPlanets: number = 0;
+          player.planets.forEach((batch: PlayerPlanetsBatch): void => {
+            totalPlanets += batch.planets.length;
+          });
+          player.total = totalPlanets;
+
           setDoc(doc(collectionPath, player.playerId.toString()), JSON.parse(JSON.stringify(player)))
             .catch((error): void => console.log(error));
         }
@@ -190,19 +202,19 @@ export class NavigationLoaderService {
             playerPlanets.set(stats.playerId, new PlayerPlanetsStats());
           }
 
-          let playerPlanetStats: PlayerPlanetStats[] = playerPlanets.get(stats.playerId).planets;
-
-          let hasGalaxy: boolean = playerPlanetStats.some((planetStat: PlayerPlanetStats): boolean => planetStat.galaxy === galaxy);
+          let batch: PlayerPlanetsBatch[] = playerPlanets.get(stats.playerId).planets;
+          let hasGalaxy: boolean = batch.some((planetsBatch: PlayerPlanetsBatch): boolean => planetsBatch.galaxy === galaxy);
           if (!hasGalaxy) {
-            playerPlanets.get(stats.playerId).planets.push(new PlayerPlanetStats(galaxy, [stats.location]));
+            playerPlanets.get(stats.playerId).planets.push(new PlayerPlanetsBatch(galaxy, [stats.location]));
           } else {
-            let filteredPlanetStats: PlayerPlanetStats[] =
-              playerPlanetStats.filter((planetStats: PlayerPlanetStats) => planetStats.galaxy === galaxy && !planetStats.planets.includes(stats.location));
-            filteredPlanetStats.forEach((planetStats: PlayerPlanetStats) => planetStats.planets.push(stats.location));
+            let filteredPlanetStats: PlayerPlanetsBatch[] =
+              batch.filter((planetStats: PlayerPlanetsBatch) => planetStats.galaxy === galaxy && !planetStats.planets.includes(stats.location));
+            filteredPlanetStats.forEach((planetStats: PlayerPlanetsBatch) => planetStats.planets.push(stats.location));
           }
 
           playerPlanets.get(stats.playerId).name = stats.owner;
           playerPlanets.get(stats.playerId).playerId = stats.playerId;
+          playerPlanets.get(stats.playerId).turn = this.dgAPI.gameTurn();
         }
 
         setDoc(doc(collectionPath, stats.location), JSON.parse(JSON.stringify(stats)))
