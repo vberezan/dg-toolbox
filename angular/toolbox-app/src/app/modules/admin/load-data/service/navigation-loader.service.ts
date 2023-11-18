@@ -108,7 +108,7 @@ export class NavigationLoaderService {
           }
         });
 
-        updateDoc(doc(collectionData, player.playerId.toString()), JSON.parse(JSON.stringify(player)))
+        updateDoc(doc(collectionData, player.playerId + ''), JSON.parse(JSON.stringify(player)))
           .catch((error): void => console.log(error));
 
         subscription.unsubscribe();
