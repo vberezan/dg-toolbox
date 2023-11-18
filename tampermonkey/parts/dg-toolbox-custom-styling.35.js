@@ -209,30 +209,37 @@ function applyCustomStyling() {
         let generalInfo = document.createElement('div');
         generalInfo.id = 'general-info';
 
-        let infoPart = detach(document.querySelector('#contentBox .leftContent>h2').nextElementSibling);
-        if (infoPart != null) {
-            generalInfo.prepend(infoPart);
-        }
+        if (document.querySelector('#contentBox .leftContent>h2')) {
+            let infoPart = detach(document.querySelector('#contentBox .leftContent>h2').nextElementSibling);
+            if (infoPart != null) {
+                generalInfo.prepend(infoPart);
+            }
 
-        infoPart = detach(document.querySelector('#contentBox .leftContent>h2'));
-        if (infoPart != null) {
-            generalInfo.prepend(infoPart);
+            infoPart = detach(document.querySelector('#contentBox .leftContent>h2'));
+            if (infoPart != null) {
+                generalInfo.prepend(infoPart);
+            }
         }
 
         let knownIssues = document.createElement('div');
         knownIssues.id = 'known-issues';
 
-        let issuesPart = detach(document.querySelector('#contentBox .leftContent>h2').nextElementSibling);
-        if (issuesPart != null) {
-            knownIssues.prepend(issuesPart);
+        if (document.querySelector('#contentBox .leftContent>h2')) {
+            let issuesPart = detach(document.querySelector('#contentBox .leftContent>h2').nextElementSibling);
+            if (issuesPart != null) {
+                knownIssues.prepend(issuesPart);
+            }
+
+            issuesPart = detach(document.querySelector('#contentBox .leftContent>h2'));
+            if (issuesPart != null) {
+                knownIssues.prepend(issuesPart);
+            }
         }
 
-        issuesPart = detach(document.querySelector('#contentBox .leftContent>h2'));
-        if (issuesPart != null) {
-            knownIssues.prepend(issuesPart);
-        }
+        document.querySelectorAll('#contentBox br').forEach((br) => {
+           br.remove();
+        });
 
-        document.querySelector('#contentBox br').remove();
         let welcome = document.createElement('div');
         welcome.id = 'welcome';
 
