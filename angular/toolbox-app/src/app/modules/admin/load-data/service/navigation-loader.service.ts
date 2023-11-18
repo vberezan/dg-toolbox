@@ -191,7 +191,7 @@ export class NavigationLoaderService {
 
           if (!playerPlanets.get(stats.playerId).planets.has(galaxy)) {
             playerPlanets.get(stats.playerId).planets.set(galaxy, []);
-            console.log(galaxy);
+            console.log(galaxy + ' - ' + stats.location);
             console.log(JSON.stringify(playerPlanets));
           }
 
