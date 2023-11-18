@@ -7,6 +7,7 @@ import {LocalStorageKeys} from "../../../../shared/model/local-storage/local-sto
 import {PlayerStats} from "../../../../shared/model/stats/player-stats.model";
 import {HttpClient} from "@angular/common/http";
 import {AllianceMember} from "../../../../shared/model/alliances/alliance-member.model";
+import {LastUpdateTurn} from "../../../../shared/model/local-storage/last-update-turn.model";
 
 @Injectable({
   providedIn: 'root'
@@ -23,14 +24,21 @@ export class SynchronizerService {
   }
 
   loadTurnBasedUpdates(turn: number): void {
-    if (this.localStorageService.get(LocalStorageKeys.PLAYERS_STATS) == null ||
-      this.localStorageService.get(LocalStorageKeys.LAST_PLAYERS_RANKINGS_UPDATE_TURN) == null ||
-      turn > this.localStorageService.get(LocalStorageKeys.LAST_PLAYERS_RANKINGS_UPDATE_TURN)) {
+    if (this.localStorageService.get(LocalStorageKeys.LAST_UPDATE_TURN) == null) {
+      this.localStorageService.cache(LocalStorageKeys.LAST_UPDATE_TURN, new LastUpdateTurn());
+    }
 
+    let lastUpdateTurn: LastUpdateTurn = this.localStorageService.get(LocalStorageKeys.LAST_UPDATE_TURN);
+
+    if (this.localStorageService.get(LocalStorageKeys.PLAYERS_STATS) == null ||
+      lastUpdateTurn.playersRankings === 0 || turn > lastUpdateTurn.playersRankings) {
       this.loadPlayersRankings(turn);
     }
 
-    this.loadAllianceMembers(turn);
+    if (this.localStorageService.get(LocalStorageKeys.PLAYERS_STATS) == null ||
+      lastUpdateTurn.allianceMembers === 0 || turn > lastUpdateTurn.allianceMembers) {
+      this.loadAllianceMembers(turn);
+    }
   }
 
   loadLiveUpdates(): void {
@@ -60,7 +68,11 @@ export class SynchronizerService {
         let playerStats: PlayerStats[] = Object.assign([], items);
 
         this.localStorageService.cache(LocalStorageKeys.PLAYERS_STATS, playerStats);
-        this.localStorageService.cache(LocalStorageKeys.LAST_PLAYERS_RANKINGS_UPDATE_TURN, turn);
+
+        let lastUpdateTurn: LastUpdateTurn = this.localStorageService.get(LocalStorageKeys.LAST_UPDATE_TURN);
+        lastUpdateTurn.playersRankings = turn;
+        this.localStorageService.cache(LocalStorageKeys.LAST_UPDATE_TURN, lastUpdateTurn);
+
         subscription.unsubscribe();
       });
   }
@@ -99,9 +111,7 @@ export class SynchronizerService {
         }
       });
 
-      console.log(cache);
-
-      this.localStorageService.cache(LocalStorageKeys.ALLIANCE_MEMBERS, cache, 43200000);
+      this.localStorageService.cache(LocalStorageKeys.ALLIANCE_MEMBERS, cache);
     }
   }
 }
