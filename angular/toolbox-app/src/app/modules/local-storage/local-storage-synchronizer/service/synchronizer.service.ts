@@ -27,12 +27,12 @@ export class SynchronizerService {
   }
 
   private loadVersion(): void {
-    const collectionData: any = collection(this.firestore, 'config');
-    const path: string = 'version';
+    const collectionPath: any = collection(this.firestore, 'config');
+    const documentPath: string = 'version';
 
     if (this.localStorageService.isExpired(LocalStorageKeys.REMOTE_VERSION)) {
       let subscription: Subscription = docData(
-        doc(collectionData, path)
+        doc(collectionPath, documentPath)
       ).subscribe((item: DocumentData): void => {
         let newVersion: string = Object.assign({value: ''}, item).value;
 
@@ -44,11 +44,11 @@ export class SynchronizerService {
   }
 
   private loadPlayersRankings(): void {
-    const collectionData: any = collection(this.firestore, 'config');
-    const path: string = 'last-players-rankings-update-turn';
+    const collectionPath: any = collection(this.firestore, 'config');
+    const documentPath: string = 'last-players-rankings-update-turn';
 
     let subscription: Subscription = docData(
-      doc(collectionData, path)
+      doc(collectionPath, documentPath)
     ).subscribe((item: DocumentData): void => {
       if (this.localStorageService.get(LocalStorageKeys.LAST_PLAYERS_RANKINGS_UPDATE_TURN) &&
         (this.localStorageService.get(LocalStorageKeys.LAST_PLAYERS_RANKINGS_UPDATE_TURN) == Object.assign({value: 0}, item).value)) {

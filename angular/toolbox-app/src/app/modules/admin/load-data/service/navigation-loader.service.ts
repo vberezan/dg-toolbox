@@ -1,7 +1,7 @@
 import {EventEmitter, inject, Injectable, Optional} from '@angular/core';
 import {firstValueFrom, Subscription} from "rxjs";
 import {HttpClient} from "@angular/common/http";
-import {collection, doc, docData, Firestore, limit, query, setDoc, updateDoc, where} from "@angular/fire/firestore";
+import {collection, collectionData, doc, Firestore, limit, query, setDoc, updateDoc, where} from "@angular/fire/firestore";
 import {PlanetStats} from "../../../../shared/model/stats/planet-stats.model";
 import {DarkgalaxyApiService} from "../../../darkgalaxy-ui-parser/service/darkgalaxy-api.service";
 import {PlayerPlanetsStats} from "../../../../shared/model/stats/player-planets-stats.model";
@@ -88,18 +88,17 @@ export class NavigationLoaderService {
   }
 
   savePlayerPlanets(playerPlanets: Map<number, PlayerPlanetsStats>): void {
-    const collectionData: any = collection(this.firestore, 'players-planets');
+    const collectionPath: any = collection(this.firestore, 'players-planets');
 
     playerPlanets.forEach((player: PlayerPlanetsStats, playerId: number): void => {
-      console.log(playerId + ' : ' + player);
+      console.log(playerId + ' : ' + JSON.stringify(player));
 
       let subscription: Subscription = collectionData(
-        query(collectionData,
+        query(collectionPath,
           where('playerId', '==', playerId),
           limit(1)
         )
       ).subscribe((items: DocumentData[]): void => {
-
         let playerPlanetStats: PlayerPlanetsStats = Object.assign(new PlayerPlanetsStats(), items);
 
         playerPlanetStats.planets.forEach((planets: string[], galaxy: number): void => {
@@ -108,7 +107,7 @@ export class NavigationLoaderService {
           }
         });
 
-        updateDoc(doc(collectionData, player.playerId.toString()), JSON.parse(JSON.stringify(player)))
+        updateDoc(doc(collectionPath, player.playerId.toString()), JSON.parse(JSON.stringify(player)))
           .catch((error): void => console.log(error));
 
         subscription.unsubscribe();
