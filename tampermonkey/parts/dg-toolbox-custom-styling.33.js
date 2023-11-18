@@ -208,14 +208,13 @@ function applyCustomStyling() {
     if (windowURL.length === 2 && windowURL[1].trim().length === 0) {
         let generalInfo = document.createElement('div');
         generalInfo.id = 'general-info';
-        generalInfo.append(document.createElement('ul'));
 
         let ps = document.querySelectorAll('#contentBox .leftContent>p');
         ps.forEach((p) => {
             if (p.textContent.trim().length > 0) {
-                let li = document.createElement('li');
-                li.innerHTML = p.innerHTML;
-                generalInfo.querySelector('ul').append(li);
+                let newP = document.createElement('p');
+                newP.innerHTML = p.innerHTML;
+                generalInfo.append(newP);
             }
 
             p.remove();
