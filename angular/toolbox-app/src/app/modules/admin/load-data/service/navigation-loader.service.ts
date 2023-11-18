@@ -91,8 +91,6 @@ export class NavigationLoaderService {
     const collectionPath: any = collection(this.firestore, 'players-planets');
 
     playerPlanets.forEach((player: PlayerPlanetsStats, playerId: number): void => {
-      console.log(playerId + ' : ' + JSON.stringify(player));
-
       let subscription: Subscription = docData(
         doc(collectionPath, player.playerId.toString())
       ).subscribe((item: DocumentData): void => {
@@ -185,6 +183,7 @@ export class NavigationLoaderService {
         stats.turn = this.dgAPI.gameTurn();
 
         if (stats.playerId > 0) {
+          console.log('playerId: ' + stats.playerId);
           if (!playerPlanets.has(stats.playerId)) {
             playerPlanets.set(stats.playerId, new PlayerPlanetsStats());
           }
@@ -197,6 +196,7 @@ export class NavigationLoaderService {
           playerPlanets.get(stats.playerId).name = stats.owner;
           playerPlanets.get(stats.playerId).playerId = stats.playerId;
 
+          console.log(stats.location + ' - ' + stats.owner + ' - ' + stats.playerId);
           console.log(JSON.stringify(playerPlanets));
         }
 
