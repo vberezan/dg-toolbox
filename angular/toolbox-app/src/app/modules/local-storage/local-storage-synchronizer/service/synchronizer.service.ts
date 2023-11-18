@@ -32,9 +32,9 @@ export class SynchronizerService {
 
     if (this.localStorageService.isExpired(LocalStorageKeys.REMOTE_VERSION)) {
       let subscription: Subscription = docData(
-        doc(collectionPath, documentPath)
+        doc(collectionPath, documentPath, 'value')
       ).subscribe((item: DocumentData): void => {
-        let newVersion: string = Object.assign({value: ''}, item).value;
+        let newVersion: string = Object.assign('', item);
 
         this.localStorageService.cache(LocalStorageKeys.REMOTE_VERSION, newVersion, 300000);
 
@@ -65,7 +65,7 @@ export class SynchronizerService {
             let psc: PlayerStatsCache = new PlayerStatsCache();
             psc.playerId = stat.playerId;
             psc.rank = stat.rank;
-            psc.planets = stat.planets.length;
+            psc.planets = stat.planets;
             psc.name = stat.name;
             psc.alliance = stat.alliance;
             psc.combatScore = stat.combatScore;

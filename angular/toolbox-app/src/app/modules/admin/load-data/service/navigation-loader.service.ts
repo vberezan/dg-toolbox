@@ -6,7 +6,7 @@ import {PlanetStats} from "../../../../shared/model/stats/planet-stats.model";
 import {DarkgalaxyApiService} from "../../../darkgalaxy-ui-parser/service/darkgalaxy-api.service";
 import {PlayerPlanetsStats} from "../../../../shared/model/stats/player-planets-stats.model";
 import {DocumentData} from "@angular/fire/compat/firestore";
-import {PlayerPlanetsBatch} from "../../../../shared/model/stats/player-planet-stats.model";
+import {PlayerPlanetsBatch} from "../../../../shared/model/stats/player-planets-batch.model";
 import {PageAction} from "../../../../shared/model/stats/page-action.model";
 
 @Injectable({

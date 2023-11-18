@@ -3,7 +3,7 @@ export class PlayerStats {
   private _score: number;
   private _combatScore: number;
   private _combinedScore: number;
-  private _planets: string[] = [];
+  private _planets: number;
   private _name: string;
   private _rank: number;
   private _alliance: string;
@@ -56,20 +56,20 @@ export class PlayerStats {
     this._combinedScore = value;
   }
 
-  get planets(): string[] {
-    return this._planets;
-  }
-
-  set planets(value: string[]) {
-    this._planets = value;
-  }
-
   get alliance(): string {
     return this._alliance;
   }
 
   set alliance(value: string) {
     this._alliance = value;
+  }
+
+  get planets(): number {
+    return this._planets;
+  }
+
+  set planets(value: number) {
+    this._planets = value;
   }
 
   toJSON(): any {

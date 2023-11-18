@@ -33,7 +33,7 @@ export class GlobalConfigService {
             let psc: PlayerStatsCache = new PlayerStatsCache();
             psc.playerId = stat.playerId;
             psc.rank = stat.rank;
-            psc.planets = stat.planets.length;
+            psc.planets = stat.planets;
             psc.name = stat.name;
             psc.alliance = stat.alliance;
             psc.combatScore = stat.combatScore;

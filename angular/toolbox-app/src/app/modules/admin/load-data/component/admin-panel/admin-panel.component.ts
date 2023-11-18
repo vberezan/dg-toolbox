@@ -19,8 +19,8 @@ export class AdminPanelComponent {
   private navigationLoaderService: NavigationLoaderService = inject(NavigationLoaderService);
   private rankingsLoaderService: RankingsLoaderService = inject(RankingsLoaderService);
   private changeDetection: ChangeDetectorRef = inject(ChangeDetectorRef);
-  private cancelScanEmitter: EventEmitter<boolean> = new EventEmitter<boolean>();
 
+  private cancelScanEmitter: EventEmitter<boolean> = new EventEmitter<boolean>();
   private systemCountSubscription: Subscription;
   private planetsCountSubscription: Subscription;
   private rankingsCountSubscription: Subscription;
@@ -43,7 +43,6 @@ export class AdminPanelComponent {
     });
 
     this.loadedSystem = 'Loading planet systems: ';
-
     this.planetProgressBar.nativeElement.style.width = '0%';
     this.planetsLoadModal.nativeElement.classList.add('show');
     this.planetsLoadModal.nativeElement.classList.remove('hide');

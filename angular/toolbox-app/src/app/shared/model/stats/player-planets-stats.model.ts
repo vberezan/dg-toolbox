@@ -1,4 +1,4 @@
-import {PlayerPlanetsBatch} from "./player-planet-stats.model";
+import {PlayerPlanetsBatch} from "./player-planets-batch.model";
 
 export class PlayerPlanetsStats {
   private _playerId: number;
