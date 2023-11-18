@@ -1,12 +1,13 @@
 import {EventEmitter, inject, Injectable, Optional} from '@angular/core';
 import {firstValueFrom, Subscription} from "rxjs";
 import {HttpClient} from "@angular/common/http";
-import {collection, deleteDoc, doc, docData, Firestore, setDoc, updateDoc} from "@angular/fire/firestore";
+import {collection, doc, docData, Firestore, setDoc, updateDoc} from "@angular/fire/firestore";
 import {PlanetStats} from "../../../../shared/model/stats/planet-stats.model";
 import {DarkgalaxyApiService} from "../../../darkgalaxy-ui-parser/service/darkgalaxy-api.service";
 import {PlayerPlanetsStats} from "../../../../shared/model/stats/player-planets-stats.model";
 import {DocumentData} from "@angular/fire/compat/firestore";
 import {PlayerPlanetsBatch} from "../../../../shared/model/stats/player-planet-stats.model";
+import {PageAction} from "../../../../shared/model/stats/page-action.model";
 
 @Injectable({
   providedIn: 'root'
@@ -23,10 +24,7 @@ export class NavigationLoaderService {
   private firestore: Firestore = inject(Firestore);
   private dgAPI: DarkgalaxyApiService = inject(DarkgalaxyApiService);
 
-  private _systemScanEmitter: EventEmitter<{ 'total': number, 'system': number }> = new EventEmitter<{
-    'total': number,
-    'system': number
-  }>();
+  private _systemScanEmitter: EventEmitter<PageAction> = new EventEmitter<PageAction>();
   private _planetScanEmitter: EventEmitter<string> = new EventEmitter<string>();
 
   async scanNavigationScreen(cancelScanEmitter: EventEmitter<boolean>, @Optional() galaxies: number[] = []): Promise<void> {
@@ -51,7 +49,7 @@ export class NavigationLoaderService {
           for (let sy: number = 1; sy <= this.SYSTEMS; sy++) {
             if (isScanActive) {
               await this.parseAndSave(validGalaxies[g], se, sy, playerPlanets, collectionPath);
-              this._systemScanEmitter.emit({'system': ++scannedSystems, 'total': totalSystemNr});
+              this._systemScanEmitter.emit(new PageAction(++scannedSystems, totalSystemNr, 'load-save'));
               await this.delay(scanDelay);
             }
           }
@@ -63,7 +61,7 @@ export class NavigationLoaderService {
           for (let sy: number = 1; sy <= this.SYSTEMS; sy++) {
             if (isScanActive) {
               await this.parseAndSave(validGalaxies[g], se, sy, playerPlanets, collectionPath);
-              this._systemScanEmitter.emit({'system': ++scannedSystems, 'total': totalSystemNr});
+              this._systemScanEmitter.emit(new PageAction(++scannedSystems, totalSystemNr, 'load-save'));
               await this.delay(scanDelay);
             }
           }
@@ -75,7 +73,7 @@ export class NavigationLoaderService {
           for (let sy: number = 1; sy <= this.SYSTEMS; sy++) {
             if (isScanActive) {
               await this.parseAndSave(validGalaxies[g], se, sy, playerPlanets, collectionPath);
-              this._systemScanEmitter.emit({'system': ++scannedSystems, 'total': totalSystemNr});
+              this._systemScanEmitter.emit(new PageAction(++scannedSystems, totalSystemNr, 'load-save'));
               await this.delay(scanDelay);
             }
           }
@@ -88,7 +86,7 @@ export class NavigationLoaderService {
     cancelSubscription.unsubscribe();
   }
 
-  savePlayerPlanets(playerPlanets: Map<number, PlayerPlanetsStats>): void {
+  private savePlayerPlanets(playerPlanets: Map<number, PlayerPlanetsStats>): void {
     const collectionPath: any = collection(this.firestore, 'players-planets');
 
     playerPlanets.forEach((player: PlayerPlanetsStats, playerId: number): void => {
@@ -218,8 +216,6 @@ export class NavigationLoaderService {
 
           setDoc(doc(collectionPath, stats.location), JSON.parse(JSON.stringify(stats)))
             .catch((error): void => console.log(error));
-        } else {
-          deleteDoc(doc(collectionPath, stats.location));
         }
       }, 50 * index);
     });
@@ -252,7 +248,7 @@ export class NavigationLoaderService {
 
   private delay = async (ms: number): Promise<unknown> => new Promise(res => setTimeout(res, ms));
 
-  get systemScanEmitter(): EventEmitter<{ 'total': number, 'system': number }> {
+  get systemScanEmitter(): EventEmitter<PageAction> {
     return this._systemScanEmitter;
   }
 

@@ -25,7 +25,7 @@ export class RankingsLoaderService {
     = new EventEmitter<{ 'total': number, 'page': number, 'action': string }>();
 
 
-  async scanPlayerRankingsScreens(cancelScanEmitter: EventEmitter<boolean>): Promise<void> {
+  async scanPlayersRankingsScreens(cancelScanEmitter: EventEmitter<boolean>): Promise<void> {
     const scanDelay: number = 1500 + Math.floor(Math.random() * 1500);
     const playersRef: any = collection(this.firestore, 'players');
     const planetsRef: any = collection(this.firestore, 'planets');
@@ -154,10 +154,7 @@ export class RankingsLoaderService {
                   updateDoc(doc(playersRef, playerId.toString()), JSON.parse(JSON.stringify(playerStats)))
                     .then((): void => {
                       this._playersRankingsEmitter.emit({'action': 'save', 'page': ++savedRankings, 'total': playersStats.size});
-                    }).catch((error): void => {
-                      console.log(error);
-                    }
-                  );
+                    }).catch((error): void => console.log(error));
 
                   planetsSubscription.unsubscribe();
                 });
@@ -170,15 +167,13 @@ export class RankingsLoaderService {
       navigationSubscription.unsubscribe();
     });
 
-    await this.delay(75 * playersStats.size);
+    await this.delay(50 * playersStats.size);
 
     updateDoc(doc(configRef, 'last-players-rankings-update-turn'), JSON.parse(JSON.stringify({'value': this.dgAPI.gameTurn()})))
-      .catch((e): void => {
-        console.log(e);
-      });
+      .catch((e): void => console.log(e));
   }
 
-  async scanAllianceRankingsScreens(): Promise<void> {
+  async scanAlliancesRankingsScreens(): Promise<void> {
 
   }
 

@@ -2,6 +2,7 @@ import {ChangeDetectorRef, Component, ElementRef, EventEmitter, inject, ViewChil
 import {NavigationLoaderService} from "../../service/navigation-loader.service";
 import {RankingsLoaderService} from "../../service/rankings-loader.service";
 import {Subscription} from "rxjs";
+import {PageAction} from "../../../../../shared/model/stats/page-action.model";
 
 @Component({
   selector: 'dgt-admin-load-data-panel',
@@ -32,7 +33,7 @@ export class AdminPanelComponent {
 
   protected loadedRankings: string;
   protected loadedSystem: string;
-  protected loadedPlanet: string = 'x.x.x.x';
+  protected loadedPlanet: string = '';
   protected planetPercentage: number = 0;
   protected playersPercentage: number = 0;
 
@@ -48,13 +49,10 @@ export class AdminPanelComponent {
     this.planetsLoadModal.nativeElement.classList.remove('hide');
     document.body.classList.add('dgt-overlay-open');
 
-    this.systemCountSubscription = this.navigationLoaderService.systemScanEmitter.subscribe((value: {
-      'total': number,
-      'system': number
-    }): void => {
-      this.loadedSystem = 'Loading ' + value.system + '/' + value.total + ' system: ';
+    this.systemCountSubscription = this.navigationLoaderService.systemScanEmitter.subscribe((value: PageAction): void => {
+      this.loadedSystem = 'Loading ' + value.page + '/' + value.total + ' system: ';
       this.changeDetection.detectChanges();
-      this.planetPercentage = Math.floor((value.system * 100) / value.total);
+      this.planetPercentage = Math.floor((value.page * 100) / value.total);
       this.planetProgressBar.nativeElement.style.width = this.planetPercentage + '%';
     });
 
@@ -69,7 +67,7 @@ export class AdminPanelComponent {
     this.cancelScan();
   }
 
-  async scanRankingsScreens(): Promise<void> {
+  async scanPlayersRankingScreens(): Promise<void> {
     this.playersProgressBar.nativeElement.style.width = '0%';
     this.loadedRankings = 'Loading ranking pages';
 
@@ -105,8 +103,7 @@ export class AdminPanelComponent {
     });
 
 
-    await this.rankingsLoaderService.scanPlayerRankingsScreens(this.cancelScanEmitter);
-    // await this.rankingsLoaderService.scanAllianceRankingsScreens();
+    await this.rankingsLoaderService.scanPlayersRankingsScreens(this.cancelScanEmitter);
 
     this.cancelScan();
   }
