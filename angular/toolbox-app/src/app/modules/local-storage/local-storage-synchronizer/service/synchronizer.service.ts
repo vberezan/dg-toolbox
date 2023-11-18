@@ -1,5 +1,5 @@
 import {inject, Injectable} from '@angular/core';
-import {collection, collectionData, doc, docData, Firestore, query} from "@angular/fire/firestore";
+import {collection, collectionData, doc, docData, Firestore} from "@angular/fire/firestore";
 import {LocalStorageService} from "../../local-storage-manager/service/local-storage.service";
 import {Subscription} from "rxjs";
 import {DocumentData} from "@angular/fire/compat/firestore";
@@ -23,8 +23,6 @@ export class SynchronizerService {
     if (this.localStorageService.get(LocalStorageKeys.PLAYERS_STATS) == null ||
       this.localStorageService.get(LocalStorageKeys.LAST_PLAYERS_RANKINGS_UPDATE_TURN) == null ||
       turn > this.localStorageService.get(LocalStorageKeys.LAST_PLAYERS_RANKINGS_UPDATE_TURN)) {
-
-      console.log('bingo');
 
       this.loadPlayersRankings(turn);
     }
@@ -51,15 +49,15 @@ export class SynchronizerService {
   private loadPlayersRankings(turn: number): void {
     const collectionPath: any = collection(this.firestore, 'players-rankings');
 
-    let subscription: Subscription = collectionData(
-      query(collection(this.firestore, collectionPath))
-    ).subscribe((items: DocumentData[]): void => {
-      let playerStats: PlayerStats[] = Object.assign([], items);
+
+    let subscription: Subscription = collectionData(collectionPath)
+      .subscribe((items: DocumentData[]): void => {
+        let playerStats: PlayerStats[] = Object.assign([], items);
 
 
-      this.localStorageService.cache(LocalStorageKeys.PLAYERS_STATS, playerStats);
-      this.localStorageService.cache(LocalStorageKeys.LAST_PLAYERS_RANKINGS_UPDATE_TURN, turn);
-      subscription.unsubscribe();
-    });
+        this.localStorageService.cache(LocalStorageKeys.PLAYERS_STATS, playerStats);
+        this.localStorageService.cache(LocalStorageKeys.LAST_PLAYERS_RANKINGS_UPDATE_TURN, turn);
+        subscription.unsubscribe();
+      });
   }
 }
