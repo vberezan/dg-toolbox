@@ -30,7 +30,7 @@ export class PlayerPlanetsStats {
   toJSON(): any {
     return {
       playerId: this.playerId,
-      planets: this.planets,
+      planets: Array.from(this.planets.entries()),
       name: this.name
     };
   }

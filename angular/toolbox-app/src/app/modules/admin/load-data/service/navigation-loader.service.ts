@@ -89,6 +89,7 @@ export class NavigationLoaderService {
 
   savePlayerPlanets(playerPlanets: Map<number, PlayerPlanetsStats>): void {
     const collectionPath: any = collection(this.firestore, 'players-planets');
+    console.log(JSON.stringify(Array.from(playerPlanets.entries())));
 
     playerPlanets.forEach((player: PlayerPlanetsStats, playerId: number): void => {
       let subscription: Subscription = docData(
@@ -184,24 +185,16 @@ export class NavigationLoaderService {
 
         if (stats.playerId > 0) {
           if (!playerPlanets.has(stats.playerId)) {
-            console.log('add playerId: ' + stats.playerId);
             playerPlanets.set(stats.playerId, new PlayerPlanetsStats());
-          } else {
-            console.log('playerId exists: ' + stats.playerId);
           }
 
           if (!playerPlanets.get(stats.playerId).planets.has(galaxy)) {
-            console.log('add galaxy: ' + galaxy);
             playerPlanets.get(stats.playerId).planets.set(galaxy, []);
-          } else {
-            console.log('galaxy exists: ' + galaxy);
           }
 
           playerPlanets.get(stats.playerId).planets.get(galaxy).push(stats.location);
           playerPlanets.get(stats.playerId).name = stats.owner;
           playerPlanets.get(stats.playerId).playerId = stats.playerId;
-
-          console.log(JSON.stringify(Array.from(playerPlanets.entries())));
         }
 
         setDoc(doc(collectionPath, stats.location), JSON.parse(JSON.stringify(stats)))
