@@ -4,6 +4,7 @@ import {HttpClient} from "@angular/common/http";
 import {collection, doc, Firestore, setDoc} from "@angular/fire/firestore";
 import {PlanetStats} from "../../../../shared/model/stats/planet-stats.model";
 import {DarkgalaxyApiService} from "../../../darkgalaxy-ui-parser/service/darkgalaxy-api.service";
+import {PlayerPlanetsStats} from "../../../../shared/model/stats/player-planets-stats.model";
 
 @Injectable({
   providedIn: 'root'
@@ -29,6 +30,7 @@ export class NavigationLoaderService {
   async scanNavigationScreen(cancelScanEmitter: EventEmitter<boolean>, @Optional() galaxies: number[] = []): Promise<void> {
     const scanDelay: number = 500 + Math.floor(Math.random() * 1000);
     const validGalaxies: number[] = this.filterValidGalaxies(galaxies);
+    let playerPlanets: Map<number, PlayerPlanetsStats> = new Map<number, PlayerPlanetsStats>();
 
     let scannedSystems: number = 0;
     let isScanActive: boolean = true;
@@ -46,7 +48,7 @@ export class NavigationLoaderService {
         for (let se: number = 1; se <= this.G1_SECTORS; se++) {
           for (let sy: number = 1; sy <= this.SYSTEMS; sy++) {
             if (isScanActive) {
-              await this.parseAndSave(validGalaxies[g], se, sy, collectionData);
+              await this.parseAndSave(validGalaxies[g], se, sy, playerPlanets, collectionData);
               this._systemScanEmitter.emit({'system': ++scannedSystems, 'total': totalSystemNr});
               await this.delay(scanDelay);
             }
@@ -58,7 +60,7 @@ export class NavigationLoaderService {
         for (let se: number = 1; se <= this.INNER_SECTORS; se++) {
           for (let sy: number = 1; sy <= this.SYSTEMS; sy++) {
             if (isScanActive) {
-              await this.parseAndSave(validGalaxies[g], se, sy, collectionData);
+              await this.parseAndSave(validGalaxies[g], se, sy, playerPlanets, collectionData);
               this._systemScanEmitter.emit({'system': ++scannedSystems, 'total': totalSystemNr});
               await this.delay(scanDelay);
             }
@@ -70,7 +72,7 @@ export class NavigationLoaderService {
         for (let se: number = 1; se <= this.OUTER_SECTORS; se++) {
           for (let sy: number = 1; sy <= this.SYSTEMS; sy++) {
             if (isScanActive) {
-              await this.parseAndSave(validGalaxies[g], se, sy, collectionData);
+              await this.parseAndSave(validGalaxies[g], se, sy, playerPlanets, collectionData);
               this._systemScanEmitter.emit({'system': ++scannedSystems, 'total': totalSystemNr});
               await this.delay(scanDelay);
             }
@@ -79,7 +81,19 @@ export class NavigationLoaderService {
       }
     }
 
+    this.savePlayerPlanets(playerPlanets);
     cancelSubscription.unsubscribe();
+  }
+
+  savePlayerPlanets(playerPlanets: Map<number, PlayerPlanetsStats>): void {
+    const collectionData: any = collection(this.firestore, 'players-planets');
+
+    playerPlanets.forEach((player: PlayerPlanetsStats): void => {
+      player.planets.forEach((planets: string[], galaxy: number): void => {
+        setDoc(doc(collectionData, player.playerId + '-' + galaxy), JSON.parse(JSON.stringify(planets)))
+          .catch((error): void => console.log(error));
+      });
+    });
   }
 
   totalSystemsNr(galaxies: number[]): number {
@@ -113,7 +127,7 @@ export class NavigationLoaderService {
     return result
   }
 
-  private async parseAndSave(galaxy: number, sector: number, system: number, collectionData: any): Promise<void> {
+  private async parseAndSave(galaxy: number, sector: number, system: number, playerPlanets: Map<number, PlayerPlanetsStats>, collectionData: any): Promise<void> {
     const source: string = await firstValueFrom(this.httpClient.get(this.NAVIGATION_BASE_URL + galaxy + '/' + sector + '/' + system, {responseType: 'text'}));
     const dom: Document = new DOMParser().parseFromString(source, 'text/html');
 
@@ -148,11 +162,22 @@ export class NavigationLoaderService {
         }
 
         stats.turn = this.dgAPI.gameTurn();
+
+        if (!playerPlanets.has(stats.playerId)) {
+          playerPlanets.set(stats.playerId, new PlayerPlanetsStats());
+        }
+
+        if (!playerPlanets.get(stats.playerId).planets.has(galaxy)) {
+          playerPlanets.get(stats.playerId).planets.set(galaxy, []);
+        }
+
+        playerPlanets.get(stats.playerId).planets.get(galaxy).push(stats.location);
+
         setDoc(doc(collectionData, stats.location), JSON.parse(JSON.stringify(stats)))
           .catch((error): void => {
             console.log(error);
           });
-      }, 100 * index);
+      }, 50 * index);
     });
 
   }
