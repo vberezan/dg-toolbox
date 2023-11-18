@@ -1,12 +1,11 @@
 import {EventEmitter, inject, Injectable, Optional} from '@angular/core';
 import {firstValueFrom, Subscription} from "rxjs";
 import {HttpClient} from "@angular/common/http";
-import {collection, doc, docData, Firestore, limit, query, setDoc, updateDoc, where} from "@angular/fire/firestore";
+import {collection, doc, docData, Firestore, setDoc} from "@angular/fire/firestore";
 import {PlanetStats} from "../../../../shared/model/stats/planet-stats.model";
 import {DarkgalaxyApiService} from "../../../darkgalaxy-ui-parser/service/darkgalaxy-api.service";
 import {PlayerPlanetsStats} from "../../../../shared/model/stats/player-planets-stats.model";
 import {DocumentData} from "@angular/fire/compat/firestore";
-import {LocalStorageKeys} from "../../../../shared/model/local-storage/local-storage-keys";
 
 @Injectable({
   providedIn: 'root'
@@ -83,7 +82,7 @@ export class NavigationLoaderService {
       }
     }
 
-    // this.savePlayerPlanets(playerPlanets);
+    this.savePlayerPlanets(playerPlanets);
     cancelSubscription.unsubscribe();
   }
 
@@ -179,15 +178,15 @@ export class NavigationLoaderService {
 
         stats.turn = this.dgAPI.gameTurn();
 
-        if (!playerPlanets.has(stats.playerId) && stats.playerId > 0) {
-          playerPlanets.set(stats.playerId, new PlayerPlanetsStats());
-        }
-
-        if (!playerPlanets.get(stats.playerId).planets.has(galaxy)) {
-          playerPlanets.get(stats.playerId).planets.set(galaxy, []);
-        }
-
         if (stats.playerId > 0) {
+          if (!playerPlanets.has(stats.playerId)) {
+            playerPlanets.set(stats.playerId, new PlayerPlanetsStats());
+          }
+
+          if (!playerPlanets.get(stats.playerId).planets.has(galaxy)) {
+            playerPlanets.get(stats.playerId).planets.set(galaxy, []);
+          }
+
           playerPlanets.get(stats.playerId).planets.get(galaxy).push(stats.location);
         }
 
