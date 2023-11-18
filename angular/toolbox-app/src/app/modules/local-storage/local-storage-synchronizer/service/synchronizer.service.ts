@@ -35,7 +35,7 @@ export class SynchronizerService {
       this.loadPlayersRankings(turn);
     }
 
-    if (this.localStorageService.get(LocalStorageKeys.PLAYERS_STATS) == null ||
+    if (this.localStorageService.get(LocalStorageKeys.ALLIANCE_MEMBERS) == null ||
       lastUpdateTurn.allianceMembers === 0 || turn > lastUpdateTurn.allianceMembers) {
       this.loadAllianceMembers(turn);
     }
