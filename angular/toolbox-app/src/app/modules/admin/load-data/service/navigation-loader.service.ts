@@ -90,10 +90,10 @@ export class NavigationLoaderService {
     const collectionData: any = collection(this.firestore, 'players-planets');
 
     playerPlanets.forEach((player: PlayerPlanetsStats): void => {
-      let subscription: Subscription = docData(
+      let subscription: Subscription = collectionData(
         doc(collectionData, player.playerId.toString())
-      ).subscribe((item: DocumentData): void => {
-        console.log(Object.assign(new PlayerPlanetsStats(), item).playerId);
+      ).subscribe((item: DocumentData[]): void => {
+        console.log(Object.assign(new PlayerPlanetsStats(), item[0]).playerId);
 
         // let playerPlanetStats: PlayerPlanetsStats = Object.assign(new PlayerPlanetsStats(), item);
         //
