@@ -183,23 +183,21 @@ export class NavigationLoaderService {
         stats.turn = this.dgAPI.gameTurn();
 
         if (stats.playerId > 0) {
-          console.log('playerId: ' + stats.playerId);
           if (!playerPlanets.has(stats.playerId)) {
             console.log('add playerId: ' + stats.playerId);
             playerPlanets.set(stats.playerId, new PlayerPlanetsStats());
+            console.log(JSON.stringify(playerPlanets));
           }
 
           if (!playerPlanets.get(stats.playerId).planets.has(galaxy)) {
             console.log('add galaxy: ' + galaxy);
             playerPlanets.get(stats.playerId).planets.set(galaxy, []);
+            console.log(JSON.stringify(playerPlanets));
           }
 
           playerPlanets.get(stats.playerId).planets.get(galaxy).push(stats.location);
           playerPlanets.get(stats.playerId).name = stats.owner;
           playerPlanets.get(stats.playerId).playerId = stats.playerId;
-
-          console.log(stats.location + ' - ' + stats.owner + ' - ' + stats.playerId);
-          console.log(JSON.stringify(playerPlanets));
         }
 
         setDoc(doc(collectionPath, stats.location), JSON.parse(JSON.stringify(stats)))
