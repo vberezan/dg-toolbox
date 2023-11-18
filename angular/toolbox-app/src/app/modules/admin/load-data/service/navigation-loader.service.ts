@@ -191,13 +191,13 @@ export class NavigationLoaderService {
 
           if (!playerPlanets.get(stats.playerId).planets.has(galaxy)) {
             playerPlanets.get(stats.playerId).planets.set(galaxy, []);
+            console.log(galaxy);
+            console.log(JSON.stringify(playerPlanets));
           }
 
           playerPlanets.get(stats.playerId).planets.get(galaxy).push(stats.location);
           playerPlanets.get(stats.playerId).name = stats.owner;
           playerPlanets.get(stats.playerId).playerId = stats.playerId;
-
-          console.log(JSON.stringify(playerPlanets));
         }
 
         setDoc(doc(collectionData, stats.location), JSON.parse(JSON.stringify(stats)))
