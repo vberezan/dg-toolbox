@@ -23,8 +23,6 @@ export class SynchronizerService {
   }
 
   loadTurnBasedUpdates(turn: number): void {
-    console.log(turn);
-
     if (this.localStorageService.get(LocalStorageKeys.PLAYERS_STATS) == null ||
       this.localStorageService.get(LocalStorageKeys.LAST_PLAYERS_RANKINGS_UPDATE_TURN) == null ||
       turn > this.localStorageService.get(LocalStorageKeys.LAST_PLAYERS_RANKINGS_UPDATE_TURN)) {
@@ -72,7 +70,7 @@ export class SynchronizerService {
     const dom: Document = new DOMParser().parseFromString(source, 'text/html');
     const playerStats: PlayerStats[] = this.localStorageService.get(LocalStorageKeys.PLAYERS_STATS);
 
-    if (dom.querySelector('[action="/alliances/join/"]')) {
+    if (!dom.querySelector('[action="/alliances/join/"]')) {
 
       let cache: AllianceMember[] = [];
 
@@ -100,6 +98,8 @@ export class SynchronizerService {
           });
         }
       });
+
+      console.log(cache);
 
       this.localStorageService.cache(LocalStorageKeys.ALLIANCE_MEMBERS, cache, 43200000);
     }
