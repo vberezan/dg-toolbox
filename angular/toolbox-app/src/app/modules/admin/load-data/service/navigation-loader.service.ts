@@ -96,18 +96,21 @@ export class NavigationLoaderService {
       let subscription: Subscription = docData(
         doc(collectionPath, player.playerId.toString())
       ).subscribe((item: DocumentData): void => {
-        console.log(item);
+        if (item) {
+          let playerPlanetStats: PlayerPlanetsStats = Object.assign(new PlayerPlanetsStats(), item);
 
-        let playerPlanetStats: PlayerPlanetsStats = Object.assign(new PlayerPlanetsStats(), item);
+          playerPlanetStats.planets.forEach((planets: string[], galaxy: number): void => {
+            if (!player.planets.has(galaxy)) {
+              player.planets.set(galaxy, planets);
+            }
+          });
 
-        playerPlanetStats.planets.forEach((planets: string[], galaxy: number): void => {
-          if (!player.planets.has(galaxy)) {
-            player.planets.set(galaxy, planets);
-          }
-        });
-
-        updateDoc(doc(collectionPath, player.playerId.toString()), JSON.parse(JSON.stringify(player)))
-          .catch((error): void => console.log(error));
+          updateDoc(doc(collectionPath, player.playerId.toString()), JSON.parse(JSON.stringify(player)))
+            .catch((error): void => console.log(error));
+        } else {
+          setDoc(doc(collectionPath, player.playerId.toString()), JSON.parse(JSON.stringify(player)))
+            .catch((error): void => console.log(error));
+        }
 
         subscription.unsubscribe();
       });
