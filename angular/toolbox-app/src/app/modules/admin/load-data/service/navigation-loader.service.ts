@@ -83,7 +83,7 @@ export class NavigationLoaderService {
       }
     }
 
-    this.savePlayerPlanets(playerPlanets);
+    // this.savePlayerPlanets(playerPlanets);
     cancelSubscription.unsubscribe();
   }
 
