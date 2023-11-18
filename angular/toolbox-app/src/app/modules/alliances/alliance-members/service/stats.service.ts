@@ -14,7 +14,7 @@ export class StatsService {
   private _statsEventEmitter: EventEmitter<AllianceMemberStats> = new EventEmitter<AllianceMemberStats>();
 
   loadStats(allianceMembers: AllianceMember[]): void {
-    let names: string[] = allianceMembers.map((member) => member.name.toLowerCase());
+    let names: string[] = allianceMembers.map((member: AllianceMember) => member.name.toLowerCase());
 
     this.localStorageService.get(LocalStorageKeys.PLAYERS_STATS).forEach((playerStats: PlayerStatsCache): void => {
 

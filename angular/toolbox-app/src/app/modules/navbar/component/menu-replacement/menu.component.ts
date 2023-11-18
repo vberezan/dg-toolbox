@@ -4,7 +4,6 @@ import {DarkgalaxyApiService} from "../../../darkgalaxy-ui-parser/service/darkga
 import {AuthService} from "../../../authentication/service/auth.service";
 import {AuthState} from "../../../../shared/model/authentication/auth-state.model";
 import {Analytics, logEvent} from "@angular/fire/analytics";
-import {GlobalConfigService} from "../../service/global-config.service";
 import {ChangelogService} from "../../../changelog/service/changelog.service";
 
 @Component({
@@ -18,7 +17,6 @@ export class MenuComponent implements OnDestroy {
   private dgAPI: DarkgalaxyApiService = inject(DarkgalaxyApiService);
   private changeDetector: ChangeDetectorRef = inject(ChangeDetectorRef);
   private authService: AuthService = inject(AuthService);
-  private globalConfigService: GlobalConfigService = inject(GlobalConfigService);
   private changelogService: ChangelogService = inject(ChangelogService);
   private analytics: Analytics = inject(Analytics);
 
@@ -59,7 +57,6 @@ export class MenuComponent implements OnDestroy {
       this.active = state.status;
 
       if (state.status && !this.initialized) {
-        this.globalConfigService.checkAndCachePlayersRankings();
         this.initialized = true;
       }
     });

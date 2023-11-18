@@ -19,7 +19,10 @@ export class SynchronizerService {
   }
 
   loadTurnBasedUpdates(turn: number): void {
-
+    if (this.localStorageService.get(LocalStorageKeys.ALLIANCE_MEMBERS) == null ||
+      turn > this.localStorageService.get(LocalStorageKeys.LAST_PLAYERS_RANKINGS_UPDATE_TURN)) {
+      this.loadPlayersRankings(turn);
+    }
   }
 
   loadLiveUpdates(): void {
@@ -43,51 +46,32 @@ export class SynchronizerService {
     }
   }
 
-  private loadPlayersRankings(): void {
-    const collectionPath: any = collection(this.firestore, 'config');
-    const documentPath: string = 'last-players-rankings-update-turn';
+  private loadPlayersRankings(turn: number): void {
+    const collectionPath: any = collection(this.firestore, 'players-rankings');
 
-    let subscription: Subscription = docData(
-      doc(collectionPath, documentPath)
-    ).subscribe((item: DocumentData): void => {
-      if (this.localStorageService.get(LocalStorageKeys.LAST_PLAYERS_RANKINGS_UPDATE_TURN) &&
-        (this.localStorageService.get(LocalStorageKeys.LAST_PLAYERS_RANKINGS_UPDATE_TURN) == Object.assign({value: 0}, item).value)) {
-        subscription.unsubscribe();
-        return;
-      } else {
-        let planetsSubscription: Subscription = collectionData(
-          query(collection(this.firestore, 'players'))
-        ).subscribe((items: DocumentData[]): void => {
-          let stats: PlayerStats[] = Object.assign([], items);
-          let cache: PlayerStatsCache[] = [];
+    let subscription: Subscription = collectionData(
+      query(collection(this.firestore, collectionPath))
+    ).subscribe((items: DocumentData[]): void => {
+      let stats: PlayerStats[] = Object.assign([], items);
+      let cache: PlayerStatsCache[] = [];
 
-          stats.forEach((stat: PlayerStats): void => {
-            let psc: PlayerStatsCache = new PlayerStatsCache();
-            psc.playerId = stat.playerId;
-            psc.rank = stat.rank;
-            psc.planets = stat.planets;
-            psc.name = stat.name;
-            psc.alliance = stat.alliance;
-            psc.combatScore = stat.combatScore;
-            psc.combinedScore = stat.combinedScore;
-            psc.score = stat.score;
+      stats.forEach((stat: PlayerStats): void => {
+        let psc: PlayerStatsCache = new PlayerStatsCache();
+        psc.playerId = stat.playerId;
+        psc.rank = stat.rank;
+        psc.planets = stat.planets;
+        psc.name = stat.name;
+        psc.alliance = stat.alliance;
+        psc.combatScore = stat.combatScore;
+        psc.combinedScore = stat.combinedScore;
+        psc.score = stat.score;
 
-            cache.push(psc);
-          });
+        cache.push(psc);
+      });
 
-          this.localStorageService.cache(LocalStorageKeys.PLAYERS_STATS, cache);
-          this.localStorageService.cache(LocalStorageKeys.LAST_PLAYERS_RANKINGS_UPDATE_TURN, Object.assign({value: 0}, item).value);
-          planetsSubscription.unsubscribe();
-          subscription.unsubscribe();
-        });
-      }
-    });
-
-    let planetsSubscription: Subscription = docData(
-      doc(collection(this.firestore, 'config'), 'last-planets-update-turn')
-    ).subscribe((item: DocumentData): void => {
-      this.localStorageService.cache(LocalStorageKeys.LAST_PLANETS_UPDATE_TURN, Object.assign({value: 0}, item).value);
-      planetsSubscription.unsubscribe();
+      this.localStorageService.cache(LocalStorageKeys.PLAYERS_STATS, cache);
+      this.localStorageService.cache(LocalStorageKeys.LAST_PLAYERS_RANKINGS_UPDATE_TURN, turn);
+      subscription.unsubscribe();
     });
   }
 }
