@@ -1,6 +1,8 @@
+import {PlayerPlanetStats} from "./player-planet-stats.model";
+
 export class PlayerPlanetsStats {
   private _playerId: number;
-  private _planets: Map<number, string[]> = new Map<number, string[]>();
+  private _planets: PlayerPlanetStats[] = [];
   private _name: string;
 
   get playerId(): number {
@@ -11,11 +13,11 @@ export class PlayerPlanetsStats {
     this._playerId = value;
   }
 
-  get planets(): Map<number, string[]> {
+  get planets(): PlayerPlanetStats[] {
     return this._planets;
   }
 
-  set planets(value: Map<number, string[]>) {
+  set planets(value: PlayerPlanetStats[]) {
     this._planets = value;
   }
 
@@ -30,7 +32,7 @@ export class PlayerPlanetsStats {
   toJSON(): any {
     return {
       playerId: this.playerId,
-      planets: Array.from(this.planets.entries()),
+      planets: this.planets,
       name: this.name
     };
   }
