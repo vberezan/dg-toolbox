@@ -221,6 +221,8 @@ function applyCustomStyling() {
             p.remove();
         });
 
+        document.querySelector('#contentBox .leftContent').prepend(generalInfo);
+
         // let infoPart = detach(document.querySelector('#contentBox .leftContent>h2').nextElementSibling);
         // if (infoPart != null) {
         //     generalInfo.prepend(infoPart);
