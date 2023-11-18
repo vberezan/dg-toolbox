@@ -1,10 +1,12 @@
 import {EventEmitter, inject, Injectable, Optional} from '@angular/core';
 import {firstValueFrom, Subscription} from "rxjs";
 import {HttpClient} from "@angular/common/http";
-import {collection, doc, Firestore, setDoc} from "@angular/fire/firestore";
+import {collection, doc, docData, Firestore, limit, query, setDoc, updateDoc, where} from "@angular/fire/firestore";
 import {PlanetStats} from "../../../../shared/model/stats/planet-stats.model";
 import {DarkgalaxyApiService} from "../../../darkgalaxy-ui-parser/service/darkgalaxy-api.service";
 import {PlayerPlanetsStats} from "../../../../shared/model/stats/player-planets-stats.model";
+import {DocumentData} from "@angular/fire/compat/firestore";
+import {LocalStorageKeys} from "../../../../shared/model/local-storage/local-storage-keys";
 
 @Injectable({
   providedIn: 'root'
@@ -88,14 +90,26 @@ export class NavigationLoaderService {
   savePlayerPlanets(playerPlanets: Map<number, PlayerPlanetsStats>): void {
     const collectionData: any = collection(this.firestore, 'players-planets');
 
-    console.log(playerPlanets);
+    playerPlanets.forEach((player: PlayerPlanetsStats): void => {
+      let subscription: Subscription = docData(
+        doc(collectionData, player.playerId.toString())
+      ).subscribe((item: DocumentData): void => {
+        console.log(Object.assign(new PlayerPlanetsStats(), item).playerId);
 
-    // playerPlanets.forEach((player: PlayerPlanetsStats): void => {
-    //   player.planets.forEach((planets: string[], galaxy: number): void => {
-    //     setDoc(doc(collectionData, player.playerId + '-' + galaxy), JSON.parse(JSON.stringify({'planets': planets})))
-    //       .catch((error): void => console.log(error));
-    //   });
-    // });
+        // let playerPlanetStats: PlayerPlanetsStats = Object.assign(new PlayerPlanetsStats(), item);
+        //
+        // playerPlanetStats.planets.forEach((planets: string[], galaxy: number): void => {
+        //   if (!player.planets.has(galaxy)) {
+        //     player.planets.set(galaxy, planets);
+        //   }
+        // });
+        //
+        // updateDoc(doc(collectionData, player.playerId.toString()), JSON.parse(JSON.stringify(player)))
+        //   .catch((error): void => console.log(error));
+
+        subscription.unsubscribe();
+      });
+    });
   }
 
   totalSystemsNr(galaxies: number[]): number {
@@ -165,7 +179,7 @@ export class NavigationLoaderService {
 
         stats.turn = this.dgAPI.gameTurn();
 
-        if (!playerPlanets.has(stats.playerId)) {
+        if (!playerPlanets.has(stats.playerId) && stats.playerId > 0) {
           playerPlanets.set(stats.playerId, new PlayerPlanetsStats());
         }
 
@@ -173,7 +187,9 @@ export class NavigationLoaderService {
           playerPlanets.get(stats.playerId).planets.set(galaxy, []);
         }
 
-        playerPlanets.get(stats.playerId).planets.get(galaxy).push(stats.location);
+        if (stats.playerId > 0) {
+          playerPlanets.get(stats.playerId).planets.get(galaxy).push(stats.location);
+        }
 
         setDoc(doc(collectionData, stats.location), JSON.parse(JSON.stringify(stats)))
           .catch((error): void => {
