@@ -29,7 +29,7 @@ export class RankingsLoaderService {
   async scanPlayersRankingsScreens(cancelScanEmitter: EventEmitter<boolean>): Promise<void> {
     const scanDelay: number = 1500 + Math.floor(Math.random() * 1500);
     const playersRankingsPath: any = collection(this.firestore, 'players-rankings');
-    const configPath: any = collection(this.firestore, 'config');
+    const metadataPath: any = collection(this.firestore, 'metadata');
     const playersPlanetsPath: any = collection(this.firestore, 'players-planets');
 
 
@@ -120,14 +120,14 @@ export class RankingsLoaderService {
 
     await this.delay(50 * playersStats.size);
 
-    docData(doc(configPath, 'players-rankings-turn')).subscribe((item: DocumentData): void => {
+    docData(doc(metadataPath, 'players-rankings-turn')).subscribe((item: DocumentData): void => {
       let updateMetadata: UpdateMetadata = Object.assign(new UpdateMetadata(0,0), item);
 
       if (updateMetadata.turn === this.dgAPI.gameTurn()) {
         updateMetadata.version++;
       }
 
-      updateDoc(doc(configPath, 'players-rankings-turn'), JSON.parse(JSON.stringify(updateMetadata)))
+      updateDoc(doc(metadataPath, 'players-rankings-turn'), JSON.parse(JSON.stringify(updateMetadata)))
         .catch((e): void => console.log(e));
     });
   }

@@ -42,13 +42,13 @@ export class NavigationLoaderService {
 
     for (let g: number = 0; g < validGalaxies.length; g++) {
       let playerPlanets: Map<number, PlayerPlanetsStats> = new Map<number, PlayerPlanetsStats>();
-      const collectionPath: any = collection(this.firestore, 'planets-g' + validGalaxies[g]);
+      const planetsPath: any = collection(this.firestore, 'planets-g' + validGalaxies[g]);
 
       if (validGalaxies[g] === 1) {
         for (let se: number = 1; se <= this.G1_SECTORS; se++) {
           for (let sy: number = 1; sy <= this.SYSTEMS; sy++) {
             if (isScanActive) {
-              await this.parseAndSave(validGalaxies[g], se, sy, playerPlanets, collectionPath);
+              await this.parseAndSave(validGalaxies[g], se, sy, playerPlanets, planetsPath);
               this._systemScanEmitter.emit(new PageAction(++scannedSystems, totalSystemNr, 'load-save'));
               await this.delay(scanDelay);
             }
@@ -60,7 +60,7 @@ export class NavigationLoaderService {
         for (let se: number = 1; se <= this.INNER_SECTORS; se++) {
           for (let sy: number = 1; sy <= this.SYSTEMS; sy++) {
             if (isScanActive) {
-              await this.parseAndSave(validGalaxies[g], se, sy, playerPlanets, collectionPath);
+              await this.parseAndSave(validGalaxies[g], se, sy, playerPlanets, planetsPath);
               this._systemScanEmitter.emit(new PageAction(++scannedSystems, totalSystemNr, 'load-save'));
               await this.delay(scanDelay);
             }
@@ -72,7 +72,7 @@ export class NavigationLoaderService {
         for (let se: number = 1; se <= this.OUTER_SECTORS; se++) {
           for (let sy: number = 1; sy <= this.SYSTEMS; sy++) {
             if (isScanActive) {
-              await this.parseAndSave(validGalaxies[g], se, sy, playerPlanets, collectionPath);
+              await this.parseAndSave(validGalaxies[g], se, sy, playerPlanets, planetsPath);
               this._systemScanEmitter.emit(new PageAction(++scannedSystems, totalSystemNr, 'load-save'));
               await this.delay(scanDelay);
             }
@@ -87,11 +87,11 @@ export class NavigationLoaderService {
   }
 
   private savePlayerPlanets(playerPlanets: Map<number, PlayerPlanetsStats>): void {
-    const collectionPath: any = collection(this.firestore, 'players-planets');
+    const playersPlanetsPath: any = collection(this.firestore, 'players-planets');
 
     playerPlanets.forEach((player: PlayerPlanetsStats, playerId: number): void => {
       let subscription: Subscription = docData(
-        doc(collectionPath, playerId.toString())
+        doc(playersPlanetsPath, playerId.toString())
       ).subscribe((item: DocumentData): void => {
         if (item) {
           let playerPlanetStats: PlayerPlanetsStats = Object.assign(new PlayerPlanetsStats(), item);
@@ -110,7 +110,7 @@ export class NavigationLoaderService {
           });
           player.total = totalPlanets + 1;
 
-          updateDoc(doc(collectionPath, playerId.toString()), JSON.parse(JSON.stringify(player)))
+          updateDoc(doc(playersPlanetsPath, playerId.toString()), JSON.parse(JSON.stringify(player)))
             .catch((error): void => console.log(error));
         } else {
           let totalPlanets: number = 0;
@@ -119,7 +119,7 @@ export class NavigationLoaderService {
           });
           player.total = totalPlanets;
 
-          setDoc(doc(collectionPath, player.playerId.toString()), JSON.parse(JSON.stringify(player)))
+          setDoc(doc(playersPlanetsPath, player.playerId.toString()), JSON.parse(JSON.stringify(player)))
             .catch((error): void => console.log(error));
         }
 
@@ -159,7 +159,7 @@ export class NavigationLoaderService {
     return result
   }
 
-  private async parseAndSave(galaxy: number, sector: number, system: number, playerPlanets: Map<number, PlayerPlanetsStats>, collectionPath: any): Promise<void> {
+  private async parseAndSave(galaxy: number, sector: number, system: number, playerPlanets: Map<number, PlayerPlanetsStats>, planetsPath: any): Promise<void> {
     const source: string = await firstValueFrom(this.httpClient.get(this.NAVIGATION_BASE_URL + galaxy + '/' + sector + '/' + system, {responseType: 'text'}));
     const dom: Document = new DOMParser().parseFromString(source, 'text/html');
 
@@ -214,7 +214,7 @@ export class NavigationLoaderService {
           playerPlanets.get(stats.playerId).playerId = stats.playerId;
           playerPlanets.get(stats.playerId).turn = this.dgAPI.gameTurn();
 
-          setDoc(doc(collectionPath, stats.location), JSON.parse(JSON.stringify(stats)))
+          setDoc(doc(planetsPath, stats.location), JSON.parse(JSON.stringify(stats)))
             .catch((error): void => console.log(error));
         }
       }, 50 * index);
