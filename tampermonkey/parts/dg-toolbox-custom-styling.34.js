@@ -209,71 +209,58 @@ function applyCustomStyling() {
         let generalInfo = document.createElement('div');
         generalInfo.id = 'general-info';
 
-        let ps = document.querySelectorAll('#contentBox .leftContent>p');
-        ps.forEach((p) => {
-            if (p.textContent.trim().length > 0) {
-                let newP = document.createElement('p');
-                newP.innerHTML = p.innerHTML;
-                generalInfo.append(newP);
+        let infoPart = detach(document.querySelector('#contentBox .leftContent>h2').nextElementSibling);
+        if (infoPart != null) {
+            generalInfo.prepend(infoPart);
+        }
+
+        infoPart = detach(document.querySelector('#contentBox .leftContent>h2'));
+        if (infoPart != null) {
+            generalInfo.prepend(infoPart);
+        }
+
+        let knownIssues = document.createElement('div');
+        knownIssues.id = 'known-issues';
+
+        let issuesPart = detach(document.querySelector('#contentBox .leftContent>h2').nextElementSibling);
+        if (issuesPart != null) {
+            knownIssues.prepend(issuesPart);
+        }
+
+        issuesPart = detach(document.querySelector('#contentBox .leftContent>h2'));
+        if (issuesPart != null) {
+            knownIssues.prepend(issuesPart);
+        }
+
+        document.querySelector('#contentBox br').remove();
+        let welcome = document.createElement('div');
+        welcome.id = 'welcome';
+
+        let welcomePart = detach(document.querySelector('#contentBox .leftContent>.plainHeader'));
+        if (welcomePart != null) {
+            welcome.append(welcomePart);
+        }
+
+        while (document.querySelector('#contentBox .leftContent>p')) {
+            if (document.querySelector('#contentBox .leftContent>p').innerHTML.trim().length > 0) {
+                let part = detach(document.querySelector('#contentBox .leftContent>p'));
+
+                if (part != null) {
+                    welcome.append(part);
+                }
+            } else {
+                document.querySelector('#contentBox .leftContent>p').remove();
             }
+        }
 
-            p.remove();
-        });
-
+        document.querySelector('#contentBox .leftContent').prepend(knownIssues);
         document.querySelector('#contentBox .leftContent').prepend(generalInfo);
+        document.querySelector('#contentBox .leftContent').prepend(welcome);
 
-        // let infoPart = detach(document.querySelector('#contentBox .leftContent>h2').nextElementSibling);
-        // if (infoPart != null) {
-        //     generalInfo.prepend(infoPart);
-        // }
-        //
-        // infoPart = detach(document.querySelector('#contentBox .leftContent>h2'));
-        // if (infoPart != null) {
-        //     generalInfo.prepend(infoPart);
-        // }
-        //
-        // let knownIssues = document.createElement('div');
-        // knownIssues.id = 'known-issues';
-        //
-        // let issuesPart = detach(document.querySelector('#contentBox .leftContent>h2').nextElementSibling);
-        // if (issuesPart != null) {
-        //     knownIssues.prepend(issuesPart);
-        // }
-        //
-        // issuesPart = detach(document.querySelector('#contentBox .leftContent>h2'));
-        // if (issuesPart != null) {
-        //     knownIssues.prepend(issuesPart);
-        // }
-        //
-        // document.querySelector('#contentBox br').remove();
-        // let welcome = document.createElement('div');
-        // welcome.id = 'welcome';
-        //
-        // let welcomePart = detach(document.querySelector('#contentBox .leftContent>.plainHeader'));
-        // if (welcomePart != null) {
-        //     welcome.append(welcomePart);
-        // }
-        //
-        // while (document.querySelector('#contentBox .leftContent>p')) {
-        //     if (document.querySelector('#contentBox .leftContent>p').innerHTML.trim().length > 0) {
-        //         let part = detach(document.querySelector('#contentBox .leftContent>p'));
-        //
-        //         if (part != null) {
-        //             welcome.append(part);
-        //         }
-        //     } else {
-        //         document.querySelector('#contentBox .leftContent>p').remove();
-        //     }
-        // }
-        //
-        // document.querySelector('#contentBox .leftContent').prepend(knownIssues);
-        // document.querySelector('#contentBox .leftContent').prepend(generalInfo);
-        // document.querySelector('#contentBox .leftContent').prepend(welcome);
-        //
-        // let changelog = detach(document.querySelector('dgt-changelog'));
-        // if (changelog != null) {
-        //     document.querySelector('#contentBox .leftContent').prepend(changelog);
-        // }
+        let changelog = detach(document.querySelector('dgt-changelog'));
+        if (changelog != null) {
+            document.querySelector('#contentBox .leftContent').prepend(changelog);
+        }
     }
 
     // -- scan
