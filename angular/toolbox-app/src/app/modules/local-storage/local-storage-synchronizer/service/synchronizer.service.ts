@@ -4,6 +4,7 @@ import {LocalStorageService} from "../../local-storage-manager/service/local-sto
 import {Subscription} from "rxjs";
 import {DocumentData} from "@angular/fire/compat/firestore";
 import {LocalStorageKeys} from "../../../../shared/model/local-storage/local-storage-keys";
+import {PlayerStats} from "../../../../shared/model/stats/player-stats.model";
 
 @Injectable({
   providedIn: 'root'
@@ -20,6 +21,7 @@ export class SynchronizerService {
     if (this.localStorageService.get(LocalStorageKeys.PLAYERS_STATS) == null ||
       this.localStorageService.get(LocalStorageKeys.LAST_PLAYERS_RANKINGS_UPDATE_TURN) == null ||
       turn > this.localStorageService.get(LocalStorageKeys.LAST_PLAYERS_RANKINGS_UPDATE_TURN)) {
+
       this.loadPlayersRankings(turn);
     }
   }
@@ -36,10 +38,7 @@ export class SynchronizerService {
       let subscription: Subscription = docData(
         doc(collectionPath, documentPath)
       ).subscribe((item: DocumentData): void => {
-        let newVersion: string = Object.assign({value: ''}, item).value;
-
-        this.localStorageService.cache(LocalStorageKeys.REMOTE_VERSION, newVersion, 300000);
-
+        this.localStorageService.cache(LocalStorageKeys.REMOTE_VERSION, Object.assign({value: ''}, item).value, 300000);
         subscription.unsubscribe();
       });
     }
@@ -51,7 +50,11 @@ export class SynchronizerService {
     let subscription: Subscription = collectionData(
       query(collection(this.firestore, collectionPath))
     ).subscribe((items: DocumentData[]): void => {
-      this.localStorageService.cache(LocalStorageKeys.PLAYERS_STATS, Object.assign([], items));
+      let playerStats: PlayerStats[] = Object.assign([], items);
+
+      console.log(playerStats);
+
+      this.localStorageService.cache(LocalStorageKeys.PLAYERS_STATS, playerStats);
       this.localStorageService.cache(LocalStorageKeys.LAST_PLAYERS_RANKINGS_UPDATE_TURN, turn);
       subscription.unsubscribe();
     });
