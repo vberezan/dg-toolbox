@@ -11,7 +11,7 @@ export class ChangelogService {
   private _installUpdateEmitter: EventEmitter<boolean> = new EventEmitter<boolean>();
 
   checkForUpdate(changeDetector: ChangeDetectorRef, changeObserver: Subscriber<boolean>): void {
-    let remoteVersion = this.localStorageService.get(LocalStorageKeys.REMOTE_VERSION, false);
+    let remoteVersion = this.localStorageService.metadata().dgtVersion
     let localVersion = this.localStorageService.get(LocalStorageKeys.LOCAL_VERSION)
     changeObserver.next((remoteVersion !== null && remoteVersion !== localVersion && remoteVersion !== ''));
 

@@ -1,6 +1,7 @@
 import {Injectable, Optional} from '@angular/core';
 import {LocalStorageItem} from "../../../../shared/model/local-storage/local-storage-item.model";
 import {LocalStorageKeys} from "../../../../shared/model/local-storage/local-storage-keys";
+import {Metadata} from "../../../../shared/model/local-storage/metadata.model";
 
 @Injectable({
   providedIn: 'platform'
@@ -39,6 +40,10 @@ export class LocalStorageService {
     const item: LocalStorageItem = Object.assign(LocalStorageItem, JSON.parse(itemStr));
 
     return (item.ttl > 0 && (Date.now() > item.expiry));
+  }
+
+  metadata(): Metadata {
+    return this.get(LocalStorageKeys.METADATA);
   }
 
   remove(key: string): void {

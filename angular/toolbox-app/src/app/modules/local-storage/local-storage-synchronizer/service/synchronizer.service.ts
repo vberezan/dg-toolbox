@@ -67,28 +67,28 @@ export class SynchronizerService {
   }
 
   loadLiveUpdates(): void {
-    this.loadVersion();
+    // this.loadVersion();
   }
 
-  private loadVersion(): void {
-    const metadataPath: any = collection(this.firestore, 'metadata');
-    const documentPath: string = 'dgt-version';
-
-    if (this.localStorageService.isExpired(LocalStorageKeys.REMOTE_VERSION)) {
-      let subscription: Subscription = docData(
-        doc(metadataPath, documentPath)
-      ).subscribe((item: DocumentData): void => {
-        if (item) {
-          this.localStorageService.cache(LocalStorageKeys.REMOTE_VERSION, Object.assign({version: ''}, item).version, 300000);
-        } else {
-          setDoc(doc(metadataPath, documentPath), {version: this.localStorageService.get(LocalStorageKeys.LOCAL_VERSION)})
-            .catch((error: any): void => console.log(error));
-        }
-
-        subscription.unsubscribe();
-      });
-    }
-  }
+  // private loadVersion(): void {
+  //   const metadataPath: any = collection(this.firestore, 'metadata');
+  //   const documentPath: string = 'dgt-version';
+  //
+  //   if (this.localStorageService.isExpired(LocalStorageKeys.REMOTE_VERSION)) {
+  //     let subscription: Subscription = docData(
+  //       doc(metadataPath, documentPath)
+  //     ).subscribe((item: DocumentData): void => {
+  //       if (item) {
+  //         this.localStorageService.cache(LocalStorageKeys.REMOTE_VERSION, Object.assign({version: ''}, item).version, 300000);
+  //       } else {
+  //         setDoc(doc(metadataPath, documentPath), {version: this.localStorageService.get(LocalStorageKeys.LOCAL_VERSION)})
+  //           .catch((error: any): void => console.log(error));
+  //       }
+  //
+  //       subscription.unsubscribe();
+  //     });
+  //   }
+  // }
 
   private loadPlayersRankings(turn: number): void {
     const playersRankingsPath: any = collection(this.firestore, 'players-rankings');

@@ -41,7 +41,7 @@ export class Metadata {
 
   toJSON(): any {
     return {
-      version: this.dgtVersion,
+      dgtVersion: this.dgtVersion,
       playersRankingsTurn: this.playersRankingsTurn,
       allianceMembersTurn: this.allianceMembersTurn,
       planetsTurn: this.planetsTurn
