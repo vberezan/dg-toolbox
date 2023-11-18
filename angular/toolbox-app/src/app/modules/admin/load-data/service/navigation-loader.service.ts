@@ -90,7 +90,7 @@ export class NavigationLoaderService {
 
     playerPlanets.forEach((player: PlayerPlanetsStats): void => {
       player.planets.forEach((planets: string[], galaxy: number): void => {
-        setDoc(doc(collectionData, player.playerId + '-' + galaxy), JSON.parse(JSON.stringify(planets)))
+        setDoc(doc(collectionData, player.playerId + '-' + galaxy), JSON.parse(JSON.stringify({'planets': planets})))
           .catch((error): void => console.log(error));
       });
     });
