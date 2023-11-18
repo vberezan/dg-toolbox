@@ -12,7 +12,7 @@ export class ChangelogService {
 
   checkForUpdate(changeDetector: ChangeDetectorRef, changeObserver: Subscriber<boolean>): void {
     let remoteVersion = this.localStorageService.remoteMetadata().dgtVersion
-    let localVersion = this.localStorageService.get(LocalStorageKeys.LOCAL_VERSION)
+    let localVersion = this.localStorageService.localMetadata().dgtVersion
     changeObserver.next((remoteVersion !== null && remoteVersion !== localVersion && remoteVersion !== ''));
 
     changeObserver.complete();
