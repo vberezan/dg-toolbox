@@ -152,8 +152,6 @@ export class NavigationLoaderService {
     const source: string = await firstValueFrom(this.httpClient.get(this.NAVIGATION_BASE_URL + galaxy + '/' + sector + '/' + system, {responseType: 'text'}));
     const dom: Document = new DOMParser().parseFromString(source, 'text/html');
 
-    console.log(JSON.stringify(playerPlanets));
-
     dom.querySelectorAll('.navigation .planets').forEach((planet: any, index: number): void => {
       setTimeout((): void => {
         let stats: PlanetStats = new PlanetStats();
@@ -198,12 +196,12 @@ export class NavigationLoaderService {
           playerPlanets.get(stats.playerId).planets.get(galaxy).push(stats.location);
           playerPlanets.get(stats.playerId).name = stats.owner;
           playerPlanets.get(stats.playerId).playerId = stats.playerId;
+
+          console.log(JSON.stringify(playerPlanets));
         }
 
         setDoc(doc(collectionPath, stats.location), JSON.parse(JSON.stringify(stats)))
-          .catch((error): void => {
-            console.log(error);
-          });
+          .catch((error): void => console.log(error));
       }, 50 * index);
     });
 
