@@ -41,9 +41,10 @@ export class NavigationLoaderService {
 
     const totalSystemNr: number = this.totalSystemsNr(galaxies);
 
+    let playerPlanets: Map<number, PlayerPlanetsStats> = new Map<number, PlayerPlanetsStats>();
+
     for (let g: number = 0; g < validGalaxies.length; g++) {
       const collectionData: any = collection(this.firestore, 'planets-g' + validGalaxies[g]);
-      let playerPlanets: Map<number, PlayerPlanetsStats> = new Map<number, PlayerPlanetsStats>();
 
       if (validGalaxies[g] === 1) {
         for (let se: number = 1; se <= this.G1_SECTORS; se++) {
@@ -81,9 +82,9 @@ export class NavigationLoaderService {
         }
       }
 
-      this.savePlayerPlanets(playerPlanets);
     }
 
+    this.savePlayerPlanets(playerPlanets);
     cancelSubscription.unsubscribe();
   }
 
