@@ -152,6 +152,8 @@ export class NavigationLoaderService {
     const source: string = await firstValueFrom(this.httpClient.get(this.NAVIGATION_BASE_URL + galaxy + '/' + sector + '/' + system, {responseType: 'text'}));
     const dom: Document = new DOMParser().parseFromString(source, 'text/html');
 
+    console.log(JSON.stringify(playerPlanets));
+
     dom.querySelectorAll('.navigation .planets').forEach((planet: any, index: number): void => {
       setTimeout((): void => {
         let stats: PlanetStats = new PlanetStats();
@@ -191,8 +193,6 @@ export class NavigationLoaderService {
 
           if (!playerPlanets.get(stats.playerId).planets.has(galaxy)) {
             playerPlanets.get(stats.playerId).planets.set(galaxy, []);
-            console.log(galaxy + ' - ' + stats.location);
-            console.log(JSON.stringify(playerPlanets));
           }
 
           playerPlanets.get(stats.playerId).planets.get(galaxy).push(stats.location);
