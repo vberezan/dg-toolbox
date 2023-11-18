@@ -186,13 +186,15 @@ export class NavigationLoaderService {
           if (!playerPlanets.has(stats.playerId)) {
             console.log('add playerId: ' + stats.playerId);
             playerPlanets.set(stats.playerId, new PlayerPlanetsStats());
-            console.log(JSON.stringify(playerPlanets));
+          } else {
+            console.log('playerId exists: ' + stats.playerId);
           }
 
           if (!playerPlanets.get(stats.playerId).planets.has(galaxy)) {
             console.log('add galaxy: ' + galaxy);
             playerPlanets.get(stats.playerId).planets.set(galaxy, []);
-            console.log(JSON.stringify(playerPlanets));
+          } else {
+            console.log('galaxy exists: ' + galaxy);
           }
 
           playerPlanets.get(stats.playerId).planets.get(galaxy).push(stats.location);
