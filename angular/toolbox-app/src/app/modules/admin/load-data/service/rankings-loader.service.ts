@@ -103,7 +103,7 @@ export class RankingsLoaderService {
       if (isScanActive) {
         setTimeout((): void => {
           let playerPlanetsSubscription: Subscription = docData(
-            doc(playersPlanetsPath, playerId.toString(), 'total')
+            doc(playersPlanetsPath, playerId.toString(), 'total', 'total')
           ).subscribe((item: DocumentData): void => {
             playerStats.planets = Object.assign(0, item);
 
