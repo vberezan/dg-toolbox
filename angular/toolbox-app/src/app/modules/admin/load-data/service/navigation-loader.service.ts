@@ -31,7 +31,6 @@ export class NavigationLoaderService {
   async scanNavigationScreen(cancelScanEmitter: EventEmitter<boolean>, @Optional() galaxies: number[] = []): Promise<void> {
     const scanDelay: number = 500 + Math.floor(Math.random() * 1000);
     const validGalaxies: number[] = this.filterValidGalaxies(galaxies);
-    let playerPlanets: Map<number, PlayerPlanetsStats> = new Map<number, PlayerPlanetsStats>();
 
     let scannedSystems: number = 0;
     let isScanActive: boolean = true;
@@ -44,6 +43,7 @@ export class NavigationLoaderService {
 
     for (let g: number = 0; g < validGalaxies.length; g++) {
       const collectionData: any = collection(this.firestore, 'planets-g' + validGalaxies[g]);
+      let playerPlanets: Map<number, PlayerPlanetsStats> = new Map<number, PlayerPlanetsStats>();
 
       if (validGalaxies[g] === 1) {
         for (let se: number = 1; se <= this.G1_SECTORS; se++) {
@@ -80,9 +80,10 @@ export class NavigationLoaderService {
           }
         }
       }
+
+      this.savePlayerPlanets(playerPlanets);
     }
 
-    this.savePlayerPlanets(playerPlanets);
     cancelSubscription.unsubscribe();
   }
 
