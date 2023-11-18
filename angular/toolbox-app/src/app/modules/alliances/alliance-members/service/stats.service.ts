@@ -3,7 +3,7 @@ import {AllianceMember} from "../../../../shared/model/alliances/alliance-member
 import {AllianceMemberStats} from "../../../../shared/model/alliances/alliance-member-stats.model";
 import {LocalStorageService} from "../../../local-storage/local-storage-manager/service/local-storage.service";
 import {LocalStorageKeys} from "../../../../shared/model/local-storage/local-storage-keys";
-import {PlayerStatsCache} from "../../../../shared/model/stats/player-stats-cache.model";
+import {PlayerStats} from "../../../../shared/model/stats/player-stats.model";
 
 
 @Injectable({
@@ -16,7 +16,7 @@ export class StatsService {
   loadStats(allianceMembers: AllianceMember[]): void {
     let names: string[] = allianceMembers.map((member: AllianceMember) => member.name.toLowerCase());
 
-    this.localStorageService.get(LocalStorageKeys.PLAYERS_STATS).forEach((playerStats: PlayerStatsCache): void => {
+    this.localStorageService.get(LocalStorageKeys.PLAYERS_STATS).forEach((playerStats: PlayerStats): void => {
 
       let event: AllianceMemberStats = new AllianceMemberStats();
       event.name = playerStats.name;
