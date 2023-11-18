@@ -1,7 +1,7 @@
 import {EventEmitter, inject, Injectable, Optional} from '@angular/core';
 import {firstValueFrom, Subscription} from "rxjs";
 import {HttpClient} from "@angular/common/http";
-import {collection, doc, docData, Firestore, setDoc, updateDoc} from "@angular/fire/firestore";
+import {collection, doc, docData, Firestore, limit, query, setDoc, updateDoc, where} from "@angular/fire/firestore";
 import {PlanetStats} from "../../../../shared/model/stats/planet-stats.model";
 import {DarkgalaxyApiService} from "../../../darkgalaxy-ui-parser/service/darkgalaxy-api.service";
 import {PlayerPlanetsStats} from "../../../../shared/model/stats/player-planets-stats.model";
@@ -93,7 +93,10 @@ export class NavigationLoaderService {
 
     playerPlanets.forEach((player: PlayerPlanetsStats, playerId: number): void => {
       let subscription: Subscription = collectionData(
-        doc(collectionData, playerId.toString())
+        query(collectionData,
+          where('playerId', '==', playerId),
+          limit(1)
+        )
       ).subscribe((item: DocumentData[]): void => {
 
         let playerPlanetStats: PlayerPlanetsStats = Object.assign(new PlayerPlanetsStats(), item);
