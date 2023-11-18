@@ -18,9 +18,13 @@ export class SynchronizerService {
   }
 
   loadTurnBasedUpdates(turn: number): void {
+    console.log(turn);
+
     if (this.localStorageService.get(LocalStorageKeys.PLAYERS_STATS) == null ||
       this.localStorageService.get(LocalStorageKeys.LAST_PLAYERS_RANKINGS_UPDATE_TURN) == null ||
       turn > this.localStorageService.get(LocalStorageKeys.LAST_PLAYERS_RANKINGS_UPDATE_TURN)) {
+
+      console.log('bingo');
 
       this.loadPlayersRankings(turn);
     }
@@ -50,9 +54,8 @@ export class SynchronizerService {
     let subscription: Subscription = collectionData(
       query(collection(this.firestore, collectionPath))
     ).subscribe((items: DocumentData[]): void => {
-      console.log(items);
-
       let playerStats: PlayerStats[] = Object.assign([], items);
+
 
       this.localStorageService.cache(LocalStorageKeys.PLAYERS_STATS, playerStats);
       this.localStorageService.cache(LocalStorageKeys.LAST_PLAYERS_RANKINGS_UPDATE_TURN, turn);
