@@ -52,7 +52,9 @@ export class PlayerPlanetsStats {
     return {
       playerId: this.playerId,
       planets: this.planets,
-      name: this.name
+      name: this.name,
+      turn: this.turn,
+      total: this.total
     };
   }
 }
