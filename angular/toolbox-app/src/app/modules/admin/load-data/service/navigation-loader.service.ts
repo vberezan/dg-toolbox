@@ -185,10 +185,12 @@ export class NavigationLoaderService {
         if (stats.playerId > 0) {
           console.log('playerId: ' + stats.playerId);
           if (!playerPlanets.has(stats.playerId)) {
+            console.log('add playerId: ' + stats.playerId);
             playerPlanets.set(stats.playerId, new PlayerPlanetsStats());
           }
 
           if (!playerPlanets.get(stats.playerId).planets.has(galaxy)) {
+            console.log('add galaxy: ' + galaxy);
             playerPlanets.get(stats.playerId).planets.set(galaxy, []);
           }
 
