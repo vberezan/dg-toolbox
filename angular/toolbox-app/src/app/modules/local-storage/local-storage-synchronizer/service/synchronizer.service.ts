@@ -92,7 +92,7 @@ export class SynchronizerService {
 
             if (player.querySelector('div.name') != null) {
               allianceMember.name = player.querySelector('div.name').childNodes[0].textContent.trim();
-              allianceMember.stats = playerStats.find((playerStat: PlayerStats): boolean => playerStat.name === allianceMember.name);
+              allianceMember.stats = playerStats.find((playerStat: PlayerStats): boolean => playerStat.name.toLowerCase() === allianceMember.name.toLowerCase());
               cache.push(allianceMember);
             }
           });
