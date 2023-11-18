@@ -1,5 +1,5 @@
 import {inject, Injectable} from '@angular/core';
-import {collection, collectionData, doc, docData, Firestore, setDoc, updateDoc} from "@angular/fire/firestore";
+import {collection, collectionData, doc, docData, Firestore, limit, query, setDoc, updateDoc, where} from "@angular/fire/firestore";
 import {LocalStorageService} from "../../local-storage-manager/service/local-storage.service";
 import {firstValueFrom, Subscriber, Subscription} from "rxjs";
 import {DocumentData} from "@angular/fire/compat/firestore";
@@ -27,11 +27,12 @@ export class SynchronizerService {
   updateMetadata(observer: Subscriber<boolean>): void {
     const metadataPath: any = collection(this.firestore, 'metadata');
 
-    let subscription: Subscription = docData(
-      doc(metadataPath)
-    ).subscribe((item: DocumentData): void => {
-      const metadata: any = Object.assign({}, item);
+    let subscription: Subscription = collectionData(
+      query(metadataPath)
+    ).subscribe((item: DocumentData[]): void => {
       console.log(item);
+      const metadata: any = Object.assign([], item);
+
 
       let cache: Metadata = new Metadata();
 

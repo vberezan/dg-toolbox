@@ -59,7 +59,7 @@ export class AuthService implements OnDestroy {
 
       this.authSubscription = authState(auth).subscribe((user: User): void => {
         if (user != null) {
-          collectionData(
+          let subscription: Subscription = collectionData(
             query(collection(firestore, 'valid-users'),
               where('email', '==', user.email),
               limit(1)
@@ -90,6 +90,8 @@ export class AuthService implements OnDestroy {
             } else {
               this.signOut(auth);
             }
+
+            subscription.unsubscribe();
           });
         } else {
           this.localStorageService.remove(LocalStorageKeys.USER);
