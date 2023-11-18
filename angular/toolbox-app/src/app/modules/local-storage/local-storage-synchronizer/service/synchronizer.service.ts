@@ -50,9 +50,9 @@ export class SynchronizerService {
     let subscription: Subscription = collectionData(
       query(collection(this.firestore, collectionPath))
     ).subscribe((items: DocumentData[]): void => {
-      let playerStats: PlayerStats[] = Object.assign([], items);
+      console.log(items);
 
-      console.log(playerStats);
+      let playerStats: PlayerStats[] = Object.assign([], items);
 
       this.localStorageService.cache(LocalStorageKeys.PLAYERS_STATS, playerStats);
       this.localStorageService.cache(LocalStorageKeys.LAST_PLAYERS_RANKINGS_UPDATE_TURN, turn);
