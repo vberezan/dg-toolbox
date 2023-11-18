@@ -1,7 +1,7 @@
 import {EventEmitter, inject, Injectable, Optional} from '@angular/core';
 import {firstValueFrom, Subscription} from "rxjs";
 import {HttpClient} from "@angular/common/http";
-import {collection, doc, docData, Firestore, setDoc, updateDoc} from "@angular/fire/firestore";
+import {collection, deleteDoc, doc, docData, Firestore, setDoc, updateDoc} from "@angular/fire/firestore";
 import {PlanetStats} from "../../../../shared/model/stats/planet-stats.model";
 import {DarkgalaxyApiService} from "../../../darkgalaxy-ui-parser/service/darkgalaxy-api.service";
 import {PlayerPlanetsStats} from "../../../../shared/model/stats/player-planets-stats.model";
@@ -195,9 +195,9 @@ export class NavigationLoaderService {
           stats.playerId = parseInt(planet.querySelector('.playerName').attributes['playerId'].value.trim());
         }
 
-        stats.turn = this.dgAPI.gameTurn();
-
         if (stats.playerId > 0) {
+          stats.turn = this.dgAPI.gameTurn();
+
           if (!playerPlanets.has(stats.playerId)) {
             playerPlanets.set(stats.playerId, new PlayerPlanetsStats());
           }
@@ -215,10 +215,12 @@ export class NavigationLoaderService {
           playerPlanets.get(stats.playerId).name = stats.owner;
           playerPlanets.get(stats.playerId).playerId = stats.playerId;
           playerPlanets.get(stats.playerId).turn = this.dgAPI.gameTurn();
-        }
 
-        setDoc(doc(collectionPath, stats.location), JSON.parse(JSON.stringify(stats)))
-          .catch((error): void => console.log(error));
+          setDoc(doc(collectionPath, stats.location), JSON.parse(JSON.stringify(stats)))
+            .catch((error): void => console.log(error));
+        } else {
+          deleteDoc(doc(collectionPath, stats.location));
+        }
       }, 50 * index);
     });
 
