@@ -6,6 +6,7 @@ import {firstValueFrom, Subscription} from "rxjs";
 import {PlayerStats} from "../../../../shared/model/stats/player-stats.model";
 import {DocumentData} from "@angular/fire/compat/firestore";
 import {PlayerPlanetsStats} from "../../../../shared/model/stats/player-planets-stats.model";
+import {UpdateMetadata} from "../../../../shared/model/stats/update-metadata.model";
 
 @Injectable({
   providedIn: 'root'
@@ -27,8 +28,8 @@ export class RankingsLoaderService {
 
   async scanPlayersRankingsScreens(cancelScanEmitter: EventEmitter<boolean>): Promise<void> {
     const scanDelay: number = 1500 + Math.floor(Math.random() * 1500);
-    const playersRef: any = collection(this.firestore, 'players-rankings');
-    const configRef: any = collection(this.firestore, 'config');
+    const playersRankingsPath: any = collection(this.firestore, 'players-rankings');
+    const configPath: any = collection(this.firestore, 'config');
     const playersPlanetsPath: any = collection(this.firestore, 'players-planets');
 
 
@@ -105,7 +106,7 @@ export class RankingsLoaderService {
           ).subscribe((item: DocumentData): void => {
             playerStats.planets = Object.assign(new PlayerPlanetsStats(), item).total;
 
-            setDoc(doc(playersRef, playerId.toString()), JSON.parse(JSON.stringify(playerStats)))
+            setDoc(doc(playersRankingsPath, playerId.toString()), JSON.parse(JSON.stringify(playerStats)))
               .then((): void => {
                 this._playersRankingsEmitter.emit({'action': 'save', 'page': ++savedRankings, 'total': playersStats.size});
               }).catch((error): void => console.log(error)
@@ -119,8 +120,16 @@ export class RankingsLoaderService {
 
     await this.delay(50 * playersStats.size);
 
-    updateDoc(doc(configRef, 'last-players-rankings-update-turn'), JSON.parse(JSON.stringify({'value': this.dgAPI.gameTurn()})))
-      .catch((e): void => console.log(e));
+    docData(doc(configPath, 'players-rankings-turn')).subscribe((item: DocumentData): void => {
+      let updateMetadata: UpdateMetadata = Object.assign(new UpdateMetadata(0,0), item);
+
+      if (updateMetadata.turn === this.dgAPI.gameTurn()) {
+        updateMetadata.version++;
+      }
+
+      updateDoc(doc(configPath, 'players-rankings-turn'), JSON.parse(JSON.stringify(updateMetadata)))
+        .catch((e): void => console.log(e));
+    });
   }
 
   async scanAlliancesRankingsScreens(): Promise<void> {
