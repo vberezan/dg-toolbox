@@ -1,7 +1,7 @@
 import {inject, Injectable} from '@angular/core';
 import {collection, collectionData, doc, docData, Firestore, setDoc, updateDoc} from "@angular/fire/firestore";
 import {LocalStorageService} from "../../local-storage-manager/service/local-storage.service";
-import {firstValueFrom, Subscription} from "rxjs";
+import {firstValueFrom, Subscriber, Subscription} from "rxjs";
 import {DocumentData} from "@angular/fire/compat/firestore";
 import {LocalStorageKeys} from "../../../../shared/model/local-storage/local-storage-keys";
 import {PlayerStats} from "../../../../shared/model/stats/player-stats.model";
@@ -24,7 +24,7 @@ export class SynchronizerService {
   constructor() {
   }
 
-  updateMetadata(): void {
+  updateMetadata(observer: Subscriber<boolean>): void {
     const metadataPath: any = collection(this.firestore, 'metadata');
 
     let subscription: Subscription = docData(
@@ -38,6 +38,9 @@ export class SynchronizerService {
       cache.playersRankingsTurn = metadata['playersRankingsTurn'];
 
       this.localStorageService.cache(LocalStorageKeys.METADATA, cache);
+
+      observer.next(true);
+      observer.complete();
 
       subscription.unsubscribe();
     });
