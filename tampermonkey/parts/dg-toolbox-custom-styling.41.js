@@ -187,13 +187,15 @@ function applyCustomStyling() {
         let credits = document.createElement('div');
         let playerRankingsUpdate = 0;
         let playerRankingsVersion = 0;
-        let planetsRankingsUpdate = 0;
+        let planetsUpdate = 0;
+        let planetsVersion = 0;
         let dgtVersion = 'v0.0.0';
 
         if (localStorage.getItem('local-metadata')) {
             playerRankingsUpdate = JSON.parse(JSON.parse(localStorage.getItem('local-metadata')).value).playersRankingsTurn.turn;
             playerRankingsVersion = JSON.parse(JSON.parse(localStorage.getItem('local-metadata')).value).playersRankingsTurn.version;
-            planetsRankingsUpdate = JSON.parse(JSON.parse(localStorage.getItem('local-metadata')).value).planetsTurn.turn;
+            planetsUpdate = JSON.parse(JSON.parse(localStorage.getItem('local-metadata')).value).planetsTurn.turn;
+            planetsVersion = JSON.parse(JSON.parse(localStorage.getItem('local-metadata')).value).planetsTurn.version;
             dgtVersion = JSON.parse(JSON.parse(localStorage.getItem('local-metadata')).value).dgtVersion
         }
 
@@ -202,7 +204,7 @@ function applyCustomStyling() {
         credits.innerHTML =
           '<span>DarkGalaxy Tools <i><b>' + dgtVersion + '</b></i></span>' +
           '<span>Rankings update turn: <i><b>' + playerRankingsUpdate + '.' + playerRankingsVersion + '</b></i></span>' +
-          '<span>Planets update turn: <i><b>' + planetsRankingsUpdate + '</b></i></span>';
+          '<span>Planets update turn: <i><b>' + planetsUpdate + '.' + planetsVersion + '</b></i></span>';
         document.querySelector('#header .left').append(credits);
     }
 
