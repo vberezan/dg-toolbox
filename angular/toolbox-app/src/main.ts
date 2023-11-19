@@ -18,7 +18,7 @@ let windowURL: string[] = window.location.pathname.split(/\//g);
 platform.bootstrapModule(LocalStorageManagerModule).catch(err => console.error(err));
 platform.bootstrapModule(DarkgalaxyUiParserModule).catch(err => console.error(err));
 platform.bootstrapModule(AuthenticationModule).catch(err => console.error(err));
-// platform.bootstrapModule(LocalStorageSynchronizerModule).catch(err => console.log(err));
+platform.bootstrapModule(LocalStorageSynchronizerModule).catch(err => console.log(err));
 platform.bootstrapModule(NavbarModule).catch(err => console.error(err));
 
 
