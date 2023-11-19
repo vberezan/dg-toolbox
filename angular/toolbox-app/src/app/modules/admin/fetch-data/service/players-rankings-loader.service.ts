@@ -7,6 +7,7 @@ import {DocumentData} from "@angular/fire/compat/firestore";
 import {PlayerPlanetsStats} from "../../../../shared/model/stats/player-planets-stats.model";
 import {MetadataService} from "../../../local-storage/local-storage-synchronizer/service/metadata.service";
 import {PageAction} from "../../../../shared/model/stats/page-action.model";
+import {AtomicNumber} from "../../../../shared/model/atomic-number.model";
 
 @Injectable({
   providedIn: 'root'
@@ -34,14 +35,14 @@ export class PlayersRankingsLoaderService {
       isScanActive = !value;
     });
 
-    let scannedRankings: number = 0;
+    let scannedRankings: AtomicNumber = new AtomicNumber(0);
     let playersStats: Map<number, PlayerStats> = new Map<number, PlayerStats>();
     let pages: number = await this.getNumberOfPages();
 
     for (let page: number = 1; page <= pages; page++) {
       if (isScanActive) {
-        await this.scanRankingsPage(page, playersStats, scannedRankings, pages, scanDelay);
-        await this.scanCombatRankingsPage(page, playersStats, scannedRankings, pages, scanDelay);
+        await this.scanRankingsPage(playersStats, scannedRankings, scanDelay, page, pages);
+        await this.scanCombatRankingsPage(playersStats, scannedRankings, scanDelay, page, pages);
       }
       cancelSubscription.unsubscribe();
     }
@@ -57,7 +58,7 @@ export class PlayersRankingsLoaderService {
     return parseInt(dom.querySelector('.right.lightBorder.opacDarkBackground.padding').textContent.trim().split('of')[dom.querySelector('.right.lightBorder.opacDarkBackground.padding').textContent.trim().split('of').length - 1].trim());
   }
 
-  private async scanRankingsPage(page: number, playersStats: Map<number, PlayerStats>, scannedRankings: number, pages: number, scanDelay: number): Promise<void> {
+  private async scanRankingsPage(playersStats: Map<number, PlayerStats>, scannedRankings: AtomicNumber, scanDelay: number, page: number, pages: number): Promise<void> {
     let source: string = await firstValueFrom(this.httpClient.get(this.PLAYER_RANKINGS_URL + page, {responseType: 'text'}));
     let dom: Document = new DOMParser().parseFromString(source, 'text/html');
 
@@ -82,11 +83,11 @@ export class PlayersRankingsLoaderService {
       }
     });
 
-    this._playersRankingsEmitter.emit(new PageAction(++scannedRankings, 2 * pages, 'load'));
+    this._playersRankingsEmitter.emit(new PageAction(++scannedRankings.number, 2 * pages, 'load'));
     await this.delay(scanDelay);
   }
 
-  private async scanCombatRankingsPage(page: number, playersStats: Map<number, PlayerStats>, scannedRankings: number, pages: number, scanDelay: number): Promise<void> {
+  private async scanCombatRankingsPage(playersStats: Map<number, PlayerStats>, scannedRankings: AtomicNumber, scanDelay: number, page: number, pages: number): Promise<void> {
     let source: string = await firstValueFrom(this.httpClient.get(this.PLAYER_COMBAT_RANKINGS_URL + page, {responseType: 'text'}));
     let dom: Document = new DOMParser().parseFromString(source, 'text/html');
 
@@ -103,11 +104,11 @@ export class PlayersRankingsLoaderService {
       player.combinedScore = player.combatScore + player.score;
     });
 
-    this._playersRankingsEmitter.emit(new PageAction(++scannedRankings, 2 * pages, 'load'));
+    this._playersRankingsEmitter.emit(new PageAction(++scannedRankings.number, 2 * pages, 'load'));
     await this.delay(scanDelay);
   }
 
-  async saveRankings(playersStats: Map<number, PlayerStats>, isScanActive: boolean, playersRankingsPath: any, playersPlanetsPath: any, scannedRankings: number): Promise<void> {
+  async saveRankings(playersStats: Map<number, PlayerStats>, isScanActive: boolean, playersRankingsPath: any, playersPlanetsPath: any, scannedRankings: AtomicNumber): Promise<void> {
     let savedRankings: number = 0;
     playersStats.forEach((playerStats: PlayerStats, playerId: number): void => {
       if (isScanActive) {
@@ -119,7 +120,7 @@ export class PlayersRankingsLoaderService {
 
             setDoc(doc(playersRankingsPath, playerId.toString()), JSON.parse(JSON.stringify(playerStats)))
               .then((): void => {
-                this._playersRankingsEmitter.emit(new PageAction(++scannedRankings, playersStats.size, 'save'));
+                this._playersRankingsEmitter.emit(new PageAction(++scannedRankings.number, playersStats.size, 'save'));
               }).catch((error): void => console.log(error));
 
             playerPlanetsSubscription.unsubscribe();
