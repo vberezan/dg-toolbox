@@ -83,11 +83,11 @@ span.planet-counter {
   transition: all .1s;
 }
 
-#load-planets-example {
+.load-example {
   display: table;
 }
 
-#load-planets-example {
+.load-example {
   font-weight: normal !important;
   background: #576740 !important;
   color: #ffffffad !important;
@@ -98,17 +98,18 @@ span.planet-counter {
   margin-bottom: 5px;
 }
 
-#load-planets-example .usage-warning {
+.load-example .usage-warning {
   float: left;
 }
 
-#load-planets-example ul {
+.load-example ul {
   float: left;
 }
 
 #admin-load-rankings,
 #admin-load-planets {
   padding: 5px !important;
+  display: inline-table;
 }
 
 #admin-load-planets input {
@@ -147,4 +148,8 @@ span.planet-counter {
 
 #admin-load-rankings button {
   float: left !important;
+}
+
+#admin-load-separator {
+  border-bottom: 1px solid #5e5e5e;
 }

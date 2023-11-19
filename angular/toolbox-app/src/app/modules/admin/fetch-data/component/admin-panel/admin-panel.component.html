@@ -5,8 +5,8 @@
     </div>
     <div class="noPadding ofHidden">
       <div id="admin-load-planets">
-        <div id="load-planets-example">
-          <span class="usage-warning">Use this with caution. Universe scan it's a very expensive operation for both DG server and DGT database!</span>
+        <div class="load-example">
+          <span class="usage-warning">Use this with caution. <b>Universe Scan</b> it's a very expensive operation for both DG server and DGT database!</span>
           <span class="usage-warning">Usage examples:</span>
           <ul>
             <li>1,2 - G01 and G02</li>
@@ -18,13 +18,16 @@
         </div>
         <form>
           <input [(ngModel)]="controls.galaxies" type="text" placeholder="Galaxies (Ex: 1,2)" dgtAllianceList/>
-          <button (click)="scanNavigationScreen();" type="submit">Scan</button>
+          <button (click)="scanNavigationScreen();" type="submit">Fetch</button>
         </form>
       </div>
       <div id="admin-load-separator"></div>
       <div id="admin-load-rankings" style="padding: 3px; font-weight: bold">
+        <div class="load-example">
+          <span class="usage-warning">Light operation. Can be triggered every turn and should always be triggered after a <b>Universe Scan</b></span>
+        </div>
         <form>
-          <button (click)="scanPlayersRankingScreens()" type="submit">Load Rankings</button>
+          <button (click)="scanPlayersRankingScreens()" type="submit">Fetch</button>
         </form>
       </div>
     </div>
