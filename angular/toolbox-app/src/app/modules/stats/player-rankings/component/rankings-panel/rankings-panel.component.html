@@ -2,20 +2,20 @@
     <table>
         <thead>
             <tr>
-                <th>Rank</th>
-                <th>Tag</th>
-                <th>Player</th>
-                <th>Planets</th>
-                <th>Score</th>
+                <th class="rank">Rank</th>
+                <th class="alliance">Tag</th>
+                <th class="name">Player</th>
+                <th class="planets">Planets</th>
+                <th class="score">Score</th>
             </tr>
         </thead>
         <tbody>
             <tr *ngFor="let player of rankings.values()">
-                <td>{{player.rank}}</td>
-                <td>{{player.alliance}}</td>
-                <td>{{player.name}}</td>
-                <td>{{player.planets}}</td>
-                <td>{{player.score}}</td>
+                <td class="rank">{{player.rank}}</td>
+                <td class="alliance">{{player.alliance}}</td>
+                <td class="name">{{player.name}}</td>
+                <td class="planets">{{player.planets}}</td>
+                <td class="score">{{player.score}}</td>
             </tr>
         </tbody>
     </table>
