@@ -1311,6 +1311,17 @@ dgt-fleet-orders-list-panel {
   filter: grayscale(100%);
 }
 
+.researchButton.researchDone::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: #2c490061;
+  border-radius: 3px;
+}
+
 .researchButton .researchImage img {
   border-radius: 3px;
   width: 44px;
@@ -1322,6 +1333,11 @@ dgt-fleet-orders-list-panel {
   height: 22px;
   width: 44px;
   top: 0 !important;
+}
+
+.researchButton.researchQueued.infoBack {
+  height: 100%;
+  border-radius: 3px !important;
 }
 
 .researchButton .infoIcon {
