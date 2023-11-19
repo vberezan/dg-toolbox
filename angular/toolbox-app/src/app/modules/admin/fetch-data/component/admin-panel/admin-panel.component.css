@@ -108,7 +108,7 @@ span.planet-counter {
 
 #admin-load-rankings,
 #admin-load-planets {
-  padding: 5px;
+  padding: 5px !important;
 }
 
 #admin-load-planets input {
