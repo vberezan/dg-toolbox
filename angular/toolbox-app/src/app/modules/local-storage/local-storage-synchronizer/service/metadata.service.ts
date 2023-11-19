@@ -9,9 +9,9 @@ import {DarkgalaxyApiService} from "../../../darkgalaxy-ui-parser/service/darkga
   providedIn: 'platform'
 })
 export class MetadataService {
-  // private firestore: Firestore = inject(Firestore);
+  private firestore: Firestore = inject(Firestore);
   private dgAPI: DarkgalaxyApiService = inject(DarkgalaxyApiService);
-  // private metadataPath: any = collection(this.firestore, 'metadata');
+  private metadataPath: any = collection(this.firestore, 'metadata');
 
   private _id: number;
 
