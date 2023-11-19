@@ -651,4 +651,10 @@ function applyCustomStyling() {
             }
         }
     }
+
+    if (windowURL[1] === 'research') {
+        document.querySelector('img[src="/images/icons/research.png"]').parentElement.parentElement.id = 'dgt-research-description';
+        document.querySelector('img[src="/images/icons/research.png"]').parentElement.remove();
+        document.querySelector('form').id = 'dgt-research-form';
+    }
 }

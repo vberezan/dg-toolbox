@@ -1381,6 +1381,18 @@ dgt-fleet-orders-list-panel {
   border-radius: 3px !important;
 }
 
+#dgt-research-rescription {
+  border-radius: 5px;
+}
+
+#dgt-research-form > div {
+  margin-left: 0 !important;
+}
+
+#dgt-research-form > div > div {
+  border-radius: 5px;
+}
+
 /****/
 
 #welcome p {
