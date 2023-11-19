@@ -6,8 +6,10 @@
   width: 200px;
 }
 
-#dgt-rankings-table .planets {
-    width: 50px;
+#dgt-rankings-table .planets,
+#dgt-rankings-table .g1,
+#dgt-rankings-table .inner {
+    width: 100px;
 }
 
 #dgt-rankings-table .score {
