@@ -1,11 +1,8 @@
-function setUpLocalStorageManager() {
-    document.body.prepend(document.createElement('dgt-local-storage-manager'));
+function setUpPrerequisites() {
     document.body.prepend(document.createElement('dgt-local-storage-synchronizer'));
-}
-function setUpUiParser() {
+    document.body.prepend(document.createElement('dgt-local-storage-manager'));
     document.body.prepend(document.createElement('dgt-darkgalaxy-ui-parser'));
 }
-
 function setUpNavbarReplacement() {
     if (document.getElementById('content')) {
         document.getElementById('content').prepend(document.createElement('dgt-navbar'));
