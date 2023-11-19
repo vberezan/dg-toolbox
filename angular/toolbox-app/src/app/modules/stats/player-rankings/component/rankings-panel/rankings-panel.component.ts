@@ -10,9 +10,9 @@ import {PlayerStats} from "../../../../../shared/model/stats/player-stats.model"
 })
 export class RankingsPanelComponent {
   private playerRankingsService: PlayerRankingsService = inject(PlayerRankingsService);
-  private dgApi: DarkgalaxyApiService = inject(DarkgalaxyApiService);
   public rankings: Map<number, PlayerStats> = new Map<number, PlayerStats>();
 
   constructor() {
+    this.rankings = this.playerRankingsService.playerStats();
   }
 }
