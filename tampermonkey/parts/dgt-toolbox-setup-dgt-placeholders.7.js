@@ -25,7 +25,7 @@ function setUpAdminDataLoad(windowURL) {
     }
 }
 
-function setUpAllianceOrdersManagerPanel(windowURL) {
+function setUpAlliancePanel(windowURL) {
     if (windowURL[1] === 'alliances') {
         if (document.querySelector('.allianceBox')) {
             document.querySelectorAll('.allianceBox').forEach((allianceBox) => {
@@ -47,6 +47,15 @@ function setUpAllianceOrdersManagerPanel(windowURL) {
         }
     }
 }
+
+function setUpResearchPanel(windowURL) {
+    if (windowURL[1] === 'research') {
+        if (document.querySelector('#contentBox')) {
+            document.querySelector('#contentBox').prepend(document.createElement('dgt-research-panel'));
+        }
+    }
+}
+
 
 function setUpRankings(windowURL) {
     if (windowURL[1] === 'rankings' && windowURL[2] === 'alliances') {

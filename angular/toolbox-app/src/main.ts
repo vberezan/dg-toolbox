@@ -12,6 +12,7 @@ import {ChangelogModule} from "./app/modules/changelog/changelog.module";
 import {FetchDataModule} from "./app/modules/admin/fetch-data/fetch-data.module";
 import {AllianceRankingsModule} from "./app/modules/alliances/alliance-rankings/alliance-rankings.module";
 import {LocalStorageSynchronizerModule} from "./app/modules/local-storage/local-storage-synchronizer/local-storage-synchronizer.module";
+import {ResearchModule} from "./app/modules/research/research.module";
 
 const platform: PlatformRef = platformBrowserDynamic();
 let windowURL: string[] = window.location.pathname.split(/\//g);
@@ -57,5 +58,10 @@ function loadTier2Modules(windowURL: string[]): void {
   // -- alliances rankings
   if (windowURL[1] === 'rankings' && windowURL[2] === 'alliances') {
     platform.bootstrapModule(AllianceRankingsModule).catch(err => console.error("Error loading AllianceRankingsModule: " + err));
+  }
+
+  // -- research
+  if (windowURL[1] === 'research') {
+    platform.bootstrapModule(ResearchModule).catch(err => console.error("Error loading ResearchModule: " + err));
   }
 }
