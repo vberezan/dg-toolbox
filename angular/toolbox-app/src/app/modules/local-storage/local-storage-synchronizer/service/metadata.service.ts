@@ -13,7 +13,17 @@ export class MetadataService {
   private dgAPI: DarkgalaxyApiService = inject(DarkgalaxyApiService);
   private metadataPath: any = collection(this.firestore, 'metadata');
 
-  constructor() { }
+  private _id: number;
+
+
+  get id(): number {
+    return this._id;
+  }
+
+  constructor() {
+    this._id = Math.random();
+    console.log(this.id);
+  }
 
   updateMetadata(document: string): void {
 

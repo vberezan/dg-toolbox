@@ -1,12 +1,10 @@
 import {EventEmitter, inject, Injectable} from '@angular/core';
 import {HttpClient} from "@angular/common/http";
-import {collection, doc, docData, Firestore, setDoc, updateDoc} from "@angular/fire/firestore";
-import {DarkgalaxyApiService} from "../../../darkgalaxy-ui-parser/service/darkgalaxy-api.service";
+import {collection, doc, docData, Firestore, setDoc} from "@angular/fire/firestore";
 import {firstValueFrom, Subscription} from "rxjs";
 import {PlayerStats} from "../../../../shared/model/stats/player-stats.model";
 import {DocumentData} from "@angular/fire/compat/firestore";
 import {PlayerPlanetsStats} from "../../../../shared/model/stats/player-planets-stats.model";
-import {UpdateMetadata} from "../../../../shared/model/stats/update-metadata.model";
 import {MetadataService} from "../../../local-storage/local-storage-synchronizer/service/metadata.service";
 
 @Injectable({
@@ -21,12 +19,15 @@ export class RankingsLoaderService {
 
   private httpClient: HttpClient = inject(HttpClient);
   private firestore: Firestore = inject(Firestore);
-  private dgAPI: DarkgalaxyApiService = inject(DarkgalaxyApiService);
   private metadataService: MetadataService = inject(MetadataService);
 
   private _playersRankingsEmitter: EventEmitter<{ 'total': number, 'page': number, 'action': string }>
     = new EventEmitter<{ 'total': number, 'page': number, 'action': string }>();
 
+
+  constructor() {
+    console.log(this.metadataService.id);
+  }
 
   async scanPlayersRankingsScreens(cancelScanEmitter: EventEmitter<boolean>): Promise<void> {
     const scanDelay: number = 1500 + Math.floor(Math.random() * 1500);
