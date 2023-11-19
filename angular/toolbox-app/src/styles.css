@@ -1301,10 +1301,10 @@ dgt-fleet-orders-list-panel {
 
 /*******************/
 .researchButton {
-  border-radius: 5px;
+  border-radius: 3px;
   border: 1px solid #767676;
-  width: 60px;
-  height: 60px;
+  width: 44px;
+  height: 44px;
 }
 
 .researchButton.researchNotAvailable .researchImage img {
@@ -1312,15 +1312,15 @@ dgt-fleet-orders-list-panel {
 }
 
 .researchButton .researchImage img {
-  border-radius: 5px;
-  width: 60px;
-  height: 60px;
+  border-radius: 3px;
+  width: 44px;
+  height: 44px;
 }
 
 .researchButton .infoBack {
-  border-radius: 5px 5px 0 0;
+  border-radius: 3px 3px 0 0;
   height: 22px;
-  width: 60px;
+  width: 44px;
   top: 0 !important;
 }
 
@@ -1340,8 +1340,8 @@ dgt-fleet-orders-list-panel {
 }
 
 .researchButton .infoText {
-  font-size: 12px;
-  line-height: 24px;
+  font-size: 11px;
+  line-height: 20px;
   right: 4px;
   color: #dcdcdc;
   top: 0 !important;
