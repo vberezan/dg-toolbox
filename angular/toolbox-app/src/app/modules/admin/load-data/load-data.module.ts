@@ -11,8 +11,6 @@ import {getFirestore, provideFirestore} from "@angular/fire/firestore";
 import {initializeAppCheck, provideAppCheck, ReCaptchaV3Provider} from "@angular/fire/app-check";
 import {MetadataService} from "../../local-storage/local-storage-synchronizer/service/metadata.service";
 
-
-
 @NgModule({
   imports: [
     BrowserModule,

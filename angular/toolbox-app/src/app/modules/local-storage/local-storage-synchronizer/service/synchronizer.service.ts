@@ -1,4 +1,4 @@
-import {inject, Injectable} from '@angular/core';
+import {EventEmitter, inject, Injectable} from '@angular/core';
 import {collection, collectionData, Firestore, query} from "@angular/fire/firestore";
 import {LocalStorageService} from "../../local-storage-manager/service/local-storage.service";
 import {firstValueFrom, Subscriber, Subscription} from "rxjs";
@@ -18,14 +18,15 @@ export class SynchronizerService {
   private httpClient: HttpClient = inject(HttpClient);
   private firestore: Firestore = inject(Firestore);
   private localStorageService: LocalStorageService = inject(LocalStorageService);
-
+  private _updatesEmitter: EventEmitter<number> = new EventEmitter<number>();
 
   constructor() {
   }
 
-  updateMetadata(observer: Subscriber<boolean>): void {
+  updateMetadata(observer: Subscriber<boolean>, updates: boolean[]): void {
     const metadataPath: any = collection(this.firestore, 'metadata');
 
+    updates.push(true);
     let subscription: Subscription = collectionData(
       query(metadataPath),
     ).subscribe((item: DocumentData[]): void => {
@@ -43,10 +44,11 @@ export class SynchronizerService {
       observer.complete();
 
       subscription.unsubscribe();
+      updates.pop();
     });
   }
 
-  loadTurnBasedUpdates(turn: number): void {
+  loadTurnBasedUpdates(turn: number, updates: boolean[]): void {
     let localMetadata: Metadata = this.localStorageService.localMetadata();
     let remoteMetadata: Metadata = this.localStorageService.get(LocalStorageKeys.REMOTE_METADATA);
 
@@ -54,6 +56,7 @@ export class SynchronizerService {
       remoteMetadata.planetsTurn.turn > localMetadata.planetsTurn.turn ||
       (remoteMetadata.planetsTurn.turn == localMetadata.planetsTurn.turn &&
         remoteMetadata.planetsTurn.version > localMetadata.planetsTurn.version)) {
+      updates.push(true);
 
       let localMetadata: Metadata = this.localStorageService.localMetadata();
       let remoteMetadata: Metadata = this.localStorageService.remoteMetadata();
@@ -61,6 +64,7 @@ export class SynchronizerService {
       localMetadata.planetsTurn.version = remoteMetadata.planetsTurn.version;
 
       this.localStorageService.cache(LocalStorageKeys.LOCAL_METADATA, localMetadata);
+      updates.pop();
     }
 
     if (localMetadata.playersRankingsTurn.turn === 0 ||
@@ -68,28 +72,25 @@ export class SynchronizerService {
       (remoteMetadata.playersRankingsTurn.turn == localMetadata.playersRankingsTurn.turn &&
         remoteMetadata.playersRankingsTurn.version > localMetadata.playersRankingsTurn.version)) {
 
-      console.log(localMetadata.playersRankingsTurn.turn);
-      console.log(remoteMetadata.playersRankingsTurn.turn + ' - ' + localMetadata.playersRankingsTurn.turn);
-      console.log(remoteMetadata.playersRankingsTurn.version + ' - ' + localMetadata.playersRankingsTurn.version);
-
-      this.loadPlayersRankings(turn);
-      this.loadAllianceMembers(turn);
+      this.loadPlayersRankings(turn, updates);
+      this.loadAllianceMembers(turn, updates);
     }
 
     if (this.localStorageService.get(LocalStorageKeys.ALLIANCE_MEMBERS) == null ||
       localMetadata.allianceMembersTurn.turn === 0 || turn > localMetadata.allianceMembersTurn.turn) {
-      this.loadAllianceMembers(turn);
+      this.loadAllianceMembers(turn, updates);
     }
+
+
   }
 
   loadLiveUpdates(): void {
   }
 
-  private loadPlayersRankings(turn: number): void {
+  private loadPlayersRankings(turn: number, updates: boolean[]): void {
     const playersRankingsPath: any = collection(this.firestore, 'players-rankings');
 
-    console.log('loading player rankings');
-
+    updates.push(true);
     let subscription: Subscription = collectionData(playersRankingsPath)
       .subscribe((items: DocumentData[]): void => {
         let playerStats: PlayerStats[] = Object.assign([], items);
@@ -104,15 +105,16 @@ export class SynchronizerService {
         this.localStorageService.cache(LocalStorageKeys.LOCAL_METADATA, localMetadata);
 
         subscription.unsubscribe();
+        updates.pop();
+        this._updatesEmitter.emit(updates.length);
       });
   }
 
-  private async loadAllianceMembers(turn: number) {
+  private async loadAllianceMembers(turn: number, updates: boolean[]): Promise<void> {
+    updates.push(true);
     const source: string = await firstValueFrom(this.httpClient.get(this.ALLIANCES_URL, {responseType: 'text'}));
     const dom: Document = new DOMParser().parseFromString(source, 'text/html');
     const playerStats: PlayerStats[] = this.localStorageService.get(LocalStorageKeys.PLAYERS_STATS);
-
-    console.log('loading alliance members');
 
     if (!dom.querySelector('[action="/alliances/join/"]')) {
 
@@ -149,5 +151,13 @@ export class SynchronizerService {
       this.localStorageService.cache(LocalStorageKeys.ALLIANCE_MEMBERS, cache);
       this.localStorageService.cache(LocalStorageKeys.LOCAL_METADATA, localMetadata);
     }
+
+    updates.pop();
+    this._updatesEmitter.emit(updates.length);
+  }
+
+
+  get updatesEmitter(): EventEmitter<number> {
+    return this._updatesEmitter;
   }
 }
