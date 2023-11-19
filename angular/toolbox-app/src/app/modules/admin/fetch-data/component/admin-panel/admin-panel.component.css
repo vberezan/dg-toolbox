@@ -149,7 +149,7 @@ span.planet-counter {
 #admin-load-rankings button:hover,
 #admin-load-planets button:hover {
   background: rgb(45, 45, 45);
-  border: 1px solid #545454;
+  border: 1px solid #545454 !important;
 }
 
 #admin-load-rankings button {
