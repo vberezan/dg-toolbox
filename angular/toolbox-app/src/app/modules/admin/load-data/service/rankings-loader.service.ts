@@ -25,7 +25,7 @@ export class RankingsLoaderService {
     = new EventEmitter<{ 'total': number, 'page': number, 'action': string }>();
 
   async scanPlayersRankingsScreens(cancelScanEmitter: EventEmitter<boolean>): Promise<void> {
-    const scanDelay: number = 500 + Math.floor(Math.random() * 1000);
+    const scanDelay: number = 250 + Math.floor(Math.random() * 500);
     const playersRankingsPath: any = collection(this.firestore, 'players-rankings');
     const playersPlanetsPath: any = collection(this.firestore, 'players-planets');
 
