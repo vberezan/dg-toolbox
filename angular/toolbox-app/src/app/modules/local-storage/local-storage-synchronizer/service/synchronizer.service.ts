@@ -71,6 +71,7 @@ export class SynchronizerService {
   private loadPlayersRankings(turn: number): void {
     const playersRankingsPath: any = collection(this.firestore, 'players-rankings');
 
+    console.log('loading player rankings');
 
     let subscription: Subscription = collectionData(playersRankingsPath)
       .subscribe((items: DocumentData[]): void => {
@@ -91,6 +92,8 @@ export class SynchronizerService {
     const source: string = await firstValueFrom(this.httpClient.get(this.ALLIANCES_URL, {responseType: 'text'}));
     const dom: Document = new DOMParser().parseFromString(source, 'text/html');
     const playerStats: PlayerStats[] = this.localStorageService.get(LocalStorageKeys.PLAYERS_STATS);
+
+    console.log('loading alliance members');
 
     if (!dom.querySelector('[action="/alliances/join/"]')) {
 
