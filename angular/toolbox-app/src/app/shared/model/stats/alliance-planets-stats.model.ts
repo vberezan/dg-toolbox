@@ -1,12 +1,18 @@
 import {PlanetsBatch} from "./planets-batch.model";
 
-export class PlayerPlanetsStats {
-  private _playerId: number;
+export class AlliancePlanetsStats {
   private _planets: PlanetsBatch[] = [];
-  private _name: string;
   private _turn: number;
   private _total: number;
+  private _tag: string;
 
+  get tag(): string {
+    return this._tag;
+  }
+
+  set tag(value: string) {
+    this._tag = value;
+  }
 
   get turn(): number {
     return this._turn;
@@ -24,14 +30,6 @@ export class PlayerPlanetsStats {
     this._total = value;
   }
 
-  get playerId(): number {
-    return this._playerId;
-  }
-
-  set playerId(value: number) {
-    this._playerId = value;
-  }
-
   get planets(): PlanetsBatch[] {
     return this._planets;
   }
@@ -40,19 +38,10 @@ export class PlayerPlanetsStats {
     this._planets = value;
   }
 
-  get name(): string {
-    return this._name;
-  }
-
-  set name(value: string) {
-    this._name = value;
-  }
-
   toJSON(): any {
     return {
-      playerId: this.playerId,
+      tag: this.tag,
       planets: this.planets,
-      name: this.name,
       turn: this.turn,
       total: this.total
     };

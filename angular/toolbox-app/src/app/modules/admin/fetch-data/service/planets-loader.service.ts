@@ -6,12 +6,13 @@ import {PlanetStats} from "../../../../shared/model/stats/planet-stats.model";
 import {DarkgalaxyApiService} from "../../../darkgalaxy-ui-parser/service/darkgalaxy-api.service";
 import {PlayerPlanetsStats} from "../../../../shared/model/stats/player-planets-stats.model";
 import {DocumentData} from "@angular/fire/compat/firestore";
-import {PlayerPlanetsBatch} from "../../../../shared/model/stats/player-planets-batch.model";
+import {PlanetsBatch} from "../../../../shared/model/stats/planets-batch.model";
 import {PageAction} from "../../../../shared/model/stats/page-action.model";
 import {MetadataService} from "../../../local-storage/local-storage-synchronizer/service/metadata.service";
-import {environment} from "../../../../../environments/environment";
 import {LocalStorageKeys} from "../../../../shared/model/local-storage/local-storage-keys";
 import {LocalStorageService} from "../../../local-storage/local-storage-manager/service/local-storage.service";
+import {AlliancePlanetsStats} from "../../../../shared/model/stats/alliance-planets-stats.model";
+
 
 @Injectable({
   providedIn: 'root'
@@ -49,6 +50,7 @@ export class PlanetsLoaderService {
 
     for (let g: number = 0; g < validGalaxies.length; g++) {
       let playerPlanets: Map<number, PlayerPlanetsStats> = new Map<number, PlayerPlanetsStats>();
+      let alliancePlanets: Map<string, AlliancePlanetsStats> = new Map<string, AlliancePlanetsStats>();
       const planetsPath: any = collection(this.firestore, 'planets-g' + validGalaxies[g]);
 
       let sectors: number;
@@ -63,7 +65,7 @@ export class PlanetsLoaderService {
       for (let se: number = 1; se <= sectors; se++) {
         for (let sy: number = 1; sy <= this.SYSTEMS; sy++) {
           if (isScanActive) {
-            await this.parseAndSave(validGalaxies[g], se, sy, playerPlanets, planetsPath);
+            await this.parseAndSave(validGalaxies[g], se, sy, playerPlanets, alliancePlanets, planetsPath);
             this._systemScanEmitter.emit(new PageAction(++scannedSystems, totalSystemNr, 'load-save'));
             await this.delay(scanDelay);
           }
@@ -71,10 +73,53 @@ export class PlanetsLoaderService {
       }
 
       this.mergePlayerPlanets(playerPlanets);
+      this.mergeAlliancePlanets(alliancePlanets);
     }
     this.metadataService.updateMetadataTurns('planets-turn');
 
     cancelSubscription.unsubscribe();
+  }
+
+  private mergeAlliancePlanets(alliancePlanets: Map<string, AlliancePlanetsStats>): void {
+    const alliancePlanetsPath: any = collection(this.firestore, 'alliances-planets');
+
+    alliancePlanets.forEach((alliance: AlliancePlanetsStats, allianceTag: string): void => {
+      let subscription: Subscription = docData(
+        doc(alliancePlanetsPath, allianceTag)
+      ).subscribe((item: DocumentData): void => {
+        if (item) {
+          let dbPlanets: AlliancePlanetsStats = Object.assign(new AlliancePlanetsStats(), item);
+
+          // -- if alliance has no planets in db for a particular galaxy, add all planets for that galaxy
+          // -- merge all planets from DB, without the ones from the current galaxy
+          dbPlanets.planets.forEach((batch: PlanetsBatch): void => {
+            let hasGalaxy: boolean = alliance.planets.some((planetsBatch: PlanetsBatch): boolean => planetsBatch.galaxy === batch.galaxy);
+
+            if (!hasGalaxy) {
+              alliance.planets.push(batch);
+            }
+          });
+
+          alliance.total = 1;
+          alliance.planets.forEach((batch: PlanetsBatch): void => {
+            alliance.total += batch.planets.length;
+          });
+
+          updateDoc(doc(alliancePlanetsPath, alliance.tag), JSON.parse(JSON.stringify(alliance)))
+            .catch((error): void => console.log(error));
+        } else {
+          alliance.total = 1;
+          alliance.planets.forEach((batch: PlanetsBatch): void => {
+            alliance.total += batch.planets.length;
+          });
+
+          setDoc(doc(alliancePlanetsPath, alliance.tag), JSON.parse(JSON.stringify(alliance)))
+            .catch((error): void => console.log(error));
+        }
+
+        subscription.unsubscribe();
+      });
+    });
   }
 
   private mergePlayerPlanets(playerPlanets: Map<number, PlayerPlanetsStats>): void {
@@ -89,8 +134,8 @@ export class PlanetsLoaderService {
 
           // -- if player has no planets in db for a particular galaxy, add all planets for that galaxy
           // -- merge all planets from DB, without the ones from the current galaxy
-          dbPlanets.planets.forEach((batch: PlayerPlanetsBatch): void => {
-            let hasGalaxy: boolean = player.planets.some((planetsBatch: PlayerPlanetsBatch): boolean => planetsBatch.galaxy === batch.galaxy);
+          dbPlanets.planets.forEach((batch: PlanetsBatch): void => {
+            let hasGalaxy: boolean = player.planets.some((planetsBatch: PlanetsBatch): boolean => planetsBatch.galaxy === batch.galaxy);
 
             if (!hasGalaxy) {
               player.planets.push(batch);
@@ -98,7 +143,7 @@ export class PlanetsLoaderService {
           });
 
           player.total = 1;
-          player.planets.forEach((batch: PlayerPlanetsBatch): void => {
+          player.planets.forEach((batch: PlanetsBatch): void => {
             player.total += batch.planets.length;
           });
 
@@ -106,7 +151,7 @@ export class PlanetsLoaderService {
             .catch((error): void => console.log(error));
         } else {
           player.total = 1;
-          player.planets.forEach((batch: PlayerPlanetsBatch): void => {
+          player.planets.forEach((batch: PlanetsBatch): void => {
             player.total += batch.planets.length;
           });
 
@@ -119,7 +164,12 @@ export class PlanetsLoaderService {
     });
   }
 
-  private async parseAndSave(galaxy: number, sector: number, system: number, playerPlanets: Map<number, PlayerPlanetsStats>, planetsPath: any): Promise<void> {
+  private async parseAndSave(galaxy: number,
+                             sector: number,
+                             system: number,
+                             playerPlanets: Map<number, PlayerPlanetsStats>,
+                             alliancePlanets: Map<string, AlliancePlanetsStats>,
+                             planetsPath: any): Promise<void> {
     const source: string = await firstValueFrom(this.httpClient.get(this.NAVIGATION_BASE_URL + galaxy + '/' + sector + '/' + system, {responseType: 'text'}));
     const dom: Document = new DOMParser().parseFromString(source, 'text/html');
 
@@ -153,29 +203,49 @@ export class PlanetsLoaderService {
           stats.playerId = parseInt(planet.querySelector('.playerName').attributes['playerId'].value.trim());
         }
 
-        if (stats.playerId >= 0) {
-          stats.turn = this.dgAPI.gameTurn();
+        stats.turn = this.dgAPI.gameTurn();
 
+        if (stats.playerId >= 0) {
           if (!playerPlanets.has(stats.playerId)) {
             playerPlanets.set(stats.playerId, new PlayerPlanetsStats());
           }
 
-          let batch: PlayerPlanetsBatch[] = playerPlanets.get(stats.playerId).planets;
-          let hasGalaxy: boolean = batch.some((planetsBatch: PlayerPlanetsBatch): boolean => planetsBatch.galaxy === galaxy);
+          let batch: PlanetsBatch[] = playerPlanets.get(stats.playerId).planets;
+          let hasGalaxy: boolean = batch.some((planetsBatch: PlanetsBatch): boolean => planetsBatch.galaxy === galaxy);
           if (!hasGalaxy) {
-            playerPlanets.get(stats.playerId).planets.push(new PlayerPlanetsBatch(galaxy, [stats.location]));
+            playerPlanets.get(stats.playerId).planets.push(new PlanetsBatch(galaxy, [stats.location]));
           } else {
-            let filteredPlanetStats: PlayerPlanetsBatch[] =
-              batch.filter((planetStats: PlayerPlanetsBatch) => planetStats.galaxy === galaxy && !planetStats.planets.includes(stats.location));
-            filteredPlanetStats.forEach((planetStats: PlayerPlanetsBatch) => planetStats.planets.push(stats.location));
+            let filteredPlanetStats: PlanetsBatch[] =
+              batch.filter((planetStats: PlanetsBatch) => planetStats.galaxy === galaxy && !planetStats.planets.includes(stats.location));
+            filteredPlanetStats.forEach((planetStats: PlanetsBatch) => planetStats.planets.push(stats.location));
           }
 
           playerPlanets.get(stats.playerId).name = stats.owner;
           playerPlanets.get(stats.playerId).playerId = stats.playerId;
-          playerPlanets.get(stats.playerId).turn = this.dgAPI.gameTurn();
+          playerPlanets.get(stats.playerId).turn = stats.turn;
+
+          if (stats.alliance !== '-') {
+            if (!alliancePlanets.has(stats.alliance)) {
+              alliancePlanets.set(stats.alliance, new AlliancePlanetsStats());
+            }
+
+            let batch: PlanetsBatch[] = alliancePlanets.get(stats.alliance).planets;
+            let hasGalaxy: boolean = batch.some((planetsBatch: PlanetsBatch): boolean => planetsBatch.galaxy === galaxy);
+            if (!hasGalaxy) {
+              alliancePlanets.get(stats.alliance).planets.push(new PlanetsBatch(galaxy, [stats.location]));
+            } else {
+              let filteredPlanetStats: PlanetsBatch[] =
+                batch.filter((planetStats: PlanetsBatch) => planetStats.galaxy === galaxy && !planetStats.planets.includes(stats.location));
+              filteredPlanetStats.forEach((planetStats: PlanetsBatch) => planetStats.planets.push(stats.location));
+            }
+
+            alliancePlanets.get(stats.alliance).tag = stats.alliance;
+            alliancePlanets.get(stats.alliance).turn = stats.turn;
+          }
 
           setDoc(doc(planetsPath, stats.location), JSON.parse(JSON.stringify(stats)))
             .catch((error): void => console.log(error));
+
         }
       }, 50 * index);
     });
