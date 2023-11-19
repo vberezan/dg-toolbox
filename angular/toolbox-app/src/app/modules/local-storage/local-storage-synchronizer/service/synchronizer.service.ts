@@ -24,7 +24,6 @@ export class SynchronizerService {
   }
 
   updateMetadata(observer: Subscriber<boolean>): void {
-    this._updatesEmitter.emit(1);
     const metadataPath: any = collection(this.firestore, 'metadata');
 
     let subscription: Subscription = collectionData(
@@ -44,7 +43,6 @@ export class SynchronizerService {
       observer.complete();
 
       subscription.unsubscribe();
-      this._updatesEmitter.emit(-1);
     });
   }
 
