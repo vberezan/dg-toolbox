@@ -1,11 +1,22 @@
+import {Optional} from "@angular/core";
+
 export class UpdateMetadata {
   private _turn: number;
   private _version: number;
+  private _lock: boolean = false;
 
-
-  constructor(turn: number, version: number) {
+  constructor(turn: number, version: number, @Optional() lock: boolean = false) {
     this._turn = turn;
     this._version = version;
+    this._lock = lock;
+  }
+
+  get lock(): boolean {
+    return this._lock;
+  }
+
+  set lock(value: boolean) {
+    this._lock = value;
   }
 
   get turn(): number {
@@ -27,7 +38,8 @@ export class UpdateMetadata {
   toJSON(): any {
     return {
       turn: this.turn,
-      version: this.version
+      version: this.version,
+      lock: this.lock
     }
   }
 }

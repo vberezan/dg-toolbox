@@ -1,4 +1,4 @@
-import {inject, Injectable} from '@angular/core';
+import {EventEmitter, inject, Injectable} from '@angular/core';
 import {UpdateMetadata} from "../../../../shared/model/stats/update-metadata.model";
 import {collection, doc, docData, Firestore, setDoc, updateDoc} from "@angular/fire/firestore";
 import {Subscription} from "rxjs";
@@ -14,7 +14,6 @@ export class MetadataService {
   private metadataPath: any = collection(this.firestore, 'metadata');
 
   updateMetadataTurns(document: string): void {
-
     let subscription: Subscription = docData(doc(this.metadataPath, document)).subscribe((item: DocumentData): void => {
       if (item) {
         let updateMetadata: UpdateMetadata = Object.assign(new UpdateMetadata(0, 0), item);
@@ -26,10 +25,54 @@ export class MetadataService {
           updateMetadata.version = 1;
         }
 
+        updateMetadata.lock = false;
         updateDoc(doc(this.metadataPath, document), JSON.parse(JSON.stringify(updateMetadata)))
           .catch((e): void => console.log(e));
       } else {
         setDoc(doc(this.metadataPath, document), JSON.parse(JSON.stringify(new UpdateMetadata(this.dgAPI.gameTurn(), 1))))
+          .catch((e): void => console.log(e));
+      }
+
+      subscription.unsubscribe();
+    });
+  }
+
+  // isMetadataLocked(document: string, statusEmitter: EventEmitter<boolean>): boolean {
+  //   let subscription: Subscription = docData(doc(this.metadataPath, document)).subscribe((item: DocumentData): void => {
+  //     if (item) {
+  //       let updateMetadata: UpdateMetadata = Object.assign(new UpdateMetadata(0, 0), item);
+  //
+  //       subscription.unsubscribe();
+  //       statusEmitter.emit(updateMetadata.lock);
+  //     }
+  //   });
+  //
+  //   return false;
+  // }
+
+  lockMetadata(document: string): void {
+    let subscription: Subscription = docData(doc(this.metadataPath, document)).subscribe((item: DocumentData): void => {
+      if (item) {
+        let updateMetadata: UpdateMetadata = Object.assign(new UpdateMetadata(0, 0), item);
+
+        updateMetadata.lock = true;
+
+        updateDoc(doc(this.metadataPath, document), JSON.parse(JSON.stringify(updateMetadata)))
+          .catch((e): void => console.log(e));
+      }
+
+      subscription.unsubscribe();
+    });
+  }
+
+  unlockMetadata(document: string): void {
+    let subscription: Subscription = docData(doc(this.metadataPath, document)).subscribe((item: DocumentData): void => {
+      if (item) {
+        let updateMetadata: UpdateMetadata = Object.assign(new UpdateMetadata(0, 0), item);
+
+        updateMetadata.lock = false;
+
+        updateDoc(doc(this.metadataPath, document), JSON.parse(JSON.stringify(updateMetadata)))
           .catch((e): void => console.log(e));
       }
 

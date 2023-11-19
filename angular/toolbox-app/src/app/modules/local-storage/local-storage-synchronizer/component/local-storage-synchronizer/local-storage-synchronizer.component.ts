@@ -15,33 +15,35 @@ export class LocalStorageSynchronizerComponent implements AfterViewInit {
   private dgAPI: DarkgalaxyApiService = inject(DarkgalaxyApiService);
 
   ngAfterViewInit(): void {
-    let updates: number = 0;
+    this.delay(2000).then(() => {
+      let updates: number = 0;
 
-    this.synchronizerService.updatesEmitter.subscribe((updateNumber: number): void => {
-      updates += updateNumber;
-      if (updates == 0) {
-        this.updatingModal.nativeElement.classList.add('hide');
-        this.updatingModal.nativeElement.classList.remove('show');
-        document.body.classList.remove('dgt-overlay-open');
+      this.synchronizerService.updatesEmitter.subscribe((updateNumber: number): void => {
+        updates += updateNumber;
+        if (updates == 0) {
+          this.updatingModal.nativeElement.classList.add('hide');
+          this.updatingModal.nativeElement.classList.remove('show');
+          document.body.classList.remove('dgt-overlay-open');
 
-        this.delay(250).then(() => {
-          window.location.reload()
-        });
-      } else {
-        this.updatingModal.nativeElement.classList.add('show');
-        this.updatingModal.nativeElement.classList.remove('hide');
-        document.body.classList.add('dgt-overlay-open');
-      }
-    });
+          this.delay(250).then(() => {
+            window.location.reload()
+          });
+        } else {
+          this.updatingModal.nativeElement.classList.add('show');
+          this.updatingModal.nativeElement.classList.remove('hide');
+          document.body.classList.add('dgt-overlay-open');
+        }
+      });
 
-    let subscription: Subscription = new Observable((observer: Subscriber<boolean>): void => {
-      this.synchronizerService.updateMetadata(observer);
-    }).subscribe((loaded: boolean): void => {
-      if (loaded) {
-        this.synchronizerService.loadTurnBasedUpdates(this.dgAPI.gameTurn());
+      let subscription: Subscription = new Observable((observer: Subscriber<boolean>): void => {
+        this.synchronizerService.updateMetadata(observer);
+      }).subscribe((loaded: boolean): void => {
+        if (loaded) {
+          this.synchronizerService.loadTurnBasedUpdates(this.dgAPI.gameTurn());
 
-        subscription.unsubscribe();
-      }
+          subscription.unsubscribe();
+        }
+      });
     });
   }
 

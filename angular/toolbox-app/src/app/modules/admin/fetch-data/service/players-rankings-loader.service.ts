@@ -11,6 +11,7 @@ import {AtomicNumber} from "../../../../shared/model/atomic-number.model";
 import {environment} from "../../../../../environments/environment";
 import {LocalStorageKeys} from "../../../../shared/model/local-storage/local-storage-keys";
 import {LocalStorageService} from "../../../local-storage/local-storage-manager/service/local-storage.service";
+import {UpdateMetadata} from "../../../../shared/model/stats/update-metadata.model";
 
 @Injectable({
   providedIn: 'root'
@@ -27,30 +28,44 @@ export class PlayersRankingsLoaderService {
   private readonly PLAYER_COMBAT_RANKINGS_URL: string = this.localStorageService.get(LocalStorageKeys.GAME_ENDPOINT) +'/rankings/combat/players/';
 
   async scanPlayersRankingsScreens(cancelScanEmitter: EventEmitter<boolean>): Promise<void> {
-    const scanDelay: number = 250 + Math.floor(Math.random() * 250);
-    const playersRankingsPath: any = collection(this.firestore, 'players-rankings');
-    const playersPlanetsPath: any = collection(this.firestore, 'players-planets');
+    const metadataPath: any = collection(this.firestore, 'metadata');
 
-    let isScanActive: boolean = true;
-    let cancelSubscription: Subscription = cancelScanEmitter.subscribe((value: boolean): void => {
-      isScanActive = !value;
-    });
-
-    let scanned: AtomicNumber = new AtomicNumber(0);
-    let playersStats: Map<number, PlayerStats> = new Map<number, PlayerStats>();
-    let pages: number = await this.getNumberOfPages();
-
-    for (let page: number = 1; page <= pages; page++) {
-      if (isScanActive) {
-        await this.scanRankingsPage(playersStats, scanned, scanDelay, page, pages);
-        await this.scanCombatRankingsPage(playersStats, scanned, scanDelay, page, pages);
+    let subscription: Subscription = docData(doc(metadataPath, 'players-rankings')).subscribe(async (item: DocumentData): Promise<void> => {
+      let process: boolean = true;
+      if (item) {
+        let updateMetadata: UpdateMetadata = Object.assign(new UpdateMetadata(0, 0), item);
+        process = !updateMetadata.lock;
       }
-      cancelSubscription.unsubscribe();
-    }
 
-    await this.saveRankings(playersStats, isScanActive, playersRankingsPath, playersPlanetsPath);
+      if (process) {
+        const scanDelay: number = 250 + Math.floor(Math.random() * 250);
+        const playersRankingsPath: any = collection(this.firestore, 'players-rankings');
+        const playersPlanetsPath: any = collection(this.firestore, 'players-planets');
 
-    this.metadataService.updateMetadataTurns('players-rankings-turn');
+        let isScanActive: boolean = true;
+        let cancelSubscription: Subscription = cancelScanEmitter.subscribe((value: boolean): void => {
+          isScanActive = !value;
+        });
+
+        let scanned: AtomicNumber = new AtomicNumber(0);
+        let playersStats: Map<number, PlayerStats> = new Map<number, PlayerStats>();
+        let pages: number = await this.getNumberOfPages();
+
+        for (let page: number = 1; page <= pages; page++) {
+          if (isScanActive) {
+            await this.scanRankingsPage(playersStats, scanned, scanDelay, page, pages);
+            await this.scanCombatRankingsPage(playersStats, scanned, scanDelay, page, pages);
+          }
+          cancelSubscription.unsubscribe();
+        }
+
+        await this.saveRankings(playersStats, isScanActive, playersRankingsPath, playersPlanetsPath);
+
+        this.metadataService.updateMetadataTurns('players-rankings-turn');
+      }
+
+      subscription.unsubscribe();
+    });
   }
 
   private async getNumberOfPages(): Promise<number> {

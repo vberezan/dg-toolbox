@@ -1,5 +1,4 @@
 import {AfterViewInit, Component, ElementRef, inject, OnDestroy, ViewChild} from '@angular/core';
-import {DarkgalaxyApiService} from "../../../../darkgalaxy-ui-parser/service/darkgalaxy-api.service";
 import {AuthService} from "../../../../authentication/service/auth.service";
 import {Observable, Subscriber} from "rxjs";
 import {FaIconLibrary} from "@fortawesome/angular-fontawesome";

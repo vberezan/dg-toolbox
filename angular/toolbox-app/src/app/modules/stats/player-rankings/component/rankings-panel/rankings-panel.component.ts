@@ -1,4 +1,5 @@
-import { Component } from '@angular/core';
+import {Component, inject} from '@angular/core';
+import {PlayerRankingsService} from "../../service/player-rankings.service";
 
 @Component({
   selector: 'dgt-players-rankings',
@@ -6,5 +7,5 @@ import { Component } from '@angular/core';
   styleUrls: ['./rankings-panel.component.css']
 })
 export class RankingsPanelComponent {
-
+  private playerRankingsService: PlayerRankingsService = inject(PlayerRankingsService);
 }
