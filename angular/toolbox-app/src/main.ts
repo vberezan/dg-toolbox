@@ -9,7 +9,7 @@ import {AllianceMembersModule} from "./app/modules/alliances/alliance-members/al
 import {DarkgalaxyUiParserModule} from "./app/modules/darkgalaxy-ui-parser/darkgalaxy-ui-parser.module";
 import {LocalStorageManagerModule} from "./app/modules/local-storage/local-storage-manager/local-storage-manager.module";
 import {ChangelogModule} from "./app/modules/changelog/changelog.module";
-import {LoadDataModule} from "./app/modules/admin/load-data/load-data.module";
+import {FetchDataModule} from "./app/modules/admin/fetch-data/fetch-data.module";
 import {AllianceRankingsModule} from "./app/modules/alliances/alliance-rankings/alliance-rankings.module";
 import {LocalStorageSynchronizerModule} from "./app/modules/local-storage/local-storage-synchronizer/local-storage-synchronizer.module";
 
@@ -25,7 +25,7 @@ platform.bootstrapModule(NavbarModule).catch(err => console.error(err));
 // -- home screen
 if (windowURL.length === 2 && windowURL[1].trim().length === 0) {
   platform.bootstrapModule(ChangelogModule).catch(err => console.error(err));
-  platform.bootstrapModule(LoadDataModule).catch(err => console.error(err));
+  platform.bootstrapModule(FetchDataModule).catch(err => console.error(err));
 }
 
 // -- planets list screen

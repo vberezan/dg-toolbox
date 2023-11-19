@@ -37,4 +37,4 @@ import {MetadataService} from "../../local-storage/local-storage-synchronizer/se
     AdminPanelComponent
   ]
 })
-export class LoadDataModule { }
+export class FetchDataModule { }

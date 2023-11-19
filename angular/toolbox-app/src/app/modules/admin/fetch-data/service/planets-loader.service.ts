@@ -13,7 +13,7 @@ import {MetadataService} from "../../../local-storage/local-storage-synchronizer
 @Injectable({
   providedIn: 'root'
 })
-export class NavigationLoaderService {
+export class PlanetsLoaderService {
   private readonly NAVIGATION_BASE_URL: string = 'https://andromeda.darkgalaxy.com/navigation/';
   private readonly GALAXIES: number = 49;
   private readonly G1_SECTORS: number = 25;
