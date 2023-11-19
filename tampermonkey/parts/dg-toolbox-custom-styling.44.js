@@ -657,7 +657,7 @@ function applyCustomStyling() {
         document.querySelector('img[src="/images/icons/research.png"]').parentElement.remove();
         document.querySelector('form').id = 'dgt-research-form';
         document.querySelectorAll('.researchTitle').forEach((title) => {
-            title.classList.add('padding');
+            title.parentElement.classList.add('padding');
         });
     }
 }
