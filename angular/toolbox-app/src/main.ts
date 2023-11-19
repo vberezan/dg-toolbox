@@ -25,7 +25,7 @@ platform.bootstrapModule(NavbarModule).catch(err => console.error(err));
 // -- home screen
 if (windowURL.length === 2 && windowURL[1].trim().length === 0) {
   platform.bootstrapModule(ChangelogModule).catch(err => console.error(err));
-  // platform.bootstrapModule(LoadDataModule).catch(err => console.error(err));
+  platform.bootstrapModule(LoadDataModule).catch(err => console.error(err));
 }
 
 // -- planets list screen
