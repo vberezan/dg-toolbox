@@ -9,6 +9,7 @@ import {environment} from "../../../../environments/environment";
 import {getAuth, provideAuth} from "@angular/fire/auth";
 import {getFirestore, provideFirestore} from "@angular/fire/firestore";
 import {initializeAppCheck, provideAppCheck, ReCaptchaV3Provider} from "@angular/fire/app-check";
+import {MetadataService} from "../../local-storage/local-storage-synchronizer/service/metadata.service";
 
 
 
@@ -31,6 +32,7 @@ import {initializeAppCheck, provideAppCheck, ReCaptchaV3Provider} from "@angular
     AdminPanelComponent,
     AllianceListDirective
   ],
+  providers: [MetadataService],
   bootstrap: [
     AdminPanelComponent
   ]

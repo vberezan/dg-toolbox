@@ -4,9 +4,8 @@ import {getApp, initializeApp, provideFirebaseApp} from "@angular/fire/app";
 import {environment} from "../../../../environments/environment";
 import {getFirestore, provideFirestore} from "@angular/fire/firestore";
 import {initializeAppCheck, provideAppCheck, ReCaptchaV3Provider} from "@angular/fire/app-check";
-import { LocalStorageSynchronizerComponent } from './component/local-storage-synchronizer/local-storage-synchronizer.component';
+import {LocalStorageSynchronizerComponent} from './component/local-storage-synchronizer/local-storage-synchronizer.component';
 import {HttpClientModule} from "@angular/common/http";
-import {MetadataService} from "./service/metadata.service";
 
 
 @NgModule({
@@ -22,7 +21,6 @@ import {MetadataService} from "./service/metadata.service";
       })
     )
   ],
-  providers: [MetadataService],
   declarations: [
     LocalStorageSynchronizerComponent,
   ],
