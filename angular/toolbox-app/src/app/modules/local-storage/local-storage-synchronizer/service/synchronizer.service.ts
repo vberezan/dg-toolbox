@@ -71,7 +71,6 @@ export class SynchronizerService {
         remoteMetadata.playersRankingsTurn.version > localMetadata.playersRankingsTurn.version)) {
 
       this.loadPlayersRankings(turn);
-      this.loadAllianceMembers(turn);
     }
 
     if (this.localStorageService.get(LocalStorageKeys.ALLIANCE_MEMBERS) == null ||
@@ -106,6 +105,8 @@ export class SynchronizerService {
         this.delay(1000).then((): void => {
           this._updatesEmitter.emit(-1);
         });
+
+        this.loadAllianceMembers(turn);
       });
   }
 
