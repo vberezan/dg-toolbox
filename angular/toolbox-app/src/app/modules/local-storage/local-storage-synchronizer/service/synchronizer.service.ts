@@ -73,9 +73,14 @@ export class SynchronizerService {
       this.loadPlayersRankings(turn);
     }
 
-    if (this.localStorageService.get(LocalStorageKeys.ALLIANCE_MEMBERS) == null ||
-      localMetadata.allianceMembersTurn.turn === 0 || turn > localMetadata.allianceMembersTurn.turn) {
-      this.loadAllianceMembers(turn);
+    if (this.localStorageService.get(LocalStorageKeys.PLAYERS_STATS) &&
+      (this.localStorageService.get(LocalStorageKeys.ALLIANCE_MEMBERS) == null ||
+        localMetadata.allianceMembersTurn.turn === 0 || turn > localMetadata.allianceMembersTurn.turn)) {
+      this.loadAllianceMembers(turn).then((): void => {
+        this.delay(1000).then((): void => {
+          this._updatesEmitter.emit(-1);
+        });
+      });
     }
 
 
@@ -106,7 +111,11 @@ export class SynchronizerService {
           this._updatesEmitter.emit(-1);
         });
 
-        this.loadAllianceMembers(turn);
+        this.loadAllianceMembers(turn).then((): void => {
+          this.delay(1000).then((): void => {
+            this._updatesEmitter.emit(-1);
+          });
+        });
       });
   }
 
@@ -151,10 +160,6 @@ export class SynchronizerService {
       this.localStorageService.cache(LocalStorageKeys.ALLIANCE_MEMBERS, cache);
       this.localStorageService.cache(LocalStorageKeys.LOCAL_METADATA, localMetadata);
     }
-
-    this.delay(1000).then((): void => {
-      this._updatesEmitter.emit(-1);
-    });
   }
 
   private delay = async (ms: number): Promise<unknown> => new Promise(res => setTimeout(res, ms));
