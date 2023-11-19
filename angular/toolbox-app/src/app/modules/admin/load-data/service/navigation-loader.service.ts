@@ -29,10 +29,6 @@ export class NavigationLoaderService {
   private _systemScanEmitter: EventEmitter<PageAction> = new EventEmitter<PageAction>();
   private _planetScanEmitter: EventEmitter<string> = new EventEmitter<string>();
 
-  constructor() {
-    console.log(this.metadataService.id);
-  }
-
   async scanNavigationScreen(cancelScanEmitter: EventEmitter<boolean>, @Optional() galaxies: number[] = []): Promise<void> {
     const scanDelay: number = 500 + Math.floor(Math.random() * 1000);
     const validGalaxies: number[] = this.filterValidGalaxies(galaxies);
