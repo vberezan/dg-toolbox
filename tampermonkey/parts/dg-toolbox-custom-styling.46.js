@@ -659,5 +659,8 @@ function applyCustomStyling() {
         document.querySelectorAll('.researchTitle').forEach((title) => {
             title.parentElement.classList.add('dgt-research-padding');
         });
+
+        let researchDescription = document.querySelector('#dgt-research-description > div');
+        researchDescription.innerHTML = researchDescription.innerHTML.replace(researchDescription.innerHTML.match(/\d+/g), '<span class="dgt-research-points">' + researchDescription.innerHTML.match(/\d+/g) + '</span>');
     }
 }
