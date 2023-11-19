@@ -13,18 +13,34 @@ export class LocalStorageSynchronizerComponent implements AfterViewInit {
 
   private synchronizerService: SynchronizerService = inject(SynchronizerService);
   private dgAPI: DarkgalaxyApiService = inject(DarkgalaxyApiService);
-  private updates: boolean[] = [];
 
   ngAfterViewInit(): void {
-    this.synchronizerService.updatesEmitter.subscribe((updates: number): void => {
+    this.updatingModal.nativeElement.classList.add('show');
+    this.updatingModal.nativeElement.classList.remove('hide');
+    document.body.classList.add('dgt-overlay-open');
+
+    let updates: number = 0;
+
+    this.synchronizerService.updatesEmitter.subscribe((updateNumber: number): void => {
+      updates += updateNumber;
       console.log('updates: ' + updates);
+
+      if (updates == 0) {
+        this.updatingModal.nativeElement.classList.add('hide');
+        this.updatingModal.nativeElement.classList.remove('show');
+        document.body.classList.remove('dgt-overlay-open');
+      } else {
+        this.updatingModal.nativeElement.classList.add('show');
+        this.updatingModal.nativeElement.classList.remove('hide');
+        document.body.classList.add('dgt-overlay-open');
+      }
     });
 
     let subscription: Subscription = new Observable((observer: Subscriber<boolean>): void => {
-      this.synchronizerService.updateMetadata(observer, this.updates);
+      this.synchronizerService.updateMetadata(observer);
     }).subscribe((loaded: boolean): void => {
       if (loaded) {
-        this.synchronizerService.loadTurnBasedUpdates(this.dgAPI.gameTurn(), this.updates);
+        this.synchronizerService.loadTurnBasedUpdates(this.dgAPI.gameTurn());
 
         subscription.unsubscribe();
       }

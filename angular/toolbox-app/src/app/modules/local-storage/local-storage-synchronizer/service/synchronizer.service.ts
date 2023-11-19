@@ -23,10 +23,10 @@ export class SynchronizerService {
   constructor() {
   }
 
-  updateMetadata(observer: Subscriber<boolean>, updates: boolean[]): void {
+  updateMetadata(observer: Subscriber<boolean>): void {
+    this._updatesEmitter.emit(1);
     const metadataPath: any = collection(this.firestore, 'metadata');
 
-    updates.push(true);
     let subscription: Subscription = collectionData(
       query(metadataPath),
     ).subscribe((item: DocumentData[]): void => {
@@ -44,11 +44,11 @@ export class SynchronizerService {
       observer.complete();
 
       subscription.unsubscribe();
-      updates.pop();
+      this._updatesEmitter.emit(0);
     });
   }
 
-  loadTurnBasedUpdates(turn: number, updates: boolean[]): void {
+  loadTurnBasedUpdates(turn: number): void {
     let localMetadata: Metadata = this.localStorageService.localMetadata();
     let remoteMetadata: Metadata = this.localStorageService.get(LocalStorageKeys.REMOTE_METADATA);
 
@@ -56,7 +56,7 @@ export class SynchronizerService {
       remoteMetadata.planetsTurn.turn > localMetadata.planetsTurn.turn ||
       (remoteMetadata.planetsTurn.turn == localMetadata.planetsTurn.turn &&
         remoteMetadata.planetsTurn.version > localMetadata.planetsTurn.version)) {
-      updates.push(true);
+      this._updatesEmitter.emit(1);
 
       let localMetadata: Metadata = this.localStorageService.localMetadata();
       let remoteMetadata: Metadata = this.localStorageService.remoteMetadata();
@@ -64,7 +64,7 @@ export class SynchronizerService {
       localMetadata.planetsTurn.version = remoteMetadata.planetsTurn.version;
 
       this.localStorageService.cache(LocalStorageKeys.LOCAL_METADATA, localMetadata);
-      updates.pop();
+      this.updatesEmitter.emit(0);
     }
 
     if (localMetadata.playersRankingsTurn.turn === 0 ||
@@ -72,13 +72,13 @@ export class SynchronizerService {
       (remoteMetadata.playersRankingsTurn.turn == localMetadata.playersRankingsTurn.turn &&
         remoteMetadata.playersRankingsTurn.version > localMetadata.playersRankingsTurn.version)) {
 
-      this.loadPlayersRankings(turn, updates);
-      this.loadAllianceMembers(turn, updates);
+      this.loadPlayersRankings(turn);
+      this.loadAllianceMembers(turn);
     }
 
     if (this.localStorageService.get(LocalStorageKeys.ALLIANCE_MEMBERS) == null ||
       localMetadata.allianceMembersTurn.turn === 0 || turn > localMetadata.allianceMembersTurn.turn) {
-      this.loadAllianceMembers(turn, updates);
+      this.loadAllianceMembers(turn);
     }
 
 
@@ -87,10 +87,10 @@ export class SynchronizerService {
   loadLiveUpdates(): void {
   }
 
-  private loadPlayersRankings(turn: number, updates: boolean[]): void {
+  private loadPlayersRankings(turn: number): void {
+    this._updatesEmitter.emit(1);
     const playersRankingsPath: any = collection(this.firestore, 'players-rankings');
 
-    updates.push(true);
     let subscription: Subscription = collectionData(playersRankingsPath)
       .subscribe((items: DocumentData[]): void => {
         let playerStats: PlayerStats[] = Object.assign([], items);
@@ -105,13 +105,12 @@ export class SynchronizerService {
         this.localStorageService.cache(LocalStorageKeys.LOCAL_METADATA, localMetadata);
 
         subscription.unsubscribe();
-        updates.pop();
-        this._updatesEmitter.emit(updates.length);
+        this._updatesEmitter.emit(0);
       });
   }
 
-  private async loadAllianceMembers(turn: number, updates: boolean[]): Promise<void> {
-    updates.push(true);
+  private async loadAllianceMembers(turn: number): Promise<void> {
+    this._updatesEmitter.emit(1);
     const source: string = await firstValueFrom(this.httpClient.get(this.ALLIANCES_URL, {responseType: 'text'}));
     const dom: Document = new DOMParser().parseFromString(source, 'text/html');
     const playerStats: PlayerStats[] = this.localStorageService.get(LocalStorageKeys.PLAYERS_STATS);
@@ -152,8 +151,7 @@ export class SynchronizerService {
       this.localStorageService.cache(LocalStorageKeys.LOCAL_METADATA, localMetadata);
     }
 
-    updates.pop();
-    this._updatesEmitter.emit(updates.length);
+    this._updatesEmitter.emit(0);
   }
 
 
