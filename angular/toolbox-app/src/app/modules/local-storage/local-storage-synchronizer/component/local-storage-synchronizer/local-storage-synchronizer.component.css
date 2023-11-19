@@ -1,0 +1,25 @@
+#dgt-update-message {
+  margin: auto;
+  width: 300px;
+  left: calc(50% - 150px);
+  top: calc(50% - 45px);
+  border: 1px solid #576740 !important;
+  border-radius: 5px;
+  padding: 10px;
+  vertical-align: middle;
+  text-align: center;
+  background: #576740;
+  position: fixed;
+  color: #ffffffad;
+}
+
+span {
+  float: left;
+  width: 100%;
+  margin-bottom: 10px;
+}
+
+img {
+  width: 50px;
+  height: 50px;
+}
