@@ -1378,6 +1378,7 @@ dgt-fleet-orders-list-panel {
 
 .researchQueued .infoBack {
   height: 100% !important;
+  border-radius: 3px !important;
 }
 
 /****/
