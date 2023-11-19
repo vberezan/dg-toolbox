@@ -1,4 +1,5 @@
 export enum LocalStorageKeys {
+  GAME_ENDPOINT = 'game-endpoint',
   USER = 'user',
   ALLIANCE_MEMBERS = 'alliance-members',
   PLAYERS_STATS = 'players-stats',

@@ -9,19 +9,22 @@ import {MetadataService} from "../../../local-storage/local-storage-synchronizer
 import {PageAction} from "../../../../shared/model/stats/page-action.model";
 import {AtomicNumber} from "../../../../shared/model/atomic-number.model";
 import {environment} from "../../../../../environments/environment";
+import {LocalStorageKeys} from "../../../../shared/model/local-storage/local-storage-keys";
+import {LocalStorageService} from "../../../local-storage/local-storage-manager/service/local-storage.service";
 
 @Injectable({
   providedIn: 'root'
 })
 export class PlayersRankingsLoaderService {
-  private readonly PLAYER_RANKINGS_URL: string = environment.game.host + '/rankings/players/';
-  private readonly PLAYER_COMBAT_RANKINGS_URL: string = environment.game.host +'/rankings/combat/players/';
-
   private httpClient: HttpClient = inject(HttpClient);
   private firestore: Firestore = inject(Firestore);
   private metadataService: MetadataService = inject(MetadataService);
+  private localStorageService: LocalStorageService = inject(LocalStorageService);
 
   private _playersRankingsEmitter: EventEmitter<PageAction> = new EventEmitter<PageAction>();
+
+  private readonly PLAYER_RANKINGS_URL: string = this.localStorageService.get(LocalStorageKeys.GAME_ENDPOINT) + '/rankings/players/';
+  private readonly PLAYER_COMBAT_RANKINGS_URL: string = this.localStorageService.get(LocalStorageKeys.GAME_ENDPOINT) +'/rankings/combat/players/';
 
   async scanPlayersRankingsScreens(cancelScanEmitter: EventEmitter<boolean>): Promise<void> {
     const scanDelay: number = 250 + Math.floor(Math.random() * 500);

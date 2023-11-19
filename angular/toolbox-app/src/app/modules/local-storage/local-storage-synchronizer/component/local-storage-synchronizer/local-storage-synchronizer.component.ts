@@ -14,6 +14,10 @@ export class LocalStorageSynchronizerComponent implements AfterViewInit {
   private synchronizerService: SynchronizerService = inject(SynchronizerService);
   private dgAPI: DarkgalaxyApiService = inject(DarkgalaxyApiService);
 
+  constructor() {
+    this.synchronizerService.loadGameEndpoint();
+  }
+
   ngAfterViewInit(): void {
     let updates: number = 0;
 
@@ -43,8 +47,6 @@ export class LocalStorageSynchronizerComponent implements AfterViewInit {
         subscription.unsubscribe();
       }
     });
-
-    this.synchronizerService.loadLiveUpdates();
   }
 
   private delay = async (ms: number): Promise<unknown> => new Promise(res => setTimeout(res, ms));

@@ -12,13 +12,7 @@ const firebaseConfig: any = {
   }
 };
 
-const gameConfig: any = {
-  gameName: 'andromeda',
-  host: 'https://andromeda.darkgalaxy.com'
-}
-
 export const environment: any = {
   firebase: firebaseConfig,
-  game: gameConfig,
   production: true
 }

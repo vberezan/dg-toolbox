@@ -10,12 +10,13 @@ import {PlayerPlanetsBatch} from "../../../../shared/model/stats/player-planets-
 import {PageAction} from "../../../../shared/model/stats/page-action.model";
 import {MetadataService} from "../../../local-storage/local-storage-synchronizer/service/metadata.service";
 import {environment} from "../../../../../environments/environment";
+import {LocalStorageKeys} from "../../../../shared/model/local-storage/local-storage-keys";
+import {LocalStorageService} from "../../../local-storage/local-storage-manager/service/local-storage.service";
 
 @Injectable({
   providedIn: 'root'
 })
 export class PlanetsLoaderService {
-  private readonly NAVIGATION_BASE_URL: string = environment.game.host + '/navigation/';
   private readonly GALAXIES: number = 49;
   private readonly G1_SECTORS: number = 25;
   private readonly INNER_SECTORS: number = 6;
@@ -26,9 +27,12 @@ export class PlanetsLoaderService {
   private firestore: Firestore = inject(Firestore);
   private dgAPI: DarkgalaxyApiService = inject(DarkgalaxyApiService);
   private metadataService: MetadataService = inject(MetadataService);
+  private localStorageService: LocalStorageService = inject(LocalStorageService);
 
   private _systemScanEmitter: EventEmitter<PageAction> = new EventEmitter<PageAction>();
   private _planetScanEmitter: EventEmitter<string> = new EventEmitter<string>();
+
+  private readonly NAVIGATION_BASE_URL: string = this.localStorageService.get(LocalStorageKeys.GAME_ENDPOINT) + '/navigation/';
 
   async scanPlanets(cancelScanEmitter: EventEmitter<boolean>, @Optional() galaxies: number[] = []): Promise<void> {
     const scanDelay: number = 500 + Math.floor(Math.random() * 1000);

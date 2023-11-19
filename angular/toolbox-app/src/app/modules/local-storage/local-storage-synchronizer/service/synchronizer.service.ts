@@ -14,15 +14,12 @@ import {environment} from "../../../../../environments/environment";
   providedIn: 'root'
 })
 export class SynchronizerService {
-  private readonly ALLIANCES_URL: string = environment.game.host + '/alliances/';
-
   private httpClient: HttpClient = inject(HttpClient);
   private firestore: Firestore = inject(Firestore);
   private localStorageService: LocalStorageService = inject(LocalStorageService);
   private _updatesEmitter: EventEmitter<number> = new EventEmitter<number>();
 
-  constructor() {
-  }
+  private readonly ALLIANCES_URL: string = this.localStorageService.get(LocalStorageKeys.GAME_ENDPOINT) + '/alliances/';
 
   updateMetadata(observer: Subscriber<boolean>): void {
     const metadataPath: any = collection(this.firestore, 'metadata');
@@ -84,7 +81,8 @@ export class SynchronizerService {
 
   }
 
-  loadLiveUpdates(): void {
+  loadGameEndpoint(): void {
+    this.localStorageService.cache(LocalStorageKeys.GAME_ENDPOINT, window.location.origin);
   }
 
   private loadPlayersRankings(turn: number): void {
