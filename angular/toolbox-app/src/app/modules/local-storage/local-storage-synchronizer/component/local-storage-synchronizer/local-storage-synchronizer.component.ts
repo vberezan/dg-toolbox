@@ -16,6 +16,10 @@ export class LocalStorageSynchronizerComponent implements AfterViewInit {
   private updates: boolean[] = [];
 
   ngAfterViewInit(): void {
+    this.synchronizerService.updatesEmitter.subscribe((updates: number): void => {
+      console.log('updates: ' + updates);
+    });
+
     let subscription: Subscription = new Observable((observer: Subscriber<boolean>): void => {
       this.synchronizerService.updateMetadata(observer, this.updates);
     }).subscribe((loaded: boolean): void => {
@@ -24,10 +28,6 @@ export class LocalStorageSynchronizerComponent implements AfterViewInit {
 
         subscription.unsubscribe();
       }
-    });
-
-    this.synchronizerService.updatesEmitter.subscribe((updates: number): void => {
-      console.log('updates: ' + updates);
     });
 
     this.synchronizerService.loadLiveUpdates();
