@@ -10,9 +10,11 @@ import {DarkgalaxyUiParserModule} from "./app/modules/darkgalaxy-ui-parser/darkg
 import {LocalStorageManagerModule} from "./app/modules/local-storage/local-storage-manager/local-storage-manager.module";
 import {ChangelogModule} from "./app/modules/changelog/changelog.module";
 import {FetchDataModule} from "./app/modules/admin/fetch-data/fetch-data.module";
-import {AllianceRankingsModule} from "./app/modules/alliances/alliance-rankings/alliance-rankings.module";
+import {AllianceRankingsModule} from "./app/modules/stats/alliance-rankings/alliance-rankings.module";
 import {LocalStorageSynchronizerModule} from "./app/modules/local-storage/local-storage-synchronizer/local-storage-synchronizer.module";
 import {ResearchModule} from "./app/modules/research/research.module";
+import {PlayersRankingsLoaderService} from "./app/modules/admin/fetch-data/service/players-rankings-loader.service";
+import {PlayerRankingsModule} from "./app/modules/stats/player-rankings/player-rankings.module";
 
 const platform: PlatformRef = platformBrowserDynamic();
 let windowURL: string[] = window.location.pathname.split(/\//g);
@@ -58,6 +60,10 @@ function loadTier2Modules(windowURL: string[]): void {
   // -- alliances rankings
   if (windowURL[1] === 'rankings' && windowURL[2] === 'alliances') {
     platform.bootstrapModule(AllianceRankingsModule).catch(err => console.error("Error loading AllianceRankingsModule: " + err));
+  }
+
+  if (windowURL[1] === 'rankings' && windowURL[2] === 'players') {
+    platform.bootstrapModule(PlayerRankingsModule).catch(err => console.error("Error loading PlayerRankingsModule: " + err));
   }
 
   // -- research

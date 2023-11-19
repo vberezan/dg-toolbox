@@ -4,7 +4,7 @@ import {collection, doc, docData, Firestore, setDoc} from "@angular/fire/firesto
 import {firstValueFrom, Subscription} from "rxjs";
 import {PlayerStats} from "../../../../shared/model/stats/player-stats.model";
 import {DocumentData} from "@angular/fire/compat/firestore";
-import {PlayerPlanetsStats} from "../../../../shared/model/stats/player-planets-stats.model";
+import {PlayerPlanets} from "../../../../shared/model/stats/player-planets-stats.model";
 import {MetadataService} from "../../../local-storage/local-storage-synchronizer/service/metadata.service";
 import {PageAction} from "../../../../shared/model/stats/page-action.model";
 import {AtomicNumber} from "../../../../shared/model/atomic-number.model";
@@ -118,7 +118,7 @@ export class PlayersRankingsLoaderService {
           let playerPlanetsSubscription: Subscription = docData(
             doc(playersPlanetsPath, playerId.toString())
           ).subscribe((item: DocumentData): void => {
-            playerStats.planets = Object.assign(new PlayerPlanetsStats(), item).total;
+            playerStats.planets = Object.assign(new PlayerPlanets(), item).total;
 
             setDoc(doc(playersRankingsPath, playerId.toString()), JSON.parse(JSON.stringify(playerStats)))
               .then((): void => {

@@ -1,6 +1,6 @@
 import {PlanetsBatch} from "./planets-batch.model";
 
-export class PlayerPlanetsStats {
+export class PlayerPlanets {
   private _playerId: number;
   private _planets: PlanetsBatch[] = [];
   private _name: string;

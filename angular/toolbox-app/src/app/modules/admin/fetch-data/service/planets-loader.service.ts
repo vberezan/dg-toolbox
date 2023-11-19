@@ -4,14 +4,14 @@ import {HttpClient} from "@angular/common/http";
 import {collection, doc, docData, Firestore, setDoc, updateDoc} from "@angular/fire/firestore";
 import {PlanetStats} from "../../../../shared/model/stats/planet-stats.model";
 import {DarkgalaxyApiService} from "../../../darkgalaxy-ui-parser/service/darkgalaxy-api.service";
-import {PlayerPlanetsStats} from "../../../../shared/model/stats/player-planets-stats.model";
+import {PlayerPlanets} from "../../../../shared/model/stats/player-planets-stats.model";
 import {DocumentData} from "@angular/fire/compat/firestore";
 import {PlanetsBatch} from "../../../../shared/model/stats/planets-batch.model";
 import {PageAction} from "../../../../shared/model/stats/page-action.model";
 import {MetadataService} from "../../../local-storage/local-storage-synchronizer/service/metadata.service";
 import {LocalStorageKeys} from "../../../../shared/model/local-storage/local-storage-keys";
 import {LocalStorageService} from "../../../local-storage/local-storage-manager/service/local-storage.service";
-import {AlliancePlanetsStats} from "../../../../shared/model/stats/alliance-planets-stats.model";
+import {AlliancePlanets} from "../../../../shared/model/stats/alliance-planets-stats.model";
 
 
 @Injectable({
@@ -49,8 +49,8 @@ export class PlanetsLoaderService {
     const totalSystemNr: number = this.totalSystemsNr(galaxies);
 
     for (let g: number = 0; g < validGalaxies.length; g++) {
-      let playerPlanets: Map<number, PlayerPlanetsStats> = new Map<number, PlayerPlanetsStats>();
-      let alliancePlanets: Map<string, AlliancePlanetsStats> = new Map<string, AlliancePlanetsStats>();
+      let playerPlanets: Map<number, PlayerPlanets> = new Map<number, PlayerPlanets>();
+      let alliancePlanets: Map<string, AlliancePlanets> = new Map<string, AlliancePlanets>();
       const planetsPath: any = collection(this.firestore, 'planets-g' + validGalaxies[g]);
 
       let sectors: number;
@@ -81,15 +81,15 @@ export class PlanetsLoaderService {
     cancelSubscription.unsubscribe();
   }
 
-  private mergeAlliancePlanets(alliancePlanets: Map<string, AlliancePlanetsStats>): void {
+  private mergeAlliancePlanets(alliancePlanets: Map<string, AlliancePlanets>): void {
     const alliancePlanetsPath: any = collection(this.firestore, 'alliances-planets');
 
-    alliancePlanets.forEach((alliance: AlliancePlanetsStats, allianceTag: string): void => {
+    alliancePlanets.forEach((alliance: AlliancePlanets, allianceTag: string): void => {
       let subscription: Subscription = docData(
         doc(alliancePlanetsPath, allianceTag)
       ).subscribe((item: DocumentData): void => {
         if (item) {
-          let dbPlanets: AlliancePlanetsStats = Object.assign(new AlliancePlanetsStats(), item);
+          let dbPlanets: AlliancePlanets = Object.assign(new AlliancePlanets(), item);
 
           // -- if alliance has no planets in db for a particular galaxy, add all planets for that galaxy
           // -- merge all planets from DB, without the ones from the current galaxy
@@ -123,15 +123,15 @@ export class PlanetsLoaderService {
     });
   }
 
-  private mergePlayerPlanets(playerPlanets: Map<number, PlayerPlanetsStats>): void {
+  private mergePlayerPlanets(playerPlanets: Map<number, PlayerPlanets>): void {
     const playersPlanetsPath: any = collection(this.firestore, 'players-planets');
 
-    playerPlanets.forEach((player: PlayerPlanetsStats, playerId: number): void => {
+    playerPlanets.forEach((player: PlayerPlanets, playerId: number): void => {
       let subscription: Subscription = docData(
         doc(playersPlanetsPath, playerId.toString())
       ).subscribe((item: DocumentData): void => {
         if (item) {
-          let dbPlanets: PlayerPlanetsStats = Object.assign(new PlayerPlanetsStats(), item);
+          let dbPlanets: PlayerPlanets = Object.assign(new PlayerPlanets(), item);
 
           // -- if player has no planets in db for a particular galaxy, add all planets for that galaxy
           // -- merge all planets from DB, without the ones from the current galaxy
@@ -168,8 +168,8 @@ export class PlanetsLoaderService {
   private async parseAndSave(galaxy: number,
                              sector: number,
                              system: number,
-                             playerPlanets: Map<number, PlayerPlanetsStats>,
-                             alliancePlanets: Map<string, AlliancePlanetsStats>,
+                             playerPlanets: Map<number, PlayerPlanets>,
+                             alliancePlanets: Map<string, AlliancePlanets>,
                              planetsPath: any): Promise<void> {
     const source: string = await firstValueFrom(this.httpClient.get(this.NAVIGATION_BASE_URL + galaxy + '/' + sector + '/' + system, {responseType: 'text'}));
     const dom: Document = new DOMParser().parseFromString(source, 'text/html');
@@ -208,7 +208,7 @@ export class PlanetsLoaderService {
 
         if (stats.playerId >= 0) {
           if (!playerPlanets.has(stats.playerId)) {
-            playerPlanets.set(stats.playerId, new PlayerPlanetsStats());
+            playerPlanets.set(stats.playerId, new PlayerPlanets());
           }
 
           let batch: PlanetsBatch[] = playerPlanets.get(stats.playerId).planets;
@@ -227,7 +227,7 @@ export class PlanetsLoaderService {
 
           if (stats.alliance !== '-') {
             if (!alliancePlanets.has(stats.alliance)) {
-              alliancePlanets.set(stats.alliance, new AlliancePlanetsStats());
+              alliancePlanets.set(stats.alliance, new AlliancePlanets());
             }
 
             let batch: PlanetsBatch[] = alliancePlanets.get(stats.alliance).planets;
