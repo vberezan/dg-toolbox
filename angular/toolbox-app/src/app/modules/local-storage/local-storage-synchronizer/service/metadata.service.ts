@@ -26,12 +26,10 @@ export class MetadataService {
           updateMetadata.version = 1;
         }
 
-        console.log(JSON.stringify(updateMetadata));
-
-        updateDoc(doc(this.metadataPath, 'players-rankings-turn'), JSON.parse(JSON.stringify(updateMetadata)))
+        updateDoc(doc(this.metadataPath, document), JSON.parse(JSON.stringify(updateMetadata)))
           .catch((e): void => console.log(e));
       } else {
-        setDoc(doc(this.metadataPath, 'players-rankings-turn'), JSON.parse(JSON.stringify(new UpdateMetadata(this.dgAPI.gameTurn(), 1))))
+        setDoc(doc(this.metadataPath, document), JSON.parse(JSON.stringify(new UpdateMetadata(this.dgAPI.gameTurn(), 1))))
           .catch((e): void => console.log(e));
       }
 
