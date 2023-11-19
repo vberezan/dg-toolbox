@@ -21,8 +21,7 @@ export class MenuComponent implements OnDestroy {
   private analytics: Analytics = inject(Analytics);
 
   public updateAvailableNotification: Observable<boolean>;
-  public active: boolean;
-
+  public active: boolean = false;
   private initialized: boolean = false;
 
   constructor() {
