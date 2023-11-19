@@ -1,3 +1,5 @@
+import {ResearchTimesConstants} from '../../angular/toolbox-app/src/app/shared/model/research/research-times.constants';
+
 function detach(node) {
     if (node != null) {
         return node.parentElement.removeChild(node);
@@ -662,5 +664,19 @@ function applyCustomStyling() {
 
         let researchDescription = document.querySelector('#dgt-research-description > div');
         researchDescription.innerHTML = researchDescription.innerHTML.replace(researchDescription.innerHTML.match(/\d+/g), '<span class="dgt-research-points">' + researchDescription.innerHTML.match(/\d+/g) + '</span>');
+
+        document.querySelectorAll('.researchButton.researchQueued').forEach((queued) => {
+            const value = queued.attributes.getNamedItem('data-hasqtip').value !== 'available' ?
+              queued.attributes.getNamedItem('data-hasqtip').value : '1';
+            let q = parseInt(value);
+
+            let infoText = queued.querySelector('.infoText');
+            infoText.classList.add('queuePosition');
+            let researchTime = document.createElement('div');
+            researchTime.classList.add('infoText', 'researchTime');
+            researchTime.innerHTML = ResearchTimesConstants.times[q - 1][1].toString();
+
+            infoText.parentNode.insertBefore(researchTime, infoText);
+        });
     }
 }
