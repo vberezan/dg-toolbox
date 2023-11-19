@@ -127,6 +127,9 @@ export class RankingsLoaderService {
 
         if (updateMetadata.turn === this.dgAPI.gameTurn()) {
           updateMetadata.version++;
+        } else {
+          updateMetadata.turn = this.dgAPI.gameTurn();
+          updateMetadata.version = 1;
         }
 
         updateDoc(doc(metadataPath, 'players-rankings-turn'), JSON.parse(JSON.stringify(updateMetadata)))
