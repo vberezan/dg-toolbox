@@ -8,6 +8,7 @@ import {PlayerPlanetsStats} from "../../../../shared/model/stats/player-planets-
 import {DocumentData} from "@angular/fire/compat/firestore";
 import {PlayerPlanetsBatch} from "../../../../shared/model/stats/player-planets-batch.model";
 import {PageAction} from "../../../../shared/model/stats/page-action.model";
+import {MetadataService} from "../../../local-storage/local-storage-synchronizer/service/metadata.service";
 
 @Injectable({
   providedIn: 'root'
@@ -23,6 +24,7 @@ export class NavigationLoaderService {
   private httpClient: HttpClient = inject(HttpClient);
   private firestore: Firestore = inject(Firestore);
   private dgAPI: DarkgalaxyApiService = inject(DarkgalaxyApiService);
+  private metadataService: MetadataService = inject(MetadataService);
 
   private _systemScanEmitter: EventEmitter<PageAction> = new EventEmitter<PageAction>();
   private _planetScanEmitter: EventEmitter<string> = new EventEmitter<string>();
@@ -82,6 +84,8 @@ export class NavigationLoaderService {
 
       this.savePlayerPlanets(playerPlanets);
     }
+
+    this.metadataService.updateMetadata('planets-turn');
 
     cancelSubscription.unsubscribe();
   }
