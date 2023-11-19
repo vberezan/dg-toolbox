@@ -1,7 +1,7 @@
 function setUpPrerequisites() {
     document.body.prepend(document.createElement('dgt-local-storage-synchronizer'));
-    document.body.prepend(document.createElement('dgt-local-storage-manager'));
     document.body.prepend(document.createElement('dgt-darkgalaxy-ui-parser'));
+    document.body.prepend(document.createElement('dgt-local-storage-manager'));
 }
 function setUpNavbarReplacement() {
     if (document.getElementById('content')) {
