@@ -51,7 +51,7 @@ function loadTier2Modules(windowURL: string[]): void {
   }
 
   // -- alliances
-  if (windowURL[1] === 'alliances') {
+  if (windowURL[1] === 'alliances' && document.querySelector('dgt-alliance-members')) {
     platform.bootstrapModule(AllianceMembersModule).catch(err => console.error("Error loading AllianceMembersModule: " + err));
   }
 
