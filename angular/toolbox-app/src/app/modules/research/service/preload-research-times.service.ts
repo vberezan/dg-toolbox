@@ -10,9 +10,15 @@ export class PreloadResearchTimesService {
 
   preloadResearchTimes(): void {
     document.querySelectorAll('.researchButton.researchQueued').forEach((queued: Element): void => {
-      let q: number = parseInt(queued.attributes.getNamedItem('data-hasqtip').value);
+      const value: string = queued.attributes.getNamedItem('data-hasqtip').value !== 'available' ?
+        queued.attributes.getNamedItem('data-hasqtip').value : '1';
+      let q: number = parseInt(value);
 
-      console.log(q)
+      let infoText: Element = queued.querySelector('.infoText');
+      let researchTime: Element = document.createElement('div');
+      researchTime.classList.add('researchTime');
+
+      infoText.parentNode.insertBefore(researchTime, infoText);
     });
   }
 }
