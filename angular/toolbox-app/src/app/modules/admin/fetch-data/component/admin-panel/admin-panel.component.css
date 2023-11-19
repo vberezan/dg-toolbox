@@ -95,6 +95,7 @@ span.planet-counter {
   text-align: left;
   padding: 5px;
   border-radius: 3px;
+  margin-bottom: 5px;
 }
 
 #load-planets-example .usage-warning {
@@ -105,7 +106,45 @@ span.planet-counter {
   float: left;
 }
 
+#admin-load-rankings,
 #admin-load-planets {
   padding: 5px;
-  font-weight: bold;
+}
+
+#admin-load-planets input {
+  height: 24px;
+  font-size: 12px;
+  background: rgba(0,0,0,.4);
+  color: #fff;
+  border: 1px solid #767676 !important;
+  margin: 0;
+  border-radius: 3px;
+  display: block;
+  box-sizing: border-box;
+  padding: 3px 5px;
+  overflow: hidden;
+  float: left;
+  line-height: 18px;
+  width: 120px;
+  text-align: left;
+}
+
+#admin-load-rankings button,
+#admin-load-planets button {
+  padding: 0 15px;
+  border: 1px solid #767676 !important;
+  border-radius: 3px;
+  background: transparent;
+  cursor: pointer;
+  width: auto;
+  margin: 0 !important;
+  height: 24px;
+  line-height: 20px;
+  font-size: 13px;
+  min-width: 65px !important;
+  float: right;
+}
+
+#admin-load-rankings button {
+  float: left !important;
 }
