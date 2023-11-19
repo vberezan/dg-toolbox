@@ -16,11 +16,11 @@
             <li>special: 149 - everything (G01-G49)</li>
           </ul>
         </div>
+        <form>
+          <input [(ngModel)]="controls.galaxies" type="text" placeholder="Galaxies (Ex: 1,2)" dgtAllianceList/>
+          <button (click)="scanNavigationScreen();" type="submit">Scan</button>
+        </form>
       </div>
-      <form>
-        <input [(ngModel)]="controls.galaxies" type="text" placeholder="Galaxies (Ex: 1,2)" dgtAllianceList/>
-        <button (click)="scanNavigationScreen();" type="submit">Scan</button>
-      </form>
       <div id="admin-load-separator"></div>
       <div id="admin-load-rankings" style="padding: 3px; font-weight: bold">
         <form>
