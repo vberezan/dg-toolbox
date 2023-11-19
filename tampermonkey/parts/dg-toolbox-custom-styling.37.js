@@ -189,10 +189,10 @@ function applyCustomStyling() {
         let planetsRankingsUpdate = 0;
 
         if (localStorage.getItem('last-players-rankings-update')) {
-            playerRankingsUpdate = JSON.parse(localStorage.getItem('last-players-rankings-update')).value;
+            playerRankingsUpdate = JSON.parse(JSON.parse(localStorage.getItem('local-metadata')).value).playersRankingsTurn.turn;
         }
         if (localStorage.getItem('last-planets-update')) {
-            planetsRankingsUpdate = JSON.parse(localStorage.getItem('last-planets-update')).value;
+            planetsRankingsUpdate = JSON.parse(JSON.parse(localStorage.getItem('local-metadata')).value).planetsTurn.turn;
         }
 
 
