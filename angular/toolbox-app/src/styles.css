@@ -1322,6 +1322,10 @@ dgt-fleet-orders-list-panel {
   border-radius: 3px;
 }
 
+.researchButton.researchDone img {
+  filter: grayscale(100%);
+}
+
 .researchButton .researchImage img {
   border-radius: 3px;
   width: 44px;
