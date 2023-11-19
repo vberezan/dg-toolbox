@@ -51,7 +51,7 @@ function setUpAlliancePanel(windowURL) {
 function setUpResearchPanel(windowURL) {
     if (windowURL[1] === 'research') {
         if (document.querySelector('#contentBox')) {
-            document.querySelector('#contentBox').prepend(document.createElement('dgt-research-panel'));
+            document.querySelector('#contentBox').append(document.createElement('dgt-research-panel'));
         }
     }
 }

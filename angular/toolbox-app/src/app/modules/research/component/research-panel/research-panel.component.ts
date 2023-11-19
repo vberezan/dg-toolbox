@@ -10,5 +10,6 @@ export class ResearchPanelComponent {
   private preloadResearchTimesService: PreloadResearchTimesService = inject(PreloadResearchTimesService);
 
   constructor() {
+    this.preloadResearchTimesService.preloadResearchTimes();
   }
 }
