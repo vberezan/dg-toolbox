@@ -108,7 +108,7 @@ export class PlayersRankingsLoaderService {
     await this.delay(scanDelay);
   }
 
-  async saveRankings(playersStats: Map<number, PlayerStats>, isScanActive: boolean, playersRankingsPath: any, playersPlanetsPath: any, scannedRankings: AtomicNumber): Promise<void> {
+  private async saveRankings(playersStats: Map<number, PlayerStats>, isScanActive: boolean, playersRankingsPath: any, playersPlanetsPath: any, scannedRankings: AtomicNumber): Promise<void> {
     let savedRankings: number = 0;
     playersStats.forEach((playerStats: PlayerStats, playerId: number): void => {
       if (isScanActive) {

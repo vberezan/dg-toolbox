@@ -61,7 +61,7 @@ export class AdminPanelComponent {
       this.planetCounter.nativeElement.style.visibility = 'visible';
     });
 
-    await this.planetsLoaderService.scanNavigationScreen(this.cancelScanEmitter, galaxies);
+    await this.planetsLoaderService.scanPlanets(this.cancelScanEmitter, galaxies);
 
     this.cancelScan();
   }

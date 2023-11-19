@@ -29,7 +29,7 @@ export class PlanetsLoaderService {
   private _systemScanEmitter: EventEmitter<PageAction> = new EventEmitter<PageAction>();
   private _planetScanEmitter: EventEmitter<string> = new EventEmitter<string>();
 
-  async scanNavigationScreen(cancelScanEmitter: EventEmitter<boolean>, @Optional() galaxies: number[] = []): Promise<void> {
+  async scanPlanets(cancelScanEmitter: EventEmitter<boolean>, @Optional() galaxies: number[] = []): Promise<void> {
     const scanDelay: number = 500 + Math.floor(Math.random() * 1000);
     const validGalaxies: number[] = this.filterValidGalaxies(galaxies);
 
@@ -46,50 +46,33 @@ export class PlanetsLoaderService {
       let playerPlanets: Map<number, PlayerPlanetsStats> = new Map<number, PlayerPlanetsStats>();
       const planetsPath: any = collection(this.firestore, 'planets-g' + validGalaxies[g]);
 
+      let sectors: number;
       if (validGalaxies[g] === 1) {
-        for (let se: number = 1; se <= this.G1_SECTORS; se++) {
-          for (let sy: number = 1; sy <= this.SYSTEMS; sy++) {
-            if (isScanActive) {
-              await this.parseAndSave(validGalaxies[g], se, sy, playerPlanets, planetsPath);
-              this._systemScanEmitter.emit(new PageAction(++scannedSystems, totalSystemNr, 'load-save'));
-              await this.delay(scanDelay);
-            }
+        sectors = this.G1_SECTORS;
+      } else if (validGalaxies[g] > 1 && validGalaxies[g] < 14) {
+        sectors = this.INNER_SECTORS;
+      } else {
+        sectors = this.OUTER_SECTORS;
+      }
+
+      for (let se: number = 1; se <= sectors; se++) {
+        for (let sy: number = 1; sy <= this.SYSTEMS; sy++) {
+          if (isScanActive) {
+            await this.parseAndSave(validGalaxies[g], se, sy, playerPlanets, planetsPath);
+            this._systemScanEmitter.emit(new PageAction(++scannedSystems, totalSystemNr, 'load-save'));
+            await this.delay(scanDelay);
           }
         }
       }
 
-      if (validGalaxies[g] > 1 && validGalaxies[g] < 14) {
-        for (let se: number = 1; se <= this.INNER_SECTORS; se++) {
-          for (let sy: number = 1; sy <= this.SYSTEMS; sy++) {
-            if (isScanActive) {
-              await this.parseAndSave(validGalaxies[g], se, sy, playerPlanets, planetsPath);
-              this._systemScanEmitter.emit(new PageAction(++scannedSystems, totalSystemNr, 'load-save'));
-              await this.delay(scanDelay);
-            }
-          }
-        }
-      }
-
-      if (validGalaxies[g] >= 14) {
-        for (let se: number = 1; se <= this.OUTER_SECTORS; se++) {
-          for (let sy: number = 1; sy <= this.SYSTEMS; sy++) {
-            if (isScanActive) {
-              await this.parseAndSave(validGalaxies[g], se, sy, playerPlanets, planetsPath);
-              this._systemScanEmitter.emit(new PageAction(++scannedSystems, totalSystemNr, 'load-save'));
-              await this.delay(scanDelay);
-            }
-          }
-        }
-      }
-
-      this.savePlayerPlanets(playerPlanets);
+      this.mergePlayerPlanets(playerPlanets);
     }
     this.metadataService.updateMetadataTurns('planets-turn');
 
     cancelSubscription.unsubscribe();
   }
 
-  private savePlayerPlanets(playerPlanets: Map<number, PlayerPlanetsStats>): void {
+  private mergePlayerPlanets(playerPlanets: Map<number, PlayerPlanetsStats>): void {
     const playersPlanetsPath: any = collection(this.firestore, 'players-planets');
 
     playerPlanets.forEach((player: PlayerPlanetsStats, playerId: number): void => {
@@ -97,30 +80,28 @@ export class PlanetsLoaderService {
         doc(playersPlanetsPath, playerId.toString())
       ).subscribe((item: DocumentData): void => {
         if (item) {
-          let playerPlanetStats: PlayerPlanetsStats = Object.assign(new PlayerPlanetsStats(), item);
+          let dbPlanets: PlayerPlanetsStats = Object.assign(new PlayerPlanetsStats(), item);
+          player.total = 1;
 
-          playerPlanetStats.planets.forEach((batch: PlayerPlanetsBatch): void => {
+          // -- if player has no planets in db for a particular galaxy, add all planets for that galaxy
+          // -- merge all planets from DB, without the ones from the current galaxy
+          dbPlanets.planets.forEach((batch: PlayerPlanetsBatch): void => {
             let hasGalaxy: boolean = player.planets.some((planetsBatch: PlayerPlanetsBatch): boolean => planetsBatch.galaxy === batch.galaxy);
 
             if (!hasGalaxy) {
               player.planets.push(batch);
             }
-          })
 
-          let totalPlanets: number = 0;
-          player.planets.forEach((batch: PlayerPlanetsBatch): void => {
-            totalPlanets += batch.planets.length;
-          });
-          player.total = totalPlanets + 1;
+            player.total += batch.planets.length;
+          })
 
           updateDoc(doc(playersPlanetsPath, playerId.toString()), JSON.parse(JSON.stringify(player)))
             .catch((error): void => console.log(error));
         } else {
-          let totalPlanets: number = 0;
+          player.total = 1;
           player.planets.forEach((batch: PlayerPlanetsBatch): void => {
-            totalPlanets += batch.planets.length;
+            player.total += batch.planets.length;
           });
-          player.total = totalPlanets;
 
           setDoc(doc(playersPlanetsPath, player.playerId.toString()), JSON.parse(JSON.stringify(player)))
             .catch((error): void => console.log(error));
@@ -129,37 +110,6 @@ export class PlanetsLoaderService {
         subscription.unsubscribe();
       });
     });
-  }
-
-  totalSystemsNr(galaxies: number[]): number {
-    let result: number = 0;
-    const scanGalaxies: number[] = this.filterValidGalaxies(galaxies);
-
-    for (let g: number = 0; g < scanGalaxies.length; g++) {
-      if (scanGalaxies[g] === 1) {
-        result += this.G1_SECTORS * this.SYSTEMS;
-      }
-
-      if (scanGalaxies[g] > 1 && scanGalaxies[g] < 14) {
-        result += this.INNER_SECTORS * this.SYSTEMS;
-      }
-
-      if (scanGalaxies[g] >= 14) {
-        result += this.OUTER_SECTORS * this.SYSTEMS;
-      }
-    }
-
-    return result;
-  }
-
-  private allGalaxies(): number[] {
-    let result: number[] = [];
-
-    for (let i = 1; i <= this.GALAXIES; i++) {
-      result.push(i);
-    }
-
-    return result
   }
 
   private async parseAndSave(galaxy: number, sector: number, system: number, playerPlanets: Map<number, PlayerPlanetsStats>, planetsPath: any): Promise<void> {
@@ -228,25 +178,45 @@ export class PlanetsLoaderService {
   private filterValidGalaxies(galaxies: number[]): number[] {
     let scanGalaxies: number[] = [];
 
-    if (galaxies.length === 1 && galaxies[0] === 149) {
-      scanGalaxies.push(...this.allGalaxies());
-    } else if (galaxies.length === 1 && galaxies[0] === 213) {
-      for (let g: number = 2; g <= 13; g++) {
-        scanGalaxies.push(g);
-      }
-    } else if (galaxies.length === 1 && galaxies[0] === 1449) {
-      for (let g: number = 14; g <= 49; g++) {
-        scanGalaxies.push(g);
+    if (galaxies.length === 1) {
+      switch(galaxies[0]) {
+        case 149:
+          scanGalaxies.push(...this.allGalaxies());
+          break;
+        case 213:
+          scanGalaxies.push(...Array.from({length: 12}, (_, i: number) => i + 2));
+          break;
+        case 1449:
+          scanGalaxies.push(...Array.from({length: 36}, (_, i: number) => i + 14));
+          break;
+        default:
+          if (galaxies[0] > 0 && galaxies[0] <= this.GALAXIES) {
+            scanGalaxies.push(galaxies[0]);
+          }
       }
     } else {
-      for (let g: number = 0; g < galaxies.length; g++) {
-        if (galaxies[g] > 0 && galaxies[g] <= this.GALAXIES) {
-          scanGalaxies.push(galaxies[g]);
-        }
-      }
+      scanGalaxies.push(...galaxies.filter((g: number) => g > 0 && g <= this.GALAXIES));
     }
 
     return scanGalaxies;
+  }
+
+  private totalSystemsNr(galaxies: number[]): number {
+    const scanGalaxies: number[] = this.filterValidGalaxies(galaxies);
+
+    return scanGalaxies.reduce((result: number, galaxy: number): number => {
+      if (galaxy === 1) {
+        return result + this.G1_SECTORS * this.SYSTEMS;
+      }
+      if (galaxy > 1 && galaxy < 14) {
+        return result + this.INNER_SECTORS * this.SYSTEMS;
+      }
+      return result + this.OUTER_SECTORS * this.SYSTEMS;
+    }, 0);
+  }
+
+  private allGalaxies(): number[] {
+    return Array.from({length: this.GALAXIES}, (_, i: number) => i + 1);
   }
 
   private delay = async (ms: number): Promise<unknown> => new Promise(res => setTimeout(res, ms));
