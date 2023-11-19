@@ -1,7 +1,8 @@
 import {Component, inject} from '@angular/core';
 import {PlayerRankingsService} from "../../service/player-rankings.service";
-import {DarkgalaxyApiService} from "../../../../darkgalaxy-ui-parser/service/darkgalaxy-api.service";
 import {PlayerStats} from "../../../../../shared/model/stats/player-stats.model";
+import {LocalStorageService} from "../../../../local-storage/local-storage-manager/service/local-storage.service";
+import {LocalStorageKeys} from "../../../../../shared/model/local-storage/local-storage-keys";
 
 @Component({
   selector: 'dgt-players-rankings',
@@ -10,9 +11,15 @@ import {PlayerStats} from "../../../../../shared/model/stats/player-stats.model"
 })
 export class RankingsPanelComponent {
   private playerRankingsService: PlayerRankingsService = inject(PlayerRankingsService);
+  private localStorageService: LocalStorageService = inject(LocalStorageService);
   public rankings: Map<number, PlayerStats> = new Map<number, PlayerStats>();
 
   constructor() {
     this.rankings = this.playerRankingsService.playerStats();
+    const cachedStats: PlayerStats[] = this.localStorageService.get(LocalStorageKeys.PLAYERS_STATS);
+
+    cachedStats.forEach((player: PlayerStats): void => {
+      this.rankings.get(player.playerId).planets = player.planets;
+    });
   }
 }
