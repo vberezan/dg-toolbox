@@ -6,6 +6,7 @@ import {getFirestore, provideFirestore} from "@angular/fire/firestore";
 import {initializeAppCheck, provideAppCheck, ReCaptchaV3Provider} from "@angular/fire/app-check";
 import { LocalStorageSynchronizerComponent } from './component/local-storage-synchronizer/local-storage-synchronizer.component';
 import {HttpClientModule} from "@angular/common/http";
+import {MetadataService} from "./service/metadata.service";
 
 
 @NgModule({
@@ -21,8 +22,9 @@ import {HttpClientModule} from "@angular/common/http";
       })
     )
   ],
+  providers: [MetadataService],
   declarations: [
-    LocalStorageSynchronizerComponent
+    LocalStorageSynchronizerComponent,
   ],
   bootstrap: [LocalStorageSynchronizerComponent]
 })
