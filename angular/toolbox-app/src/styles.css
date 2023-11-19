@@ -874,10 +874,6 @@ label.queueDestroyButton {
   fill: #fff !important;
 }
 
-#queue .researchTitle {
-  width: 105px !important;
-}
-
 #queue .header {
   padding: 5px 5px 6px 5px !important;
 }
@@ -1300,6 +1296,10 @@ dgt-fleet-orders-list-panel {
 }
 
 /*******************/
+#queue .researchTitle {
+  width: 105px !important;
+}
+
 .researchButton {
   border-radius: 3px;
   border: 1px solid #767676;
@@ -1381,7 +1381,7 @@ dgt-fleet-orders-list-panel {
   border-radius: 3px !important;
 }
 
-#dgt-research-rescription {
+#dgt-research-description {
   border-radius: 5px;
 }
 
