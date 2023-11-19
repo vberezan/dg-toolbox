@@ -1297,7 +1297,12 @@ dgt-fleet-orders-list-panel {
 
 /*******************/
 #queue .researchTitle {
-  width: 105px !important;
+  width: 130px !important;
+  margin-top: 5px !important;
+}
+
+.dgt-research-padding {
+  padding: 2px 5px !important;
 }
 
 .researchButton {
