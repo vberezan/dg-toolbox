@@ -6,12 +6,13 @@ import {getFirestore, provideFirestore} from "@angular/fire/firestore";
 import {initializeAppCheck, provideAppCheck, ReCaptchaV3Provider} from "@angular/fire/app-check";
 import {LocalStorageSynchronizerComponent} from './component/local-storage-synchronizer/local-storage-synchronizer.component';
 import {HttpClientModule} from "@angular/common/http";
-import {MetadataService} from "./service/metadata.service";
+import {FormsModule} from "@angular/forms";
 
 
 @NgModule({
   imports: [
     BrowserModule,
+    FormsModule,
     HttpClientModule,
     provideFirebaseApp(() => initializeApp(environment.firebase)),
     provideFirestore(() => getFirestore()),
