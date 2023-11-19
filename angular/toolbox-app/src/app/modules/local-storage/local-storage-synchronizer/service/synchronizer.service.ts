@@ -85,7 +85,9 @@ export class SynchronizerService {
         this.localStorageService.cache(LocalStorageKeys.PLAYERS_STATS, playerStats);
 
         let localMetadata: Metadata = this.localStorageService.localMetadata();
-        localMetadata.playersRankingsTurn.turn = turn;
+        let remoteMetadata: Metadata = this.localStorageService.remoteMetadata();
+        localMetadata.playersRankingsTurn.turn = remoteMetadata.playersRankingsTurn.turn;
+        localMetadata.playersRankingsTurn.version = remoteMetadata.playersRankingsTurn.version;
 
         this.localStorageService.cache(LocalStorageKeys.LOCAL_METADATA, localMetadata);
 
