@@ -653,18 +653,6 @@ function applyCustomStyling() {
     }
 
     if (windowURL[1] === 'research') {
-        const times  = [
-            [1, 42], [2, 42], [3, 60], [4, 60], [5, 72], [6, 100],
-            [7, 42], [8, 42], [9, 60], [10, 60], [11, 72], [12, 100],
-            [13, 36], [14, 36], [15, 72], [16, 72], [17, 60],
-            [18, 48], [19, 60], [20, 72],
-            [21, 24], [22, 48], [23, 36], [24, 60], [25, 48], [26, 120],
-            [27, 18], [28, 18], [29, 18], [30, 18], [31, 18],
-            [32, 36], [33, 36], [34, 36], [35, 36], [36, 36],
-            [37, 12], [38, 12], [39, 12], [40, 24], [41, 24], [42, 24],
-            [43, 48], [44, 48], [45, 36], [46, 36], [47, 36], [48, 36], [49, 24], [50, 24], [51, 24], [52, 24], [53, 18], [54, 18], [55, 18], [56, 18], [57, 12], [58, 12]
-        ];
-
         document.querySelector('img[src="/images/icons/research.png"]').parentElement.parentElement.id = 'dgt-research-description';
         document.querySelector('img[src="/images/icons/research.png"]').parentElement.remove();
         document.querySelector('form').id = 'dgt-research-form';
@@ -674,19 +662,5 @@ function applyCustomStyling() {
 
         let researchDescription = document.querySelector('#dgt-research-description > div');
         researchDescription.innerHTML = researchDescription.innerHTML.replace(researchDescription.innerHTML.match(/\d+/g), '<span class="dgt-research-points">' + researchDescription.innerHTML.match(/\d+/g) + '</span>');
-
-        document.querySelectorAll('.researchButton.researchQueued').forEach((queued) => {
-            const value = queued.attributes.getNamedItem('data-hasqtip').value !== 'available' ?
-              queued.attributes.getNamedItem('data-hasqtip').value : '1';
-            let q = parseInt(value);
-
-            let infoText = queued.querySelector('.infoText');
-            infoText.classList.add('queuePosition');
-            let researchTime = document.createElement('div');
-            researchTime.classList.add('infoText', 'researchTime');
-            researchTime.innerHTML = times[q - 1][1].toString();
-
-            infoText.parentNode.insertBefore(researchTime, infoText);
-        });
     }
 }
