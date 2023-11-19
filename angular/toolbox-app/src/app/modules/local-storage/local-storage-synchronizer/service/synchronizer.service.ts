@@ -53,7 +53,8 @@ export class SynchronizerService {
 
     if (localMetadata.playersRankingsTurn.turn === 0 ||
       remoteMetadata.playersRankingsTurn.turn > localMetadata.playersRankingsTurn.turn ||
-      remoteMetadata.playersRankingsTurn.version > localMetadata.playersRankingsTurn.version) {
+      (remoteMetadata.playersRankingsTurn.turn == localMetadata.playersRankingsTurn.turn &&
+        remoteMetadata.playersRankingsTurn.version > localMetadata.playersRankingsTurn.version)) {
 
       console.log(localMetadata.playersRankingsTurn.turn);
       console.log(remoteMetadata.playersRankingsTurn.turn + ' - ' + localMetadata.playersRankingsTurn.turn);
