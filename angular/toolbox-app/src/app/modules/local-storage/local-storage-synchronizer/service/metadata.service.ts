@@ -31,25 +31,25 @@ export class MetadataService {
 
   updateMetadata(document: string): void {
 
-    // let subscription: Subscription = docData(doc(this.metadataPath, document)).subscribe((item: DocumentData): void => {
-    //   if (item) {
-    //     let updateMetadata: UpdateMetadata = Object.assign(new UpdateMetadata(0, 0), item);
-    //
-    //     if (updateMetadata.turn === this.dgAPI.gameTurn()) {
-    //       updateMetadata.version++;
-    //     } else {
-    //       updateMetadata.turn = this.dgAPI.gameTurn();
-    //       updateMetadata.version = 1;
-    //     }
-    //
-    //     updateDoc(doc(this.metadataPath, 'players-rankings-turn'), JSON.parse(JSON.stringify(updateMetadata)))
-    //       .catch((e): void => console.log(e));
-    //   } else {
-    //     setDoc(doc(this.metadataPath, 'players-rankings-turn'), JSON.parse(JSON.stringify(new UpdateMetadata(this.dgAPI.gameTurn(), 1))))
-    //       .catch((e): void => console.log(e));
-    //   }
-    //
-    //   subscription.unsubscribe();
-    // });
+    let subscription: Subscription = docData(doc(this.metadataPath, document)).subscribe((item: DocumentData): void => {
+      if (item) {
+        let updateMetadata: UpdateMetadata = Object.assign(new UpdateMetadata(0, 0), item);
+
+        if (updateMetadata.turn === this.dgAPI.gameTurn()) {
+          updateMetadata.version++;
+        } else {
+          updateMetadata.turn = this.dgAPI.gameTurn();
+          updateMetadata.version = 1;
+        }
+
+        updateDoc(doc(this.metadataPath, 'players-rankings-turn'), JSON.parse(JSON.stringify(updateMetadata)))
+          .catch((e): void => console.log(e));
+      } else {
+        setDoc(doc(this.metadataPath, 'players-rankings-turn'), JSON.parse(JSON.stringify(new UpdateMetadata(this.dgAPI.gameTurn(), 1))))
+          .catch((e): void => console.log(e));
+      }
+
+      subscription.unsubscribe();
+    });
   }
 }

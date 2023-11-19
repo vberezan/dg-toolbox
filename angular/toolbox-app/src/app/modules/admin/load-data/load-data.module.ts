@@ -28,6 +28,9 @@ import {MetadataService} from "../../local-storage/local-storage-synchronizer/se
       })
     ),
   ],
+  providers: [
+    MetadataService // -- contains reference to firestore
+  ],
   declarations: [
     AdminPanelComponent,
     AllianceListDirective

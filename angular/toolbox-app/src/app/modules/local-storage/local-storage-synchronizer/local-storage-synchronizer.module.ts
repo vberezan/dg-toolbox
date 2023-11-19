@@ -22,9 +22,6 @@ import {MetadataService} from "./service/metadata.service";
       })
     )
   ],
-  providers: [
-    MetadataService
-  ],
   declarations: [
     LocalStorageSynchronizerComponent,
   ],
