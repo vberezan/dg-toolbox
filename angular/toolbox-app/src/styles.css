@@ -1298,7 +1298,7 @@ dgt-fleet-orders-list-panel {
 /*******************/
 .dgt-research-points {
   color: #7bbd1a !important;
-  font-weight: bold;
+  font-size: 16px !important;
 }
 
 #queue .researchTitle {

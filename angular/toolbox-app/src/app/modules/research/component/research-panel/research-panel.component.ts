@@ -1,4 +1,4 @@
-import {Component, inject} from '@angular/core';
+import {AfterViewInit, Component, inject} from '@angular/core';
 import {PreloadResearchTimesService} from "../../service/preload-research-times.service";
 
 @Component({
@@ -6,10 +6,10 @@ import {PreloadResearchTimesService} from "../../service/preload-research-times.
   template: '',
   styles: ['']
 })
-export class ResearchPanelComponent {
+export class ResearchPanelComponent implements AfterViewInit {
   private preloadResearchTimesService: PreloadResearchTimesService = inject(PreloadResearchTimesService);
 
-  constructor() {
+  ngAfterViewInit(): void {
     this.preloadResearchTimesService.fixQueuedResearchTimes();
   }
 }
