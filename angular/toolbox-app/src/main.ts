@@ -15,41 +15,47 @@ import {LocalStorageSynchronizerModule} from "./app/modules/local-storage/local-
 
 const platform: PlatformRef = platformBrowserDynamic();
 let windowURL: string[] = window.location.pathname.split(/\//g);
-platform.bootstrapModule(LocalStorageManagerModule).catch(err => console.error(err));
-platform.bootstrapModule(DarkgalaxyUiParserModule).catch(err => console.error(err));
-platform.bootstrapModule(AuthenticationModule).catch(err => console.error(err));
-platform.bootstrapModule(LocalStorageSynchronizerModule).catch(err => console.log(err));
-platform.bootstrapModule(NavbarModule).catch(err => console.error(err));
+platform.bootstrapModule(LocalStorageManagerModule).then((): void => {
+  platform.bootstrapModule(DarkgalaxyUiParserModule).then((): void => {
+    platform.bootstrapModule(AuthenticationModule).then((): void => {
+      platform.bootstrapModule(LocalStorageSynchronizerModule).then((): void => {
+        platform.bootstrapModule(NavbarModule).then((): void => {
+          loadTier2Modules(windowURL);
+        }).catch(err => console.error(err));
+      }).catch(err => console.log(err));
+    }).catch(err => console.error(err));
+  }).catch(err => console.error(err));
+}).catch(err => console.error(err));
 
 
-// -- home screen
-if (windowURL.length === 2 && windowURL[1].trim().length === 0) {
-  platform.bootstrapModule(ChangelogModule).catch(err => console.error(err));
-  platform.bootstrapModule(FetchDataModule).catch(err => console.error(err));
+function loadTier2Modules(windowURL: string[]): void {
+  // -- home screen
+  if (windowURL.length === 2 && windowURL[1].trim().length === 0) {
+    platform.bootstrapModule(ChangelogModule).catch(err => console.error(err));
+    platform.bootstrapModule(FetchDataModule).catch(err => console.error(err));
+  }
+  // -- planets list screen
+  if (windowURL[1] === 'planets') {
+    platform.bootstrapModule(PlanetListStatsModule).catch(err => console.error(err));
+  }
+
+  // -- planet screen >> comms
+  if (windowURL[1] === 'planet' && (windowURL.length === 5 && windowURL[3]) === 'comms') {
+    platform.bootstrapModule(SharedScansModule).catch(err => console.error(err));
+  }
+
+  // -- navigation screen >> system level
+  if (windowURL[1] === 'navigation' && (windowURL.length === 6 && !isNaN(+windowURL[2]) && !isNaN(+windowURL[3]) && !isNaN(+windowURL[4]))) {
+    platform.bootstrapModule(NavigationScansModule).catch(err => console.error(err));
+  }
+
+  // -- alliances
+  if (windowURL[1] === 'alliances') {
+    platform.bootstrapModule(AllianceMembersModule).catch(err => console.error(err));
+  }
+
+  // -- alliances rankings
+  if (windowURL[1] === 'rankings' && windowURL[2] === 'alliances') {
+    platform.bootstrapModule(AllianceRankingsModule).catch(err => console.error(err));
+  }
 }
-
-// -- planets list screen
-if (windowURL[1] === 'planets') {
-  platform.bootstrapModule(PlanetListStatsModule).catch(err => console.error(err));
-}
-
-// -- planet screen >> comms
-if (windowURL[1] === 'planet' && (windowURL.length === 5 && windowURL[3]) === 'comms') {
-  platform.bootstrapModule(SharedScansModule).catch(err => console.error(err));
-}
-
-// -- navigation screen >> system level
-if (windowURL[1] === 'navigation' && (windowURL.length === 6 && !isNaN(+windowURL[2]) && !isNaN(+windowURL[3]) && !isNaN(+windowURL[4]))) {
-  platform.bootstrapModule(NavigationScansModule).catch(err => console.error(err));
-}
-
-// -- alliances
-if (windowURL[1] === 'alliances') {
-  platform.bootstrapModule(AllianceMembersModule).catch(err => console.error(err));
-}
-
-// -- alliances rankings
-if (windowURL[1] === 'rankings' && windowURL[2] === 'alliances') {
-  platform.bootstrapModule(AllianceRankingsModule).catch(err => console.error(err));
-}
-
