@@ -1306,6 +1306,10 @@ dgt-fleet-orders-list-panel {
   margin-top: 5px !important;
 }
 
+#queue .researchTitle.planet-limit {
+  height: 85px !important;
+}
+
 .dgt-research-padding {
   padding: 2px 5px !important;
 }

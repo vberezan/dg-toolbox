@@ -662,5 +662,11 @@ function applyCustomStyling() {
 
         let researchDescription = document.querySelector('#dgt-research-description > div');
         researchDescription.innerHTML = researchDescription.innerHTML.replace(researchDescription.innerHTML.match(/\d+/g), '<span class="dgt-research-points">' + researchDescription.innerHTML.match(/\d+/g) + '</span>');
+
+        document.querySelectorAll('.researchTitle > div').forEach((title) => {
+            if (title.textContent.trim().toLowerCase().indexOf('planet limit') !== -1) {
+                title.parentElement.classList.add('planet-limit');
+            }
+        });
     }
 }
