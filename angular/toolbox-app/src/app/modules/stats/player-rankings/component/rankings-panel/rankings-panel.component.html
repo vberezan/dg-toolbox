@@ -1,1 +1,22 @@
-<p>rankings-panel works!</p>
+<div>
+    <table>
+        <thead>
+            <tr>
+                <th>Rank</th>
+                <th>Tag</th>
+                <th>Player</th>
+                <th>Planets</th>
+                <th>Score</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr *ngFor="let player of rankings.values()">
+                <td>{{player.rank}}</td>
+                <td>{{player.alliance}}</td>
+                <td>{{player.name}}</td>
+                <td>{{player.planets}}</td>
+                <td>{{player.score}}</td>
+            </tr>
+        </tbody>
+    </table>
+</div>

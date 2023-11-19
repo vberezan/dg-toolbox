@@ -4,7 +4,8 @@ import {PlanetSummary} from "../../../shared/model/planets/planet-summary.planet
 import {PlanetScanExtractorService} from "./planet-scan.extractor.service";
 import {PlanetScanEvent} from "../../../shared/model/scans/shared-scans-planet-scan-event.model";
 import {NavigationSystemPlanetsExtractorService} from "./navigation-system-planets.extractor.service";
-import {AllianceMember} from "../../../shared/model/alliances/alliance-member.model";
+import {PlayerRankingsService} from "./player-rankings.service";
+import {PlayerStats} from "../../../shared/model/stats/player-stats.model";
 
 @Injectable({
   providedIn: 'platform'
@@ -14,6 +15,7 @@ export class DarkgalaxyApiService {
   private planetListExtractor: PlanetListExtractorService = inject(PlanetListExtractorService);
   private planetScanExtractor: PlanetScanExtractorService = inject(PlanetScanExtractorService);
   private navigationSystemPlanetsExtractor: NavigationSystemPlanetsExtractorService = inject(NavigationSystemPlanetsExtractorService);
+  private playerRankingsService: PlayerRankingsService = inject(PlayerRankingsService);
 
   private cachedUsername: string = null;
 
@@ -23,6 +25,10 @@ export class DarkgalaxyApiService {
 
   planetScan(): PlanetScanEvent {
     return this.planetScanExtractor.extract();
+  }
+
+  playerRankings(): Map<number, PlayerStats> {
+    return this.playerRankingsService.extract();
   }
 
   navigationSystemPlanets(): PlanetSummary[] {
