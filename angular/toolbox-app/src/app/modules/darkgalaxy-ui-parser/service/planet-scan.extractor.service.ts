@@ -58,14 +58,14 @@ export class PlanetScanExtractorService implements DataExtractor {
       } else {
         result.planetScan.owner = new Owner('Uninhabited Planet', ownerAlliance.substring(1, ownerAlliance.length - 1));
       }
+
+      result.planetScan.location = base.querySelectorAll('.planetHeadSection .coords')[0].textContent.trim().replace(/\s+/, '');
     }
 
     // -- extract common RESOURCE & SURFACE scans data
     if (scanType === ScanType.RESOURCE || scanType === ScanType.SURFACE) {
       result.planetScan.orbit = parseInt(base.querySelectorAll('.planetHeadSection .resource > span')[0].textContent.trim());
       result.planetScan.ground = parseInt(base.querySelectorAll('.planetHeadSection .resource > span')[1].textContent.trim());
-      result.planetScan.location = base.querySelectorAll('.planetHeadSection .coords')[0].textContent.trim().replace(/\s+/, '');
-
     }
 
     // -- extract RESOURCE specific data
