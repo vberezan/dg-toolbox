@@ -55,6 +55,10 @@ export class SynchronizerService {
       remoteMetadata.playersRankingsTurn.turn > localMetadata.playersRankingsTurn.turn ||
       remoteMetadata.playersRankingsTurn.version > localMetadata.playersRankingsTurn.version) {
 
+      console.log(localMetadata.playersRankingsTurn.turn);
+      console.log(remoteMetadata.playersRankingsTurn.turn + ' - ' + localMetadata.playersRankingsTurn.turn);
+      console.log(remoteMetadata.playersRankingsTurn.version + ' - ' + localMetadata.playersRankingsTurn.version);
+
       this.loadPlayersRankings(turn);
       this.loadAllianceMembers(turn);
     }
