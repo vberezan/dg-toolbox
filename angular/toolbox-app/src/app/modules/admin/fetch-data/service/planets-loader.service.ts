@@ -248,7 +248,7 @@ export class PlanetsLoaderService {
             .catch((error): void => console.log(error));
 
         }
-      }, 50 * index);
+      }, 25 * index);
     });
 
   }
