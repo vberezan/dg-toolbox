@@ -23,6 +23,10 @@ export class LocalStorageSynchronizerComponent implements AfterViewInit {
         this.updatingModal.nativeElement.classList.add('hide');
         this.updatingModal.nativeElement.classList.remove('show');
         document.body.classList.remove('dgt-overlay-open');
+
+        this.delay(250).then(() => {
+          window.location.reload()
+        });
       } else {
         this.updatingModal.nativeElement.classList.add('show');
         this.updatingModal.nativeElement.classList.remove('hide');
@@ -42,4 +46,6 @@ export class LocalStorageSynchronizerComponent implements AfterViewInit {
 
     this.synchronizerService.loadLiveUpdates();
   }
+
+  private delay = async (ms: number): Promise<unknown> => new Promise(res => setTimeout(res, ms));
 }
