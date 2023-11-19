@@ -77,11 +77,8 @@ export class SynchronizerService {
     if (this.localStorageService.get(LocalStorageKeys.PLAYERS_STATS) &&
       (this.localStorageService.get(LocalStorageKeys.ALLIANCE_MEMBERS) == null ||
         localMetadata.allianceMembersTurn.turn === 0 || turn > localMetadata.allianceMembersTurn.turn)) {
-      this.loadAllianceMembers(turn).then((): void => {
-        this.delay(1000).then((): void => {
-          this._updatesEmitter.emit(-1);
-        });
-      });
+
+      this.loadAllianceMembers(turn);
     }
 
 
@@ -112,6 +109,7 @@ export class SynchronizerService {
           this._updatesEmitter.emit(-1);
         });
 
+        this._updatesEmitter.emit(1);
         this.loadAllianceMembers(turn).then((): void => {
           this.delay(1000).then((): void => {
             this._updatesEmitter.emit(-1);
@@ -121,7 +119,6 @@ export class SynchronizerService {
   }
 
   private async loadAllianceMembers(turn: number): Promise<void> {
-    this._updatesEmitter.emit(1);
     const source: string = await firstValueFrom(this.httpClient.get(this.ALLIANCES_URL, {responseType: 'text'}));
     const dom: Document = new DOMParser().parseFromString(source, 'text/html');
     const playerStats: PlayerStats[] = this.localStorageService.get(LocalStorageKeys.PLAYERS_STATS);

@@ -1,4 +1,5 @@
-import { Component } from '@angular/core';
+import {Component, inject} from '@angular/core';
+import {PreloadResearchTimesService} from "../../service/preload-research-times.service";
 
 @Component({
   selector: 'dgt-research-panel',
@@ -6,4 +7,8 @@ import { Component } from '@angular/core';
   styles: ['']
 })
 export class ResearchPanelComponent {
+  private preloadResearchTimesService: PreloadResearchTimesService = inject(PreloadResearchTimesService);
+
+  constructor() {
+  }
 }
