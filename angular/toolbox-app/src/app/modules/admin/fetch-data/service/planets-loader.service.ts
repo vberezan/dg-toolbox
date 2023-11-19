@@ -81,27 +81,15 @@ export class PlanetsLoaderService {
       ).subscribe((item: DocumentData): void => {
         if (item) {
           let dbPlanets: PlayerPlanetsStats = Object.assign(new PlayerPlanetsStats(), item);
-          player.total = 1;
-
           // -- if player has no planets in db for a particular galaxy, add all planets for that galaxy
           // -- merge all planets from DB, without the ones from the current galaxy
-          dbPlanets.planets.forEach((batch: PlayerPlanetsBatch): void => {
-            let hasGalaxy: boolean = player.planets.some((planetsBatch: PlayerPlanetsBatch): boolean => planetsBatch.galaxy === batch.galaxy);
-
-            if (!hasGalaxy) {
-              player.planets.push(batch);
-            }
-
-            player.total += batch.planets.length;
-          })
+          player.planets = [...new Set([...player.planets, ...dbPlanets.planets])];
+          player.total += player.planets.reduce((total: number, batch: PlayerPlanetsBatch) => total + batch.planets.length, 0) + 1;
 
           updateDoc(doc(playersPlanetsPath, playerId.toString()), JSON.parse(JSON.stringify(player)))
             .catch((error): void => console.log(error));
         } else {
-          player.total = 1;
-          player.planets.forEach((batch: PlayerPlanetsBatch): void => {
-            player.total += batch.planets.length;
-          });
+          player.total = player.planets.reduce((total: number, batch: PlayerPlanetsBatch) => total + batch.planets.length, 0) + 1;
 
           setDoc(doc(playersPlanetsPath, player.playerId.toString()), JSON.parse(JSON.stringify(player)))
             .catch((error): void => console.log(error));
