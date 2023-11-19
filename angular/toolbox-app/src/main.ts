@@ -21,41 +21,41 @@ platform.bootstrapModule(LocalStorageManagerModule).then((): void => {
       platform.bootstrapModule(LocalStorageSynchronizerModule).then((): void => {
         platform.bootstrapModule(NavbarModule).then((): void => {
           loadTier2Modules(windowURL);
-        }).catch(err => console.error(err));
-      }).catch(err => console.log(err));
-    }).catch(err => console.error(err));
-  }).catch(err => console.error(err));
-}).catch(err => console.error(err));
+        }).catch(err => console.error("Error loading NavbarModule: " + err));
+      }).catch(err => console.error("Error loading LocalStorageSynchronizerModule: " + err));
+    }).catch(err => console.error("Error loading AuthenticationModule: " + err));
+  }).catch(err => console.error("Error loading DarkgalaxyUiParserModule: " + err));
+}).catch(err => console.error("Error loading LocalStorageManagerModule: " + err));
 
 
 function loadTier2Modules(windowURL: string[]): void {
   // -- home screen
   if (windowURL.length === 2 && windowURL[1].trim().length === 0) {
-    platform.bootstrapModule(ChangelogModule).catch(err => console.error(err));
-    platform.bootstrapModule(FetchDataModule).catch(err => console.error(err));
+    platform.bootstrapModule(ChangelogModule).catch(err => console.error("Error loading ChangelogModule: " + err));
+    platform.bootstrapModule(FetchDataModule).catch(err => console.error("Error loading FetchDataModule: " + err));
   }
   // -- planets list screen
   if (windowURL[1] === 'planets') {
-    platform.bootstrapModule(PlanetListStatsModule).catch(err => console.error(err));
+    platform.bootstrapModule(PlanetListStatsModule).catch(err => console.error("Error loading PlanetListStatsModule: " + err));
   }
 
   // -- planet screen >> comms
   if (windowURL[1] === 'planet' && (windowURL.length === 5 && windowURL[3]) === 'comms') {
-    platform.bootstrapModule(SharedScansModule).catch(err => console.error(err));
+    platform.bootstrapModule(SharedScansModule).catch(err => console.error("Error loading SharedScansModule: " + err));
   }
 
   // -- navigation screen >> system level
   if (windowURL[1] === 'navigation' && (windowURL.length === 6 && !isNaN(+windowURL[2]) && !isNaN(+windowURL[3]) && !isNaN(+windowURL[4]))) {
-    platform.bootstrapModule(NavigationScansModule).catch(err => console.error(err));
+    platform.bootstrapModule(NavigationScansModule).catch(err => console.error("Error loading NavigationScansModule: " + err));
   }
 
   // -- alliances
   if (windowURL[1] === 'alliances') {
-    platform.bootstrapModule(AllianceMembersModule).catch(err => console.error(err));
+    platform.bootstrapModule(AllianceMembersModule).catch(err => console.error("Error loading AllianceMembersModule: " + err));
   }
 
   // -- alliances rankings
   if (windowURL[1] === 'rankings' && windowURL[2] === 'alliances') {
-    platform.bootstrapModule(AllianceRankingsModule).catch(err => console.error(err));
+    platform.bootstrapModule(AllianceRankingsModule).catch(err => console.error("Error loading AllianceRankingsModule: " + err));
   }
 }
