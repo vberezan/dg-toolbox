@@ -32,7 +32,6 @@ import {MetadataService} from "../../local-storage/local-storage-synchronizer/se
     AdminPanelComponent,
     AllianceListDirective
   ],
-  providers: [MetadataService],
   bootstrap: [
     AdminPanelComponent
   ]
