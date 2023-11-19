@@ -19,8 +19,6 @@ export class LocalStorageSynchronizerComponent implements AfterViewInit {
 
     this.synchronizerService.updatesEmitter.subscribe((updateNumber: number): void => {
       updates += updateNumber;
-      console.log('updates: ' + updates);
-
       if (updates == 0) {
         this.updatingModal.nativeElement.classList.add('hide');
         this.updatingModal.nativeElement.classList.remove('show');
