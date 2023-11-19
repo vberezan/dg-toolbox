@@ -1367,8 +1367,17 @@ dgt-fleet-orders-list-panel {
   top: 0 !important;
 }
 
+.researchButton .infoText.queuePosition {
+  bottom: 0 !important;
+  top: auto !important;
+}
+
 .researchQueued {
   border-color: #7bbd1a !important;
+}
+
+.researchQueued .infoBack {
+  height: 100% !important;
 }
 
 /****/

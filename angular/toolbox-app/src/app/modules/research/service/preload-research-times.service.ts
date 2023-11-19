@@ -12,6 +12,7 @@ export class PreloadResearchTimesService {
       let q: number = parseInt(value);
 
       let infoText: Element = queued.querySelector('.infoText');
+      infoText.classList.add('queuePosition');
       let researchTime: Element = document.createElement('div');
       researchTime.classList.add('infoText', 'researchTime');
       researchTime.innerHTML = ResearchTimesConstants.times[q - 1][1].toString();
