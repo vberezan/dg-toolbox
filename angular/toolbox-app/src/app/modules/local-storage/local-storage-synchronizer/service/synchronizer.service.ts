@@ -1,5 +1,5 @@
 import {inject, Injectable} from '@angular/core';
-import {collection, collectionData, doc, docData, Firestore, limit, query, setDoc, updateDoc, where} from "@angular/fire/firestore";
+import {collection, collectionData, Firestore, query} from "@angular/fire/firestore";
 import {LocalStorageService} from "../../local-storage-manager/service/local-storage.service";
 import {firstValueFrom, Subscriber, Subscription} from "rxjs";
 import {DocumentData} from "@angular/fire/compat/firestore";
@@ -27,7 +27,7 @@ export class SynchronizerService {
     const metadataPath: any = collection(this.firestore, 'metadata');
 
     let subscription: Subscription = collectionData(
-      query(metadataPath)
+      query(metadataPath),
     ).subscribe((item: DocumentData[]): void => {
       const metadata: any = Object.assign([], item);
 
@@ -50,6 +50,18 @@ export class SynchronizerService {
     let localMetadata: Metadata = this.localStorageService.localMetadata();
     let remoteMetadata: Metadata = this.localStorageService.get(LocalStorageKeys.REMOTE_METADATA);
 
+    if (localMetadata.planetsTurn.turn === 0 ||
+      remoteMetadata.planetsTurn.turn > localMetadata.planetsTurn.turn ||
+      (remoteMetadata.planetsTurn.turn == localMetadata.planetsTurn.turn &&
+        remoteMetadata.planetsTurn.version > localMetadata.planetsTurn.version)) {
+
+      let localMetadata: Metadata = this.localStorageService.localMetadata();
+      let remoteMetadata: Metadata = this.localStorageService.remoteMetadata();
+      localMetadata.planetsTurn.turn = remoteMetadata.planetsTurn.turn;
+      localMetadata.planetsTurn.version = remoteMetadata.planetsTurn.version;
+
+      this.localStorageService.cache(LocalStorageKeys.LOCAL_METADATA, localMetadata);
+    }
 
     if (localMetadata.playersRankingsTurn.turn === 0 ||
       remoteMetadata.playersRankingsTurn.turn > localMetadata.playersRankingsTurn.turn ||
