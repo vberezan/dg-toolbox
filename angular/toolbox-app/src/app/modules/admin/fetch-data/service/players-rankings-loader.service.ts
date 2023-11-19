@@ -8,16 +8,14 @@ import {PlayerPlanetsStats} from "../../../../shared/model/stats/player-planets-
 import {MetadataService} from "../../../local-storage/local-storage-synchronizer/service/metadata.service";
 import {PageAction} from "../../../../shared/model/stats/page-action.model";
 import {AtomicNumber} from "../../../../shared/model/atomic-number.model";
+import {environment} from "../../../../../environments/environment";
 
 @Injectable({
   providedIn: 'root'
 })
 export class PlayersRankingsLoaderService {
-  private readonly PLAYER_RANKINGS_URL: string = 'https://andromeda.darkgalaxy.com/rankings/players/';
-  private readonly PLAYER_COMBAT_RANKINGS_URL: string = 'https://andromeda.darkgalaxy.com/rankings/combat/players/';
-
-  private readonly ALLIANCE_RANKINGS_URL: string = 'https://andromeda.darkgalaxy.com/navigation/';
-  private readonly ALLIANCE_COMBAT_RANKINGS_URL: string = 'https://andromeda.darkgalaxy.com/rankings/combat/alliances/';
+  private readonly PLAYER_RANKINGS_URL: string = environment.game.host + '/rankings/players/';
+  private readonly PLAYER_COMBAT_RANKINGS_URL: string = environment.game.host +'/rankings/combat/players/';
 
   private httpClient: HttpClient = inject(HttpClient);
   private firestore: Firestore = inject(Firestore);

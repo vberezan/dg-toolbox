@@ -1,9 +1,9 @@
-function replaceStructuresImages() {
+function replaceStructuresImages(host) {
     document.querySelectorAll('img').forEach((img) => {
         if (img.src.indexOf('/destroy_') > -1) {
             img.src = img.src.split('destroy_')[0] + img.src.split('destroy_')[1];
-            if (img.src.startsWith('https://andromeda.darkgalaxy.com/images')) {
-                img.src = img.src.split('https://andromeda.darkgalaxy.com')[1];
+            if (img.src.startsWith(host + '/images')) {
+                img.src = img.src.split(host)[1];
             }
         }
     });

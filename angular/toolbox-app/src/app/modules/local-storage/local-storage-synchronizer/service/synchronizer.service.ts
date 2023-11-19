@@ -8,12 +8,13 @@ import {PlayerStats} from "../../../../shared/model/stats/player-stats.model";
 import {HttpClient} from "@angular/common/http";
 import {AllianceMember} from "../../../../shared/model/alliances/alliance-member.model";
 import {Metadata} from "../../../../shared/model/local-storage/metadata.model";
+import {environment} from "../../../../../environments/environment";
 
 @Injectable({
   providedIn: 'root'
 })
 export class SynchronizerService {
-  private readonly ALLIANCES_URL: string = 'https://andromeda.darkgalaxy.com/alliances/';
+  private readonly ALLIANCES_URL: string = environment.game.host + '/alliances/';
 
   private httpClient: HttpClient = inject(HttpClient);
   private firestore: Firestore = inject(Firestore);

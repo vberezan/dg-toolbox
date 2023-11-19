@@ -9,12 +9,13 @@ import {DocumentData} from "@angular/fire/compat/firestore";
 import {PlayerPlanetsBatch} from "../../../../shared/model/stats/player-planets-batch.model";
 import {PageAction} from "../../../../shared/model/stats/page-action.model";
 import {MetadataService} from "../../../local-storage/local-storage-synchronizer/service/metadata.service";
+import {environment} from "../../../../../environments/environment";
 
 @Injectable({
   providedIn: 'root'
 })
 export class PlanetsLoaderService {
-  private readonly NAVIGATION_BASE_URL: string = 'https://andromeda.darkgalaxy.com/navigation/';
+  private readonly NAVIGATION_BASE_URL: string = environment.game.host + '/navigation/';
   private readonly GALAXIES: number = 49;
   private readonly G1_SECTORS: number = 25;
   private readonly INNER_SECTORS: number = 6;
@@ -181,7 +182,7 @@ export class PlanetsLoaderService {
     let scanGalaxies: number[] = [];
 
     if (galaxies.length === 1) {
-      switch(galaxies[0]) {
+      switch (galaxies[0]) {
         case 149:
           scanGalaxies.push(...this.allGalaxies());
           break;
