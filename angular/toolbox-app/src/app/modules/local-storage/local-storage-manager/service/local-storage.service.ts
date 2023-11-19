@@ -30,18 +30,6 @@ export class LocalStorageService {
     return JSON.parse(item.value);
   }
 
-  isExpired(key: string): boolean {
-    const itemStr: string = localStorage.getItem(key);
-
-    if (!itemStr) {
-      return true;
-    }
-
-    const item: LocalStorageItem = Object.assign(LocalStorageItem, JSON.parse(itemStr));
-
-    return (item.ttl > 0 && (Date.now() > item.expiry));
-  }
-
   remoteMetadata(): Metadata {
     return this.get(LocalStorageKeys.REMOTE_METADATA);
   }
