@@ -36,7 +36,7 @@ export class PlanetsLoaderService {
   private readonly NAVIGATION_BASE_URL: string = this.localStorageService.get(LocalStorageKeys.GAME_ENDPOINT) + '/navigation/';
 
   async scanPlanets(cancelScanEmitter: EventEmitter<boolean>, @Optional() galaxies: number[] = []): Promise<void> {
-    const scanDelay: number = 500 + Math.floor(Math.random() * 1000);
+    const scanDelay: number = 250 + Math.floor(Math.random() * 250);
     const validGalaxies: number[] = this.filterValidGalaxies(galaxies);
 
     let scannedSystems: number = 0;
@@ -74,6 +74,7 @@ export class PlanetsLoaderService {
 
       this.mergePlayerPlanets(playerPlanets);
       this.mergeAlliancePlanets(alliancePlanets);
+      await this.delay(scanDelay);
     }
     this.metadataService.updateMetadataTurns('planets-turn');
 

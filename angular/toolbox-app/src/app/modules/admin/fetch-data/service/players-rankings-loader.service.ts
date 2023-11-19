@@ -27,7 +27,7 @@ export class PlayersRankingsLoaderService {
   private readonly PLAYER_COMBAT_RANKINGS_URL: string = this.localStorageService.get(LocalStorageKeys.GAME_ENDPOINT) +'/rankings/combat/players/';
 
   async scanPlayersRankingsScreens(cancelScanEmitter: EventEmitter<boolean>): Promise<void> {
-    const scanDelay: number = 250 + Math.floor(Math.random() * 500);
+    const scanDelay: number = 250 + Math.floor(Math.random() * 250);
     const playersRankingsPath: any = collection(this.firestore, 'players-rankings');
     const playersPlanetsPath: any = collection(this.firestore, 'players-planets');
 
