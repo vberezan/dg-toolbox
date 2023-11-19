@@ -81,10 +81,6 @@ export class SynchronizerService {
 
   }
 
-  loadGameEndpoint(): void {
-    this.localStorageService.cache(LocalStorageKeys.GAME_ENDPOINT, window.location.origin);
-  }
-
   private loadPlayersRankings(turn: number): void {
     this._updatesEmitter.emit(1);
     const playersRankingsPath: any = collection(this.firestore, 'players-rankings');

@@ -14,10 +14,6 @@ export class LocalStorageSynchronizerComponent implements AfterViewInit {
   private synchronizerService: SynchronizerService = inject(SynchronizerService);
   private dgAPI: DarkgalaxyApiService = inject(DarkgalaxyApiService);
 
-  constructor() {
-    this.synchronizerService.loadGameEndpoint();
-  }
-
   ngAfterViewInit(): void {
     let updates: number = 0;
 
