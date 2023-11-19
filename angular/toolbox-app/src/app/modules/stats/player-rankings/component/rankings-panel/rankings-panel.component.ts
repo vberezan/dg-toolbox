@@ -18,8 +18,11 @@ export class RankingsPanelComponent {
     this.rankings = this.playerRankingsService.playerStats();
     const cachedStats: PlayerStats[] = this.localStorageService.get(LocalStorageKeys.PLAYERS_STATS);
 
-    cachedStats.forEach((player: PlayerStats): void => {
-      this.rankings.get(player.playerId).planets = player.planets;
-    });
+    for (const player of cachedStats) {
+      const ranking: PlayerStats = this.rankings.get(player.playerId);
+      if (ranking) {
+        ranking.planets = player.planets;
+      }
+    }
   }
 }
