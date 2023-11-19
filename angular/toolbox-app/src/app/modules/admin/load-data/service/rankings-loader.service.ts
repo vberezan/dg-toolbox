@@ -25,7 +25,7 @@ export class RankingsLoaderService {
     = new EventEmitter<{ 'total': number, 'page': number, 'action': string }>();
 
   async scanPlayersRankingsScreens(cancelScanEmitter: EventEmitter<boolean>): Promise<void> {
-    const scanDelay: number = 1500 + Math.floor(Math.random() * 1500);
+    const scanDelay: number = 500 + Math.floor(Math.random() * 1000);
     const playersRankingsPath: any = collection(this.firestore, 'players-rankings');
     const playersPlanetsPath: any = collection(this.firestore, 'players-planets');
 
@@ -117,7 +117,7 @@ export class RankingsLoaderService {
 
     await this.delay(50 * playersStats.size);
 
-    this.metadataService.updateMetadata('players-rankings-turn');
+    this.metadataService.updateMetadataTurns('players-rankings-turn');
   }
 
   async scanAlliancesRankingsScreens(): Promise<void> {

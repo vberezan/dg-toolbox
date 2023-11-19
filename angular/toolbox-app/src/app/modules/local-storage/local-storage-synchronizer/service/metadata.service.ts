@@ -13,7 +13,7 @@ export class MetadataService {
   private dgAPI: DarkgalaxyApiService = inject(DarkgalaxyApiService);
   private metadataPath: any = collection(this.firestore, 'metadata');
 
-  updateMetadata(document: string): void {
+  updateMetadataTurns(document: string): void {
 
     let subscription: Subscription = docData(doc(this.metadataPath, document)).subscribe((item: DocumentData): void => {
       if (item) {
@@ -25,6 +25,8 @@ export class MetadataService {
           updateMetadata.turn = this.dgAPI.gameTurn();
           updateMetadata.version = 1;
         }
+
+        console.log(JSON.stringify(updateMetadata));
 
         updateDoc(doc(this.metadataPath, 'players-rankings-turn'), JSON.parse(JSON.stringify(updateMetadata)))
           .catch((e): void => console.log(e));

@@ -85,7 +85,7 @@ export class NavigationLoaderService {
       this.savePlayerPlanets(playerPlanets);
     }
 
-    this.metadataService.updateMetadata('planets-turn');
+    this.metadataService.updateMetadataTurns('planets-turn');
 
     cancelSubscription.unsubscribe();
   }
