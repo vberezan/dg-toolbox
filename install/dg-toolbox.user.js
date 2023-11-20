@@ -69,7 +69,7 @@ function loadSetups(windowURL) {
 function loadCustomStyling() {
     loadResource({
         tagName: 'script',
-        src: fetchResource('dgtCustomStyling','https://cdn.jsdelivr.net/gh/vberezan/dg-toolbox@development/stable-release/2.0.0/dg-toolbox-custom-styling.2.js'),
+        src: fetchResource('dgtCustomStyling','https://cdn.jsdelivr.net/gh/vberezan/dg-toolbox@development/stable-release/2.0.0/dg-toolbox-custom-styling.3.js'),
         rel: 'text/javascript'
     }).onload = function () {
         applyCustomStyling();
