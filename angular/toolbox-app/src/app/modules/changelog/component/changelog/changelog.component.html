@@ -4,7 +4,7 @@
     <span class="dgt-spinner"></span>
   </div>
   <div *ngIf="(updateAvailable | async)" id="dgt-update">
-    <span>There is a new update: <i><b>{{newVersion}}</b></i>. <a (click)="installUpdate()" target="_blank" href="https://github.com/vberezan/dg-toolbox/raw/main/tampermonkey/dg-toolbox.user.js">Click here</a></span>
+    <span>There is a new update: <i><b>{{newVersion}}</b></i>. <a (click)="installUpdate()">Click here</a></span>
   </div>
   <div id="dgt-update-changelog">
     <div><span>Changelog:</span></div>
