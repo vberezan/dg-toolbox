@@ -11,12 +11,12 @@
   width: 300px;
   left: calc(50% - 150px);
   top: calc(50% - 45px);
-  border: 1px solid #676767;
+  border: 1px solid #576740;
   border-radius: 5px;
   padding: 10px;
   vertical-align: middle;
   text-align: center;
-  background: rgba(75,75,75,1);
+  background: #576740;
   position: fixed;
 }
 
@@ -29,6 +29,7 @@
   height: 20px;
   background: #5c5c5c;
   overflow: hidden;
+  border-radius: 5px;
 }
 
 .actions button {
