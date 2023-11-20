@@ -49,7 +49,7 @@ export class PlayersRankingsLoaderService {
       cancelSubscription.unsubscribe();
     }
 
-    this.saveRankings(playersStats, isScanActive, playersRankingsPath, playersPlanetsPath);
+    await this.saveRankings(playersStats, isScanActive, playersRankingsPath, playersPlanetsPath);
 
     this.metadataService.updateMetadataTurns('players-rankings-turn');
   }
@@ -112,48 +112,35 @@ export class PlayersRankingsLoaderService {
     await this.delay(scanDelay);
   }
 
-  private saveRankings(playersStats: Map<number, PlayerStats>, isScanActive: boolean, playersRankingsPath: any, playersPlanetsPath: any): void {
-    let scanned: number = 0;
+  private async saveRankings(playersStats: Map<number, PlayerStats>, isScanActive: boolean, playersRankingsPath: any, playersPlanetsPath: any): Promise<void> {
+    let saved: number = 0;
     playersStats.forEach((playerStats: PlayerStats, playerId: number): void => {
       if (isScanActive) {
-        scanned += 1;
         setTimeout((): void => {
-          this.saveRanking(scanned, playersStats.size, playerStats, playerId, playersRankingsPath, playersPlanetsPath);
-        }, 50 * scanned);
+          let subscription: Subscription = docData(
+            doc(playersPlanetsPath, playerId.toString())
+          ).subscribe((item: DocumentData): void => {
+            if (item) {
+              const playerPlanets: PlayerPlanets = Object.assign(new PlayerPlanets(), item);
+
+              playerStats.planets = playerPlanets.total;
+              playerStats.g1Total = playerPlanets.g1Total;
+              playerStats.g213Total = playerPlanets.g213Total;
+              playerStats.g1449Total = playerPlanets.g1449Total;
+
+              setDoc(doc(playersRankingsPath, playerId.toString()), JSON.parse(JSON.stringify(playerStats)))
+                .then((): void => {
+                  this._playersRankingsEmitter.emit(new PageAction(++saved, playersStats.size, 'save'));
+                }).catch((error): void => console.log(error));
+            }
+
+            subscription.unsubscribe();
+          });
+        }, 50 * saved);
       }
     });
 
-    this.delay(50 * playersStats.size);
-  }
-
-  private saveRanking(scan: number,
-                     totalSize: number,
-                     playerStats: PlayerStats,
-                     playerId: number,
-                     playersRankingsPath: any,
-                     playersPlanetsPath: any): void {
-
-    console.log(scan);
-
-    let subscription: Subscription = docData(
-      doc(playersPlanetsPath, playerId.toString())
-    ).subscribe((item: DocumentData): void => {
-      if (item) {
-        const playerPlanets: PlayerPlanets = Object.assign(new PlayerPlanets(), item);
-
-        playerStats.planets = playerPlanets.total;
-        playerStats.g1Total = playerPlanets.g1Total;
-        playerStats.g213Total = playerPlanets.g213Total;
-        playerStats.g1449Total = playerPlanets.g1449Total;
-
-        setDoc(doc(playersRankingsPath, playerId.toString()), JSON.parse(JSON.stringify(playerStats)))
-          .then((): void => {
-            this._playersRankingsEmitter.emit(new PageAction(scan, totalSize, 'save'));
-          }).catch((error): void => console.log(error));
-      }
-
-      subscription.unsubscribe();
-    });
+    await this.delay(50 * playersStats.size);
   }
 
   private delay = async (ms: number): Promise<unknown> => new Promise(res => setTimeout(res, ms));
