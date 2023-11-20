@@ -66,4 +66,6 @@ export class MenuComponent implements OnDestroy {
   ngOnDestroy(): void {
     this.authService.authState.unsubscribe();
   }
+
+  protected readonly window = window;
 }
