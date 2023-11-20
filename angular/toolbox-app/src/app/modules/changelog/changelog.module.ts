@@ -5,12 +5,14 @@ import {getApp, initializeApp, provideFirebaseApp} from "@angular/fire/app";
 import {environment} from "../../../environments/environment";
 import {initializeAppCheck, provideAppCheck, ReCaptchaV3Provider} from "@angular/fire/app-check";
 import {ChangelogService} from "./service/changelog.service";
+import {getFirestore, provideFirestore} from "@angular/fire/firestore";
 
 
 @NgModule({
   imports: [
     BrowserModule,
     provideFirebaseApp(() => initializeApp(environment.firebase)),
+    provideFirestore(() => getFirestore()),
     provideAppCheck(() => initializeAppCheck(getApp(),
       {
         provider: new ReCaptchaV3Provider(environment.firebase.appCheck.recaptchaSiteKey),
