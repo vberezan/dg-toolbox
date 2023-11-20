@@ -46,8 +46,8 @@
 }
 
 .actions button:hover {
-  border: 1px solid #405940 !important;
-  background: #2e542e !important;
+  border: 1px solid #365036 !important;
+  background: #203b20 !important;
 }
 
 span.progress {
@@ -128,7 +128,7 @@ span.planet-counter {
   overflow: hidden;
   float: left;
   line-height: 18px;
-  width: 120px;
+  width: 135px;
   text-align: left;
 }
 
@@ -150,8 +150,8 @@ span.planet-counter {
 
 #admin-load-rankings button:hover,
 #admin-load-planets button:hover {
-  border: 1px solid #405940 !important;
-  background: #2e542e !important;
+  border: 1px solid #365036 !important;
+  background: #203b20 !important;
 }
 
 #admin-load-rankings button {
