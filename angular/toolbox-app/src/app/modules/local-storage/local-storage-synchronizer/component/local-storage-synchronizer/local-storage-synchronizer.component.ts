@@ -15,23 +15,24 @@ export class LocalStorageSynchronizerComponent implements AfterViewInit {
   private dgAPI: DarkgalaxyApiService = inject(DarkgalaxyApiService);
 
   ngAfterViewInit(): void {
-    this.delay(2000).then(() => {
+    this.delay(1000).then(() => {
       let updates: number = 0;
 
       this.synchronizerService.updatesEmitter.subscribe((updateNumber: number): void => {
         updates += updateNumber;
         if (updates == 0) {
-          this.updatingModal.nativeElement.classList.add('hide');
-          this.updatingModal.nativeElement.classList.remove('show');
-          document.body.classList.remove('dgt-overlay-open');
-
-          this.delay(250).then(() => {
-            window.location.reload()
+          this.delay(500).then((): void => {
+            this.updatingModal.nativeElement.classList.add('hide');
+            this.updatingModal.nativeElement.classList.remove('show');
+            document.body.classList.remove('dgt-overlay-open');
+            window.location.reload();
           });
         } else {
-          this.updatingModal.nativeElement.classList.add('show');
-          this.updatingModal.nativeElement.classList.remove('hide');
-          document.body.classList.add('dgt-overlay-open');
+          this.delay(500).then((): void => {
+            this.updatingModal.nativeElement.classList.add('show');
+            this.updatingModal.nativeElement.classList.remove('hide');
+            document.body.classList.add('dgt-overlay-open');
+          });
         }
       });
 

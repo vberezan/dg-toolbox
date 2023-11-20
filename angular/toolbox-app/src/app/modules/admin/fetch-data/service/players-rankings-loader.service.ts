@@ -111,7 +111,6 @@ export class PlayersRankingsLoaderService {
   }
 
   private async saveRankings(playersStats: Map<number, PlayerStats>, isScanActive: boolean, playersRankingsPath: any, playersPlanetsPath: any): Promise<void> {
-    let savedRankings: number = 0;
     let scanned: AtomicNumber = new AtomicNumber(0);
     playersStats.forEach((playerStats: PlayerStats, playerId: number): void => {
       if (isScanActive) {
@@ -135,7 +134,7 @@ export class PlayersRankingsLoaderService {
 
             playerPlanetsSubscription.unsubscribe();
           });
-        }, 50 * savedRankings);
+        }, 50 * scanned.number);
       }
     });
 
