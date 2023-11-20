@@ -135,22 +135,6 @@ div.error {
   color: #ffffffad !important;
 }
 
-.notification-badge {
-  background: #FF3B30;
-  top: 12px;
-  right: 10px;
-  border-radius: 100px;
-  padding: 3px;
-  color: #fff;
-  font-size: 11px;
-  line-height: 9px;
-  height: 10px;
-  display: inline-block;
-  width: 10px;
-  position: relative;
-  float: right;
-}
-
 textarea:focus,
 textarea:focus-visible,
 input:focus,

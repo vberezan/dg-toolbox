@@ -73,3 +73,18 @@
   height: 100%;
   display: block;
 }
+
+.notification-badge {
+  background: #FF3B30;
+  top: 14px;
+  right: 15px !important;
+  padding: 3px;
+  color: #fff;
+  font-size: 0;
+  line-height: 8px;
+  height: 5px;
+  width: 5px;
+  position: relative;
+  float: right;
+  border-radius: 100px;
+}
