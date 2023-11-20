@@ -116,6 +116,7 @@ export class PlayersRankingsLoaderService {
     let scanned: number = 0;
     playersStats.forEach((playerStats: PlayerStats, playerId: number): void => {
       if (isScanActive) {
+        scanned += 1;
         setTimeout((): void => {
           let playerPlanetsSubscription: Subscription = docData(
             doc(playersPlanetsPath, playerId.toString())
@@ -130,10 +131,8 @@ export class PlayersRankingsLoaderService {
 
               setDoc(doc(playersRankingsPath, playerId.toString()), JSON.parse(JSON.stringify(playerStats)))
                 .then((): void => {
-                  this._playersRankingsEmitter.emit(new PageAction(++scanned, playersStats.size, 'save'));
+                  this._playersRankingsEmitter.emit(new PageAction(scanned, playersStats.size, 'save'));
                 }).catch((error): void => console.log(error));
-
-              console.log(scanned);
             }
 
             playerPlanetsSubscription.unsubscribe();
