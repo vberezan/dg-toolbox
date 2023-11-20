@@ -4,6 +4,7 @@ import {BrowserModule} from "@angular/platform-browser";
 import {getApp, initializeApp, provideFirebaseApp} from "@angular/fire/app";
 import {environment} from "../../../environments/environment";
 import {initializeAppCheck, provideAppCheck, ReCaptchaV3Provider} from "@angular/fire/app-check";
+import {ChangelogService} from "./service/changelog.service";
 
 
 @NgModule({
@@ -16,6 +17,9 @@ import {initializeAppCheck, provideAppCheck, ReCaptchaV3Provider} from "@angular
         isTokenAutoRefreshEnabled: true
       })
     )
+  ],
+  providers: [
+    ChangelogService // -- contains reference to firestore
   ],
   declarations: [
     ChangelogComponent

@@ -1,9 +1,8 @@
-import {ChangeDetectorRef, ElementRef, EventEmitter, inject, Injectable} from '@angular/core';
+import {ChangeDetectorRef, ElementRef, inject, Injectable} from '@angular/core';
 import {Subscriber, Subscription} from "rxjs";
 import {LocalStorageService} from "../../local-storage/local-storage-manager/service/local-storage.service";
 import {collection, collectionData, Firestore, query} from "@angular/fire/firestore";
 import {DocumentData} from "@angular/fire/compat/firestore";
-import {Metadata} from "../../../shared/model/local-storage/metadata.model";
 import {LocalStorageKeys} from "../../../shared/model/local-storage/local-storage-keys";
 import {JavascriptRepository} from "../../../shared/model/platform/javascript-repository.model";
 
