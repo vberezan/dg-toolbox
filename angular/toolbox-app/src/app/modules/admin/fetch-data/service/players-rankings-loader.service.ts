@@ -28,7 +28,7 @@ export class PlayersRankingsLoaderService {
   private readonly PLAYER_COMBAT_RANKINGS_URL: string = this.localStorageService.get(LocalStorageKeys.GAME_ENDPOINT) +'/rankings/combat/players/';
 
   async scanPlayersRankingsScreens(cancelScanEmitter: EventEmitter<boolean>): Promise<void> {
-    const scanDelay: number = 250 + Math.floor(Math.random() * 250);
+    const scanDelay: number = 100 + Math.floor(Math.random() * 100);
     const playersRankingsPath: any = collection(this.firestore, 'players-rankings');
     const playersPlanetsPath: any = collection(this.firestore, 'players-planets');
 
@@ -85,7 +85,7 @@ export class PlayersRankingsLoaderService {
       }
     });
 
-    scanned.number += 1;
+    scanned.number += await this.atomicIncrement();
     this._playersRankingsEmitter.emit(new PageAction(scanned.number, 2 * pages, 'load'));
     await this.delay(scanDelay);
   }
@@ -107,13 +107,13 @@ export class PlayersRankingsLoaderService {
       player.combinedScore = player.combatScore + player.score;
     });
 
-    scanned.number += 1;
+    scanned.number += await this.atomicIncrement();
     this._playersRankingsEmitter.emit(new PageAction(scanned.number, 2 * pages, 'load'));
     await this.delay(scanDelay);
   }
 
   private async saveRankings(playersStats: Map<number, PlayerStats>, isScanActive: boolean, playersRankingsPath: any, playersPlanetsPath: any): Promise<void> {
-    let scanned: AtomicNumber = new AtomicNumber(0);
+    let scanned: number = 0;
     playersStats.forEach((playerStats: PlayerStats, playerId: number): void => {
       if (isScanActive) {
         setTimeout((): void => {
@@ -130,16 +130,13 @@ export class PlayersRankingsLoaderService {
 
               setDoc(doc(playersRankingsPath, playerId.toString()), JSON.parse(JSON.stringify(playerStats)))
                 .then((): void => {
-                  scanned.number += 1;
-                  this._playersRankingsEmitter.emit(new PageAction(scanned.number, playersStats.size, 'save'));
+                  this._playersRankingsEmitter.emit(new PageAction(++scanned, playersStats.size, 'save'));
                 }).catch((error): void => console.log(error));
-
-              console.log(scanned.number);
             }
 
             playerPlanetsSubscription.unsubscribe();
           });
-        }, 50 * scanned.number);
+        }, 50 * scanned);
       }
     });
 
@@ -147,6 +144,10 @@ export class PlayersRankingsLoaderService {
   }
 
   private delay = async (ms: number): Promise<unknown> => new Promise(res => setTimeout(res, ms));
+
+  private async atomicIncrement(): Promise<number> {
+    return 1;
+  }
 
   get playersRankingsEmitter(): EventEmitter<PageAction> {
     return this._playersRankingsEmitter;
