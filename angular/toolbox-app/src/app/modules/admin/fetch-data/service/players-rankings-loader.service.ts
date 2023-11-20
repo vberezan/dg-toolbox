@@ -49,7 +49,7 @@ export class PlayersRankingsLoaderService {
       cancelSubscription.unsubscribe();
     }
 
-    await this.saveRankings(playersStats, isScanActive, playersRankingsPath, playersPlanetsPath);
+    this.saveRankings(playersStats, isScanActive, playersRankingsPath, playersPlanetsPath);
 
     this.metadataService.updateMetadataTurns('players-rankings-turn');
   }
@@ -112,21 +112,21 @@ export class PlayersRankingsLoaderService {
     await this.delay(scanDelay);
   }
 
-  private async saveRankings(playersStats: Map<number, PlayerStats>, isScanActive: boolean, playersRankingsPath: any, playersPlanetsPath: any): Promise<void> {
+  private saveRankings(playersStats: Map<number, PlayerStats>, isScanActive: boolean, playersRankingsPath: any, playersPlanetsPath: any): void {
     let scanned: number = 0;
     playersStats.forEach((playerStats: PlayerStats, playerId: number): void => {
       if (isScanActive) {
         scanned += 1;
         setTimeout((): void => {
-          this.setRanking(scanned, playersStats.size, playerStats, playerId, playersRankingsPath, playersPlanetsPath);
+          this.saveRanking(scanned, playersStats.size, playerStats, playerId, playersRankingsPath, playersPlanetsPath);
         }, 50 * scanned);
       }
     });
 
-    await this.delay(50 * playersStats.size);
+    this.delay(50 * playersStats.size);
   }
 
-  private setRanking(scan: number,
+  private saveRanking(scan: number,
                      totalSize: number,
                      playerStats: PlayerStats,
                      playerId: number,
