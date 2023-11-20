@@ -12,6 +12,6 @@ export class RankingsPanelComponent {
   public rankings: Map<number, PlayerStats> = new Map<number, PlayerStats>();
 
   constructor() {
-    this.rankings = this.playerRankingsService.playerStats();
+    this.rankings = this.playerRankingsService.fetchAndClear();
   }
 }

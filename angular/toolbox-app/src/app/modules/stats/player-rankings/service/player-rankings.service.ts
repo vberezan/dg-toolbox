@@ -13,7 +13,7 @@ export class PlayerRankingsService {
 
   constructor() { }
 
-  playerStats(): Map<number, PlayerStats> {
+  fetchAndClear(): Map<number, PlayerStats> {
     let rankings: Map<number, PlayerStats> = this.dgApi.playerRankings();
 
     const cachedStats: PlayerStats[] = this.localStorageService.get(LocalStorageKeys.PLAYERS_STATS);
@@ -29,6 +29,9 @@ export class PlayerRankingsService {
       }
     }
 
+    document.querySelector('.playerRankingsList').remove();
+
     return rankings;
   }
+
 }
