@@ -52,7 +52,6 @@ export class SynchronizerService {
       remoteMetadata.planetsTurn.turn > localMetadata.planetsTurn.turn ||
       (remoteMetadata.planetsTurn.turn == localMetadata.planetsTurn.turn &&
         remoteMetadata.planetsTurn.version > localMetadata.planetsTurn.version)) {
-      this._updatesEmitter.emit(1);
 
       let localMetadata: Metadata = this.localStorageService.localMetadata();
       let remoteMetadata: Metadata = this.localStorageService.remoteMetadata();
@@ -60,7 +59,6 @@ export class SynchronizerService {
       localMetadata.planetsTurn.version = remoteMetadata.planetsTurn.version;
 
       this.localStorageService.cache(LocalStorageKeys.LOCAL_METADATA, localMetadata);
-      this._updatesEmitter.emit(-1);
     }
 
     if (localMetadata.playersRankingsTurn.turn === 0 ||
