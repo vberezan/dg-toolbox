@@ -20,8 +20,6 @@ export class LocalStorageSynchronizerComponent implements AfterViewInit {
   ngAfterViewInit(): void {
     this.delay(this.localStorageService.get(LocalStorageKeys.POST_INSTALL_FETCH_METADATA) ? 0 : 1000).then((): void => {
       let updates: number = 0;
-      this.localStorageService.remove(LocalStorageKeys.POST_INSTALL_FETCH_METADATA);
-
       this.synchronizerService.updatesEmitter.subscribe((updateNumber: number): void => {
         updates += updateNumber;
         if (updates == 0) {

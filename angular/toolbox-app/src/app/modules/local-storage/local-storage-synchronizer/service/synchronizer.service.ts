@@ -58,6 +58,11 @@ export class SynchronizerService {
       localMetadata.planetsTurn.turn = remoteMetadata.planetsTurn.turn;
       localMetadata.planetsTurn.version = remoteMetadata.planetsTurn.version;
 
+      if (this.localStorageService.get(LocalStorageKeys.POST_INSTALL_FETCH_METADATA)) {
+        this.localStorageService.remove(LocalStorageKeys.POST_INSTALL_FETCH_METADATA);
+        localMetadata.dgtVersion = remoteMetadata.dgtVersion;
+      }
+
       this.localStorageService.cache(LocalStorageKeys.LOCAL_METADATA, localMetadata);
     }
 
