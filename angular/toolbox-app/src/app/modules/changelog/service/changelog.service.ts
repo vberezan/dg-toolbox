@@ -6,6 +6,7 @@ import {DocumentData} from "@angular/fire/compat/firestore";
 import {LocalStorageKeys} from "../../../shared/model/local-storage/local-storage-keys";
 import {JavascriptRepository} from "../../../shared/model/platform/javascript-repository.model";
 import {Metadata} from "../../../shared/model/local-storage/metadata.model";
+import {User} from "@angular/fire/auth";
 
 @Injectable({
   providedIn: 'platform'
@@ -66,8 +67,10 @@ export class ChangelogService {
 
         let localMetadata: Metadata = this.localStorageService.localMetadata();
         localMetadata.dgtVersion = this.localStorageService.remoteMetadata().dgtVersion;
+        const user = this.localStorageService.get(LocalStorageKeys.USER);
 
         this.localStorageService.clearAll();
+        this.localStorageService.cache(LocalStorageKeys.USER, user);
         this.localStorageService.cache(LocalStorageKeys.JAVASCRIPT_REPOSITORY, javascriptRepository);
         this.localStorageService.cache(LocalStorageKeys.LOCAL_METADATA, localMetadata);
         this.localStorageService.cache(LocalStorageKeys.POST_INSTALL_FETCH_METADATA, true);
