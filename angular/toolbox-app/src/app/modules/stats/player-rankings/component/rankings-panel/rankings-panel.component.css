@@ -1,3 +1,10 @@
+.hostile,
+.allied,
+.self,
+.nap {
+  color: #fff;
+}
+
 .name {
   width: 150px;
   text-transform: capitalize;
@@ -16,6 +23,7 @@
 
 .rank {
   width: 35px;
+  text-align: center;
 }
 
 .alliance {
