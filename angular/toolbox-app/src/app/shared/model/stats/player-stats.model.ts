@@ -3,10 +3,10 @@ export class PlayerStats {
   private _score: number;
   private _combatScore: number;
   private _combinedScore: number;
-  private _planets: number;
-  private _g1Total: number;
-  private _g213Total: number;
-  private _g1449Total: number;
+  private _planets: number = 1;
+  private _g1Total: number = 0;
+  private _g213Total: number = 0;
+  private _g1449Total: number = 0;
   private _name: string;
   private _rank: number;
   private _alliance: string;

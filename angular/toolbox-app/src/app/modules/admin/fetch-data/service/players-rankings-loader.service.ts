@@ -8,10 +8,8 @@ import {PlayerPlanets} from "../../../../shared/model/stats/player-planets-stats
 import {MetadataService} from "../../../local-storage/local-storage-synchronizer/service/metadata.service";
 import {PageAction} from "../../../../shared/model/stats/page-action.model";
 import {AtomicNumber} from "../../../../shared/model/atomic-number.model";
-import {environment} from "../../../../../environments/environment";
 import {LocalStorageKeys} from "../../../../shared/model/local-storage/local-storage-keys";
 import {LocalStorageService} from "../../../local-storage/local-storage-manager/service/local-storage.service";
-import {UpdateMetadata} from "../../../../shared/model/stats/update-metadata.model";
 
 @Injectable({
   providedIn: 'root'
@@ -25,7 +23,7 @@ export class PlayersRankingsLoaderService {
   private _playersRankingsEmitter: EventEmitter<PageAction> = new EventEmitter<PageAction>();
 
   private readonly PLAYER_RANKINGS_URL: string = this.localStorageService.get(LocalStorageKeys.GAME_ENDPOINT) + '/rankings/players/';
-  private readonly PLAYER_COMBAT_RANKINGS_URL: string = this.localStorageService.get(LocalStorageKeys.GAME_ENDPOINT) +'/rankings/combat/players/';
+  private readonly PLAYER_COMBAT_RANKINGS_URL: string = this.localStorageService.get(LocalStorageKeys.GAME_ENDPOINT) + '/rankings/combat/players/';
 
   async scanPlayersRankingsScreens(cancelScanEmitter: EventEmitter<boolean>): Promise<void> {
     const scanDelay: number = 100 + Math.floor(Math.random() * 100);
@@ -127,12 +125,13 @@ export class PlayersRankingsLoaderService {
               playerStats.g1Total = playerPlanets.g1Total;
               playerStats.g213Total = playerPlanets.g213Total;
               playerStats.g1449Total = playerPlanets.g1449Total;
-
-              setDoc(doc(playersRankingsPath, playerId.toString()), JSON.parse(JSON.stringify(playerStats)))
-                .then((): void => {
-                  this._playersRankingsEmitter.emit(new PageAction(++saved, playersStats.size, 'save'));
-                }).catch((error): void => console.log(error));
+            } else {
+              playerStats.planets = 1;
             }
+            setDoc(doc(playersRankingsPath, playerId.toString()), JSON.parse(JSON.stringify(playerStats)))
+              .then((): void => {
+                this._playersRankingsEmitter.emit(new PageAction(++saved, playersStats.size, 'save'));
+              }).catch((error): void => console.log(error));
 
             subscription.unsubscribe();
           });
