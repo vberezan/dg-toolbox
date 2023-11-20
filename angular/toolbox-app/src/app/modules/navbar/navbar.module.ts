@@ -9,6 +9,7 @@ import {getFirestore, provideFirestore} from "@angular/fire/firestore";
 import {initializeAppCheck, provideAppCheck, ReCaptchaV3Provider} from "@angular/fire/app-check";
 import {getAnalytics, provideAnalytics} from "@angular/fire/analytics";
 import {ChangelogService} from "../changelog/service/changelog.service";
+import {SynchronizerService} from "../local-storage/local-storage-synchronizer/service/synchronizer.service";
 
 @NgModule({
   imports: [
@@ -25,7 +26,8 @@ import {ChangelogService} from "../changelog/service/changelog.service";
     provideAnalytics(() => getAnalytics())
   ],
   providers: [
-    ChangelogService // -- contains firestore reference
+    ChangelogService, // -- contains firestore reference
+    SynchronizerService // -- contains firestore reference
   ],
   declarations: [
     MenuComponent,

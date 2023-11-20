@@ -23,7 +23,7 @@ import {SynchronizerService} from "./service/synchronizer.service";
     )
   ],
   providers: [
-    SynchronizerService
+    SynchronizerService // -- contains reference to firestore
   ],
   declarations: [
     LocalStorageSynchronizerComponent,
