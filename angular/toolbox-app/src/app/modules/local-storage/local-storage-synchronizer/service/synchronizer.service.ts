@@ -82,8 +82,8 @@ export class SynchronizerService {
     const isAllianceMembersTurnZero: boolean = localMetadata.allianceMembersTurn.turn === 0;
     const isTurnGreaterThanAllianceMembersTurn: boolean = turn > localMetadata.allianceMembersTurn.turn;
 
-    if (postInstall || (playerStats && (!allianceMembers || isAllianceMembersTurnZero || isTurnGreaterThanAllianceMembersTurn))) {
-      this.loadAllianceMembers(turn);
+    if (!postInstall && (playerStats && (!allianceMembers || isAllianceMembersTurnZero || isTurnGreaterThanAllianceMembersTurn))) {
+      this.loadAllianceMembers(turn).catch((error: any): void => console.log(error));
     }
 
     this.localStorageService.remove(LocalStorageKeys.POST_INSTALL_FETCH_METADATA);

@@ -6,7 +6,6 @@ import {DocumentData} from "@angular/fire/compat/firestore";
 import {LocalStorageKeys} from "../../../shared/model/local-storage/local-storage-keys";
 import {JavascriptRepository} from "../../../shared/model/platform/javascript-repository.model";
 import {Metadata} from "../../../shared/model/local-storage/metadata.model";
-import {User} from "@angular/fire/auth";
 
 @Injectable({
   providedIn: 'platform'
@@ -22,7 +21,7 @@ export class ChangelogService {
 
     let remoteVersion: string = this.localStorageService.remoteMetadata().dgtVersion;
     let localVersion: string = this.localStorageService.localMetadata().dgtVersion;
-    changeObserver.next((remoteVersion !== null && remoteVersion !== localVersion && remoteVersion !== ''));
+    changeObserver.next((remoteVersion !== null && remoteVersion !== localVersion && remoteVersion.trim().length > 0));
 
     changeObserver.complete();
     changeDetector.detectChanges();
@@ -81,7 +80,6 @@ export class ChangelogService {
 
         subscription.unsubscribe();
 
-        alert('4');
         window.location.reload();
       });
     });

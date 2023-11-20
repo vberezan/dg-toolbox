@@ -83,7 +83,6 @@ export class AuthService implements OnDestroy {
 
                 this._authState.emit(new AuthState(true, userCheck.role));
 
-                alert('1');
                 window.location.reload();
               } else {
                 this.signOut(auth);
@@ -130,7 +129,6 @@ export class AuthService implements OnDestroy {
 
     auth.signOut()
       .then((): void => {
-        alert('2');
         window.location.reload();
       })
       .catch((error): void => {
