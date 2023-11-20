@@ -1,5 +1,3 @@
-import {doc} from '@angular/fire/firestore';
-
 function detach(node) {
   if (node != null) {
     return node.parentElement.removeChild(node);
