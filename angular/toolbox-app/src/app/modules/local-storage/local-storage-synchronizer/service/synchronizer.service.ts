@@ -57,6 +57,10 @@ export class SynchronizerService {
 
     if (postInstall || isLocalTurnZero || isPlanetsRemoteTurnGreater || isPlanetsSameTurnButRemoteVersionGreater) {
 
+      if (!postInstall) {
+        this._updatesEmitter.emit(1);
+      }
+
       let localMetadata: Metadata = this.localStorageService.localMetadata();
       let remoteMetadata: Metadata = this.localStorageService.remoteMetadata();
       localMetadata.planetsTurn.turn = remoteMetadata.planetsTurn.turn;
@@ -67,6 +71,10 @@ export class SynchronizerService {
       }
 
       this.localStorageService.cache(LocalStorageKeys.LOCAL_METADATA, localMetadata);
+
+      if (!postInstall) {
+        this._updatesEmitter.emit(-1);
+      }
     }
 
     const isPlayerRankingsTurnZero: boolean = localMetadata.playersRankingsTurn.turn === 0;
