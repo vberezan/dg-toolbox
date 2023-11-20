@@ -85,7 +85,8 @@ export class PlayersRankingsLoaderService {
       }
     });
 
-    this._playersRankingsEmitter.emit(new PageAction(++scanned.number, 2 * pages, 'load'));
+    scanned.number += 1;
+    this._playersRankingsEmitter.emit(new PageAction(scanned.number, 2 * pages, 'load'));
     await this.delay(scanDelay);
   }
 
@@ -106,7 +107,8 @@ export class PlayersRankingsLoaderService {
       player.combinedScore = player.combatScore + player.score;
     });
 
-    this._playersRankingsEmitter.emit(new PageAction(++scanned.number, 2 * pages, 'load'));
+    scanned.number += 1;
+    this._playersRankingsEmitter.emit(new PageAction(scanned.number, 2 * pages, 'load'));
     await this.delay(scanDelay);
   }
 
@@ -128,7 +130,8 @@ export class PlayersRankingsLoaderService {
 
               setDoc(doc(playersRankingsPath, playerId.toString()), JSON.parse(JSON.stringify(playerStats)))
                 .then((): void => {
-                  this._playersRankingsEmitter.emit(new PageAction(++scanned.number, playersStats.size, 'save'));
+                  scanned.number += 1;
+                  this._playersRankingsEmitter.emit(new PageAction(scanned.number, playersStats.size, 'save'));
                 }).catch((error): void => console.log(error));
 
               console.log(scanned.number);
