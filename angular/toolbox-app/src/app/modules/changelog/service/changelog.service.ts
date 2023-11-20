@@ -7,7 +7,6 @@ import {LocalStorageService} from "../../local-storage/local-storage-manager/ser
 })
 export class ChangelogService {
   private localStorageService: LocalStorageService = inject(LocalStorageService);
-  private _installUpdateEmitter: EventEmitter<boolean> = new EventEmitter<boolean>();
 
   checkForUpdate(changeDetector: ChangeDetectorRef, changeObserver: Subscriber<boolean>): void {
     if (this.localStorageService.remoteMetadata() === null || this.localStorageService.localMetadata() === null) {
@@ -27,9 +26,5 @@ export class ChangelogService {
       loadSpinner.nativeElement.classList.add('hide');
       loadSpinner.nativeElement.classList.remove('show');
     }
-  }
-
-  get installUpdateEmitter(): EventEmitter<boolean> {
-    return this._installUpdateEmitter;
   }
 }

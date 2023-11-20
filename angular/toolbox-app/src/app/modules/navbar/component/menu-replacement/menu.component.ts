@@ -45,13 +45,6 @@ export class MenuComponent implements OnDestroy {
       this.changelogService.checkForUpdate(this.changeDetector, changeObserver);
     });
 
-    this.changelogService.installUpdateEmitter.subscribe((installed: boolean): void => {
-      if (installed) {
-        this.updateNotification.nativeElement.remove();
-        this.changeDetector.detectChanges();
-      }
-    });
-
     this.authService.authState.subscribe((state: AuthState): void => {
       this.active = state.status;
 

@@ -27,7 +27,6 @@ export class ChangelogComponent implements AfterViewInit {
   }
 
   installUpdate(): void {
-    this.changeLogService.installUpdateEmitter.emit(true);
   }
 
   ngAfterViewInit(): void {
