@@ -39,9 +39,7 @@ export class ChangelogService {
     dgtUpdatingModel.nativeElement.classList.remove('hide');
     document.body.classList.add('dgt-overlay-open');
 
-    localStorage.clear();
-
-    this.delay(2500).then((): void => {
+    this.delay(5000).then((): void => {
       const metadataPath: any = collection(this.firestore, 'metadata');
 
       let subscription: Subscription = collectionData(
@@ -66,10 +64,11 @@ export class ChangelogService {
         cache.dgtCustomStyling = metadata[1].dgtCustomStyling;
 
 
-        this.localStorageService.cache(LocalStorageKeys.JAVASCRIPT_REPOSITORY, cache);
-
         let localMetadata: Metadata = this.localStorageService.localMetadata();
         localMetadata.dgtVersion = this.localStorageService.remoteMetadata().dgtVersion;
+
+        localStorage.clear();
+        this.localStorageService.cache(LocalStorageKeys.JAVASCRIPT_REPOSITORY, cache);
         this.localStorageService.cache(LocalStorageKeys.LOCAL_METADATA, localMetadata);
 
         dgtUpdatingModel.nativeElement.classList.add('hide');
