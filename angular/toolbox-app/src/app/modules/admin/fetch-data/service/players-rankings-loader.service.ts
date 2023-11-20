@@ -81,6 +81,17 @@ export class PlayersRankingsLoaderService {
       } else {
         player.alliance = '-';
       }
+
+      if (row.classList.contains('myRow')) {
+        player.relation = 'self';
+      } else if (row.querySelector('hostile')) {
+        player.relation = 'hostile';
+      } else if (row.querySelector('allied')) {
+        player.relation = 'allied';
+      } else if (player.alliance === 'sol') {
+        player.relation = 'nap';
+      }
+
     });
 
     scanned.number += await this.atomicIncrement();

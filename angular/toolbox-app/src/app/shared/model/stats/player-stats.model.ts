@@ -10,6 +10,16 @@ export class PlayerStats {
   private _name: string;
   private _rank: number;
   private _alliance: string;
+  private _relation: string = 'neutral';
+
+
+  get relation(): string {
+    return this._relation;
+  }
+
+  set relation(value: string) {
+    this._relation = value;
+  }
 
   get rank(): number {
     return this._rank;
@@ -101,6 +111,7 @@ export class PlayerStats {
 
   toJSON(): any {
     return {
+      relation: this.relation,
       playerId: this.playerId,
       score: this.score,
       combatScore: this.combatScore,
