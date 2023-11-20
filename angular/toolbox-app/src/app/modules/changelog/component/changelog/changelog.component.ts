@@ -17,6 +17,7 @@ export class ChangelogComponent implements AfterViewInit {
 
   public updateAvailable: Observable<boolean>;
   public version: string;
+  public newVersion: string = this.localStorageService.remoteMetadata().dgtVersion;
 
   constructor() {
     this.updateAvailable = new Observable<boolean>((changeObserver: Subscriber<boolean>): void => {
