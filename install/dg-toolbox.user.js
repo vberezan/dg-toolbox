@@ -69,7 +69,7 @@ function loadSetups(windowURL) {
 function loadCustomStyling() {
     loadResource({
         tagName: 'script',
-        src: fetchResource('dgtCustomStyling','https://cdn.jsdelivr.net/gh/vberezan/dg-toolbox@development/stable-release/2.0.0/dg-toolbox-custom-styling.1.js'),
+        src: fetchResource('dgtCustomStyling','https://cdn.jsdelivr.net/gh/vberezan/dg-toolbox@development/stable-release/2.0.0/dg-toolbox-custom-styling.2.js'),
         rel: 'text/javascript'
     }).onload = function () {
         applyCustomStyling();
@@ -145,7 +145,7 @@ function loadAngular() {
 function loadGlobalAngularStyling() {
     let angular = [{
         tagName: 'link',
-        href: fetchResource('angularStyles','https://cdn.jsdelivr.net/gh/vberezan/dg-toolbox@development/stable-release/2.0.0/styles.css'),
+        href: fetchResource('angularStyles','https://cdn.jsdelivr.net/gh/vberezan/dg-toolbox@development/stable-release/2.0.0/styles.1.css'),
         rel: 'stylesheet'
     }];
 
