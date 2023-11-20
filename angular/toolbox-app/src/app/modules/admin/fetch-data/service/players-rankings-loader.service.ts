@@ -91,7 +91,6 @@ export class PlayersRankingsLoaderService {
       }
 
       if (player.alliance === 'sol') {
-        console.log('sol');
         player.relation = 'nap';
       }
 

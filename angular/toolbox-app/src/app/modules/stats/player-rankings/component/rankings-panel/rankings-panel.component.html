@@ -1,52 +1,53 @@
 <div id="dgt-players-rankings-wrapper">
-    <table id="dgt-rankings-table">
-        <thead>
-            <tr>
-                <th class="rank">Rank</th>
-                <th class="alliance">Tag</th>
-                <th class="name">Player</th>
-                <th class="planets">Planets</th>
-                <th class="g1">G1</th>
-                <th class="inner">Inner</th>
-                <th class="outer">Outer</th>
-                <th class="score">Score</th>
-            </tr>
-        </thead>
-        <tbody>
-            <tr *ngFor="let player of rankings.values()">
-                <td class="rank">{{player.rank}}</td>
-                <td class="alliance">{{player.alliance}}</td>
-                <td class="name">{{player.name}}</td>
-                <td class="planets"><a href="javascript:void(0);">{{player.planets}}</a></td>
-                <td class="g1"><a href="javascript:void(0);">{{player.g1Total}}</a></td>
-                <td class="inner"><a href="javascript:void(0);">{{player.g213Total}}</a></td>
-                <td class="outer"><a href="javascript:void(0);">{{player.g1449Total}}</a></td>
-                <td class="score">{{player.score | number:'1.0':'en-US'}}</td>
-            </tr>
-        </tbody>
-    </table>
+  <table id="dgt-rankings-table">
+    <thead>
+    <tr>
+      <th class="rank">Rank</th>
+      <th class="alliance">Tag</th>
+      <th class="name">Player</th>
+      <th class="planets">Planets</th>
+      <th class="g1">G1</th>
+      <th class="inner">Inner</th>
+      <th class="outer">Outer</th>
+      <th class="score">Score</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr *ngFor="let player of rankings.values()"
+        [ngClass]="{'hostile':player.relation === 'hostile', 'allied':player.relation === 'allied', 'self':player.relation === 'self', 'nap':player.relation === 'nap'}">
+      <td class="rank">{{player.rank}}</td>
+      <td class="alliance">{{player.alliance}}</td>
+      <td class="name">{{player.name}}</td>
+      <td class="planets"><a href="javascript:void(0);">{{player.planets}}</a></td>
+      <td class="g1"><a href="javascript:void(0);">{{player.g1Total}}</a></td>
+      <td class="inner"><a href="javascript:void(0);">{{player.g213Total}}</a></td>
+      <td class="outer"><a href="javascript:void(0);">{{player.g1449Total}}</a></td>
+      <td class="score">{{player.score | number:'1.0':'en-US'}}</td>
+    </tr>
+    </tbody>
+  </table>
 </div>
 
 <div id="dgt-player-planets-overlay-modal" class="hide dgt-overlay-modal">
-    <div class="dgt-display-info">
-        <h2>Riddick</h2>
-        <table>
-            <tr>
-                <th>G7</th>
-                <td>7.4.1.2, 7.4.1.3, 7.4.1.4, 7.4.1.5, 7.4.1.6, 7.4.1.7, 7.4.2.7, 7.4.3.3, 7.4.4.6, 7.6.1.1, 7.6.1.4,
-                    7.6.1.5, 7.6.1.6, 7.6.1.7, 7.6.1.8, 7.6.1.9, 7.6.2.2, 7.6.2.4, 7.6.2.5, 7.6.2.6, 7.6.2.7, 7.6.2.8,
-                    7.6.2.9, 7.6.3.1, 7.6.3.2, 7.6.3.3, 7.6.3.4, 7.6.3.6, 7.6.3.7, 7.6.4.1, 7.6.4.2, 7.6.4.3, 7.6.4.6,
-                    7.6.4.7, 7.6.4.8, 7.6.4.9
-                </td>
-            </tr>
-            <tr>
-                <th>G8</th>
-                <td>8.4.3.5</td>
-            </tr>
-            <tr>
-                <th>G9</th>
-                <td>9.3.3.1, 9.3.3.2, 9.3.3.3, 9.3.3.5, 9.3.3.6, 9.3.3.7, 9.3.3.8, 9.3.3.9</td>
-            </tr>
-        </table>
-    </div>
+  <div class="dgt-display-info">
+    <h2>Riddick</h2>
+    <table>
+      <tr>
+        <th>G7</th>
+        <td>7.4.1.2, 7.4.1.3, 7.4.1.4, 7.4.1.5, 7.4.1.6, 7.4.1.7, 7.4.2.7, 7.4.3.3, 7.4.4.6, 7.6.1.1, 7.6.1.4,
+          7.6.1.5, 7.6.1.6, 7.6.1.7, 7.6.1.8, 7.6.1.9, 7.6.2.2, 7.6.2.4, 7.6.2.5, 7.6.2.6, 7.6.2.7, 7.6.2.8,
+          7.6.2.9, 7.6.3.1, 7.6.3.2, 7.6.3.3, 7.6.3.4, 7.6.3.6, 7.6.3.7, 7.6.4.1, 7.6.4.2, 7.6.4.3, 7.6.4.6,
+          7.6.4.7, 7.6.4.8, 7.6.4.9
+        </td>
+      </tr>
+      <tr>
+        <th>G8</th>
+        <td>8.4.3.5</td>
+      </tr>
+      <tr>
+        <th>G9</th>
+        <td>9.3.3.1, 9.3.3.2, 9.3.3.3, 9.3.3.5, 9.3.3.6, 9.3.3.7, 9.3.3.8, 9.3.3.9</td>
+      </tr>
+    </table>
+  </div>
 </div>
