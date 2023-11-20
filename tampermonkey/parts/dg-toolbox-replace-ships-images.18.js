@@ -12,7 +12,7 @@ function replaceShipsImages() {
     replaceImgWithImg('/images/units/main/ships/colonisation_ship.gif', 'https://i.imgur.com/niEL3PF.jpg');
     replaceImgWithImg('/images/units/small/fighter.gif', 'https://i.imgur.com/CHcGyYX.jpg');
     replaceImgWithImg('/images/units/main/ships/fighter.gif', 'https://i.imgur.com/CHcGyYX.jpg');
-    replaceImgWithImg('/images/units/small/bomber.gif', 'https://i.imgur.com/fvl7c8r.jpg');
+    replaceImgWithImg('/images/units/small/bomber.gif', 'https://i.imgur.com/CHcGyYX.jpg');
     replaceImgWithImg('/images/units/main/ships/bomber.gif', 'https://i.imgur.com/fvl7c8r.jpg');
     replaceImgWithImg('/images/units/small/frigate.gif', 'https://i.imgur.com/DgHPNSL.jpg');
     replaceImgWithImg('/images/units/main/ships/frigate.gif', 'https://i.imgur.com/DgHPNSL.jpg');
