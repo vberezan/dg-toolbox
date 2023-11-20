@@ -28,11 +28,10 @@ export class LocalStorageSynchronizerComponent implements AfterViewInit {
             window.location.reload();
           });
         } else {
-          this.delay(500).then((): void => {
-            this.updatingModal.nativeElement.classList.add('show');
-            this.updatingModal.nativeElement.classList.remove('hide');
-            document.body.classList.add('dgt-overlay-open');
-          });
+          this.updatingModal.nativeElement.classList.add('show');
+          this.updatingModal.nativeElement.classList.remove('hide');
+          document.body.classList.add('dgt-overlay-open');
+          this.delay(500).then((): void => {return});
         }
       });
 
