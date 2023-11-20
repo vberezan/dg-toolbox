@@ -118,30 +118,39 @@ export class PlayersRankingsLoaderService {
       if (isScanActive) {
         scanned += 1;
         setTimeout((): void => {
-          let playerPlanetsSubscription: Subscription = docData(
-            doc(playersPlanetsPath, playerId.toString())
-          ).subscribe((item: DocumentData): void => {
-            if (item) {
-              const playerPlanets: PlayerPlanets = Object.assign(new PlayerPlanets(), item);
-
-              playerStats.planets = playerPlanets.total;
-              playerStats.g1Total = playerPlanets.g1Total;
-              playerStats.g213Total = playerPlanets.g213Total;
-              playerStats.g1449Total = playerPlanets.g1449Total;
-
-              setDoc(doc(playersRankingsPath, playerId.toString()), JSON.parse(JSON.stringify(playerStats)))
-                .then((): void => {
-                  this._playersRankingsEmitter.emit(new PageAction(scanned, playersStats.size, 'save'));
-                }).catch((error): void => console.log(error));
-            }
-
-            playerPlanetsSubscription.unsubscribe();
-          });
+          this.setRanking(scanned, playersStats.size, playerStats, playerId, playersRankingsPath, playersPlanetsPath);
         }, 50 * scanned);
       }
     });
 
     await this.delay(50 * playersStats.size);
+  }
+
+  private setRanking(scan: number,
+                     totalSize: number,
+                     playerStats: PlayerStats,
+                     playerId: number,
+                     playersRankingsPath: any,
+                     playersPlanetsPath: any): void {
+    let subscription: Subscription = docData(
+      doc(playersPlanetsPath, playerId.toString())
+    ).subscribe((item: DocumentData): void => {
+      if (item) {
+        const playerPlanets: PlayerPlanets = Object.assign(new PlayerPlanets(), item);
+
+        playerStats.planets = playerPlanets.total;
+        playerStats.g1Total = playerPlanets.g1Total;
+        playerStats.g213Total = playerPlanets.g213Total;
+        playerStats.g1449Total = playerPlanets.g1449Total;
+
+        setDoc(doc(playersRankingsPath, playerId.toString()), JSON.parse(JSON.stringify(playerStats)))
+          .then((): void => {
+            this._playersRankingsEmitter.emit(new PageAction(scan, totalSize, 'save'));
+          }).catch((error): void => console.log(error));
+      }
+
+      subscription.unsubscribe();
+    });
   }
 
   private delay = async (ms: number): Promise<unknown> => new Promise(res => setTimeout(res, ms));
