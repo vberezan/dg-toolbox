@@ -3,6 +3,10 @@
   padding: 5px !important;
 }
 
+a:visited {
+  color: #72bde0 !important;
+}
+
 .seperator {
   margin-bottom: 5px !important;
 }
@@ -1477,14 +1481,9 @@ dgt-fleet-orders-list-panel {
   border-bottom-right-radius: 5px;
 }
 
-#home-stats div.opacBackground.lightBorder .noPadding > div.padding {
+#home-stats div.opacBackground.lightBorder .noPadding > div {
   padding: 0 !important;
-  margin: 0 5px !important;
-}
-
-#home-stats div.opacBackground.lightBorder .noPadding > div:not(.padding) {
-  padding: 0 !important;
-  margin: 10px 0 !important;
+  margin: 5px !important;
 }
 
 #known-issues {
