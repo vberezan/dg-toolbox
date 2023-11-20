@@ -5,10 +5,10 @@ export class PlayerPlanets {
   private _planets: PlanetsBatch[] = [];
   private _name: string;
   private _turn: number;
-  private _total: number;
-  private _g1Planets: number;
-  private _g213Planets: number;
-  private _g1449Planets: number;
+  private _total: number = 1;
+  private _g1Total: number = 0;
+  private _g213Total: number = 0;
+  private _g1449Total: number = 0;
 
   get turn(): number {
     return this._turn;
@@ -50,28 +50,28 @@ export class PlayerPlanets {
     this._name = value;
   }
 
-  get g1Planets(): number {
-    return this._g1Planets;
+  get g1Total(): number {
+    return this._g1Total;
   }
 
-  set g1Planets(value: number) {
-    this._g1Planets = value;
+  set g1Total(value: number) {
+    this._g1Total = value;
   }
 
-  get g213Planets(): number {
-    return this._g213Planets;
+  get g213Total(): number {
+    return this._g213Total;
   }
 
-  set g213Planets(value: number) {
-    this._g213Planets = value;
+  set g213Total(value: number) {
+    this._g213Total = value;
   }
 
-  get g1449Planets(): number {
-    return this._g1449Planets;
+  get g1449Total(): number {
+    return this._g1449Total;
   }
 
-  set g1449Planets(value: number) {
-    this._g1449Planets = value;
+  set g1449Total(value: number) {
+    this._g1449Total = value;
   }
 
   toJSON(): any {
@@ -81,9 +81,9 @@ export class PlayerPlanets {
       name: this.name,
       turn: this.turn,
       total: this.total,
-      g1Planets: this.g1Planets,
-      g213Planets: this.g213Planets,
-      g1449Planets: this.g1449Planets
+      g1Total: this.g1Total,
+      g213Total: this.g213Total,
+      g1449Total: this.g1449Total
     };
   }
 }

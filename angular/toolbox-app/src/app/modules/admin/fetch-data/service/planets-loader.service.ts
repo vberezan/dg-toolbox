@@ -144,17 +144,13 @@ export class PlanetsLoaderService {
           });
         }
 
-        player.total = 1;
         player.planets.forEach((batch: PlanetsBatch): void => {
           if (batch.galaxy === 1) {
-            player.g1Planets += batch.planets.length;
-            console.log('galaxy: ' + batch.galaxy + ', g1Planets: ' + player.g1Planets + ", batch.planets.length: " + batch.planets.length);
+            player.g1Total += batch.planets.length;
           } else if (batch.galaxy > 1 && batch.galaxy < 14) {
-            player.g213Planets += batch.planets.length;
-            console.log('galaxy: ' + batch.galaxy + ', g1Planets: ' + player.g1Planets + ", batch.planets.length: " + batch.planets.length);
+            player.g213Total += batch.planets.length;
           } else {
-            player.g1449Planets += batch.planets.length;
-            console.log('galaxy: ' + batch.galaxy + ', g1Planets: ' + player.g1Planets + ", batch.planets.length: " + batch.planets.length);
+            player.g1449Total += batch.planets.length;
           }
 
           player.total += batch.planets.length;

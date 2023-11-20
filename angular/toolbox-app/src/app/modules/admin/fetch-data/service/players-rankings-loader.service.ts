@@ -123,9 +123,9 @@ export class PlayersRankingsLoaderService {
               const playerPlanets: PlayerPlanets = Object.assign(new PlayerPlanets(), item);
 
               playerStats.planets = playerPlanets.total;
-              playerStats.g1Planets = playerPlanets.g1Planets;
-              playerStats.g213Planets = playerPlanets.g213Planets;
-              playerStats.g1449Planets = playerPlanets.g1449Planets;
+              playerStats.g1Total = playerPlanets.g1Total;
+              playerStats.g213Total = playerPlanets.g213Total;
+              playerStats.g1449Total = playerPlanets.g1449Total;
 
               setDoc(doc(playersRankingsPath, playerId.toString()), JSON.parse(JSON.stringify(playerStats)))
                 .then((): void => {
