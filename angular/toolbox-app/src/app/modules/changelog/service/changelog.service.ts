@@ -5,6 +5,7 @@ import {collection, collectionData, Firestore, query} from "@angular/fire/firest
 import {DocumentData} from "@angular/fire/compat/firestore";
 import {LocalStorageKeys} from "../../../shared/model/local-storage/local-storage-keys";
 import {JavascriptRepository} from "../../../shared/model/platform/javascript-repository.model";
+import {Metadata} from "../../../shared/model/local-storage/metadata.model";
 
 @Injectable({
   providedIn: 'platform'
@@ -38,7 +39,7 @@ export class ChangelogService {
     dgtUpdatingModel.nativeElement.classList.remove('hide');
     document.body.classList.add('dgt-overlay-open');
 
-    // localStorage.clear();
+    localStorage.clear();
 
     this.delay(2500).then((): void => {
       const metadataPath: any = collection(this.firestore, 'metadata');
@@ -67,7 +68,9 @@ export class ChangelogService {
 
         this.localStorageService.cache(LocalStorageKeys.JAVASCRIPT_REPOSITORY, cache);
 
-        this.localStorageService.localMetadata().dgtVersion = this.localStorageService.remoteMetadata().dgtVersion;
+        let localMetadata: Metadata = this.localStorageService.localMetadata();
+        localMetadata.dgtVersion = this.localStorageService.remoteMetadata().dgtVersion;
+        this.localStorageService.cache(LocalStorageKeys.LOCAL_METADATA, localMetadata);
 
         dgtUpdatingModel.nativeElement.classList.add('hide');
         dgtUpdatingModel.nativeElement.classList.remove('show');
