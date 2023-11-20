@@ -118,7 +118,7 @@
   width: 200%;
   height: 200%;
   position: absolute;
-  background: rgba(0, 0, 0, 0.75);
+  background: rgba(0, 0, 0, 0.85);
   z-index: 999999999;
 }
 

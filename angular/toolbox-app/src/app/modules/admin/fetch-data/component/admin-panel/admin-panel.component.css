@@ -11,12 +11,12 @@
   width: 300px;
   left: calc(50% - 150px);
   top: calc(50% - 45px);
-  border: 1px solid #576740;
+  border: 1px solid #364a36;
   border-radius: 5px;
   padding: 10px;
   vertical-align: middle;
   text-align: center;
-  background: #576740;
+  background: #3a593a;
   position: fixed;
 }
 
@@ -27,16 +27,16 @@
   width: 100%;
   margin: 10px auto;
   height: 20px;
-  background: #5c5c5c;
+  background: #fff;
   overflow: hidden;
   border-radius: 5px;
 }
 
 .actions button {
   padding: 0 15px;
-  border: 1px solid #767676;
+  border: 1px solid #5a7b5a;
   border-radius: 3px;
-  background: rgb(75, 75, 75);
+  background: #3e6e3e;
   cursor: pointer;
   width: auto;
   height: 24px;
@@ -46,8 +46,8 @@
 }
 
 .actions button:hover {
-  background: rgb(45, 45, 45);
-  border: 1px solid #545454;
+  border: 1px solid #405940 !important;
+  background: #2e542e !important;
 }
 
 span.progress {
@@ -59,7 +59,7 @@ span.progress {
   width: 0;
   transition: all .3s;
   height: 100%;
-  background: #576740 !important;
+  background: #4ac54a !important;
 }
 
 span.percentage {
@@ -70,19 +70,14 @@ span.percentage {
   z-index: 9999;
   height: 100%;
   line-height: 20px;
-  color: #fff;
+  color: #000;
   font-size: 15px;
-}
-
-.counter span {
-  color: #fff;
-  font-size: 14px;
 }
 
 span.system-counter,
 span.planet-counter {
   transition: all .1s;
-  color: #fff;
+  color: #dcdc;
 }
 
 .load-example {
@@ -122,7 +117,7 @@ span.planet-counter {
 #admin-load-planets input {
   height: 24px;
   font-size: 12px;
-  background: rgba(0,0,0,.4);
+  background: rgba(0,0,0,.25);
   color: #fff;
   border: none !important;
   margin: 0;
