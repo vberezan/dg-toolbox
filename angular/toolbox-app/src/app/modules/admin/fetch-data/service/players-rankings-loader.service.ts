@@ -47,7 +47,7 @@ export class PlayersRankingsLoaderService {
       cancelSubscription.unsubscribe();
     }
 
-    await this.saveRankings(playersStats, isScanActive, playersRankingsPath, playersPlanetsPath);
+    await this.saveRankings(playersStats, isScanActive, playersRankingsPath, playersPlanetsPath, new AtomicNumber(0));
 
     this.metadataService.updateMetadataTurns('players-rankings-turn');
   }
@@ -110,8 +110,7 @@ export class PlayersRankingsLoaderService {
     await this.delay(scanDelay);
   }
 
-  private async saveRankings(playersStats: Map<number, PlayerStats>, isScanActive: boolean, playersRankingsPath: any, playersPlanetsPath: any): Promise<void> {
-    let saved: number = 0;
+  private async saveRankings(playersStats: Map<number, PlayerStats>, isScanActive: boolean, playersRankingsPath: any, playersPlanetsPath: any, saved: AtomicNumber): Promise<void> {
     playersStats.forEach((playerStats: PlayerStats, playerId: number): void => {
       if (isScanActive) {
         setTimeout((): void => {
@@ -130,12 +129,12 @@ export class PlayersRankingsLoaderService {
             }
             setDoc(doc(playersRankingsPath, playerId.toString()), JSON.parse(JSON.stringify(playerStats)))
               .then((): void => {
-                this._playersRankingsEmitter.emit(new PageAction(++saved, playersStats.size, 'save'));
+                this._playersRankingsEmitter.emit(new PageAction(++saved.number, playersStats.size, 'save'));
               }).catch((error): void => console.log(error));
 
             subscription.unsubscribe();
           });
-        }, 0);
+        }, 50 * saved.number);
       }
     });
 
