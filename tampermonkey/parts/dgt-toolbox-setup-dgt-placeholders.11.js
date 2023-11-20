@@ -66,7 +66,7 @@ function setUpRankings(windowURL) {
 
     if (windowURL[1] === 'rankings' && windowURL[2] === 'players') {
         if (document.querySelector('.rankingsList')) {
-            document.querySelector('.rankingsList').parentElement.append(document.createElement('dgt-players-rankings'));
+            document.querySelector('.rankingsList').parentElement.prepend(document.createElement('dgt-players-rankings'));
         }
     }
 }
