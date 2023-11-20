@@ -266,13 +266,11 @@ function applyCustomStyling() {
 
         document.querySelector('#contentBox .leftContent').prepend(knownIssues);
         document.querySelector('#contentBox .leftContent').prepend(generalInfo);
+        document.querySelector('#contentBox .leftContent').prepend(welcome);
 
         let changelog = detach(document.querySelector('dgt-changelog'));
         if (changelog != null) {
             document.querySelector('#contentBox .leftContent').prepend(changelog);
-            document.querySelector('#contentBox .leftContent').prepend(welcome);
-        } else {
-            document.querySelector('#contentBox .leftContent').prepend(welcome);
         }
     }
 
