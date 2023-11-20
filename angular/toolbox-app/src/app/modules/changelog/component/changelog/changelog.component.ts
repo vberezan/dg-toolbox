@@ -16,16 +16,21 @@ export class ChangelogComponent implements AfterViewInit {
   private localStorageService: LocalStorageService = inject(LocalStorageService);
 
   public updateAvailable: Observable<boolean>;
-  public version: string;
-  public newVersion: string;
+  public version: string = 'N/A';
+  public newVersion: string = 'N/A';
 
   constructor() {
     this.updateAvailable = new Observable<boolean>((changeObserver: Subscriber<boolean>): void => {
       this.changeLogService.checkForUpdate(this.changeDetector, changeObserver);
     });
 
-    this.newVersion = this.localStorageService.remoteMetadata().dgtVersion;
-    this.version = this.localStorageService.localMetadata().dgtVersion;
+    if (this.localStorageService.remoteMetadata() !== null) {
+      this.newVersion = this.localStorageService.remoteMetadata().dgtVersion;
+    }
+
+    if (this.localStorageService.localMetadata() !== null) {
+      this.version = this.localStorageService.localMetadata().dgtVersion;
+    }
   }
 
   installUpdate(): void {
