@@ -132,6 +132,9 @@ export class PlayersRankingsLoaderService {
                      playerId: number,
                      playersRankingsPath: any,
                      playersPlanetsPath: any): void {
+
+    console.log(scan);
+
     let subscription: Subscription = docData(
       doc(playersPlanetsPath, playerId.toString())
     ).subscribe((item: DocumentData): void => {
@@ -142,8 +145,6 @@ export class PlayersRankingsLoaderService {
         playerStats.g1Total = playerPlanets.g1Total;
         playerStats.g213Total = playerPlanets.g213Total;
         playerStats.g1449Total = playerPlanets.g1449Total;
-
-        console.log(scan);
 
         setDoc(doc(playersRankingsPath, playerId.toString()), JSON.parse(JSON.stringify(playerStats)))
           .then((): void => {
