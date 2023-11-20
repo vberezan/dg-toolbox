@@ -22,6 +22,9 @@ export class RankingsPanelComponent {
       const ranking: PlayerStats = this.rankings.get(player.playerId);
       if (ranking) {
         ranking.planets = player.planets;
+        ranking.g1449Total = player.g1449Total;
+        ranking.g213Total = player.g213Total;
+        ranking.g1Total = player.g1Total;
       }
     }
   }
