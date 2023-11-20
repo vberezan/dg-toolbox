@@ -29,7 +29,7 @@ export class PlayerRankingsService {
       }
     }
 
-    document.querySelector('.playerRankingsList').remove();
+    // document.querySelector('.playerRankingsList').remove();
 
     return rankings;
   }

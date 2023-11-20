@@ -22,10 +22,6 @@
   width: 50px;
 }
 
-td.alliance {
-  text-transform: uppercase;
-}
-
 .score,
 .planets,
 .g1,
@@ -34,10 +30,19 @@ td.alliance {
   text-align: center;
 }
 
+td.alliance {
+  text-transform: uppercase;
+}
+
+td.name {
+  color: #ffd46f;
+}
+
 #dgt-players-rankings-wrapper {
   background: rgba(87,87,87,.75);
   border-radius: 3px;
   padding: 5px 10px 0 10px !important;
+  margin-bottom: 5px !important;
 }
 
 table {
