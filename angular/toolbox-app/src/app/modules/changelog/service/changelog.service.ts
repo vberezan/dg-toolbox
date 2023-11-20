@@ -5,7 +5,6 @@ import {collection, collectionData, Firestore, query} from "@angular/fire/firest
 import {DocumentData} from "@angular/fire/compat/firestore";
 import {LocalStorageKeys} from "../../../shared/model/local-storage/local-storage-keys";
 import {JavascriptRepository} from "../../../shared/model/platform/javascript-repository.model";
-import {Metadata} from "../../../shared/model/local-storage/metadata.model";
 import {SynchronizerService} from "../../local-storage/local-storage-synchronizer/service/synchronizer.service";
 import {DarkgalaxyApiService} from "../../darkgalaxy-ui-parser/service/darkgalaxy-api.service";
 
@@ -17,6 +16,10 @@ export class ChangelogService {
   private firestore: Firestore = inject(Firestore);
   private synchronizerService: SynchronizerService = inject(SynchronizerService);
   private dgAPI: DarkgalaxyApiService = inject(DarkgalaxyApiService);
+
+  constructor() {
+    console.log(Math.random());
+  }
 
   checkForUpdate(changeDetector: ChangeDetectorRef, changeObserver: Subscriber<boolean>): void {
     if (this.localStorageService.remoteMetadata() === null || this.localStorageService.localMetadata() === null) {
@@ -68,7 +71,6 @@ export class ChangelogService {
         javascriptRepository.dgtCustomStyling = metadata[1].dgtCustomStyling;
 
 
-
         this.localStorageService.clearAll();
         this.localStorageService.cache(LocalStorageKeys.JAVASCRIPT_REPOSITORY, javascriptRepository);
 
@@ -93,7 +95,9 @@ export class ChangelogService {
               window.location.reload();
             });
           } else {
-            this.delay(2500).then((): void => {return});
+            this.delay(2500).then((): void => {
+              return
+            });
           }
         });
 
