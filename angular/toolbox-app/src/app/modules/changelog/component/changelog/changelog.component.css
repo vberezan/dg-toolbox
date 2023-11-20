@@ -29,6 +29,7 @@
 
 #dgt-update {
   margin-bottom: 5px;
+  animation: neo-pulse-red 2s infinite;
 }
 
 #dgt-update span {
