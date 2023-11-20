@@ -136,7 +136,7 @@ export class PlayersRankingsLoaderService {
 
             subscription.unsubscribe();
           });
-        }, 50 * saved);
+        }, 0);
       }
     });
 
