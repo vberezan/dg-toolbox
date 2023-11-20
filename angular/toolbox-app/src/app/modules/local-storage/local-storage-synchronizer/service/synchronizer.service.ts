@@ -32,8 +32,8 @@ export class SynchronizerService {
       let cache: Metadata = new Metadata();
 
       cache.dgtVersion = metadata[0].version;
-      cache.planetsTurn = metadata[1];
-      cache.playersRankingsTurn = metadata[2];
+      cache.planetsTurn = metadata[2];
+      cache.playersRankingsTurn = metadata[3];
 
       this.localStorageService.cache(LocalStorageKeys.REMOTE_METADATA, cache);
 
