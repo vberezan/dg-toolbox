@@ -87,7 +87,7 @@ export class SynchronizerService {
   }
 
   private loadPlayersRankings(turn: number): void {
-    this._updatesEmitter.emit(1);
+    this._updatesEmitter.emit(2);
     const playersRankingsPath: any = collection(this.firestore, 'players-rankings');
 
     let subscription: Subscription = collectionData(playersRankingsPath)
@@ -107,7 +107,6 @@ export class SynchronizerService {
           this._updatesEmitter.emit(-1);
         });
 
-        this._updatesEmitter.emit(1);
         this.loadAllianceMembers(turn).then((): void => {
           this.delay(1000).then((): void => {
             this._updatesEmitter.emit(-1);
