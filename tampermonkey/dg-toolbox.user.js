@@ -1,11 +1,11 @@
 // ==UserScript==
 // @name         DarkGalaxy Toolbox
-// @version      1.2.0
+// @version      2.0.0
 // @namespace    dg-toolbox
 // @homepage     https://github.com/vberezan/dg-toolbox
 // @supportURL   https://github.com/vberezan/dg-toolbox
-// @downloadURL  https://raw.githubusercontent.com/vberezan/dg-toolbox/tampermonkey/dg-toolbox.user.js
-// @updateURL    https://raw.githubusercontent.com/vberezan/dg-toolbox/tampermonkey/dg-toolbox.user.js
+// @downloadURL  https://raw.githubusercontent.com/vberezan/dg-toolbox/development/tampermonkey/dg-toolbox-development.user.js
+// @updateURL    https://raw.githubusercontent.com/vberezan/dg-toolbox/development/tampermonkey/dg-toolbox-development.user.js
 // @description  Revamp DarkGalaxy UI and some additional crafts. All of this to combine the classical DG experience with the modern web experience. This toolbox is supported only by modern browsers.
 // @match        https://*.darkgalaxy.com
 // @match        https://*.darkgalaxy.com/*
@@ -31,36 +31,52 @@ function loadResource(element) {
     return node;
 }
 
+function fetchResource(firebase, fallback) {
+    if (localStorage.getItem('dev-mode')) return fallback;
+
+    if (!localStorage.getItem('javascript-repository')) return fallback;
+
+    let javascriptRepo = JSON.parse(localStorage.getItem('javascript-repository')).value;
+
+    if (!javascriptRepo) return fallback;
+
+    let dynamicUrl = JSON.parse(javascriptRepo)[firebase];
+
+    if (!dynamicUrl) return fallback;
+
+    return dynamicUrl;
+}
+
 function loadSetups(windowURL) {
     loadResource({
         tagName: 'script',
-        src: 'https://cdn.jsdelivr.net/gh/vberezan/dg-toolbox/tampermonkey/parts/dgt-toolbox-setup-dgt-placeholders.3.js',
+        src: fetchResource('dgtSetupDgtPlaceholders', 'https://cdn.jsdelivr.net/gh/vberezan/dg-toolbox@development/tampermonkey/parts/dgt-toolbox-setup-dgt-placeholders.11.js'),
         rel: 'text/javascript'
     }).onload = function () {
-        setUpUiParser();
-        setUpLocalStorageManager();
+        setUpPrerequisites()
         setUpNavbarReplacement();
         setUpChangelog(windowURL);
         setUpAdminDataLoad(windowURL);
         setUpPlanetListStatsPanel(windowURL);
         setUpSharedScansCollector(windowURL);
         setUpNavigationScanDataPanel(windowURL);
-        setUpAllianceOrdersManagerPanel(windowURL);
+        setUpAlliancePanel(windowURL);
         setUpRankings(windowURL);
+        setUpResearchPanel(windowURL);
     }
 }
 
 function loadCustomStyling() {
     loadResource({
         tagName: 'script',
-        src: 'https://cdn.jsdelivr.net/gh/vberezan/dg-toolbox/tampermonkey/parts/dg-toolbox-custom-styling.25.js',
+        src: fetchResource('dgtCustomStyling','https://cdn.jsdelivr.net/gh/vberezan/dg-toolbox@development/tampermonkey/parts/dg-toolbox-custom-styling.57.js'),
         rel: 'text/javascript'
     }).onload = function () {
         applyCustomStyling();
 
         loadResource({
             tagName: 'script',
-            src: 'https://cdn.jsdelivr.net/gh/vberezan/dg-toolbox/tampermonkey/parts/dg-toolbox-replace-icons-with-fa-icons.10.js',
+            src: fetchResource('dgtReplaceIconsWithFaIcons','https://cdn.jsdelivr.net/gh/vberezan/dg-toolbox@development/tampermonkey/parts/dg-toolbox-replace-icons-with-fa-icons.10.js'),
             rel: 'text/javascript'
         }).onload = function () {
             replaceIconsWithFAIcons();
@@ -68,7 +84,7 @@ function loadCustomStyling() {
 
         loadResource({
             tagName: 'script',
-            src: 'https://cdn.jsdelivr.net/gh/vberezan/dg-toolbox/tampermonkey/parts/dg-toolbox-replace-icons-with-images.31.js',
+            src: fetchResource('dgtReplaceIconsWithImages','https://cdn.jsdelivr.net/gh/vberezan/dg-toolbox@development/tampermonkey/parts/dg-toolbox-replace-icons-with-images.31.js'),
             rel: 'text/javascript'
         }).onload = function () {
             replaceIconsWithImages();
@@ -76,7 +92,7 @@ function loadCustomStyling() {
 
         loadResource({
             tagName: 'script',
-            src: 'https://cdn.jsdelivr.net/gh/vberezan/dg-toolbox/tampermonkey/parts/dg-toolbox-replace-planets-images.6.js',
+            src: fetchResource('dgtReplacePlanetsImages','https://cdn.jsdelivr.net/gh/vberezan/dg-toolbox@development/tampermonkey/parts/dg-toolbox-replace-planets-images.6.js'),
             rel: 'text/javascript'
         }).onload = function () {
             replacePlanetsImages();
@@ -84,15 +100,15 @@ function loadCustomStyling() {
 
         loadResource({
             tagName: 'script',
-            src: 'https://cdn.jsdelivr.net/gh/vberezan/dg-toolbox/tampermonkey/parts/dg-toolbox-replace-structures-images.7.js',
+            src: fetchResource('dgtReplaceStructuresImages','https://cdn.jsdelivr.net/gh/vberezan/dg-toolbox@development/tampermonkey/parts/dg-toolbox-replace-structures-images.8.js'),
             rel: 'text/javascript'
         }).onload = function () {
-            replaceStructuresImages();
+            replaceStructuresImages(window.location.origin);
         }
 
         loadResource({
             tagName: 'script',
-            src: 'https://cdn.jsdelivr.net/gh/vberezan/dg-toolbox/tampermonkey/parts/dg-toolbox-replace-ships-images.10.js',
+            src: fetchResource('dgtReplaceShipsImages','https://cdn.jsdelivr.net/gh/vberezan/dg-toolbox@development/tampermonkey/parts/dg-toolbox-replace-ships-images.17.js'),
             rel: 'text/javascript'
         }).onload = function () {
             replaceShipsImages();
@@ -103,27 +119,33 @@ function loadCustomStyling() {
 function loadAngular() {
     let angular = [{
         tagName: 'script',
-        src: 'https://cdn.jsdelivr.net/gh/vberezan/dg-toolbox/angular/toolbox-app/dist/toolbox-app/runtime.926d433ed3f5f1cc.js',
+        src: fetchResource('angularRuntime','https://cdn.jsdelivr.net/gh/vberezan/dg-toolbox@development/angular/toolbox-app/dist/toolbox-app/runtime.926d433ed3f5f1cc.js'),
         rel: 'module'
     }, {
         tagName: 'script',
-        src: 'https://cdn.jsdelivr.net/gh/vberezan/dg-toolbox/angular/toolbox-app/dist/toolbox-app/polyfills.8e8b88e65f8eb80f.js',
+        src: fetchResource('angularPolyfills','https://cdn.jsdelivr.net/gh/vberezan/dg-toolbox@development/angular/toolbox-app/dist/toolbox-app/polyfills.8e8b88e65f8eb80f.js'),
         rel: 'module'
     }, {
         tagName: 'script',
-        src: 'https://cdn.jsdelivr.net/gh/vberezan/dg-toolbox/angular/toolbox-app/dist/toolbox-app/main.6d6273d6c6063740.js',
+        src: fetchResource('angularMain','https://cdn.jsdelivr.net/gh/vberezan/dg-toolbox@development/angular/toolbox-app/dist/toolbox-app/main.8b3c3481830826fd.js'),
         rel: 'module'
     }];
 
-    angular.forEach((ang) => {
-        loadResource(ang);
-    });
+    loadResource(angular[0]).onload = function () {
+        console.log("%cDGT%c - setting up runtime", "font-size: 12px; font-weight: bold;", "font-size: 12px;");
+        loadResource(angular[1]).onload = function () {
+            console.log("%cDGT%c - preparing polyfills", "font-size: 12px; font-weight: bold;", "font-size: 12px;");
+            loadResource(angular[2]).onload = function () {
+                console.log("%cDGT%c - booting application modules", "font-size: 12px; font-weight: bold;", "font-size: 12px;");
+            }
+        }
+    }
 }
 
 function loadGlobalAngularStyling() {
     let angular = [{
         tagName: 'link',
-        href: 'https://cdn.jsdelivr.net/gh/vberezan/dg-toolbox/angular/toolbox-app/dist/toolbox-app/styles.905e35800f2d8676.css',
+        href: fetchResource('angularStyles','https://cdn.jsdelivr.net/gh/vberezan/dg-toolbox@development/angular/toolbox-app/dist/toolbox-app/styles.dd27e63542e544e9.css'),
         rel: 'stylesheet'
     }];
 
@@ -134,13 +156,12 @@ function loadGlobalAngularStyling() {
 
 (function () {
     document.addEventListener("DOMContentLoaded", function (event) {
-        if (localStorage.getItem('hotfix') !== '1.0.1') {
-            localStorage.setItem('hotfix', '1.0.1');
-            localStorage.removeItem('alliance-members');
-            localStorage.removeItem('last-players-rankings-update');
-            localStorage.removeItem('player-stats');
+        if (localStorage.getItem('hotfix') !== '2.0.0' ) {
+            if (!localStorage.getItem('post-install-fetch-metadata')) {
+                localStorage.clear();
+            }
+            localStorage.setItem('hotfix', '2.0.0');
         }
-
 
         let windowURL = window.location.pathname.split(/\//g);
 
@@ -150,23 +171,21 @@ function loadGlobalAngularStyling() {
 
         loadResource({
             tagName: 'script',
-            src: 'https://cdn.jsdelivr.net/gh/vberezan/dg-toolbox/tampermonkey/parts/dg-toolbox-utils.4.js',
+            src: fetchResource('dgtUtils','https://cdn.jsdelivr.net/gh/vberezan/dg-toolbox@development/tampermonkey/parts/dg-toolbox-utils.4.js'),
             rel: 'text/javascript'
         }).onload = function () {
             if (document.getElementById('playerBox')) {
                 document.getElementById('playerBox').append(document.createElement('dgt-authentication'));
 
-                console.log("%cDGT%c - cooking environment", "font-size: 12px; font-weight: bold;", "font-size: 12px;");
+                console.log("%cDGT%c - assembling platform environment", "font-size: 12px; font-weight: bold;", "font-size: 12px;");
                 loadSetups(windowURL);
-                console.log("%cDGT%c - cooking additional components", "font-size: 12px; font-weight: bold;", "font-size: 12px;");
+                console.log("%cDGT%c - injecting additional components", "font-size: 12px; font-weight: bold;", "font-size: 12px;");
                 loadAngular();
-                console.log("%cDGT%c - cooking custom theme", "font-size: 12px; font-weight: bold;", "font-size: 12px;");
+                console.log("%cDGT%c - applying custom theme", "font-size: 12px; font-weight: bold;", "font-size: 12px;");
                 loadCustomStyling();
                 setTimeout(() => {
                     document.body.style.visibility = 'visible';
                 }, 0);
-
-                console.log("%cDGT%c - enjoy", "font-size: 12px; font-weight: bold;", "font-size: 12px;");
             } else {
                 setTimeout(() => {
                     document.body.style.visibility = 'visible';
@@ -174,7 +193,11 @@ function loadGlobalAngularStyling() {
             }
         }
 
-        localStorage.setItem('version', 'v1.2.1');
+        localStorage.setItem('game-endpoint', '{"ttl":0,"expiry":0,"value":"\\"' + window.location.origin + '\\""}');
+
+        if (!localStorage.getItem('local-metadata')) {
+            localStorage.setItem('local-metadata', '{"ttl":0,"expiry":0,"value":"{\\"dgtVersion\\":\\"v2.0.1\\",\\"allianceMembersTurn\\":{\\"version\\":0,\\"turn\\":0},\\"playersRankingsTurn\\":{\\"version\\":0,\\"turn\\":0},\\"planetsTurn\\":{\\"version\\":0,\\"turn\\":0}}"}');
+        }
     });
 
     window.unload = function() {
