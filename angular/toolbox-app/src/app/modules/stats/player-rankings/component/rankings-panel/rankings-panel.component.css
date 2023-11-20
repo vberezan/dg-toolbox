@@ -1,12 +1,15 @@
 .hostile,
-.hostile a,
 .allied,
-.allied a,
 .self,
-.self a,
-.nap,
-.nap a{
+.nap {
   color: #fff;
+}
+
+.hostile a,
+.allied a,
+.self a,
+.nap a {
+  color: #72bde0 !important;
 }
 
 .name {
@@ -19,11 +22,11 @@
 .g1,
 .inner,
 .outer {
-    width: 100px;
+  width: 100px;
 }
 
 .score {
-    width: 150px;
+  width: 150px;
 }
 
 .rank {
@@ -68,11 +71,11 @@ td.alliance {
 }
 
 td.name {
-  color: #ffd46f;
+  color: #fff;
 }
 
 #dgt-players-rankings-wrapper {
-  background: rgba(87,87,87,.75);
+  background: rgba(87, 87, 87, .75);
   border-radius: 3px;
   padding: 5px 10px 0 10px !important;
   margin-bottom: 5px !important;
@@ -87,7 +90,7 @@ table {
 
 td, th {
   line-height: 26px;
-  border-bottom: 1px solid rgba(0,0,0,.25);
+  border-bottom: 1px solid rgba(0, 0, 0, .25);
 }
 
 table tr:last-child td {
