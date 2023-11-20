@@ -26,8 +26,8 @@ import {SynchronizerService} from "../local-storage/local-storage-synchronizer/s
     provideAnalytics(() => getAnalytics())
   ],
   providers: [
-    ChangelogService, // -- contains firestore reference
-    SynchronizerService // -- contains firestore reference
+    SynchronizerService, // -- contains firestore reference
+    ChangelogService // -- contains firestore reference
   ],
   declarations: [
     MenuComponent,
