@@ -26,10 +26,11 @@ td.alliance {
   text-transform: uppercase;
 }
 
-td.planets,
-td.g1,
-td.inner,
-td.outer {
+.score,
+.planets,
+.g1,
+.inner,
+.outer {
   text-align: center;
 }
 
