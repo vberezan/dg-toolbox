@@ -12,6 +12,7 @@
 .name {
   width: 150px;
   text-transform: capitalize;
+  padding-left: 10px !important;
 }
 
 .planets,
@@ -47,14 +48,19 @@
   color: #df4a4a !important
 }
 
-.hostile .nap {
+.nap .rank {
   background: #4b2b2b !important;
   color: #d6d61f !important
 }
 
-.hostile .allied {
+.allied .rank {
   background: #18354b !important;
   color: #08baff !important
+}
+
+.self .rank {
+  background: #426300 !important;
+  color: #7bbd1a !important
 }
 
 td.alliance {
