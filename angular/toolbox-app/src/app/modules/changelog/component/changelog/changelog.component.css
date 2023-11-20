@@ -10,7 +10,7 @@
   margin-top: 0;
   font-size: 18px;
   font-weight: bold;
-  border-bottom: 1px solid #5e5e5e;
+  border-bottom: 1px solid #3a593a;
   margin-bottom: 6px;
   padding: 5px;
 }
@@ -19,15 +19,15 @@
   font-style: italic;
   font-size: 13px !important;
   font-weight: normal;
+  background: #364a36;
+  border: 1px solid #3a593a;
 }
 
 #dgt-important,
 #dgt-update-changelog {
-  background: #576740;
   margin: 5px;
   border-radius: 3px;
-  padding: 5px 10px !important;
-  color: #ffffffad;
+  color: #dcdcdc;
 }
 
 #dgt-update {
