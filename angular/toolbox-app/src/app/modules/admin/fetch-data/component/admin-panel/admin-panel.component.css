@@ -166,8 +166,8 @@ span.planet-counter {
 
 #admin-load-separator {
   border-bottom: 1px solid #3a593a !important;
-  margin: 5px 0 !important;
-  padding: 0 5px !important;
+  margin: 5px 5px 3px 5px !important;
+  display: block;
 }
 
 #dgt-admin-panel-body,
