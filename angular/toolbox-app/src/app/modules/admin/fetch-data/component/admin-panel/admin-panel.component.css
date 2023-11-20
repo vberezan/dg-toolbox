@@ -94,9 +94,7 @@ span.planet-counter {
   color: #dcdcdc !important;
   font-size: 11px;
   text-align: left;
-  padding: 5px;
-  border-radius: 3px;
-  margin-bottom: 5px;
+  margin-bottom: 10px;
 }
 
 .load-example .usage-warning {
@@ -105,6 +103,14 @@ span.planet-counter {
 
 .load-example ul {
   float: left;
+}
+
+#admin-load-planets {
+  margin-bottom: 5px !important;
+}
+
+#admin-load-rankings {
+  margin-top: 5px !important;
 }
 
 #admin-load-rankings,
@@ -118,7 +124,7 @@ span.planet-counter {
   font-size: 12px;
   background: rgba(0,0,0,.4);
   color: #fff;
-  border: 1px solid #767676 !important;
+  border: none !important;
   margin: 0;
   border-radius: 3px;
   display: block;
@@ -134,9 +140,9 @@ span.planet-counter {
 #admin-load-rankings button,
 #admin-load-planets button {
   padding: 0 15px;
-  border: 1px solid #767676 !important;
+  border: 1px solid #5a7b5a !important;
   border-radius: 3px;
-  background: transparent;
+  background: #3e6e3e;
   cursor: pointer;
   width: auto;
   margin: 0 !important;
@@ -149,20 +155,28 @@ span.planet-counter {
 
 #admin-load-rankings button:hover,
 #admin-load-planets button:hover {
-  background: rgb(45, 45, 45);
-  border: 1px solid #545454 !important;
+  border: 1px solid #405940 !important;
+  background: #2e542e !important;
 }
 
 #admin-load-rankings button {
   float: left !important;
+  width: 100% !important;
 }
 
 #admin-load-separator {
-  border-bottom: 1px solid #5e5e5e;
+  border-bottom: 1px solid #3a593a !important;
 }
 
 #dgt-admin-panel-body,
 #dgt-admin-panel-header {
   background: #364a36 !important;
+}
+
+#dgt-admin-panel-header {
+  border-bottom: 1px solid #3a593a !important;
+}
+
+#dgt-admin-panel-wrapper {
   border: 1px solid #3a593a !important;
 }
