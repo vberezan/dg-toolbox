@@ -143,6 +143,8 @@ export class PlayersRankingsLoaderService {
         playerStats.g213Total = playerPlanets.g213Total;
         playerStats.g1449Total = playerPlanets.g1449Total;
 
+        console.log(scan);
+
         setDoc(doc(playersRankingsPath, playerId.toString()), JSON.parse(JSON.stringify(playerStats)))
           .then((): void => {
             this._playersRankingsEmitter.emit(new PageAction(scan, totalSize, 'save'));
