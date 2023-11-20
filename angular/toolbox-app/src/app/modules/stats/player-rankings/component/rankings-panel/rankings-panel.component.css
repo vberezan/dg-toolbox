@@ -8,7 +8,8 @@
 
 #dgt-rankings-table .planets,
 #dgt-rankings-table .g1,
-#dgt-rankings-table .inner {
+#dgt-rankings-table .inner,
+#dgt-rankings-table .outer {
     width: 100px;
 }
 
