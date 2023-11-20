@@ -6,6 +6,7 @@ import {getFirestore, provideFirestore} from "@angular/fire/firestore";
 import {initializeAppCheck, provideAppCheck, ReCaptchaV3Provider} from "@angular/fire/app-check";
 import {LocalStorageSynchronizerComponent} from './component/local-storage-synchronizer/local-storage-synchronizer.component';
 import {HttpClientModule} from "@angular/common/http";
+import {SynchronizerService} from "./service/synchronizer.service";
 
 
 @NgModule({
@@ -20,6 +21,9 @@ import {HttpClientModule} from "@angular/common/http";
         isTokenAutoRefreshEnabled: true
       })
     )
+  ],
+  providers: [
+    SynchronizerService
   ],
   declarations: [
     LocalStorageSynchronizerComponent,

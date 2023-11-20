@@ -93,9 +93,6 @@ export class ChangelogService {
               window.location.reload();
             });
           } else {
-            dgtUpdatingModel.nativeElement.classList.add('show');
-            dgtUpdatingModel.nativeElement.classList.remove('hide');
-            document.body.classList.add('dgt-overlay-open');
             this.delay(2500).then((): void => {return});
           }
         });
