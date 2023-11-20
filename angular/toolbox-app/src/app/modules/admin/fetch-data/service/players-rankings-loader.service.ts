@@ -132,6 +132,8 @@ export class PlayersRankingsLoaderService {
                 .then((): void => {
                   this._playersRankingsEmitter.emit(new PageAction(++scanned, playersStats.size, 'save'));
                 }).catch((error): void => console.log(error));
+
+              console.log(scanned);
             }
 
             playerPlanetsSubscription.unsubscribe();
