@@ -11,7 +11,7 @@ import {Metadata} from "../../../../shared/model/local-storage/metadata.model";
 import {environment} from "../../../../../environments/environment";
 
 @Injectable({
-  providedIn: 'root'
+  providedIn: 'platform'
 })
 export class SynchronizerService {
   private httpClient: HttpClient = inject(HttpClient);

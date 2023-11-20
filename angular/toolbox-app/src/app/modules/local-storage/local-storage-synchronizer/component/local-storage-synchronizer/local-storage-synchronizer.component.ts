@@ -15,7 +15,7 @@ export class LocalStorageSynchronizerComponent implements AfterViewInit {
   private dgAPI: DarkgalaxyApiService = inject(DarkgalaxyApiService);
 
   ngAfterViewInit(): void {
-    this.delay(1000).then(() => {
+    this.delay(1000).then((): void => {
       let updates: number = 0;
 
       this.synchronizerService.updatesEmitter.subscribe((updateNumber: number): void => {
