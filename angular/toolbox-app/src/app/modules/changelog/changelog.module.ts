@@ -22,8 +22,8 @@ import {SynchronizerService} from "../local-storage/local-storage-synchronizer/s
     )
   ],
   providers: [
-    ChangelogService, // -- contains reference to firestore,
-    SynchronizerService // -- contains reference to firestore
+    SynchronizerService, // -- contains reference to firestore,
+    ChangelogService // -- contains reference to firestore,
   ],
   declarations: [
     ChangelogComponent
