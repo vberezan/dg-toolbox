@@ -66,18 +66,21 @@ export class SynchronizerService {
       this.localStorageService.cache(LocalStorageKeys.LOCAL_METADATA, localMetadata);
     }
 
-    if (postInstall || localMetadata.playersRankingsTurn.turn === 0 ||
-      remoteMetadata.playersRankingsTurn.turn > localMetadata.playersRankingsTurn.turn ||
-      (remoteMetadata.playersRankingsTurn.turn == localMetadata.playersRankingsTurn.turn &&
-        remoteMetadata.playersRankingsTurn.version > localMetadata.playersRankingsTurn.version)) {
+    const isTurnZero: boolean = localMetadata.playersRankingsTurn.turn === 0;
+    const isRemoteTurnGreater: boolean = remoteMetadata.playersRankingsTurn.turn > localMetadata.playersRankingsTurn.turn;
+    const isSameTurnButRemoteVersionGreater: boolean = remoteMetadata.playersRankingsTurn.turn == localMetadata.playersRankingsTurn.turn &&
+      remoteMetadata.playersRankingsTurn.version > localMetadata.playersRankingsTurn.version;
 
+    if (postInstall || isTurnZero || isRemoteTurnGreater || isSameTurnButRemoteVersionGreater) {
       this.loadPlayersRankings(turn);
     }
 
-    if (postInstall || this.localStorageService.get(LocalStorageKeys.PLAYERS_STATS) &&
-      (this.localStorageService.get(LocalStorageKeys.ALLIANCE_MEMBERS) == null ||
-        localMetadata.allianceMembersTurn.turn === 0 || turn > localMetadata.allianceMembersTurn.turn)) {
+    const playerStats = this.localStorageService.get(LocalStorageKeys.PLAYERS_STATS);
+    const allianceMembers = this.localStorageService.get(LocalStorageKeys.ALLIANCE_MEMBERS);
+    const isAllianceMembersTurnZero: boolean = localMetadata.allianceMembersTurn.turn === 0;
+    const isTurnGreaterThanAllianceMembersTurn: boolean = turn > localMetadata.allianceMembersTurn.turn;
 
+    if (postInstall || (playerStats && (!allianceMembers || isAllianceMembersTurnZero || isTurnGreaterThanAllianceMembersTurn))) {
       this.loadAllianceMembers(turn);
     }
 
