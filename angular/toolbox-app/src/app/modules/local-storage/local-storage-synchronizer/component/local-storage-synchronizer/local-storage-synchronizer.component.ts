@@ -2,6 +2,8 @@ import {AfterViewInit, Component, ElementRef, inject, ViewChild} from '@angular/
 import {SynchronizerService} from "../../service/synchronizer.service";
 import {DarkgalaxyApiService} from "../../../../darkgalaxy-ui-parser/service/darkgalaxy-api.service";
 import {Observable, Subscriber, Subscription} from "rxjs";
+import {LocalStorageService} from "../../../local-storage-manager/service/local-storage.service";
+import {LocalStorageKeys} from "../../../../../shared/model/local-storage/local-storage-keys";
 
 @Component({
   selector: 'dgt-local-storage-synchronizer',
@@ -11,11 +13,12 @@ import {Observable, Subscriber, Subscription} from "rxjs";
 export class LocalStorageSynchronizerComponent implements AfterViewInit {
   @ViewChild('dgtUpdatingModel') dgtUpdatingModel: ElementRef;
 
+  private localStorageService: LocalStorageService = inject(LocalStorageService);
   private synchronizerService: SynchronizerService = inject(SynchronizerService);
   private dgAPI: DarkgalaxyApiService = inject(DarkgalaxyApiService);
 
   ngAfterViewInit(): void {
-    this.delay(1000).then((): void => {
+    this.delay(this.localStorageService.get(LocalStorageKeys.POST_INSTALL_FETCH_METADATA) ? 0 : 1000).then((): void => {
       let updates: number = 0;
 
       this.synchronizerService.updatesEmitter.subscribe((updateNumber: number): void => {
