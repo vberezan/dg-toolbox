@@ -451,8 +451,6 @@ function applyCustomStyling() {
 
     // -- rankings
     if (windowURL[1] === 'rankings' && (windowURL.length >= 4 && windowURL[2]) === 'players') {
-        document.querySelector('.playerRankingsList').css.style.display = 'none';
-
         document.querySelectorAll('span.allied').forEach((allied=> {
             allied.parentElement.parentElement.classList.add('allied-bg','rank-row');
         }));

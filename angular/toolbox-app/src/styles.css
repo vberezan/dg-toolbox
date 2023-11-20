@@ -2394,6 +2394,7 @@ dgt-shared-scans-collector {
 /********************/
 
 .playerRankingsList {
+  display: none !important;
   border-radius: 5px !important;
 }
 

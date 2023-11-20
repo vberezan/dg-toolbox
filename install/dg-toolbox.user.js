@@ -69,7 +69,7 @@ function loadSetups(windowURL) {
 function loadCustomStyling() {
     loadResource({
         tagName: 'script',
-        src: fetchResource('dgtCustomStyling','https://cdn.jsdelivr.net/gh/vberezan/dg-toolbox@development/stable-release/2.0.0/dg-toolbox-custom-styling.js'),
+        src: fetchResource('dgtCustomStyling','https://cdn.jsdelivr.net/gh/vberezan/dg-toolbox@development/stable-release/2.0.0/dg-toolbox-custom-styling.1.js'),
         rel: 'text/javascript'
     }).onload = function () {
         applyCustomStyling();
@@ -156,6 +156,7 @@ function loadGlobalAngularStyling() {
 
 (function () {
     document.addEventListener("DOMContentLoaded", function (event) {
+        localStorage.setItem('dev-mode', true);
         if (localStorage.getItem('hotfix') !== '2.0.0' ) {
             if (!localStorage.getItem('post-install-fetch-metadata')) {
                 localStorage.clear();
