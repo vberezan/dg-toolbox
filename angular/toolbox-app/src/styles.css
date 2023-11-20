@@ -1483,7 +1483,15 @@ dgt-fleet-orders-list-panel {
 
 #home-stats div.opacBackground.lightBorder .noPadding > div {
   padding: 0 !important;
-  margin: 5px !important;
+  margin: 0 5px !important;
+}
+
+#home-stats div.opacBackground.lightBorder .noPadding > div:first-child {
+  margin-top: 5px !important;
+}
+
+#home-stats div.opacBackground.lightBorder .noPadding > div:last-child {
+  margin-bottom: 5px !important;
 }
 
 #known-issues {
