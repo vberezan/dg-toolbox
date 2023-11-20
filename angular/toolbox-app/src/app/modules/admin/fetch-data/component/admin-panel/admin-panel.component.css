@@ -163,6 +163,6 @@ span.planet-counter {
 
 #dgt-admin-panel-body,
 #dgt-admin-panel-header {
-  background: #364a36;
-  border: 1px solid #3a593a;
+  background: #364a36 !important;
+  border: 1px solid #3a593a !important;
 }
