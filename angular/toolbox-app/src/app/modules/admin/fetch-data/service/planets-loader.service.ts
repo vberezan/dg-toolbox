@@ -157,6 +157,8 @@ export class PlanetsLoaderService {
           player.total += batch.planets.length;
         });
 
+        console.log(JSON.stringify(player));
+
         if (item) {
           updateDoc(doc(playersPlanetsPath, playerId.toString()), JSON.parse(JSON.stringify(player)))
             .catch((error): void => console.log(error));
