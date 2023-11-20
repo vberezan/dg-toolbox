@@ -36,6 +36,7 @@
 
 .alliance {
   width: 50px;
+  padding-left: 10px;
 }
 
 .score,
@@ -46,21 +47,25 @@
   text-align: center;
 }
 
+.hostile .alliance,
 .hostile .rank {
   background: #4b2b2b !important;
   color: #df4a4a !important
 }
 
+.nap .alliance,
 .nap .rank {
   background: #636300 !important;
   color: #d6d61f !important
 }
 
+.allied .alliance,
 .allied .rank {
   background: #18354b !important;
   color: #08baff !important
 }
 
+.self .alliance,
 .self .rank {
   background: #426300 !important;
   color: #7bbd1a !important
@@ -77,7 +82,7 @@ td.name {
 #dgt-players-rankings-wrapper {
   background: rgba(87, 87, 87, .75);
   border-radius: 3px;
-  padding: 5px 10px 0 10px !important;
+  padding: 5px !important;
   margin-bottom: 5px !important;
 }
 
