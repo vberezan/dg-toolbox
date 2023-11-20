@@ -28,7 +28,7 @@
   width: 100%;
   margin: 10px auto;
   height: 20px;
-  background: rgb(75,75,75);
+  background: #fff;
   overflow: hidden;
 }
 
@@ -75,14 +75,14 @@ span.percentage {
 }
 
 .counter span {
-  color: #000;
+  color: #fff;
   font-size: 14px;
 }
 
 span.system-counter,
 span.planet-counter {
   transition: all .1s;
-  color: #000;
+  color: #fff;
 }
 
 .load-example {
