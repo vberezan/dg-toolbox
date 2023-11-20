@@ -67,7 +67,7 @@ export class ChangelogService {
         let localMetadata: Metadata = this.localStorageService.localMetadata();
         localMetadata.dgtVersion = this.localStorageService.remoteMetadata().dgtVersion;
 
-        localStorage.clear();
+        this.localStorageService.clearAll();
         this.localStorageService.cache(LocalStorageKeys.JAVASCRIPT_REPOSITORY, javascriptRepository);
         this.localStorageService.cache(LocalStorageKeys.LOCAL_METADATA, localMetadata);
         this.localStorageService.cache(LocalStorageKeys.REMOTE_METADATA, true);
@@ -78,7 +78,6 @@ export class ChangelogService {
 
         subscription.unsubscribe();
 
-        this.localStorageService.clearAll();
         window.location.reload();
       });
     });
