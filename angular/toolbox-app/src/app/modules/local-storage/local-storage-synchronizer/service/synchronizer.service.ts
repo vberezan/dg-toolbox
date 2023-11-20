@@ -103,7 +103,6 @@ export class SynchronizerService {
 
         this.localStorageService.cache(LocalStorageKeys.LOCAL_METADATA, localMetadata);
 
-        subscription.unsubscribe();
         this.delay(1000).then((): void => {
           this._updatesEmitter.emit(-1);
         });
@@ -112,6 +111,7 @@ export class SynchronizerService {
         this.loadAllianceMembers(turn).then((): void => {
           this.delay(1000).then((): void => {
             this._updatesEmitter.emit(-1);
+            subscription.unsubscribe();
           });
         });
       });
