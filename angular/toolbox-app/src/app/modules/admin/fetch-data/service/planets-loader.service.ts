@@ -20,8 +20,8 @@ import {AlliancePlanets} from "../../../../shared/model/stats/alliance-planets-s
 export class PlanetsLoaderService {
   private readonly GALAXIES: number = 49;
   private readonly G1_SECTORS: number = 25;
-  private readonly INNER_SECTORS: number = 6;
-  private readonly OUTER_SECTORS: number = 2;
+  private readonly G2_G13_SECTORS: number = 6;
+  private readonly G14_G49_SECTORS: number = 2;
   private readonly SYSTEMS: number = 4;
 
   private httpClient: HttpClient = inject(HttpClient);
@@ -57,9 +57,9 @@ export class PlanetsLoaderService {
       if (validGalaxies[g] === 1) {
         sectors = this.G1_SECTORS;
       } else if (validGalaxies[g] > 1 && validGalaxies[g] < 14) {
-        sectors = this.INNER_SECTORS;
+        sectors = this.G2_G13_SECTORS;
       } else {
-        sectors = this.OUTER_SECTORS;
+        sectors = this.G14_G49_SECTORS;
       }
 
       for (let se: number = 1; se <= sectors; se++) {
@@ -142,19 +142,25 @@ export class PlanetsLoaderService {
               player.planets.push(batch);
             }
           });
+        }
 
-          player.total = 1;
-          player.planets.forEach((batch: PlanetsBatch): void => {
-            player.total += batch.planets.length;
-          });
+        player.total = 1;
+        player.planets.forEach((batch: PlanetsBatch): void => {
+          if (batch.galaxy === 1) {
+            player.g1Planets += batch.planets.length;
+          } else if (batch.galaxy > 1 && batch.galaxy < 14) {
+            player.g213Planets += batch.planets.length;
+          } else {
+            player.g1449Planets += batch.planets.length;
+          }
 
+          player.total += batch.planets.length;
+        });
+
+        if (item) {
           updateDoc(doc(playersPlanetsPath, playerId.toString()), JSON.parse(JSON.stringify(player)))
             .catch((error): void => console.log(error));
         } else {
-          player.total = 1;
-          player.planets.forEach((batch: PlanetsBatch): void => {
-            player.total += batch.planets.length;
-          });
 
           setDoc(doc(playersPlanetsPath, player.playerId.toString()), JSON.parse(JSON.stringify(player)))
             .catch((error): void => console.log(error));
@@ -285,11 +291,11 @@ export class PlanetsLoaderService {
     return scanGalaxies.reduce((result: number, galaxy: number): number => {
       if (galaxy === 1) {
         return result + this.G1_SECTORS * this.SYSTEMS;
+      } else if (galaxy > 1 && galaxy < 14) {
+        return result + this.G2_G13_SECTORS * this.SYSTEMS;
+      } else {
+        return result + this.G14_G49_SECTORS * this.SYSTEMS;
       }
-      if (galaxy > 1 && galaxy < 14) {
-        return result + this.INNER_SECTORS * this.SYSTEMS;
-      }
-      return result + this.OUTER_SECTORS * this.SYSTEMS;
     }, 0);
   }
 

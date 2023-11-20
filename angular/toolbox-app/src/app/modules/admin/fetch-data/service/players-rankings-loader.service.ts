@@ -119,12 +119,19 @@ export class PlayersRankingsLoaderService {
           let playerPlanetsSubscription: Subscription = docData(
             doc(playersPlanetsPath, playerId.toString())
           ).subscribe((item: DocumentData): void => {
-            playerStats.planets = Object.assign(new PlayerPlanets(), item).total;
+            if (item) {
+              const playerPlanets: PlayerPlanets = Object.assign(new PlayerPlanets(), item);
 
-            setDoc(doc(playersRankingsPath, playerId.toString()), JSON.parse(JSON.stringify(playerStats)))
-              .then((): void => {
-                this._playersRankingsEmitter.emit(new PageAction(++scanned.number, playersStats.size, 'save'));
-              }).catch((error): void => console.log(error));
+              playerStats.planets = playerPlanets.total;
+              playerStats.g1Planets = playerPlanets.g1Planets;
+              playerStats.g213Planets = playerPlanets.g213Planets;
+              playerStats.g1449Planets = playerPlanets.g1449Planets;
+
+              setDoc(doc(playersRankingsPath, playerId.toString()), JSON.parse(JSON.stringify(playerStats)))
+                .then((): void => {
+                  this._playersRankingsEmitter.emit(new PageAction(++scanned.number, playersStats.size, 'save'));
+                }).catch((error): void => console.log(error));
+            }
 
             playerPlanetsSubscription.unsubscribe();
           });

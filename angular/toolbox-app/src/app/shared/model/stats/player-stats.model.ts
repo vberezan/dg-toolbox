@@ -4,6 +4,9 @@ export class PlayerStats {
   private _combatScore: number;
   private _combinedScore: number;
   private _planets: number;
+  private _g1Planets: number;
+  private _g213Planets: number;
+  private _g1449Planets: number;
   private _name: string;
   private _rank: number;
   private _alliance: string;
@@ -72,6 +75,30 @@ export class PlayerStats {
     this._planets = value;
   }
 
+  get g1Planets(): number {
+    return this._g1Planets;
+  }
+
+  set g1Planets(value: number) {
+    this._g1Planets = value;
+  }
+
+  get g213Planets(): number {
+    return this._g213Planets;
+  }
+
+  set g213Planets(value: number) {
+    this._g213Planets = value;
+  }
+
+  get g1449Planets(): number {
+    return this._g1449Planets;
+  }
+
+  set g1449Planets(value: number) {
+    this._g1449Planets = value;
+  }
+
   toJSON(): any {
     return {
       playerId: this.playerId,
@@ -81,7 +108,10 @@ export class PlayerStats {
       planets: this.planets,
       name: this.name,
       rank: this.rank,
-      alliance: this.alliance
+      alliance: this.alliance,
+      g1Planets: this.g1Planets,
+      g213Planets: this.g213Planets,
+      g1449Planets: this.g1449Planets
     }
   }
 }
