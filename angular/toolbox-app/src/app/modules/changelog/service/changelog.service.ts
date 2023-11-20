@@ -1,12 +1,11 @@
 import {ChangeDetectorRef, ElementRef, inject, Injectable} from '@angular/core';
-import {Observable, Subscriber, Subscription} from "rxjs";
+import {Subscriber, Subscription} from "rxjs";
 import {LocalStorageService} from "../../local-storage/local-storage-manager/service/local-storage.service";
 import {collection, collectionData, Firestore, query} from "@angular/fire/firestore";
 import {DocumentData} from "@angular/fire/compat/firestore";
 import {LocalStorageKeys} from "../../../shared/model/local-storage/local-storage-keys";
 import {JavascriptRepository} from "../../../shared/model/platform/javascript-repository.model";
-import {SynchronizerService} from "../../local-storage/local-storage-synchronizer/service/synchronizer.service";
-import {DarkgalaxyApiService} from "../../darkgalaxy-ui-parser/service/darkgalaxy-api.service";
+import {Metadata} from "../../../shared/model/local-storage/metadata.model";
 
 @Injectable({
   providedIn: 'platform'
@@ -14,12 +13,6 @@ import {DarkgalaxyApiService} from "../../darkgalaxy-ui-parser/service/darkgalax
 export class ChangelogService {
   private localStorageService: LocalStorageService = inject(LocalStorageService);
   private firestore: Firestore = inject(Firestore);
-  private synchronizerService: SynchronizerService = inject(SynchronizerService);
-  private dgAPI: DarkgalaxyApiService = inject(DarkgalaxyApiService);
-
-  constructor() {
-    console.log(Math.random());
-  }
 
   checkForUpdate(changeDetector: ChangeDetectorRef, changeObserver: Subscriber<boolean>): void {
     if (this.localStorageService.remoteMetadata() === null || this.localStorageService.localMetadata() === null) {
@@ -71,37 +64,21 @@ export class ChangelogService {
         javascriptRepository.dgtCustomStyling = metadata[1].dgtCustomStyling;
 
 
-        this.localStorageService.clearAll();
+        let localMetadata: Metadata = this.localStorageService.localMetadata();
+        localMetadata.dgtVersion = this.localStorageService.remoteMetadata().dgtVersion;
+
+        localStorage.clear();
         this.localStorageService.cache(LocalStorageKeys.JAVASCRIPT_REPOSITORY, javascriptRepository);
+        this.localStorageService.cache(LocalStorageKeys.LOCAL_METADATA, localMetadata);
 
-        let subscription: Subscription = new Observable((observer: Subscriber<boolean>): void => {
-          this.synchronizerService.updateMetadata(observer);
-        }).subscribe((loaded: boolean): void => {
-          if (loaded) {
-            this.synchronizerService.loadTurnBasedUpdates(this.dgAPI.gameTurn());
-
-            subscription.unsubscribe();
-          }
-        });
-
-        let updates: number = 0;
-        this.synchronizerService.updatesEmitter.subscribe((updateNumber: number): void => {
-          updates += updateNumber;
-          if (updates == 0) {
-            this.delay(2500).then((): void => {
-              dgtUpdatingModel.nativeElement.classList.add('hide');
-              dgtUpdatingModel.nativeElement.classList.remove('show');
-              document.body.classList.remove('dgt-overlay-open');
-              window.location.reload();
-            });
-          } else {
-            this.delay(2500).then((): void => {
-              return
-            });
-          }
-        });
+        dgtUpdatingModel.nativeElement.classList.add('hide');
+        dgtUpdatingModel.nativeElement.classList.remove('show');
+        document.body.classList.remove('dgt-overlay-open');
 
         subscription.unsubscribe();
+
+        this.localStorageService.clearAll();
+        window.location.reload();
       });
     });
 

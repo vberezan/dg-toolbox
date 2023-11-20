@@ -21,19 +21,9 @@ platform.bootstrapModule(LocalStorageManagerModule).then((): void => {
   platform.bootstrapModule(DarkgalaxyUiParserModule).then((): void => {
     platform.bootstrapModule(AuthenticationModule).then((): void => {
       platform.bootstrapModule(LocalStorageSynchronizerModule).then((): void => {
-
-        if (windowURL.length === 2 && windowURL[1].trim().length === 0) {
-          platform.bootstrapModule(ChangelogModule).then((): void => {
-            platform.bootstrapModule(NavbarModule).then((): void => {
-              loadTier2Modules(windowURL);
-            }).catch(err => console.error("Error loading NavbarModule: " + err));
-          }).catch(err => console.error("Error loading ChangelogModule: " + err));
-        } else {
-          platform.bootstrapModule(NavbarModule).then((): void => {
-            loadTier2Modules(windowURL);
-          }).catch(err => console.error("Error loading NavbarModule: " + err));
-        }
-
+        platform.bootstrapModule(NavbarModule).then((): void => {
+          loadTier2Modules(windowURL);
+        }).catch(err => console.error("Error loading NavbarModule: " + err));
       }).catch(err => console.error("Error loading LocalStorageSynchronizerModule: " + err));
     }).catch(err => console.error("Error loading AuthenticationModule: " + err));
   }).catch(err => console.error("Error loading DarkgalaxyUiParserModule: " + err));
@@ -43,6 +33,7 @@ platform.bootstrapModule(LocalStorageManagerModule).then((): void => {
 function loadTier2Modules(windowURL: string[]): void {
   // -- home screen
   if (windowURL.length === 2 && windowURL[1].trim().length === 0) {
+    platform.bootstrapModule(ChangelogModule).catch(err => console.error("Error loading ChangelogModule: " + err));
     platform.bootstrapModule(FetchDataModule).catch(err => console.error("Error loading FetchDataModule: " + err));
   }
   // -- planets list screen
