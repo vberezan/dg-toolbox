@@ -130,15 +130,17 @@ export class PlayersRankingsLoaderService {
                 .then((): void => {
                   this._playersRankingsEmitter.emit(new PageAction(++scanned.number, playersStats.size, 'save'));
                 }).catch((error): void => console.log(error));
+
+              console.log(scanned.number);
             }
 
             playerPlanetsSubscription.unsubscribe();
           });
-        }, 25 * scanned.number);
+        }, 50 * scanned.number);
       }
     });
 
-    await this.delay(25 * playersStats.size);
+    await this.delay(50 * playersStats.size);
   }
 
   private delay = async (ms: number): Promise<unknown> => new Promise(res => setTimeout(res, ms));
