@@ -1,7 +1,11 @@
 .hostile,
+.hostile a,
 .allied,
+.allied a,
 .self,
-.nap {
+.self a,
+.nap,
+.nap a{
   color: #fff;
 }
 
