@@ -1,3 +1,5 @@
+import {doc} from '@angular/fire/firestore';
+
 function detach(node) {
     if (node != null) {
         return node.parentElement.removeChild(node);
@@ -464,6 +466,8 @@ function applyCustomStyling() {
         document.querySelector('.rankingsList').classList.add('playerRankingsList');
 
         document.querySelector('.rankingsList').nextElementSibling.id = 'ranking-navigation';
+        let navParent = document.querySelector('#ranking-navigation').parentElement;
+        navParent.append(detach(document.querySelector('#ranking-navigation')));
 
         let next = document.querySelector('.rankingsList').nextElementSibling.querySelector('.right.opacBackground:first-child a');
         let prev = document.querySelector('.rankingsList').nextElementSibling.querySelector('.right.opacBackground:last-child a')
