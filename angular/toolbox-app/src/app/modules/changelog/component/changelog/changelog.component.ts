@@ -10,6 +10,7 @@ import {LocalStorageService} from "../../../local-storage/local-storage-manager/
 })
 export class ChangelogComponent implements AfterViewInit {
   @ViewChild('dgtSpinner') loadSpinner: ElementRef;
+  @ViewChild('dgtUpdatingModel') dgtUpdatingModel: ElementRef;
   private changeLogService: ChangelogService = inject(ChangelogService);
   private changeDetector: ChangeDetectorRef = inject(ChangeDetectorRef);
   private localStorageService: LocalStorageService = inject(LocalStorageService);
@@ -27,7 +28,7 @@ export class ChangelogComponent implements AfterViewInit {
   }
 
   installUpdate(): void {
-    this.changeLogService.installUpdate();
+    this.changeLogService.installUpdate(this.dgtUpdatingModel);
   }
 
   ngAfterViewInit(): void {

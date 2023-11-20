@@ -9,7 +9,7 @@ import {Observable, Subscriber, Subscription} from "rxjs";
   styleUrls: ['./local-storage-synchronizer.component.css']
 })
 export class LocalStorageSynchronizerComponent implements AfterViewInit {
-  @ViewChild('updatingModal') updatingModal: ElementRef;
+  @ViewChild('dgtUpdatingModel') dgtUpdatingModel: ElementRef;
 
   private synchronizerService: SynchronizerService = inject(SynchronizerService);
   private dgAPI: DarkgalaxyApiService = inject(DarkgalaxyApiService);
@@ -22,14 +22,14 @@ export class LocalStorageSynchronizerComponent implements AfterViewInit {
         updates += updateNumber;
         if (updates == 0) {
           this.delay(2500).then((): void => {
-            this.updatingModal.nativeElement.classList.add('hide');
-            this.updatingModal.nativeElement.classList.remove('show');
+            this.dgtUpdatingModel.nativeElement.classList.add('hide');
+            this.dgtUpdatingModel.nativeElement.classList.remove('show');
             document.body.classList.remove('dgt-overlay-open');
             window.location.reload();
           });
         } else {
-          this.updatingModal.nativeElement.classList.add('show');
-          this.updatingModal.nativeElement.classList.remove('hide');
+          this.dgtUpdatingModel.nativeElement.classList.add('show');
+          this.dgtUpdatingModel.nativeElement.classList.remove('hide');
           document.body.classList.add('dgt-overlay-open');
           this.delay(2500).then((): void => {return});
         }

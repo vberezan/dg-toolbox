@@ -33,36 +33,51 @@ export class ChangelogService {
     }
   }
 
-  installUpdate(): void {
-    const metadataPath: any = collection(this.firestore, 'metadata');
+  installUpdate(dgtUpdatingModel: ElementRef): void {
+    dgtUpdatingModel.nativeElement.classList.add('show');
+    dgtUpdatingModel.nativeElement.classList.remove('hide');
+    document.body.classList.add('dgt-overlay-open');
 
-    let subscription: Subscription = collectionData(
-      query(metadataPath),
-    ).subscribe((item: DocumentData[]): void => {
-      const metadata: any = Object.assign([], item);
-
-      let cache: JavascriptRepository = new JavascriptRepository();
-
-      cache.angularMain = metadata[1].angularMain;
-      cache.angularPolyfills = metadata[1].angularPolyfills;
-      cache.angularRuntime = metadata[1].angularRuntime;
-      cache.angularStyles = metadata[1].angularStyles;
-
-      cache.dgtUtils = metadata[1].dgtUtils;
-      cache.dgtSetupDgtPlaceholders = metadata[1].dgtSetupDgtPlaceholders;
-      cache.dgtReplaceShipsImages = metadata[1].dgtReplaceShipsImages;
-      cache.dgtReplacePlanetsImages = metadata[1].dgtReplacePlanetsImages;
-      cache.dgtReplaceIconsWithFaIcons = metadata[1].dgtReplaceIconsWithFaIcons;
-      cache.dgtReplaceIconsWithImages = metadata[1].dgtReplaceIconsWithImages;
-      cache.dgtReplaceStructuresImages = metadata[1].dgtReplaceStructuresImages;
-      cache.dgtCustomStyling = metadata[1].dgtCustomStyling;
-
-
-      this.localStorageService.cache(LocalStorageKeys.JAVASCRIPT_REPOSITORY, cache);
-
-      subscription.unsubscribe();
-    });
     // localStorage.clear();
 
+    this.delay(2500).then((): void => {
+
+      const metadataPath: any = collection(this.firestore, 'metadata');
+
+      let subscription: Subscription = collectionData(
+        query(metadataPath),
+      ).subscribe((item: DocumentData[]): void => {
+        const metadata: any = Object.assign([], item);
+
+        let cache: JavascriptRepository = new JavascriptRepository();
+
+        cache.angularMain = metadata[1].angularMain;
+        cache.angularPolyfills = metadata[1].angularPolyfills;
+        cache.angularRuntime = metadata[1].angularRuntime;
+        cache.angularStyles = metadata[1].angularStyles;
+
+        cache.dgtUtils = metadata[1].dgtUtils;
+        cache.dgtSetupDgtPlaceholders = metadata[1].dgtSetupDgtPlaceholders;
+        cache.dgtReplaceShipsImages = metadata[1].dgtReplaceShipsImages;
+        cache.dgtReplacePlanetsImages = metadata[1].dgtReplacePlanetsImages;
+        cache.dgtReplaceIconsWithFaIcons = metadata[1].dgtReplaceIconsWithFaIcons;
+        cache.dgtReplaceIconsWithImages = metadata[1].dgtReplaceIconsWithImages;
+        cache.dgtReplaceStructuresImages = metadata[1].dgtReplaceStructuresImages;
+        cache.dgtCustomStyling = metadata[1].dgtCustomStyling;
+
+
+        this.localStorageService.cache(LocalStorageKeys.JAVASCRIPT_REPOSITORY, cache);
+
+        dgtUpdatingModel.nativeElement.classList.add('hide');
+        dgtUpdatingModel.nativeElement.classList.remove('show');
+        document.body.classList.remove('dgt-overlay-open');
+        window.location.reload();
+
+        subscription.unsubscribe();
+      });
+    });
+
   }
+
+  private delay = async (ms: number): Promise<unknown> => new Promise(res => setTimeout(res, ms));
 }
