@@ -2,7 +2,6 @@ import {AfterViewInit, ChangeDetectorRef, Component, ElementRef, inject, ViewChi
 import {ChangelogService} from "../../service/changelog.service";
 import {Observable, Subscriber} from "rxjs";
 import {LocalStorageService} from "../../../local-storage/local-storage-manager/service/local-storage.service";
-import {LocalStorageKeys} from "../../../../shared/model/local-storage/local-storage-keys";
 
 @Component({
   selector: 'dgt-changelog',
