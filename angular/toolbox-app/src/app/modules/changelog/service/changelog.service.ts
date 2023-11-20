@@ -41,7 +41,6 @@ export class ChangelogService {
     // localStorage.clear();
 
     this.delay(2500).then((): void => {
-
       const metadataPath: any = collection(this.firestore, 'metadata');
 
       let subscription: Subscription = collectionData(
@@ -67,6 +66,8 @@ export class ChangelogService {
 
 
         this.localStorageService.cache(LocalStorageKeys.JAVASCRIPT_REPOSITORY, cache);
+
+        this.localStorageService.localMetadata().dgtVersion = this.localStorageService.remoteMetadata().dgtVersion;
 
         dgtUpdatingModel.nativeElement.classList.add('hide');
         dgtUpdatingModel.nativeElement.classList.remove('show');
