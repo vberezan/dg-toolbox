@@ -270,9 +270,10 @@ function applyCustomStyling() {
         let changelog = detach(document.querySelector('dgt-changelog'));
         if (changelog != null) {
             document.querySelector('#contentBox .leftContent').prepend(changelog);
+            document.querySelector('#contentBox .leftContent').prepend(welcome);
+        } else {
+            document.querySelector('#contentBox .leftContent').prepend(welcome);
         }
-
-        document.querySelector('#contentBox .leftContent').prepend(welcome);
     }
 
     // -- scan
