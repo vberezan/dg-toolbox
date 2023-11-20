@@ -8,6 +8,11 @@ import {Metadata} from "../../../../shared/model/local-storage/metadata.model";
 })
 export class LocalStorageService {
 
+
+  clearAll(): void {
+    localStorage.clear();
+  }
+
   cache(key: string, value: any, @Optional() ttl: number = 0): void {
     const item: LocalStorageItem = new LocalStorageItem(value, ttl);
     localStorage.setItem(key, JSON.stringify(item))

@@ -47,36 +47,37 @@ export class ChangelogService {
       ).subscribe((item: DocumentData[]): void => {
         const metadata: any = Object.assign([], item);
 
-        let cache: JavascriptRepository = new JavascriptRepository();
+        let javascriptRepository: JavascriptRepository = new JavascriptRepository();
 
-        cache.angularMain = metadata[1].angularMain;
-        cache.angularPolyfills = metadata[1].angularPolyfills;
-        cache.angularRuntime = metadata[1].angularRuntime;
-        cache.angularStyles = metadata[1].angularStyles;
+        javascriptRepository.angularMain = metadata[1].angularMain;
+        javascriptRepository.angularPolyfills = metadata[1].angularPolyfills;
+        javascriptRepository.angularRuntime = metadata[1].angularRuntime;
+        javascriptRepository.angularStyles = metadata[1].angularStyles;
 
-        cache.dgtUtils = metadata[1].dgtUtils;
-        cache.dgtSetupDgtPlaceholders = metadata[1].dgtSetupDgtPlaceholders;
-        cache.dgtReplaceShipsImages = metadata[1].dgtReplaceShipsImages;
-        cache.dgtReplacePlanetsImages = metadata[1].dgtReplacePlanetsImages;
-        cache.dgtReplaceIconsWithFaIcons = metadata[1].dgtReplaceIconsWithFaIcons;
-        cache.dgtReplaceIconsWithImages = metadata[1].dgtReplaceIconsWithImages;
-        cache.dgtReplaceStructuresImages = metadata[1].dgtReplaceStructuresImages;
-        cache.dgtCustomStyling = metadata[1].dgtCustomStyling;
+        javascriptRepository.dgtUtils = metadata[1].dgtUtils;
+        javascriptRepository.dgtSetupDgtPlaceholders = metadata[1].dgtSetupDgtPlaceholders;
+        javascriptRepository.dgtReplaceShipsImages = metadata[1].dgtReplaceShipsImages;
+        javascriptRepository.dgtReplacePlanetsImages = metadata[1].dgtReplacePlanetsImages;
+        javascriptRepository.dgtReplaceIconsWithFaIcons = metadata[1].dgtReplaceIconsWithFaIcons;
+        javascriptRepository.dgtReplaceIconsWithImages = metadata[1].dgtReplaceIconsWithImages;
+        javascriptRepository.dgtReplaceStructuresImages = metadata[1].dgtReplaceStructuresImages;
+        javascriptRepository.dgtCustomStyling = metadata[1].dgtCustomStyling;
 
 
         let localMetadata: Metadata = this.localStorageService.localMetadata();
         localMetadata.dgtVersion = this.localStorageService.remoteMetadata().dgtVersion;
 
-        localStorage.clear();
-        this.localStorageService.cache(LocalStorageKeys.JAVASCRIPT_REPOSITORY, cache);
+        this.localStorageService.clearAll();
+        this.localStorageService.cache(LocalStorageKeys.JAVASCRIPT_REPOSITORY, javascriptRepository);
         this.localStorageService.cache(LocalStorageKeys.LOCAL_METADATA, localMetadata);
 
         dgtUpdatingModel.nativeElement.classList.add('hide');
         dgtUpdatingModel.nativeElement.classList.remove('show');
         document.body.classList.remove('dgt-overlay-open');
-        window.location.reload();
 
         subscription.unsubscribe();
+
+        window.location.reload();
       });
     });
 
