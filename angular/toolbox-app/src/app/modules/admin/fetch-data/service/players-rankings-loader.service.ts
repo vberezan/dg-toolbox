@@ -82,14 +82,19 @@ export class PlayersRankingsLoaderService {
         player.alliance = '-';
       }
 
-      console.log(row);
       if (row.classList.contains('myRow')) {
+        console.log('self');
         player.relation = 'self';
       } else if (row.querySelector('hostile')) {
+        console.log('hostile');
         player.relation = 'hostile';
       } else if (row.querySelector('allied')) {
+        console.log('allied');
         player.relation = 'allied';
-      } else if (player.alliance === 'sol') {
+      }
+
+      if (player.alliance === 'sol') {
+        console.log('sol');
         player.relation = 'nap';
       }
 
