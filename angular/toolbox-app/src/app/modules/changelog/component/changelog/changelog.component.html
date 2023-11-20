@@ -4,7 +4,7 @@
     <span class="dgt-spinner"></span>
   </div>
   <div *ngIf="(updateAvailable | async)" id="dgt-update">
-    <span>There is a new update: <i><b>{{newVersion}}</b></i>. <a (click)="installUpdate()" href="">Click here</a></span>
+    <span>There is a new update: <i><b>{{newVersion}}</b></i>. <a (click)="installUpdate()" href="javascript:void(0);">Click here</a></span>
   </div>
   <div id="dgt-update-changelog">
     <div><span>Changelog:</span></div>
