@@ -11,7 +11,6 @@
   font-size: 18px;
   font-weight: bold;
   border-bottom: 1px solid #3a593a;
-  margin-bottom: 6px;
   padding: 5px;
 }
 
@@ -34,11 +33,9 @@
 
 #dgt-update span {
   padding: 5px 10px !important;
-  background: #784946;
-  border-radius: 3px;
+  background: #4d7710;
   display: block;
-  margin: 0 5px;
-  color: #ffffffad;
+  color: #dcdcdc;
 }
 
 .dgt-spinner-container {
