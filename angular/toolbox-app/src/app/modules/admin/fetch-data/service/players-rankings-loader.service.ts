@@ -83,7 +83,7 @@ export class PlayersRankingsLoaderService {
       }
 
       if (row.classList.contains('myRow')) {
-        player.relation = 'self';
+        player.relation = 'allied';
       } else if (row.querySelector('.hostile')) {
         player.relation = 'hostile';
       } else if (row.querySelector('.allied')) {

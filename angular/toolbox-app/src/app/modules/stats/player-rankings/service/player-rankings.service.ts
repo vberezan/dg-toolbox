@@ -26,7 +26,6 @@ export class PlayerRankingsService {
         ranking.g1449Total = player.g1449Total;
         ranking.g213Total = player.g213Total;
         ranking.g1Total = player.g1Total;
-        ranking.relation = player.relation;
       }
     }
 

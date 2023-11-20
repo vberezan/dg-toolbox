@@ -34,6 +34,18 @@ export class PlayerRankingsService implements DataExtractor{
       } else {
         player.alliance = '-';
       }
+
+      if (row.classList.contains('myRow')) {
+        player.relation = 'self';
+      } else if (row.querySelector('.hostile')) {
+        player.relation = 'hostile';
+      } else if (row.querySelector('.allied')) {
+        player.relation = 'allied';
+      }
+
+      if (player.alliance === 'sol') {
+        player.relation = 'nap';
+      }
     });
 
     return playersStats;
