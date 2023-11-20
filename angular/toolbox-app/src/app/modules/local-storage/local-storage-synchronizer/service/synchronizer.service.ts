@@ -51,11 +51,11 @@ export class SynchronizerService {
 
     const playerStats = this.localStorageService.get(LocalStorageKeys.PLAYERS_STATS);
     const isLocalTurnZero: boolean = localMetadata.planetsTurn.turn === 0;
-    const isRemoteTurnGreater: boolean = remoteMetadata.planetsTurn.turn > localMetadata.planetsTurn.turn;
-    const isSameTurnButRemoteVersionGreater: boolean = remoteMetadata.planetsTurn.turn == localMetadata.planetsTurn.turn &&
+    const isPlanetsRemoteTurnGreater: boolean = remoteMetadata.planetsTurn.turn > localMetadata.planetsTurn.turn;
+    const isPlanetsSameTurnButRemoteVersionGreater: boolean = remoteMetadata.planetsTurn.turn == localMetadata.planetsTurn.turn &&
       remoteMetadata.planetsTurn.version > localMetadata.planetsTurn.version;
 
-    if (postInstall || isLocalTurnZero || isRemoteTurnGreater || isSameTurnButRemoteVersionGreater) {
+    if (postInstall || isLocalTurnZero || isPlanetsRemoteTurnGreater || isPlanetsSameTurnButRemoteVersionGreater) {
 
       let localMetadata: Metadata = this.localStorageService.localMetadata();
       let remoteMetadata: Metadata = this.localStorageService.remoteMetadata();
@@ -70,8 +70,11 @@ export class SynchronizerService {
     }
 
     const isPlayerRankingsTurnZero: boolean = localMetadata.playersRankingsTurn.turn === 0;
+    const isPlayerRemoteTurnGreater: boolean = remoteMetadata.playersRankingsTurn.turn > localMetadata.playersRankingsTurn.turn;
+    const isPlayerSameTurnButRemoteVersionGreater: boolean = remoteMetadata.playersRankingsTurn.turn == localMetadata.playersRankingsTurn.turn &&
+      remoteMetadata.playersRankingsTurn.version > localMetadata.playersRankingsTurn.version;
 
-    if (postInstall || !playerStats || isPlayerRankingsTurnZero || isRemoteTurnGreater || isSameTurnButRemoteVersionGreater) {
+    if (postInstall || !playerStats || isPlayerRankingsTurnZero || isPlayerRemoteTurnGreater || isPlayerSameTurnButRemoteVersionGreater) {
       this.loadPlayersRankings(turn);
     }
 
