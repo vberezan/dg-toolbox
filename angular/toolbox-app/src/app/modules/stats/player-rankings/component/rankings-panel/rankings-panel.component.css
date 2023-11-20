@@ -42,6 +42,21 @@
   text-align: center;
 }
 
+.hostile .rank {
+  background: #4b2b2b !important;
+  color: #df4a4a !important
+}
+
+.hostile .nap {
+  background: #4b2b2b !important;
+  color: #d6d61f !important
+}
+
+.hostile .allied {
+  background: #18354b !important;
+  color: #08baff !important
+}
+
 td.alliance {
   text-transform: uppercase;
 }
