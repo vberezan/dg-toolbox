@@ -47,6 +47,7 @@ export class SynchronizerService {
   loadTurnBasedUpdates(turn: number): void {
     let localMetadata: Metadata = this.localStorageService.localMetadata();
     let remoteMetadata: Metadata = this.localStorageService.get(LocalStorageKeys.REMOTE_METADATA);
+    let postInstall = this.localStorageService.get(LocalStorageKeys.POST_INSTALL_FETCH_METADATA);
 
     if (localMetadata.planetsTurn.turn === 0 ||
       remoteMetadata.planetsTurn.turn > localMetadata.planetsTurn.turn ||
@@ -58,15 +59,14 @@ export class SynchronizerService {
       localMetadata.planetsTurn.turn = remoteMetadata.planetsTurn.turn;
       localMetadata.planetsTurn.version = remoteMetadata.planetsTurn.version;
 
-      if (this.localStorageService.get(LocalStorageKeys.POST_INSTALL_FETCH_METADATA)) {
-        this.localStorageService.remove(LocalStorageKeys.POST_INSTALL_FETCH_METADATA);
+      if (postInstall) {
         localMetadata.dgtVersion = remoteMetadata.dgtVersion;
       }
 
       this.localStorageService.cache(LocalStorageKeys.LOCAL_METADATA, localMetadata);
     }
 
-    if (localMetadata.playersRankingsTurn.turn === 0 ||
+    if (postInstall || localMetadata.playersRankingsTurn.turn === 0 ||
       remoteMetadata.playersRankingsTurn.turn > localMetadata.playersRankingsTurn.turn ||
       (remoteMetadata.playersRankingsTurn.turn == localMetadata.playersRankingsTurn.turn &&
         remoteMetadata.playersRankingsTurn.version > localMetadata.playersRankingsTurn.version)) {
@@ -74,14 +74,14 @@ export class SynchronizerService {
       this.loadPlayersRankings(turn);
     }
 
-    if (this.localStorageService.get(LocalStorageKeys.PLAYERS_STATS) &&
+    if (postInstall || this.localStorageService.get(LocalStorageKeys.PLAYERS_STATS) &&
       (this.localStorageService.get(LocalStorageKeys.ALLIANCE_MEMBERS) == null ||
         localMetadata.allianceMembersTurn.turn === 0 || turn > localMetadata.allianceMembersTurn.turn)) {
 
       this.loadAllianceMembers(turn);
     }
 
-
+    this.localStorageService.remove(LocalStorageKeys.POST_INSTALL_FETCH_METADATA);
   }
 
   private loadPlayersRankings(turn: number): void {
