@@ -1,20 +1,36 @@
-#dgt-rankings-table .alliance {
-    width: 50px;
+.name {
+  width: 150px;
+  text-transform: capitalize;
 }
 
-#dgt-rankings-table .name {
-  width: 200px;
-}
-
-#dgt-rankings-table .planets,
-#dgt-rankings-table .g1,
-#dgt-rankings-table .inner,
-#dgt-rankings-table .outer {
+.planets,
+.g1,
+.inner,
+.outer {
     width: 100px;
 }
 
-#dgt-rankings-table .score {
+.score {
     width: 100px;
+}
+
+.rank {
+  width: 35px;
+}
+
+.alliance {
+  width: 50px;
+}
+
+td.alliance {
+  text-transform: uppercase;
+}
+
+td.planets,
+td.g1,
+td.inner,
+td.outer {
+  text-align: center;
 }
 
 #dgt-players-rankings-wrapper {
@@ -27,6 +43,7 @@ table {
   padding: 0 !important;
   margin: 0 !important;
   border-collapse: collapse;
+  width: 100%;
 }
 
 td, th {
