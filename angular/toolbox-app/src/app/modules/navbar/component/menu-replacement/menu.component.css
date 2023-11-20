@@ -75,7 +75,7 @@
 }
 
 .notification-badge {
-  background: #FF3B30;
+  background: #d84343;
   top: 14px;
   right: 15px !important;
   padding: 3px;
@@ -87,4 +87,5 @@
   position: relative;
   float: right;
   border-radius: 100px;
+  animation: pulse-red 2s infinite;
 }
