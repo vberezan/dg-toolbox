@@ -81,6 +81,7 @@ export class ChangelogService {
 
         subscription.unsubscribe();
 
+        alert('4');
         window.location.reload();
       });
     });

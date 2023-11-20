@@ -28,6 +28,7 @@ export class LocalStorageSynchronizerComponent implements AfterViewInit {
             this.dgtUpdatingModel.nativeElement.classList.remove('show');
             document.body.classList.remove('dgt-overlay-open');
             alert(this.localStorageService.get(LocalStorageKeys.POST_INSTALL_FETCH_METADATA));
+            alert('3');
             window.location.reload();
           });
         } else {
