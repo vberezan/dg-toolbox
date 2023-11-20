@@ -1502,15 +1502,18 @@ dgt-fleet-orders-list-panel {
   border-bottom-right-radius: 5px;
 }
 
+#home-stats .content .stat,
 #home-stats div.opacBackground.lightBorder .noPadding > div {
   padding: 0 !important;
   margin: 0 5px !important;
 }
 
+#home-stats .content .stat:first-child,
 #home-stats div.opacBackground.lightBorder .noPadding > div:first-child {
   margin-top: 5px !important;
 }
 
+#home-stats .content .stat:last-child,
 #home-stats div.opacBackground.lightBorder .noPadding > div:last-child {
   margin-bottom: 5px !important;
 }
