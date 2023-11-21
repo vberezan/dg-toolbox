@@ -1,3 +1,16 @@
+function setupPlaceHolders(windowURL) {
+    setUpPrerequisites()
+    setUpNavbarReplacement();
+    setUpChangelog(windowURL);
+    setUpAdminDataLoad(windowURL);
+    setUpPlanetListStatsPanel(windowURL);
+    setUpSharedScansCollector(windowURL);
+    setUpNavigationScanDataPanel(windowURL);
+    setUpAlliancePanel(windowURL);
+    setUpRankings(windowURL);
+    setUpResearchPanel(windowURL);
+}
+
 function setUpPrerequisites() {
     document.body.prepend(document.createElement('dgt-local-storage-synchronizer'));
     document.body.prepend(document.createElement('dgt-darkgalaxy-ui-parser'));
