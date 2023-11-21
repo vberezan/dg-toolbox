@@ -6,9 +6,15 @@
 }
 
 .hostile a,
+.hostile a:visited,
 .allied a,
+.allied a:visited,
 .self a,
-.nap a {
+.self a:visited,
+.nap a,
+.nap a:visited,
+.neutral a,
+.neutral a:visited {
   color: #72bde0 !important;
 }
 
@@ -73,8 +79,12 @@
 
 .neutral .alliance,
 .neutral .rank {
-  background: #767676 !important;
+  background: #3b3b3b !important;
   color: #fff !important
+}
+
+.neutral td {
+  color: #dcdcdc;
 }
 
 td.alliance {
