@@ -1,6 +1,6 @@
 // ==UserScript==
 // @name         DarkGalaxy Toolbox
-// @version      2.0.2
+// @version      2.x.x
 // @namespace    dg-toolbox
 // @homepage     https://github.com/vberezan/dg-toolbox
 // @supportURL   https://github.com/vberezan/dg-toolbox
@@ -149,10 +149,10 @@ function loadGlobalAngularStyling() {
   document.addEventListener("DOMContentLoaded", function (event) {
     let windowURL = window.location.pathname.split(/\//g);
 
-    if (localStorage.getItem('hotfix') !== '2.0.2') {
+    if (localStorage.getItem('hotfix') !== '2.x.x') {
       if (!localStorage.getItem('post-install-fetch-metadata')) localStorage.clear();
 
-      localStorage.setItem('hotfix', '2.0.2');
+      localStorage.setItem('hotfix', '2.x.x');
     }
 
     loadGlobalAngularStyling();
