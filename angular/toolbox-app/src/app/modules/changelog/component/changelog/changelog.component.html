@@ -4,12 +4,12 @@
     <span class="dgt-spinner"></span>
   </div>
   <div *ngIf="(updateAvailable | async)" id="dgt-update">
-    <span>There is a new update: <i><b>{{newVersion}}</b> - </i><a (click)="installUpdate()" href="javascript:void(0);">Click here</a></span>
+    <span>There is a new update: <i><b>{{newVersion}}</b> - </i><a (click)="installUpdate()" href="javascript:void(0);">click here</a> to update your data</span>
   </div>
   <div id="dgt-update-changelog">
     <div><span>Changelog:</span></div>
     <ul>
-      <li>fix - starting with 2.0.0 updates will be silent, without opening github/tampermonkey. Just click the install button and that's all.</li>
+      <li>fix - starting with 2.0.0 most of the updates will be silent, without opening github/tampermonkey</li>
       <li>fix - added images for all ships (including holoships)</li>
       <li>fix - revamped <b>Research</b> screen and added required research points for queued items - finished researches are now highlighted</li>
       <li>new - <b>Player Rankings</b> screen - added planets stats & details</li>
