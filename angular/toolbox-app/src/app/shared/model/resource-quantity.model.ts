@@ -24,7 +24,7 @@ export class ResourceQuantity {
     this._quantity = value;
   }
 
-  toJSON() {
+  toJSON(): any {
     return {
       name: this.name,
       quantity: this.quantity

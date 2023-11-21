@@ -3,7 +3,7 @@ import {ScanDataPanelComponent} from './component/scan-data-panel/scan-data-pane
 import {BrowserModule} from "@angular/platform-browser";
 import {environment} from "../../../../environments/environment";
 import {ScanService} from "./service/scan.service";
-import {ResourceProductionFormatterPipe} from "../../planets/planet-list-stats/pipe/resource-production-formatter.pipe";
+import {ResourceProductionFormatterPipe} from "../../stats/planet-list-stats/pipe/resource-production-formatter.pipe";
 import {DecimalPipe} from "@angular/common";
 import {getApp, initializeApp, provideFirebaseApp} from "@angular/fire/app";
 import {getFirestore, provideFirestore} from "@angular/fire/firestore";

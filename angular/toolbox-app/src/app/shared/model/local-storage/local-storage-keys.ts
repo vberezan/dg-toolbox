@@ -1,10 +1,10 @@
 export enum LocalStorageKeys {
+  GAME_ENDPOINT = 'game-endpoint',
   USER = 'user',
   ALLIANCE_MEMBERS = 'alliance-members',
-  ACTIVE_ORDERS = 'active-orders',
-  VERSION = "version",
-  UPDATE_AVAILABLE = 'update-available',
   PLAYERS_STATS = 'players-stats',
-  LAST_PLAYERS_RANKINGS_UPDATE_TURN = 'last-players-rankings-update',
-  LAST_PLANETS_UPDATE_TURN = 'last-planets-update'
+  LOCAL_METADATA = 'local-metadata',
+  REMOTE_METADATA = 'remote-metadata',
+  POST_INSTALL_FETCH_METADATA = 'post-install-fetch-metadata',
+  JS_VERSION = 'js-version'
 }

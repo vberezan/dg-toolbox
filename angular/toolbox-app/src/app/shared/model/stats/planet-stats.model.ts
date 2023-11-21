@@ -82,7 +82,7 @@ export class PlanetStats {
     this._turn = value;
   }
 
-  toJSON() {
+  toJSON(): any {
     return {
       location: this.location,
       turn: this.turn,

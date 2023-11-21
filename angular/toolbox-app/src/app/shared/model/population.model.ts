@@ -27,7 +27,7 @@ export class Population {
     this._maximumNumber = value;
   }
 
-  toJSON() {
+  toJSON(): any {
     return {
       available: this.available,
       currentNumber: this.currentNumber,

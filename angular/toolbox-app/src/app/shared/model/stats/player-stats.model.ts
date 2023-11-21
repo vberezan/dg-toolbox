@@ -3,10 +3,23 @@ export class PlayerStats {
   private _score: number;
   private _combatScore: number;
   private _combinedScore: number;
-  private _planets: string[] = [];
+  private _planets: number = 1;
+  private _g1Total: number = 0;
+  private _g213Total: number = 0;
+  private _g1449Total: number = 0;
   private _name: string;
   private _rank: number;
   private _alliance: string;
+  private _relation: string = 'neutral';
+
+
+  get relation(): string {
+    return this._relation;
+  }
+
+  set relation(value: string) {
+    this._relation = value;
+  }
 
   get rank(): number {
     return this._rank;
@@ -56,14 +69,6 @@ export class PlayerStats {
     this._combinedScore = value;
   }
 
-  get planets(): string[] {
-    return this._planets;
-  }
-
-  set planets(value: string[]) {
-    this._planets = value;
-  }
-
   get alliance(): string {
     return this._alliance;
   }
@@ -72,8 +77,41 @@ export class PlayerStats {
     this._alliance = value;
   }
 
-  toJSON() {
+  get planets(): number {
+    return this._planets;
+  }
+
+  set planets(value: number) {
+    this._planets = value;
+  }
+
+  get g1Total(): number {
+    return this._g1Total;
+  }
+
+  set g1Total(value: number) {
+    this._g1Total = value;
+  }
+
+  get g213Total(): number {
+    return this._g213Total;
+  }
+
+  set g213Total(value: number) {
+    this._g213Total = value;
+  }
+
+  get g1449Total(): number {
+    return this._g1449Total;
+  }
+
+  set g1449Total(value: number) {
+    this._g1449Total = value;
+  }
+
+  toJSON(): any {
     return {
+      relation: this.relation,
       playerId: this.playerId,
       score: this.score,
       combatScore: this.combatScore,
@@ -81,7 +119,10 @@ export class PlayerStats {
       planets: this.planets,
       name: this.name,
       rank: this.rank,
-      alliance: this.alliance
+      alliance: this.alliance,
+      g1Total: this.g1Total,
+      g213Total: this.g213Total,
+      g1449Total: this.g1449Total
     }
   }
 }

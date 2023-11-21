@@ -1,0 +1,34 @@
+#dgt-update-message {
+  margin: auto;
+  width: 300px;
+  left: calc(50% - 150px);
+  top: calc(50% - 45px);
+  border-radius: 5px;
+  padding: 10px;
+  vertical-align: middle;
+  text-align: center;
+  position: fixed;
+  color: #dcdcdc;
+  background: #364a36;
+  border: 1px solid #3a593a;
+}
+
+#dgt-update-data span {
+  float: left;
+  width: 100%;
+  margin-bottom: 10px;
+}
+
+#dgt-update-data img {
+  width: 50px;
+  height: 50px;
+}
+
+
+#dgt-update-data.show {
+  display: flex !important;
+}
+
+#dgt-update-data.hide {
+  display: none !important;
+}

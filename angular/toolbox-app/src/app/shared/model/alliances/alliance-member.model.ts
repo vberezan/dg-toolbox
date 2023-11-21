@@ -1,17 +1,16 @@
-import {AllianceMemberStats} from "./alliance-member-stats.model";
+import {PlayerStats} from "../stats/player-stats.model";
 
 export class AllianceMember {
   private _name: string;
   private _dgId: string;
   private _kickEta: string;
-  private _stats: AllianceMemberStats = new AllianceMemberStats();
+  private _stats: PlayerStats = new PlayerStats();
 
-
-  get stats(): AllianceMemberStats {
+  get stats(): PlayerStats {
     return this._stats;
   }
 
-  set stats(value: AllianceMemberStats) {
+  set stats(value: PlayerStats) {
     this._stats = value;
   }
 
@@ -39,7 +38,7 @@ export class AllianceMember {
     this._dgId = value;
   }
 
-  toJSON() {
+  toJSON(): any {
     return {
       name: this.name,
       dgId: this.dgId,

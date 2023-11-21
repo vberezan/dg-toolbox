@@ -1,22 +1,12 @@
 export class LocalStorageItem {
-  private _user: string;
   private _value: string;
   private _expiry: number;
   private _ttl: number;
 
-  constructor(id: string, item: any, ttl: number) {
-    this._user = id;
+  constructor(item: any, ttl: number) {
     this._value = JSON.stringify(item);
     this._ttl = ttl;
     this._expiry = Date.now() + ttl;
-  }
-
-  get user(): string {
-    return this._user;
-  }
-
-  set user(value: string) {
-    this._user = value;
   }
 
   get value(): string {
@@ -30,6 +20,7 @@ export class LocalStorageItem {
   get ttl(): number {
     return this._ttl;
   }
+
   set value(value: string) {
     this._value = value;
   }
@@ -42,9 +33,8 @@ export class LocalStorageItem {
     this._ttl = value;
   }
 
-  toJSON() {
+  toJSON(): any {
     return {
-      user: this.user,
       ttl: this.ttl,
       expiry: this.expiry,
       value: this.value

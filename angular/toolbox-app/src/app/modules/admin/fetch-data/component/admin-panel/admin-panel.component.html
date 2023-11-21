@@ -1,0 +1,67 @@
+<ng-container *ngIf="active">
+  <div id="dgt-admin-panel-wrapper" class="opacBackground lightBorder noPadding seperatorLarge">
+    <div id="dgt-admin-panel-header" class="opacDarkBackground padding">
+      <b style="color: #ffd46f !important;">DGT Admin Panel</b>
+    </div>
+    <div id="dgt-admin-panel-body" class="noPadding ofHidden">
+      <div id="admin-load-planets">
+        <div class="load-example">
+          <span class="usage-warning" style="color: #ffd46f !important;"><b>Universe Scan</b></span>
+          <span class="usage-warning">Use this with caution. It's a very expensive operation for both DG server and DGT database!</span>
+          <span class="usage-warning">Usage examples:</span>
+          <ul>
+            <li>1,2 - G01 and G02</li>
+            <li>34 - G34</li>
+            <li>special: 213 - first ring (G02-G13)</li>
+            <li>special: 1449 - second ring (G14-G49)</li>
+            <li>special: 149 - everything (G01-G49)</li>
+          </ul>
+        </div>
+        <form>
+          <input [(ngModel)]="controls.galaxies" type="text" placeholder="Galaxies (Ex: 1,2)" dgtAllianceList/>
+          <button (click)="scanNavigationScreen();" type="submit">Fetch</button>
+        </form>
+      </div>
+      <span id="admin-load-separator"></span>
+      <div id="admin-load-rankings" style="padding: 3px; font-weight: bold">
+        <div class="load-example">
+          <span class="usage-warning" style="color: #ffd46f !important;"><b>Players Rankings</b></span>
+          <span class="usage-warning">Light operation. Can be triggered every turn and should always be triggered after a <b>Universe Scan</b></span>
+        </div>
+        <form>
+          <button (click)="scanPlayersRankingScreens()" type="submit">Fetch</button>
+        </form>
+      </div>
+    </div>
+  </div>
+  <div id="dgt-load-planets-overlay-modal" class="hide dgt-overlay-modal" #planetsLoadModal>
+    <div class="dgt-display-info">
+      <div class="counter">
+        <span class="system-counter">{{loadedSystem}}</span>
+        <span class="planet-counter" #planetCounter>{{loadedPlanet}}</span>
+      </div>
+      <div class="progressbar">
+        <span class="percentage">{{planetPercentage}}%</span>
+        <span class="progress" #planetProgressBar></span>
+      </div>
+      <div class="actions">
+        <button type="button" (click)="cancelScan()">Cancel</button>
+      </div>
+    </div>
+  </div>
+
+  <div id="dgt-load-rankings-overlay-modal" class="hide dgt-overlay-modal" #rankingsLoadModal>
+    <div class="dgt-display-info">
+      <div class="counter">
+        <span class="rankings-counter">{{loadedRankings}}</span>
+      </div>
+      <div class="progressbar">
+        <span class="percentage">{{playersPercentage}}%</span>
+        <span class="progress" #playersProgressBar></span>
+      </div>
+      <div class="actions">
+        <button type="button" (click)="cancelScan()">Cancel</button>
+      </div>
+    </div>
+  </div>
+</ng-container>

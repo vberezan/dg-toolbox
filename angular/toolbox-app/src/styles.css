@@ -3,6 +3,11 @@
   padding: 5px !important;
 }
 
+/*a,*/
+/*a:visited {*/
+/*  color: #72bde0;*/
+/*}*/
+
 .seperator {
   margin-bottom: 5px !important;
 }
@@ -60,6 +65,7 @@
   box-sizing: border-box;
   animation: rotationBack 4s linear infinite reverse;
 }
+
 @keyframes rotationBack {
   0% {
     transform: rotate(0deg);
@@ -69,6 +75,41 @@
   }
 }
 
+@keyframes pulse-red {
+  0% {
+    transform: scale(0.95);
+    box-shadow: 0 0 0 0 #FF3B30;
+  }
+
+  70% {
+    transform: scale(1);
+    box-shadow: 0 0 0 10px rgba(255, 82, 82, 0);
+  }
+
+  100% {
+    transform: scale(0.95);
+    box-shadow: 0 0 0 0 rgba(255, 82, 82, 0);
+  }
+}
+
+@keyframes neo-pulse-red {
+  0% {
+    transform: scale(1);
+    box-shadow: 0 0 0 0 #FF3B30;
+  }
+
+  70% {
+    transform: scale(1);
+    box-shadow: 0 0 0 10px rgba(255, 82, 82, 0);
+  }
+
+  100% {
+    transform: scale(1);
+    box-shadow: 0 0 0 0 rgba(255, 82, 82, 0);
+  }
+}
+
+
 .dgt-overlay-modal {
   top: 0;
   bottom: 0;
@@ -77,7 +118,7 @@
   width: 200%;
   height: 200%;
   position: absolute;
-  background: rgba(0, 0, 0, 0.75);
+  background: rgba(0, 0, 0, 0.85);
   z-index: 999999999;
 }
 
@@ -131,22 +172,6 @@ div.error {
   color: #ffffffad !important;
 }
 
-.notification-badge {
-  background: #FF3B30;
-  top: 12px;
-  right: 10px;
-  border-radius: 100px;
-  padding: 3px;
-  color: #fff;
-  font-size: 11px;
-  line-height: 9px;
-  height: 10px;
-  display: inline-block;
-  width: 10px;
-  position: relative;
-  float: right;
-}
-
 textarea:focus,
 textarea:focus-visible,
 input:focus,
@@ -180,7 +205,7 @@ span.friendly {
 }
 
 span.allied {
-  color: #0A96FF !important;
+  color: #08BAFF !important;
 }
 
 span.hostile {
@@ -874,10 +899,6 @@ label.queueDestroyButton {
   fill: #fff !important;
 }
 
-#queue .researchTitle {
-  width: 105px !important;
-}
-
 #queue .header {
   padding: 5px 5px 6px 5px !important;
 }
@@ -1300,28 +1321,66 @@ dgt-fleet-orders-list-panel {
 }
 
 /*******************/
+.dgt-research-points {
+  color: #7bbd1a !important;
+  font-size: 16px !important;
+}
+
+#queue .researchTitle {
+  width: 130px !important;
+  margin-top: 5px !important;
+}
+
+#queue .researchTitle.planet-limit {
+  height: 85px !important;
+}
+
+.dgt-research-padding {
+  padding: 2px 5px !important;
+}
+
 .researchButton {
-  border-radius: 5px;
+  border-radius: 3px;
   border: 1px solid #767676;
-  width: 60px;
-  height: 60px;
+  width: 44px;
+  height: 44px;
 }
 
 .researchButton.researchNotAvailable .researchImage img {
   filter: grayscale(100%);
 }
 
+.researchButton.researchDone::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: #2c490061;
+  border-radius: 3px;
+}
+
+.researchButton.researchDone img {
+  filter: grayscale(100%);
+}
+
 .researchButton .researchImage img {
-  border-radius: 5px;
-  width: 60px;
-  height: 60px;
+  border-radius: 3px;
+  width: 44px;
+  height: 44px;
 }
 
 .researchButton .infoBack {
-  border-radius: 5px 5px 0 0;
+  border-radius: 3px 3px 0 0;
   height: 22px;
-  width: 60px;
+  width: 44px;
   top: 0 !important;
+}
+
+.researchButton.researchQueued.infoBack {
+  height: 100%;
+  border-radius: 3px !important;
 }
 
 .researchButton .infoIcon {
@@ -1340,15 +1399,37 @@ dgt-fleet-orders-list-panel {
 }
 
 .researchButton .infoText {
-  font-size: 12px;
-  line-height: 24px;
+  font-size: 11px;
+  line-height: 20px;
   right: 4px;
   color: #dcdcdc;
   top: 0 !important;
 }
 
+.researchButton .infoText.queuePosition {
+  bottom: 0 !important;
+  top: auto !important;
+}
+
 .researchQueued {
   border-color: #7bbd1a !important;
+}
+
+.researchQueued .infoBack {
+  height: 100% !important;
+  border-radius: 3px !important;
+}
+
+#dgt-research-description {
+  border-radius: 5px;
+}
+
+#dgt-research-form > div {
+  margin-left: 0 !important;
+}
+
+#dgt-research-form > div > div {
+  border-radius: 5px;
 }
 
 /****/
@@ -1419,6 +1500,32 @@ dgt-fleet-orders-list-panel {
   background: rgba(75,75,75,1);
   border-bottom-left-radius: 5px;
   border-bottom-right-radius: 5px;
+}
+
+#home-stats .content .stat,
+#home-stats div.opacBackground.lightBorder .noPadding > div {
+  padding: 0 !important;
+  margin: 0 5px !important;
+  line-height: 17px;
+}
+
+#home-stats .content .stat:first-child,
+#home-stats div.opacBackground.lightBorder .noPadding > div:first-child {
+  margin-top: 5px !important;
+  line-height: 17px;
+}
+
+#home-stats .content .stat:last-child,
+#home-stats div.opacBackground.lightBorder .noPadding > div:last-child {
+  margin-bottom: 5px !important;
+  line-height: 17px;
+}
+
+#home-stats div.opacBackground.lightBorder .noPadding > div,
+#home-stats .content .stat .name,
+#home-stats .content .stat .value {
+  font-weight: normal !important;
+  padding: 0 !important;
 }
 
 #known-issues {
@@ -1643,7 +1750,7 @@ dgt-fleet-orders-list-panel {
 #transfer-targets input {
   height: 23px;
   font-size: 12px;
-  background: rgba(0,0,0,.4);
+  background: rgba(0,0,0,.25);
   color: #fff;
   border: 1px solid #636363 !important;
   margin: 0 2px;
@@ -1787,7 +1894,7 @@ dgt-fleet-orders-list-panel {
 #fleet-move-coords input {
   height: 23px;
   font-size: 12px;
-  background: rgba(0,0,0,.4);
+  background: rgba(0,0,0,.25);
   color: #fff;
   border: 1px solid #545454 !important;
   margin: 0 2px;
@@ -1818,7 +1925,7 @@ dgt-fleet-orders-list-panel {
   line-height: 15px;
   width: 137px;
   text-align: left;
-  background: rgba(0,0,0,.4) url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 384 512"><path fill="%23ffffff" d="M192 384c-8.188 0-16.38-3.125-22.62-9.375l-160-160c-12.5-12.5-12.5-32.75 0-45.25s32.75-12.5 45.25 0L192 306.8l137.4-137.4c12.5-12.5 32.75-12.5 45.25 0s12.5 32.75 0 45.25l-160 160C208.4 380.9 200.2 384 192 384z"/></svg>') right 1rem center/8px 10px no-repeat;
+  background: rgba(0,0,0,.25) url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 384 512"><path fill="%23ffffff" d="M192 384c-8.188 0-16.38-3.125-22.62-9.375l-160-160c-12.5-12.5-12.5-32.75 0-45.25s32.75-12.5 45.25 0L192 306.8l137.4-137.4c12.5-12.5 32.75-12.5 45.25 0s12.5 32.75 0 45.25l-160 160C208.4 380.9 200.2 384 192 384z"/></svg>') right 1rem center/8px 10px no-repeat;
   appearance: none;
 }
 
@@ -1835,7 +1942,7 @@ dgt-fleet-orders-list-panel {
 #queue-actions-left .amount input[type="number"] {
   height: 23px;
   font-size: 12px;
-  background: rgba(0,0,0,.4);
+  background: rgba(0,0,0,.25);
   color: #fff;
   border: 1px solid #545454 !important;
   border-top-right-radius: 3px;
@@ -2180,7 +2287,7 @@ dgt-shared-scans-collector {
 #planet-scan-form .coordsInput input {
   height: 23px;
   font-size: 12px;
-  background: rgba(0,0,0,.4);
+  background: rgba(0,0,0,.25);
   color: #fff;
   border: 1px solid #636363 !important;
   margin: 0 2px;
@@ -2290,6 +2397,7 @@ dgt-shared-scans-collector {
 /********************/
 
 .playerRankingsList {
+  display: none !important;
   border-radius: 5px !important;
 }
 

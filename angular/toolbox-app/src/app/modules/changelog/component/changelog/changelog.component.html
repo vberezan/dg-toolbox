@@ -1,26 +1,41 @@
 <div id="dgt-update-changelog-container">
   <h2>DarkGalaxy Tools <span>{{version}}</span></h2>
-  <div class="dgt-spinner-container">
+  <div class="dgt-spinner-container show" #dgtSpinner>
     <span class="dgt-spinner"></span>
   </div>
-  <div *ngIf="(changed | async)" id="dgt-update">
-    <span>There is a new update for DarkGalaxy Toolbox. <a (click)="installUpdate()" target="_blank" href="https://github.com/vberezan/dg-toolbox/raw/main/tampermonkey/dg-toolbox.user.js">Click here</a> to install it.</span>
+  <div *ngIf="(updateAvailable | async)" id="dgt-update">
+    <span>There is a new update: <i><b>{{newVersion}}</b> - </i><a (click)="installUpdate()" href="javascript:void(0);">Click here</a></span>
   </div>
   <div id="dgt-update-changelog">
     <div><span>Changelog:</span></div>
     <ul>
-      <li>New: - Added <b>Scan&Next</b> button on Scan screen - scans the given planet and prefills the next one. Automatically increments all 4 coordinates.</li>
-      <li>Improvement - Shared scans DB Schema was refactored, to reduce traffic and costs, therefore all scans will be deleted and replaced with new ones. BRC systems already got rescanned, while WP will be added asap.</li>
-      <li>New: - Space Tether placeholder is now visible on Navigation planets (ST).</li>
-      <li>New: - Added a minimal legend for Navigation planets placeholders.</li>
-      <li>New: - Generated new images for Freighter, Merchant, Hulk, Fighter, Bomber, Frigate, Destroyer, Cruiser, Battleship, Invasion Ship.</li>
+      <li>fix - starting with 2.0.0 updates will be silent, without opening github/tampermonkey. Just click the install button and that's all.</li>
+      <li>fix - added images for all ships (including holoships)</li>
+      <li>fix - revamped <b>Research</b> screen and added required research points for queued items - finished researches are now highlighted</li>
+      <li>new - <b>Player Rankings</b> screen - added planets stats & details</li>
+      <li>new - enabled Admin Panel for TL/Admin roles</li>
+      <li>new - reworked caching module - you will see a short <b>syncing</b> modal everytime stats metadata gets updated on Firebase</li>
+    </ul>
+    <div><span>Upcoming:</span></div>
+    <ul>
+      <li><b>Alliance Rankings</b> screen - added planets stats</li>
+      <li>Notification for <b>Radar</b> when at least one allied planet (including yours) is attacked</li>
+      <li><b>Research</b> queue cancel confirmation popup</li>
+      <li><b>Navigation</b> NAP color (yellow) (eg: SOL planets will be seen with a yellow border)</li>
+      <li>Integration with Google Sheets</li>
+      <li>Copy to clipboard various stats</li>
+      <li>Fleet Scan statistics, including a fight simulation</li>
     </ul>
   </div>
   <div id="dgt-important">
     <div><span>Important:</span></div>
     <ul>
-      <li>please report any bug to Whatsapp channel</li>
-      <li><b>disable browser ads-blocking plugins on game domain</b> - some of them are interfering with Firebase communication</li>
+      <li>please report any bug on <b>Whatsapp#Toolbox</b> channel</li>
+      <li><b>disable browser ads-blocking plugins for https://*.darkgalaxy.com</b> - some of them are interfering with Firebase communication</li>
     </ul>
   </div>
 </div>
+<div id="dgt-update-data" class="hide dgt-overlay-modal" #dgtUpdatingModel>
+  <div id="dgt-update-message"><span>Installing <i><b>{{newVersion}}</b></i>...</span><img src="https://i.imgur.com/a6OzUZb.png" alt="beer"/></div>
+</div>
+

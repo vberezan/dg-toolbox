@@ -4,8 +4,8 @@ import {PlanetSummary} from "../../../shared/model/planets/planet-summary.planet
 import {PlanetScanExtractorService} from "./planet-scan.extractor.service";
 import {PlanetScanEvent} from "../../../shared/model/scans/shared-scans-planet-scan-event.model";
 import {NavigationSystemPlanetsExtractorService} from "./navigation-system-planets.extractor.service";
-import {AllianceMembersService} from "./alliance-members.service";
-import {AllianceMember} from "../../../shared/model/alliances/alliance-member.model";
+import {PlayerRankingsService} from "./player-rankings.service";
+import {PlayerStats} from "../../../shared/model/stats/player-stats.model";
 
 @Injectable({
   providedIn: 'platform'
@@ -15,7 +15,7 @@ export class DarkgalaxyApiService {
   private planetListExtractor: PlanetListExtractorService = inject(PlanetListExtractorService);
   private planetScanExtractor: PlanetScanExtractorService = inject(PlanetScanExtractorService);
   private navigationSystemPlanetsExtractor: NavigationSystemPlanetsExtractorService = inject(NavigationSystemPlanetsExtractorService);
-  private allianceMembersExtractor: AllianceMembersService = inject(AllianceMembersService);
+  private playerRankingsService: PlayerRankingsService = inject(PlayerRankingsService);
 
   private cachedUsername: string = null;
 
@@ -27,18 +27,12 @@ export class DarkgalaxyApiService {
     return this.planetScanExtractor.extract();
   }
 
-  navigationSystemPlanets(): PlanetSummary[] {
-    return this.navigationSystemPlanetsExtractor.extract();
+  playerRankings(): Map<number, PlayerStats> {
+    return this.playerRankingsService.extract();
   }
 
-  allianceMembers(clean: boolean | false): AllianceMember[] {
-    let result: AllianceMember[] = this.allianceMembersExtractor.extract();
-
-    if (clean) {
-      this.allianceMembersExtractor.cleanAfterExtract();
-    }
-
-    return result;
+  navigationSystemPlanets(): PlanetSummary[] {
+    return this.navigationSystemPlanetsExtractor.extract();
   }
 
   gameTurn(): number {

@@ -3,7 +3,7 @@ import {AuthService} from "../../service/auth.service";
 import {Auth} from "@angular/fire/auth";
 import {Firestore} from "@angular/fire/firestore";
 import {LocalStorageKeys} from "../../../../shared/model/local-storage/local-storage-keys";
-import {LocalStorageService} from "../../../local-storage-manager/service/local-storage.service";
+import {LocalStorageService} from "../../../local-storage/local-storage-manager/service/local-storage.service";
 import {Observable, Subscriber} from "rxjs";
 
 @Component({

@@ -98,7 +98,7 @@ export class PlanetScan {
     this._fleets = value;
   }
 
-  toJSON() {
+  toJSON(): any {
     return {
       resources: this.resources,
       ground: this.ground,

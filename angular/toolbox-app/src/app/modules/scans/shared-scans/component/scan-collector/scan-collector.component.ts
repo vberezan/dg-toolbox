@@ -1,4 +1,4 @@
-import {ChangeDetectorRef, Component, inject, OnDestroy, OnInit} from '@angular/core';
+import {Component, inject, OnDestroy, OnInit} from '@angular/core';
 import {ScanService} from "../../service/scan.service";
 import {PlanetScanEvent} from "../../../../../shared/model/scans/shared-scans-planet-scan-event.model";
 import {AuthService} from "../../../../authentication/service/auth.service";

@@ -6,7 +6,7 @@
 }
 
 .dgt-alliance-members-member {
-  background: rgba(87, 87, 87, 0.72);
+  background: rgba(87, 87, 87, 0.75);
   width: calc(100% - 10px);
   border-radius: 5px;
   margin-bottom: 5px;
@@ -92,7 +92,7 @@
 .dgt-alliance-members-panel.user .dgt-alliance-members-member:last-child {
   border-bottom-left-radius: 5px !important;
   border-bottom-right-radius: 5px !important;
-  padding-bottom: 5px !important;
+  padding-bottom: 0 !important;
 }
 .dgt-alliance-members-member:last-child {
   margin-bottom: 0 !important;

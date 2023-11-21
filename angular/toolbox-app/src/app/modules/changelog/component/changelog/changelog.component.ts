@@ -1,31 +1,43 @@
-import {ChangeDetectorRef, Component, inject} from '@angular/core';
+import {AfterViewInit, ChangeDetectorRef, Component, ElementRef, inject, ViewChild} from '@angular/core';
 import {ChangelogService} from "../../service/changelog.service";
 import {Observable, Subscriber} from "rxjs";
-import {LocalStorageService} from "../../../local-storage-manager/service/local-storage.service";
-import {LocalStorageKeys} from "../../../../shared/model/local-storage/local-storage-keys";
+import {LocalStorageService} from "../../../local-storage/local-storage-manager/service/local-storage.service";
 
 @Component({
   selector: 'dgt-changelog',
   templateUrl: './changelog.component.html',
   styleUrls: ['./changelog.component.css']
 })
-export class ChangelogComponent {
+export class ChangelogComponent implements AfterViewInit {
+  @ViewChild('dgtSpinner') loadSpinner: ElementRef;
+  @ViewChild('dgtUpdatingModel') dgtUpdatingModel: ElementRef;
   private changeLogService: ChangelogService = inject(ChangelogService);
-  private changeDetection: ChangeDetectorRef = inject(ChangeDetectorRef);
+  private changeDetector: ChangeDetectorRef = inject(ChangeDetectorRef);
   private localStorageService: LocalStorageService = inject(LocalStorageService);
 
-  public changed: Observable<boolean>;
-  public version: string;
+  public updateAvailable: Observable<boolean>;
+  public version: string = 'N/A';
+  public newVersion: string = 'N/A';
 
   constructor() {
-    this.changed = new Observable<boolean>((observer: Subscriber<boolean>): void => {
-      this.changeLogService.checkVersion(this.changeDetection, observer);
+    this.updateAvailable = new Observable<boolean>((changeObserver: Subscriber<boolean>): void => {
+      this.changeLogService.checkForUpdate(this.changeDetector, changeObserver);
     });
 
-    this.version = this.localStorageService.getVersion();
+    if (this.localStorageService.remoteMetadata() !== null) {
+      this.newVersion = this.localStorageService.remoteMetadata().dgtVersion;
+    }
+
+    if (this.localStorageService.localMetadata() !== null) {
+      this.version = this.localStorageService.localMetadata().dgtVersion;
+    }
   }
 
-  installUpdate() {
-    this.localStorageService.cache(LocalStorageKeys.UPDATE_AVAILABLE, false);
+  installUpdate(): void {
+    this.changeLogService.installUpdate(this.dgtUpdatingModel);
+  }
+
+  ngAfterViewInit(): void {
+    this.changeLogService.showComponent(this.loadSpinner);
   }
 }

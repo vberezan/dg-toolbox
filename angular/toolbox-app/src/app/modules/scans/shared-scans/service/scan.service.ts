@@ -26,7 +26,7 @@ export class ScanService implements OnDestroy {
       return;
     }
 
-    let scansRef: any = collection(this.firestore, 'scans-g' + scanEvent.planetScan.location.split(/\./)[0]);
+    const scansRef: any = collection(this.firestore, 'scans-g' + scanEvent.planetScan.location.split(/\./)[0]);
 
     this.planetScanSubscription = collectionData<DocumentData, string>(
       query(scansRef,

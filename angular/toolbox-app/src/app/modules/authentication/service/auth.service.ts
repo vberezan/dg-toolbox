@@ -7,7 +7,7 @@ import firebase from "firebase/compat";
 import {AuthState} from "../../../shared/model/authentication/auth-state.model";
 import {UserRole} from "../../../shared/model/authentication/user-role";
 import {LocalStorageKeys} from "../../../shared/model/local-storage/local-storage-keys";
-import {LocalStorageService} from "../../local-storage-manager/service/local-storage.service";
+import {LocalStorageService} from "../../local-storage/local-storage-manager/service/local-storage.service";
 import * as CryptoJS from 'crypto-js';
 import DocumentData = firebase.firestore.DocumentData;
 
@@ -59,7 +59,7 @@ export class AuthService implements OnDestroy {
 
       this.authSubscription = authState(auth).subscribe((user: User): void => {
         if (user != null) {
-          collectionData(
+          let subscription: Subscription = collectionData(
             query(collection(firestore, 'valid-users'),
               where('email', '==', user.email),
               limit(1)
@@ -83,13 +83,15 @@ export class AuthService implements OnDestroy {
 
                 this._authState.emit(new AuthState(true, userCheck.role));
 
-                location.reload();
+                window.location.reload();
               } else {
                 this.signOut(auth);
               }
             } else {
               this.signOut(auth);
             }
+
+            subscription.unsubscribe();
           });
         } else {
           this.localStorageService.remove(LocalStorageKeys.USER);
@@ -127,7 +129,7 @@ export class AuthService implements OnDestroy {
 
     auth.signOut()
       .then((): void => {
-        location.reload();
+        window.location.reload();
       })
       .catch((error): void => {
           window.alert(error.message)

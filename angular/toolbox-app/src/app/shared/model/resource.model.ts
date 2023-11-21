@@ -36,7 +36,7 @@ export class Resource {
     this._production = value;
   }
 
-  toJSON() {
+  toJSON(): any {
     return {
       name: this.name,
       abundance: this.abundance,

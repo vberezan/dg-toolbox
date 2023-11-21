@@ -4,7 +4,7 @@ import {PlanetSummary} from "../../../../shared/model/planets/planet-summary.pla
 import {PlanetScan} from "../../../../shared/model/scans/shared-scans-planet-scan.model";
 import {DecimalPipe} from "@angular/common";
 import {Resource} from "../../../../shared/model/resource.model";
-import {ResourceProductionFormatterPipe} from "../../../planets/planet-list-stats/pipe/resource-production-formatter.pipe";
+import {ResourceProductionFormatterPipe} from "../../../stats/planet-list-stats/pipe/resource-production-formatter.pipe";
 import {Structures} from "../../../../shared/model/structures";
 import {collection, collectionData, Firestore, query, where} from "@angular/fire/firestore";
 import {ResourceQuantity} from "../../../../shared/model/resource-quantity.model";

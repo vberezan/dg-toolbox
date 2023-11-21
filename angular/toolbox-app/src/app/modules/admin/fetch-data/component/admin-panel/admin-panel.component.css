@@ -1,0 +1,179 @@
+#dgt-load-planets-overlay-modal .dgt-display-info{
+  height: 90px;
+}
+
+#dgt-load-rankings-overlay-modal .dgt-display-info {
+  height: 90px;
+}
+
+.dgt-display-info {
+  margin: auto;
+  width: 300px;
+  left: calc(50% - 150px);
+  top: calc(50% - 45px);
+  border: 1px solid #364a36;
+  border-radius: 5px;
+  padding: 10px;
+  vertical-align: middle;
+  text-align: center;
+  background: #3a593a;
+  position: fixed;
+}
+
+.progressbar {
+  position: relative;
+  display: block;
+  max-width: 200px;
+  width: 100%;
+  margin: 10px auto;
+  height: 20px;
+  background: #fff;
+  overflow: hidden;
+  border-radius: 5px;
+}
+
+.actions button {
+  padding: 0 15px;
+  border: 1px solid #5a7b5a;
+  border-radius: 3px;
+  background: #3e6e3e;
+  cursor: pointer;
+  width: auto;
+  height: 24px;
+  line-height: 20px;
+  font-size: 13px;
+  min-width: 65px !important;
+}
+
+.actions button:hover {
+  border: 1px solid #365036 !important;
+  background: #203b20 !important;
+}
+
+span.progress {
+  display: block;
+  position: absolute;
+  left: 0;
+  top: 0;
+  bottom: 0;
+  width: 0;
+  transition: all .3s;
+  height: 100%;
+  background: #4ac54a !important;
+}
+
+span.percentage {
+  width: 100%;
+  position: relative;
+  float: left;
+  background: transparent;
+  z-index: 9999;
+  height: 100%;
+  line-height: 20px;
+  color: #000;
+  font-size: 15px;
+}
+
+span.system-counter,
+span.planet-counter {
+  transition: all .1s;
+  color: #dcdc;
+}
+
+.load-example {
+  display: table;
+}
+
+.load-example {
+  font-weight: normal !important;
+  color: #dcdcdc !important;
+  font-size: 11px;
+  text-align: left;
+  margin-bottom: 10px;
+}
+
+.load-example .usage-warning {
+  float: left;
+}
+
+.load-example ul {
+  float: left;
+}
+
+#admin-load-planets {
+  margin-bottom: 5px !important;
+}
+
+#admin-load-rankings {
+  margin-top: 5px !important;
+}
+
+#admin-load-rankings,
+#admin-load-planets {
+  padding: 5px !important;
+  display: inline-table;
+}
+
+#admin-load-planets input {
+  height: 24px;
+  font-size: 12px;
+  background: rgba(0,0,0,.25);
+  color: #fff;
+  border: none !important;
+  margin: 0;
+  border-radius: 3px;
+  display: block;
+  box-sizing: border-box;
+  padding: 3px 5px;
+  overflow: hidden;
+  float: left;
+  line-height: 18px;
+  width: 135px;
+  text-align: left;
+}
+
+#admin-load-rankings button,
+#admin-load-planets button {
+  padding: 0 15px;
+  border: 1px solid #5a7b5a !important;
+  border-radius: 3px;
+  background: #3e6e3e;
+  cursor: pointer;
+  width: auto;
+  margin: 0 !important;
+  height: 24px;
+  line-height: 20px;
+  font-size: 13px;
+  min-width: 65px !important;
+  float: right;
+}
+
+#admin-load-rankings button:hover,
+#admin-load-planets button:hover {
+  border: 1px solid #365036 !important;
+  background: #203b20 !important;
+}
+
+#admin-load-rankings button {
+  float: left !important;
+  width: 100% !important;
+}
+
+#admin-load-separator {
+  border-bottom: 1px solid #3a593a !important;
+  margin: 5px 5px 3px 5px !important;
+  display: block;
+}
+
+#dgt-admin-panel-body,
+#dgt-admin-panel-header {
+  background: #364a36 !important;
+}
+
+#dgt-admin-panel-header {
+  border-bottom: 1px solid #3a593a !important;
+}
+
+#dgt-admin-panel-wrapper {
+  border: 1px solid #3a593a !important;
+}

@@ -38,7 +38,7 @@ export class Fleet {
     this._eta = value;
   }
 
-  toJSON() {
+  toJSON(): any {
     return {
       eta: this.eta,
       alliance: this.alliance,
