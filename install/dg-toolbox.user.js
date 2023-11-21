@@ -16,14 +16,8 @@
 
 function loadResource(element) {
   let node = document.createElement(element.tagName);
-
-  if (element.href) {
-    node.href = element.href;
-  }
-
-  if (element.src) {
-    node.src = element.src;
-  }
+  if (element.href) node.href = element.href;
+  if (element.src) node.src = element.src;
 
   node.rel = element.rel;
   document.head.append(node);
@@ -32,14 +26,15 @@ function loadResource(element) {
 }
 
 function getVersion() {
-  if (localStorage.getItem('local-metadata')) {
+  if (localStorage.getItem('local-metadata'))
     return JSON.parse(JSON.parse(localStorage.getItem('local-metadata')).value).dgtVersion;
-  } else {
-    return 'v2.0.0';
-  }
+  else return 'v2.0.0';
+
 }
 
 function loadSetups(windowURL) {
+  console.log("%cDGT%c - assembling platform environment", "font-size: 12px; font-weight: bold;", "font-size: 12px;");
+
   loadResource({
     tagName: 'script',
     src: 'https://cdn.jsdelivr.net/gh/vberezan/dg-toolbox/stable-release/' + getVersion() + '/dgt-toolbox-setup-dgt-placeholders.js',
@@ -59,6 +54,8 @@ function loadSetups(windowURL) {
 }
 
 function loadCustomStyling() {
+  console.log("%cDGT%c - applying custom theme", "font-size: 12px; font-weight: bold;", "font-size: 12px;");
+
   loadResource({
     tagName: 'script',
     src: 'https://cdn.jsdelivr.net/gh/vberezan/dg-toolbox/stable-release/' + getVersion() + '/dg-toolbox-custom-styling.js',
@@ -109,6 +106,8 @@ function loadCustomStyling() {
 }
 
 function loadAngular() {
+  console.log("%cDGT%c - injecting additional components", "font-size: 12px; font-weight: bold;", "font-size: 12px;");
+
   let angular = [{
     tagName: 'script',
     src: 'https://cdn.jsdelivr.net/gh/vberezan/dg-toolbox/stable-release/' + getVersion() + '/runtime.js',
@@ -135,29 +134,26 @@ function loadAngular() {
 }
 
 function loadGlobalAngularStyling() {
+  console.log("%cDarkGalaxy Toolbox - DGT", "font-size: 16px; font-weight: bold;");
+
   let angular = [{
     tagName: 'link',
     href: 'https://cdn.jsdelivr.net/gh/vberezan/dg-toolbox/stable-release/' + getVersion() + '/styles.css',
     rel: 'stylesheet'
   }];
 
-  angular.forEach((ang) => {
-    loadResource(ang);
-  });
+  angular.forEach((ang) => loadResource(ang));
 }
 
 (function () {
   document.addEventListener("DOMContentLoaded", function (event) {
-    if (localStorage.getItem('hotfix') !== '2.0.0') {
-      if (!localStorage.getItem('post-install-fetch-metadata')) {
-        localStorage.clear();
-      }
-      localStorage.setItem('hotfix', '2.0.0');
-    }
-
     let windowURL = window.location.pathname.split(/\//g);
 
-    console.log("%cDarkGalaxy Toolbox - DGT", "font-size: 16px; font-weight: bold;");
+    if (localStorage.getItem('hotfix') !== '2.0.0') {
+      if (!localStorage.getItem('post-install-fetch-metadata')) localStorage.clear();
+
+      localStorage.setItem('hotfix', '2.0.0');
+    }
 
     loadGlobalAngularStyling();
 
@@ -169,20 +165,11 @@ function loadGlobalAngularStyling() {
       if (document.getElementById('playerBox')) {
         document.getElementById('playerBox').append(document.createElement('dgt-authentication'));
 
-        console.log("%cDGT%c - assembling platform environment", "font-size: 12px; font-weight: bold;", "font-size: 12px;");
         loadSetups(windowURL);
-        console.log("%cDGT%c - injecting additional components", "font-size: 12px; font-weight: bold;", "font-size: 12px;");
         loadAngular();
-        console.log("%cDGT%c - applying custom theme", "font-size: 12px; font-weight: bold;", "font-size: 12px;");
         loadCustomStyling();
-        setTimeout(() => {
-          document.body.style.visibility = 'visible';
-        }, 0);
-      } else {
-        setTimeout(() => {
-          document.body.style.visibility = 'visible';
-        }, 0);
-      }
+        setTimeout(() => document.body.style.visibility = 'visible', 0);
+      } else setTimeout(() => document.body.style.visibility = 'visible', 0);
     }
 
     if (!localStorage.getItem('local-metadata')) {
