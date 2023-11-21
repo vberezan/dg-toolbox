@@ -35,7 +35,7 @@ export class LocalStorageSynchronizerComponent implements AfterViewInit {
       metadata.forEach((alliance: AlliancePlanets): void => {
         console.log(alliance.tag);
         alliance.planets.forEach((planets: PlanetsBatch): void => {
-          console.log('Galaxy ' + planets.galaxy + 'planets: ' + planets.planets.join(','));
+          console.log('Galaxy ' + planets.galaxy + ' planets: ' + planets.planets.join(', '));
         });
       });
 
