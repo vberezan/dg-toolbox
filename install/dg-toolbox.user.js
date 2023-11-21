@@ -39,26 +39,10 @@ function getVersion() {
   }
 }
 
-function fetchResource(firebase, fallback) {
-  if (localStorage.getItem('dev-mode')) return fallback;
-
-  if (!localStorage.getItem('javascript-repository')) return fallback;
-
-  let javascriptRepo = JSON.parse(localStorage.getItem('javascript-repository')).value;
-
-  if (!javascriptRepo) return fallback;
-
-  let dynamicUrl = JSON.parse(javascriptRepo)[firebase];
-
-  if (!dynamicUrl) return fallback;
-
-  return dynamicUrl;
-}
-
 function loadSetups(windowURL) {
   loadResource({
     tagName: 'script',
-    src: fetchResource('dgtSetupDgtPlaceholders', 'https://cdn.jsdelivr.net/gh/vberezan/dg-toolbox/stable-release/' + getVersion() + '/dgt-toolbox-setup-dgt-placeholders.js'),
+    src: 'https://cdn.jsdelivr.net/gh/vberezan/dg-toolbox/stable-release/' + getVersion() + '/dgt-toolbox-setup-dgt-placeholders.js',
     rel: 'text/javascript'
   }).onload = function () {
     setUpPrerequisites()
@@ -77,14 +61,14 @@ function loadSetups(windowURL) {
 function loadCustomStyling() {
   loadResource({
     tagName: 'script',
-    src: fetchResource('dgtCustomStyling', 'https://cdn.jsdelivr.net/gh/vberezan/dg-toolbox/stable-release/' + getVersion() + '/dg-toolbox-custom-styling.js'),
+    src: 'https://cdn.jsdelivr.net/gh/vberezan/dg-toolbox/stable-release/' + getVersion() + '/dg-toolbox-custom-styling.js',
     rel: 'text/javascript'
   }).onload = function () {
     applyCustomStyling();
 
     loadResource({
       tagName: 'script',
-      src: fetchResource('dgtReplaceIconsWithFaIcons', 'https://cdn.jsdelivr.net/gh/vberezan/dg-toolbox/stable-release/' + getVersion() + '/dg-toolbox-replace-icons-with-fa-icons.js'),
+      src: 'https://cdn.jsdelivr.net/gh/vberezan/dg-toolbox/stable-release/' + getVersion() + '/dg-toolbox-replace-icons-with-fa-icons.js',
       rel: 'text/javascript'
     }).onload = function () {
       replaceIconsWithFAIcons();
@@ -92,7 +76,7 @@ function loadCustomStyling() {
 
     loadResource({
       tagName: 'script',
-      src: fetchResource('dgtReplaceIconsWithImages', 'https://cdn.jsdelivr.net/gh/vberezan/dg-toolbox/stable-release/' + getVersion() + '/dg-toolbox-replace-icons-with-images.js'),
+      src: 'https://cdn.jsdelivr.net/gh/vberezan/dg-toolbox/stable-release/' + getVersion() + '/dg-toolbox-replace-icons-with-images.js',
       rel: 'text/javascript'
     }).onload = function () {
       replaceIconsWithImages();
@@ -100,7 +84,7 @@ function loadCustomStyling() {
 
     loadResource({
       tagName: 'script',
-      src: fetchResource('dgtReplacePlanetsImages', 'https://cdn.jsdelivr.net/gh/vberezan/dg-toolbox/stable-release/' + getVersion() + '/dg-toolbox-replace-planets-images.js'),
+      src: 'https://cdn.jsdelivr.net/gh/vberezan/dg-toolbox/stable-release/' + getVersion() + '/dg-toolbox-replace-planets-images.js',
       rel: 'text/javascript'
     }).onload = function () {
       replacePlanetsImages();
@@ -108,7 +92,7 @@ function loadCustomStyling() {
 
     loadResource({
       tagName: 'script',
-      src: fetchResource('dgtReplaceStructuresImages', 'https://cdn.jsdelivr.net/gh/vberezan/dg-toolbox/stable-release/' + getVersion() + '/dg-toolbox-replace-structures-images.js'),
+      src: 'https://cdn.jsdelivr.net/gh/vberezan/dg-toolbox/stable-release/' + getVersion() + '/dg-toolbox-replace-structures-images.js',
       rel: 'text/javascript'
     }).onload = function () {
       replaceStructuresImages(window.location.origin);
@@ -116,7 +100,7 @@ function loadCustomStyling() {
 
     loadResource({
       tagName: 'script',
-      src: fetchResource('dgtReplaceShipsImages', 'https://cdn.jsdelivr.net/gh/vberezan/dg-toolbox/stable-release/' + getVersion() + '/dg-toolbox-replace-ships-images.js'),
+      src: 'https://cdn.jsdelivr.net/gh/vberezan/dg-toolbox/stable-release/' + getVersion() + '/dg-toolbox-replace-ships-images.js',
       rel: 'text/javascript'
     }).onload = function () {
       replaceShipsImages();
@@ -127,15 +111,15 @@ function loadCustomStyling() {
 function loadAngular() {
   let angular = [{
     tagName: 'script',
-    src: fetchResource('angularRuntime', 'https://cdn.jsdelivr.net/gh/vberezan/dg-toolbox/stable-release/' + getVersion() + '/runtime.js'),
+    src: 'https://cdn.jsdelivr.net/gh/vberezan/dg-toolbox/stable-release/' + getVersion() + '/runtime.js',
     rel: 'module'
   }, {
     tagName: 'script',
-    src: fetchResource('angularPolyfills', 'https://cdn.jsdelivr.net/gh/vberezan/dg-toolbox/stable-release/' + getVersion() + '/polyfills.js'),
+    src: 'https://cdn.jsdelivr.net/gh/vberezan/dg-toolbox/stable-release/' + getVersion() + '/polyfills.js',
     rel: 'module'
   }, {
     tagName: 'script',
-    src: fetchResource('angularMain', 'https://cdn.jsdelivr.net/gh/vberezan/dg-toolbox/stable-release/' + getVersion() + '/main.js'),
+    src: 'https://cdn.jsdelivr.net/gh/vberezan/dg-toolbox/stable-release/' + getVersion() + '/main.js',
     rel: 'module'
   }];
 
@@ -153,7 +137,7 @@ function loadAngular() {
 function loadGlobalAngularStyling() {
   let angular = [{
     tagName: 'link',
-    href: fetchResource('angularStyles', 'https://cdn.jsdelivr.net/gh/vberezan/dg-toolbox/stable-release/' + getVersion() + '/styles.css'),
+    href: 'https://cdn.jsdelivr.net/gh/vberezan/dg-toolbox/stable-release/' + getVersion() + '/styles.css',
     rel: 'stylesheet'
   }];
 
@@ -180,7 +164,7 @@ function loadGlobalAngularStyling() {
 
     loadResource({
       tagName: 'script',
-      src: fetchResource('dgtUtils', 'https://cdn.jsdelivr.net/gh/vberezan/dg-toolbox/stable-release/' + getVersion() + '/dg-toolbox-utils.js'),
+      src: 'https://cdn.jsdelivr.net/gh/vberezan/dg-toolbox/stable-release/' + getVersion() + '/dg-toolbox-utils.js',
       rel: 'text/javascript'
     }).onload = function () {
       if (document.getElementById('playerBox')) {

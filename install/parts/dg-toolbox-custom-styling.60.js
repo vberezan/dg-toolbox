@@ -5,9 +5,7 @@ function detach(node) {
 
     return null;
 }
-function applyCustomStyling() {
-    let windowURL = window.location.pathname.split(/\//g);
-
+function applyCustomStyling(windowURL) {
     if (document.querySelector('#queue .researchTitle')) {
         document.querySelectorAll('#queue .researchTitle')[document.querySelectorAll('#queue .researchTitle').length - 1].style.height = '120px';
     }

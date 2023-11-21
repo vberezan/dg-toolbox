@@ -31,52 +31,35 @@ function loadResource(element) {
     return node;
 }
 
-function fetchResource(firebase, fallback) {
-    if (localStorage.getItem('dev-mode')) return fallback;
-
-    if (!localStorage.getItem('javascript-repository')) return fallback;
-
-    let javascriptRepo = JSON.parse(localStorage.getItem('javascript-repository')).value;
-
-    if (!javascriptRepo) return fallback;
-
-    let dynamicUrl = JSON.parse(javascriptRepo)[firebase];
-
-    if (!dynamicUrl) return fallback;
-
-    return dynamicUrl;
+function getVersion() {
+    if (localStorage.getItem('local-metadata')) {
+        return JSON.parse(JSON.parse(localStorage.getItem('local-metadata')).value).dgtVersion;
+    } else {
+        return 'v2.0.0';
+    }
 }
 
 function loadSetups(windowURL) {
     loadResource({
         tagName: 'script',
-        src: fetchResource('dgtSetupDgtPlaceholders', 'https://cdn.jsdelivr.net/gh/vberezan/dg-toolbox@development/install/parts/dgt-toolbox-setup-dgt-placeholders.11.js'),
+        src: 'https://cdn.jsdelivr.net/gh/vberezan/dg-toolbox@development/install/parts/dgt-toolbox-setup-dgt-placeholders.12.js',
         rel: 'text/javascript'
     }).onload = function () {
-        setUpPrerequisites()
-        setUpNavbarReplacement();
-        setUpChangelog(windowURL);
-        setUpAdminDataLoad(windowURL);
-        setUpPlanetListStatsPanel(windowURL);
-        setUpSharedScansCollector(windowURL);
-        setUpNavigationScanDataPanel(windowURL);
-        setUpAlliancePanel(windowURL);
-        setUpRankings(windowURL);
-        setUpResearchPanel(windowURL);
+        setupPlaceHolders(windowURL);
     }
 }
 
-function loadCustomStyling() {
+function loadCustomStyling(windowURL) {
     loadResource({
         tagName: 'script',
-        src: fetchResource('dgtCustomStyling','https://cdn.jsdelivr.net/gh/vberezan/dg-toolbox@development/install/parts/dg-toolbox-custom-styling.59.js'),
+        src: 'https://cdn.jsdelivr.net/gh/vberezan/dg-toolbox@development/install/parts/dg-toolbox-custom-styling.60.js',
         rel: 'text/javascript'
     }).onload = function () {
-        applyCustomStyling();
+        applyCustomStyling(windowURL);
 
         loadResource({
             tagName: 'script',
-            src: fetchResource('dgtReplaceIconsWithFaIcons','https://cdn.jsdelivr.net/gh/vberezan/dg-toolbox@development/install/parts/dg-toolbox-replace-icons-with-fa-icons.10.js'),
+            src: 'https://cdn.jsdelivr.net/gh/vberezan/dg-toolbox@development/install/parts/dg-toolbox-replace-icons-with-fa-icons.10.js',
             rel: 'text/javascript'
         }).onload = function () {
             replaceIconsWithFAIcons();
@@ -84,7 +67,7 @@ function loadCustomStyling() {
 
         loadResource({
             tagName: 'script',
-            src: fetchResource('dgtReplaceIconsWithImages','https://cdn.jsdelivr.net/gh/vberezan/dg-toolbox@development/install/parts/dg-toolbox-replace-icons-with-images.31.js'),
+            src: 'https://cdn.jsdelivr.net/gh/vberezan/dg-toolbox@development/install/parts/dg-toolbox-replace-icons-with-images.31.js',
             rel: 'text/javascript'
         }).onload = function () {
             replaceIconsWithImages();
@@ -92,7 +75,7 @@ function loadCustomStyling() {
 
         loadResource({
             tagName: 'script',
-            src: fetchResource('dgtReplacePlanetsImages','https://cdn.jsdelivr.net/gh/vberezan/dg-toolbox@development/install/parts/dg-toolbox-replace-planets-images.6.js'),
+            src: 'https://cdn.jsdelivr.net/gh/vberezan/dg-toolbox@development/install/parts/dg-toolbox-replace-planets-images.6.js',
             rel: 'text/javascript'
         }).onload = function () {
             replacePlanetsImages();
@@ -100,7 +83,7 @@ function loadCustomStyling() {
 
         loadResource({
             tagName: 'script',
-            src: fetchResource('dgtReplaceStructuresImages','https://cdn.jsdelivr.net/gh/vberezan/dg-toolbox@development/install/parts/dg-toolbox-replace-structures-images.8.js'),
+            src: 'https://cdn.jsdelivr.net/gh/vberezan/dg-toolbox@development/install/parts/dg-toolbox-replace-structures-images.8.js',
             rel: 'text/javascript'
         }).onload = function () {
             replaceStructuresImages(window.location.origin);
@@ -108,7 +91,7 @@ function loadCustomStyling() {
 
         loadResource({
             tagName: 'script',
-            src: fetchResource('dgtReplaceShipsImages','https://cdn.jsdelivr.net/gh/vberezan/dg-toolbox@development/install/parts/dg-toolbox-replace-ships-images.17.js'),
+            src: 'https://cdn.jsdelivr.net/gh/vberezan/dg-toolbox@development/install/parts/dg-toolbox-replace-ships-images.17.js',
             rel: 'text/javascript'
         }).onload = function () {
             replaceShipsImages();
@@ -119,15 +102,15 @@ function loadCustomStyling() {
 function loadAngular() {
     let angular = [{
         tagName: 'script',
-        src: fetchResource('angularRuntime','https://cdn.jsdelivr.net/gh/vberezan/dg-toolbox@development/angular/toolbox-app/dist/toolbox-app/runtime.926d433ed3f5f1cc.js'),
+        src: 'https://cdn.jsdelivr.net/gh/vberezan/dg-toolbox@development/angular/toolbox-app/dist/toolbox-app/runtime.926d433ed3f5f1cc.js',
         rel: 'module'
     }, {
         tagName: 'script',
-        src: fetchResource('angularPolyfills','https://cdn.jsdelivr.net/gh/vberezan/dg-toolbox@development/angular/toolbox-app/dist/toolbox-app/polyfills.8e8b88e65f8eb80f.js'),
+        src: 'https://cdn.jsdelivr.net/gh/vberezan/dg-toolbox@development/angular/toolbox-app/dist/toolbox-app/polyfills.8e8b88e65f8eb80f.js',
         rel: 'module'
     }, {
         tagName: 'script',
-        src: fetchResource('angularMain','https://cdn.jsdelivr.net/gh/vberezan/dg-toolbox@development/angular/toolbox-app/dist/toolbox-app/main.8b3c3481830826fd.js'),
+        src: 'https://cdn.jsdelivr.net/gh/vberezan/dg-toolbox@development/angular/toolbox-app/dist/toolbox-app/main.8b3c3481830826fd.js',
         rel: 'module'
     }];
 
@@ -145,7 +128,7 @@ function loadAngular() {
 function loadGlobalAngularStyling() {
     let angular = [{
         tagName: 'link',
-        href: fetchResource('angularStyles','https://cdn.jsdelivr.net/gh/vberezan/dg-toolbox@development/angular/toolbox-app/dist/toolbox-app/styles.7a79e60fedec47bb.css'),
+        href: 'https://cdn.jsdelivr.net/gh/vberezan/dg-toolbox@development/angular/toolbox-app/dist/toolbox-app/styles.7a79e60fedec47bb.css',
         rel: 'stylesheet'
     }];
 
@@ -173,7 +156,7 @@ function loadGlobalAngularStyling() {
 
         loadResource({
             tagName: 'script',
-            src: fetchResource('dgtUtils','https://cdn.jsdelivr.net/gh/vberezan/dg-toolbox@development/install/parts/dg-toolbox-utils.4.js'),
+            src: 'https://cdn.jsdelivr.net/gh/vberezan/dg-toolbox@development/install/parts/dg-toolbox-utils.4.js',
             rel: 'text/javascript'
         }).onload = function () {
             if (document.getElementById('playerBox')) {
@@ -184,7 +167,7 @@ function loadGlobalAngularStyling() {
                 console.log("%cDGT%c - injecting additional components", "font-size: 12px; font-weight: bold;", "font-size: 12px;");
                 loadAngular();
                 console.log("%cDGT%c - applying custom theme", "font-size: 12px; font-weight: bold;", "font-size: 12px;");
-                loadCustomStyling();
+                loadCustomStyling(windowURL);
                 setTimeout(() => {
                     document.body.style.visibility = 'visible';
                 }, 0);
@@ -195,11 +178,11 @@ function loadGlobalAngularStyling() {
             }
         }
 
-        localStorage.setItem('game-endpoint', '{"ttl":0,"expiry":0,"value":"\\"' + window.location.origin + '\\""}');
-
         if (!localStorage.getItem('local-metadata')) {
-            localStorage.setItem('local-metadata', '{"ttl":0,"expiry":0,"value":"{\\"dgtVersion\\":\\"v2.0.0\\",\\"allianceMembersTurn\\":{\\"version\\":0,\\"turn\\":0},\\"playersRankingsTurn\\":{\\"version\\":0,\\"turn\\":0},\\"planetsTurn\\":{\\"version\\":0,\\"turn\\":0}}"}');
+            localStorage.setItem('local-metadata', '{"ttl":0,"expiry":0,"value":"{\\"dgtVersion\\":\\"' + getVersion() + '\\",\\"allianceMembersTurn\\":{\\"version\\":0,\\"turn\\":0},\\"playersRankingsTurn\\":{\\"version\\":0,\\"turn\\":0},\\"planetsTurn\\":{\\"version\\":0,\\"turn\\":0}}"}');
         }
+
+        localStorage.setItem('game-endpoint', '{"ttl":0,"expiry":0,"value":"\\"' + window.location.origin + '\\""}');
     });
 
     window.unload = function() {
