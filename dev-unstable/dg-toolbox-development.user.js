@@ -4,8 +4,8 @@
 // @namespace    dg-toolbox
 // @homepage     https://github.com/vberezan/dg-toolbox
 // @supportURL   https://github.com/vberezan/dg-toolbox
-// @downloadURL  https://raw.githubusercontent.com/vberezan/dg-toolbox/install/dg-toolbox.user.js
-// @updateURL    https://raw.githubusercontent.com/vberezan/dg-toolbox/install/dg-toolbox.user.js
+// @downloadURL  https://raw.githubusercontent.com/vberezan/dg-toolbox/development/stable-release/dg-toolbox-development.user.js
+// @updateURL    https://raw.githubusercontent.com/vberezan/dg-toolbox/development/stable-release/dg-toolbox-development.user.js
 // @description  Revamp DarkGalaxy UI and some additional crafts. All of this to combine the classical DG experience with the modern web experience. This toolbox is supported only by modern browsers.
 // @match        https://*.darkgalaxy.com
 // @match        https://*.darkgalaxy.com/*
@@ -26,10 +26,8 @@ function loadResource(element) {
 }
 
 function getVersion() {
-  if (localStorage.getItem('local-metadata'))
-    return JSON.parse(JSON.parse(localStorage.getItem('local-metadata')).value).dgtVersion;
+  if (localStorage.getItem('js-version')) return JSON.parse(localStorage.getItem('js-version')).value;
   else return 'v2.0.1';
-
 }
 
 function loadSetups(windowURL) {
@@ -37,35 +35,26 @@ function loadSetups(windowURL) {
 
   loadResource({
     tagName: 'script',
-    src: 'https://cdn.jsdelivr.net/gh/vberezan/dg-toolbox/stable-release/' + getVersion() + '/dgt-toolbox-setup-dgt-placeholders.js',
+    src: 'https://cdn.jsdelivr.net/gh/vberezan/dg-toolbox@development/stable-release/parts/dgt-toolbox-setup-dgt-placeholders.12.js',
     rel: 'text/javascript'
   }).onload = function () {
-    setUpPrerequisites()
-    setUpNavbarReplacement();
-    setUpChangelog(windowURL);
-    setUpAdminDataLoad(windowURL);
-    setUpPlanetListStatsPanel(windowURL);
-    setUpSharedScansCollector(windowURL);
-    setUpNavigationScanDataPanel(windowURL);
-    setUpAlliancePanel(windowURL);
-    setUpRankings(windowURL);
-    setUpResearchPanel(windowURL);
+    setupPlaceHolders(windowURL);
   }
 }
 
-function loadCustomStyling() {
+function loadCustomStyling(windowURL) {
   console.log("%cDGT%c - applying custom theme", "font-size: 12px; font-weight: bold;", "font-size: 12px;");
 
   loadResource({
     tagName: 'script',
-    src: 'https://cdn.jsdelivr.net/gh/vberezan/dg-toolbox/stable-release/' + getVersion() + '/dg-toolbox-custom-styling.js',
+    src: 'https://cdn.jsdelivr.net/gh/vberezan/dg-toolbox@development/stable-release/parts/dg-toolbox-custom-styling.60.js',
     rel: 'text/javascript'
   }).onload = function () {
-    applyCustomStyling();
+    applyCustomStyling(windowURL);
 
     loadResource({
       tagName: 'script',
-      src: 'https://cdn.jsdelivr.net/gh/vberezan/dg-toolbox/stable-release/' + getVersion() + '/dg-toolbox-replace-icons-with-fa-icons.js',
+      src: 'https://cdn.jsdelivr.net/gh/vberezan/dg-toolbox@development/stable-release/parts/dg-toolbox-replace-icons-with-fa-icons.10.js',
       rel: 'text/javascript'
     }).onload = function () {
       replaceIconsWithFAIcons();
@@ -73,7 +62,7 @@ function loadCustomStyling() {
 
     loadResource({
       tagName: 'script',
-      src: 'https://cdn.jsdelivr.net/gh/vberezan/dg-toolbox/stable-release/' + getVersion() + '/dg-toolbox-replace-icons-with-images.js',
+      src: 'https://cdn.jsdelivr.net/gh/vberezan/dg-toolbox@development/stable-release/parts/dg-toolbox-replace-icons-with-images.31.js',
       rel: 'text/javascript'
     }).onload = function () {
       replaceIconsWithImages();
@@ -81,7 +70,7 @@ function loadCustomStyling() {
 
     loadResource({
       tagName: 'script',
-      src: 'https://cdn.jsdelivr.net/gh/vberezan/dg-toolbox/stable-release/' + getVersion() + '/dg-toolbox-replace-planets-images.js',
+      src: 'https://cdn.jsdelivr.net/gh/vberezan/dg-toolbox@development/stable-release/parts/dg-toolbox-replace-planets-images.6.js',
       rel: 'text/javascript'
     }).onload = function () {
       replacePlanetsImages();
@@ -89,7 +78,7 @@ function loadCustomStyling() {
 
     loadResource({
       tagName: 'script',
-      src: 'https://cdn.jsdelivr.net/gh/vberezan/dg-toolbox/stable-release/' + getVersion() + '/dg-toolbox-replace-structures-images.js',
+      src: 'https://cdn.jsdelivr.net/gh/vberezan/dg-toolbox@development/stable-release/parts/dg-toolbox-replace-structures-images.8.js',
       rel: 'text/javascript'
     }).onload = function () {
       replaceStructuresImages(window.location.origin);
@@ -97,7 +86,7 @@ function loadCustomStyling() {
 
     loadResource({
       tagName: 'script',
-      src: 'https://cdn.jsdelivr.net/gh/vberezan/dg-toolbox/stable-release/' + getVersion() + '/dg-toolbox-replace-ships-images.js',
+      src: 'https://cdn.jsdelivr.net/gh/vberezan/dg-toolbox@development/stable-release/parts/dg-toolbox-replace-ships-images.17.js',
       rel: 'text/javascript'
     }).onload = function () {
       replaceShipsImages();
@@ -110,15 +99,15 @@ function loadAngular() {
 
   let angular = [{
     tagName: 'script',
-    src: 'https://cdn.jsdelivr.net/gh/vberezan/dg-toolbox/stable-release/' + getVersion() + '/runtime.js',
+    src: 'https://cdn.jsdelivr.net/gh/vberezan/dg-toolbox@development/angular/toolbox-app/dist/toolbox-app/runtime.926d433ed3f5f1cc.js',
     rel: 'module'
   }, {
     tagName: 'script',
-    src: 'https://cdn.jsdelivr.net/gh/vberezan/dg-toolbox/stable-release/' + getVersion() + '/polyfills.js',
+    src: 'https://cdn.jsdelivr.net/gh/vberezan/dg-toolbox@development/angular/toolbox-app/dist/toolbox-app/polyfills.8e8b88e65f8eb80f.js',
     rel: 'module'
   }, {
     tagName: 'script',
-    src: 'https://cdn.jsdelivr.net/gh/vberezan/dg-toolbox/stable-release/' + getVersion() + '/main.js',
+    src: 'https://cdn.jsdelivr.net/gh/vberezan/dg-toolbox@development/angular/toolbox-app/dist/toolbox-app/main.a0b1c9b9db647ee7.js',
     rel: 'module'
   }];
 
@@ -138,7 +127,7 @@ function loadGlobalAngularStyling() {
 
   let angular = [{
     tagName: 'link',
-    href: 'https://cdn.jsdelivr.net/gh/vberezan/dg-toolbox/stable-release/' + getVersion() + '/styles.css',
+    href: 'https://cdn.jsdelivr.net/gh/vberezan/dg-toolbox@development/angular/toolbox-app/dist/toolbox-app/styles.fc905aefbcf68087.css',
     rel: 'stylesheet'
   }];
 
@@ -159,7 +148,7 @@ function loadGlobalAngularStyling() {
 
     loadResource({
       tagName: 'script',
-      src: 'https://cdn.jsdelivr.net/gh/vberezan/dg-toolbox/stable-release/' + getVersion() + '/dg-toolbox-utils.js',
+      src: 'https://cdn.jsdelivr.net/gh/vberezan/dg-toolbox@development/stable-release/parts/dg-toolbox-utils.4.js',
       rel: 'text/javascript'
     }).onload = function () {
       if (document.getElementById('playerBox')) {
@@ -167,7 +156,7 @@ function loadGlobalAngularStyling() {
 
         loadSetups(windowURL);
         loadAngular();
-        loadCustomStyling();
+        loadCustomStyling(windowURL);
         setTimeout(() => document.body.style.visibility = 'visible', 0);
       } else setTimeout(() => document.body.style.visibility = 'visible', 0);
     }
