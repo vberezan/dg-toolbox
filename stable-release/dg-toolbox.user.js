@@ -61,7 +61,7 @@ function loadCustomStyling(windowURL) {
     src: 'https://cdn.jsdelivr.net/gh/vberezan/dg-toolbox/stable-release/' + getVersion() + '/dg-toolbox-custom-styling.js',
     rel: 'text/javascript'
   }).onload = function () {
-    applyCustomStyling();
+    applyCustomStyling(windowURL);
 
     loadResource({
       tagName: 'script',
