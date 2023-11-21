@@ -148,7 +148,6 @@ function loadGlobalAngularStyling() {
 
 (function () {
   document.addEventListener("DOMContentLoaded", function (event) {
-    localStorage.setItem('dev-mode', true);
     if (localStorage.getItem('hotfix') !== '2.0.0') {
       if (!localStorage.getItem('post-install-fetch-metadata')) {
         localStorage.clear();
