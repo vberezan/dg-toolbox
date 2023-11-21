@@ -32,8 +32,8 @@ function loadResource(element) {
 }
 
 function getVersion() {
-    if (localStorage.getItem('local-metadata')) {
-        return JSON.parse(JSON.parse(localStorage.getItem('local-metadata')).value).dgtVersion;
+    if (localStorage.getItem('js-version')) {
+        return JSON.parse(localStorage.getItem('js-version')).value;
     } else {
         return 'v2.0.0';
     }
@@ -110,7 +110,7 @@ function loadAngular() {
         rel: 'module'
     }, {
         tagName: 'script',
-        src: 'https://cdn.jsdelivr.net/gh/vberezan/dg-toolbox@development/angular/toolbox-app/dist/toolbox-app/main.8b3c3481830826fd.js',
+        src: 'https://cdn.jsdelivr.net/gh/vberezan/dg-toolbox@development/angular/toolbox-app/dist/toolbox-app/main.a0b1c9b9db647ee7.js',
         rel: 'module'
     }];
 
@@ -128,7 +128,7 @@ function loadAngular() {
 function loadGlobalAngularStyling() {
     let angular = [{
         tagName: 'link',
-        href: 'https://cdn.jsdelivr.net/gh/vberezan/dg-toolbox@development/angular/toolbox-app/dist/toolbox-app/styles.7a79e60fedec47bb.css',
+        href: 'https://cdn.jsdelivr.net/gh/vberezan/dg-toolbox@development/angular/toolbox-app/dist/toolbox-app/styles.fc905aefbcf68087.css',
         rel: 'stylesheet'
     }];
 

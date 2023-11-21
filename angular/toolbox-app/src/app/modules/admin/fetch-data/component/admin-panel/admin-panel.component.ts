@@ -5,7 +5,6 @@ import {Subscription} from "rxjs";
 import {PageAction} from "../../../../../shared/model/stats/page-action.model";
 import {AuthService} from "../../../../authentication/service/auth.service";
 import {AuthState} from "../../../../../shared/model/authentication/auth-state.model";
-import {PlanetSummary} from "../../../../../shared/model/planets/planet-summary.planet-list-model";
 
 @Component({
   selector: 'dgt-admin-load-data-panel',

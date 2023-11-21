@@ -8,7 +8,6 @@ import {PlayerStats} from "../../../../shared/model/stats/player-stats.model";
 import {HttpClient} from "@angular/common/http";
 import {AllianceMember} from "../../../../shared/model/alliances/alliance-member.model";
 import {Metadata} from "../../../../shared/model/local-storage/metadata.model";
-import {environment} from "../../../../../environments/environment";
 
 @Injectable({
   providedIn: 'root'

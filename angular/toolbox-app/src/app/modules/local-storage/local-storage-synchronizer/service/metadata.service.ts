@@ -1,4 +1,4 @@
-import {EventEmitter, inject, Injectable} from '@angular/core';
+import {inject, Injectable} from '@angular/core';
 import {UpdateMetadata} from "../../../../shared/model/stats/update-metadata.model";
 import {collection, doc, docData, Firestore, setDoc, updateDoc} from "@angular/fire/firestore";
 import {Subscription} from "rxjs";

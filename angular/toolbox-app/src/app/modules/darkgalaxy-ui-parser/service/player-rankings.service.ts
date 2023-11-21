@@ -1,4 +1,4 @@
-import { Injectable } from '@angular/core';
+import {Injectable} from '@angular/core';
 import {DataExtractor} from "./data-extractor";
 import {PlayerStats} from "../../../shared/model/stats/player-stats.model";
 

@@ -1,8 +1,8 @@
-import { NgModule } from '@angular/core';
-import { AdminPanelComponent } from './component/admin-panel/admin-panel.component';
+import {NgModule} from '@angular/core';
+import {AdminPanelComponent} from './component/admin-panel/admin-panel.component';
 import {BrowserModule} from "@angular/platform-browser";
-import { HttpClientModule} from "@angular/common/http";
-import { AllianceListDirective } from './directive/alliance-list.directive';
+import {HttpClientModule} from "@angular/common/http";
+import {AllianceListDirective} from './directive/alliance-list.directive';
 import {FormsModule} from "@angular/forms";
 import {getApp, initializeApp, provideFirebaseApp} from "@angular/fire/app";
 import {environment} from "../../../../environments/environment";
