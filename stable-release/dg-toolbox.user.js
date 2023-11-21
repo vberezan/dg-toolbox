@@ -53,7 +53,7 @@ function loadSetups(windowURL) {
   }
 }
 
-function loadCustomStyling() {
+function loadCustomStyling(windowURL) {
   console.log("%cDGT%c - applying custom theme", "font-size: 12px; font-weight: bold;", "font-size: 12px;");
 
   loadResource({
