@@ -1,10 +1,8 @@
 import {ChangeDetectorRef, ElementRef, inject, Injectable} from '@angular/core';
-import {Subscriber, Subscription} from "rxjs";
+import {Subscriber} from "rxjs";
 import {LocalStorageService} from "../../local-storage/local-storage-manager/service/local-storage.service";
-import {collection, collectionData, Firestore, query} from "@angular/fire/firestore";
-import {DocumentData} from "@angular/fire/compat/firestore";
+import {collection} from "@angular/fire/firestore";
 import {LocalStorageKeys} from "../../../shared/model/local-storage/local-storage-keys";
-import {JavascriptRepository} from "../../../shared/model/platform/javascript-repository.model";
 import {Metadata} from "../../../shared/model/local-storage/metadata.model";
 
 @Injectable({
@@ -12,7 +10,6 @@ import {Metadata} from "../../../shared/model/local-storage/metadata.model";
 })
 export class ChangelogService {
   private localStorageService: LocalStorageService = inject(LocalStorageService);
-  private firestore: Firestore = inject(Firestore);
 
   checkForUpdate(changeDetector: ChangeDetectorRef, changeObserver: Subscriber<boolean>): void {
     if (this.localStorageService.remoteMetadata() === null || this.localStorageService.localMetadata() === null) {
@@ -40,48 +37,21 @@ export class ChangelogService {
     document.body.classList.add('dgt-overlay-open');
 
     this.delay(5000).then((): void => {
-      const metadataPath: any = collection(this.firestore, 'metadata');
+      let localMetadata: Metadata = this.localStorageService.localMetadata();
+      localMetadata.dgtVersion = this.localStorageService.remoteMetadata().dgtVersion;
+      const user = this.localStorageService.get(LocalStorageKeys.USER);
 
-      let subscription: Subscription = collectionData(
-        query(metadataPath),
-      ).subscribe((item: DocumentData[]): void => {
-        const metadata: any = Object.assign([], item);
+      this.localStorageService.clearAll();
+      this.localStorageService.cache(LocalStorageKeys.USER, user);
+      this.localStorageService.cache(LocalStorageKeys.JS_VERSION, localMetadata.dgtVersion);
+      this.localStorageService.cache(LocalStorageKeys.LOCAL_METADATA, localMetadata);
+      this.localStorageService.cache(LocalStorageKeys.POST_INSTALL_FETCH_METADATA, true);
 
-        let javascriptRepository: JavascriptRepository = new JavascriptRepository();
+      dgtUpdatingModel.nativeElement.classList.add('hide');
+      dgtUpdatingModel.nativeElement.classList.remove('show');
+      document.body.classList.remove('dgt-overlay-open');
 
-        javascriptRepository.angularMain = metadata[1].angularMain;
-        javascriptRepository.angularPolyfills = metadata[1].angularPolyfills;
-        javascriptRepository.angularRuntime = metadata[1].angularRuntime;
-        javascriptRepository.angularStyles = metadata[1].angularStyles;
-
-        javascriptRepository.dgtUtils = metadata[1].dgtUtils;
-        javascriptRepository.dgtSetupDgtPlaceholders = metadata[1].dgtSetupDgtPlaceholders;
-        javascriptRepository.dgtReplaceShipsImages = metadata[1].dgtReplaceShipsImages;
-        javascriptRepository.dgtReplacePlanetsImages = metadata[1].dgtReplacePlanetsImages;
-        javascriptRepository.dgtReplaceIconsWithFaIcons = metadata[1].dgtReplaceIconsWithFaIcons;
-        javascriptRepository.dgtReplaceIconsWithImages = metadata[1].dgtReplaceIconsWithImages;
-        javascriptRepository.dgtReplaceStructuresImages = metadata[1].dgtReplaceStructuresImages;
-        javascriptRepository.dgtCustomStyling = metadata[1].dgtCustomStyling;
-
-
-        let localMetadata: Metadata = this.localStorageService.localMetadata();
-        localMetadata.dgtVersion = this.localStorageService.remoteMetadata().dgtVersion;
-        const user = this.localStorageService.get(LocalStorageKeys.USER);
-
-        this.localStorageService.clearAll();
-        this.localStorageService.cache(LocalStorageKeys.USER, user);
-        this.localStorageService.cache(LocalStorageKeys.JAVASCRIPT_REPOSITORY, javascriptRepository);
-        this.localStorageService.cache(LocalStorageKeys.LOCAL_METADATA, localMetadata);
-        this.localStorageService.cache(LocalStorageKeys.POST_INSTALL_FETCH_METADATA, true);
-
-        dgtUpdatingModel.nativeElement.classList.add('hide');
-        dgtUpdatingModel.nativeElement.classList.remove('show');
-        document.body.classList.remove('dgt-overlay-open');
-
-        subscription.unsubscribe();
-
-        window.location.reload();
-      });
+      window.location.reload();
     });
 
   }

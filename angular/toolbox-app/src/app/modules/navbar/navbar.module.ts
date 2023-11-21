@@ -8,7 +8,6 @@ import {getAuth, provideAuth} from "@angular/fire/auth";
 import {getFirestore, provideFirestore} from "@angular/fire/firestore";
 import {initializeAppCheck, provideAppCheck, ReCaptchaV3Provider} from "@angular/fire/app-check";
 import {getAnalytics, provideAnalytics} from "@angular/fire/analytics";
-import {ChangelogService} from "../changelog/service/changelog.service";
 
 @NgModule({
   imports: [
@@ -24,9 +23,7 @@ import {ChangelogService} from "../changelog/service/changelog.service";
     ),
     provideAnalytics(() => getAnalytics())
   ],
-  providers: [
-    ChangelogService // -- contains firestore reference
-  ],
+  providers: [],
   declarations: [
     MenuComponent,
     ActiveTabDirective
