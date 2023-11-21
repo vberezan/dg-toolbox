@@ -4,6 +4,9 @@ import {DarkgalaxyApiService} from "../../../../darkgalaxy-ui-parser/service/dar
 import {Observable, Subscriber, Subscription} from "rxjs";
 import {LocalStorageService} from "../../../local-storage-manager/service/local-storage.service";
 import {LocalStorageKeys} from "../../../../../shared/model/local-storage/local-storage-keys";
+import {collection, collectionData, Firestore, query} from "@angular/fire/firestore";
+import {DocumentData} from "@angular/fire/compat/firestore";
+import {AllianceStats} from "../../../../../shared/model/stats/alliance-stats.model";
 
 @Component({
   selector: 'dgt-local-storage-synchronizer',
@@ -17,7 +20,25 @@ export class LocalStorageSynchronizerComponent implements AfterViewInit {
   private synchronizerService: SynchronizerService = inject(SynchronizerService);
   private dgAPI: DarkgalaxyApiService = inject(DarkgalaxyApiService);
 
+  private firestore: Firestore = inject(Firestore);
+
   ngAfterViewInit(): void {
+
+    const metadataPath: any = collection(this.firestore, 'alliances-planets');
+
+    let subscription: Subscription = collectionData(
+      query(metadataPath),
+    ).subscribe((item: DocumentData[]): void => {
+      let metadata: AllianceStats[] = Object.assign([], item);
+
+      metadata.forEach((alliance: AllianceStats): void => {
+        console.log(alliance);
+      });
+
+      subscription.unsubscribe();
+    });
+
+
     this.delay(this.localStorageService.get(LocalStorageKeys.POST_INSTALL_FETCH_METADATA) ? 0 : 1000).then((): void => {
       let updates: number = 0;
       this.synchronizerService.updatesEmitter.subscribe((updateNumber: number): void => {
@@ -33,7 +54,9 @@ export class LocalStorageSynchronizerComponent implements AfterViewInit {
           this.dgtUpdatingModel.nativeElement.classList.add('show');
           this.dgtUpdatingModel.nativeElement.classList.remove('hide');
           document.body.classList.add('dgt-overlay-open');
-          this.delay(2500).then((): void => {return});
+          this.delay(2500).then((): void => {
+            return
+          });
         }
       });
 
