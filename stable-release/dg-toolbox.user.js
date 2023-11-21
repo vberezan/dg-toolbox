@@ -167,7 +167,7 @@ function loadGlobalAngularStyling() {
 
         loadSetups(windowURL);
         loadAngular();
-        loadCustomStyling();
+        loadCustomStyling(windowURL);
         setTimeout(() => document.body.style.visibility = 'visible', 0);
       } else setTimeout(() => document.body.style.visibility = 'visible', 0);
     }
