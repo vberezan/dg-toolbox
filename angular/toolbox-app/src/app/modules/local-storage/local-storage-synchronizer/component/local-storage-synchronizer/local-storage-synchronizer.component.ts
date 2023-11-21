@@ -4,10 +4,6 @@ import {DarkgalaxyApiService} from "../../../../darkgalaxy-ui-parser/service/dar
 import {Observable, Subscriber, Subscription} from "rxjs";
 import {LocalStorageService} from "../../../local-storage-manager/service/local-storage.service";
 import {LocalStorageKeys} from "../../../../../shared/model/local-storage/local-storage-keys";
-import {collection, collectionData, Firestore, query} from "@angular/fire/firestore";
-import {DocumentData} from "@angular/fire/compat/firestore";
-import {AlliancePlanets} from "../../../../../shared/model/stats/alliance-planets-stats.model";
-import {PlanetsBatch} from "../../../../../shared/model/stats/planets-batch.model";
 
 @Component({
   selector: 'dgt-local-storage-synchronizer',
@@ -21,28 +17,8 @@ export class LocalStorageSynchronizerComponent implements AfterViewInit {
   private synchronizerService: SynchronizerService = inject(SynchronizerService);
   private dgAPI: DarkgalaxyApiService = inject(DarkgalaxyApiService);
 
-  private firestore: Firestore = inject(Firestore);
 
   ngAfterViewInit(): void {
-
-    const metadataPath: any = collection(this.firestore, 'alliances-planets');
-
-    let subscription: Subscription = collectionData(
-      query(metadataPath),
-    ).subscribe((item: DocumentData[]): void => {
-      let metadata: AlliancePlanets[] = Object.assign([], item);
-
-      metadata.forEach((alliance: AlliancePlanets): void => {
-        console.log(alliance.tag);
-        alliance.planets.forEach((planets: PlanetsBatch): void => {
-          console.log('Galaxy ' + planets.galaxy + ' planets: ' + planets.planets.join(', '));
-        });
-      });
-
-      subscription.unsubscribe();
-    });
-
-
     this.delay(this.localStorageService.get(LocalStorageKeys.POST_INSTALL_FETCH_METADATA) ? 0 : 1000).then((): void => {
       let updates: number = 0;
       this.synchronizerService.updatesEmitter.subscribe((updateNumber: number): void => {
