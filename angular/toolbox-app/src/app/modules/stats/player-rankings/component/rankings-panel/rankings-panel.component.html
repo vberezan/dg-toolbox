@@ -15,7 +15,13 @@
     </thead>
     <tbody>
     <tr *ngFor="let player of rankings.values()"
-        [ngClass]="{'hostile':player.relation === 'hostile', 'allied':player.relation === 'allied', 'self':player.relation === 'self', 'nap':player.relation === 'nap'}">
+        [ngClass]="{
+          'neutral':player.relation === 'neutral',
+          'hostile':player.relation === 'hostile',
+          'allied':player.relation === 'allied',
+          'self':player.relation === 'self',
+          'nap':player.relation === 'nap'
+        }">
       <td class="rank">{{player.rank}}</td>
       <td class="alliance">{{player.alliance}}</td>
       <td class="name">{{player.name}}</td>

@@ -71,6 +71,12 @@
   color: #7bbd1a !important
 }
 
+.neutral .alliance,
+.neutral .rank {
+  background: #767676 !important;
+  color: #fff !important
+}
+
 td.alliance {
   text-transform: uppercase;
 }
