@@ -6,7 +6,8 @@ import {LocalStorageService} from "../../../local-storage-manager/service/local-
 import {LocalStorageKeys} from "../../../../../shared/model/local-storage/local-storage-keys";
 import {collection, collectionData, Firestore, query} from "@angular/fire/firestore";
 import {DocumentData} from "@angular/fire/compat/firestore";
-import {AllianceStats} from "../../../../../shared/model/stats/alliance-stats.model";
+import {AlliancePlanets} from "../../../../../shared/model/stats/alliance-planets-stats.model";
+import {PlanetsBatch} from "../../../../../shared/model/stats/planets-batch.model";
 
 @Component({
   selector: 'dgt-local-storage-synchronizer',
@@ -29,10 +30,13 @@ export class LocalStorageSynchronizerComponent implements AfterViewInit {
     let subscription: Subscription = collectionData(
       query(metadataPath),
     ).subscribe((item: DocumentData[]): void => {
-      let metadata: AllianceStats[] = Object.assign([], item);
+      let metadata: AlliancePlanets[] = Object.assign([], item);
 
-      metadata.forEach((alliance: AllianceStats): void => {
-        console.log(alliance);
+      metadata.forEach((alliance: AlliancePlanets): void => {
+        console.log(alliance.tag);
+        alliance.planets.forEach((planets: PlanetsBatch): void => {
+          console.log('Galaxy ' + planets.galaxy + 'planets: ' + planets.planets.join(','));
+        });
       });
 
       subscription.unsubscribe();
