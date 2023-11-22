@@ -149,7 +149,12 @@
 
 @media only screen and (max-width: 1400px) {
   #dgt-credits {
-    margin-bottom: 20px;
+    float: left;
+    margin-top: 5px;
+  }
+
+  #header > .left a {
+    float: left !important;
   }
 }
 
