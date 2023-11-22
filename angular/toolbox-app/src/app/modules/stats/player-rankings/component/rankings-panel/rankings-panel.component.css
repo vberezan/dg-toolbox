@@ -36,11 +36,12 @@
 }
 
 .score {
-  width: 70px;
+  width: 100px;
 }
 
 .score-per-planet {
   width: 50px;
+  text-align: center;
 }
 
 .rank {
