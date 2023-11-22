@@ -12,8 +12,8 @@
         <th class="inner">Inner</th>
         <th class="outer">Outer</th>
         <th class="empty"></th>
-        <th class="score">Score</th>
         <th class="score-per-planet">Score/Planet</th>
+        <th class="score">Score</th>
       </tr>
       </thead>
       <tbody>
@@ -33,8 +33,8 @@
         <td class="inner"><a href="javascript:void(0);">{{player.g213Total}}</a></td>
         <td class="outer"><a href="javascript:void(0);">{{player.g1449Total}}</a></td>
         <td class="empty"></td>
-        <td class="score">{{player.score | number:'1.0':'en-US'}}</td>
         <td class="score-per-planet">{{player.score | scorePerPlanetFormatter: player.planets}}</td>
+        <td class="score">{{player.score | number:'1.0':'en-US'}}</td>
       </tr>
       </tbody>
     </table>
