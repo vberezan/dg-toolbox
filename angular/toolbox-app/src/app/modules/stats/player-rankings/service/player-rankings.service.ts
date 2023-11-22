@@ -76,8 +76,6 @@ export class PlayerRankingsService {
       orderedRankings.set(cachedStats[i].playerId, cachedStats[i]);
     }
 
-    document.querySelector('.playerRankingsList').remove();
-
     return orderedRankings;
   }
 
