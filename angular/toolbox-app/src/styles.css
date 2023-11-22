@@ -1019,9 +1019,18 @@ label.queueDestroyButton:hover {
   align-items: center;
 }
 
-#planetHeader .planetName .dgt-planet-name {
+#planetHeader .planetName {
   font-size: 18px;
   line-height: 26px;
+  color: #ffd46f;
+  font-weight: 700;
+  float: left;
+  display: flex;
+}
+
+#planetHeader .planetName .dgt-planet-name {
+  font-size: 18px;
+  line-height: 24px;
   color: #ffd46f;
   font-weight: bold;
   float: left;
@@ -1030,7 +1039,7 @@ label.queueDestroyButton:hover {
 
 #planetHeader .planetName .dgt-planet-prev {
   font-size: 18px !important;
-  line-height: 23px !important;
+  line-height: 22px !important;
   padding: 0 !important;
   margin-right: 5px !important;
   text-align: center !important;
