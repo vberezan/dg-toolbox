@@ -44,8 +44,8 @@ export class LocalStorageSynchronizerComponent implements AfterViewInit {
       let updates: number = 0;
 
       this.synchronizerService.updatesEmitter.subscribe((updateNumber: number): void => {
-        updates += updateNumber;
-        if (updates == 0) {
+        if (updateNumber == 0) {
+          updates = updateNumber;
           this.delay(2500).then((): void => {
             this.dgtUpdatingModel.nativeElement.classList.add('hide');
             this.dgtUpdatingModel.nativeElement.classList.remove('show');
@@ -53,12 +53,15 @@ export class LocalStorageSynchronizerComponent implements AfterViewInit {
             window.location.reload();
           });
         } else {
-          this.dgtUpdatingModel.nativeElement.classList.add('show');
-          this.dgtUpdatingModel.nativeElement.classList.remove('hide');
-          document.body.classList.add('dgt-overlay-open');
-          this.delay(2500).then((): void => {
-            return;
-          });
+          if (updates == 0) {
+            updates = updateNumber;
+            this.dgtUpdatingModel.nativeElement.classList.add('show');
+            this.dgtUpdatingModel.nativeElement.classList.remove('hide');
+            document.body.classList.add('dgt-overlay-open');
+            this.delay(2500).then((): void => {
+              return;
+            });
+          }
         }
       });
 

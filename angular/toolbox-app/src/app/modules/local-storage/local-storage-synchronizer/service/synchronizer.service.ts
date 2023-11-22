@@ -102,7 +102,7 @@ export class SynchronizerService {
   private loadPlayersRankings(playersRankingsEmitter: EventEmitter<PageAction>): void {
     this._updatesEmitter.emit(1);
     this.playersRankingsLoaderService.scanPlayersRankingsScreens(playersRankingsEmitter).then((): void => {
-      this._updatesEmitter.emit(-2);
+      this._updatesEmitter.emit(0);
     });
   }
 
