@@ -102,8 +102,7 @@ export class SynchronizerService {
 
   private loadPlayersRankings(turn: number): void {
     this._updatesEmitter.emit(1);
-    this._updatesEmitter.emit(-1);
-    this.playersRankingsLoaderService.scanPlayersRankingsScreens();
+    this.playersRankingsLoaderService.scanPlayersRankingsScreens(this._updatesEmitter);
 
     // const playersRankingsPath: any = collection(this.firestore, 'players-rankings');
     //

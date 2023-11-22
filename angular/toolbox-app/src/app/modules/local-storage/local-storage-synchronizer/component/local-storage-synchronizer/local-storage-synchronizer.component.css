@@ -32,3 +32,57 @@
 #dgt-update-data.hide {
   display: none !important;
 }
+
+#dgt-load-rankings-overlay-modal .dgt-display-info {
+  height: 90px;
+}
+
+.dgt-display-info {
+  margin: auto;
+  width: 300px;
+  left: calc(50% - 150px);
+  top: calc(50% - 45px);
+  border: 1px solid #364a36;
+  border-radius: 5px;
+  padding: 10px;
+  vertical-align: middle;
+  text-align: center;
+  background: #3a593a;
+  position: fixed;
+}
+
+.progressbar {
+  position: relative;
+  display: block;
+  max-width: 200px;
+  width: 100%;
+  margin: 10px auto;
+  height: 20px;
+  background: #fff;
+  overflow: hidden;
+  border-radius: 5px;
+}
+
+span.progress {
+  display: block;
+  position: absolute;
+  left: 0;
+  top: 0;
+  bottom: 0;
+  width: 0;
+  transition: all .3s;
+  height: 100%;
+  background: #4ac54a !important;
+}
+
+span.percentage {
+  width: 100%;
+  position: relative;
+  float: left;
+  background: transparent;
+  z-index: 9999;
+  height: 100%;
+  line-height: 20px;
+  color: #000;
+  font-size: 15px;
+}
