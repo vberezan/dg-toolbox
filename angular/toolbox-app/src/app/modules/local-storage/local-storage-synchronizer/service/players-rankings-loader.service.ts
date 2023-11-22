@@ -8,7 +8,7 @@ import {PlayerPlanets} from "../../../../shared/model/stats/player-planets-stats
 import {PageAction} from "../../../../shared/model/stats/page-action.model";
 import {AtomicNumber} from "../../../../shared/model/atomic-number.model";
 import {LocalStorageKeys} from "../../../../shared/model/local-storage/local-storage-keys";
-import {LocalStorageService} from "../../../local-storage/local-storage-manager/service/local-storage.service";
+import {LocalStorageService} from "../../local-storage-manager/service/local-storage.service";
 import {Metadata} from "../../../../shared/model/local-storage/metadata.model";
 import {DarkgalaxyApiService} from "../../../darkgalaxy-ui-parser/service/darkgalaxy-api.service";
 import {UpdateMetadata} from "../../../../shared/model/stats/update-metadata.model";

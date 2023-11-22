@@ -12,9 +12,9 @@ import {PageAction} from "../../../../../shared/model/stats/page-action.model";
   styleUrls: ['./local-storage-synchronizer.component.css']
 })
 export class LocalStorageSynchronizerComponent implements AfterViewInit {
-  @ViewChild('dgtUpdatingModel', {static: false}) dgtUpdatingModel: ElementRef;
-  @ViewChild('rankingsLoadModal', {static: false}) rankingsLoadModal: ElementRef;
-  @ViewChild('playersProgressBar', {static: false}) playersProgressBar: ElementRef;
+  @ViewChild('dgtUpdatingModel') dgtUpdatingModel: ElementRef;
+  @ViewChild('rankingsLoadModal') rankingsLoadModal: ElementRef;
+  @ViewChild('playersProgressBar') playersProgressBar: ElementRef;
 
   private synchronizerService: SynchronizerService = inject(SynchronizerService);
   private dgAPI: DarkgalaxyApiService = inject(DarkgalaxyApiService);
@@ -98,19 +98,34 @@ export class LocalStorageSynchronizerComponent implements AfterViewInit {
       }
     });
 
-    this.synchronizerService.loadRankings(this.dgAPI.gameTurn(), (): void => {
-      this.playersProgressBar.nativeElement.style.width = '0%';
-      this.loadedRankings = 'Loading ranking pages';
+    this.synchronizerService.loadRankings(this.dgAPI.gameTurn(), (popup: string): void => {
+      switch (popup) {
+        case 'players-rankings':
+          this.dgtUpdatingModel.nativeElement.classList.add('hide');
+          this.dgtUpdatingModel.nativeElement.classList.remove('show');
+          document.body.classList.remove('dgt-overlay-open');
 
-      if (document.body.classList.contains('dgt-overlay-open')) {
-        this.dgtUpdatingModel.nativeElement.classList.add('hide');
-        this.dgtUpdatingModel.nativeElement.classList.remove('show');
-        document.body.classList.remove('dgt-overlay-open');
+          this.playersProgressBar.nativeElement.style.width = '0%';
+          this.loadedRankings = 'Loading ranking pages';
+
+          this.rankingsLoadModal.nativeElement.classList.add('show');
+          this.rankingsLoadModal.nativeElement.classList.remove('hide');
+          document.body.classList.add('dgt-overlay-open');
+
+          break;
+        case 'alliance-members':
+          this.rankingsLoadModal.nativeElement.classList.remove('show');
+          this.rankingsLoadModal.nativeElement.classList.add('hide');
+          document.body.classList.remove('dgt-overlay-open');
+
+          this.dgtUpdatingModel.nativeElement.classList.remove('hide');
+          this.dgtUpdatingModel.nativeElement.classList.add('show');
+          document.body.classList.add('dgt-overlay-open');
+
+          break;
+        default:
+          break;
       }
-
-      this.rankingsLoadModal.nativeElement.classList.add('show');
-      this.rankingsLoadModal.nativeElement.classList.remove('hide');
-      document.body.classList.add('dgt-overlay-open');
     });
   }
 
