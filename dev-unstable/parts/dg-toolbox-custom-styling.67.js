@@ -209,8 +209,8 @@ function applyCustomStyling(windowURL) {
             }
 
             planetName.innerHTML = '';
-            planetName.append(previous);
             planetName.append(name);
+            planetName.append(previous);
             planetName.append(next);
         }
     }
