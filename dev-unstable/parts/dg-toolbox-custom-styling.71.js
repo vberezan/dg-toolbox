@@ -193,6 +193,15 @@ function applyCustomStyling(windowURL) {
         }
 
         if (document.querySelector('.planetName')) {
+            let coords = document.querySelector('.planetHeader .coords').textContent.trim();
+            document.querySelector('.planetHeader .coords').remove();
+
+            let dgtNewCoords = document.createElement('div');
+            dgtNewCoords.classList.add('dgt-planet-new-coords-big');
+            dgtNewCoords.innerHTML = '<img src="https://i.imgur.com/HcC4l22.png"><span>' + coords + '</span>';
+
+            document.querySelector('#planetImage').prepend(dgtNewCoords);
+
             let planetName = document.querySelector('.planetName');
             let prev = detach(planetName.querySelector('a'));
             prev.classList.add('dgt-planet-prev');
