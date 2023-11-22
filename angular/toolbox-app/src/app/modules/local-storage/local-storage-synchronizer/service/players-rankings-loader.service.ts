@@ -137,7 +137,7 @@ export class PlayersRankingsLoaderService {
       setTimeout((): void => {
         let subscription: Subscription = docData(
           doc(playersPlanetsPath, playerId.toString())
-        ).subscribe((item: DocumentData): void => {
+        ).subscribe(async (item: DocumentData): Promise<void> => {
           if (item) {
             const playerPlanets: PlayerPlanets = Object.assign(new PlayerPlanets(), item);
 
@@ -150,11 +150,12 @@ export class PlayersRankingsLoaderService {
           }
 
           cache.push(playerStats);
+          await this.delay(50 * saved.number).then((): void => console.log('x'));
           playersRankingsEmitter.emit(new PageAction(++saved.number, playersStats.size, 'save'));
 
           subscription.unsubscribe();
         });
-      }, 50 * saved.number);
+      }, 0);
     });
 
     await this.delay(50 * playersStats.size).then((): void => {

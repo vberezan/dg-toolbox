@@ -79,6 +79,8 @@ export class PlanetsLoaderService {
     this.metadataService.updateMetadataTurns('planets-turn');
 
     cancelSubscription.unsubscribe();
+
+    await this.delay(scanDelay);
   }
 
   private mergeAlliancePlanets(alliancePlanets: Map<string, AlliancePlanets>): void {

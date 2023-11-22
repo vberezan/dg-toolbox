@@ -488,6 +488,10 @@ span.hostile {
   padding-top: 0;
 }
 
+#planetList > #planetList .opacDarkBackground > .planetHeadSection:nth-child(5) {
+  display: inline-table;
+}
+
 #planetList > #planetList .opacDarkBackground > .planetHeadSection:nth-child(5),
 #planetList > #planetList .opacDarkBackground > .planetHeadSection:nth-child(6),
 #planetList > #planetList .opacDarkBackground > .planetHeadSection:nth-child(7) {
