@@ -14,7 +14,7 @@ export class RankingsPanelComponent {
   public rankings: Map<number, PlayerStats> = new Map<number, PlayerStats>();
   private authService: AuthService = inject(AuthService);
   private changeDetection: ChangeDetectorRef = inject(ChangeDetectorRef);
-
+  private sortMap: Map<string, string> = new Map<string, string>();
   public authenticated: boolean = false;
 
   constructor() {
@@ -27,13 +27,24 @@ export class RankingsPanelComponent {
     });
 
     this.authService.checkLoginValidity();
+    this.sortMap.set('score', 'asc');
   }
 
   protected readonly Math = Math;
 
 
   public orderBy(key: string, order: string): void {
-    this.rankings = this.playerRankingsService.orderBy(key, order);
+    if (this.sortMap.has(key)) {
+      if (this.sortMap.get(key) === 'desc') {
+        this.sortMap.set(key, 'asc');
+      } else {
+        this.sortMap.set(key, 'desc');
+      }
+    } else {
+      this.sortMap.set(key, 'desc');
+    }
+
+    this.rankings = this.playerRankingsService.orderBy(key, this.sortMap.get(key));
     this.changeDetection.detectChanges();
   }
 }

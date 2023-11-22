@@ -50,6 +50,7 @@ export class PlayerRankingsService {
 
         switch (key) {
           case 'score':
+          case 'planets':
           case 'g1Total':
           case 'g213Total':
           case 'g1449Total':
@@ -60,7 +61,15 @@ export class PlayerRankingsService {
             if (order === 'asc') {
               cachedStats[i][key] > cachedStats[j][key] ? sortCondition = true : sortCondition = false;
             }
-
+            break;
+          case 'scorePerPlanet':
+            if (order === 'desc') {
+              cachedStats[i].score / cachedStats[i].planets < cachedStats[j].score / cachedStats[j].planets ? sortCondition = true : sortCondition = false;
+            } else {
+              cachedStats[i].score / cachedStats[i].planets > cachedStats[j].score / cachedStats[j].planets ? sortCondition = true : sortCondition = false;
+            }
+            break;
+          default:
             break;
         }
 

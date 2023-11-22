@@ -7,13 +7,13 @@
         <th class="rank">#</th>
         <th class="alliance">Tag</th>
         <th class="name">Player</th>
-        <th class="planets"><a (click)="orderBy('g1Total','desc')" href="javascript:void(0);">Planets</a></th>
-        <th class="g1">G1</th>
-        <th class="inner">Inner</th>
-        <th class="outer">Outer</th>
+        <th class="planets"><a (click)="orderBy('planets','desc')" href="javascript:void(0);">Planets</a></th>
+        <th class="g1"><a (click)="orderBy('g1Total','desc')" href="javascript:void(0);">G1</a></th>
+        <th class="inner"><a (click)="orderBy('g213Total','desc')" href="javascript:void(0);">Inner</a></th>
+        <th class="outer"><a (click)="orderBy('g1449Total','desc')" href="javascript:void(0);">Outer</a></th>
         <th class="empty"></th>
-        <th class="score-per-planet">Score/Planet</th>
-        <th class="score">Score</th>
+        <th class="score-per-planet"><a (click)="orderBy('scorePerPlanet','desc')" href="javascript:void(0);">Score/Planet</a></th>
+        <th class="score"><a (click)="orderBy('score','desc')" href="javascript:void(0);">Score</a></th>
       </tr>
       </thead>
       <tbody>
