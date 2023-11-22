@@ -89,7 +89,7 @@ export class SynchronizerService {
     const isNewTurn: boolean = turn > localMetadata.playersRankingsTurn.turn;
 
     if (postInstall || !playerStats || isPlayerRankingsTurnZero || isNewTurn) {
-      this.loadPlayersRankings(turn, this._playersRankingsEmitter);
+      this.loadPlayersRankings(this._playersRankingsEmitter);
     }
 
     const allianceMembers = this.localStorageService.get(LocalStorageKeys.ALLIANCE_MEMBERS);
@@ -103,38 +103,11 @@ export class SynchronizerService {
     this.localStorageService.remove(LocalStorageKeys.POST_INSTALL_FETCH_METADATA);
   }
 
-  private loadPlayersRankings(turn: number, playersRankingsEmitter: EventEmitter<PageAction>): void {
+  private loadPlayersRankings(playersRankingsEmitter: EventEmitter<PageAction>): void {
     this._updatesEmitter.emit(1);
     this.playersRankingsLoaderService.scanPlayersRankingsScreens(this._updatesEmitter, playersRankingsEmitter).then((): void => {
       this._updatesEmitter.emit(-1);
     });
-
-    // const playersRankingsPath: any = collection(this.firestore, 'players-rankings');
-    //
-    // let subscription: Subscription = collectionData(playersRankingsPath)
-    //   .subscribe((items: DocumentData[]): void => {
-    //     let playerStats: PlayerStats[] = Object.assign([], items);
-    //
-    //     this.localStorageService.cache(LocalStorageKeys.PLAYERS_STATS, playerStats);
-    //
-    //     let localMetadata: Metadata = this.localStorageService.localMetadata();
-    //     let remoteMetadata: Metadata = this.localStorageService.remoteMetadata();
-    //     localMetadata.playersRankingsTurn.turn = remoteMetadata.playersRankingsTurn.turn;
-    //     localMetadata.playersRankingsTurn.version = remoteMetadata.playersRankingsTurn.version;
-    //
-    //     this.localStorageService.cache(LocalStorageKeys.LOCAL_METADATA, localMetadata);
-    //
-    //     this.delay(1000).then((): void => {
-    //       this._updatesEmitter.emit(-1);
-    //     });
-    //
-    //     this.loadAllianceMembers(turn).then((): void => {
-    //       this.delay(1000).then((): void => {
-    //         subscription.unsubscribe();
-    //         this._updatesEmitter.emit(-1);
-    //       });
-    //     });
-    //   });
   }
 
   private async loadAllianceMembers(turn: number): Promise<void> {

@@ -69,7 +69,6 @@ export class LocalStorageSynchronizerComponent implements AfterViewInit {
       }).subscribe((loaded: boolean): void => {
         if (loaded) {
           this.synchronizerService.loadTurnBasedUpdates();
-
           subscription.unsubscribe();
         }
       });
