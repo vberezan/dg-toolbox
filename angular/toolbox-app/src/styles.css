@@ -1,4 +1,8 @@
 /*****/
+#tabpanel {
+  display: none !important;
+}
+
 .padding {
   padding: 5px !important;
 }
