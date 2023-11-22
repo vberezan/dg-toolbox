@@ -31,8 +31,12 @@
   width: 50px;
 }
 
+.empty {
+  width: 100px;
+}
+
 .score {
-  width: 150px;
+  width: 70px;
 }
 
 .score-per-planet {
