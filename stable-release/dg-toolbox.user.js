@@ -28,7 +28,7 @@ function loadResource(element) {
 function getVersion() {
   if (localStorage.getItem('local-metadata'))
     return JSON.parse(JSON.parse(localStorage.getItem('local-metadata')).value).dgtVersion;
-  else return 'v2.0.2';
+  else return 'v2.0.3';
 
 }
 
