@@ -49,7 +49,7 @@ export class SynchronizerService {
     });
   }
 
-  loadTurnBasedUpdates(): void {
+  loadPlanets(): void {
     let localMetadata: Metadata = this.localStorageService.localMetadata();
     const remoteMetadata: Metadata = this.localStorageService.get(LocalStorageKeys.REMOTE_METADATA);
     const postInstall = this.localStorageService.get(LocalStorageKeys.POST_INSTALL_FETCH_METADATA);
@@ -74,10 +74,6 @@ export class SynchronizerService {
       }
 
       this.localStorageService.cache(LocalStorageKeys.LOCAL_METADATA, localMetadata);
-
-      if (!postInstall) {
-        this._updatesEmitter.emit(-1);
-      }
     }
   }
 
@@ -106,7 +102,7 @@ export class SynchronizerService {
   private loadPlayersRankings(playersRankingsEmitter: EventEmitter<PageAction>): void {
     this._updatesEmitter.emit(1);
     this.playersRankingsLoaderService.scanPlayersRankingsScreens(this._updatesEmitter, playersRankingsEmitter).then((): void => {
-      this._updatesEmitter.emit(-1);
+      this._updatesEmitter.emit(-2);
     });
   }
 

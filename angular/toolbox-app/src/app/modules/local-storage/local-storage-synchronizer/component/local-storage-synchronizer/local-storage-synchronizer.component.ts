@@ -66,7 +66,7 @@ export class LocalStorageSynchronizerComponent implements AfterViewInit {
         this.synchronizerService.updateMetadata(observer);
       }).subscribe((loaded: boolean): void => {
         if (loaded) {
-          this.synchronizerService.loadTurnBasedUpdates();
+          this.synchronizerService.loadPlanets();
           this.loadRankings();
           subscription.unsubscribe();
         }
