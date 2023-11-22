@@ -42,6 +42,7 @@ export class LocalStorageSynchronizerComponent implements AfterViewInit {
   ngAfterViewInit(): void {
     this.delay(this.localStorageService.get(LocalStorageKeys.POST_INSTALL_FETCH_METADATA) ? 0 : 1000).then((): void => {
       let updates: number = 0;
+
       this.synchronizerService.updatesEmitter.subscribe((updateNumber: number): void => {
         updates += updateNumber;
         if (updates == 0) {
@@ -49,9 +50,6 @@ export class LocalStorageSynchronizerComponent implements AfterViewInit {
             this.dgtUpdatingModel.nativeElement.classList.add('hide');
             this.dgtUpdatingModel.nativeElement.classList.remove('show');
             document.body.classList.remove('dgt-overlay-open');
-
-            this.loadRankings();
-
             window.location.reload();
           });
         } else {
@@ -69,6 +67,7 @@ export class LocalStorageSynchronizerComponent implements AfterViewInit {
       }).subscribe((loaded: boolean): void => {
         if (loaded) {
           this.synchronizerService.loadTurnBasedUpdates();
+          this.loadRankings();
           subscription.unsubscribe();
         }
       });

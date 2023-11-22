@@ -28,7 +28,6 @@ export class PlayersRankingsLoaderService {
   async scanPlayersRankingsScreens(updatesEmitter: EventEmitter<number>, playersRankingsEmitter: EventEmitter<PageAction>): Promise<void> {
     console.log('BINGO!');
 
-
     const scanDelay: number = 100 + Math.floor(Math.random() * 100);
     const playersPlanetsPath: any = collection(this.firestore, 'players-planets');
 
