@@ -50,7 +50,7 @@ export class LocalStorageSynchronizerComponent implements AfterViewInit {
             this.dgtUpdatingModel.nativeElement.classList.remove('show');
             document.body.classList.remove('dgt-overlay-open');
 
-            this.synchronizerService.loadRankings(this.dgAPI.gameTurn());
+            this.loadRankings();
 
             window.location.reload();
           });
@@ -106,6 +106,8 @@ export class LocalStorageSynchronizerComponent implements AfterViewInit {
         }
       }
     });
+
+    this.synchronizerService.loadRankings(this.dgAPI.gameTurn());
   }
 
 
