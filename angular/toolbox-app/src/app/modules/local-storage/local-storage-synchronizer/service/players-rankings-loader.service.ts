@@ -30,7 +30,7 @@ export class PlayersRankingsLoaderService {
     const playersPlanetsPath: any = collection(this.firestore, 'players-planets');
 
 
-    let scanned: AtomicNumber = new AtomicNumber(0);
+    let scanned: AtomicNumber = new AtomicNumber(1);
     let playersStats: Map<number, PlayerStats> = new Map<number, PlayerStats>();
     let pages: number = await this.getNumberOfPages();
 
@@ -39,7 +39,7 @@ export class PlayersRankingsLoaderService {
       await this.scanCombatRankingsPage(playersStats, playersRankingsEmitter, scanned, scanDelay, page, pages);
     }
 
-    await this.cacheRankings(playersStats, playersPlanetsPath, playersRankingsEmitter, new AtomicNumber(0));
+    await this.cacheRankings(playersStats, playersPlanetsPath, playersRankingsEmitter, new AtomicNumber(1));
   }
 
   private async getNumberOfPages(): Promise<number> {
@@ -150,18 +150,18 @@ export class PlayersRankingsLoaderService {
           }
 
           cache.push(playerStats);
-          console.log(saved.number);
           playersRankingsEmitter.emit(new PageAction(++saved.number, playersStats.size, 'save'));
 
           subscription.unsubscribe();
         });
-      }, 50 * saved.number);
+      }, 250 * saved.number);
     });
 
-    await this.delay(50 * playersStats.size).then((): void => {
+    await this.delay(250 * playersStats.size).then((): void => {
       this.localStorageService.cache(LocalStorageKeys.PLAYERS_STATS, cache);
       let localMetadata: Metadata = this.localStorageService.localMetadata();
       localMetadata.playersRankingsTurn = new UpdateMetadata(this.dgAPI.gameTurn(), 0);
+      this.localStorageService.cache(LocalStorageKeys.LOCAL_METADATA, localMetadata);
     });
   }
 
