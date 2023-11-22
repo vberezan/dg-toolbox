@@ -1,6 +1,5 @@
 import {ChangeDetectorRef, Component, ElementRef, EventEmitter, inject, ViewChild} from '@angular/core';
 import {PlanetsLoaderService} from "../../service/planets-loader.service";
-import {PlayersRankingsLoaderService} from "../../service/players-rankings-loader.service";
 import {Subscription} from "rxjs";
 import {PageAction} from "../../../../../shared/model/stats/page-action.model";
 import {AuthService} from "../../../../authentication/service/auth.service";
@@ -19,14 +18,12 @@ export class AdminPanelComponent {
   @ViewChild('planetCounter') planetCounter: ElementRef;
 
   private planetsLoaderService: PlanetsLoaderService = inject(PlanetsLoaderService);
-  private playersRankingsLoaderService: PlayersRankingsLoaderService = inject(PlayersRankingsLoaderService);
   private changeDetection: ChangeDetectorRef = inject(ChangeDetectorRef);
   private authService: AuthService = inject(AuthService);
 
   private cancelScanEmitter: EventEmitter<boolean> = new EventEmitter<boolean>();
   private systemCountSubscription: Subscription;
   private planetsCountSubscription: Subscription;
-  private rankingsCountSubscription: Subscription;
 
   public authenticated: boolean = false;
 
@@ -81,48 +78,6 @@ export class AdminPanelComponent {
     }
   }
 
-  async scanPlayersRankingScreens(): Promise<void> {
-    if (this.authenticated) {
-      this.playersProgressBar.nativeElement.style.width = '0%';
-      this.loadedRankings = 'Loading ranking pages';
-
-      this.rankingsLoadModal.nativeElement.classList.add('show');
-      this.rankingsLoadModal.nativeElement.classList.remove('hide');
-      document.body.classList.add('dgt-overlay-open');
-
-
-      this.rankingsCountSubscription = this.playersRankingsLoaderService.playersRankingsEmitter.subscribe((value: {
-        'total': number,
-        'page': number,
-        'action': string
-      }): void => {
-        switch (value.action) {
-          case 'load': {
-            this.loadedRankings = 'Loading ' + value.page + '/' + value.total + ' ranking page';
-            this.changeDetection.detectChanges();
-            this.playersPercentage = Math.floor((value.page * 100) / value.total);
-            this.playersProgressBar.nativeElement.style.width = this.playersPercentage + '%';
-            break;
-          }
-          case 'save': {
-            this.loadedRankings = 'Saving ' + value.page + '/' + value.total + ' players';
-            this.changeDetection.detectChanges();
-            this.playersPercentage = Math.floor((value.page * 100) / value.total);
-            this.playersProgressBar.nativeElement.style.width = this.playersPercentage + '%';
-            break;
-          }
-          default : {
-            break;
-          }
-        }
-      });
-
-      await this.playersRankingsLoaderService.scanPlayersRankingsScreens(this.cancelScanEmitter);
-
-      this.cancelScan();
-    }
-  }
-
   cancelScan(): void {
     if (this.authenticated) {
       this.cancelScanEmitter.emit(true);
@@ -138,10 +93,6 @@ export class AdminPanelComponent {
 
       if (this.planetsCountSubscription) {
         this.planetsCountSubscription.unsubscribe();
-      }
-
-      if (this.rankingsCountSubscription) {
-        this.rankingsCountSubscription.unsubscribe();
       }
     }
   }

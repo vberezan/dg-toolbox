@@ -22,16 +22,7 @@
           <button (click)="scanNavigationScreen();" type="submit">Fetch</button>
         </form>
       </div>
-      <span id="admin-load-separator"></span>
-      <div id="admin-load-rankings" style="padding: 3px; font-weight: bold">
-        <div class="load-example">
-          <span class="usage-warning" style="color: #ffd46f !important;"><b>Players Rankings</b></span>
-          <span class="usage-warning">Light operation. Can be triggered every turn and should always be triggered after a <b>Universe Scan</b></span>
-        </div>
-        <form>
-          <button (click)="scanPlayersRankingScreens()" type="submit">Fetch</button>
-        </form>
-      </div>
+<!--      <span id="admin-load-separator"></span>-->
     </div>
   </div>
   <div id="dgt-load-planets-overlay-modal" class="hide dgt-overlay-modal" #planetsLoadModal>
@@ -43,21 +34,6 @@
       <div class="progressbar">
         <span class="percentage">{{planetPercentage}}%</span>
         <span class="progress" #planetProgressBar></span>
-      </div>
-      <div class="actions">
-        <button type="button" (click)="cancelScan()">Cancel</button>
-      </div>
-    </div>
-  </div>
-
-  <div id="dgt-load-rankings-overlay-modal" class="hide dgt-overlay-modal" #rankingsLoadModal>
-    <div class="dgt-display-info">
-      <div class="counter">
-        <span class="rankings-counter">{{loadedRankings}}</span>
-      </div>
-      <div class="progressbar">
-        <span class="percentage">{{playersPercentage}}%</span>
-        <span class="progress" #playersProgressBar></span>
       </div>
       <div class="actions">
         <button type="button" (click)="cancelScan()">Cancel</button>

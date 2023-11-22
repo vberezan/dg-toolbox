@@ -81,10 +81,15 @@ export class LocalStorageSynchronizerComponent implements AfterViewInit {
           break;
         }
         case 'save': {
-          this.loadedRankings = 'Saving ' + value.page + '/' + value.total + ' players';
+          this.loadedRankings = 'Caching ' + value.page + '/' + value.total + ' players';
           this.changeDetection.detectChanges();
           this.playersPercentage = Math.floor((value.page * 100) / value.total);
           this.playersProgressBar.nativeElement.style.width = this.playersPercentage + '%';
+
+          if (value.page == value.total) {
+            this.rankingsCountSubscription.unsubscribe();
+          }
+
           break;
         }
         default : {
