@@ -193,7 +193,7 @@ function applyCustomStyling(windowURL) {
         }
 
         if (document.querySelector('.planetName')) {
-            let coords = document.querySelector('.planetHeader .coords').textContent.trim();
+            let coords = document.querySelector('#planetHeader .coords').textContent.trim();
             document.querySelector('#planetHeader .coords').remove();
 
             let dgtNewCoords = document.createElement('div');
