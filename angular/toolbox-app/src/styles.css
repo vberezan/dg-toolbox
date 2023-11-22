@@ -1040,9 +1040,9 @@ label.queueDestroyButton:hover {
   height: 13px !important;
   width: 13px !important;
   padding: 1px !important;
-  border-radius: 3px;
+  border-radius: 3px !important;
   border: 1px solid #767676 !important;
-  margin-right: 5px;
+  margin-right: 5px !important;
 }
 
 .dgt-planet-new-coords-big span {
