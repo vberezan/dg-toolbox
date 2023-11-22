@@ -1216,7 +1216,7 @@ label.queueDestroyButton:hover {
   width: 180px;
   border-top-left-radius: 5px;
   border-bottom-left-radius: 5px;
-  border-right: none !important;
+  border-right: none;
 }
 
 .dgt-planet-new-coords-big {
