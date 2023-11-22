@@ -69,6 +69,8 @@ export class SynchronizerService {
       localMetadata.dgtVersion = remoteMetadata.dgtVersion;
 
       this.localStorageService.cache(LocalStorageKeys.LOCAL_METADATA, localMetadata);
+
+      this._updatesEmitter.emit(0);
     }
   }
 
