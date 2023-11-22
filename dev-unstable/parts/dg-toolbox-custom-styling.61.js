@@ -597,6 +597,10 @@ function applyCustomStyling(windowURL) {
             });
 
             document.querySelector('.header.border.pageTitle a').parentElement.innerHTML =  document.querySelector('.header.border.pageTitle a').parentElement.textContent.trim();
+            let funnySpan = document.createElement('span');
+            funnySpan.id = 'dgt-fleet-funny-span';
+            funnySpan.innerHTML = 'If you fuck up, you do 20 push ups!';
+            document.querySelector('.header.border.pageTitle').append(funnySpan);
         }
 
         if (document.querySelector('#fleetHeader')) {
