@@ -151,6 +151,7 @@ export class PlayersRankingsLoaderService {
 
           cache.push(playerStats);
           await this.delay(50 * saved.number).then((): void => console.log('x'));
+          console.log('saved ' + saved.number + '/' + playersStats.size);
           playersRankingsEmitter.emit(new PageAction(++saved.number, playersStats.size, 'save'));
 
           subscription.unsubscribe();
