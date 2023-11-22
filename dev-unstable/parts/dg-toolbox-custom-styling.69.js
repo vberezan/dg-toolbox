@@ -195,7 +195,9 @@ function applyCustomStyling(windowURL) {
         if (document.querySelector('.planetName')) {
             let planetName = document.querySelector('.planetName');
             let prev = detach(planetName.querySelector('a'));
+            prev.classList.add('dgt-planet-prev');
             let next = detach(planetName.querySelector('a'));
+            next.classList.add('dgt-planet-next');
             let name = document.createElement('span');
             name.classList.add('dgt-planet-name');
             name.innerHTML = planetName.textContent.trim();
