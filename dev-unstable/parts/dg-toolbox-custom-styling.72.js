@@ -194,7 +194,7 @@ function applyCustomStyling(windowURL) {
 
         if (document.querySelector('.planetName')) {
             let coords = document.querySelector('.planetHeader .coords').textContent.trim();
-            document.querySelector('.planetHeader .coords').remove();
+            document.querySelector('#planetHeader .coords').remove();
 
             let dgtNewCoords = document.createElement('div');
             dgtNewCoords.classList.add('dgt-planet-new-coords-big');
