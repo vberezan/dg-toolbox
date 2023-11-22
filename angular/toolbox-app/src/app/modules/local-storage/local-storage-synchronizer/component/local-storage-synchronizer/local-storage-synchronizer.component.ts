@@ -98,7 +98,7 @@ export class LocalStorageSynchronizerComponent implements AfterViewInit {
       }
     });
 
-    this.synchronizerService.loadRankings(this.dgAPI.gameTurn(), (): void => {
+    this.synchronizerService.loadRankings(this.dgAPI.gameTurn(), this.dgAPI.getCountDownMinutes(), (): void => {
           this.dgtUpdatingModel.nativeElement.classList.add('hide');
           this.dgtUpdatingModel.nativeElement.classList.remove('show');
           document.body.classList.remove('dgt-overlay-open');

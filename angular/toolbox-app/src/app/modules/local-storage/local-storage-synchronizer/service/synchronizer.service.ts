@@ -9,7 +9,6 @@ import {HttpClient} from "@angular/common/http";
 import {AllianceMember} from "../../../../shared/model/alliances/alliance-member.model";
 import {Metadata} from "../../../../shared/model/local-storage/metadata.model";
 import {PlayersRankingsLoaderService} from "./players-rankings-loader.service";
-import {DarkgalaxyApiService} from "../../../darkgalaxy-ui-parser/service/darkgalaxy-api.service";
 import {PageAction} from "../../../../shared/model/stats/page-action.model";
 
 @Injectable({
@@ -74,11 +73,11 @@ export class SynchronizerService {
     }
   }
 
-  loadRankings(turn: number, showPopup: Function): void {
+  loadRankings(turn: number, countDownMinutes: number, showPopup: Function): void {
     const localMetadata: Metadata = this.localStorageService.localMetadata();
-    const playerStats = this.localStorageService.get(LocalStorageKeys.PLAYERS_STATS);
+    const playerStats: PlayerStats[] = this.localStorageService.get(LocalStorageKeys.PLAYERS_STATS);
     const isPlayerRankingsTurnZero: boolean = localMetadata.playersRankingsTurn.turn === 0;
-    const isNewTurn: boolean = turn > localMetadata.playersRankingsTurn.turn;
+    const isNewTurn: boolean = (turn > localMetadata.playersRankingsTurn.turn) && (countDownMinutes > 5 && countDownMinutes < 55);
 
     if (!playerStats || isPlayerRankingsTurnZero || isNewTurn) {
       showPopup();
@@ -91,7 +90,7 @@ export class SynchronizerService {
 
     if (playerStats && (!allianceMembers || isAllianceMembersTurnZero || isTurnGreaterThanAllianceMembersTurn)) {
       this._updatesEmitter.emit(1);
-      this.loadAllianceMembers(turn).then(() => {
+      this.loadAllianceMembers(turn).then((): void => {
         this._updatesEmitter.emit(0);
       }).catch((error: any): void => console.log(error));
     }

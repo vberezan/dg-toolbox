@@ -39,6 +39,10 @@ export class DarkgalaxyApiService {
     return parseInt(document.querySelector('#turnNumber').textContent.trim().replace(/,/g, ''));
   }
 
+  getCountDownMinutes(): number {
+    return parseInt(document.querySelector('#countdownField').textContent.trim().split(/:/)[0]);
+  }
+
   username(@Optional() lowercase: boolean = true): string {
     if (this.cachedUsername == null || !lowercase) {
       let completeName: string = document.querySelector('#header>#playerBox>.header>div.left:nth-child(2)').textContent.split('Welcome')[1].trim();
