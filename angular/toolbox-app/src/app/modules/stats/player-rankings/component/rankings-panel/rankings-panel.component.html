@@ -12,6 +12,7 @@
         <th class="inner">Inner</th>
         <th class="outer">Outer</th>
         <th class="score">Score</th>
+        <th class="score">Score/Planet</th>
       </tr>
       </thead>
       <tbody>
@@ -31,6 +32,7 @@
         <td class="inner"><a href="javascript:void(0);">{{player.g213Total}}</a></td>
         <td class="outer"><a href="javascript:void(0);">{{player.g1449Total}}</a></td>
         <td class="score">{{player.score | number:'1.0':'en-US'}}</td>
+        <td class="score">{{(player.score / player.planets) | number:'1.0':'en-US'}}</td>
       </tr>
       </tbody>
     </table>
