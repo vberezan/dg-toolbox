@@ -3,6 +3,7 @@ import {DarkgalaxyApiService} from "../../../darkgalaxy-ui-parser/service/darkga
 import {PlayerStats} from "../../../../shared/model/stats/player-stats.model";
 import {LocalStorageKeys} from "../../../../shared/model/local-storage/local-storage-keys";
 import {LocalStorageService} from "../../../local-storage/local-storage-manager/service/local-storage.service";
+import {AllianceMember} from "../../../../shared/model/alliances/alliance-member.model";
 
 @Injectable({
   providedIn: 'root'
@@ -14,19 +15,23 @@ export class PlayerRankingsService {
   constructor() { }
 
   fetchAndClear(): Map<number, PlayerStats> {
-    let rankings: Map<number, PlayerStats> = this.dgApi.playerRankings();
+    let rankings: Map<number, PlayerStats> = new Map<number, PlayerStats>();
 
     const cachedStats: PlayerStats[] = this.localStorageService.get(LocalStorageKeys.PLAYERS_STATS);
 
-    for (const player of cachedStats) {
-      const ranking: PlayerStats = rankings.get(player.playerId);
+    for (let i: number = 0; i < cachedStats.length - 1; i++) {
+      for (let j: number = i + 1; j < cachedStats.length; j++) {
+          if (cachedStats[i].score < cachedStats[j].score) {
 
-      if (ranking) {
-        ranking.planets = player.planets;
-        ranking.g1449Total = player.g1449Total;
-        ranking.g213Total = player.g213Total;
-        ranking.g1Total = player.g1Total;
+          const aux: PlayerStats = cachedStats[i];
+            cachedStats[i] = cachedStats[j];
+            cachedStats[j] = aux;
+        }
       }
+    }
+
+    for (let i: number = 0; i < cachedStats.length; i++) {
+      rankings.set(cachedStats[i].playerId, cachedStats[i]);
     }
 
     document.querySelector('.playerRankingsList').remove();

@@ -15,7 +15,7 @@ export class MembersPanelService {
         if (allianceMembers[i].stats && allianceMembers[j].stats &&
           allianceMembers[i].stats.score < allianceMembers[j].stats.score) {
 
-          let aux: AllianceMember = allianceMembers[i];
+          const aux: AllianceMember = allianceMembers[i];
           allianceMembers[i] = allianceMembers[j];
           allianceMembers[j] = aux;
         }
