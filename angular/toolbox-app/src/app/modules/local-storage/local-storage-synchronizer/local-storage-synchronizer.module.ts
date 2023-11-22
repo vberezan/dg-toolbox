@@ -6,6 +6,8 @@ import {getFirestore, provideFirestore} from "@angular/fire/firestore";
 import {initializeAppCheck, provideAppCheck, ReCaptchaV3Provider} from "@angular/fire/app-check";
 import {LocalStorageSynchronizerComponent} from './component/local-storage-synchronizer/local-storage-synchronizer.component';
 import {HttpClientModule} from "@angular/common/http";
+import {MetadataService} from "./service/metadata.service";
+import {getAuth, provideAuth} from "@angular/fire/auth";
 
 
 @NgModule({
@@ -14,6 +16,7 @@ import {HttpClientModule} from "@angular/common/http";
     HttpClientModule,
     provideFirebaseApp(() => initializeApp(environment.firebase)),
     provideFirestore(() => getFirestore()),
+    provideAuth(() => getAuth()),
     provideAppCheck(() => initializeAppCheck(getApp(),
       {
         provider: new ReCaptchaV3Provider(environment.firebase.appCheck.recaptchaSiteKey),
@@ -23,6 +26,9 @@ import {HttpClientModule} from "@angular/common/http";
   ],
   declarations: [
     LocalStorageSynchronizerComponent,
+  ],
+  providers: [
+    MetadataService // -- contains reference to firestore
   ],
   bootstrap: [
     LocalStorageSynchronizerComponent

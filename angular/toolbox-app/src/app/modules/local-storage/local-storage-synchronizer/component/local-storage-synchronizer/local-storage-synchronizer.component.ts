@@ -4,6 +4,8 @@ import {DarkgalaxyApiService} from "../../../../darkgalaxy-ui-parser/service/dar
 import {Observable, Subscriber, Subscription} from "rxjs";
 import {LocalStorageService} from "../../../local-storage-manager/service/local-storage.service";
 import {LocalStorageKeys} from "../../../../../shared/model/local-storage/local-storage-keys";
+import {AuthState} from "../../../../../shared/model/authentication/auth-state.model";
+import {AuthService} from "../../../../authentication/service/auth.service";
 
 @Component({
   selector: 'dgt-local-storage-synchronizer',
@@ -16,7 +18,17 @@ export class LocalStorageSynchronizerComponent implements AfterViewInit {
   private localStorageService: LocalStorageService = inject(LocalStorageService);
   private synchronizerService: SynchronizerService = inject(SynchronizerService);
   private dgAPI: DarkgalaxyApiService = inject(DarkgalaxyApiService);
+  private authService: AuthService = inject(AuthService);
 
+  public authenticated: boolean = false;
+
+  constructor() {
+    this.authService.authState.subscribe((state: AuthState): void => {
+      this.authenticated = state.status;
+    });
+
+    this.authService.checkLoginValidity();
+  }
 
   ngAfterViewInit(): void {
     this.delay(this.localStorageService.get(LocalStorageKeys.POST_INSTALL_FETCH_METADATA) ? 0 : 1000).then((): void => {

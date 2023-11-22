@@ -147,6 +147,12 @@
   display: grid;
 }
 
+@media only screen and (max-width: 1400px) {
+  #dgt-credits {
+    margin-bottom: 20px;
+  }
+}
+
 #dgt-credits span {
   float: left;
 }

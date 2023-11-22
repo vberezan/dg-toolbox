@@ -28,7 +28,7 @@ export class AdminPanelComponent {
   private planetsCountSubscription: Subscription;
   private rankingsCountSubscription: Subscription;
 
-  public active: boolean = false;
+  public authenticated: boolean = false;
 
   protected controls: {
     galaxies: string
@@ -44,14 +44,14 @@ export class AdminPanelComponent {
 
   constructor() {
     this.authService.authState.subscribe((state: AuthState): void => {
-      this.active = state.status && (state.role === 'admin' || state.role === 'tl');
+      this.authenticated = state.status && (state.role === 'admin' || state.role === 'tl');
     });
 
     this.authService.checkLoginValidity();
   }
 
   async scanNavigationScreen(): Promise<void> {
-    if (this.active) {
+    if (this.authenticated) {
       let galaxies: number[] = this.controls.galaxies.trim().split(',').map(function (item: string) {
         return parseInt(item, 10);
       });
@@ -82,7 +82,7 @@ export class AdminPanelComponent {
   }
 
   async scanPlayersRankingScreens(): Promise<void> {
-    if (this.active) {
+    if (this.authenticated) {
       this.playersProgressBar.nativeElement.style.width = '0%';
       this.loadedRankings = 'Loading ranking pages';
 
@@ -124,7 +124,7 @@ export class AdminPanelComponent {
   }
 
   cancelScan(): void {
-    if (this.active) {
+    if (this.authenticated) {
       this.cancelScanEmitter.emit(true);
       document.body.classList.remove('dgt-overlay-open');
       this.planetsLoadModal.nativeElement.classList.add('hide');
