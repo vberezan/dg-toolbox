@@ -1019,6 +1019,45 @@ label.queueDestroyButton:hover {
   align-items: center;
 }
 
+#planetHeader .planetName .dgt-planet-name {
+  font-size: 18px;
+  line-height: 26px;
+  color: #ffd46f;
+  font-weight: bold;
+  float: left;
+  display: flex;
+}
+
+#planetHeader .planetName .dgt-planet-prev {
+  font-size: 18px !important;
+  line-height: 23px !important;
+  padding: 0 !important;
+  margin-right: 5px !important;
+  text-align: center !important;
+  background: transparent !important;
+  border: none !important;
+}
+
+#planetHeader .planetName .dgt-planet-next {
+  font-size: 18px !important;
+  line-height: 23px !important;
+  padding: 0 !important;
+  text-align: center !important;
+  background: transparent !important;
+  border: none !important;
+  margin-left: 5px;
+}
+
+#planetHeader .planetName svg {
+  vertical-align: bottom;
+  fill: #a2a2a2 !important;
+}
+
+#planetHeader .planetName .dgt-planet-prev:hover svg,
+#planetHeader .planetName .dgt-planet-next:hover svg {
+  fill: #ffffffcf !important;
+}
+
 .planetHeadSection .resourceName .seperatorRight {
   margin-right: 4px;
 }
