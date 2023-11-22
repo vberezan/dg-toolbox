@@ -42,8 +42,11 @@ function applyCustomStyling(windowURL) {
 
             let linkToNavigation = document.createElement('div');
             linkToNavigation.classList.add('dgt-link-to-navigation', 'right', 'resource');
-            linkToNavigation.innerHTML = '<a title="Navigation" href="/navigation/' + coords[0] + '/' + coords[1] + '/' + coords[2] + '/' + '"><img src="https://i.imgur.com/HcC4l22.png" width="16" height="16"></a>';
-            news.parentElement.append(linkToNavigation);
+
+            if (coords[0] !== '0') {
+                linkToNavigation.innerHTML = '<a target="_blank" title="Navigation" href="/navigation/' + coords[0] + '/' + coords[1] + '/' + coords[2] + '/' + '"><img src="https://i.imgur.com/HcC4l22.png" width="16" height="16"></a>';
+                news.parentElement.append(linkToNavigation);
+            }
         });
     }
 
