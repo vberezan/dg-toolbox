@@ -1,4 +1,4 @@
-import {AfterViewInit, ChangeDetectorRef, Component, ElementRef, inject, ViewChild, ViewChildren} from '@angular/core';
+import {AfterViewInit, ChangeDetectorRef, Component, ElementRef, inject, ViewChild} from '@angular/core';
 import {SynchronizerService} from "../../service/synchronizer.service";
 import {DarkgalaxyApiService} from "../../../../darkgalaxy-ui-parser/service/darkgalaxy-api.service";
 import {Observable, Subscriber, Subscription} from "rxjs";
@@ -12,9 +12,9 @@ import {PageAction} from "../../../../../shared/model/stats/page-action.model";
   styleUrls: ['./local-storage-synchronizer.component.css']
 })
 export class LocalStorageSynchronizerComponent implements AfterViewInit {
-  @ViewChildren('dgtUpdatingModel') dgtUpdatingModel: ElementRef;
-  @ViewChildren('rankingsLoadModal') rankingsLoadModal: ElementRef;
-  @ViewChildren('playersProgressBar') playersProgressBar: ElementRef;
+  @ViewChild('dgtUpdatingModel', {static: false}) dgtUpdatingModel: ElementRef;
+  @ViewChild('rankingsLoadModal', {static: false}) rankingsLoadModal: ElementRef;
+  @ViewChild('playersProgressBar', {static: false}) playersProgressBar: ElementRef;
 
   private synchronizerService: SynchronizerService = inject(SynchronizerService);
   private dgAPI: DarkgalaxyApiService = inject(DarkgalaxyApiService);
