@@ -150,6 +150,7 @@ export class PlayersRankingsLoaderService {
           }
 
           cache.push(playerStats);
+          console.log(saved.number);
           playersRankingsEmitter.emit(new PageAction(++saved.number, playersStats.size, 'save'));
 
           subscription.unsubscribe();
