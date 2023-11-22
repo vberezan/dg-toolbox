@@ -28,11 +28,15 @@
 .g1,
 .inner,
 .outer {
-  width: 100px;
+  width: 50px;
 }
 
 .score {
   width: 150px;
+}
+
+.score-per-planet {
+  width: 50px;
 }
 
 .rank {
