@@ -12,7 +12,6 @@ import {AuthState} from "../../../../../shared/model/authentication/auth-state.m
 })
 export class AdminPanelComponent {
   @ViewChild('planetsLoadModal') planetsLoadModal: ElementRef;
-  @ViewChild('rankingsLoadModal') rankingsLoadModal: ElementRef;
   @ViewChild('planetProgressBar') planetProgressBar: ElementRef;
   @ViewChild('playersProgressBar') playersProgressBar: ElementRef;
   @ViewChild('planetCounter') planetCounter: ElementRef;
@@ -33,7 +32,6 @@ export class AdminPanelComponent {
     galaxies: ''
   }
 
-  protected loadedRankings: string;
   protected loadedSystem: string;
   protected loadedPlanet: string = '';
   protected planetPercentage: number = 0;
@@ -84,8 +82,6 @@ export class AdminPanelComponent {
       document.body.classList.remove('dgt-overlay-open');
       this.planetsLoadModal.nativeElement.classList.add('hide');
       this.planetsLoadModal.nativeElement.classList.remove('show');
-      this.rankingsLoadModal.nativeElement.classList.add('hide');
-      this.rankingsLoadModal.nativeElement.classList.remove('show');
 
       if (this.systemCountSubscription) {
         this.systemCountSubscription.unsubscribe();
