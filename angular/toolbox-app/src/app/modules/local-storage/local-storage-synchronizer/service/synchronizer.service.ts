@@ -101,7 +101,7 @@ export class SynchronizerService {
 
   private loadPlayersRankings(playersRankingsEmitter: EventEmitter<PageAction>): void {
     this._updatesEmitter.emit(1);
-    this.playersRankingsLoaderService.scanPlayersRankingsScreens(this._updatesEmitter, playersRankingsEmitter).then((): void => {
+    this.playersRankingsLoaderService.scanPlayersRankingsScreens(playersRankingsEmitter).then((): void => {
       this._updatesEmitter.emit(-2);
     });
   }
@@ -147,8 +147,6 @@ export class SynchronizerService {
       this.localStorageService.cache(LocalStorageKeys.LOCAL_METADATA, localMetadata);
     }
   }
-
-  private delay = async (ms: number): Promise<unknown> => new Promise(res => setTimeout(res, ms));
 
   get updatesEmitter(): EventEmitter<number> {
     return this._updatesEmitter;

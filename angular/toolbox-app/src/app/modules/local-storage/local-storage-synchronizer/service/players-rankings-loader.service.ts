@@ -25,9 +25,7 @@ export class PlayersRankingsLoaderService {
   private readonly PLAYER_RANKINGS_URL: string = this.localStorageService.get(LocalStorageKeys.GAME_ENDPOINT) + '/rankings/players/';
   private readonly PLAYER_COMBAT_RANKINGS_URL: string = this.localStorageService.get(LocalStorageKeys.GAME_ENDPOINT) + '/rankings/combat/players/';
 
-  async scanPlayersRankingsScreens(updatesEmitter: EventEmitter<number>, playersRankingsEmitter: EventEmitter<PageAction>): Promise<void> {
-    console.log('BINGO!');
-
+  async scanPlayersRankingsScreens(playersRankingsEmitter: EventEmitter<PageAction>): Promise<void> {
     const scanDelay: number = 100 + Math.floor(Math.random() * 100);
     const playersPlanetsPath: any = collection(this.firestore, 'players-planets');
 
@@ -41,7 +39,7 @@ export class PlayersRankingsLoaderService {
       await this.scanCombatRankingsPage(playersStats, playersRankingsEmitter, scanned, scanDelay, page, pages);
     }
 
-    await this.cacheRankings(playersStats, playersPlanetsPath, updatesEmitter, new AtomicNumber(0));
+    await this.cacheRankings(playersStats, playersPlanetsPath, playersRankingsEmitter, new AtomicNumber(0));
   }
 
   private async getNumberOfPages(): Promise<number> {
@@ -129,7 +127,10 @@ export class PlayersRankingsLoaderService {
     await this.delay(scanDelay);
   }
 
-  private async cacheRankings(playersStats: Map<number, PlayerStats>, playersPlanetsPath: any, updatesEmitter: EventEmitter<number>, saved: AtomicNumber): Promise<void> {
+  private async cacheRankings(playersStats: Map<number, PlayerStats>,
+                              playersPlanetsPath: any,
+                              playersRankingsEmitter: EventEmitter<PageAction>,
+                              saved: AtomicNumber): Promise<void> {
     let cache: PlayerStats[] = [];
 
     playersStats.forEach((playerStats: PlayerStats, playerId: number): void => {
@@ -149,6 +150,7 @@ export class PlayersRankingsLoaderService {
           }
 
           cache.push(playerStats);
+          playersRankingsEmitter.emit(new PageAction(++saved.number, playersStats.size, 'save'));
 
           subscription.unsubscribe();
         });
@@ -159,7 +161,6 @@ export class PlayersRankingsLoaderService {
       this.localStorageService.cache(LocalStorageKeys.PLAYERS_STATS, cache);
       let localMetadata: Metadata = this.localStorageService.localMetadata();
       localMetadata.playersRankingsTurn = new UpdateMetadata(this.dgAPI.gameTurn(), 0);
-      updatesEmitter.emit(-1);
     });
   }
 
