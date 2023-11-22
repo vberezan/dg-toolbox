@@ -49,29 +49,24 @@ export class SynchronizerService {
     });
   }
 
-  loadPlanets(): void {
+  async loadPlanets(): Promise<void> {
     let localMetadata: Metadata = this.localStorageService.localMetadata();
     const remoteMetadata: Metadata = this.localStorageService.get(LocalStorageKeys.REMOTE_METADATA);
-    const postInstall = this.localStorageService.get(LocalStorageKeys.POST_INSTALL_FETCH_METADATA);
     const isLocalTurnZero: boolean = localMetadata.planetsTurn.turn === 0;
     const isPlanetsRemoteTurnGreater: boolean = remoteMetadata.planetsTurn.turn > localMetadata.planetsTurn.turn;
     const isPlanetsSameTurnButRemoteVersionGreater: boolean = remoteMetadata.planetsTurn.turn == localMetadata.planetsTurn.turn &&
       remoteMetadata.planetsTurn.version > localMetadata.planetsTurn.version;
 
-    if (postInstall || isLocalTurnZero || isPlanetsRemoteTurnGreater || isPlanetsSameTurnButRemoteVersionGreater) {
+    if (isLocalTurnZero || isPlanetsRemoteTurnGreater || isPlanetsSameTurnButRemoteVersionGreater) {
 
-      if (!postInstall) {
-        this._updatesEmitter.emit(1);
-      }
+      this._updatesEmitter.emit(1);
 
       let localMetadata: Metadata = this.localStorageService.localMetadata();
       let remoteMetadata: Metadata = this.localStorageService.remoteMetadata();
       localMetadata.planetsTurn.turn = remoteMetadata.planetsTurn.turn;
       localMetadata.planetsTurn.version = remoteMetadata.planetsTurn.version;
 
-      if (postInstall) {
-        localMetadata.dgtVersion = remoteMetadata.dgtVersion;
-      }
+      localMetadata.dgtVersion = remoteMetadata.dgtVersion;
 
       this.localStorageService.cache(LocalStorageKeys.LOCAL_METADATA, localMetadata);
     }
@@ -79,12 +74,11 @@ export class SynchronizerService {
 
   loadRankings(turn: number): void {
     const localMetadata: Metadata = this.localStorageService.localMetadata();
-    const postInstall = this.localStorageService.get(LocalStorageKeys.POST_INSTALL_FETCH_METADATA);
     const playerStats = this.localStorageService.get(LocalStorageKeys.PLAYERS_STATS);
     const isPlayerRankingsTurnZero: boolean = localMetadata.playersRankingsTurn.turn === 0;
     const isNewTurn: boolean = turn > localMetadata.playersRankingsTurn.turn;
 
-    if (postInstall || !playerStats || isPlayerRankingsTurnZero || isNewTurn) {
+    if (!playerStats || isPlayerRankingsTurnZero || isNewTurn) {
       this.loadPlayersRankings(this._playersRankingsEmitter);
     }
 
@@ -92,15 +86,12 @@ export class SynchronizerService {
     const isAllianceMembersTurnZero: boolean = localMetadata.allianceMembersTurn.turn === 0;
     const isTurnGreaterThanAllianceMembersTurn: boolean = turn > localMetadata.allianceMembersTurn.turn;
 
-    if (!postInstall && (playerStats && (!allianceMembers || isAllianceMembersTurnZero || isTurnGreaterThanAllianceMembersTurn))) {
+    if (playerStats && (!allianceMembers || isAllianceMembersTurnZero || isTurnGreaterThanAllianceMembersTurn)) {
       this.loadAllianceMembers(turn).catch((error: any): void => console.log(error));
     }
-
-    this.localStorageService.remove(LocalStorageKeys.POST_INSTALL_FETCH_METADATA);
   }
 
   private loadPlayersRankings(playersRankingsEmitter: EventEmitter<PageAction>): void {
-    this._updatesEmitter.emit(1);
     this.playersRankingsLoaderService.scanPlayersRankingsScreens(playersRankingsEmitter).then((): void => {
       this._updatesEmitter.emit(0);
     });

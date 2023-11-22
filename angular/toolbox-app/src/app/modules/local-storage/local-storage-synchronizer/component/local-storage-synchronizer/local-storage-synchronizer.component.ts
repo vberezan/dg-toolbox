@@ -2,8 +2,6 @@ import {AfterViewInit, ChangeDetectorRef, Component, ElementRef, inject, ViewChi
 import {SynchronizerService} from "../../service/synchronizer.service";
 import {DarkgalaxyApiService} from "../../../../darkgalaxy-ui-parser/service/darkgalaxy-api.service";
 import {Observable, Subscriber, Subscription} from "rxjs";
-import {LocalStorageService} from "../../../local-storage-manager/service/local-storage.service";
-import {LocalStorageKeys} from "../../../../../shared/model/local-storage/local-storage-keys";
 import {AuthState} from "../../../../../shared/model/authentication/auth-state.model";
 import {AuthService} from "../../../../authentication/service/auth.service";
 import {PageAction} from "../../../../../shared/model/stats/page-action.model";
@@ -18,7 +16,6 @@ export class LocalStorageSynchronizerComponent implements AfterViewInit {
   @ViewChild('rankingsLoadModal') rankingsLoadModal: ElementRef;
   @ViewChild('playersProgressBar') playersProgressBar: ElementRef;
 
-  private localStorageService: LocalStorageService = inject(LocalStorageService);
   private synchronizerService: SynchronizerService = inject(SynchronizerService);
   private dgAPI: DarkgalaxyApiService = inject(DarkgalaxyApiService);
   private authService: AuthService = inject(AuthService);
@@ -40,40 +37,36 @@ export class LocalStorageSynchronizerComponent implements AfterViewInit {
   }
 
   ngAfterViewInit(): void {
-    this.delay(this.localStorageService.get(LocalStorageKeys.POST_INSTALL_FETCH_METADATA) ? 0 : 1000).then((): void => {
-      let updates: number = 0;
-
-      this.synchronizerService.updatesEmitter.subscribe((updateNumber: number): void => {
-        if (updateNumber == 0) {
-          updates = updateNumber;
-          this.delay(2500).then((): void => {
-            this.dgtUpdatingModel.nativeElement.classList.add('hide');
-            this.dgtUpdatingModel.nativeElement.classList.remove('show');
-            document.body.classList.remove('dgt-overlay-open');
-            window.location.reload();
+    this.synchronizerService.updatesEmitter.subscribe((updateNumber: number): void => {
+      if (updateNumber == 0) {
+        this.delay(1000).then((): void => {
+          this.dgtUpdatingModel.nativeElement.classList.add('hide');
+          this.dgtUpdatingModel.nativeElement.classList.remove('show');
+          document.body.classList.remove('dgt-overlay-open');
+          window.location.reload();
+        });
+      } else {
+        if (!document.body.classList.contains('dgt-overlay-open')) {
+          this.dgtUpdatingModel.nativeElement.classList.add('show');
+          this.dgtUpdatingModel.nativeElement.classList.remove('hide');
+          document.body.classList.add('dgt-overlay-open');
+          this.delay(1000).then((): void => {
           });
-        } else {
-          if (updates == 0) {
-            updates = updateNumber;
-            this.dgtUpdatingModel.nativeElement.classList.add('show');
-            this.dgtUpdatingModel.nativeElement.classList.remove('hide');
-            document.body.classList.add('dgt-overlay-open');
-            this.delay(2500).then((): void => {
-              return;
-            });
-          }
         }
-      });
+      }
+    });
 
-      let subscription: Subscription = new Observable((observer: Subscriber<boolean>): void => {
-        this.synchronizerService.updateMetadata(observer);
-      }).subscribe((loaded: boolean): void => {
-        if (loaded) {
-          this.synchronizerService.loadPlanets();
-          this.loadRankings();
-          subscription.unsubscribe();
-        }
-      });
+    let subscription: Subscription = new Observable((observer: Subscriber<boolean>): void => {
+      this.synchronizerService.updateMetadata(observer);
+    }).subscribe((loaded: boolean): void => {
+      if (loaded) {
+        this.synchronizerService.loadPlanets()
+          .then((): void => {
+            this.loadRankings();
+          });
+
+        subscription.unsubscribe();
+      }
     });
   }
 
@@ -81,10 +74,15 @@ export class LocalStorageSynchronizerComponent implements AfterViewInit {
     this.playersProgressBar.nativeElement.style.width = '0%';
     this.loadedRankings = 'Loading ranking pages';
 
+    if (document.body.classList.contains('dgt-overlay-open')) {
+      this.dgtUpdatingModel.nativeElement.classList.add('hide');
+      this.dgtUpdatingModel.nativeElement.classList.remove('show');
+      document.body.classList.remove('dgt-overlay-open');
+    }
+
     this.rankingsLoadModal.nativeElement.classList.add('show');
     this.rankingsLoadModal.nativeElement.classList.remove('hide');
     document.body.classList.add('dgt-overlay-open');
-
 
     this.rankingsCountSubscription = this.synchronizerService.playersRankingsEmitter.subscribe((value: PageAction): void => {
       switch (value.action) {

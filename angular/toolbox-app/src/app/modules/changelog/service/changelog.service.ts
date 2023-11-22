@@ -44,7 +44,6 @@ export class ChangelogService {
       this.localStorageService.cache(LocalStorageKeys.USER, user);
       this.localStorageService.cache(LocalStorageKeys.JS_VERSION, localMetadata.dgtVersion);
       this.localStorageService.cache(LocalStorageKeys.LOCAL_METADATA, localMetadata);
-      this.localStorageService.cache(LocalStorageKeys.POST_INSTALL_FETCH_METADATA, true);
 
       dgtUpdatingModel.nativeElement.classList.add('hide');
       dgtUpdatingModel.nativeElement.classList.remove('show');
