@@ -133,11 +133,12 @@ export class PlayersRankingsLoaderService {
                               saved: AtomicNumber): Promise<void> {
     let cache: PlayerStats[] = [];
 
+    let delay: number = 0;
     playersStats.forEach((playerStats: PlayerStats, playerId: number): void => {
       setTimeout((): void => {
         let subscription: Subscription = docData(
           doc(playersPlanetsPath, playerId.toString())
-        ).subscribe(async (item: DocumentData): Promise<void> => {
+        ).subscribe((item: DocumentData): void => {
           if (item) {
             const playerPlanets: PlayerPlanets = Object.assign(new PlayerPlanets(), item);
 
@@ -150,13 +151,11 @@ export class PlayersRankingsLoaderService {
           }
 
           cache.push(playerStats);
-          await this.delay(50 * saved.number).then((): void => console.log('x'));
-          console.log('saved ' + saved.number + '/' + playersStats.size);
           playersRankingsEmitter.emit(new PageAction(++saved.number, playersStats.size, 'save'));
 
           subscription.unsubscribe();
         });
-      }, 0);
+      }, ++delay * 50);
     });
 
     await this.delay(50 * playersStats.size).then((): void => {
