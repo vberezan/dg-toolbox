@@ -1,4 +1,4 @@
-import {Component, inject} from '@angular/core';
+import {ChangeDetectorRef, Component, inject} from '@angular/core';
 import {PlayerRankingsService} from "../../service/player-rankings.service";
 import {PlayerStats} from "../../../../../shared/model/stats/player-stats.model";
 import {AuthState} from "../../../../../shared/model/authentication/auth-state.model";
@@ -13,6 +13,7 @@ export class RankingsPanelComponent {
   private playerRankingsService: PlayerRankingsService = inject(PlayerRankingsService);
   public rankings: Map<number, PlayerStats> = new Map<number, PlayerStats>();
   private authService: AuthService = inject(AuthService);
+  private changeDetection: ChangeDetectorRef = inject(ChangeDetectorRef);
 
   public authenticated: boolean = false;
 
@@ -29,4 +30,10 @@ export class RankingsPanelComponent {
   }
 
   protected readonly Math = Math;
+
+
+  public orderBy(key: string, order: string): void {
+    this.rankings = this.playerRankingsService.orderBy(key, order);
+    this.changeDetection.detectChanges();
+  }
 }
