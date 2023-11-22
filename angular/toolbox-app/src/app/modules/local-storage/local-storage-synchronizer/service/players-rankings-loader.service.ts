@@ -5,7 +5,6 @@ import {firstValueFrom, Subscription} from "rxjs";
 import {PlayerStats} from "../../../../shared/model/stats/player-stats.model";
 import {DocumentData} from "@angular/fire/compat/firestore";
 import {PlayerPlanets} from "../../../../shared/model/stats/player-planets-stats.model";
-import {MetadataService} from "../../../local-storage/local-storage-synchronizer/service/metadata.service";
 import {PageAction} from "../../../../shared/model/stats/page-action.model";
 import {AtomicNumber} from "../../../../shared/model/atomic-number.model";
 import {LocalStorageKeys} from "../../../../shared/model/local-storage/local-storage-keys";
@@ -20,16 +19,13 @@ import {UpdateMetadata} from "../../../../shared/model/stats/update-metadata.mod
 export class PlayersRankingsLoaderService {
   private httpClient: HttpClient = inject(HttpClient);
   private firestore: Firestore = inject(Firestore);
-  private metadataService: MetadataService = inject(MetadataService);
   private localStorageService: LocalStorageService = inject(LocalStorageService);
   private dgAPI: DarkgalaxyApiService = inject(DarkgalaxyApiService);
-
-  private _playersRankingsEmitter: EventEmitter<PageAction> = new EventEmitter<PageAction>();
 
   private readonly PLAYER_RANKINGS_URL: string = this.localStorageService.get(LocalStorageKeys.GAME_ENDPOINT) + '/rankings/players/';
   private readonly PLAYER_COMBAT_RANKINGS_URL: string = this.localStorageService.get(LocalStorageKeys.GAME_ENDPOINT) + '/rankings/combat/players/';
 
-  async scanPlayersRankingsScreens(updatesEmitter: EventEmitter<number>): Promise<void> {
+  async scanPlayersRankingsScreens(updatesEmitter: EventEmitter<number>, playersRankingsEmitter: EventEmitter<PageAction>): Promise<void> {
     const scanDelay: number = 100 + Math.floor(Math.random() * 100);
     const playersPlanetsPath: any = collection(this.firestore, 'players-planets');
 
@@ -39,13 +35,11 @@ export class PlayersRankingsLoaderService {
     let pages: number = await this.getNumberOfPages();
 
     for (let page: number = 1; page <= pages; page++) {
-      await this.scanRankingsPage(playersStats, scanned, scanDelay, page, pages);
-      await this.scanCombatRankingsPage(playersStats, scanned, scanDelay, page, pages);
+      await this.scanRankingsPage(playersStats, playersRankingsEmitter, scanned, scanDelay, page, pages);
+      await this.scanCombatRankingsPage(playersStats, playersRankingsEmitter, scanned, scanDelay, page, pages);
     }
 
     await this.cacheRankings(playersStats, playersPlanetsPath, updatesEmitter, new AtomicNumber(0));
-
-    this.metadataService.updateMetadataTurns('players-rankings-turn');
   }
 
   private async getNumberOfPages(): Promise<number> {
@@ -54,7 +48,12 @@ export class PlayersRankingsLoaderService {
     return parseInt(dom.querySelector('.right.lightBorder.opacDarkBackground.padding').textContent.trim().split('of')[dom.querySelector('.right.lightBorder.opacDarkBackground.padding').textContent.trim().split('of').length - 1].trim());
   }
 
-  private async scanRankingsPage(playersStats: Map<number, PlayerStats>, scanned: AtomicNumber, scanDelay: number, page: number, pages: number): Promise<void> {
+  private async scanRankingsPage(playersStats: Map<number, PlayerStats>,
+                                 playersRankingsEmitter: EventEmitter<PageAction>,
+                                 scanned: AtomicNumber,
+                                 scanDelay: number,
+                                 page: number,
+                                 pages: number): Promise<void> {
     let source: string = await firstValueFrom(this.httpClient.get(this.PLAYER_RANKINGS_URL + page, {responseType: 'text'}));
     let dom: Document = new DOMParser().parseFromString(source, 'text/html');
 
@@ -97,11 +96,16 @@ export class PlayersRankingsLoaderService {
     });
 
     scanned.number += await this.atomicIncrement();
-    this._playersRankingsEmitter.emit(new PageAction(scanned.number, 2 * pages, 'load'));
+    playersRankingsEmitter.emit(new PageAction(scanned.number, 2 * pages, 'load'));
     await this.delay(scanDelay);
   }
 
-  private async scanCombatRankingsPage(playersStats: Map<number, PlayerStats>, scanned: AtomicNumber, scanDelay: number, page: number, pages: number): Promise<void> {
+  private async scanCombatRankingsPage(playersStats: Map<number, PlayerStats>,
+                                       playersRankingsEmitter: EventEmitter<PageAction>,
+                                       scanned: AtomicNumber,
+                                       scanDelay: number,
+                                       page: number,
+                                       pages: number): Promise<void> {
     let source: string = await firstValueFrom(this.httpClient.get(this.PLAYER_COMBAT_RANKINGS_URL + page, {responseType: 'text'}));
     let dom: Document = new DOMParser().parseFromString(source, 'text/html');
 
@@ -119,7 +123,7 @@ export class PlayersRankingsLoaderService {
     });
 
     scanned.number += await this.atomicIncrement();
-    this._playersRankingsEmitter.emit(new PageAction(scanned.number, 2 * pages, 'load'));
+    playersRankingsEmitter.emit(new PageAction(scanned.number, 2 * pages, 'load'));
     await this.delay(scanDelay);
   }
 
@@ -161,9 +165,5 @@ export class PlayersRankingsLoaderService {
 
   private async atomicIncrement(): Promise<number> {
     return 1;
-  }
-
-  get playersRankingsEmitter(): EventEmitter<PageAction> {
-    return this._playersRankingsEmitter;
   }
 }

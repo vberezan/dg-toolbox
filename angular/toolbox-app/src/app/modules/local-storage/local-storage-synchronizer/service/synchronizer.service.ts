@@ -10,6 +10,7 @@ import {AllianceMember} from "../../../../shared/model/alliances/alliance-member
 import {Metadata} from "../../../../shared/model/local-storage/metadata.model";
 import {PlayersRankingsLoaderService} from "./players-rankings-loader.service";
 import {DarkgalaxyApiService} from "../../../darkgalaxy-ui-parser/service/darkgalaxy-api.service";
+import {PageAction} from "../../../../shared/model/stats/page-action.model";
 
 @Injectable({
   providedIn: 'root'
@@ -22,6 +23,8 @@ export class SynchronizerService {
   private _updatesEmitter: EventEmitter<number> = new EventEmitter<number>();
 
   private readonly ALLIANCES_URL: string = this.localStorageService.get(LocalStorageKeys.GAME_ENDPOINT) + '/alliances/';
+
+  private _playersRankingsEmitter: EventEmitter<PageAction> = new EventEmitter<PageAction>();
 
   updateMetadata(observer: Subscriber<boolean>): void {
     const metadataPath: any = collection(this.firestore, 'metadata');
@@ -46,12 +49,10 @@ export class SynchronizerService {
     });
   }
 
-  loadTurnBasedUpdates(turn: number): void {
+  loadTurnBasedUpdates(): void {
     let localMetadata: Metadata = this.localStorageService.localMetadata();
-    let remoteMetadata: Metadata = this.localStorageService.get(LocalStorageKeys.REMOTE_METADATA);
-    let postInstall = this.localStorageService.get(LocalStorageKeys.POST_INSTALL_FETCH_METADATA);
-
-    const playerStats = this.localStorageService.get(LocalStorageKeys.PLAYERS_STATS);
+    const remoteMetadata: Metadata = this.localStorageService.get(LocalStorageKeys.REMOTE_METADATA);
+    const postInstall = this.localStorageService.get(LocalStorageKeys.POST_INSTALL_FETCH_METADATA);
     const isLocalTurnZero: boolean = localMetadata.planetsTurn.turn === 0;
     const isPlanetsRemoteTurnGreater: boolean = remoteMetadata.planetsTurn.turn > localMetadata.planetsTurn.turn;
     const isPlanetsSameTurnButRemoteVersionGreater: boolean = remoteMetadata.planetsTurn.turn == localMetadata.planetsTurn.turn &&
@@ -78,15 +79,17 @@ export class SynchronizerService {
         this._updatesEmitter.emit(-1);
       }
     }
+  }
 
+  loadRankings(turn: number): void {
+    const localMetadata: Metadata = this.localStorageService.localMetadata();
+    const postInstall = this.localStorageService.get(LocalStorageKeys.POST_INSTALL_FETCH_METADATA);
+    const playerStats = this.localStorageService.get(LocalStorageKeys.PLAYERS_STATS);
     const isPlayerRankingsTurnZero: boolean = localMetadata.playersRankingsTurn.turn === 0;
     const isNewTurn: boolean = turn > localMetadata.playersRankingsTurn.turn;
-    // const isPlayerRemoteTurnGreater: boolean = remoteMetadata.playersRankingsTurn.turn > localMetadata.playersRankingsTurn.turn;
-    // const isPlayerSameTurnButRemoteVersionGreater: boolean = remoteMetadata.playersRankingsTurn.turn == localMetadata.playersRankingsTurn.turn &&
-    //   remoteMetadata.playersRankingsTurn.version > localMetadata.playersRankingsTurn.version;
 
     if (postInstall || !playerStats || isPlayerRankingsTurnZero || isNewTurn) {
-      this.loadPlayersRankings(turn);
+      this.loadPlayersRankings(turn, this._playersRankingsEmitter);
     }
 
     const allianceMembers = this.localStorageService.get(LocalStorageKeys.ALLIANCE_MEMBERS);
@@ -100,9 +103,11 @@ export class SynchronizerService {
     this.localStorageService.remove(LocalStorageKeys.POST_INSTALL_FETCH_METADATA);
   }
 
-  private loadPlayersRankings(turn: number): void {
+  private loadPlayersRankings(turn: number, playersRankingsEmitter: EventEmitter<PageAction>): void {
     this._updatesEmitter.emit(1);
-    this.playersRankingsLoaderService.scanPlayersRankingsScreens(this._updatesEmitter);
+    this.playersRankingsLoaderService.scanPlayersRankingsScreens(this._updatesEmitter, playersRankingsEmitter).then((): void => {
+      this._updatesEmitter.emit(-1);
+    });
 
     // const playersRankingsPath: any = collection(this.firestore, 'players-rankings');
     //
@@ -178,5 +183,9 @@ export class SynchronizerService {
 
   get updatesEmitter(): EventEmitter<number> {
     return this._updatesEmitter;
+  }
+
+  get playersRankingsEmitter(): EventEmitter<PageAction> {
+    return this._playersRankingsEmitter;
   }
 }
