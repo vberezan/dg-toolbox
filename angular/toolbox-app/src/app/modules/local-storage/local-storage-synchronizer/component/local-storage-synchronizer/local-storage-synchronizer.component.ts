@@ -98,9 +98,7 @@ export class LocalStorageSynchronizerComponent implements AfterViewInit {
       }
     });
 
-    this.synchronizerService.loadRankings(this.dgAPI.gameTurn(), (popup: string): void => {
-      switch (popup) {
-        case 'players-rankings':
+    this.synchronizerService.loadRankings(this.dgAPI.gameTurn(), (): void => {
           this.dgtUpdatingModel.nativeElement.classList.add('hide');
           this.dgtUpdatingModel.nativeElement.classList.remove('show');
           document.body.classList.remove('dgt-overlay-open');
@@ -111,21 +109,6 @@ export class LocalStorageSynchronizerComponent implements AfterViewInit {
           this.rankingsLoadModal.nativeElement.classList.add('show');
           this.rankingsLoadModal.nativeElement.classList.remove('hide');
           document.body.classList.add('dgt-overlay-open');
-
-          break;
-        case 'alliance-members':
-          this.rankingsLoadModal.nativeElement.classList.remove('show');
-          this.rankingsLoadModal.nativeElement.classList.add('hide');
-          document.body.classList.remove('dgt-overlay-open');
-
-          this.dgtUpdatingModel.nativeElement.classList.remove('hide');
-          this.dgtUpdatingModel.nativeElement.classList.add('show');
-          document.body.classList.add('dgt-overlay-open');
-
-          break;
-        default:
-          break;
-      }
     });
   }
 

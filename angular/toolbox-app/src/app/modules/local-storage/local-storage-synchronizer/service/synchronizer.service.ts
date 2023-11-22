@@ -81,7 +81,7 @@ export class SynchronizerService {
     const isNewTurn: boolean = turn > localMetadata.playersRankingsTurn.turn;
 
     if (!playerStats || isPlayerRankingsTurnZero || isNewTurn) {
-      showPopup('players-rankings');
+      showPopup();
       this.loadPlayersRankings(this._playersRankingsEmitter);
     }
 
@@ -90,8 +90,10 @@ export class SynchronizerService {
     const isTurnGreaterThanAllianceMembersTurn: boolean = turn > localMetadata.allianceMembersTurn.turn;
 
     if (playerStats && (!allianceMembers || isAllianceMembersTurnZero || isTurnGreaterThanAllianceMembersTurn)) {
-      showPopup('alliance-members');
-      this.loadAllianceMembers(turn).catch((error: any): void => console.log(error));
+      this._updatesEmitter.emit(1);
+      this.loadAllianceMembers(turn).then(() => {
+        this._updatesEmitter.emit(0);
+      }).catch((error: any): void => console.log(error));
     }
   }
 
