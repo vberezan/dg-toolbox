@@ -7,6 +7,8 @@ import {getApp, initializeApp, provideFirebaseApp} from "@angular/fire/app";
 import {environment} from "../../../../environments/environment";
 import {getAuth, provideAuth} from "@angular/fire/auth";
 import {initializeAppCheck, provideAppCheck, ReCaptchaV3Provider} from "@angular/fire/app-check";
+import {ScorePerPlanetFormatter} from "./pipe/score-per-planet-formatter";
+import {DecimalPipe} from "@angular/common";
 
 
 @NgModule({
@@ -24,10 +26,15 @@ import {initializeAppCheck, provideAppCheck, ReCaptchaV3Provider} from "@angular
     )
   ],
   declarations: [
-    RankingsPanelComponent
+    RankingsPanelComponent,
+    ScorePerPlanetFormatter
+  ],
+  providers: [
+    DecimalPipe
   ],
   bootstrap: [
     RankingsPanelComponent
   ]
 })
-export class PlayerRankingsModule { }
+export class PlayerRankingsModule {
+}
