@@ -72,13 +72,14 @@ export class SynchronizerService {
     }
   }
 
-  loadRankings(turn: number): void {
+  loadRankings(turn: number, showPopup: Function): void {
     const localMetadata: Metadata = this.localStorageService.localMetadata();
     const playerStats = this.localStorageService.get(LocalStorageKeys.PLAYERS_STATS);
     const isPlayerRankingsTurnZero: boolean = localMetadata.playersRankingsTurn.turn === 0;
     const isNewTurn: boolean = turn > localMetadata.playersRankingsTurn.turn;
 
     if (!playerStats || isPlayerRankingsTurnZero || isNewTurn) {
+      showPopup();
       this.loadPlayersRankings(this._playersRankingsEmitter);
     }
 

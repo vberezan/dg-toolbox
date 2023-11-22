@@ -71,19 +71,6 @@ export class LocalStorageSynchronizerComponent implements AfterViewInit {
   }
 
   private loadRankings(): void {
-    this.playersProgressBar.nativeElement.style.width = '0%';
-    this.loadedRankings = 'Loading ranking pages';
-
-    if (document.body.classList.contains('dgt-overlay-open')) {
-      this.dgtUpdatingModel.nativeElement.classList.add('hide');
-      this.dgtUpdatingModel.nativeElement.classList.remove('show');
-      document.body.classList.remove('dgt-overlay-open');
-    }
-
-    this.rankingsLoadModal.nativeElement.classList.add('show');
-    this.rankingsLoadModal.nativeElement.classList.remove('hide');
-    document.body.classList.add('dgt-overlay-open');
-
     this.rankingsCountSubscription = this.synchronizerService.playersRankingsEmitter.subscribe((value: PageAction): void => {
       switch (value.action) {
         case 'load': {
@@ -106,7 +93,20 @@ export class LocalStorageSynchronizerComponent implements AfterViewInit {
       }
     });
 
-    this.synchronizerService.loadRankings(this.dgAPI.gameTurn());
+    this.synchronizerService.loadRankings(this.dgAPI.gameTurn(), (): void => {
+      this.playersProgressBar.nativeElement.style.width = '0%';
+      this.loadedRankings = 'Loading ranking pages';
+
+      if (document.body.classList.contains('dgt-overlay-open')) {
+        this.dgtUpdatingModel.nativeElement.classList.add('hide');
+        this.dgtUpdatingModel.nativeElement.classList.remove('show');
+        document.body.classList.remove('dgt-overlay-open');
+      }
+
+      this.rankingsLoadModal.nativeElement.classList.add('show');
+      this.rankingsLoadModal.nativeElement.classList.remove('hide');
+      document.body.classList.add('dgt-overlay-open');
+    });
   }
 
 
