@@ -78,7 +78,7 @@ export class SynchronizerService {
     const localMetadata: Metadata = this.localStorageService.localMetadata();
     const playerStats = this.localStorageService.get(LocalStorageKeys.PLAYERS_STATS);
     const isPlayerRankingsTurnZero: boolean = localMetadata.playersRankingsTurn.turn === 0;
-    const isNewTurn: boolean = turn > localMetadata.playersRankingsTurn.turn;
+    const isNewTurn: boolean = turn + 1 > localMetadata.playersRankingsTurn.turn;
 
     if (!playerStats || isPlayerRankingsTurnZero || isNewTurn) {
       showPopup();
