@@ -8,6 +8,8 @@ import {PlayerStats} from "../../../../shared/model/stats/player-stats.model";
 import {HttpClient} from "@angular/common/http";
 import {AllianceMember} from "../../../../shared/model/alliances/alliance-member.model";
 import {Metadata} from "../../../../shared/model/local-storage/metadata.model";
+import {PlayersRankingsLoaderService} from "./players-rankings-loader.service";
+import {DarkgalaxyApiService} from "../../../darkgalaxy-ui-parser/service/darkgalaxy-api.service";
 
 @Injectable({
   providedIn: 'root'
@@ -16,6 +18,7 @@ export class SynchronizerService {
   private httpClient: HttpClient = inject(HttpClient);
   private firestore: Firestore = inject(Firestore);
   private localStorageService: LocalStorageService = inject(LocalStorageService);
+  private playersRankingsLoaderService: PlayersRankingsLoaderService = inject(PlayersRankingsLoaderService);
   private _updatesEmitter: EventEmitter<number> = new EventEmitter<number>();
 
   private readonly ALLIANCES_URL: string = this.localStorageService.get(LocalStorageKeys.GAME_ENDPOINT) + '/alliances/';
@@ -77,11 +80,12 @@ export class SynchronizerService {
     }
 
     const isPlayerRankingsTurnZero: boolean = localMetadata.playersRankingsTurn.turn === 0;
-    const isPlayerRemoteTurnGreater: boolean = remoteMetadata.playersRankingsTurn.turn > localMetadata.playersRankingsTurn.turn;
-    const isPlayerSameTurnButRemoteVersionGreater: boolean = remoteMetadata.playersRankingsTurn.turn == localMetadata.playersRankingsTurn.turn &&
-      remoteMetadata.playersRankingsTurn.version > localMetadata.playersRankingsTurn.version;
+    const isNewTurn: boolean = turn > localMetadata.playersRankingsTurn.turn;
+    // const isPlayerRemoteTurnGreater: boolean = remoteMetadata.playersRankingsTurn.turn > localMetadata.playersRankingsTurn.turn;
+    // const isPlayerSameTurnButRemoteVersionGreater: boolean = remoteMetadata.playersRankingsTurn.turn == localMetadata.playersRankingsTurn.turn &&
+    //   remoteMetadata.playersRankingsTurn.version > localMetadata.playersRankingsTurn.version;
 
-    if (postInstall || !playerStats || isPlayerRankingsTurnZero || isPlayerRemoteTurnGreater || isPlayerSameTurnButRemoteVersionGreater) {
+    if (postInstall || !playerStats || isPlayerRankingsTurnZero || isNewTurn) {
       this.loadPlayersRankings(turn);
     }
 
@@ -97,33 +101,36 @@ export class SynchronizerService {
   }
 
   private loadPlayersRankings(turn: number): void {
-    this._updatesEmitter.emit(2);
-    const playersRankingsPath: any = collection(this.firestore, 'players-rankings');
+    this._updatesEmitter.emit(1);
+    this._updatesEmitter.emit(-1);
+    this.playersRankingsLoaderService.scanPlayersRankingsScreens();
 
-    let subscription: Subscription = collectionData(playersRankingsPath)
-      .subscribe((items: DocumentData[]): void => {
-        let playerStats: PlayerStats[] = Object.assign([], items);
-
-        this.localStorageService.cache(LocalStorageKeys.PLAYERS_STATS, playerStats);
-
-        let localMetadata: Metadata = this.localStorageService.localMetadata();
-        let remoteMetadata: Metadata = this.localStorageService.remoteMetadata();
-        localMetadata.playersRankingsTurn.turn = remoteMetadata.playersRankingsTurn.turn;
-        localMetadata.playersRankingsTurn.version = remoteMetadata.playersRankingsTurn.version;
-
-        this.localStorageService.cache(LocalStorageKeys.LOCAL_METADATA, localMetadata);
-
-        this.delay(1000).then((): void => {
-          this._updatesEmitter.emit(-1);
-        });
-
-        this.loadAllianceMembers(turn).then((): void => {
-          this.delay(1000).then((): void => {
-            subscription.unsubscribe();
-            this._updatesEmitter.emit(-1);
-          });
-        });
-      });
+    // const playersRankingsPath: any = collection(this.firestore, 'players-rankings');
+    //
+    // let subscription: Subscription = collectionData(playersRankingsPath)
+    //   .subscribe((items: DocumentData[]): void => {
+    //     let playerStats: PlayerStats[] = Object.assign([], items);
+    //
+    //     this.localStorageService.cache(LocalStorageKeys.PLAYERS_STATS, playerStats);
+    //
+    //     let localMetadata: Metadata = this.localStorageService.localMetadata();
+    //     let remoteMetadata: Metadata = this.localStorageService.remoteMetadata();
+    //     localMetadata.playersRankingsTurn.turn = remoteMetadata.playersRankingsTurn.turn;
+    //     localMetadata.playersRankingsTurn.version = remoteMetadata.playersRankingsTurn.version;
+    //
+    //     this.localStorageService.cache(LocalStorageKeys.LOCAL_METADATA, localMetadata);
+    //
+    //     this.delay(1000).then((): void => {
+    //       this._updatesEmitter.emit(-1);
+    //     });
+    //
+    //     this.loadAllianceMembers(turn).then((): void => {
+    //       this.delay(1000).then((): void => {
+    //         subscription.unsubscribe();
+    //         this._updatesEmitter.emit(-1);
+    //       });
+    //     });
+    //   });
   }
 
   private async loadAllianceMembers(turn: number): Promise<void> {

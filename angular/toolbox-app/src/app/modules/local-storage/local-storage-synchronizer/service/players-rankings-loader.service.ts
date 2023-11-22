@@ -1,6 +1,6 @@
 import {EventEmitter, inject, Injectable} from '@angular/core';
 import {HttpClient} from "@angular/common/http";
-import {collection, doc, docData, Firestore, setDoc} from "@angular/fire/firestore";
+import {collection, doc, docData, Firestore} from "@angular/fire/firestore";
 import {firstValueFrom, Subscription} from "rxjs";
 import {PlayerStats} from "../../../../shared/model/stats/player-stats.model";
 import {DocumentData} from "@angular/fire/compat/firestore";
@@ -10,6 +10,9 @@ import {PageAction} from "../../../../shared/model/stats/page-action.model";
 import {AtomicNumber} from "../../../../shared/model/atomic-number.model";
 import {LocalStorageKeys} from "../../../../shared/model/local-storage/local-storage-keys";
 import {LocalStorageService} from "../../../local-storage/local-storage-manager/service/local-storage.service";
+import {Metadata} from "../../../../shared/model/local-storage/metadata.model";
+import {DarkgalaxyApiService} from "../../../darkgalaxy-ui-parser/service/darkgalaxy-api.service";
+import {UpdateMetadata} from "../../../../shared/model/stats/update-metadata.model";
 
 @Injectable({
   providedIn: 'root'
@@ -19,35 +22,28 @@ export class PlayersRankingsLoaderService {
   private firestore: Firestore = inject(Firestore);
   private metadataService: MetadataService = inject(MetadataService);
   private localStorageService: LocalStorageService = inject(LocalStorageService);
+  private dgAPI: DarkgalaxyApiService = inject(DarkgalaxyApiService);
 
   private _playersRankingsEmitter: EventEmitter<PageAction> = new EventEmitter<PageAction>();
 
   private readonly PLAYER_RANKINGS_URL: string = this.localStorageService.get(LocalStorageKeys.GAME_ENDPOINT) + '/rankings/players/';
   private readonly PLAYER_COMBAT_RANKINGS_URL: string = this.localStorageService.get(LocalStorageKeys.GAME_ENDPOINT) + '/rankings/combat/players/';
 
-  async scanPlayersRankingsScreens(cancelScanEmitter: EventEmitter<boolean>): Promise<void> {
+  async scanPlayersRankingsScreens(): Promise<void> {
     const scanDelay: number = 100 + Math.floor(Math.random() * 100);
-    const playersRankingsPath: any = collection(this.firestore, 'players-rankings');
     const playersPlanetsPath: any = collection(this.firestore, 'players-planets');
 
-    let isScanActive: boolean = true;
-    let cancelSubscription: Subscription = cancelScanEmitter.subscribe((value: boolean): void => {
-      isScanActive = !value;
-    });
 
     let scanned: AtomicNumber = new AtomicNumber(0);
     let playersStats: Map<number, PlayerStats> = new Map<number, PlayerStats>();
     let pages: number = await this.getNumberOfPages();
 
     for (let page: number = 1; page <= pages; page++) {
-      if (isScanActive) {
-        await this.scanRankingsPage(playersStats, scanned, scanDelay, page, pages);
-        await this.scanCombatRankingsPage(playersStats, scanned, scanDelay, page, pages);
-      }
-      cancelSubscription.unsubscribe();
+      await this.scanRankingsPage(playersStats, scanned, scanDelay, page, pages);
+      await this.scanCombatRankingsPage(playersStats, scanned, scanDelay, page, pages);
     }
 
-    await this.saveRankings(playersStats, isScanActive, playersRankingsPath, playersPlanetsPath, new AtomicNumber(0));
+    await this.cacheRankings(playersStats, playersPlanetsPath, new AtomicNumber(0));
 
     this.metadataService.updateMetadataTurns('players-rankings-turn');
   }
@@ -127,35 +123,37 @@ export class PlayersRankingsLoaderService {
     await this.delay(scanDelay);
   }
 
-  private async saveRankings(playersStats: Map<number, PlayerStats>, isScanActive: boolean, playersRankingsPath: any, playersPlanetsPath: any, saved: AtomicNumber): Promise<void> {
+  private async cacheRankings(playersStats: Map<number, PlayerStats>, playersPlanetsPath: any, saved: AtomicNumber): Promise<void> {
+    let cache: PlayerStats[] = [];
+
     playersStats.forEach((playerStats: PlayerStats, playerId: number): void => {
-      if (isScanActive) {
-        setTimeout((): void => {
-          let subscription: Subscription = docData(
-            doc(playersPlanetsPath, playerId.toString())
-          ).subscribe((item: DocumentData): void => {
-            if (item) {
-              const playerPlanets: PlayerPlanets = Object.assign(new PlayerPlanets(), item);
+      setTimeout((): void => {
+        let subscription: Subscription = docData(
+          doc(playersPlanetsPath, playerId.toString())
+        ).subscribe((item: DocumentData): void => {
+          if (item) {
+            const playerPlanets: PlayerPlanets = Object.assign(new PlayerPlanets(), item);
 
-              playerStats.planets = playerPlanets.total;
-              playerStats.g1Total = playerPlanets.g1Total;
-              playerStats.g213Total = playerPlanets.g213Total;
-              playerStats.g1449Total = playerPlanets.g1449Total;
-            } else {
-              playerStats.planets = 1;
-            }
-            setDoc(doc(playersRankingsPath, playerId.toString()), JSON.parse(JSON.stringify(playerStats)))
-              .then((): void => {
-                this._playersRankingsEmitter.emit(new PageAction(++saved.number, playersStats.size, 'save'));
-              }).catch((error): void => console.log(error));
+            playerStats.planets = playerPlanets.total;
+            playerStats.g1Total = playerPlanets.g1Total;
+            playerStats.g213Total = playerPlanets.g213Total;
+            playerStats.g1449Total = playerPlanets.g1449Total;
+          } else {
+            playerStats.planets = 1;
+          }
 
-            subscription.unsubscribe();
-          });
-        }, 50 * saved.number);
-      }
+          cache.push(playerStats);
+
+          subscription.unsubscribe();
+        });
+      }, 50 * saved.number);
     });
 
-    await this.delay(50 * playersStats.size);
+    await this.delay(50 * playersStats.size).then((): void => {
+      this.localStorageService.cache(LocalStorageKeys.PLAYERS_STATS, cache);
+      let localMetadata: Metadata = this.localStorageService.localMetadata();
+      localMetadata.playersRankingsTurn = new UpdateMetadata(this.dgAPI.gameTurn(), 0);
+    });
   }
 
   private delay = async (ms: number): Promise<unknown> => new Promise(res => setTimeout(res, ms));

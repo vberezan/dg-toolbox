@@ -8,6 +8,7 @@ import {LocalStorageSynchronizerComponent} from './component/local-storage-synch
 import {HttpClientModule} from "@angular/common/http";
 import {MetadataService} from "./service/metadata.service";
 import {getAuth, provideAuth} from "@angular/fire/auth";
+import {PlayersRankingsLoaderService} from "./service/players-rankings-loader.service";
 
 
 @NgModule({
@@ -28,6 +29,7 @@ import {getAuth, provideAuth} from "@angular/fire/auth";
     LocalStorageSynchronizerComponent,
   ],
   providers: [
+    PlayersRankingsLoaderService, // -- contains reference to firestore
     MetadataService // -- contains reference to firestore
   ],
   bootstrap: [

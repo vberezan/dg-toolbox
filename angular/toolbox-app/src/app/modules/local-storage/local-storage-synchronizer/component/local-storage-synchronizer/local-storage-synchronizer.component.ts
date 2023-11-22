@@ -22,6 +22,9 @@ export class LocalStorageSynchronizerComponent implements AfterViewInit {
 
   public authenticated: boolean = false;
 
+  protected loadedRankings: string;
+  protected playersPercentage: number = 0;
+
   constructor() {
     this.authService.authState.subscribe((state: AuthState): void => {
       this.authenticated = state.status;
@@ -47,7 +50,7 @@ export class LocalStorageSynchronizerComponent implements AfterViewInit {
           this.dgtUpdatingModel.nativeElement.classList.remove('hide');
           document.body.classList.add('dgt-overlay-open');
           this.delay(2500).then((): void => {
-            return
+            return;
           });
         }
       });
