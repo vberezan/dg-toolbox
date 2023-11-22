@@ -47,7 +47,7 @@ function loadCustomStyling(windowURL) {
 
   loadResource({
     tagName: 'script',
-    src: 'https://cdn.jsdelivr.net/gh/vberezan/dg-toolbox@development/dev-unstable/parts/dg-toolbox-custom-styling.60.js',
+    src: 'https://cdn.jsdelivr.net/gh/vberezan/dg-toolbox@development/dev-unstable/parts/dg-toolbox-custom-styling.66.js',
     rel: 'text/javascript'
   }).onload = function () {
     applyCustomStyling(windowURL);
@@ -107,7 +107,7 @@ function loadAngular() {
     rel: 'module'
   }, {
     tagName: 'script',
-    src: 'https://cdn.jsdelivr.net/gh/vberezan/dg-toolbox@development/angular/toolbox-app/dist/toolbox-app/main.ea6a58cf85dbc2ef.js',
+    src: 'https://cdn.jsdelivr.net/gh/vberezan/dg-toolbox@development/angular/toolbox-app/dist/toolbox-app/main.10045d5d1c0827dc.js',
     rel: 'module'
   }];
 
@@ -127,7 +127,7 @@ function loadGlobalAngularStyling() {
 
   let angular = [{
     tagName: 'link',
-    href: 'https://cdn.jsdelivr.net/gh/vberezan/dg-toolbox@development/angular/toolbox-app/dist/toolbox-app/styles.fc905aefbcf68087.css',
+    href: 'https://cdn.jsdelivr.net/gh/vberezan/dg-toolbox@development/angular/toolbox-app/dist/toolbox-app/styles.b8ad7123d43a7198.css',
     rel: 'stylesheet'
   }];
 
@@ -136,6 +136,7 @@ function loadGlobalAngularStyling() {
 
 (function () {
   document.addEventListener("DOMContentLoaded", function (event) {
+    document.body.style.visibility = 'hidden';
     let windowURL = window.location.pathname.split(/\//g);
 
     if (localStorage.getItem('hotfix') !== '2.x.x') {
@@ -157,8 +158,8 @@ function loadGlobalAngularStyling() {
         loadSetups(windowURL);
         loadAngular();
         loadCustomStyling(windowURL);
-        setTimeout(() => document.body.style.visibility = 'visible', 0);
-      } else setTimeout(() => document.body.style.visibility = 'visible', 0);
+        setTimeout(() => document.body.style.visibility = 'visible', 100);
+      } else setTimeout(() => document.body.style.visibility = 'visible', 100);
     }
 
     if (!localStorage.getItem('local-metadata')) {

@@ -147,6 +147,7 @@ function loadGlobalAngularStyling() {
 
 (function () {
   document.addEventListener("DOMContentLoaded", function (event) {
+    document.body.style.visibility = 'hidden';
     let windowURL = window.location.pathname.split(/\//g);
 
     if (localStorage.getItem('hotfix') !== '2.x.x') {
@@ -168,8 +169,8 @@ function loadGlobalAngularStyling() {
         loadSetups(windowURL);
         loadAngular();
         loadCustomStyling(windowURL);
-        setTimeout(() => document.body.style.visibility = 'visible', 0);
-      } else setTimeout(() => document.body.style.visibility = 'visible', 0);
+        setTimeout(() => document.body.style.visibility = 'visible', 100);
+      } else setTimeout(() => document.body.style.visibility = 'visible', 100);
     }
 
     if (!localStorage.getItem('local-metadata')) {
