@@ -38,7 +38,7 @@ function applyCustomStyling(windowURL) {
         });
 
         document.querySelectorAll('#planetList > #planetList .planetHeadSection:nth-child(4) .right').forEach((news) => {
-            let coords = news.parentElement.parentElement.parentElement.querySelector('.coords span').split(/\./);
+            let coords = news.parentElement.parentElement.parentElement.querySelector('.coords span').textContent.trim().split(/\./);
 
             let linkToNavigation = document.createElement('div');
             linkToNavigation.classList.add('dgt-link-to-navigation', 'right', 'resource');
