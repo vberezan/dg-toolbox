@@ -194,7 +194,7 @@ function applyCustomStyling(windowURL) {
 
         if (document.querySelector('.planetName')) {
             let planetName = document.querySelector('.planetName');
-            let previous = detach(planetName.querySelector('a'));
+            let prev = detach(planetName.querySelector('a'));
             let next = detach(planetName.querySelector('a'));
             let name = document.createElement('span');
             name.classList.add('dgt-planet-name');
@@ -210,7 +210,7 @@ function applyCustomStyling(windowURL) {
 
             planetName.innerHTML = '';
             planetName.append(name);
-            planetName.append(previous);
+            planetName.append(prev);
             planetName.append(next);
         }
     }
