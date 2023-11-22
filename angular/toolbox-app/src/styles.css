@@ -2133,6 +2133,16 @@ dgt-fleet-orders-list-panel {
   fill: #ffffffcf !important;
 }
 
+#dgt-fleet-funny-span {
+  float: right;
+  margin-right: 7px;
+  font-family: Tahoma, sans-serif;
+  font-size: 12px !important;
+  text-shadow: none !important;
+  color: #ffd46f;
+  font-weight: bold;
+}
+
 #target-transfer {
   width: 461px !important;
   border-radius: 5px;
