@@ -41,6 +41,9 @@ export class RankingsPanelComponent {
       this.authenticated = state.status;
 
       if (this.authenticated) {
+        if (this.localStorageService.get(LocalStorageKeys.PLAYER_RANKINGS_SORT_MAP) === null) {
+          this.localStorageService.cache(LocalStorageKeys.PLAYER_RANKINGS_SORT_MAP, new Map<string, string>([['score', 'desc']]));
+        }
         this.orderBy('score', 'desc');
       }
     });
@@ -49,9 +52,6 @@ export class RankingsPanelComponent {
   }
 
   public orderBy(key: string, order: string): void {
-    if (this.localStorageService.get(LocalStorageKeys.PLAYER_RANKINGS_SORT_MAP) === null) {
-      this.localStorageService.cache(LocalStorageKeys.PLAYER_RANKINGS_SORT_MAP, new Map<string, string>());
-    }
     let sortMap: Map<string, string> = this.localStorageService.get(LocalStorageKeys.PLAYER_RANKINGS_SORT_MAP);
 
     if (sortMap.has(key)) {
