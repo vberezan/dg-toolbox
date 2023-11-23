@@ -37,8 +37,14 @@ export class LocalStorageSynchronizerComponent implements AfterViewInit {
   }
 
   ngAfterViewInit(): void {
+    this.prepareRankingsLoader();
+
     this.synchronizerService.updatesEmitter.subscribe((updateNumber: number): void => {
       switch (updateNumber) {
+        case -1: {
+          this.synchronizerService.loadRankings(this.dgAPI.gameTurn(), this.dgAPI.getCountDownMinutes());
+          break;
+        }
         case 0:
           this.delay(1000).then((): void => {
             this.dgtUpdatingModel.nativeElement.classList.add('hide');
@@ -81,17 +87,13 @@ export class LocalStorageSynchronizerComponent implements AfterViewInit {
       this.synchronizerService.updateMetadata(observer);
     }).subscribe((loaded: boolean): void => {
       if (loaded) {
-        this.synchronizerService.loadPlanets()
-          .then((): void => {
-            this.loadRankings();
-          });
-
+        this.synchronizerService.loadPlanets().catch((error: any): void => console.log(error));
         subscription.unsubscribe();
       }
     });
   }
 
-  private loadRankings(): void {
+  private prepareRankingsLoader(): void {
     this.rankingsCountSubscription = this.synchronizerService.playersRankingsEmitter.subscribe((value: PageAction): void => {
       switch (value.action) {
         case 'load': {
@@ -118,8 +120,6 @@ export class LocalStorageSynchronizerComponent implements AfterViewInit {
         }
       }
     });
-
-    this.synchronizerService.loadRankings(this.dgAPI.gameTurn(), this.dgAPI.getCountDownMinutes());
   }
 
 

@@ -69,7 +69,7 @@ export class SynchronizerService {
 
       this.localStorageService.cache(LocalStorageKeys.LOCAL_METADATA, localMetadata);
 
-      this._updatesEmitter.emit(0);
+      this._updatesEmitter.emit(-1);
     }
   }
 
