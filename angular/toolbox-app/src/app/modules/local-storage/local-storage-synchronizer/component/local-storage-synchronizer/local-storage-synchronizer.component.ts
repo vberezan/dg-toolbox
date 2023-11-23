@@ -38,21 +38,42 @@ export class LocalStorageSynchronizerComponent implements AfterViewInit {
 
   ngAfterViewInit(): void {
     this.synchronizerService.updatesEmitter.subscribe((updateNumber: number): void => {
-      if (updateNumber == 0) {
-        this.delay(1000).then((): void => {
-          this.dgtUpdatingModel.nativeElement.classList.add('hide');
-          this.dgtUpdatingModel.nativeElement.classList.remove('show');
+      switch (updateNumber) {
+        case 0:
+          this.delay(1000).then((): void => {
+            this.dgtUpdatingModel.nativeElement.classList.add('hide');
+            this.dgtUpdatingModel.nativeElement.classList.remove('show');
+            this.rankingsLoadModal.nativeElement.classList.add('hide');
+            this.rankingsLoadModal.nativeElement.classList.remove('show');
+            document.body.classList.remove('dgt-overlay-open');
+            window.location.reload();
+          });
+          break;
+        case 1:
+          this.rankingsLoadModal.nativeElement.classList.add('hide');
+          this.rankingsLoadModal.nativeElement.classList.remove('show');
           document.body.classList.remove('dgt-overlay-open');
-          window.location.reload();
-        });
-      } else {
-        if (!document.body.classList.contains('dgt-overlay-open')) {
+
           this.dgtUpdatingModel.nativeElement.classList.add('show');
           this.dgtUpdatingModel.nativeElement.classList.remove('hide');
           document.body.classList.add('dgt-overlay-open');
-          this.delay(1000).then((): void => {
-          });
-        }
+
+          this.delay(1000).then((): void => {});
+          break;
+        case 2:
+          this.dgtUpdatingModel.nativeElement.classList.add('hide');
+          this.dgtUpdatingModel.nativeElement.classList.remove('show');
+          document.body.classList.remove('dgt-overlay-open');
+
+          this.playersProgressBar.nativeElement.style.width = '0%';
+          this.loadedRankings = 'Loading ranking pages';
+
+          this.rankingsLoadModal.nativeElement.classList.add('show');
+          this.rankingsLoadModal.nativeElement.classList.remove('hide');
+          document.body.classList.add('dgt-overlay-open');
+          break;
+        default:
+          break;
       }
     });
 
@@ -98,18 +119,7 @@ export class LocalStorageSynchronizerComponent implements AfterViewInit {
       }
     });
 
-    this.synchronizerService.loadRankings(this.dgAPI.gameTurn(), this.dgAPI.getCountDownMinutes(), (): void => {
-          this.dgtUpdatingModel.nativeElement.classList.add('hide');
-          this.dgtUpdatingModel.nativeElement.classList.remove('show');
-          document.body.classList.remove('dgt-overlay-open');
-
-          this.playersProgressBar.nativeElement.style.width = '0%';
-          this.loadedRankings = 'Loading ranking pages';
-
-          this.rankingsLoadModal.nativeElement.classList.add('show');
-          this.rankingsLoadModal.nativeElement.classList.remove('hide');
-          document.body.classList.add('dgt-overlay-open');
-    });
+    this.synchronizerService.loadRankings(this.dgAPI.gameTurn(), this.dgAPI.getCountDownMinutes());
   }
 
 

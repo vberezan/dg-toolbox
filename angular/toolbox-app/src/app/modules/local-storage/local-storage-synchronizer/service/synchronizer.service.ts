@@ -73,14 +73,14 @@ export class SynchronizerService {
     }
   }
 
-  loadRankings(turn: number, countDownMinutes: number, showPopup: Function): void {
+  loadRankings(turn: number, countDownMinutes: number): void {
     const localMetadata: Metadata = this.localStorageService.localMetadata();
     const playerStats: PlayerStats[] = this.localStorageService.get(LocalStorageKeys.PLAYERS_STATS);
     const isPlayerRankingsTurnZero: boolean = localMetadata.playersRankingsTurn.turn === 0;
     const isNewTurn: boolean = (turn > localMetadata.playersRankingsTurn.turn) && (countDownMinutes > 5 && countDownMinutes < 55);
 
     if (!playerStats || isPlayerRankingsTurnZero || isNewTurn) {
-      showPopup();
+      this._updatesEmitter.emit(2);
       this.loadPlayersRankings(this._playersRankingsEmitter);
     }
 
@@ -98,7 +98,10 @@ export class SynchronizerService {
 
   private loadPlayersRankings(playersRankingsEmitter: EventEmitter<PageAction>): void {
     this.playersRankingsLoaderService.scanPlayersRankingsScreens(playersRankingsEmitter).then((): void => {
-      this._updatesEmitter.emit(0);
+      this._updatesEmitter.emit(1);
+      this.loadAllianceMembers(this.localStorageService.localMetadata().playersRankingsTurn.turn).then((): void => {
+        this._updatesEmitter.emit(0);
+      });
     });
   }
 
