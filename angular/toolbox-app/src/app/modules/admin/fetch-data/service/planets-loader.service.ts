@@ -177,12 +177,6 @@ export class PlanetsLoaderService {
                              playerPlanets: Map<number, PlayerPlanets>,
                              alliancePlanets: Map<string, AlliancePlanets>,
                              planetsPath: any): Promise<void> {
-    let ss:string = await firstValueFrom(this.httpClient.post('https://helloweenpt.com/darkgalaxy/combat-simulator','fighter_player_a=1&fighter_player_b=2&bomber_player_a=1&bomber_player_b=2&frigate_player_a=1&frigate_player_b=2&destroyer_player_a=1&destroyer_player_b=2&cruiser_player_a=1&cruiser_player_b=2&battleship_player_a=1&battleship_player_b=2&simulate=Simulate+Battle', {responseType: 'text'}));
-
-    console.log(ss);
-
-
-
     const source: string = await firstValueFrom(this.httpClient.get(this.NAVIGATION_BASE_URL + galaxy + '/' + sector + '/' + system, {responseType: 'text'}));
     const dom: Document = new DOMParser().parseFromString(source, 'text/html');
 

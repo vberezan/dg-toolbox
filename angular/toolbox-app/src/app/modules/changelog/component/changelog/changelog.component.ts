@@ -2,6 +2,7 @@ import {AfterViewInit, ChangeDetectorRef, Component, ElementRef, inject, ViewChi
 import {ChangelogService} from "../../service/changelog.service";
 import {Observable, Subscriber} from "rxjs";
 import {LocalStorageService} from "../../../local-storage/local-storage-manager/service/local-storage.service";
+import {DomSanitizer, SafeResourceUrl} from "@angular/platform-browser";
 
 @Component({
   selector: 'dgt-changelog',
@@ -18,6 +19,8 @@ export class ChangelogComponent implements AfterViewInit {
   public updateAvailable: Observable<boolean>;
   public version: string = 'N/A';
   public newVersion: string = 'N/A';
+
+  url: string = "https://helloweenpt.com/darkgalaxy/combat-simulator";
 
   constructor() {
     this.updateAvailable = new Observable<boolean>((changeObserver: Subscriber<boolean>): void => {
