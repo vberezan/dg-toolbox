@@ -53,7 +53,11 @@ export class RankingsPanelComponent {
 
   public orderBy(sortKey: string, @Optional() switchOrder:boolean = true): void {
     let sort: string = this.localStorageService.get(LocalStorageKeys.PLAYERS_RANKINGS_SORT);
-    const sortOrder: string = this.localStorageService.get(LocalStorageKeys.PLAYERS_RANKINGS_SORT).split(/:/)[1];
+    let sortOrder: string = this.localStorageService.get(LocalStorageKeys.PLAYERS_RANKINGS_SORT).split(/:/)[1];
+
+    if (sortKey !== sort.split(/:/)[0]) {
+      sortOrder = 'desc';
+    }
 
     if (switchOrder) {
       if (sortOrder === 'desc') {

@@ -32,9 +32,7 @@ export class PlayerRankingsService {
           case 'g1449Total':
             if (order === 'desc') {
               cachedStats[i][key] < cachedStats[j][key] ? sortCondition = true : sortCondition = false;
-            }
-
-            if (order === 'asc') {
+            } else {
               cachedStats[i][key] > cachedStats[j][key] ? sortCondition = true : sortCondition = false;
             }
             break;
