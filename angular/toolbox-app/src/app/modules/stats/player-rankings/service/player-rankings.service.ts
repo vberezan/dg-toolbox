@@ -76,6 +76,7 @@ export class PlayerRankingsService {
   }
 
   fixPaginationDisplay(page: number): void {
+    if (this.localStorageService.get(LocalStorageKeys.PLAYERS_STATS) === null) return;
     const size: number = this.localStorageService.get(LocalStorageKeys.PLAYERS_STATS).length;
 
     document.querySelector('#ranking-navigation > div:nth-child(2)').innerHTML = 'Page ' + page + ' / ' + Math.ceil(size / 100);
