@@ -1,4 +1,4 @@
-import {ChangeDetectorRef, Component, inject} from '@angular/core';
+import {Component, inject} from '@angular/core';
 import {PlayerRankingsService} from "../../service/player-rankings.service";
 import {PlayerStats} from "../../../../../shared/model/stats/player-stats.model";
 import {AuthState} from "../../../../../shared/model/authentication/auth-state.model";
@@ -14,7 +14,6 @@ import {LocalStorageKeys} from "../../../../../shared/model/local-storage/local-
 export class RankingsPanelComponent {
   private playerRankingsService: PlayerRankingsService = inject(PlayerRankingsService);
   private authService: AuthService = inject(AuthService);
-  private changeDetection: ChangeDetectorRef = inject(ChangeDetectorRef);
   private localStorageService: LocalStorageService = inject(LocalStorageService);
   private readonly page: number;
 
@@ -42,7 +41,7 @@ export class RankingsPanelComponent {
 
       if (this.authenticated) {
         if (this.localStorageService.get(LocalStorageKeys.PLAYER_RANKINGS_SORT_MAP) === null) {
-          this.localStorageService.cache(LocalStorageKeys.PLAYER_RANKINGS_SORT_MAP, ['score:desc']);
+          this.localStorageService.cache(LocalStorageKeys.PLAYER_RANKINGS_SORT_MAP, ['score:asc']);
         }
 
         this.orderBy('score', 'desc');
@@ -68,9 +67,6 @@ export class RankingsPanelComponent {
       }
     }
 
-    this.rankings = this.playerRankingsService.fetchAndClear(sortKey, sortOrder, this.page, 100);
-    // this.changeDetection.detectChanges();
-
     if (hasKey) {
       if (order === 'desc') {
         sortMap[keyPos] = sortKey + ':asc';
@@ -81,6 +77,7 @@ export class RankingsPanelComponent {
       sortMap.push(sortKey + ':' + sortOrder);
     }
 
+    this.rankings = this.playerRankingsService.fetchAndClear(sortKey, sortOrder, this.page, 100);
     this.localStorageService.cache(LocalStorageKeys.PLAYER_RANKINGS_SORT_MAP, sortMap);
   }
 }
