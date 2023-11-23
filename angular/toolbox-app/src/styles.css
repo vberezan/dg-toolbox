@@ -2330,7 +2330,28 @@ dgt-fleet-orders-list-panel {
   float: left;
 }
 
-#source-transfer .dgt-max-button svg,
+#target-transfer .dgt-max-button {
+  float: right;
+}
+
+#target-transfer .dgt-max-button svg{
+  margin-right: 3px !important;
+  padding: 4px !important;
+  border-radius: 3px !important;
+  border: 1px solid #545454 !important;
+  font-size: 13px !important;
+  fill: #ffffffc7;
+}
+
+#source-transfer .dgt-max-button svg {
+  margin-left: 3px !important;
+  padding: 4px !important;
+  border-radius: 3px !important;
+  border: 1px solid #545454 !important;
+  font-size: 13px !important;
+  fill: #ffffffc7;
+}
+
 #queue-actions-left .dgt-max-button svg {
   margin-left: 1px !important;
   padding: 4px !important;
@@ -2340,6 +2361,7 @@ dgt-fleet-orders-list-panel {
   fill: #ffffffc7;
 }
 
+#target-transfer .dgt-max-button svg:hover,
 #source-transfer .dgt-max-button svg:hover,
 #queue-actions-left .dgt-max-button svg:hover {
   background: rgb(45, 43, 43) !important;
