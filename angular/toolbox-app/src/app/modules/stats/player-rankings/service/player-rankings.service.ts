@@ -12,7 +12,11 @@ export class PlayerRankingsService {
   constructor() {
   }
 
-  fetchAndClear(key: string, order: string, page: number, pageSize: number, @Optional() clear: boolean = false): Map<number, PlayerStats> {
+  fetchAndClear(key: string,
+                order: string,
+                page: number,
+                pageSize: number,
+                @Optional() clear: boolean = false): Map<number, PlayerStats> {
     let orderedRankings: Map<number, PlayerStats> = new Map<number, PlayerStats>();
     const cachedStats: PlayerStats[] = this.localStorageService.get(LocalStorageKeys.PLAYERS_STATS);
 
@@ -62,6 +66,8 @@ export class PlayerRankingsService {
         orderedRankings.set(cachedStats[i].playerId, cachedStats[i]);
       }
     }
+
+    console.log(orderedRankings);
 
     if (clear) {
       document.querySelector('.playerRankingsList').remove();
