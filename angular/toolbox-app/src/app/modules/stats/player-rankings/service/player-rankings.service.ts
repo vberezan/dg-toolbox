@@ -79,7 +79,7 @@ export class PlayerRankingsService {
 
     document.querySelector('#ranking-navigation > div:nth-child(2)').innerHTML = 'Page ' + page + ' / ' + Math.ceil(size / 100);
     if (page === Math.ceil(size / 100)) {
-      document.querySelector('#ranking-navigation > div:nth-child(3)').remove();
+      document.querySelector('#ranking-navigation > div:nth-child(1)').remove();
     }
   }
 }
