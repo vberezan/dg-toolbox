@@ -53,6 +53,7 @@ export class RankingsPanelComponent {
 
     this.authService.checkLoginValidity();
     this.playerRankingsService.fixPaginationDisplay(this.page);
+    this.changeDetector.detectChanges();
   }
 
   public orderBy(sortKey: string, @Optional() switchOrder:boolean = true): void {
@@ -65,11 +66,12 @@ export class RankingsPanelComponent {
     if (switchOrder) sortOrder = sortOrder === 'desc' ? 'asc' : 'desc';
     sort = sortKey.concat(':', sortOrder);
 
+    this.rankings = this.playerRankingsService.fetchAndClear(sortKey, sortOrder, this.page, 100);
+
     this.sortOrder = sortOrder;
     this.sortKey = sortKey;
     this.changeDetector.detectChanges();
 
-    this.rankings = this.playerRankingsService.fetchAndClear(sortKey, sortOrder, this.page, 100);
     this.localStorageService.cache(LocalStorageKeys.PLAYERS_RANKINGS_SORT, sort);
   }
 }
