@@ -9,34 +9,34 @@
         <th class="name">Player</th>
         <th class="planets">
           <a (click)="orderBy('planets')" href="javascript:void(0);">Planets</a>
-          <img *ngIf="sortOrder == 'desc ' && sortKey == 'planets'" alt="descending" class="icon desc" src="https://i.imgur.com/ntiN5vu.png"/>
-          <img *ngIf="sortOrder == 'asc' && sortKey == 'planets'" alt="ascending" class="icon asc" src="https://i.imgur.com/768mrAd.png"/>
+          <img *ngIf="sortOrder === 'desc ' && sortKey === 'planets'" alt="descending" class="icon desc" src="https://i.imgur.com/ntiN5vu.png"/>
+          <img *ngIf="sortOrder === 'asc' && sortKey === 'planets'" alt="ascending" class="icon asc" src="https://i.imgur.com/768mrAd.png"/>
         </th>
         <th class="g1">
           <a (click)="orderBy('g1Total')" href="javascript:void(0);">G1</a>
-          <img *ngIf="sortOrder == 'desc ' && sortKey == 'g1Total'" alt="descending" class="icon desc" src="https://i.imgur.com/ntiN5vu.png"/>
-          <img *ngIf="sortOrder == 'asc' && sortKey == 'g1Total'" alt="ascending" class="icon asc" src="https://i.imgur.com/768mrAd.png"/>
+          <img *ngIf="sortOrder === 'desc ' && sortKey === 'g1Total'" alt="descending" class="icon desc" src="https://i.imgur.com/ntiN5vu.png"/>
+          <img *ngIf="sortOrder === 'asc' && sortKey === 'g1Total'" alt="ascending" class="icon asc" src="https://i.imgur.com/768mrAd.png"/>
         </th>
         <th class="inner">
           <a (click)="orderBy('g213Total')" href="javascript:void(0);">Inner</a>
-          <img *ngIf="sortOrder == 'desc ' && sortKey == 'g213Total'" alt="descending" class="icon desc" src="https://i.imgur.com/ntiN5vu.png"/>
-          <img *ngIf="sortOrder == 'asc' && sortKey == 'g213Total'" alt="ascending" class="icon asc" src="https://i.imgur.com/768mrAd.png"/>
+          <img *ngIf="sortOrder === 'desc ' && sortKey === 'g213Total'" alt="descending" class="icon desc" src="https://i.imgur.com/ntiN5vu.png"/>
+          <img *ngIf="sortOrder === 'asc' && sortKey === 'g213Total'" alt="ascending" class="icon asc" src="https://i.imgur.com/768mrAd.png"/>
         </th>
         <th class="outer">
           <a (click)="orderBy('g1449Total')" href="javascript:void(0);">Outer</a>
-          <img *ngIf="sortOrder == 'desc ' && sortKey == 'g1449Total'" alt="descending" class="icon desc" src="https://i.imgur.com/ntiN5vu.png"/>
-          <img *ngIf="sortOrder == 'asc' && sortKey == 'g1449Total'" alt="ascending" class="icon asc" src="https://i.imgur.com/768mrAd.png"/>
+          <img *ngIf="sortOrder === 'desc ' && sortKey === 'g1449Total'" alt="descending" class="icon desc" src="https://i.imgur.com/ntiN5vu.png"/>
+          <img *ngIf="sortOrder === 'asc' && sortKey === 'g1449Total'" alt="ascending" class="icon asc" src="https://i.imgur.com/768mrAd.png"/>
         </th>
         <th class="empty"></th>
         <th class="score-per-planet">
           <a (click)="orderBy('scorePerPlanet')" href="javascript:void(0);">Score/Planet</a>
-          <img *ngIf="sortOrder == 'desc ' && sortKey == 'scorePerPlanet'" alt="descending" class="icon desc" src="https://i.imgur.com/ntiN5vu.png"/>
-          <img *ngIf="sortOrder == 'asc' && sortKey == 'scorePerPlanet'" alt="ascending" class="icon asc" src="https://i.imgur.com/768mrAd.png"/>
+          <img *ngIf="sortOrder === 'desc ' && sortKey === 'scorePerPlanet'" alt="descending" class="icon desc" src="https://i.imgur.com/ntiN5vu.png"/>
+          <img *ngIf="sortOrder === 'asc' && sortKey === 'scorePerPlanet'" alt="ascending" class="icon asc" src="https://i.imgur.com/768mrAd.png"/>
         </th>
         <th class="score">
           <a (click)="orderBy('score')" href="javascript:void(0);">Score</a>
-          <img *ngIf="sortOrder == 'desc ' && sortKey == 'score'" alt="descending" class="icon desc" src="https://i.imgur.com/ntiN5vu.png"/>
-          <img *ngIf="sortOrder == 'asc' && sortKey == 'score'" alt="ascending" class="icon asc" src="https://i.imgur.com/768mrAd.png"/>
+          <img *ngIf="sortOrder === 'desc ' && sortKey === 'score'" alt="descending" class="icon desc" src="https://i.imgur.com/ntiN5vu.png"/>
+          <img *ngIf="sortOrder === 'asc' && sortKey === 'score'" alt="ascending" class="icon asc" src="https://i.imgur.com/768mrAd.png"/>
         </th>
       </tr>
       </thead>
