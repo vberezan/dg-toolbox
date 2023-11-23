@@ -39,10 +39,10 @@ export class RankingsPanelComponent {
       this.authenticated = state.status;
 
       if (this.authenticated) {
-        if (this.localStorageService.get(LocalStorageKeys.PLAYER_RANKINGS_SORT) === null) {
-          this.localStorageService.cache(LocalStorageKeys.PLAYER_RANKINGS_SORT, 'score:desc');
+        if (this.localStorageService.get(LocalStorageKeys.PLAYERS_RANKINGS_SORT) === null) {
+          this.localStorageService.cache(LocalStorageKeys.PLAYERS_RANKINGS_SORT, 'score:desc');
         }
-        const sortKey: string = this.localStorageService.get(LocalStorageKeys.PLAYER_RANKINGS_SORT).split(/:/)[0];
+        const sortKey: string = this.localStorageService.get(LocalStorageKeys.PLAYERS_RANKINGS_SORT).split(/:/)[0];
 
         this.orderBy(sortKey,  false);
       }
@@ -52,8 +52,8 @@ export class RankingsPanelComponent {
   }
 
   public orderBy(sortKey: string, @Optional() switchOrder:boolean = true): void {
-    let sort: string = this.localStorageService.get(LocalStorageKeys.PLAYER_RANKINGS_SORT);
-    const sortOrder: string = this.localStorageService.get(LocalStorageKeys.PLAYER_RANKINGS_SORT).split(/:/)[1];
+    let sort: string = this.localStorageService.get(LocalStorageKeys.PLAYERS_RANKINGS_SORT);
+    const sortOrder: string = this.localStorageService.get(LocalStorageKeys.PLAYERS_RANKINGS_SORT).split(/:/)[1];
 
     if (switchOrder) {
       if (sortOrder === 'desc') {
@@ -67,6 +67,6 @@ export class RankingsPanelComponent {
       sort.split(/:/)[1],
       this.page,
       100);
-    this.localStorageService.cache(LocalStorageKeys.PLAYER_RANKINGS_SORT, sort);
+    this.localStorageService.cache(LocalStorageKeys.PLAYERS_RANKINGS_SORT, sort);
   }
 }
