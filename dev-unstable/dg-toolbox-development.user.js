@@ -27,7 +27,7 @@ function loadResource(element) {
 
 function getVersion() {
   if (localStorage.getItem('js-version')) return JSON.parse(localStorage.getItem('js-version')).value;
-  else return 'v2.0.5';
+  else return 'v2.0.6';
 }
 
 function loadSetups(windowURL) {
@@ -47,7 +47,7 @@ function loadCustomStyling(windowURL) {
 
   loadResource({
     tagName: 'script',
-    src: 'https://cdn.jsdelivr.net/gh/vberezan/dg-toolbox@development/dev-unstable/parts/dg-toolbox-custom-styling.66.js',
+    src: 'https://cdn.jsdelivr.net/gh/vberezan/dg-toolbox@development/dev-unstable/parts/dg-toolbox-custom-styling.90.js',
     rel: 'text/javascript'
   }).onload = function () {
     applyCustomStyling(windowURL);
@@ -107,7 +107,7 @@ function loadAngular() {
     rel: 'module'
   }, {
     tagName: 'script',
-    src: 'https://cdn.jsdelivr.net/gh/vberezan/dg-toolbox@development/angular/toolbox-app/dist/toolbox-app/main.10045d5d1c0827dc.js',
+    src: 'https://cdn.jsdelivr.net/gh/vberezan/dg-toolbox@development/angular/toolbox-app/dist/toolbox-app/main.45e10262c309a191.js',
     rel: 'module'
   }];
 
@@ -127,7 +127,7 @@ function loadGlobalAngularStyling() {
 
   let angular = [{
     tagName: 'link',
-    href: 'https://cdn.jsdelivr.net/gh/vberezan/dg-toolbox@development/angular/toolbox-app/dist/toolbox-app/styles.b8ad7123d43a7198.css',
+    href: 'https://cdn.jsdelivr.net/gh/vberezan/dg-toolbox@development/angular/toolbox-app/dist/toolbox-app/styles.db7e58f73a10560a.css',
     rel: 'stylesheet'
   }];
 
@@ -158,8 +158,8 @@ function loadGlobalAngularStyling() {
         loadSetups(windowURL);
         loadAngular();
         loadCustomStyling(windowURL);
-        setTimeout(() => document.body.style.visibility = 'visible', 100);
-      } else setTimeout(() => document.body.style.visibility = 'visible', 100);
+        setTimeout(() => document.body.style.visibility = 'visible', 250);
+      } else setTimeout(() => document.body.style.visibility = 'visible', 250);
     }
 
     if (!localStorage.getItem('local-metadata')) {
