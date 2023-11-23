@@ -20,8 +20,6 @@ export class PlayerRankingsService {
     let orderedRankings: Map<number, PlayerStats> = new Map<number, PlayerStats>();
     const cachedStats: PlayerStats[] = this.localStorageService.get(LocalStorageKeys.PLAYERS_STATS);
 
-    console.log(key + " - " + order);
-
     for (let i: number = 0; i < cachedStats.length - 1; i++) {
       for (let j: number = i + 1; j < cachedStats.length; j++) {
         let sortCondition: boolean = false;
@@ -68,8 +66,6 @@ export class PlayerRankingsService {
         orderedRankings.set(cachedStats[i].playerId, cachedStats[i]);
       }
     }
-
-    console.log(orderedRankings);
 
     if (clear) {
       document.querySelector('.playerRankingsList').remove();
