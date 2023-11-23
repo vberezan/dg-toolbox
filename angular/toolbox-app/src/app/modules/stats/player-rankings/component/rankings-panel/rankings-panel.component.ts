@@ -42,19 +42,18 @@ export class RankingsPanelComponent {
         if (this.localStorageService.get(LocalStorageKeys.PLAYER_RANKINGS_SORT) === null) {
           this.localStorageService.cache(LocalStorageKeys.PLAYER_RANKINGS_SORT, 'score:desc');
         }
-
         const sortKey: string = this.localStorageService.get(LocalStorageKeys.PLAYER_RANKINGS_SORT).split(/:/)[0];
-        const sortOrder: string = this.localStorageService.get(LocalStorageKeys.PLAYER_RANKINGS_SORT).split(/:/)[1];
 
-        this.orderBy(sortKey, sortOrder, false);
+        this.orderBy(sortKey,  false);
       }
     });
 
     this.authService.checkLoginValidity();
   }
 
-  public orderBy(sortKey: string, sortOrder: string, @Optional() switchOrder:boolean = true): void {
+  public orderBy(sortKey: string, @Optional() switchOrder:boolean = true): void {
     let sort: string = this.localStorageService.get(LocalStorageKeys.PLAYER_RANKINGS_SORT);
+    const sortOrder: string = this.localStorageService.get(LocalStorageKeys.PLAYER_RANKINGS_SORT).split(/:/)[1];
 
     if (switchOrder) {
       if (sortOrder === 'desc') {
