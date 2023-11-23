@@ -34,7 +34,6 @@ export class RankingsPanelComponent {
         this.page = 1;
         break;
     }
-    this.page = 1;
 
     this.authService.authState.subscribe((state: AuthState): void => {
       this.authenticated = state.status;
