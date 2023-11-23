@@ -696,6 +696,12 @@ function applyCustomStyling(windowURL) {
                     if (detached != null) {
                         input.prepend(detached);
                     }
+
+                    let maxButton = document.createElement('div');
+                    maxButton.classList.add('dgt-max-button');
+                    maxButton.innerHTML = '<img src="https://i.imgur.com/rBIFVe6.png"/>'
+
+                    input.insertBefore(input.querySelector('.text'), maxButton);
                 });
             }
         }
