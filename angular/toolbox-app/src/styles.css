@@ -2331,10 +2331,16 @@ dgt-fleet-orders-list-panel {
 
 #queue-actions-left .dgt-max-button svg {
   margin-left: 1px !important;
-  width: 19px !important;
-  height: 19px !important;
-  padding: 1px !important;
+  padding: 4px !important;
   border-radius: 3px !important;
+  border: 1px solid #545454 !important;
+  font-size: 13px !important;
+}
+
+#queue-actions-left .dgt-max-button svg:hover {
+  background: rgb(45, 43, 43) !important;
+  border: 1px solid rgb(53,49,49,1) !important;
+  cursor: pointer;
 }
 
 /*************/
