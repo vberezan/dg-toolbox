@@ -745,7 +745,7 @@ function applyCustomStyling(windowURL) {
 
               maxButton.onmousedown = () => {
                 let actualInput = input.querySelector('input[type="number"]');
-                actualInput.value = actualInput.getAttribute('max');
+                actualInput.value = 999999999;
               };
             }
           }
@@ -790,7 +790,7 @@ function applyCustomStyling(windowURL) {
 
               maxButton.onmousedown = () => {
                 let actualInput = input.querySelector('input[type="number"]');
-                actualInput.value = actualInput.getAttribute('max');
+                actualInput.value = 999999999;
               };
             }
           }
