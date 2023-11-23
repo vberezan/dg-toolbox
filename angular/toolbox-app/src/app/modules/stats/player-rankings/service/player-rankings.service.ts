@@ -39,9 +39,8 @@ export class PlayerRankingsService {
     return rankings;
   }
 
-  orderBy(key: string, order: string): Map<number, PlayerStats> {
+  orderBy(key: string, order: string, page: number, pageSize: number): Map<number, PlayerStats> {
     let orderedRankings: Map<number, PlayerStats> = new Map<number, PlayerStats>();
-
     const cachedStats: PlayerStats[] = this.localStorageService.get(LocalStorageKeys.PLAYERS_STATS);
 
     for (let i: number = 0; i < cachedStats.length - 1; i++) {
@@ -81,8 +80,14 @@ export class PlayerRankingsService {
       }
     }
 
-    for (let i: number = 0; i < cachedStats.length; i++) {
-      orderedRankings.set(cachedStats[i].playerId, cachedStats[i]);
+    if (cachedStats.length > pageSize * page) {
+      for (let i: number = pageSize * (page - 1); i < pageSize * page; i++) {
+        orderedRankings.set(cachedStats[i].playerId, cachedStats[i]);
+      }
+    } else {
+      for (let i: number = cachedStats.length - 100; i < cachedStats.length; i++) {
+        orderedRankings.set(cachedStats[i].playerId, cachedStats[i]);
+      }
     }
 
     return orderedRankings;

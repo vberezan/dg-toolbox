@@ -16,6 +16,7 @@ export class RankingsPanelComponent {
   private changeDetection: ChangeDetectorRef = inject(ChangeDetectorRef);
   private sortMap: Map<string, string> = new Map<string, string>();
   public authenticated: boolean = false;
+  private page: number;
 
   constructor() {
     this.authService.authState.subscribe((state: AuthState): void => {
@@ -28,6 +29,21 @@ export class RankingsPanelComponent {
 
     this.authService.checkLoginValidity();
     this.sortMap.set('score', 'asc');
+    const pageLocation: string[] = window.location.pathname.split(/\//);
+    switch (pageLocation.length) {
+      case 4:
+        this.page = 1;
+        break;
+      case 5:
+        this.page = parseInt(pageLocation[3]);
+        break;
+      default:
+        this.page = 1;
+        break;
+    }
+
+
+    this.page = 1;
   }
 
   protected readonly Math = Math;
@@ -44,7 +60,7 @@ export class RankingsPanelComponent {
       this.sortMap.set(key, 'desc');
     }
 
-    this.rankings = this.playerRankingsService.orderBy(key, this.sortMap.get(key));
+    this.rankings = this.playerRankingsService.orderBy(key, this.sortMap.get(key), this.page, 100);
     this.changeDetection.detectChanges();
   }
 }
