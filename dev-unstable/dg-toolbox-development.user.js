@@ -27,7 +27,7 @@ function loadResource(element) {
 
 function getVersion() {
   if (localStorage.getItem('js-version')) return JSON.parse(localStorage.getItem('js-version')).value;
-  else return 'v2.0.4';
+  else return 'v2.0.5';
 }
 
 function loadSetups(windowURL) {
