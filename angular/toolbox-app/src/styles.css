@@ -2334,15 +2334,7 @@ dgt-fleet-orders-list-panel {
   float: right;
 }
 
-#target-transfer .dgt-max-button svg{
-  margin-right: 3px !important;
-  padding: 4px !important;
-  border-radius: 3px !important;
-  border: 1px solid #545454 !important;
-  font-size: 13px !important;
-  fill: #ffffffc7;
-}
-
+#target-transfer .dgt-max-button svg,
 #source-transfer .dgt-max-button svg {
   margin-left: 3px !important;
   padding: 4px !important;
