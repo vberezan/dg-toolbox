@@ -2329,11 +2329,11 @@ dgt-fleet-orders-list-panel {
   float: left;
 }
 
-#queue-actions-left .dgt-max-button img {
-  margin-left: 1px;
-  width: 19px;
-  height: 19px;
-  padding: 1px;
+#queue-actions-left .dgt-max-button svg {
+  margin-left: 1px !important;
+  width: 19px !important;
+  height: 19px !important;
+  padding: 1px !important;
   border-radius: 3px !important;
 }
 
