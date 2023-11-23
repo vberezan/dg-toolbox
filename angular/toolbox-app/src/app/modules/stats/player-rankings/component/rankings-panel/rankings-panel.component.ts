@@ -41,7 +41,7 @@ export class RankingsPanelComponent {
 
       if (this.authenticated) {
         if (this.localStorageService.get(LocalStorageKeys.PLAYER_RANKINGS_SORT) === null) {
-          this.localStorageService.cache(LocalStorageKeys.PLAYER_RANKINGS_SORT, 'score:asc');
+          this.localStorageService.cache(LocalStorageKeys.PLAYER_RANKINGS_SORT, 'score:desc');
         }
 
         const sortKey: string = this.localStorageService.get(LocalStorageKeys.PLAYER_RANKINGS_SORT).split(/:/)[0];
