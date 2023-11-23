@@ -1,4 +1,4 @@
-import {Component, inject} from '@angular/core';
+import {Component, inject, Optional} from '@angular/core';
 import {PlayerRankingsService} from "../../service/player-rankings.service";
 import {PlayerStats} from "../../../../../shared/model/stats/player-stats.model";
 import {AuthState} from "../../../../../shared/model/authentication/auth-state.model";
@@ -40,47 +40,38 @@ export class RankingsPanelComponent {
       this.authenticated = state.status;
 
       if (this.authenticated) {
-        if (this.localStorageService.get(LocalStorageKeys.PLAYER_RANKINGS_SORT_MAP) === null) {
-          this.localStorageService.cache(LocalStorageKeys.PLAYER_RANKINGS_SORT_MAP, ['score:asc']);
+        if (this.localStorageService.get(LocalStorageKeys.PLAYER_RANKINGS_SORT) === null) {
+          this.localStorageService.cache(LocalStorageKeys.PLAYER_RANKINGS_SORT, 'score:asc');
         }
 
-        this.orderBy('score', 'desc');
+        const sortKey: string = this.localStorageService.get(LocalStorageKeys.PLAYER_RANKINGS_SORT).split(/:/)[0];
+        const sortOrder: string = this.localStorageService.get(LocalStorageKeys.PLAYER_RANKINGS_SORT).split(/:/)[1];
+
+        this.orderBy(sortKey, sortOrder, false);
       }
     });
 
     this.authService.checkLoginValidity();
   }
 
-  public orderBy(sortKey: string, sortOrder: string): void {
-    let sortMap: string[] = this.localStorageService.get(LocalStorageKeys.PLAYER_RANKINGS_SORT_MAP);
+  public orderBy(sortKey: string, sortOrder: string, @Optional() switchOrder:boolean = true): void {
+    let sort: string = this.localStorageService.get(LocalStorageKeys.PLAYER_RANKINGS_SORT);
+    const key: string = sort.split(/:/)[0];
+    const order: string = sort.split(/:/)[1];
 
-    let hasKey: boolean = false;
-    let keyPos: number = 0;
-    let order: string = 'desc';
 
-    for (let i: number = 0; i < sortMap.length; i++) {
-      if (sortMap[i].split(':')[0] === sortKey) {
-        hasKey = true;
-        keyPos = i;
-        order = sortMap[i].split(':')[1];
-        break;
-      }
-    }
-
-    if (hasKey) {
+    if (switchOrder) {
       if (order === 'desc') {
-        sortMap[keyPos] = sortKey + ':asc';
+        sort = sortKey + ':asc';
       } else {
-        sortMap[keyPos] = sortKey + ':desc';
+        sort = sortKey + ':desc';
       }
-    } else {
-      sortMap.push(sortKey + ':' + sortOrder);
     }
 
     this.rankings = this.playerRankingsService.fetchAndClear(sortKey,
-      sortMap[keyPos].split(/:/)[1],
+      sort.split(/:/)[1],
       this.page,
       100);
-    this.localStorageService.cache(LocalStorageKeys.PLAYER_RANKINGS_SORT_MAP, sortMap);
+    this.localStorageService.cache(LocalStorageKeys.PLAYER_RANKINGS_SORT, sort);
   }
 }
