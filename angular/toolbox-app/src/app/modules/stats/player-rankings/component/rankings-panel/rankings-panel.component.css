@@ -126,3 +126,8 @@ td, th {
 table tr:last-child td {
   border-bottom: none !important;
 }
+
+th a,
+th a:visited {
+  color: #72bde0 !important;
+}

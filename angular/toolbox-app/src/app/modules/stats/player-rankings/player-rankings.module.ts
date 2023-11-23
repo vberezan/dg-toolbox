@@ -8,7 +8,7 @@ import {environment} from "../../../../environments/environment";
 import {getAuth, provideAuth} from "@angular/fire/auth";
 import {initializeAppCheck, provideAppCheck, ReCaptchaV3Provider} from "@angular/fire/app-check";
 import {ScorePerPlanetFormatter} from "./pipe/score-per-planet-formatter";
-import {DecimalPipe} from "@angular/common";
+import {DecimalPipe, NgOptimizedImage} from "@angular/common";
 
 
 @NgModule({
@@ -23,7 +23,8 @@ import {DecimalPipe} from "@angular/common";
         provider: new ReCaptchaV3Provider(environment.firebase.appCheck.recaptchaSiteKey),
         isTokenAutoRefreshEnabled: true
       })
-    )
+    ),
+    NgOptimizedImage
   ],
   declarations: [
     RankingsPanelComponent,

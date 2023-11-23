@@ -1,4 +1,4 @@
-import {Component, inject, Optional} from '@angular/core';
+import {ChangeDetectorRef, Component, inject, Optional} from '@angular/core';
 import {PlayerRankingsService} from "../../service/player-rankings.service";
 import {PlayerStats} from "../../../../../shared/model/stats/player-stats.model";
 import {AuthState} from "../../../../../shared/model/authentication/auth-state.model";
@@ -15,11 +15,13 @@ export class RankingsPanelComponent {
   private playerRankingsService: PlayerRankingsService = inject(PlayerRankingsService);
   private authService: AuthService = inject(AuthService);
   private localStorageService: LocalStorageService = inject(LocalStorageService);
+  private changeDetector: ChangeDetectorRef = inject(ChangeDetectorRef);
   private readonly page: number;
 
-  public rankings: Map<number, PlayerStats> = new Map<number, PlayerStats>();
-  public authenticated: boolean = false;
+  protected rankings: Map<number, PlayerStats> = new Map<number, PlayerStats>();
+  protected authenticated: boolean = false;
   protected readonly Math = Math;
+  protected sortOrder: string = 'none';
 
   constructor() {
     const pageLocation: string[] = window.location.pathname.split(/\//);
@@ -61,6 +63,9 @@ export class RankingsPanelComponent {
     if (sortKey !== currentSortKey) sortOrder = 'asc';
     if (switchOrder) sortOrder = sortOrder === 'desc' ? 'asc' : 'desc';
     sort = sortKey.concat(':', sortOrder);
+
+    this.sortOrder = sortOrder;
+    this.changeDetector.detectChanges();
 
     this.rankings = this.playerRankingsService.fetchAndClear(sortKey, sortOrder, this.page, 100);
     this.localStorageService.cache(LocalStorageKeys.PLAYERS_RANKINGS_SORT, sort);
