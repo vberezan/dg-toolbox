@@ -85,7 +85,3 @@ a:visited {
 #dgt-update-data.hide {
   display: none !important;
 }
-
-ul li {
-  display: grid;
-}
