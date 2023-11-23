@@ -74,7 +74,6 @@ export class RankingsPanelComponent implements AfterViewInit {
     this.sortKey = sortKey;
     this.sortOrder = sortOrder;
 
-    console.log(this.sortKey, this.sortOrder);
     if (switchOrder) {
       this.changeDetector.detectChanges();
     }
