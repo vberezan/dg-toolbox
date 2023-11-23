@@ -77,7 +77,10 @@ export class RankingsPanelComponent {
       sortMap.push(sortKey + ':' + sortOrder);
     }
 
-    this.rankings = this.playerRankingsService.fetchAndClear(sortKey, sortOrder, this.page, 100);
+    this.rankings = this.playerRankingsService.fetchAndClear(sortKey,
+      sortMap[keyPos].split(/:/)[1],
+      this.page,
+      100);
     this.localStorageService.cache(LocalStorageKeys.PLAYER_RANKINGS_SORT_MAP, sortMap);
   }
 }
