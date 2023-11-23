@@ -582,11 +582,11 @@ function applyCustomStyling(windowURL) {
             inputs.forEach(input => {
                input.prepend(detach(input.querySelector('.amount').nextElementSibling));
 
-                let maxButton = document.createElement('div');
-                maxButton.classList.add('dgt-max-button');
-                maxButton.innerHTML = '<img src="https://i.imgur.com/rBIFVe6.png"/>';
+               let maxButton = document.createElement('div');
+               maxButton.classList.add('dgt-max-button');
+               maxButton.innerHTML = '<img src="https://i.imgur.com/rBIFVe6.png"/>';
 
-                input.insertBefore(input.querySelector('.text'), maxButton);
+               input.insertBefore(maxButton, input.querySelector('.text'));
             });
         }
 
