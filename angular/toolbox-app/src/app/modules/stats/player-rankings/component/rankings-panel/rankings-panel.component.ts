@@ -45,7 +45,6 @@ export class RankingsPanelComponent {
           this.localStorageService.cache(LocalStorageKeys.PLAYER_RANKINGS_SORT_MAP, ['score:desc']);
         }
 
-        console.log('x: ' + this.localStorageService.get(LocalStorageKeys.PLAYER_RANKINGS_SORT_MAP));
         this.orderBy('score', 'desc');
       }
     });
@@ -55,7 +54,6 @@ export class RankingsPanelComponent {
 
   public orderBy(sortKey: string, sortOrder: string): void {
     let sortMap: string[] = this.localStorageService.get(LocalStorageKeys.PLAYER_RANKINGS_SORT_MAP);
-    console.log('y: ' + sortMap);
 
     let hasKey: boolean = false;
     let keyPos: number = 0;
@@ -70,7 +68,8 @@ export class RankingsPanelComponent {
       }
     }
 
-    console.log('z: ' + hasKey + ' - ' + keyPos + ' - ' + order + ' - ' + sortKey + ' - ' + sortOrder + ' - ' + sortMap);
+    this.rankings = this.playerRankingsService.fetchAndClear(sortKey, sortOrder, this.page, 100);
+    this.changeDetection.detectChanges();
 
     if (hasKey) {
       if (order === 'desc') {
@@ -82,11 +81,6 @@ export class RankingsPanelComponent {
       sortMap.push(sortKey + ':' + sortOrder);
     }
 
-    console.log('t: ' + sortMap);
-
     this.localStorageService.cache(LocalStorageKeys.PLAYER_RANKINGS_SORT_MAP, sortMap);
-
-    this.rankings = this.playerRankingsService.fetchAndClear(sortKey, sortOrder, this.page, 100);
-    this.changeDetection.detectChanges();
   }
 }
