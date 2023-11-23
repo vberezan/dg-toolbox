@@ -21,7 +21,7 @@ export class RankingsPanelComponent {
   protected rankings: Map<number, PlayerStats> = new Map<number, PlayerStats>();
   protected authenticated: boolean = false;
   protected readonly Math = Math;
-  protected sortOrder: string = 'none';
+  protected sortOrder: string = 'desc';
   protected sortKey: string = 'score';
 
   constructor() {
@@ -53,7 +53,6 @@ export class RankingsPanelComponent {
 
     this.authService.checkLoginValidity();
     this.playerRankingsService.fixPaginationDisplay(this.page);
-    this.changeDetector.detectChanges();
   }
 
   public orderBy(sortKey: string, @Optional() switchOrder:boolean = true): void {
