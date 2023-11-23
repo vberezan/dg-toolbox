@@ -42,7 +42,8 @@ export class LocalStorageSynchronizerComponent implements AfterViewInit {
     this.synchronizerService.updatesEmitter.subscribe((updateNumber: number): void => {
       switch (updateNumber) {
         case -1: {
-          this.synchronizerService.loadRankings(this.dgAPI.gameTurn(), this.dgAPI.getCountDownMinutes());
+          console.log('Planets loaded! Reloading rankings... ');
+          this.synchronizerService.loadRankings(this.dgAPI.gameTurn(), this.dgAPI.getCountDownMinutes(), true);
           break;
         }
         case 0:

@@ -1,4 +1,4 @@
-import {EventEmitter, inject, Injectable} from '@angular/core';
+import {EventEmitter, inject, Injectable, Optional} from '@angular/core';
 import {collection, collectionData, Firestore, query} from "@angular/fire/firestore";
 import {LocalStorageService} from "../../local-storage-manager/service/local-storage.service";
 import {firstValueFrom, Subscriber, Subscription} from "rxjs";
@@ -57,6 +57,7 @@ export class SynchronizerService {
       remoteMetadata.planetsTurn.version > localMetadata.planetsTurn.version;
 
     if (isLocalTurnZero || isPlanetsRemoteTurnGreater || isPlanetsSameTurnButRemoteVersionGreater) {
+      console.log('Loading new planets data... ');
 
       this._updatesEmitter.emit(1);
 
@@ -73,13 +74,13 @@ export class SynchronizerService {
     }
   }
 
-  loadRankings(turn: number, countDownMinutes: number): void {
+  loadRankings(turn: number, countDownMinutes: number, @Optional() force: boolean = false): void {
     const localMetadata: Metadata = this.localStorageService.localMetadata();
     const playerStats: PlayerStats[] = this.localStorageService.get(LocalStorageKeys.PLAYERS_STATS);
     const isPlayerRankingsTurnZero: boolean = localMetadata.playersRankingsTurn.turn === 0;
     const isNewTurn: boolean = (turn > localMetadata.playersRankingsTurn.turn) && (countDownMinutes > 5 && countDownMinutes < 55);
 
-    if (!playerStats || isPlayerRankingsTurnZero || isNewTurn) {
+    if (!playerStats || isPlayerRankingsTurnZero || isNewTurn || force) {
       this._updatesEmitter.emit(2);
       this.loadPlayersRankings(this._playersRankingsEmitter);
     }
