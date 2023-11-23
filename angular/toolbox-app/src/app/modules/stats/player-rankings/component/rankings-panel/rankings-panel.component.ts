@@ -44,6 +44,8 @@ export class RankingsPanelComponent {
         if (this.localStorageService.get(LocalStorageKeys.PLAYER_RANKINGS_SORT_MAP) === null) {
           this.localStorageService.cache(LocalStorageKeys.PLAYER_RANKINGS_SORT_MAP, ['score:desc']);
         }
+
+        console.log('x: ' + this.localStorageService.get(LocalStorageKeys.PLAYER_RANKINGS_SORT_MAP));
         this.orderBy('score', 'desc');
       }
     });
@@ -53,6 +55,7 @@ export class RankingsPanelComponent {
 
   public orderBy(sortKey: string, sortOrder: string): void {
     let sortMap: string[] = this.localStorageService.get(LocalStorageKeys.PLAYER_RANKINGS_SORT_MAP);
+    console.log('y: ' + sortMap);
 
     let hasKey: boolean = false;
     let keyPos: number = 0;
@@ -67,6 +70,7 @@ export class RankingsPanelComponent {
       }
     }
 
+    console.log('z: ' + hasKey + ' - ' + keyPos + ' - ' + order + ' - ' + sortKey + ' - ' + sortOrder + ' - ' + sortMap);
 
     if (hasKey) {
       if (order === 'desc') {
@@ -77,6 +81,8 @@ export class RankingsPanelComponent {
     } else {
       sortMap.push(sortKey + ':' + sortOrder);
     }
+
+    console.log('t: ' + sortMap);
 
     this.localStorageService.cache(LocalStorageKeys.PLAYER_RANKINGS_SORT_MAP, sortMap);
 
