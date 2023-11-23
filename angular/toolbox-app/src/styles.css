@@ -2325,10 +2325,12 @@ dgt-fleet-orders-list-panel {
   margin-top: 3px;
 }
 
+#source-transfer .dgt-max-button,
 #queue-actions-left .dgt-max-button {
   float: left;
 }
 
+#source-transfer .dgt-max-button svg,
 #queue-actions-left .dgt-max-button svg {
   margin-left: 1px !important;
   padding: 4px !important;
@@ -2338,6 +2340,7 @@ dgt-fleet-orders-list-panel {
   fill: #ffffffc7;
 }
 
+#source-transfer .dgt-max-button svg:hover,
 #queue-actions-left .dgt-max-button svg:hover {
   background: rgb(45, 43, 43) !important;
   border: 1px solid rgb(53,49,49,1) !important;
