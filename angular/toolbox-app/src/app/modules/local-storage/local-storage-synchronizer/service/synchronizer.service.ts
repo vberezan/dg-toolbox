@@ -48,7 +48,7 @@ export class SynchronizerService {
     });
   }
 
-  async loadPlanets(): Promise<void> {
+  async loadPlanets(turn: number, countDownMinutes: number): Promise<void> {
     let localMetadata: Metadata = this.localStorageService.localMetadata();
     const remoteMetadata: Metadata = this.localStorageService.get(LocalStorageKeys.REMOTE_METADATA);
     const isLocalTurnZero: boolean = localMetadata.planetsTurn.turn === 0;
@@ -71,6 +71,12 @@ export class SynchronizerService {
       this.localStorageService.cache(LocalStorageKeys.LOCAL_METADATA, localMetadata);
 
       this._updatesEmitter.emit(-1);
+    } else {
+      const isNewTurn: boolean = (turn > localMetadata.playersRankingsTurn.turn) && (countDownMinutes > 5 && countDownMinutes < 57);
+
+      if (isNewTurn) {
+        this._updatesEmitter.emit(-1);
+      }
     }
   }
 

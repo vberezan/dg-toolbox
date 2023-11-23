@@ -91,7 +91,7 @@ export class LocalStorageSynchronizerComponent implements AfterViewInit {
       this.synchronizerService.updateMetadata(observer);
     }).subscribe((loaded: boolean): void => {
       if (loaded) {
-        this.synchronizerService.loadPlanets().catch((error: any): void => console.log(error));
+        this.synchronizerService.loadPlanets(this.dgAPI.gameTurn(), this.dgAPI.getCountDownMinutes()).catch((error: any): void => console.log(error));
         subscription.unsubscribe();
       }
     });
