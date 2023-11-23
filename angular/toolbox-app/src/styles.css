@@ -2325,6 +2325,14 @@ dgt-fleet-orders-list-panel {
   margin-top: 3px;
 }
 
+#queue-actions-left .dgt-max-button {
+  margin-left: 1px;
+  width: 19px;
+  height: 19px;
+  padding: 1px;
+  border-radius: 3px !important;
+}
+
 /*************/
 
 #planet-scan-form > div {

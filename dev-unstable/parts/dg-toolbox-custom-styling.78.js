@@ -583,6 +583,7 @@ function applyCustomStyling(windowURL) {
                input.prepend(detach(input.querySelector('.amount').nextElementSibling));
 
                let maxButton = document.createElement('div');
+               maxButton.css.style.float = 'left';
                maxButton.classList.add('dgt-max-button');
                maxButton.innerHTML = '<img src="https://i.imgur.com/rBIFVe6.png"/>';
 
