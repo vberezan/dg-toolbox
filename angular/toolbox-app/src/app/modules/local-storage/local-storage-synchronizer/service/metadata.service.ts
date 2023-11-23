@@ -41,7 +41,7 @@ export class MetadataService {
   }
 
   resetSortingMaps(): void {
-    if (window.location.pathname.indexOf('/rankings/players') !== -1) {
+    if (window.location.pathname.indexOf('/rankings/players') === -1) {
       this.localStorageService.remove(LocalStorageKeys.PLAYER_RANKINGS_SORT_MAP)
     }
   }
