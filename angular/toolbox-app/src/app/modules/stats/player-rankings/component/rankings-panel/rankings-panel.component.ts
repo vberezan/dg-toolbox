@@ -71,8 +71,10 @@ export class RankingsPanelComponent implements AfterViewInit {
 
     this.rankings = this.playerRankingsService.fetchAndClear(sortKey, sortOrder, this.page, 100);
 
-    this.sortOrder = sortOrder;
     this.sortKey = sortKey;
+    this.sortOrder = sortOrder;
+
+    console.log(this.sortKey, this.sortOrder);
     if (switchOrder) {
       this.changeDetector.detectChanges();
     }
