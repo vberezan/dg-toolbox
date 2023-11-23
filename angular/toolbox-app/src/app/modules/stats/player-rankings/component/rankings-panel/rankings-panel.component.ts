@@ -73,6 +73,9 @@ export class RankingsPanelComponent implements AfterViewInit {
 
     this.sortOrder = sortOrder;
     this.sortKey = sortKey;
+    if (switchOrder) {
+      this.changeDetector.detectChanges();
+    }
 
     this.localStorageService.cache(LocalStorageKeys.PLAYERS_RANKINGS_SORT, sort);
   }
