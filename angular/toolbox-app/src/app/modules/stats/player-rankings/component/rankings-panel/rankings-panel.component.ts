@@ -1,4 +1,4 @@
-import {ChangeDetectorRef, Component, inject, Optional} from '@angular/core';
+import {AfterViewInit, ChangeDetectorRef, Component, inject, Optional} from '@angular/core';
 import {PlayerRankingsService} from "../../service/player-rankings.service";
 import {PlayerStats} from "../../../../../shared/model/stats/player-stats.model";
 import {AuthState} from "../../../../../shared/model/authentication/auth-state.model";
@@ -11,7 +11,7 @@ import {LocalStorageKeys} from "../../../../../shared/model/local-storage/local-
   templateUrl: './rankings-panel.component.html',
   styleUrls: ['./rankings-panel.component.css']
 })
-export class RankingsPanelComponent {
+export class RankingsPanelComponent implements AfterViewInit {
   private playerRankingsService: PlayerRankingsService = inject(PlayerRankingsService);
   private authService: AuthService = inject(AuthService);
   private localStorageService: LocalStorageService = inject(LocalStorageService);
@@ -55,6 +55,10 @@ export class RankingsPanelComponent {
     this.playerRankingsService.fixPaginationDisplay(this.page);
   }
 
+  ngAfterViewInit(): void {
+    this.changeDetector.detectChanges();
+  }
+
   public orderBy(sortKey: string, @Optional() switchOrder:boolean = true): void {
     let sort: string = this.localStorageService.get(LocalStorageKeys.PLAYERS_RANKINGS_SORT);
     if (sort === null) sort = 'score:desc';
@@ -69,7 +73,6 @@ export class RankingsPanelComponent {
 
     this.sortOrder = sortOrder;
     this.sortKey = sortKey;
-    this.changeDetector.detectChanges();
 
     this.localStorageService.cache(LocalStorageKeys.PLAYERS_RANKINGS_SORT, sort);
   }
