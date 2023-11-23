@@ -78,7 +78,7 @@ export class SynchronizerService {
     const localMetadata: Metadata = this.localStorageService.localMetadata();
     const playerStats: PlayerStats[] = this.localStorageService.get(LocalStorageKeys.PLAYERS_STATS);
     const isPlayerRankingsTurnZero: boolean = localMetadata.playersRankingsTurn.turn === 0;
-    const isNewTurn: boolean = (turn > localMetadata.playersRankingsTurn.turn) && (countDownMinutes > 5 && countDownMinutes < 55);
+    const isNewTurn: boolean = (turn > localMetadata.playersRankingsTurn.turn) && (countDownMinutes > 5 && countDownMinutes < 57);
 
     if (!playerStats || isPlayerRankingsTurnZero || isNewTurn || force) {
       this._updatesEmitter.emit(2);
