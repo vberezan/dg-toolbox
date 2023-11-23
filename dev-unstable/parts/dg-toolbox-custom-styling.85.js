@@ -588,28 +588,30 @@ function applyCustomStyling(windowURL) {
         maxButton.classList.add('dgt-max-button');
         maxButton.innerHTML = '<span><svg xmlns="http://www.w3.org/2000/svg" height="1em" viewBox="0 0 576 512"><!--! Font Awesome Free 6.4.2 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license (Commercial License) Copyright 2023 Fonticons, Inc. --><path d="M160 0c-17.7 0-32 14.3-32 32s14.3 32 32 32h50.7L9.4 265.4c-12.5 12.5-12.5 32.8 0 45.3s32.8 12.5 45.3 0L256 109.3V160c0 17.7 14.3 32 32 32s32-14.3 32-32V32c0-17.7-14.3-32-32-32H160zM576 80a48 48 0 1 0 -96 0 48 48 0 1 0 96 0zM448 208a48 48 0 1 0 -96 0 48 48 0 1 0 96 0zM400 384a48 48 0 1 0 0-96 48 48 0 1 0 0 96zm48 80a48 48 0 1 0 -96 0 48 48 0 1 0 96 0zm128 0a48 48 0 1 0 -96 0 48 48 0 1 0 96 0zM272 384a48 48 0 1 0 0-96 48 48 0 1 0 0 96zm48 80a48 48 0 1 0 -96 0 48 48 0 1 0 96 0zM144 512a48 48 0 1 0 0-96 48 48 0 1 0 0 96zM576 336a48 48 0 1 0 -96 0 48 48 0 1 0 96 0zm-48-80a48 48 0 1 0 0-96 48 48 0 1 0 0 96z"/></svg></span>';
 
-        input.insertBefore(maxButton, input.querySelector('.text'));
-
         if (actualInput.getAttribute('name') === 'unitMap.197' || actualInput.getAttribute('name') === 'unitMap.196') {
           let splitButton = document.createElement('div');
           splitButton.classList.add('dgt-max-button');
           splitButton.innerHTML = '<span><svg xmlns="http://www.w3.org/2000/svg" height="1em" viewBox="0 0 512 512"><!--! Font Awesome Free 6.4.2 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license (Commercial License) Copyright 2023 Fonticons, Inc. --><path d="M246.6 150.6c-12.5 12.5-32.8 12.5-45.3 0s-12.5-32.8 0-45.3l96-96c12.5-12.5 32.8-12.5 45.3 0l96 96c12.5 12.5 12.5 32.8 0 45.3s-32.8 12.5-45.3 0L352 109.3V384c0 35.3 28.7 64 64 64h64c17.7 0 32 14.3 32 32s-14.3 32-32 32H416c-70.7 0-128-57.3-128-128c0-35.3-28.7-64-64-64H109.3l41.4 41.4c12.5 12.5 12.5 32.8 0 45.3s-32.8 12.5-45.3 0l-96-96c-12.5-12.5-12.5-32.8 0-45.3l96-96c12.5-12.5 32.8-12.5 45.3 0s12.5 32.8 0 45.3L109.3 256H224c23.3 0 45.2 6.2 64 17.1V109.3l-41.4 41.4z"/></svg></span>';
 
-          input.insertBefore(splitButton, maxButton);
+          input.insertBefore(splitButton, input.querySelector('.text'));
+          input.insertBefore(maxButton, splitButton);
+
+          splitButton.onmousedown = () => {
+            if (actualInput.getAttribute('name') === 'unitMap.197') {
+              actualInput.value = 40000;
+            } else if (actualInput.getAttribute('name') === 'unitMap.196') {
+              actualInput.value = 50000;
+            }
+          }
+        } else {
+          input.insertBefore(maxButton, input.querySelector('.text'));
         }
 
 
         maxButton.onmousedown = () => {
           let actualInput = input.querySelector('input[type="number"]');
-
-          if (actualInput.getAttribute('name') === 'unitMap.197') {
-            actualInput.value = 40000;
-          } else if (actualInput.getAttribute('name') === 'unitMap.196') {
-            actualInput.value = 50000;
-          } else {
-            actualInput.value = actualInput.getAttribute('max');
-          }
-        }
+          actualInput.value = actualInput.getAttribute('max');
+        };
       });
     }
 
