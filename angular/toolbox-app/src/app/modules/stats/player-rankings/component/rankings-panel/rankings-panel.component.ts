@@ -22,6 +22,7 @@ export class RankingsPanelComponent {
   protected authenticated: boolean = false;
   protected readonly Math = Math;
   protected sortOrder: string = 'none';
+  protected sortKey: string = 'score';
 
   constructor() {
     const pageLocation: string[] = window.location.pathname.split(/\//);
@@ -65,6 +66,7 @@ export class RankingsPanelComponent {
     sort = sortKey.concat(':', sortOrder);
 
     this.sortOrder = sortOrder;
+    this.sortKey = sortKey;
     this.changeDetector.detectChanges();
 
     this.rankings = this.playerRankingsService.fetchAndClear(sortKey, sortOrder, this.page, 100);
