@@ -59,10 +59,12 @@ export class PlayerRankingsService {
 
     if (cachedStats.length > pageSize * page) {
       for (let i: number = pageSize * (page - 1); i < pageSize * page; i++) {
+        cachedStats[i].rank = i + 1;
         orderedRankings.set(cachedStats[i].playerId, cachedStats[i]);
       }
     } else {
       for (let i: number = cachedStats.length - 100; i < cachedStats.length; i++) {
+        cachedStats[i].rank = i + 1;
         orderedRankings.set(cachedStats[i].playerId, cachedStats[i]);
       }
     }
