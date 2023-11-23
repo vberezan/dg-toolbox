@@ -74,4 +74,12 @@ export class PlayerRankingsService {
     return orderedRankings;
   }
 
+  fixPaginationDisplay(page: number): void {
+    const size: number = this.localStorageService.get(LocalStorageKeys.PLAYERS_STATS).length;
+
+    document.querySelector('#ranking-navigation > div:nth-child(2)').innerHTML = 'Page ' + page + ' / ' + Math.ceil(size / 100);
+    if (page === Math.ceil(size / 100)) {
+      document.querySelector('#ranking-navigation > div:nth-child(3)').remove();
+    }
+  }
 }

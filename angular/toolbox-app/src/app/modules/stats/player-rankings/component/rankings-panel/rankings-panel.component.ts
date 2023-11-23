@@ -49,6 +49,7 @@ export class RankingsPanelComponent {
     });
 
     this.authService.checkLoginValidity();
+    this.playerRankingsService.fixPaginationDisplay(this.page);
   }
 
   public orderBy(sortKey: string, @Optional() switchOrder:boolean = true): void {
