@@ -2335,6 +2335,7 @@ dgt-fleet-orders-list-panel {
   border-radius: 3px !important;
   border: 1px solid #545454 !important;
   font-size: 13px !important;
+  fill: #ffffffc7;
 }
 
 #queue-actions-left .dgt-max-button svg:hover {
