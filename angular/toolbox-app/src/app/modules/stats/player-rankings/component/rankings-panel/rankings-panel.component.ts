@@ -42,7 +42,7 @@ export class RankingsPanelComponent {
 
       if (this.authenticated) {
         if (this.localStorageService.get(LocalStorageKeys.PLAYER_RANKINGS_SORT_MAP) === null) {
-          this.localStorageService.cache(LocalStorageKeys.PLAYER_RANKINGS_SORT_MAP, new Map<string, string>([['score', 'desc']]));
+          this.localStorageService.cache(LocalStorageKeys.PLAYER_RANKINGS_SORT_MAP, ['score:desc']);
         }
         this.orderBy('score', 'desc');
       }
@@ -51,22 +51,36 @@ export class RankingsPanelComponent {
     this.authService.checkLoginValidity();
   }
 
-  public orderBy(key: string, order: string): void {
-    let sortMap: Map<string, string> = this.localStorageService.get(LocalStorageKeys.PLAYER_RANKINGS_SORT_MAP);
+  public orderBy(sortKey: string, sortOrder: string): void {
+    let sortMap: string[] = this.localStorageService.get(LocalStorageKeys.PLAYER_RANKINGS_SORT_MAP);
 
-    if (sortMap.has(key)) {
-      if (sortMap.get(key) === 'desc') {
-        sortMap.set(key, 'asc');
+    let hasKey: boolean = false;
+    let keyPos: number = 0;
+    let order: string = 'desc';
+
+    for (let i: number = 0; i < sortMap.length; i++) {
+      if (sortMap[i].split(':')[0] === sortKey) {
+        hasKey = true;
+        keyPos = i;
+        order = sortMap[i].split(':')[1];
+        break;
+      }
+    }
+
+
+    if (hasKey) {
+      if (order === 'desc') {
+        sortMap[keyPos] = sortKey + ':asc';
       } else {
-        sortMap.set(key, 'desc');
+        sortMap[keyPos] = sortKey + ':desc';
       }
     } else {
-      sortMap.set(key, 'desc');
+      sortMap.push(sortKey + ':' + sortOrder);
     }
 
     this.localStorageService.cache(LocalStorageKeys.PLAYER_RANKINGS_SORT_MAP, sortMap);
 
-    this.rankings = this.playerRankingsService.fetchAndClear(key, sortMap.get(key), this.page, 100);
+    this.rankings = this.playerRankingsService.fetchAndClear(sortKey, sortOrder, this.page, 100);
     this.changeDetection.detectChanges();
   }
 }
