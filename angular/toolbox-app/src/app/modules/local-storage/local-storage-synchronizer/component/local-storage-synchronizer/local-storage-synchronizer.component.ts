@@ -5,6 +5,7 @@ import {Observable, Subscriber, Subscription} from "rxjs";
 import {AuthState} from "../../../../../shared/model/authentication/auth-state.model";
 import {AuthService} from "../../../../authentication/service/auth.service";
 import {PageAction} from "../../../../../shared/model/stats/page-action.model";
+import {MetadataService} from "../../service/metadata.service";
 
 @Component({
   selector: 'dgt-local-storage-synchronizer',
@@ -20,6 +21,7 @@ export class LocalStorageSynchronizerComponent implements AfterViewInit {
   private dgAPI: DarkgalaxyApiService = inject(DarkgalaxyApiService);
   private authService: AuthService = inject(AuthService);
   private changeDetection: ChangeDetectorRef = inject(ChangeDetectorRef);
+  private metadataService: MetadataService = inject(MetadataService);
 
   private rankingsCountSubscription: Subscription;
 
@@ -37,6 +39,7 @@ export class LocalStorageSynchronizerComponent implements AfterViewInit {
   }
 
   ngAfterViewInit(): void {
+    this.metadataService.resetSortingMaps();
     this.prepareRankingsLoader();
 
     this.synchronizerService.updatesEmitter.subscribe((updateNumber: number): void => {

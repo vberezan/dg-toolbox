@@ -4,6 +4,8 @@ import {collection, doc, docData, Firestore, setDoc, updateDoc} from "@angular/f
 import {Subscription} from "rxjs";
 import {DocumentData} from "@angular/fire/compat/firestore";
 import {DarkgalaxyApiService} from "../../../darkgalaxy-ui-parser/service/darkgalaxy-api.service";
+import {LocalStorageService} from "../../local-storage-manager/service/local-storage.service";
+import {LocalStorageKeys} from "../../../../shared/model/local-storage/local-storage-keys";
 
 @Injectable({
   providedIn: 'platform'
@@ -12,6 +14,7 @@ export class MetadataService {
   private firestore: Firestore = inject(Firestore);
   private dgAPI: DarkgalaxyApiService = inject(DarkgalaxyApiService);
   private metadataPath: any = collection(this.firestore, 'metadata');
+  private localStorageService: LocalStorageService = inject(LocalStorageService);
 
   updateMetadataTurns(document: string): void {
     let subscription: Subscription = docData(doc(this.metadataPath, document)).subscribe((item: DocumentData): void => {
@@ -35,5 +38,11 @@ export class MetadataService {
 
       subscription.unsubscribe();
     });
+  }
+
+  resetSortingMaps(): void {
+    if (window.location.pathname.indexOf('/rankings/players') !== -1) {
+      this.localStorageService.remove(LocalStorageKeys.PLAYER_RANKINGS_SORT_MAP)
+    }
   }
 }

@@ -5,5 +5,7 @@ export enum LocalStorageKeys {
   PLAYERS_STATS = 'players-stats',
   LOCAL_METADATA = 'local-metadata',
   REMOTE_METADATA = 'remote-metadata',
-  JS_VERSION = 'js-version'
+  JS_VERSION = 'js-version',
+
+  PLAYER_RANKINGS_SORT_MAP = 'player-rankings-sort-map'
 }
