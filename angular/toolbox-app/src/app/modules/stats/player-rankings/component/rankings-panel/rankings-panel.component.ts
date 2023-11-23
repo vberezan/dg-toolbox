@@ -69,7 +69,7 @@ export class RankingsPanelComponent {
     }
 
     this.rankings = this.playerRankingsService.fetchAndClear(sortKey, sortOrder, this.page, 100);
-    this.changeDetection.detectChanges();
+    // this.changeDetection.detectChanges();
 
     if (hasKey) {
       if (order === 'desc') {
