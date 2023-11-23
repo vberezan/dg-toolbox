@@ -2326,6 +2326,10 @@ dgt-fleet-orders-list-panel {
 }
 
 #queue-actions-left .dgt-max-button {
+  float: left;
+}
+
+#queue-actions-left .dgt-max-button img {
   margin-left: 1px;
   width: 19px;
   height: 19px;
