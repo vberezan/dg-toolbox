@@ -10,6 +10,8 @@ export class FightSimulatorService {
 
   simulateFight(fleet1: Fleet, fleet2: Fleet): number {
     let requiredTurns: number = 0;
+    let fleet1Fights: Fleet[] = [];
+    let fleet2Fights: Fleet[] = [];
 
     console.log('Starting the battle');
 
@@ -17,51 +19,48 @@ export class FightSimulatorService {
 
       // -- fighters
       console.log("Fleet 1 attacking with fighters");
-      let remainingFleet2: Fleet = this.fightersAttack(this.getShips(fleet1, ShipType.FIGHTER).quantity, fleet2);
+      fleet2Fights.push(this.fightersAttack(this.getShips(fleet1, ShipType.FIGHTER).quantity, fleet2));
 
       console.log("Fleet 2 attacking with fighters");
-      let remainingFleet1: Fleet = this.fightersAttack(this.getShips(fleet2, ShipType.FIGHTER).quantity, fleet1);
-      this.applyDamage(fleet1, remainingFleet1, fleet2, remainingFleet2);
+      fleet1Fights.push(this.fightersAttack(this.getShips(fleet2, ShipType.FIGHTER).quantity, fleet1));
 
       // -- bombers
       console.log("Fleet 1 attacking with bombers");
-      remainingFleet2 = this.bombersAttack(this.getShips(fleet1, ShipType.BOMBER).quantity, fleet2);
+      fleet2Fights.push(this.bombersAttack(this.getShips(fleet1, ShipType.BOMBER).quantity, fleet2));
 
       console.log("Fleet 2 attacking with bombers");
-      remainingFleet1 = this.bombersAttack(this.getShips(fleet2, ShipType.BOMBER).quantity, fleet1);
-      this.applyDamage(fleet1, remainingFleet1, fleet2, remainingFleet2);
+      fleet1Fights.push(this.bombersAttack(this.getShips(fleet2, ShipType.BOMBER).quantity, fleet1));
 
       // -- frigates
       console.log("Fleet 1 attacking with frigates");
-      remainingFleet2 = this.frigateAttack(this.getShips(fleet1, ShipType.FRIGATE).quantity, fleet2);
+      fleet2Fights.push(this.frigateAttack(this.getShips(fleet1, ShipType.FRIGATE).quantity, fleet2));
 
       console.log("Fleet 2 attacking with frigates");
-      remainingFleet1 = this.frigateAttack(this.getShips(fleet2, ShipType.FRIGATE).quantity, fleet1);
-      this.applyDamage(fleet1, remainingFleet1, fleet2, remainingFleet2);
+      fleet1Fights.push(this.frigateAttack(this.getShips(fleet2, ShipType.FRIGATE).quantity, fleet1));
 
       // -- destroyers
       console.log("Fleet 1 attacking with destroyers");
-      remainingFleet2 = this.destroyerAttack(this.getShips(fleet1, ShipType.DESTROYER).quantity, fleet2);
+      fleet2Fights.push(this.destroyerAttack(this.getShips(fleet1, ShipType.DESTROYER).quantity, fleet2));
 
       console.log("Fleet 2 attacking with destroyers");
-      remainingFleet1 = this.destroyerAttack(this.getShips(fleet2, ShipType.DESTROYER).quantity, fleet1);
-      this.applyDamage(fleet1, remainingFleet1, fleet2, remainingFleet2);
+      fleet1Fights.push(this.destroyerAttack(this.getShips(fleet2, ShipType.DESTROYER).quantity, fleet1));
 
       // -- cruisers
       console.log("Fleet 1 attacking with cruisers");
-      remainingFleet2 = this.cruiserAttack(this.getShips(fleet1, ShipType.CRUISER).quantity, fleet2);
+      fleet2Fights.push(this.cruiserAttack(this.getShips(fleet1, ShipType.CRUISER).quantity, fleet2));
 
       console.log("Fleet 2 attacking with cruisers");
-      remainingFleet1 = this.cruiserAttack(this.getShips(fleet2, ShipType.CRUISER).quantity, fleet1);
-      this.applyDamage(fleet1, remainingFleet1, fleet2, remainingFleet2);
+      fleet1Fights.push(this.cruiserAttack(this.getShips(fleet2, ShipType.CRUISER).quantity, fleet1));
 
       // -- battleships
       console.log("Fleet 1 attacking with battleships");
-      remainingFleet2 = this.battleShipAttack(this.getShips(fleet1, ShipType.BATTLESHIP).quantity, fleet2);
+      fleet2Fights.push(this.battleShipAttack(this.getShips(fleet1, ShipType.BATTLESHIP).quantity, fleet2));
 
       console.log("Fleet 2 attacking with battleships");
-      remainingFleet1 = this.battleShipAttack(this.getShips(fleet2, ShipType.BATTLESHIP).quantity, fleet1);
-      this.applyDamage(fleet1, remainingFleet1, fleet2, remainingFleet2);
+      fleet1Fights.push(this.battleShipAttack(this.getShips(fleet2, ShipType.BATTLESHIP).quantity, fleet1));
+
+
+      this.applyDamage(fleet1, fleet2, fleet1Fights, fleet2Fights);
 
       console.log("Fleet 1: " + fleet1.ships.map((nameQuantity: NameQuantity): string => nameQuantity.name + ": " + nameQuantity.quantity).join(", "));
       console.log("Fleet 2: " + fleet2.ships.map((nameQuantity: NameQuantity): string => nameQuantity.name + ": " + nameQuantity.quantity).join(", "));
@@ -76,24 +75,33 @@ export class FightSimulatorService {
     return requiredTurns;
   }
 
-  private applyDamage(fleet1: Fleet, remainingFleet1: Fleet, fleet2: Fleet, remainingFleet2: Fleet): void {
-    fleet1.ships.forEach((ship: NameQuantity): void => {
-      for (const ship2 of remainingFleet1.ships) {
-        if (ship.name === ship2.name) {
-          ship.quantity = ship2.quantity;
-          break;
-        }
-      }
-    });
+  private applyDamage(fleet1: Fleet, fleet2: Fleet, f1Fights: Fleet[], f2Fights: Fleet[]): void {
 
-    fleet2.ships.forEach((ship: NameQuantity): void => {
-      for (const ship2 of remainingFleet2.ships) {
-        if (ship.name === ship2.name) {
-          ship.quantity = ship2.quantity;
-          break;
+    for (let i = 0; i < f1Fights.length; i++) {
+      const fleet1Fight: Fleet = f1Fights[i];
+
+      fleet1.ships.forEach((ship: NameQuantity): void => {
+        for (const ship2 of fleet1Fight.ships) {
+          if (ship.name === ship2.name) {
+            ship.quantity = ship2.quantity;
+            break;
+          }
         }
-      }
-    });
+      });
+    }
+
+    for (let i = 0; i < f2Fights.length; i++) {
+      const fleet2Fight: Fleet = f2Fights[i];
+
+      fleet2.ships.forEach((ship: NameQuantity): void => {
+        for (const ship2 of fleet2Fight.ships) {
+          if (ship.name === ship2.name) {
+            ship.quantity = ship2.quantity;
+            break;
+          }
+        }
+      });
+    }
   }
 
   private fightersAttack(fleetFighters: number, enemyFleet: Fleet): Fleet {
@@ -189,11 +197,11 @@ export class FightSimulatorService {
         const killedUnits: number = Math.min(enemyShipGroup.quantity, Math.ceil(attackingUnits / requiredToKill));
 
         if (attackingUnits > 0) {
-          console.log("Killed " + killedUnits + " " + targetType + " using " + (killedUnits * requiredToKill) + " attacking units. Remaining attacking units: " + (attackingUnits - (killedUnits * requiredToKill)));
+          console.log("Killed " + killedUnits + " " + targetType + " engaging " + Math.ceil(killedUnits * requiredToKill) + " attacking units. Units not engaged: " + (attackingUnits - Math.ceil(killedUnits * requiredToKill)));
         }
 
         result.ships.push(new NameQuantity(targetType as ShipType, enemyShipGroup.quantity - killedUnits));
-        attackingUnits = Math.max(0, attackingUnits - (killedUnits * requiredToKill));
+        attackingUnits = Math.max(0, attackingUnits - Math.ceil(killedUnits * requiredToKill));
       }
     }
 
