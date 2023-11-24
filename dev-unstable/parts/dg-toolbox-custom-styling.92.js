@@ -222,9 +222,16 @@ function applyCustomStyling(windowURL) {
       }
 
       planetName.innerHTML = '';
-      planetName.append(prev);
+
+      if (prev != null) {
+        planetName.append(prev);
+      }
+
       planetName.append(name);
-      planetName.append(next);
+
+      if (next != null) {
+        planetName.append(next);
+      }
     }
   }
 
