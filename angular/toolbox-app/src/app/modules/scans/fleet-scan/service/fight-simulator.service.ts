@@ -155,12 +155,18 @@ export class FightSimulatorService {
       const ship: NameQuantity = this.getShips(enemyFleet, targetType as ShipType);
       let remaining: number = ship.quantity;
 
-      remaining = Math.max(0, ship.quantity - Math.ceil(fleetUnits / req));
-      fleetUnits = Math.max(0, fleetUnits - ship.quantity * req);
+      console.log("Possible kills: " + Math.ceil(fleetUnits / req) + " " + targetType + "s");
+      console.log("Actual kills: " + Math.min(ship.quantity, Math.ceil(fleetUnits / req)) + " " + targetType + "s");
+
+      remaining = ship.quantity - Math.min(ship.quantity, Math.ceil(fleetUnits / req));
 
       if (ship.name !== type) {
+        fleetUnits = Math.max(0, fleetUnits - ship.quantity * req);
         ship.quantity = remaining;
       }
+
+      console.log("Remaining allied units: " + fleetUnits);
+      console.log("Remaining enemy units: " + ship.quantity);
 
       if (fleetUnits === 0) return 0;
     }
