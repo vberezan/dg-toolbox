@@ -174,8 +174,8 @@ export class FightSimulatorService {
         const killedUnits: number = Math.min(enemyShipGroup.quantity, Math.floor(damage * attackingUnits));
 
         if (attackingUnits > 0) {
-          console.log("Killed " + killedUnits + " " + killRate.target + " engaging " + Math.ceil(killedUnits / damage) +
-            " " + attacker + "s. Units not engaged: " + Math.floor(Math.max(0, (attackingUnits - killedUnits / damage))));
+          console.log(Math.floor(Math.max(0, (attackingUnits - killedUnits / damage))) + " " + attacker + " killed " +
+            killedUnits + " " + killRate.target);
         }
 
         result.ships.push(new NameQuantity(killRate.target, killedUnits));
