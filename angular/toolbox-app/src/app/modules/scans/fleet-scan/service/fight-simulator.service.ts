@@ -18,38 +18,32 @@ export class FightSimulatorService {
       // -- fighters
       let remainingFleet2: Fleet = this.fightersAttack(this.getShips(fleet1, ShipType.FIGHTER).quantity, fleet2);
       let remainingFleet1: Fleet = this.fightersAttack(this.getShips(fleet2, ShipType.FIGHTER).quantity, fleet1);
-      fleet1.ships = fleet1.ships.map((ship: NameQuantity): any => ({...ship, quantity: this.getShips(remainingFleet1, ship.name).quantity}));
-      fleet2.ships = fleet2.ships.map((ship: NameQuantity): any  => ({...ship, quantity: this.getShips(remainingFleet2, ship.name).quantity}));
+      this.applyDamage(fleet1, remainingFleet1, fleet2, remainingFleet2);
 
       // -- bombers
       remainingFleet2 = this.bombersAttack(this.getShips(fleet1, ShipType.BOMBER).quantity, fleet2);
       remainingFleet1 = this.bombersAttack(this.getShips(fleet2, ShipType.BOMBER).quantity, fleet1);
-      fleet1.ships = fleet1.ships.map((ship: NameQuantity): any => ({...ship, quantity: this.getShips(remainingFleet1, ship.name).quantity}));
-      fleet2.ships = fleet2.ships.map((ship: NameQuantity): any  => ({...ship, quantity: this.getShips(remainingFleet2, ship.name).quantity}));
+      this.applyDamage(fleet1, remainingFleet1, fleet2, remainingFleet2);
 
       // -- frigates
       remainingFleet2 = this.frigateAttack(this.getShips(fleet1, ShipType.FRIGATE).quantity, fleet2);
       remainingFleet1 = this.frigateAttack(this.getShips(fleet2, ShipType.FRIGATE).quantity, fleet1);
-      fleet1.ships = fleet1.ships.map((ship: NameQuantity): any => ({...ship, quantity: this.getShips(remainingFleet1, ship.name).quantity}));
-      fleet2.ships = fleet2.ships.map((ship: NameQuantity): any  => ({...ship, quantity: this.getShips(remainingFleet2, ship.name).quantity}));
+      this.applyDamage(fleet1, remainingFleet1, fleet2, remainingFleet2);
 
       // -- destroyers
       remainingFleet2 = this.destroyerAttack(this.getShips(fleet1, ShipType.DESTROYER).quantity, fleet2);
       remainingFleet1 = this.destroyerAttack(this.getShips(fleet2, ShipType.DESTROYER).quantity, fleet1);
-      fleet1.ships = fleet1.ships.map((ship: NameQuantity): any => ({...ship, quantity: this.getShips(remainingFleet1, ship.name).quantity}));
-      fleet2.ships = fleet2.ships.map((ship: NameQuantity): any  => ({...ship, quantity: this.getShips(remainingFleet2, ship.name).quantity}));
+      this.applyDamage(fleet1, remainingFleet1, fleet2, remainingFleet2);
 
       // -- cruisers
       remainingFleet2 = this.cruiserAttack(this.getShips(fleet1, ShipType.CRUISER).quantity, fleet2);
       remainingFleet1 = this.cruiserAttack(this.getShips(fleet2, ShipType.CRUISER).quantity, fleet1);
-      fleet1.ships = fleet1.ships.map((ship: NameQuantity): any => ({...ship, quantity: this.getShips(remainingFleet1, ship.name).quantity}));
-      fleet2.ships = fleet2.ships.map((ship: NameQuantity): any  => ({...ship, quantity: this.getShips(remainingFleet2, ship.name).quantity}));
+      this.applyDamage(fleet1, remainingFleet1, fleet2, remainingFleet2);
 
       // -- battleships
       remainingFleet2 = this.battleShipAttack(this.getShips(fleet1, ShipType.BATTLESHIP).quantity, fleet2);
       remainingFleet1 = this.battleShipAttack(this.getShips(fleet2, ShipType.BATTLESHIP).quantity, fleet1);
-      fleet1.ships = fleet1.ships.map((ship: NameQuantity): any => ({...ship, quantity: this.getShips(remainingFleet1, ship.name).quantity}));
-      fleet2.ships = fleet2.ships.map((ship: NameQuantity): any  => ({...ship, quantity: this.getShips(remainingFleet2, ship.name).quantity}));
+      this.applyDamage(fleet1, remainingFleet1, fleet2, remainingFleet2);
 
       console.log("Fleet 1: " + fleet1.ships.map((nameQuantity: NameQuantity): string => nameQuantity.name + ": " + nameQuantity.quantity).join(", "));
       console.log("Fleet 2: " + fleet2.ships.map((nameQuantity: NameQuantity): string => nameQuantity.name + ": " + nameQuantity.quantity).join(", "));
@@ -62,6 +56,26 @@ export class FightSimulatorService {
     console.log("Fleet 2: " + fleet2.ships.map((nameQuantity: NameQuantity): string => nameQuantity.name + ": " + nameQuantity.quantity).join(", "));
 
     return requiredTurns;
+  }
+
+  private applyDamage(fleet1: Fleet, remainingFleet1: Fleet, fleet2: Fleet, remainingFleet2: Fleet): void {
+    fleet1.ships.forEach((ship: NameQuantity): void => {
+      for (const ship2 of remainingFleet1.ships) {
+        if (ship.name === ship2.name) {
+          ship.quantity = ship2.quantity;
+          break;
+        }
+      }
+    });
+
+    fleet2.ships.forEach((ship: NameQuantity): void => {
+      for (const ship2 of remainingFleet2.ships) {
+        if (ship.name === ship2.name) {
+          ship.quantity = ship2.quantity;
+          break;
+        }
+      }
+    });
   }
 
   private fightersAttack(fleetFighters: number, enemyFleet: Fleet): Fleet {
@@ -156,8 +170,8 @@ export class FightSimulatorService {
     return result;
   }
 
-  private getShips(fleet: Fleet, shipType: string): NameQuantity {
-    return fleet.ships.filter((nameQuantity: NameQuantity): boolean => nameQuantity.name === shipType)[0];
+  private getShips(fleet: Fleet, name: string): NameQuantity {
+    return fleet.ships.filter((nameQuantity: NameQuantity): boolean => nameQuantity.name === name)[0];
   }
 
   private isFleetDestroyed(fleet: Fleet): boolean {
