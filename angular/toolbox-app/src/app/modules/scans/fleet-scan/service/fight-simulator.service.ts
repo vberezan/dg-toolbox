@@ -15,40 +15,31 @@ export class FightSimulatorService {
     console.log('Starting the battle');
 
     while (!this.isFleetDestroyed(fleet1) && !this.isFleetDestroyed(fleet2)) {
+      let copyF1 = JSON.parse(JSON.stringify(fleet1));
       let copyF2 = JSON.parse(JSON.stringify(fleet2));
 
       // -- fighters
-      this.fightersAttack(this.getShips(fleet1, ShipType.FIGHTER).quantity, fleet2);
+      this.fightersAttack(this.getShips(copyF1, ShipType.FIGHTER).quantity, fleet2);
       this.fightersAttack(this.getShips(copyF2, ShipType.FIGHTER).quantity, fleet1);
 
-      copyF2 = JSON.parse(JSON.stringify(fleet2));
-
       // -- bombers
-      this.bombersAttack(this.getShips(fleet1, ShipType.BOMBER).quantity, fleet2);
+      this.bombersAttack(this.getShips(copyF1, ShipType.BOMBER).quantity, fleet2);
       this.bombersAttack(this.getShips(copyF2, ShipType.BOMBER).quantity, fleet1);
 
-      copyF2 = JSON.parse(JSON.stringify(fleet2));
-
       // -- frigates
-      this.frigateAttack(this.getShips(fleet1, ShipType.FRIGATE).quantity, fleet2);
+      this.frigateAttack(this.getShips(copyF1, ShipType.FRIGATE).quantity, fleet2);
       this.frigateAttack(this.getShips(copyF2, ShipType.FRIGATE).quantity, fleet1);
 
-      copyF2 = JSON.parse(JSON.stringify(fleet2));
-
       // -- destroyers
-      this.destroyerAttack(this.getShips(fleet1, ShipType.DESTROYER).quantity, fleet2);
+      this.destroyerAttack(this.getShips(copyF1, ShipType.DESTROYER).quantity, fleet2);
       this.destroyerAttack(this.getShips(copyF2, ShipType.DESTROYER).quantity, fleet1);
 
-      copyF2 = JSON.parse(JSON.stringify(fleet2));
-
       // -- cruisers
-      this.cruiserAttack(this.getShips(fleet1, ShipType.CRUISER).quantity, fleet2);
+      this.cruiserAttack(this.getShips(copyF1, ShipType.CRUISER).quantity, fleet2);
       this.cruiserAttack(this.getShips(copyF2, ShipType.CRUISER).quantity, fleet1);
 
-      copyF2 = JSON.parse(JSON.stringify(fleet2));
-
       // -- battleships
-      this.battleShipAttack(this.getShips(fleet1, ShipType.BATTLESHIP).quantity, fleet2);
+      this.battleShipAttack(this.getShips(copyF1, ShipType.BATTLESHIP).quantity, fleet2);
       this.battleShipAttack(this.getShips(copyF2, ShipType.BATTLESHIP).quantity, fleet1);
 
       console.log("Fleet 1: " + fleet1.ships.map((nameQuantity: NameQuantity): string => nameQuantity.name + ": " + nameQuantity.quantity).join(", "));
