@@ -42,11 +42,11 @@ export class FightSimulatorService {
       this.getShips(fleet1, ShipType.BATTLESHIP).quantity = remainingBattleshipsFleet1;
       this.getShips(fleet1, ShipType.BATTLESHIP).quantity = remainingBattleshipsFleet2;
 
-      console.log("Fleet 1: " + fleet1.ships.map((nameQuantity: NameQuantity): string => nameQuantity.name + ": " + nameQuantity.quantity).join(", "));
-      console.log("Fleet 2: " + fleet2.ships.map((nameQuantity: NameQuantity): string => nameQuantity.name + ": " + nameQuantity.quantity).join(", "));
-
       requiredTurns++;
     }
+
+    console.log("Fleet 1: " + fleet1.ships.map((nameQuantity: NameQuantity): string => nameQuantity.name + ": " + nameQuantity.quantity).join(", "));
+    console.log("Fleet 2: " + fleet2.ships.map((nameQuantity: NameQuantity): string => nameQuantity.name + ": " + nameQuantity.quantity).join(", "));
 
     return requiredTurns;
   }
