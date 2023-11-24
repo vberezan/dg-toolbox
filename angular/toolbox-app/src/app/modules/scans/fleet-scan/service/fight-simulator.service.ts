@@ -167,19 +167,16 @@ export class FightSimulatorService {
   private attack(attackingUnits: number, attacker: ShipType, enemyFleet: Fleet, damageTable: KillRate[]): Fleet {
     let result: Fleet = new Fleet();
     for (const killRate of damageTable) {
-      const damage: number = killRate.rate;
+      const rate: number = killRate.rate;
       const enemyShipGroup: NameQuantity = this.getShips(enemyFleet, killRate.target);
 
       if (enemyShipGroup.quantity > 0 && attackingUnits > 0) {
-        const killedUnits: number = Math.min(enemyShipGroup.quantity, Math.floor(damage * attackingUnits));
-
-        console.log('Kill rate: ' + killRate.rate + ' - ' + 'target: ' + killRate.target);
-        console.log('Attacking units: ' + attackingUnits);
-        console.log(Math.floor(Math.max(0, (attackingUnits - killedUnits / damage))) + " " + attacker + " killed " +
-          killedUnits + " " + killRate.target);
+        const killedUnits: number = Math.min(enemyShipGroup.quantity, Math.floor(rate * attackingUnits));
+        console.log("Fight: " + attackingUnits + " " + attacker + " vs " + enemyShipGroup.quantity + " " + killRate.target + " - killed: " + killedUnits);
+        console.log(Math.floor( killedUnits / rate) + " " + attacker + " killed " + killedUnits + " " + killRate.target);
 
         result.ships.push(new NameQuantity(killRate.target, killedUnits));
-        attackingUnits = Math.max(0, attackingUnits - Math.ceil(killedUnits / damage));
+        attackingUnits = Math.max(0, attackingUnits - Math.ceil(killedUnits / rate));
       }
     }
 
