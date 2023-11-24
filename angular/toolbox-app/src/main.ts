@@ -45,7 +45,10 @@ function loadTier2Modules(windowURL: string[]): void {
   // -- planet screen >> comms
   if (windowURL[1] === 'planet' && (windowURL.length === 5 && windowURL[3]) === 'comms') {
     platform.bootstrapModule(ScansCollectorModule).catch(err => console.error("Error loading SharedScansModule: " + err));
-    platform.bootstrapModule(FleetScanModule).catch(err => console.error("Error loading FleetScanModule: " + err));
+
+    if (document.querySelector('dgt-fleet-scan-details')) {
+      platform.bootstrapModule(FleetScanModule).catch(err => console.error("Error loading FleetScanModule: " + err));
+    }
   }
 
   // -- navigation screen >> system level
