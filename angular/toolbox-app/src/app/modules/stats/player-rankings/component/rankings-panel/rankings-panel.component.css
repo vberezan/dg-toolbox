@@ -34,14 +34,11 @@
 .empty {
   width: 100px;
 }
+
+.combined,
 .combat,
 .score {
   width: 75px;
-}
-
-.score-per-planet {
-  width: 50px;
-  text-align: center;
 }
 
 .rank {
@@ -54,6 +51,7 @@
   padding-left: 10px;
 }
 
+.combined,
 .combat,
 .score,
 .planets,

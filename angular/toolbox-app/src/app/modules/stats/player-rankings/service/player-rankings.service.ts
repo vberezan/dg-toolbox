@@ -26,6 +26,7 @@ export class PlayerRankingsService {
         let sortCondition: boolean = false;
 
         switch (key) {
+          case 'combinedScore':
           case 'combatScore':
           case 'score':
           case 'planets':
@@ -36,13 +37,6 @@ export class PlayerRankingsService {
               cachedStats[i][key] < cachedStats[j][key] ? sortCondition = true : sortCondition = false;
             } else {
               cachedStats[i][key] > cachedStats[j][key] ? sortCondition = true : sortCondition = false;
-            }
-            break;
-          case 'scorePerPlanet':
-            if (order === 'desc') {
-              cachedStats[i].score / cachedStats[i].planets < cachedStats[j].score / cachedStats[j].planets ? sortCondition = true : sortCondition = false;
-            } else {
-              cachedStats[i].score / cachedStats[i].planets > cachedStats[j].score / cachedStats[j].planets ? sortCondition = true : sortCondition = false;
             }
             break;
           default:
