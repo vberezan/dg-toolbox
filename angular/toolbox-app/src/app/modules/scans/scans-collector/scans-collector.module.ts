@@ -30,5 +30,5 @@ import {getAuth, provideAuth} from "@angular/fire/auth";
   ],
   bootstrap: [ScanCollectorComponent]
 })
-export class SharedScansModule {
+export class ScansCollectorModule {
 }

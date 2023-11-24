@@ -89,7 +89,7 @@ function setUpSharedScansCollector(windowURL) {
         let scanForm = document.querySelector('.opacBackground .opacDarkBackground>form');
 
         if (scanForm) {
-            scanForm.append(document.createElement('dgt-shared-scans-collector'));
+            scanForm.append(document.createElement('dgt-scans-collector'));
             scanForm.id = 'planet-scan-form';
             scanForm.parentElement.id = 'planet-scan-form-wrapper';
             scanForm.querySelector('.tableHeader div:nth-child(2)').remove();

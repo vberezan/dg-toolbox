@@ -2,7 +2,7 @@ import {inject, Injectable, Optional} from '@angular/core';
 import {PlanetListExtractorService} from "./planet-list.extractor.service";
 import {PlanetSummary} from "../../../shared/model/planets/planet-summary.planet-list-model";
 import {PlanetScanExtractorService} from "./planet-scan.extractor.service";
-import {PlanetScanEvent} from "../../../shared/model/scans/shared-scans-planet-scan-event.model";
+import {PlanetScanEvent} from "../../../shared/model/scans/planet-scan-event.model";
 import {NavigationSystemPlanetsExtractorService} from "./navigation-system-planets.extractor.service";
 
 @Injectable({

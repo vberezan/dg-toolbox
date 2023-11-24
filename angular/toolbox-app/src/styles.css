@@ -2369,7 +2369,7 @@ dgt-fleet-orders-list-panel {
   display: block;
 }
 
-dgt-shared-scans-collector {
+dgt-scans-collector {
   float: left;
   padding: 0 !important;
   width: 100% !important;

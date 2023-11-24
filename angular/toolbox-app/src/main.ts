@@ -1,7 +1,7 @@
 import {platformBrowserDynamic} from '@angular/platform-browser-dynamic';
 import {NavbarModule} from "./app/modules/navbar/navbar.module";
 import {PlanetListStatsModule} from "./app/modules/stats/planet-list-stats/planet-list-stats.module";
-import {SharedScansModule} from "./app/modules/scans/shared-scans/shared-scans.module";
+import {ScansCollectorModule} from "./app/modules/scans/scans-collector/scans-collector.module";
 import {NavigationScansModule} from "./app/modules/scans/navigation-scans/navigation-scans.module";
 import {AuthenticationModule} from "./app/modules/authentication/authentication.module";
 import {PlatformRef} from "@angular/core";
@@ -43,7 +43,7 @@ function loadTier2Modules(windowURL: string[]): void {
 
   // -- planet screen >> comms
   if (windowURL[1] === 'planet' && (windowURL.length === 5 && windowURL[3]) === 'comms') {
-    platform.bootstrapModule(SharedScansModule).catch(err => console.error("Error loading SharedScansModule: " + err));
+    platform.bootstrapModule(ScansCollectorModule).catch(err => console.error("Error loading SharedScansModule: " + err));
   }
 
   // -- navigation screen >> system level

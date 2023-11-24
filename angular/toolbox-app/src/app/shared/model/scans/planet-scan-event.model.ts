@@ -1,4 +1,4 @@
-import {PlanetScan} from "./shared-scans-planet-scan.model";
+import {PlanetScan} from "./planet-scan.model";
 import {ScanType} from "../scan-type";
 
 export class PlanetScanEvent {

@@ -1,7 +1,7 @@
 import {Resource} from "../resource.model";
 import {Population} from "../population.model";
 import {ResourceQuantity} from "../resource-quantity.model";
-import {Owner} from "./shared-scans-owner.model";
+import {Owner} from "./scan-owner.model";
 import {Fleet} from "../fleet.model";
 
 export class PlanetScan {

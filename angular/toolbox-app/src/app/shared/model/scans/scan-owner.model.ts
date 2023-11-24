@@ -2,7 +2,6 @@ export class Owner {
   private _name: string;
   private _alliance: string;
 
-
   constructor(name: string, alliance: string) {
     this._name = name;
     this._alliance = alliance;

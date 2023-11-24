@@ -1,7 +1,7 @@
 import {inject, Injectable, OnDestroy} from '@angular/core';
 import {DarkgalaxyApiService} from "../../../darkgalaxy-ui-parser/service/darkgalaxy-api.service";
 import {PlanetSummary} from "../../../../shared/model/planets/planet-summary.planet-list-model";
-import {PlanetScan} from "../../../../shared/model/scans/shared-scans-planet-scan.model";
+import {PlanetScan} from "../../../../shared/model/scans/planet-scan.model";
 import {DecimalPipe} from "@angular/common";
 import {Resource} from "../../../../shared/model/resource.model";
 import {ResourceProductionFormatterPipe} from "../../../stats/planet-list-stats/pipe/resource-production-formatter.pipe";
