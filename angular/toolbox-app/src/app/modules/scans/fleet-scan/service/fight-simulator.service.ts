@@ -14,35 +14,53 @@ export class FightSimulatorService {
     console.log('Starting the battle');
 
     while (!this.isFleetDestroyed(fleet1) && !this.isFleetDestroyed(fleet2)) {
+      console.log("Fighters battle: ");
       let remainingFightersFleet1: number = this.fightersAttack(this.getShips(fleet1, ShipType.FIGHTER).quantity, fleet2);
       let remainingFightersFleet2: number = this.fightersAttack(this.getShips(fleet2, ShipType.FIGHTER).quantity, fleet1);
       this.getShips(fleet1, ShipType.FIGHTER).quantity = remainingFightersFleet1;
       this.getShips(fleet1, ShipType.FIGHTER).quantity = remainingFightersFleet2;
+      console.log("Fleet 1: " + fleet1.ships.map((nameQuantity: NameQuantity): string => nameQuantity.name + ": " + nameQuantity.quantity).join(", "));
+      console.log("Fleet 2: " + fleet2.ships.map((nameQuantity: NameQuantity): string => nameQuantity.name + ": " + nameQuantity.quantity).join(", "));
 
+      console.log("Bombers battle: ");
       let remainingBombersFleet1: number = this.bombersAttack(this.getShips(fleet1, ShipType.BOMBER).quantity, fleet2);
       let remainingBombersFleet2: number = this.bombersAttack(this.getShips(fleet2, ShipType.BOMBER).quantity, fleet1);
       this.getShips(fleet1, ShipType.BOMBER).quantity = remainingBombersFleet1;
       this.getShips(fleet1, ShipType.BOMBER).quantity = remainingBombersFleet2;
+      console.log("Fleet 1: " + fleet1.ships.map((nameQuantity: NameQuantity): string => nameQuantity.name + ": " + nameQuantity.quantity).join(", "));
+      console.log("Fleet 2: " + fleet2.ships.map((nameQuantity: NameQuantity): string => nameQuantity.name + ": " + nameQuantity.quantity).join(", "));
 
+      console.log("Frigates battle: ");
       let remainingFrigatesFleet1: number = this.frigateAttack(this.getShips(fleet1, ShipType.FRIGATE).quantity, fleet2);
       let remainingFrigatesFleet2: number = this.frigateAttack(this.getShips(fleet2, ShipType.FRIGATE).quantity, fleet1);
       this.getShips(fleet1, ShipType.FRIGATE).quantity = remainingFrigatesFleet1;
       this.getShips(fleet1, ShipType.FRIGATE).quantity = remainingFrigatesFleet2;
+      console.log("Fleet 1: " + fleet1.ships.map((nameQuantity: NameQuantity): string => nameQuantity.name + ": " + nameQuantity.quantity).join(", "));
+      console.log("Fleet 2: " + fleet2.ships.map((nameQuantity: NameQuantity): string => nameQuantity.name + ": " + nameQuantity.quantity).join(", "));
 
+      console.log("Destroyers battle: ");
       let remainingDestroyersFleet1: number = this.destroyerAttack(this.getShips(fleet1, ShipType.DESTROYER).quantity, fleet2);
       let remainingDestroyersFleet2: number = this.destroyerAttack(this.getShips(fleet2, ShipType.DESTROYER).quantity, fleet1);
       this.getShips(fleet1, ShipType.DESTROYER).quantity = remainingDestroyersFleet1;
       this.getShips(fleet1, ShipType.DESTROYER).quantity = remainingDestroyersFleet2;
+      console.log("Fleet 1: " + fleet1.ships.map((nameQuantity: NameQuantity): string => nameQuantity.name + ": " + nameQuantity.quantity).join(", "));
+      console.log("Fleet 2: " + fleet2.ships.map((nameQuantity: NameQuantity): string => nameQuantity.name + ": " + nameQuantity.quantity).join(", "));
 
+      console.log("Cruisers battle: ");
       let remainingCruisersFleet1: number = this.cruiserAttack(this.getShips(fleet1, ShipType.CRUISER).quantity, fleet2);
       let remainingCruisersFleet2: number = this.cruiserAttack(this.getShips(fleet2, ShipType.CRUISER).quantity, fleet1);
       this.getShips(fleet1, ShipType.CRUISER).quantity = remainingCruisersFleet1;
       this.getShips(fleet1, ShipType.CRUISER).quantity = remainingCruisersFleet2;
+      console.log("Fleet 1: " + fleet1.ships.map((nameQuantity: NameQuantity): string => nameQuantity.name + ": " + nameQuantity.quantity).join(", "));
+      console.log("Fleet 2: " + fleet2.ships.map((nameQuantity: NameQuantity): string => nameQuantity.name + ": " + nameQuantity.quantity).join(", "));
 
+      console.log("Battleships battle: ");
       let remainingBattleshipsFleet1: number = this.battleShipAttack(this.getShips(fleet1, ShipType.BATTLESHIP).quantity, fleet2);
       let remainingBattleshipsFleet2: number = this.battleShipAttack(this.getShips(fleet2, ShipType.BATTLESHIP).quantity, fleet1);
       this.getShips(fleet1, ShipType.BATTLESHIP).quantity = remainingBattleshipsFleet1;
       this.getShips(fleet1, ShipType.BATTLESHIP).quantity = remainingBattleshipsFleet2;
+      console.log("Fleet 1: " + fleet1.ships.map((nameQuantity: NameQuantity): string => nameQuantity.name + ": " + nameQuantity.quantity).join(", "));
+      console.log("Fleet 2: " + fleet2.ships.map((nameQuantity: NameQuantity): string => nameQuantity.name + ": " + nameQuantity.quantity).join(", "));
 
       requiredTurns++;
     }
