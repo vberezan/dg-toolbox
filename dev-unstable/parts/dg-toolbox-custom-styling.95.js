@@ -211,10 +211,11 @@ function applyCustomStyling(windowURL) {
       let planetName = document.querySelector('.planetName');
       let name = document.createElement('span');
       name.classList.add('dgt-planet-name');
-      name.innerHTML = planetName.textContent.trim();
 
       let prev = detach(planetName.querySelector('a'));
       let next = detach(planetName.querySelector('a'));
+
+      name.innerHTML = planetName.textContent.trim();
 
       if (next != null) {
         next.classList.add('dgt-planet-next');
