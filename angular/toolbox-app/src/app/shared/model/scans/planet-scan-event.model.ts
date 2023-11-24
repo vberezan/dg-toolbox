@@ -1,5 +1,5 @@
 import {PlanetScan} from "./planet-scan.model";
-import {ScanType} from "../scan-type";
+import {ScanType} from "./scan-type";
 
 export class PlanetScanEvent {
   private _planetScan: PlanetScan;

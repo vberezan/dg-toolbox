@@ -1,11 +1,11 @@
 import {Injectable} from '@angular/core';
 import {DataExtractor} from "./data-extractor";
 import {PlanetScan} from "../../../shared/model/scans/planet-scan.model";
-import {ScanType} from "../../../shared/model/scan-type";
-import {Resource} from "../../../shared/model/resource.model";
+import {ScanType} from "../../../shared/model/scans/scan-type";
+import {Resource} from "../../../shared/model/planets/resource.model";
 import {PlanetScanEvent} from "../../../shared/model/scans/planet-scan-event.model";
-import {ResourceQuantity} from "../../../shared/model/resource-quantity.model";
-import {Structures} from "../../../shared/model/structures";
+import {NameQuantity} from "../../../shared/model/name-quantity.model";
+import {Structures} from "../../../shared/model/planets/structures";
 import {Owner} from "../../../shared/model/scans/scan-owner.model";
 
 @Injectable({
@@ -110,7 +110,7 @@ export class PlanetScanExtractorService implements DataExtractor {
 
       base.parentElement.querySelectorAll('div.entry > .left:not(.structureImageSmall)').forEach((structure: Element) => {
         result.planetScan.structures.push(
-          new ResourceQuantity(
+          new NameQuantity(
             structure.textContent.split(/x\s+/)[1].trim().replace(/_/g, ' ').toLowerCase(),
             parseInt(structure.textContent.split(/x\s+/)[0].trim())
           )

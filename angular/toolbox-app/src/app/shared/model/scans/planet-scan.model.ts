@@ -1,8 +1,8 @@
-import {Resource} from "../resource.model";
-import {Population} from "../population.model";
-import {ResourceQuantity} from "../resource-quantity.model";
+import {Resource} from "../planets/resource.model";
+import {Population} from "../planets/population.model";
+import {NameQuantity} from "../name-quantity.model";
 import {Owner} from "./scan-owner.model";
-import {Fleet} from "../fleet.model";
+import {Fleet} from "../fleet/fleet.model";
 
 export class PlanetScan {
   private _resources: Resource[] = [];
@@ -10,7 +10,7 @@ export class PlanetScan {
   private _orbit: number = 0;
   private _workers: Population = new Population();
   private _soldiers: number = 0;
-  private _structures: ResourceQuantity[] = [];
+  private _structures: NameQuantity[] = [];
   private _fleets: Fleet[] = [];
   private _location: string;
   private _turn: number;
@@ -81,11 +81,11 @@ export class PlanetScan {
   }
 
 
-  get structures(): ResourceQuantity[] {
+  get structures(): NameQuantity[] {
     return this._structures;
   }
 
-  set structures(value: ResourceQuantity[]) {
+  set structures(value: NameQuantity[]) {
     this._structures = value;
   }
 

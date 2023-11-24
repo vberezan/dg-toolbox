@@ -1,7 +1,8 @@
-export enum Ships {
+export enum ShipType {
   FIGHTER = 'fighter',
   BOMBER = 'bomber',
+  FRIGATE = 'frigate',
   DESTROYER = 'destroyer',
   CRUISER = 'cruiser',
-  FIGATE = 'frigate'
+  BATTLESHIP = 'battleship'
 }

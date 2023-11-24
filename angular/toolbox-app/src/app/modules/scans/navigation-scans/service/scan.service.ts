@@ -3,11 +3,11 @@ import {DarkgalaxyApiService} from "../../../darkgalaxy-ui-parser/service/darkga
 import {PlanetSummary} from "../../../../shared/model/planets/planet-summary.planet-list-model";
 import {PlanetScan} from "../../../../shared/model/scans/planet-scan.model";
 import {DecimalPipe} from "@angular/common";
-import {Resource} from "../../../../shared/model/resource.model";
+import {Resource} from "../../../../shared/model/planets/resource.model";
 import {ResourceProductionFormatterPipe} from "../../../stats/planet-list-stats/pipe/resource-production-formatter.pipe";
-import {Structures} from "../../../../shared/model/structures";
+import {Structures} from "../../../../shared/model/planets/structures";
 import {collection, collectionData, Firestore, query, where} from "@angular/fire/firestore";
-import {ResourceQuantity} from "../../../../shared/model/resource-quantity.model";
+import {NameQuantity} from "../../../../shared/model/name-quantity.model";
 import firebase from "firebase/compat";
 import {Subscription} from "rxjs";
 import DocumentData = firebase.firestore.DocumentData;
@@ -65,7 +65,7 @@ export class ScanService implements OnDestroy {
               .textContent = this.resourceProductionFormatterPipe.transform(resource.production).trim();
           });
 
-          let structureNames: string[] = pl.structures.map((structure: ResourceQuantity) => structure.name);
+          let structureNames: string[] = pl.structures.map((structure: NameQuantity) => structure.name);
           if (structureNames.includes(Structures.JUMP_GATE)) {
             let jg: Element = planet.querySelector('.dgt-navigation-scan-structures-data .jg');
             jg.textContent = 'JG';

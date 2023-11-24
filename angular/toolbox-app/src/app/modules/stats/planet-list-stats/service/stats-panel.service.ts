@@ -3,8 +3,8 @@ import {DarkgalaxyApiService} from "../../../darkgalaxy-ui-parser/service/darkga
 import {PlanetSummary} from "../../../../shared/model/planets/planet-summary.planet-list-model";
 import {StatsPanel} from "../../../../shared/model/planets/planet-list-stats-panel.model";
 import {PlanetStats} from "../../../../shared/model/planets/planet-list-planet-stats.model";
-import {Resource} from "../../../../shared/model/resource.model";
-import {Resources} from "../../../../shared/model/resources";
+import {Resource} from "../../../../shared/model/planets/resource.model";
+import {Resources} from "../../../../shared/model/planets/resources";
 
 @Injectable({
   providedIn: 'root'

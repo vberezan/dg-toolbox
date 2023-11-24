@@ -1,5 +1,5 @@
-import {Resource} from "../resource.model";
-import {Population} from "../population.model";
+import {Resource} from "./resource.model";
+import {Population} from "./population.model";
 
 export class PlanetSummary {
   private _location: string[];

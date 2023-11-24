@@ -1,16 +1,27 @@
-import {ResourceQuantity} from "./resource-quantity.model";
+import {NameQuantity} from "../name-quantity.model";
 
 export class Fleet {
-  private _ships: ResourceQuantity[] = [];
+  private _ships: NameQuantity[] = [];
   private _owner: string;
   private _alliance: string;
   private _eta: number;
+  private hostile: boolean = false;
+  private allied: boolean = false;
+  private _mine: boolean = false;
 
-  get ships(): ResourceQuantity[] {
+  get mine(): boolean {
+    return this._mine;
+  }
+
+  set mine(value: boolean) {
+    this._mine = value;
+  }
+
+  get ships(): NameQuantity[] {
     return this._ships;
   }
 
-  set ships(value: ResourceQuantity[]) {
+  set ships(value: NameQuantity[]) {
     this._ships = value;
   }
 
@@ -43,7 +54,10 @@ export class Fleet {
       eta: this.eta,
       alliance: this.alliance,
       owner: this.owner,
-      ships: this.ships
+      ships: this.ships,
+      hostile: this.hostile,
+      allied: this.allied,
+      mine: this.mine
     }
   }
 }
