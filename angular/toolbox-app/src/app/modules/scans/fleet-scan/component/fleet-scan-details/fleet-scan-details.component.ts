@@ -27,7 +27,7 @@ export class FleetScanDetailsComponent {
 
     fleet2.ships.push(new NameQuantity(ShipType.FIGHTER, 0));
     fleet2.ships.push(new NameQuantity(ShipType.BOMBER, 0));
-    fleet2.ships.push(new NameQuantity(ShipType.FRIGATE, 100000));
+    fleet2.ships.push(new NameQuantity(ShipType.FRIGATE, 1000000));
     fleet2.ships.push(new NameQuantity(ShipType.DESTROYER, 0));
     fleet2.ships.push(new NameQuantity(ShipType.CRUISER, 0));
     fleet2.ships.push(new NameQuantity(ShipType.BATTLESHIP, 0));
