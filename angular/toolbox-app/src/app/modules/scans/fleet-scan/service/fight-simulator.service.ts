@@ -185,7 +185,7 @@ export class FightSimulatorService {
       const requiredToKill: number = requiredForKill[targetType];
       const enemyShipGroup: NameQuantity = this.getShips(enemyFleet, targetType as ShipType);
 
-      if (enemyShipGroup.quantity > 0) {
+      if (enemyShipGroup.quantity > 0 && attackingUnits > 0) {
         const killedUnits: number = Math.min(enemyShipGroup.quantity, Math.ceil(attackingUnits / requiredToKill));
 
         if (attackingUnits > 0) {
@@ -193,7 +193,7 @@ export class FightSimulatorService {
         }
 
         result.ships.push(new NameQuantity(targetType as ShipType, enemyShipGroup.quantity - killedUnits));
-        attackingUnits -= killedUnits * requiredToKill;
+        attackingUnits = Math.max(0, attackingUnits - (killedUnits * requiredToKill));
       }
     }
 
