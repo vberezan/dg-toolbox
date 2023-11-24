@@ -91,13 +91,6 @@ function setUpSharedScansCollector(windowURL) {
         if (scanForm) {
             scanForm.append(document.createElement('dgt-scans-collector'));
 
-            console.log(document.querySelector('#planet-scan-additional .header'));
-            console.log(document.querySelector('#planet-scan-additional .header').textContent.trim().toLowerCase());
-
-            if (document.querySelector('#planet-scan-additional .header') != null &&
-              document.querySelector('#planet-scan-additional .header').textContent.trim().toLowerCase() === 'fleet list') {
-                scanForm.append(document.createElement('dgt-fleet-scan-details'));
-            }
             scanForm.id = 'planet-scan-form';
             scanForm.parentElement.id = 'planet-scan-form-wrapper';
             scanForm.querySelector('.tableHeader div:nth-child(2)').remove();
@@ -112,6 +105,12 @@ function setUpSharedScansCollector(windowURL) {
                         scannedPlanet.querySelector('#planetHeader').nextElementSibling.id = 'planet-scan-additional'
                     }
                 }
+            }
+
+
+            if (document.querySelector('#planet-scan-additional .header') != null &&
+              document.querySelector('#planet-scan-additional .header').textContent.trim().toLowerCase() === 'fleet list') {
+                scanForm.append(document.createElement('dgt-fleet-scan-details'));
             }
         }
     }
