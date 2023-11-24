@@ -165,7 +165,7 @@ export class FightSimulatorService {
 
   private attack(attackingUnits: number, attacker: ShipType, enemyFleet: Fleet, damageTable: any): Fleet {
     let result: Fleet = new Fleet();
-    for (const targetType in damageTable) {
+    for (const targetType of damageTable) {
       const damage: number = damageTable[targetType];
       const enemyShipGroup: NameQuantity = this.getShips(enemyFleet, targetType as ShipType);
 
