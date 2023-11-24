@@ -88,15 +88,15 @@ export class FightSimulatorService {
 
   private fightersAttack(fleetFighters: number, enemyFleet: Fleet): Fleet {
     const damageTable: any = {
-      [ShipType.BOMBER]: 0.91,
-      [ShipType.FIGHTER]: 1.1,
+      [ShipType.BOMBER]: 0.333,
+      [ShipType.FIGHTER]: 0.91,
       [ShipType.FRIGATE]: 0.025,
       [ShipType.DESTROYER]: 0.006,
       [ShipType.CRUISER]: 0.002,
       [ShipType.BATTLESHIP]: 0.0002,
     };
 
-    return this.attack(fleetFighters, enemyFleet, damageTable);
+    return this.attack(fleetFighters, ShipType.FIGHTER, enemyFleet, damageTable);
   }
 
   private bombersAttack(fleetBombers: number, enemyFleet: Fleet): Fleet {
@@ -108,7 +108,7 @@ export class FightSimulatorService {
       [ShipType.CRUISER]: 0.004
     };
 
-    return this.attack(fleetBombers, enemyFleet, damageTable);
+    return this.attack(fleetBombers, ShipType.BOMBER, enemyFleet, damageTable);
   }
 
   private frigateAttack(fleetFrigates: number, enemyFleet: Fleet): Fleet {
@@ -121,7 +121,7 @@ export class FightSimulatorService {
       [ShipType.BATTLESHIP]: 250,
     };
 
-    return this.attack(fleetFrigates, enemyFleet, damageTable);
+    return this.attack(fleetFrigates, ShipType.FRIGATE, enemyFleet, damageTable);
   }
 
   private destroyerAttack(fleetDestroyers: number, enemyFleet: Fleet): Fleet {
@@ -134,7 +134,7 @@ export class FightSimulatorService {
       [ShipType.BOMBER]: 2,
     };
 
-    return this.attack(fleetDestroyers, enemyFleet, damageTable);
+    return this.attack(fleetDestroyers, ShipType.DESTROYER, enemyFleet, damageTable);
   }
 
   private cruiserAttack(fleetCruisers: number, enemyFleet: Fleet): Fleet {
@@ -147,7 +147,7 @@ export class FightSimulatorService {
       [ShipType.BATTLESHIP]: 0.025,
     };
 
-    return this.attack(fleetCruisers, enemyFleet, damageTable);
+    return this.attack(fleetCruisers, ShipType.CRUISER, enemyFleet, damageTable);
   }
 
   private battleShipAttack(fleetBattleships: number, enemyFleet: Fleet): Fleet {
@@ -160,10 +160,10 @@ export class FightSimulatorService {
       [ShipType.DESTROYER]: 2,
     };
 
-    return this.attack(fleetBattleships, enemyFleet, damageTable);
+    return this.attack(fleetBattleships, ShipType.BATTLESHIP, enemyFleet, damageTable);
   }
 
-  private attack(attackingUnits: number, enemyFleet: Fleet, damageTable: any): Fleet {
+  private attack(attackingUnits: number, attacker: ShipType, enemyFleet: Fleet, damageTable: any): Fleet {
     let result: Fleet = new Fleet();
     for (const targetType in damageTable) {
       const damage: number = damageTable[targetType];
@@ -174,7 +174,7 @@ export class FightSimulatorService {
 
         if (attackingUnits > 0) {
           console.log("Killed " + killedUnits + " " + targetType + " engaging " + Math.ceil(killedUnits / damage) +
-            " attacking units. Units not engaged: " + Math.floor(Math.max(0, (attackingUnits - killedUnits / damage))));
+            " " + attacker + "s. Units not engaged: " + Math.floor(Math.max(0, (attackingUnits - killedUnits / damage))));
         }
 
         result.ships.push(new NameQuantity(targetType as ShipType, killedUnits));
