@@ -175,7 +175,7 @@ export class FightSimulatorService {
 
   private battleShipAttack(fleetBattleships: number, enemyFleet: Fleet): Fleet {
     const REQUIRED_FOR_KILL: any = {
-      [ShipType.FRIGATE]: 0.023,
+      [ShipType.FRIGATE]: 0.0227,
       [ShipType.CRUISER]: 0.25,
       [ShipType.BATTLESHIP]: 3.031,
       [ShipType.FIGHTER]: 0.004,
@@ -197,7 +197,8 @@ export class FightSimulatorService {
         const killedUnits: number = Math.min(enemyShipGroup.quantity, Math.ceil(attackingUnits / requiredToKill));
 
         if (attackingUnits > 0) {
-          console.log("Killed " + killedUnits + " " + targetType + " engaging " + Math.ceil(killedUnits * requiredToKill) + " attacking units. Units not engaged: " + (attackingUnits - Math.ceil(killedUnits * requiredToKill)));
+          console.log("Killed " + killedUnits + " " + targetType + " engaging " + Math.ceil(killedUnits * requiredToKill) +
+            " attacking units. Units not engaged: " + Math.max(0, (attackingUnits - Math.ceil(killedUnits * requiredToKill))));
         }
 
         result.ships.push(new NameQuantity(targetType as ShipType, enemyShipGroup.quantity - killedUnits));
