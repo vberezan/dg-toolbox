@@ -155,18 +155,11 @@ export class FightSimulatorService {
       const req: number = requiredForKill[targetType];
       const ship: NameQuantity = this.getShips(enemyFleet, targetType as ShipType);
 
-      console.log("Attacking " + ship.quantity + " " + targetType + " with " + fleetUnits + " " + type);
+      if (ship.name !== type) {
+        ship.quantity = Math.max(0, ship.quantity - Math.ceil(fleetUnits / req));
+      }
 
       fleetUnits = Math.max(0, fleetUnits - ship.quantity * req);
-
-      console.log("Remaining " + type + ": " + fleetUnits);
-
-      if (ship.name !== type) {
-        console.log("Required " + type + " to kill " + targetType + ": " + req);
-        console.log("Kill " + targetType + ": " + Math.ceil(fleetUnits / req));
-        ship.quantity = Math.max(0, ship.quantity - Math.ceil(fleetUnits / req));
-        console.log("Remaining " + targetType + ": " + ship.quantity);
-      }
 
       if (fleetUnits === 0) return 0;
     }
