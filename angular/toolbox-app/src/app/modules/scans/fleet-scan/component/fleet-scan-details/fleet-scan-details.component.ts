@@ -17,8 +17,6 @@ export class FleetScanDetailsComponent {
   constructor() {
     let fleet1: Fleet = new Fleet();
     let fleet2: Fleet = new Fleet();
-    let fleet3: Fleet = new Fleet();
-    let fleet4: Fleet = new Fleet();
 
     fleet1.ships.push(new NameQuantity(ShipType.FIGHTER, 16567));
     fleet1.ships.push(new NameQuantity(ShipType.BOMBER, 1564));
@@ -33,21 +31,6 @@ export class FleetScanDetailsComponent {
     fleet2.ships.push(new NameQuantity(ShipType.DESTROYER, 0));
     fleet2.ships.push(new NameQuantity(ShipType.CRUISER, 0));
     fleet2.ships.push(new NameQuantity(ShipType.BATTLESHIP, 0));
-
-    fleet3.ships.push(new NameQuantity(ShipType.FIGHTER, 16567));
-    fleet3.ships.push(new NameQuantity(ShipType.BOMBER, 1564));
-    fleet3.ships.push(new NameQuantity(ShipType.FRIGATE, 2103));
-    fleet3.ships.push(new NameQuantity(ShipType.DESTROYER, 0));
-    fleet3.ships.push(new NameQuantity(ShipType.CRUISER, 0));
-    fleet3.ships.push(new NameQuantity(ShipType.BATTLESHIP, 0));
-
-    fleet4.ships.push(new NameQuantity(ShipType.FIGHTER, 13455));
-    fleet4.ships.push(new NameQuantity(ShipType.BOMBER, 2354));
-    fleet4.ships.push(new NameQuantity(ShipType.FRIGATE, 1320));
-    fleet4.ships.push(new NameQuantity(ShipType.DESTROYER, 0));
-    fleet4.ships.push(new NameQuantity(ShipType.CRUISER, 0));
-    fleet4.ships.push(new NameQuantity(ShipType.BATTLESHIP, 0));
-
 
     this.fightSimulatorService.simulateFight(fleet1, fleet2);
   }
