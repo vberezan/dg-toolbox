@@ -6,5 +6,6 @@ import { Component } from '@angular/core';
   styleUrls: ['./fleet-scan-details.component.css']
 })
 export class FleetScanDetailsComponent {
+  url: string = "https://helloweenpt.com/darkgalaxy/combat-simulator";
 
 }

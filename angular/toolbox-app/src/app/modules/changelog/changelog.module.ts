@@ -6,7 +6,6 @@ import {environment} from "../../../environments/environment";
 import {initializeAppCheck, provideAppCheck, ReCaptchaV3Provider} from "@angular/fire/app-check";
 import {getFirestore, provideFirestore} from "@angular/fire/firestore";
 import {SynchronizerService} from "../local-storage/local-storage-synchronizer/service/synchronizer.service";
-import { SafePipe } from './pipe/safe.pipe';
 
 
 @NgModule({
@@ -25,8 +24,7 @@ import { SafePipe } from './pipe/safe.pipe';
     SynchronizerService // -- contains reference to firestore,
   ],
   declarations: [
-    ChangelogComponent,
-    SafePipe
+    ChangelogComponent
   ],
   bootstrap: [
     ChangelogComponent

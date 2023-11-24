@@ -20,8 +20,6 @@ export class ChangelogComponent implements AfterViewInit {
   public version: string = 'N/A';
   public newVersion: string = 'N/A';
 
-  url: string = "https://helloweenpt.com/darkgalaxy/combat-simulator";
-
   constructor() {
     this.updateAvailable = new Observable<boolean>((changeObserver: Subscriber<boolean>): void => {
       this.changeLogService.checkForUpdate(this.changeDetector, changeObserver);
