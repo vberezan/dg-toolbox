@@ -29,9 +29,15 @@ export class FightSimulatorService {
       fleet2Fights.push(this.bombersAttack(this.getShips(fleet1, ShipType.BOMBER).quantity, fleet2));
       fleet1Fights.push(this.bombersAttack(this.getShips(fleet2, ShipType.BOMBER).quantity, fleet1));
 
+      console.log(fleet1Fights[1]);
+      console.log(fleet2Fights[1]);
+
       // -- frigates
       fleet2Fights.push(this.frigateAttack(this.getShips(fleet1, ShipType.FRIGATE).quantity, fleet2));
       fleet1Fights.push(this.frigateAttack(this.getShips(fleet2, ShipType.FRIGATE).quantity, fleet1));
+
+      console.log(fleet1Fights[2]);
+      console.log(fleet2Fights[2]);
 
       // -- destroyers
       fleet2Fights.push(this.destroyerAttack(this.getShips(fleet1, ShipType.DESTROYER).quantity, fleet2));
