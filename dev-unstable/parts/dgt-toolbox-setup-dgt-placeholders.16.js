@@ -91,7 +91,7 @@ function setUpSharedScansCollector(windowURL) {
         if (scanForm) {
             scanForm.append(document.createElement('dgt-scans-collector'));
 
-            if (document.querySelector('#planet-scan-additional .header') &&
+            if (document.querySelector('#planet-scan-additional .header') != null &&
               document.querySelector('#planet-scan-additional .header').textContent.trim().toLowerCase() === 'fleet list') {
                 scanForm.append(document.createElement('dgt-fleet-scan-details'));
             }
