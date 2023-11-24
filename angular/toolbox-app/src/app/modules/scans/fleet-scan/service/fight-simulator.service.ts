@@ -173,6 +173,8 @@ export class FightSimulatorService {
       if (enemyShipGroup.quantity > 0 && attackingUnits > 0) {
         const killedUnits: number = Math.min(enemyShipGroup.quantity, Math.floor(damage * attackingUnits));
 
+        console.log('Kill rate: ' + killRate.rate + ' - ' + 'target: ' + killRate.target);
+        console.log('Attacking units: ' + attackingUnits);
         console.log(Math.floor(Math.max(0, (attackingUnits - killedUnits / damage))) + " " + attacker + " killed " +
           killedUnits + " " + killRate.target);
 
