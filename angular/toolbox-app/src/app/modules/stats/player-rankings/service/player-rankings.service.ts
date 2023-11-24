@@ -26,6 +26,7 @@ export class PlayerRankingsService {
         let sortCondition: boolean = false;
 
         switch (key) {
+          case 'combatScore':
           case 'score':
           case 'planets':
           case 'g1Total':
