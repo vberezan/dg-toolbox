@@ -125,10 +125,10 @@ export class FightSimulatorService {
 
   private frigateAttack(fleetFrigates: number, enemyFleet: Fleet): Fleet {
     const REQUIRED_FOR_KILL: any = {
-      [ShipType.CRUISER]: 13,
-      [ShipType.FIGHTER]: 0.09,
+      [ShipType.CRUISER]: 12.000481,
+      [ShipType.FIGHTER]: 0.082509,
       [ShipType.DESTROYER]: 1.5,
-      [ShipType.BOMBER]: 1.5,
+      [ShipType.BOMBER]: 1.428572,
       [ShipType.FRIGATE]: 2,
       [ShipType.BATTLESHIP]: 250,
     };
