@@ -77,26 +77,26 @@ export class FightSimulatorService {
 
   private applyDamage(fleet1: Fleet, fleet2: Fleet, f1Fights: Fleet[], f2Fights: Fleet[]): void {
 
-    for (let i = 0; i < f1Fights.length; i++) {
+    for (let i: number = 0; i < f1Fights.length; i++) {
       const fleet1Fight: Fleet = f1Fights[i];
 
       fleet1.ships.forEach((ship: NameQuantity): void => {
         for (const ship2 of fleet1Fight.ships) {
           if (ship.name === ship2.name) {
-            ship.quantity = ship2.quantity;
+            ship.quantity -= ship2.quantity;
             break;
           }
         }
       });
     }
 
-    for (let i = 0; i < f2Fights.length; i++) {
+    for (let i: number = 0; i < f2Fights.length; i++) {
       const fleet2Fight: Fleet = f2Fights[i];
 
       fleet2.ships.forEach((ship: NameQuantity): void => {
         for (const ship2 of fleet2Fight.ships) {
           if (ship.name === ship2.name) {
-            ship.quantity = ship2.quantity;
+            ship.quantity -= ship2.quantity;
             break;
           }
         }
