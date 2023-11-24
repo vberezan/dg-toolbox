@@ -194,15 +194,15 @@ export class FightSimulatorService {
       const enemyShipGroup: NameQuantity = this.getShips(enemyFleet, targetType as ShipType);
 
       if (enemyShipGroup.quantity > 0 && attackingUnits > 0) {
-        const killedUnits: number = Math.min(enemyShipGroup.quantity, Math.ceil(attackingUnits / requiredToKill));
+        const killedUnits: number = Math.min(enemyShipGroup.quantity, Math.floor(attackingUnits / requiredToKill));
 
         if (attackingUnits > 0) {
-          console.log("Killed " + killedUnits + " " + targetType + " engaging " + Math.ceil(killedUnits * requiredToKill) +
-            " attacking units. Units not engaged: " + Math.max(0, (attackingUnits - Math.ceil(killedUnits * requiredToKill))));
+          console.log("Killed " + killedUnits + " " + targetType + " engaging " + Math.floor(killedUnits * requiredToKill) +
+            " attacking units. Units not engaged: " + Math.max(0, (attackingUnits - Math.floor(killedUnits * requiredToKill))));
         }
 
         result.ships.push(new NameQuantity(targetType as ShipType, enemyShipGroup.quantity - killedUnits));
-        attackingUnits = Math.max(0, attackingUnits - Math.ceil(killedUnits * requiredToKill));
+        attackingUnits = Math.max(0, attackingUnits - Math.floor(killedUnits * requiredToKill));
       }
     }
 
