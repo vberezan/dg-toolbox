@@ -21,6 +21,8 @@ export class FightSimulatorService {
       this.fightersAttack(this.getShips(fleet1, ShipType.FIGHTER).quantity, fleet2);
       this.fightersAttack(this.getShips(copyF2, ShipType.FIGHTER).quantity, fleet1);
 
+      copyF2 = JSON.parse(JSON.stringify(fleet2));
+
       // -- bombers
       this.bombersAttack(this.getShips(fleet1, ShipType.BOMBER).quantity, fleet2);
       this.bombersAttack(this.getShips(copyF2, ShipType.BOMBER).quantity, fleet1);
