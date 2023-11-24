@@ -1,4 +1,4 @@
-import {inject, Injectable, OnDestroy} from '@angular/core';
+import {inject, Injectable} from '@angular/core';
 import {PlanetScan} from "../../../../shared/model/scans/shared-scans-planet-scan.model";
 import {DarkgalaxyApiService} from "../../../darkgalaxy-ui-parser/service/darkgalaxy-api.service";
 import {PlanetScanEvent} from "../../../../shared/model/scans/shared-scans-planet-scan-event.model";
@@ -12,23 +12,22 @@ import DocumentData = firebase.firestore.DocumentData;
 @Injectable({
   providedIn: 'root'
 })
-export class ScanService implements OnDestroy {
+export class ScanService {
   private firestore: Firestore = inject(Firestore);
   private dgAPI: DarkgalaxyApiService = inject(DarkgalaxyApiService);
-  private planetScanSubscription: Subscription;
 
   extractScan(): PlanetScanEvent {
     return this.dgAPI.planetScan();
   }
 
   updateScan(scanEvent: PlanetScanEvent): void {
-    if (this.planetScanSubscription) {
+    if (scanEvent.type != ScanType.SURFACE && scanEvent.type != ScanType.RESOURCE) {
       return;
     }
 
     const scansRef: any = collection(this.firestore, 'scans-g' + scanEvent.planetScan.location.split(/\./)[0]);
 
-    this.planetScanSubscription = collectionData<DocumentData, string>(
+    let subscription: Subscription = collectionData<DocumentData, string>(
       query(scansRef,
         where('location', '==', scanEvent.planetScan.location),
         limit(1)
@@ -64,30 +63,20 @@ export class ScanService implements OnDestroy {
         dbScan.structures = scanEvent.planetScan.structures;
       }
 
-      // -- fleet scans not yet supported
-      if (scanEvent.type == ScanType.FLEET) {
-        dbScan.fleets = scanEvent.planetScan.fleets;
-      } else {
-        if (items.length == 0) {
-          setDoc(doc(scansRef, dbScan.location), JSON.parse(JSON.stringify(dbScan)))
-            .catch((error): void => {
-                console.log(error);
-              }
-            );
-        } else {
-          updateDoc(doc(scansRef, dbScan.location), JSON.parse(JSON.stringify(dbScan)))
-            .catch((error): void => {
+      if (items.length == 0) {
+        setDoc(doc(scansRef, dbScan.location), JSON.parse(JSON.stringify(dbScan)))
+          .catch((error): void => {
               console.log(error);
-            });
-        }
-
-        this.planetScanSubscription.unsubscribe();
-        this.planetScanSubscription = null;
+            }
+          );
+      } else {
+        updateDoc(doc(scansRef, dbScan.location), JSON.parse(JSON.stringify(dbScan)))
+          .catch((error): void => {
+            console.log(error);
+          });
       }
-    });
-  }
 
-  ngOnDestroy() {
-    this.planetScanSubscription.unsubscribe();
+      subscription.unsubscribe();
+    });
   }
 }

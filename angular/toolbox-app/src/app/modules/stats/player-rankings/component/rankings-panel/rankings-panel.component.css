@@ -34,7 +34,7 @@
 .empty {
   width: 100px;
 }
-
+.combat,
 .score {
   width: 75px;
 }
@@ -54,6 +54,7 @@
   padding-left: 10px;
 }
 
+.combat,
 .score,
 .planets,
 .g1,
