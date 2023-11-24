@@ -107,104 +107,104 @@ export class FightSimulatorService {
   }
 
   private fightersAttack(fleetFighters: number, enemyFleet: Fleet): Fleet {
-    const REQUIRED_FOR_KILL: any = {
-      [ShipType.BOMBER]: 3,
+    const damageTable: any = {
+      [ShipType.BOMBER]: 0.91,
       [ShipType.FIGHTER]: 1.1,
-      [ShipType.FRIGATE]: 40,
-      [ShipType.DESTROYER]: 146,
-      [ShipType.CRUISER]: 500,
-      [ShipType.BATTLESHIP]: 4500,
+      [ShipType.FRIGATE]: 0.025,
+      [ShipType.DESTROYER]: 0.006,
+      [ShipType.CRUISER]: 0.002,
+      [ShipType.BATTLESHIP]: 0.0002,
     };
 
     console.log("Fighters attacking");
-    return this.attack(fleetFighters, enemyFleet, REQUIRED_FOR_KILL);
+    return this.attack(fleetFighters, enemyFleet, damageTable);
   }
 
   private bombersAttack(fleetBombers: number, enemyFleet: Fleet): Fleet {
-    const REQUIRED_FOR_KILL: any = {
-      [ShipType.DESTROYER]: 20,
-      [ShipType.FRIGATE]: 4,
-      [ShipType.BATTLESHIP]: 400,
-      [ShipType.BOMBER]: 3.33,
-      [ShipType.CRUISER]: 250
+    const damageTable: any = {
+      [ShipType.DESTROYER]: 0.05,
+      [ShipType.FRIGATE]: 0.25,
+      [ShipType.BATTLESHIP]: 0.002,
+      [ShipType.BOMBER]: 0.3,
+      [ShipType.CRUISER]: 0.004
     };
 
     console.log("Bombers attacking");
-    return this.attack(fleetBombers, enemyFleet, REQUIRED_FOR_KILL);
+    return this.attack(fleetBombers, enemyFleet, damageTable);
   }
 
   private frigateAttack(fleetFrigates: number, enemyFleet: Fleet): Fleet {
-    const REQUIRED_FOR_KILL: any = {
-      [ShipType.CRUISER]: 12.000481,
-      [ShipType.FIGHTER]: 0.082509,
-      [ShipType.DESTROYER]: 1.5,
-      [ShipType.BOMBER]: 1.428572,
-      [ShipType.FRIGATE]: 2,
+    const damageTable: any = {
+      [ShipType.CRUISER]: 0.083,
+      [ShipType.FIGHTER]: 12.12,
+      [ShipType.DESTROYER]: 0.666,
+      [ShipType.BOMBER]: 0.7,
+      [ShipType.FRIGATE]: 0.5,
       [ShipType.BATTLESHIP]: 250,
     };
 
     console.log("Frigates attacking");
-    return this.attack(fleetFrigates, enemyFleet, REQUIRED_FOR_KILL);
+    return this.attack(fleetFrigates, enemyFleet, damageTable);
   }
 
   private destroyerAttack(fleetDestroyers: number, enemyFleet: Fleet): Fleet {
-    const REQUIRED_FOR_KILL: any = {
-      [ShipType.BATTLESHIP]: 10,
-      [ShipType.CRUISER]: 30.33,
-      [ShipType.DESTROYER]: 1.66,
-      [ShipType.FRIGATE]: 2.5,
-      [ShipType.FIGHTER]: 0.166,
-      [ShipType.BOMBER]: 0.5,
+    const damageTable: any = {
+      [ShipType.BATTLESHIP]: 0.1,
+      [ShipType.CRUISER]: 0.33,
+      [ShipType.DESTROYER]: 0.6,
+      [ShipType.FRIGATE]: 0.4,
+      [ShipType.FIGHTER]: 6,
+      [ShipType.BOMBER]: 2,
     };
 
     console.log("Destroyers attacking");
-    return this.attack(fleetDestroyers, enemyFleet, REQUIRED_FOR_KILL);
+    return this.attack(fleetDestroyers, enemyFleet, damageTable);
   }
 
   private cruiserAttack(fleetCruisers: number, enemyFleet: Fleet): Fleet {
-    const REQUIRED_FOR_KILL: any = {
-      [ShipType.FIGHTER]: 0.009,
-      [ShipType.BOMBER]: 0.027,
-      [ShipType.FRIGATE]: 0.5,
-      [ShipType.CRUISER]: 4,
-      [ShipType.DESTROYER]: 5,
-      [ShipType.BATTLESHIP]: 40,
+    const damageTable: any = {
+      [ShipType.FIGHTER]: 114,
+      [ShipType.BOMBER]: 37.75,
+      [ShipType.FRIGATE]: 2,
+      [ShipType.CRUISER]: 0.25,
+      [ShipType.DESTROYER]: 0.2,
+      [ShipType.BATTLESHIP]: 0.025,
     };
 
     console.log("Cruisers attacking");
-    return this.attack(fleetCruisers, enemyFleet, REQUIRED_FOR_KILL);
+    return this.attack(fleetCruisers, enemyFleet, damageTable);
   }
 
   private battleShipAttack(fleetBattleships: number, enemyFleet: Fleet): Fleet {
-    const REQUIRED_FOR_KILL: any = {
-      [ShipType.FRIGATE]: 0.0228,
-      [ShipType.CRUISER]: 0.25,
-      [ShipType.BATTLESHIP]: 3.031,
-      [ShipType.FIGHTER]: 0.004,
-      [ShipType.BOMBER]: 0.021,
-      [ShipType.DESTROYER]: 0.5,
+    const damageTable: any = {
+      [ShipType.FRIGATE]: 44,
+      [ShipType.CRUISER]: 4,
+      [ShipType.BATTLESHIP]: 0.33,
+      [ShipType.FIGHTER]: 330,
+      [ShipType.BOMBER]: 48,
+      [ShipType.DESTROYER]: 2,
     };
 
     console.log("Battleships attacking");
-    return this.attack(fleetBattleships, enemyFleet, REQUIRED_FOR_KILL);
+    return this.attack(fleetBattleships, enemyFleet, damageTable);
   }
 
-  private attack(attackingUnits: number, enemyFleet: Fleet, requiredForKill: any): Fleet {
+  private attack(attackingUnits: number, enemyFleet: Fleet, damageTable: any): Fleet {
     let result: Fleet = new Fleet();
-    for (const targetType in requiredForKill) {
-      const requiredToKill: number = requiredForKill[targetType];
+    for (const targetType in damageTable) {
+      const damage: number = damageTable[targetType];
       const enemyShipGroup: NameQuantity = this.getShips(enemyFleet, targetType as ShipType);
 
       if (enemyShipGroup.quantity > 0 && attackingUnits > 0) {
-        const killedUnits: number = Math.min(enemyShipGroup.quantity, Math.floor(attackingUnits / requiredToKill));
+        const killedUnits: number = Math.min(enemyShipGroup.quantity, Math.floor(damage * attackingUnits));
 
         if (attackingUnits > 0) {
-          console.log("Killed " + killedUnits + " " + targetType + " engaging " + Math.ceil(killedUnits * requiredToKill) +
-            " attacking units. Units not engaged: " + Math.floor(Math.max(0, (attackingUnits - killedUnits * requiredToKill))));
+          console.log("Killed " + killedUnits + " " + targetType + " engaging " + Math.ceil(killedUnits / damage) +
+            " attacking units. Units not engaged: " + Math.floor(Math.max(0, (attackingUnits - killedUnits / damage))));
         }
 
         result.ships.push(new NameQuantity(targetType as ShipType, killedUnits));
-        attackingUnits = Math.max(0, attackingUnits - Math.floor(killedUnits * requiredToKill));
+        attackingUnits = Math.max(0, attackingUnits - Math.ceil(killedUnits / damage));
       }
     }
 
