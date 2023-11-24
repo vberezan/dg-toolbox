@@ -159,9 +159,9 @@ export class FightSimulatorService {
       console.log("Actual kills: " + Math.min(ship.quantity, Math.ceil(fleetUnits / req)) + " " + targetType + "s");
 
       remaining = ship.quantity - Math.min(ship.quantity, Math.ceil(fleetUnits / req));
+      fleetUnits = Math.max(0, fleetUnits - ship.quantity * req);
 
       if (ship.name !== type) {
-        fleetUnits = Math.max(0, fleetUnits - ship.quantity * req);
         ship.quantity = remaining;
       }
 
