@@ -7,6 +7,11 @@ function detach(node) {
 }
 
 function applyCustomStyling(windowURL) {
+  if (document.getElementById('home-stats')) {
+    document.querySelector('#home-stats>div:nth-child(2)>div>div:nth-child(2)').remove();
+    document.querySelector('#home-stats>div:nth-child(2)>div>div:nth-child(2)').remove();
+  }
+
   if (document.querySelector('#queue .researchTitle')) {
     document.querySelectorAll('#queue .researchTitle')[document.querySelectorAll('#queue .researchTitle').length - 1].style.height = '120px';
   }
