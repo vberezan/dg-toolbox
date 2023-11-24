@@ -151,13 +151,13 @@ export class FightSimulatorService {
 
   private attack(fleetUnits: number, type: ShipType, enemyFleet: Fleet, requiredForKill: any): number {
     for (const shipType in requiredForKill) {
-      const damage: number = requiredForKill[shipType];
+      const req: number = requiredForKill[shipType];
       const ship: NameQuantity = this.getShips(enemyFleet, shipType as ShipType);
 
-      fleetUnits = Math.max(0, fleetUnits - ship.quantity * damage);
+      fleetUnits = Math.max(0, fleetUnits - ship.quantity * req);
 
       if (ship.name !== type) {
-        ship.quantity = Math.max(0, ship.quantity - Math.ceil(fleetUnits / damage));
+        ship.quantity = Math.max(0, ship.quantity - Math.ceil(fleetUnits / req));
       }
 
       if (fleetUnits === 0) return 0;
