@@ -7,7 +7,6 @@ import {getApp, initializeApp, provideFirebaseApp} from "@angular/fire/app";
 import {environment} from "../../../../environments/environment";
 import {getAuth, provideAuth} from "@angular/fire/auth";
 import {initializeAppCheck, provideAppCheck, ReCaptchaV3Provider} from "@angular/fire/app-check";
-import {ScorePerPlanetFormatter} from "./pipe/score-per-planet-formatter";
 import {DecimalPipe, NgOptimizedImage} from "@angular/common";
 
 
@@ -27,8 +26,7 @@ import {DecimalPipe, NgOptimizedImage} from "@angular/common";
     NgOptimizedImage
   ],
   declarations: [
-    RankingsPanelComponent,
-    ScorePerPlanetFormatter
+    RankingsPanelComponent
   ],
   providers: [
     DecimalPipe
