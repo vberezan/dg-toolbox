@@ -25,12 +25,12 @@ export class FleetScanDetailsComponent {
     fleet1.ships.push(new NameQuantity(ShipType.CRUISER, 1000));
     fleet1.ships.push(new NameQuantity(ShipType.FIGHTER, 1000));
 
-    fleet1.ships.push(new NameQuantity(ShipType.FIGHTER, 0));
-    fleet1.ships.push(new NameQuantity(ShipType.BOMBER, 0));
-    fleet1.ships.push(new NameQuantity(ShipType.FRIGATE, 1000000));
-    fleet1.ships.push(new NameQuantity(ShipType.DESTROYER, 0));
-    fleet1.ships.push(new NameQuantity(ShipType.CRUISER, 0));
-    fleet1.ships.push(new NameQuantity(ShipType.FIGHTER, 0));
+    fleet2.ships.push(new NameQuantity(ShipType.FIGHTER, 0));
+    fleet2.ships.push(new NameQuantity(ShipType.BOMBER, 0));
+    fleet2.ships.push(new NameQuantity(ShipType.FRIGATE, 1000000));
+    fleet2.ships.push(new NameQuantity(ShipType.DESTROYER, 0));
+    fleet2.ships.push(new NameQuantity(ShipType.CRUISER, 0));
+    fleet2.ships.push(new NameQuantity(ShipType.FIGHTER, 0));
 
     this.fightSimulatorService.simulateFight(fleet1, fleet2);
   }
