@@ -177,7 +177,7 @@ export class FightSimulatorService {
 
   private battleShipAttack(fleetBattleships: number, enemyFleet: Fleet): Fleet {
     const REQUIRED_FOR_KILL: any = {
-      [ShipType.FRIGATE]: 0.0227,
+      [ShipType.FRIGATE]: 0.023,
       [ShipType.CRUISER]: 0.25,
       [ShipType.BATTLESHIP]: 3.031,
       [ShipType.FIGHTER]: 0.004,
