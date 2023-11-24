@@ -18,45 +18,27 @@ export class FightSimulatorService {
     while (!this.isFleetDestroyed(fleet1) && !this.isFleetDestroyed(fleet2)) {
 
       // -- fighters
-      console.log("Fleet 1 attacking with fighters");
       fleet2Fights.push(this.fightersAttack(this.getShips(fleet1, ShipType.FIGHTER).quantity, fleet2));
-
-      console.log("Fleet 2 attacking with fighters");
       fleet1Fights.push(this.fightersAttack(this.getShips(fleet2, ShipType.FIGHTER).quantity, fleet1));
 
       // -- bombers
-      console.log("Fleet 1 attacking with bombers");
       fleet2Fights.push(this.bombersAttack(this.getShips(fleet1, ShipType.BOMBER).quantity, fleet2));
-
-      console.log("Fleet 2 attacking with bombers");
       fleet1Fights.push(this.bombersAttack(this.getShips(fleet2, ShipType.BOMBER).quantity, fleet1));
 
       // -- frigates
-      console.log("Fleet 1 attacking with frigates");
       fleet2Fights.push(this.frigateAttack(this.getShips(fleet1, ShipType.FRIGATE).quantity, fleet2));
-
-      console.log("Fleet 2 attacking with frigates");
       fleet1Fights.push(this.frigateAttack(this.getShips(fleet2, ShipType.FRIGATE).quantity, fleet1));
 
       // -- destroyers
-      console.log("Fleet 1 attacking with destroyers");
       fleet2Fights.push(this.destroyerAttack(this.getShips(fleet1, ShipType.DESTROYER).quantity, fleet2));
-
-      console.log("Fleet 2 attacking with destroyers");
       fleet1Fights.push(this.destroyerAttack(this.getShips(fleet2, ShipType.DESTROYER).quantity, fleet1));
 
       // -- cruisers
-      console.log("Fleet 1 attacking with cruisers");
       fleet2Fights.push(this.cruiserAttack(this.getShips(fleet1, ShipType.CRUISER).quantity, fleet2));
-
-      console.log("Fleet 2 attacking with cruisers");
       fleet1Fights.push(this.cruiserAttack(this.getShips(fleet2, ShipType.CRUISER).quantity, fleet1));
 
       // -- battleships
-      console.log("Fleet 1 attacking with battleships");
       fleet2Fights.push(this.battleShipAttack(this.getShips(fleet1, ShipType.BATTLESHIP).quantity, fleet2));
-
-      console.log("Fleet 2 attacking with battleships");
       fleet1Fights.push(this.battleShipAttack(this.getShips(fleet2, ShipType.BATTLESHIP).quantity, fleet1));
 
 
@@ -76,8 +58,6 @@ export class FightSimulatorService {
   }
 
   private applyDamage(fleet1: Fleet, fleet2: Fleet, f1Fights: Fleet[], f2Fights: Fleet[]): void {
-
-    console.log("Applying damage");
 
     for (let i: number = 0; i < f1Fights.length; i++) {
       const fleet1Fight: Fleet = f1Fights[i];
@@ -116,7 +96,6 @@ export class FightSimulatorService {
       [ShipType.BATTLESHIP]: 0.0002,
     };
 
-    console.log("Fighters attacking");
     return this.attack(fleetFighters, enemyFleet, damageTable);
   }
 
@@ -129,7 +108,6 @@ export class FightSimulatorService {
       [ShipType.CRUISER]: 0.004
     };
 
-    console.log("Bombers attacking");
     return this.attack(fleetBombers, enemyFleet, damageTable);
   }
 
@@ -143,7 +121,6 @@ export class FightSimulatorService {
       [ShipType.BATTLESHIP]: 250,
     };
 
-    console.log("Frigates attacking");
     return this.attack(fleetFrigates, enemyFleet, damageTable);
   }
 
@@ -157,7 +134,6 @@ export class FightSimulatorService {
       [ShipType.BOMBER]: 2,
     };
 
-    console.log("Destroyers attacking");
     return this.attack(fleetDestroyers, enemyFleet, damageTable);
   }
 
@@ -171,7 +147,6 @@ export class FightSimulatorService {
       [ShipType.BATTLESHIP]: 0.025,
     };
 
-    console.log("Cruisers attacking");
     return this.attack(fleetCruisers, enemyFleet, damageTable);
   }
 
@@ -185,7 +160,6 @@ export class FightSimulatorService {
       [ShipType.DESTROYER]: 2,
     };
 
-    console.log("Battleships attacking");
     return this.attack(fleetBattleships, enemyFleet, damageTable);
   }
 
