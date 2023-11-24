@@ -2,6 +2,7 @@ import {Injectable} from '@angular/core';
 import {Fleet} from "../../../../shared/model/fleet/fleet.model";
 import {ShipType} from "../../../../shared/model/fleet/ship-type";
 import {NameQuantity} from "../../../../shared/model/name-quantity.model";
+import {KillRate} from "../../../../shared/model/fleet/kill-rate.model";
 
 @Injectable({
   providedIn: 'root'
@@ -87,97 +88,97 @@ export class FightSimulatorService {
   }
 
   private fightersAttack(fleetFighters: number, enemyFleet: Fleet): Fleet {
-    const damageTable: any = {
-      [ShipType.BOMBER]: 0.333,
-      [ShipType.FIGHTER]: 0.91,
-      [ShipType.FRIGATE]: 0.025,
-      [ShipType.DESTROYER]: 0.006,
-      [ShipType.CRUISER]: 0.002,
-      [ShipType.BATTLESHIP]: 0.0002,
-    };
+    const damageTable: KillRate[]  = [
+      new KillRate(ShipType.BOMBER, 0.333),
+      new KillRate(ShipType.FIGHTER, 0.91),
+      new KillRate(ShipType.FRIGATE, 0.025),
+      new KillRate(ShipType.DESTROYER, 0.006),
+      new KillRate(ShipType.CRUISER, 0.002),
+      new KillRate(ShipType.BATTLESHIP, 0.0002)
+    ];
 
     return this.attack(fleetFighters, ShipType.FIGHTER, enemyFleet, damageTable);
   }
 
   private bombersAttack(fleetBombers: number, enemyFleet: Fleet): Fleet {
-    const damageTable: any = {
-      [ShipType.DESTROYER]: 0.05,
-      [ShipType.FRIGATE]: 0.25,
-      [ShipType.BATTLESHIP]: 0.002,
-      [ShipType.BOMBER]: 0.3,
-      [ShipType.CRUISER]: 0.004
-    };
+    const damageTable: KillRate[] = [
+      new KillRate(ShipType.DESTROYER, 0.05),
+      new KillRate(ShipType.FRIGATE, 0.25),
+      new KillRate(ShipType.BATTLESHIP, 0.002),
+      new KillRate(ShipType.BOMBER, 0.3),
+      new KillRate(ShipType.CRUISER, 0.004)
+    ];
 
     return this.attack(fleetBombers, ShipType.BOMBER, enemyFleet, damageTable);
   }
 
   private frigateAttack(fleetFrigates: number, enemyFleet: Fleet): Fleet {
-    const damageTable: any = {
-      [ShipType.CRUISER]: 0.083,
-      [ShipType.FIGHTER]: 12.12,
-      [ShipType.DESTROYER]: 0.666,
-      [ShipType.BOMBER]: 0.7,
-      [ShipType.FRIGATE]: 0.5,
-      [ShipType.BATTLESHIP]: 250,
-    };
+    const damageTable: KillRate[] = [
+      new KillRate(ShipType.CRUISER, 0.083),
+      new KillRate(ShipType.FIGHTER, 12.12),
+      new KillRate(ShipType.DESTROYER, 0.666),
+      new KillRate(ShipType.BOMBER, 0.7),
+      new KillRate(ShipType.FRIGATE, 0.5),
+      new KillRate(ShipType.BATTLESHIP, 250)
+    ];
 
     return this.attack(fleetFrigates, ShipType.FRIGATE, enemyFleet, damageTable);
   }
 
   private destroyerAttack(fleetDestroyers: number, enemyFleet: Fleet): Fleet {
-    const damageTable: any = {
-      [ShipType.BATTLESHIP]: 0.1,
-      [ShipType.CRUISER]: 0.33,
-      [ShipType.DESTROYER]: 0.6,
-      [ShipType.FRIGATE]: 0.4,
-      [ShipType.FIGHTER]: 6,
-      [ShipType.BOMBER]: 2,
-    };
+    const damageTable: KillRate[] = [
+      new KillRate(ShipType.BATTLESHIP, 0.1),
+      new KillRate(ShipType.CRUISER, 0.33),
+      new KillRate(ShipType.DESTROYER, 0.6),
+      new KillRate(ShipType.FRIGATE, 0.4),
+      new KillRate(ShipType.FIGHTER, 6),
+      new KillRate(ShipType.BOMBER, 2)
+    ];
 
     return this.attack(fleetDestroyers, ShipType.DESTROYER, enemyFleet, damageTable);
   }
 
   private cruiserAttack(fleetCruisers: number, enemyFleet: Fleet): Fleet {
-    const damageTable: any = {
-      [ShipType.FIGHTER]: 114,
-      [ShipType.BOMBER]: 37.75,
-      [ShipType.FRIGATE]: 2,
-      [ShipType.CRUISER]: 0.25,
-      [ShipType.DESTROYER]: 0.2,
-      [ShipType.BATTLESHIP]: 0.025,
-    };
+    const damageTable: KillRate[] = [
+      new KillRate(ShipType.FIGHTER, 114),
+      new KillRate(ShipType.BOMBER, 37.75),
+      new KillRate(ShipType.FRIGATE, 2),
+      new KillRate(ShipType.CRUISER, 0.25),
+      new KillRate(ShipType.DESTROYER, 0.2),
+      new KillRate(ShipType.BATTLESHIP, 0.025)
+    ];
 
     return this.attack(fleetCruisers, ShipType.CRUISER, enemyFleet, damageTable);
   }
 
   private battleShipAttack(fleetBattleships: number, enemyFleet: Fleet): Fleet {
-    const damageTable: any = {
-      [ShipType.FRIGATE]: 44,
-      [ShipType.CRUISER]: 4,
-      [ShipType.BATTLESHIP]: 0.33,
-      [ShipType.FIGHTER]: 330,
-      [ShipType.BOMBER]: 48,
-      [ShipType.DESTROYER]: 2,
-    };
+    const damageTable: KillRate[] = [
+      new KillRate(ShipType.FRIGATE, 44),
+      new KillRate(ShipType.CRUISER, 4),
+      new KillRate(ShipType.BATTLESHIP, 0.33),
+      new KillRate(ShipType.FIGHTER, 330),
+      new KillRate(ShipType.BOMBER, 48),
+      new KillRate(ShipType.DESTROYER, 2)
+    ];
 
     return this.attack(fleetBattleships, ShipType.BATTLESHIP, enemyFleet, damageTable);
   }
 
-  private attack(attackingUnits: number, attacker: ShipType, enemyFleet: Fleet, damageTable: any): Fleet {
+  private attack(attackingUnits: number, attacker: ShipType, enemyFleet: Fleet, damageTable: KillRate[]): Fleet {
     let result: Fleet = new Fleet();
-    for (const targetType of damageTable) {
-      const damage: number = damageTable[targetType];
-      const enemyShipGroup: NameQuantity = this.getShips(enemyFleet, targetType as ShipType);
+    for (const killRate of damageTable) {
+      const damage: number = killRate.rate;
+      const enemyShipGroup: NameQuantity = this.getShips(enemyFleet, killRate.target);
 
       if (enemyShipGroup.quantity > 0 && attackingUnits > 0) {
         const killedUnits: number = Math.min(enemyShipGroup.quantity, Math.floor(damage * attackingUnits));
 
         if (attackingUnits > 0) {
-          console.log("Killed " + killedUnits + " " + targetType + " engaging " + Math.ceil(killedUnits / damage) +
+          console.log("Killed " + killedUnits + " " + killRate.target + " engaging " + Math.ceil(killedUnits / damage) +
             " " + attacker + "s. Units not engaged: " + Math.floor(Math.max(0, (attackingUnits - killedUnits / damage))));
         }
 
-        result.ships.push(new NameQuantity(targetType as ShipType, killedUnits));
+        result.ships.push(new NameQuantity(killRate.target, killedUnits));
         attackingUnits = Math.max(0, attackingUnits - Math.ceil(killedUnits / damage));
       }
     }
