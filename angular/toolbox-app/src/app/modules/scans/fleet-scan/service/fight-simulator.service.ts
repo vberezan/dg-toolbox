@@ -77,13 +77,18 @@ export class FightSimulatorService {
 
   private applyDamage(fleet1: Fleet, fleet2: Fleet, f1Fights: Fleet[], f2Fights: Fleet[]): void {
 
+    console.log("Applying damage");
+
     for (let i: number = 0; i < f1Fights.length; i++) {
       const fleet1Fight: Fleet = f1Fights[i];
+
+      console.log("Fleet 1 fight: " + fleet1Fight.ships.map((nameQuantity: NameQuantity): string => nameQuantity.name + ": " + nameQuantity.quantity).join(", "));
 
       fleet1.ships.forEach((ship: NameQuantity): void => {
         for (const ship2 of fleet1Fight.ships) {
           if (ship.name === ship2.name) {
-            ship.quantity -= ship2.quantity;
+            console.log("Ship " + ship.name + " lost " + (ship2.quantity) + " units");
+            ship.quantity = ship2.quantity;
             break;
           }
         }
@@ -93,10 +98,13 @@ export class FightSimulatorService {
     for (let i: number = 0; i < f2Fights.length; i++) {
       const fleet2Fight: Fleet = f2Fights[i];
 
+      console.log("Fleet 2 fight: " + fleet2Fight.ships.map((nameQuantity: NameQuantity): string => nameQuantity.name + ": " + nameQuantity.quantity).join(", "));
+
       fleet2.ships.forEach((ship: NameQuantity): void => {
         for (const ship2 of fleet2Fight.ships) {
           if (ship.name === ship2.name) {
-            ship.quantity -= ship2.quantity;
+            console.log("Ship " + ship.name + " lost " + (ship2.quantity) + " units");
+            ship.quantity = ship2.quantity;
             break;
           }
         }
@@ -197,8 +205,8 @@ export class FightSimulatorService {
         const killedUnits: number = Math.min(enemyShipGroup.quantity, Math.floor(attackingUnits / requiredToKill));
 
         if (attackingUnits > 0) {
-          console.log("Killed " + killedUnits + " " + targetType + " engaging " + Math.floor(killedUnits * requiredToKill) +
-            " attacking units. Units not engaged: " + Math.max(0, (attackingUnits - Math.floor(killedUnits * requiredToKill))));
+          console.log("Killed " + killedUnits + " " + targetType + " engaging " + killedUnits * requiredToKill +
+            " attacking units. Units not engaged: " + Math.max(0, (attackingUnits - killedUnits * requiredToKill)));
         }
 
         result.ships.push(new NameQuantity(targetType as ShipType, enemyShipGroup.quantity - killedUnits));
