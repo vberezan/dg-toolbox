@@ -11,6 +11,8 @@ export class FightSimulatorService {
   simulateFight(fleet1: Fleet, fleet2: Fleet): number {
     let requiredTurns: number = 0;
 
+    console.log('Starting the battle');
+
     while (!this.isFleetDestroyed(fleet1) && !this.isFleetDestroyed(fleet2)) {
       let remainingFightersFleet1: number = this.fightersAttack(this.getShips(fleet1, ShipType.FIGHTER).quantity, fleet2);
       let remainingFightersFleet2: number = this.fightersAttack(this.getShips(fleet2, ShipType.FIGHTER).quantity, fleet1);
@@ -45,6 +47,7 @@ export class FightSimulatorService {
       requiredTurns++;
     }
 
+    console.log("Battle ended in " + requiredTurns + " turns:");
     console.log("Fleet 1: " + fleet1.ships.map((nameQuantity: NameQuantity): string => nameQuantity.name + ": " + nameQuantity.quantity).join(", "));
     console.log("Fleet 2: " + fleet2.ships.map((nameQuantity: NameQuantity): string => nameQuantity.name + ": " + nameQuantity.quantity).join(", "));
 
