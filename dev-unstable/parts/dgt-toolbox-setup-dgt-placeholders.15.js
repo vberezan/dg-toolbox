@@ -90,6 +90,7 @@ function setUpSharedScansCollector(windowURL) {
 
         if (scanForm) {
             scanForm.append(document.createElement('dgt-scans-collector'));
+            scanForm.append(document.createElement('dgt-fleet-scan-details'));
             scanForm.id = 'planet-scan-form';
             scanForm.parentElement.id = 'planet-scan-form-wrapper';
             scanForm.querySelector('.tableHeader div:nth-child(2)').remove();

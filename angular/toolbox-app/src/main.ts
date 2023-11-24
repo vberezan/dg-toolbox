@@ -14,6 +14,7 @@ import {AllianceRankingsModule} from "./app/modules/stats/alliance-rankings/alli
 import {LocalStorageSynchronizerModule} from "./app/modules/local-storage/local-storage-synchronizer/local-storage-synchronizer.module";
 import {ResearchModule} from "./app/modules/research/research.module";
 import {PlayerRankingsModule} from "./app/modules/stats/player-rankings/player-rankings.module";
+import {FleetScanModule} from "./app/modules/scans/fleet-scan/fleet-scan.module";
 
 const platform: PlatformRef = platformBrowserDynamic();
 let windowURL: string[] = window.location.pathname.split(/\//g);
@@ -44,6 +45,7 @@ function loadTier2Modules(windowURL: string[]): void {
   // -- planet screen >> comms
   if (windowURL[1] === 'planet' && (windowURL.length === 5 && windowURL[3]) === 'comms') {
     platform.bootstrapModule(ScansCollectorModule).catch(err => console.error("Error loading SharedScansModule: " + err));
+    platform.bootstrapModule(FleetScanModule).catch(err => console.error("Error loading FleetScanModule: " + err));
   }
 
   // -- navigation screen >> system level
