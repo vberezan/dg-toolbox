@@ -66,7 +66,7 @@ export class FightSimulatorService {
       fleet1.ships.forEach((ship: NameQuantity): void => {
         for (const ship2 of fleet1Fight.ships) {
           if (ship.name === ship2.name) {
-            ship.quantity -= ship2.quantity;
+            ship.quantity = Math.max(0, ship.quantity - ship2.quantity);
             break;
           }
         }
@@ -79,7 +79,7 @@ export class FightSimulatorService {
       fleet2.ships.forEach((ship: NameQuantity): void => {
         for (const ship2 of fleet2Fight.ships) {
           if (ship.name === ship2.name) {
-            ship.quantity -= ship2.quantity;
+            ship.quantity = Math.max(0, ship.quantity - ship2.quantity);
             break;
           }
         }
