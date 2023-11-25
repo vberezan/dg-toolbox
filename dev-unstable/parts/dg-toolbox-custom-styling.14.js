@@ -395,34 +395,32 @@ function applyCustomStyling(windowURL) {
             }
           }
         }
-
-        let line = [];
-        let maxOffsetHeight = 0;
-        planetScanAdditional.querySelectorAll('.dgt-fleet, .dgt-empty').forEach((wrapper) => {
-          console.log(wrapper);
-
-          if (maxOffsetHeight < wrapper.offsetHeight) {
-            maxOffsetHeight = wrapper.offsetHeight;
-          }
-
-          line.push(wrapper);
-
-          lineBreak++;
-          if (lineBreak === 3) {
-            line.forEach((wr) => {
-              if (wr.classList.contains('dgt-empty')) {
-                wr.style.height = (maxOffsetHeight + 2) + 'px';
-              } else {
-                wr.style.height = maxOffsetHeight + 'px';
-              }
-            });
-
-            line = [];
-            lineBreak = 0;
-            maxOffsetHeight = 0;
-          }
-        });
       }
+
+      let line = [];
+      let maxOffsetHeight = 0;
+      planetScanAdditional.querySelectorAll('.dgt-fleet, .dgt-empty').forEach((wrapper) => {
+        if (maxOffsetHeight < wrapper.offsetHeight) {
+          maxOffsetHeight = wrapper.offsetHeight;
+        }
+
+        line.push(wrapper);
+
+        lineBreak++;
+        if (lineBreak === 3) {
+          line.forEach((wr) => {
+            if (wr.classList.contains('dgt-empty')) {
+              wr.style.height = (maxOffsetHeight + 2) + 'px';
+            } else {
+              wr.style.height = maxOffsetHeight + 'px';
+            }
+          });
+
+          line = [];
+          lineBreak = 0;
+          maxOffsetHeight = 0;
+        }
+      });
     }
 
 
