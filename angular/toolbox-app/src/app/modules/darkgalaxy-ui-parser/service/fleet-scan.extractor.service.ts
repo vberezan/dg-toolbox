@@ -12,8 +12,9 @@ export class FleetScanExtractorService implements DataExtractor {
   extract(): Fleet[] {
     let result: Fleet[] = [];
 
+    console.log(document.querySelector('#planet-scan-additional'));
+
     if (document.querySelector('#planet-scan-additional')) {
-      console.log('x');
 
       const fleets: NodeListOf<Element> = document.querySelectorAll('#planet-scan-additional > div.left');
 
