@@ -360,12 +360,14 @@ function applyCustomStyling(windowURL) {
       fleets.forEach((fleet) => {
         if (fleet.querySelector('.ofHidden:first-child > .right')) {
           fleet.eta = parseInt(fleet.querySelector('.ofHidden:first-child > .right').textContent.trim().match(/\d+/)[0]);
+        } else {
+          fleet.eta = 0;
+        }
 
-          if (grouped.has(fleet.eta)) {
-            grouped.get(fleet.eta).push(detach(fleet));
-          } else {
-            grouped.set(fleet.eta, [detach(fleet)]);
-          }
+        if (grouped.has(fleet.eta)) {
+          grouped.get(fleet.eta).push(detach(fleet));
+        } else {
+          grouped.set(fleet.eta, [detach(fleet)]);
         }
       });
 
@@ -373,6 +375,7 @@ function applyCustomStyling(windowURL) {
 
       for (let i = 1; i < 48; i++) {
         let lineBreak = 0;
+
         if (grouped.has(i)) {
           grouped.get(i).forEach((fleet) => {
             lineBreak++;
@@ -388,11 +391,32 @@ function applyCustomStyling(windowURL) {
               let empty = document.createElement('div');
               empty.classList.add('dgt-empty');
               empty.style.width = '301px';
-              empty.style.margin = '3px;';
+              empty.style.margin = '3px';
+              empty.style.float = 'left';
               planetScanAdditional.append(empty);
             }
           }
         }
+
+        let line = [];
+        let maxOffsetHeight = 0;
+        planetScanAdditional.querySelectorAll('.dgt-fleet, .dgt-empty').forEach((wrapper) => {
+          if (maxOffsetHeight < wrapper.offsetHeight) {
+            maxOffsetHeight = wrapper.offsetHeight;
+          }
+
+          line.push(wrapper);
+
+          lineBreak++;
+          if (lineBreak === 3) {
+            line.forEach((wr) => {
+              wr.style.height = maxOffsetHeight + 'px';
+            });
+
+            lineBreak = 0;
+            maxOffsetHeight = 0;
+          }
+        });
       }
     }
 

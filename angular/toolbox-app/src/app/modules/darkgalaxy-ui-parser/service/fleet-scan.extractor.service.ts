@@ -31,6 +31,8 @@ export class FleetScanExtractorService implements DataExtractor {
 
         if (fl.querySelector('.ofHidden:first-child > .right')) {
           fleet.eta = parseInt(fl.querySelector('.ofHidden:first-child > .right').textContent.trim().match(/\d+/)[0]);
+        } else {
+          fleet.eta = 0;
         }
 
         let fleetShips: NodeListOf<Element> = fl.querySelectorAll('table tr');
