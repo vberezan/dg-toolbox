@@ -370,13 +370,13 @@ function applyCustomStyling(windowURL) {
           grouped.set(fleet.eta, [detach(fleet)]);
         }
 
-        if (fl.querySelector('span.friendly')) {
+        if (fleet.querySelector('span.friendly')) {
           fleet.classList.add('friendly-fleet');
         }
-        if (fl.querySelector('span.allied')) {
+        if (fleet.querySelector('span.allied')) {
           fleet.classList.add('allied-fleet');
         }
-        if (fl.querySelector('span.hostile')) {
+        if (fleet.querySelector('span.hostile')) {
           fleet.classList.add('hostile-fleet');
         }
       });
