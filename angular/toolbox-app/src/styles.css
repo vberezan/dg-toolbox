@@ -2633,14 +2633,9 @@ dgt-scans-collector {
   display: none;
 }
 
+.dgt-fight-simulation-info,
 .dgt-fight-simulation {
   width: 50% !important;
-  float: left;
-  min-height: 100px;
-}
-
-.dgt-fight-simulation-info {
-  width: calc(50% - 10px) !important;
   float: left;
   min-height: 100px;
 }
