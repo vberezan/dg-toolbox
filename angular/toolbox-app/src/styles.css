@@ -2637,10 +2637,12 @@ dgt-scans-collector {
 .dgt-fight-simulation-info {
   width: 50% !important;
   float: left;
+  min-height: 100px;
 }
 
 .dgt-fight-simulator-by-rof {
   border-collapse: collapse;
+  width: 100%;
 }
 
 .dgt-fight-simulator-by-rof td,
