@@ -14,7 +14,7 @@ export class FleetScanExtractorService implements DataExtractor {
 
     if (document.querySelector('#planet-scan-additional')) {
 
-      const fleets: NodeListOf<Element> = document.querySelectorAll('#planet-scan-additional > div.left');
+      const fleets: NodeListOf<Element> = document.querySelectorAll('#planet-scan-additional .dgt-fleet');
 
       fleets.forEach((fl: Element): void => {
         let fleet: Fleet = new Fleet();
