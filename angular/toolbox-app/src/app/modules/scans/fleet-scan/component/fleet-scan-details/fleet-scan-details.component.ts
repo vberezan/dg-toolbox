@@ -17,6 +17,8 @@ export class FleetScanDetailsComponent {
   url: string = "https://helloweenpt.com/darkgalaxy/combat-simulator";
 
   constructor() {
+    this.dgAPI.fleetScan();
+
     let fleet1: Fleet = new Fleet();
     let fleet2: Fleet = new Fleet();
 
@@ -34,7 +36,7 @@ export class FleetScanDetailsComponent {
     fleet2.ships.push(new NameQuantity(ShipType.CRUISER, 255));
     fleet2.ships.push(new NameQuantity(ShipType.BATTLESHIP, 75));
 
-    this.fightSimulatorService.simulateFight(fleet1, fleet2);
+    // this.fightSimulatorService.simulateFight(fleet1, fleet2);
   }
 
 }
