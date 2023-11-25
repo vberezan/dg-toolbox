@@ -5,6 +5,16 @@ export class AllianceMember {
   private _dgId: string;
   private _kickEta: string;
   private _stats: PlayerStats = new PlayerStats();
+  private _dgtVersion: string = '-';
+
+
+  get dgtVersion(): string {
+    return this._dgtVersion;
+  }
+
+  set dgtVersion(value: string) {
+    this._dgtVersion = value;
+  }
 
   get stats(): PlayerStats {
     return this._stats;

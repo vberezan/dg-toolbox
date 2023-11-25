@@ -1,5 +1,5 @@
 import {EventEmitter, inject, Injectable, Optional} from '@angular/core';
-import {collection, collectionData, doc, docData, Firestore, query, setDoc, updateDoc} from "@angular/fire/firestore";
+import {collection, collectionData, doc, docData, Firestore, limit, query, setDoc, updateDoc, where} from "@angular/fire/firestore";
 import {LocalStorageService} from "../../local-storage-manager/service/local-storage.service";
 import {firstValueFrom, Subscriber, Subscription} from "rxjs";
 import {DocumentData} from "@angular/fire/compat/firestore";
@@ -33,7 +33,7 @@ export class SynchronizerService {
     const userStatusPath: any = collection(this.firestore, 'user-status');
 
     let metadataSubscription: Subscription = collectionData(
-      query(metadataPath),
+      query(metadataPath)
     ).subscribe((item: DocumentData[]): void => {
       const metadata: any = Object.assign([], item);
 
@@ -139,42 +139,52 @@ export class SynchronizerService {
     const source: string = await firstValueFrom(this.httpClient.get(this.ALLIANCES_URL, {responseType: 'text'}));
     const dom: Document = new DOMParser().parseFromString(source, 'text/html');
     const playerStats: PlayerStats[] = this.localStorageService.get(LocalStorageKeys.PLAYERS_STATS);
+    const userStatusPath: any = collection(this.firestore, 'user-status');
 
-    if (!dom.querySelector('[action="/alliances/join/"]')) {
+    let userStatsSubscription: Subscription = collectionData(
+      query(userStatusPath)
+    ).subscribe((item: DocumentData[]): void => {
+      const userStats: any = Object.assign([], item);
 
-      let cache: AllianceMember[] = [];
+      if (!dom.querySelector('[action="/alliances/join/"]')) {
 
-      dom.querySelectorAll('.allianceBox').forEach((allianceBox: any): void => {
-        if (allianceBox.querySelector('.plainHeader') &&
-          allianceBox.querySelector('.plainHeader').childNodes[0].textContent.trim().toLowerCase() === 'member list') {
-          allianceBox.querySelectorAll('.player').forEach((player: any): void => {
-            let allianceMember: AllianceMember = new AllianceMember();
+        let cache: AllianceMember[] = [];
 
-            if (player.querySelector('[action^="/alliances/note/"]') != null) {
-              let idArray = player.querySelector('[action^="/alliances/note/"]').getAttribute('action').trim().toLocaleLowerCase().split(/\//g);
-              allianceMember.dgId = idArray[idArray.length - 2];
-            }
+        dom.querySelectorAll('.allianceBox').forEach((allianceBox: any): void => {
+          if (allianceBox.querySelector('.plainHeader') &&
+            allianceBox.querySelector('.plainHeader').childNodes[0].textContent.trim().toLowerCase() === 'member list') {
+            allianceBox.querySelectorAll('.player').forEach((player: any): void => {
+              let allianceMember: AllianceMember = new AllianceMember();
 
-            if (player.querySelector('[action="/alliances/kick/"] input') == null && player.querySelector('.right>b') != null) {
-              allianceMember.kickEta = player.querySelector('.right>b').textContent.trim().toLowerCase();
-            }
+              if (player.querySelector('[action^="/alliances/note/"]') != null) {
+                let idArray = player.querySelector('[action^="/alliances/note/"]').getAttribute('action').trim().toLocaleLowerCase().split(/\//g);
+                allianceMember.dgId = idArray[idArray.length - 2];
+              }
+
+              if (player.querySelector('[action="/alliances/kick/"] input') == null && player.querySelector('.right>b') != null) {
+                allianceMember.kickEta = player.querySelector('.right>b').textContent.trim().toLowerCase();
+              }
 
 
-            if (player.querySelector('div.name') != null) {
-              allianceMember.name = player.querySelector('div.name').childNodes[0].textContent.trim();
-              allianceMember.stats = playerStats.find((playerStat: PlayerStats): boolean => playerStat.name.toLowerCase() === allianceMember.name.toLowerCase());
-              cache.push(allianceMember);
-            }
-          });
-        }
-      });
+              if (player.querySelector('div.name') != null) {
+                allianceMember.name = player.querySelector('div.name').childNodes[0].textContent.trim();
+                allianceMember.stats = playerStats.find((playerStat: PlayerStats): boolean => playerStat.name.toLowerCase() === allianceMember.name.toLowerCase());
+                allianceMember.dgtVersion = userStats.find((userStat: any): boolean => userStat.name.toLowerCase() === allianceMember.name.toLowerCase()).version;
+                cache.push(allianceMember);
+              }
+            });
+          }
+        });
 
-      let localMetadata: Metadata = this.localStorageService.localMetadata();
-      localMetadata.allianceMembersTurn.turn = turn;
+        let localMetadata: Metadata = this.localStorageService.localMetadata();
+        localMetadata.allianceMembersTurn.turn = turn;
 
-      this.localStorageService.cache(LocalStorageKeys.ALLIANCE_MEMBERS, cache);
-      this.localStorageService.cache(LocalStorageKeys.LOCAL_METADATA, localMetadata);
-    }
+        this.localStorageService.cache(LocalStorageKeys.ALLIANCE_MEMBERS, cache);
+        this.localStorageService.cache(LocalStorageKeys.LOCAL_METADATA, localMetadata);
+
+        userStatsSubscription.unsubscribe();
+      }
+    });
   }
 
   get updatesEmitter(): EventEmitter<number> {

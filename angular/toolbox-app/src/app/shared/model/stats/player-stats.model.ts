@@ -12,7 +12,6 @@ export class PlayerStats {
   private _alliance: string;
   private _relation: string = 'neutral';
 
-
   get relation(): string {
     return this._relation;
   }
