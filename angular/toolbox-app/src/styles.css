@@ -231,7 +231,7 @@ span.nap {
   color: #b9b916 !important;
 }
 
-span.neutral {
+span.peaceful {
   color: #fff !important;
 }
 
@@ -635,14 +635,11 @@ a.right.navigation:hover svg {
   background: #4e4e17;
 }
 
-.navigation .row > .neutral {
+.navigation .row > .peaceful {
   border: 1px solid #5e5e5e !important;
 }
-.navigation .row .planets.neutral {
+.navigation .row .planets.peaceful {
   background: #3b3b3b;
-}
-.navigation .row > span.neutral {
-  border: none !important;
 }
 
 
