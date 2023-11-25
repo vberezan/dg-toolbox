@@ -431,84 +431,82 @@ function applyCustomStyling(windowURL) {
             fightContainer.innerHTML =
               '<div class="dgt-fight-simulation">' +
                 '<table id="dgt-fight-simulator-by-rof">' +
-                  '<thead>' +
-                    '<tr>' +
+                    '<tr class="top-header">' +
                       '<th colspan="3">Allied</th>' +
                       '<th colspan="2">Hostile</th>' +
                     '</tr>' +
-                    '<tr>' +
+                    '<tr class="top-header">' +
                       '<th colspan="2">Before</th>' +
                       '<th colspan="1">After</th>' +
                       '<th colspan="1">Before</th>' +
                       '<th colspan="1">After</th>' +
                     '</tr>'+
-                    '<tr>' +
+                    '<tr class="fleet-row">' +
                       '<th colspan="1">Fighter</th>' +
                       '<td>0</td>' +
                       '<td>0</td>' +
                       '<td>0</td>' +
                       '<td>0</td>' +
                     '</tr>' +
-                    '<tr>' +
+                    '<tr class="fleet-row">' +
                       '<th colspan="1">Bomber</th>' +
                       '<td>0</td>' +
                       '<td>0</td>' +
                       '<td>0</td>' +
                       '<td>0</td>' +
                     '</tr>' +
-                    '<tr>' +
+                    '<tr class="fleet-row">' +
                       '<th colspan="1">Frigate</th>' +
                       '<td>0</td>' +
                       '<td>0</td>' +
                       '<td>0</td>' +
                       '<td>0</td>' +
                     '</tr>' +
-                    '<tr>' +
+                    '<tr class="fleet-row">' +
                       '<th colspan="1">Destroyer</th>' +
                       '<td>0</td>' +
                       '<td>0</td>' +
                       '<td>0</td>' +
                       '<td>0</td>' +
                     '</tr>' +
-                    '<tr>' +
+                    '<tr class="fleet-row">' +
                       '<th colspan="1">Cruiser</th>' +
                       '<td>0</td>' +
                       '<td>0</td>' +
                       '<td>0</td>' +
                       '<td>0</td>' +
                     '</tr>' +
-                    '<tr>' +
+                    '<tr class="fleet-row">' +
                       '<th colspan="1">Battleship</th>' +
                       '<td>0</td>' +
                       '<td>0</td>' +
                       '<td>0</td>' +
                       '<td>0</td>' +
                     '</tr>' +
-                    '<tr>' +
+                    '<tr class="top-header">' +
                       '<th colspan="5">Resources Cost (2 metal = 3 mineral)</th>' +
                     '</tr>' +
-                    '<tr>' +
+                    '<tr class="resource-row">' +
                       '<th colspan="1">Metal</th>' +
                       '<td>0</td>' +
                       '<td>0</td>' +
                       '<td>0</td>' +
                       '<td>0</td>' +
                     '</tr>' +
-                    '<tr>' +
+                    '<tr class="resource-row">' +
                       '<th colspan="1">Mineral</th>' +
                       '<td>0</td>' +
                       '<td>0</td>' +
                       '<td>0</td>' +
                       '<td>0</td>' +
                     '</tr>' +
-                    '<tr>' +
+                    '<tr class="resource-row">' +
                       '<th colspan="1">Total</th>' +
                       '<td>0</td>' +
                       '<td>0</td>' +
                       '<td>0</td>' +
                       '<td>0</td>' +
                     '</tr>' +
-                  '</thead>' +
                 '</table>' +
               '</div>';
 
