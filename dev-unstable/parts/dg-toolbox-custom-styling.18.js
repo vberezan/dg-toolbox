@@ -396,13 +396,18 @@ function applyCustomStyling(windowURL) {
             for (let j = 0; j < 3 - lineBreak; j++) {
               let empty = document.createElement('div');
               empty.classList.add('dgt-empty');
-              empty.style.width = '301px';
+              empty.style.width = '291px';
               empty.style.margin = '3px';
               empty.style.float = 'left';
               planetScanAdditional.append(empty);
             }
           }
         }
+
+        let etaSeparator = document.createElement('div');
+        etaSeparator.classList.add('dgt-eta-separator');
+
+        planetScanAdditional.append(etaSeparator);
       }
 
       let lineBreak = 0;
