@@ -5,7 +5,7 @@ import {NameQuantity} from "../../../shared/model/name-quantity.model";
 import {ShipType} from "../../../shared/model/fleet/ship-type";
 
 @Injectable({
-  providedIn: 'root'
+  providedIn: 'platform'
 })
 export class FleetScanExtractorService implements DataExtractor {
 
