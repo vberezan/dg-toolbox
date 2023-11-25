@@ -2590,7 +2590,7 @@ dgt-scans-collector {
 #planet-scan-additional .dgt-fleet,
 #planet-scan-additional .dgt-empty {
   padding: 5px !important;
-  width: 214.5px !important;
+  width: 168px !important;
 }
 
 #planet-scan-additional .dgt-fleet > .ofHidden {

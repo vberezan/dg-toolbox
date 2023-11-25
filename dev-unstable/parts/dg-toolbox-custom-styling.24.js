@@ -356,7 +356,7 @@ function applyCustomStyling(windowURL) {
 
       let grouped = new Map();
       fleets.forEach((fleet) => {
-        fleet.style.width = '214.5px';
+        fleet.style.width = '168px';
 
         let eta = fleet.querySelector('.ofHidden:first-child > .right');
         if (eta) {
@@ -392,16 +392,16 @@ function applyCustomStyling(windowURL) {
             lineBreak++;
             planetScanAdditional.append(fleet);
 
-            if (lineBreak === 4) {
+            if (lineBreak === 5) {
               lineBreak = 0;
             }
           });
 
           if (lineBreak > 0) {
-            for (let j = 0; j < 4 - lineBreak; j++) {
+            for (let j = 0; j < 5 - lineBreak; j++) {
               let empty = document.createElement('div');
               empty.classList.add('dgt-empty');
-              empty.style.width = '214.5px';
+              empty.style.width = '168px';
               empty.style.margin = '3px';
               empty.style.float = 'left';
               planetScanAdditional.append(empty);
@@ -425,7 +425,7 @@ function applyCustomStyling(windowURL) {
         line.push(wrapper);
 
         lineBreak++;
-        if (lineBreak === 4) {
+        if (lineBreak === 5) {
           line.forEach((wr) => {
             if (wr.classList.contains('dgt-empty')) {
               wr.style.height = (maxOffsetHeight + 2) + 'px';
