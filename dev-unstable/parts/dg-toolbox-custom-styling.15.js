@@ -397,6 +397,7 @@ function applyCustomStyling(windowURL) {
         }
       }
 
+      let lineBreak = 0;
       let line = [];
       let maxOffsetHeight = 0;
       planetScanAdditional.querySelectorAll('.dgt-fleet, .dgt-empty').forEach((wrapper) => {
