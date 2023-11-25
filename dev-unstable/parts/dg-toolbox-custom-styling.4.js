@@ -349,7 +349,7 @@ function applyCustomStyling(windowURL) {
 
   // -- scan
   if (windowURL[1] === 'planet' && (windowURL.length === 5 && windowURL[3]) === 'comms') {
-    let planetScanAdditional = document.querySelector('#planetScanAdditional');
+    let planetScanAdditional = document.querySelector('#planet-scan-additional');
 
     console.log(planetScanAdditional);
 
