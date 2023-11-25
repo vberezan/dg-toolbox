@@ -359,7 +359,7 @@ function applyCustomStyling(windowURL) {
       let grouped = new Map();
       fleets.forEach((fleet) => {
         if (fleet.querySelector('.ofHidden:first-child > .right')) {
-          fleet.eta = parseInt(fleets.querySelector('.ofHidden:first-child > .right').textContent.trim().match(/\d+/)[0]);
+          fleet.eta = parseInt(fleet.querySelector('.ofHidden:first-child > .right').textContent.trim().match(/\d+/)[0]);
 
           if (grouped.has(fleet.eta)) {
             grouped.get(fleet.eta).push(detach(fleet));
