@@ -415,6 +415,7 @@ function applyCustomStyling(windowURL) {
               }
             });
 
+            line = [];
             lineBreak = 0;
             maxOffsetHeight = 0;
           }
