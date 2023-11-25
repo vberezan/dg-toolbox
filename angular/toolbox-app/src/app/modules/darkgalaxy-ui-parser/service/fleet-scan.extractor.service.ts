@@ -12,16 +12,12 @@ export class FleetScanExtractorService implements DataExtractor {
   extract(): Fleet[] {
     let result: Fleet[] = [];
 
-    console.log(document.querySelector('#planet-scan-additional'));
-
     if (document.querySelector('#planet-scan-additional')) {
 
       const fleets: NodeListOf<Element> = document.querySelectorAll('#planet-scan-additional > div.left');
 
       fleets.forEach((fl: Element): void => {
         let fleet: Fleet = new Fleet();
-
-        console.log(fl);
 
         fleet.mine = fl.querySelector('span.friendly') ? true : false;
         fleet.allied = fl.querySelector('span.allied') ? true : false;
@@ -36,7 +32,7 @@ export class FleetScanExtractorService implements DataExtractor {
           let ship: string = fs.querySelector('td:first-child').textContent.trim().toLowerCase();
           let amount: number = parseInt(fs.querySelector('td:last-child').textContent.trim().match(/\d+/)[0]);
 
-          if (ship in ShipType) {
+          if (Object.values(ShipType).includes(ship as ShipType)) {
             fleet.ships.push(new NameQuantity(ship, amount));
           }
         });
