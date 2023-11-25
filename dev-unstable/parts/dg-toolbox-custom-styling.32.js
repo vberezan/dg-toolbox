@@ -432,11 +432,13 @@ function applyCustomStyling(windowURL) {
               '<div class="dgt-fight-simulation">' +
                 '<table id="dgt-fight-simulator-by-rof">' +
                     '<tr class="top-header">' +
-                      '<th colspan="3">Allied</th>' +
+                      '<th colspan="1" class="invisible"></th>' +
+                      '<th colspan="2">Allied</th>' +
                       '<th colspan="2">Hostile</th>' +
                     '</tr>' +
                     '<tr class="top-header">' +
-                      '<th colspan="2">Before</th>' +
+                      '<th colspan="1" class="invisible"></th>' +
+                      '<th colspan="1">Before</th>' +
                       '<th colspan="1">After</th>' +
                       '<th colspan="1">Before</th>' +
                       '<th colspan="1">After</th>' +

@@ -2639,9 +2639,13 @@ dgt-scans-collector {
 
 #dgt-fight-simulator-by-rof td,
 #dgt-fight-simulator-by-rof th {
-  border: 1px solid #5e5e5e !important;
+  border: 1px solid #5e5e5e;
   min-width: 75px;
   padding: 5px;
+}
+
+#dgt-fight-simulator-by-rof .invisible {
+  border-right: none !important;
 }
 
 #dgt-fight-simulator-by-rof .top-header th {
