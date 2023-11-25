@@ -64,8 +64,6 @@ export class SynchronizerService {
         observer.next(true);
         observer.complete();
 
-        this.loadAllianceMembers(this.dgAPI.gameTurn());
-
         userStatusSubscription.unsubscribe();
       });
 
@@ -82,10 +80,6 @@ export class SynchronizerService {
       remoteMetadata.planetsTurn.version > localMetadata.planetsTurn.version;
 
     if (isLocalTurnZero || isPlanetsRemoteTurnGreater || isPlanetsSameTurnButRemoteVersionGreater) {
-      console.log('Loading new planets data... ');
-
-      this._updatesEmitter.emit(1);
-
       let localMetadata: Metadata = this.localStorageService.localMetadata();
       let remoteMetadata: Metadata = this.localStorageService.remoteMetadata();
       localMetadata.planetsTurn.turn = remoteMetadata.planetsTurn.turn;
@@ -121,7 +115,7 @@ export class SynchronizerService {
     const isTurnGreaterThanAllianceMembersTurn: boolean = turn > localMetadata.allianceMembersTurn.turn;
 
     if (playerStats && (!allianceMembers || isAllianceMembersTurnZero || isTurnGreaterThanAllianceMembersTurn)) {
-      this._updatesEmitter.emit(1);
+      this._updatesEmitter.emit(0);
       this.loadAllianceMembers(turn).then((): void => {
         this._updatesEmitter.emit(0);
       }).catch((error: any): void => console.log(error));
@@ -147,7 +141,6 @@ export class SynchronizerService {
       query(userStatusPath)
     ).subscribe((item: DocumentData[]): void => {
       const userStats: any = Object.assign([], item);
-      console.log(userStats);
 
       if (!dom.querySelector('[action="/alliances/join/"]')) {
 
@@ -179,7 +172,6 @@ export class SynchronizerService {
                 }
 
                 cache.push(allianceMember);
-                console.log(allianceMember);
               }
             });
           }

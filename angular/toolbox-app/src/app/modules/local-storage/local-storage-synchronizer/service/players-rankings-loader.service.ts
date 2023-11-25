@@ -26,7 +26,7 @@ export class PlayersRankingsLoaderService {
   private readonly PLAYER_COMBAT_RANKINGS_URL: string = this.localStorageService.get(LocalStorageKeys.GAME_ENDPOINT) + '/rankings/combat/players/';
 
   async scanPlayersRankingsScreens(playersRankingsEmitter: EventEmitter<PageAction>): Promise<void> {
-    const scanDelay: number = 100 + Math.floor(Math.random() * 100);
+    const scanDelay: number = Math.floor(Math.random() * 100);
     const playersPlanetsPath: any = collection(this.firestore, 'players-planets');
 
 
@@ -155,10 +155,10 @@ export class PlayersRankingsLoaderService {
 
           subscription.unsubscribe();
         });
-      }, ++delay * 15);
+      }, ++delay * 5);
     });
 
-    await this.delay(25 * ++delay).then((): void => {
+    await this.delay(10 * ++delay).then((): void => {
       this.localStorageService.cache(LocalStorageKeys.PLAYERS_STATS, cache);
       let localMetadata: Metadata = this.localStorageService.localMetadata();
       localMetadata.playersRankingsTurn = new UpdateMetadata(this.dgAPI.gameTurn(), 0);
