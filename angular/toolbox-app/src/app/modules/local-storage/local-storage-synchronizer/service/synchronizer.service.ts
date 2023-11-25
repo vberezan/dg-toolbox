@@ -1,5 +1,5 @@
 import {EventEmitter, inject, Injectable, Optional} from '@angular/core';
-import {collection, collectionData, Firestore, query} from "@angular/fire/firestore";
+import {collection, collectionData, doc, docData, Firestore, query, setDoc, updateDoc} from "@angular/fire/firestore";
 import {LocalStorageService} from "../../local-storage-manager/service/local-storage.service";
 import {firstValueFrom, Subscriber, Subscription} from "rxjs";
 import {DocumentData} from "@angular/fire/compat/firestore";
@@ -10,6 +10,8 @@ import {AllianceMember} from "../../../../shared/model/alliances/alliance-member
 import {Metadata} from "../../../../shared/model/local-storage/metadata.model";
 import {PlayersRankingsLoaderService} from "./players-rankings-loader.service";
 import {PageAction} from "../../../../shared/model/stats/page-action.model";
+import {UserStatus} from "../../../../shared/model/local-storage/user-status.model";
+import {DarkgalaxyApiService} from "../../../darkgalaxy-ui-parser/service/darkgalaxy-api.service";
 
 @Injectable({
   providedIn: 'root'
@@ -19,6 +21,7 @@ export class SynchronizerService {
   private firestore: Firestore = inject(Firestore);
   private localStorageService: LocalStorageService = inject(LocalStorageService);
   private playersRankingsLoaderService: PlayersRankingsLoaderService = inject(PlayersRankingsLoaderService);
+  private dgAPI: DarkgalaxyApiService = inject(DarkgalaxyApiService);
   private _updatesEmitter: EventEmitter<number> = new EventEmitter<number>();
 
   private readonly ALLIANCES_URL: string = this.localStorageService.get(LocalStorageKeys.GAME_ENDPOINT) + '/alliances/';
@@ -27,8 +30,9 @@ export class SynchronizerService {
 
   updateMetadata(observer: Subscriber<boolean>): void {
     const metadataPath: any = collection(this.firestore, 'metadata');
+    const userStatusPath: any = collection(this.firestore, 'user-status');
 
-    let subscription: Subscription = collectionData(
+    let metadataSubscription: Subscription = collectionData(
       query(metadataPath),
     ).subscribe((item: DocumentData[]): void => {
       const metadata: any = Object.assign([], item);
@@ -41,10 +45,29 @@ export class SynchronizerService {
 
       this.localStorageService.cache(LocalStorageKeys.REMOTE_METADATA, cache);
 
-      observer.next(true);
-      observer.complete();
+      let userStatusSubscription: Subscription = docData(
+        doc(userStatusPath, this.dgAPI.username()),
+      ).subscribe((item: DocumentData): void => {
+        if (item) {
+          let userStatus: UserStatus = Object.assign(new UserStatus(), item);
+          userStatus.turn = this.dgAPI.gameTurn();
+          userStatus.version = this.localStorageService.localMetadata().dgtVersion
+          updateDoc(doc(userStatusPath, this.dgAPI.username()), JSON.parse(JSON.stringify(userStatus))).catch((error: any): void => console.log(error));
+        } else {
+          let userStatus: UserStatus = new UserStatus();
+          userStatus.turn = this.dgAPI.gameTurn();
+          userStatus.version = this.localStorageService.localMetadata().dgtVersion;
+          userStatus.name = this.dgAPI.username();
+          setDoc(doc(userStatusPath, this.dgAPI.username()), JSON.parse(JSON.stringify(userStatus))).catch((error: any): void => console.log(error));
+        }
 
-      subscription.unsubscribe();
+        observer.next(true);
+        observer.complete();
+
+        userStatusSubscription.unsubscribe();
+      });
+
+      metadataSubscription.unsubscribe();
     });
   }
 
