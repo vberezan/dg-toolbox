@@ -24,8 +24,14 @@ export class FleetScanExtractorService implements DataExtractor {
         fleet.hostile = fl.querySelector('span.hostile') ? true : false;
 
         fleet.owner = fl.querySelector('.playerName').textContent.toLowerCase().trim();
-        fleet.alliance = fl.querySelector('.allianceName').textContent.toLowerCase().trim().replace(/\[/g, '').replace(/]/g, '');
-        fleet.eta =  parseInt(fl.querySelector('.ofHidden:first-child > .right').textContent.trim().match(/\d+/)[0]);
+
+        if (fl.querySelector('.allianceName')) {
+          fleet.alliance = fl.querySelector('.allianceName').textContent.toLowerCase().trim().replace(/\[/g, '').replace(/]/g, '');
+        }
+
+        if (fl.querySelector('.ofHidden:first-child > .right')) {
+          fleet.eta = parseInt(fl.querySelector('.ofHidden:first-child > .right').textContent.trim().match(/\d+/)[0]);
+        }
 
         let fleetShips: NodeListOf<Element> = fl.querySelectorAll('table tr');
 
