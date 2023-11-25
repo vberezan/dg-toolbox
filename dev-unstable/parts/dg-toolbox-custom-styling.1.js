@@ -349,6 +349,34 @@ function applyCustomStyling(windowURL) {
 
   // -- scan
   if (windowURL[1] === 'planet' && (windowURL.length === 5 && windowURL[3]) === 'comms') {
+    let planetScanAdditional = document.querySelector('#planetScanAdditional');
+
+    if (planetScanAdditional) {
+      let fleets = planetScanAdditional.querySelectorAll('.dgt-fleet');
+
+      let grouped = new Map();
+      fleets.forEach((fleet) => {
+        if (fleets.querySelector('.ofHidden:first-child > .right')) {
+          fleet.eta = parseInt(fleets.querySelector('.ofHidden:first-child > .right').textContent.trim().match(/\d+/)[0]);
+
+          if (grouped.has(fleet.eta)) {
+            grouped.get(fleet.eta).push(detach(fleet));
+          } else {
+            grouped.set(fleet.eta, [detach(fleet)]);
+          }
+        }
+      });
+
+      for (let i = 1; i < 48; i++) {
+        if (grouped.has(i)) {
+          grouped.get(i).forEach((fleet) => {
+            planetScanAdditional.append(fleet);
+          });
+        }
+      }
+    }
+
+
     let scanForm = document.querySelector('.opacBackground .opacDarkBackground>form');
 
     if (scanForm) {
