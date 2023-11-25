@@ -111,6 +111,10 @@ function setUpSharedScansCollector(windowURL) {
             if (document.querySelector('#planet-scan-additional .header') != null &&
               document.querySelector('#planet-scan-additional .header').textContent.trim().toLowerCase() === 'fleet list') {
                 scanForm.append(document.createElement('dgt-fleet-scan-details'));
+
+                document.querySelectorAll('#planet-scan-additional > .left.ofHidden').forEach((fleet) => {
+                   fleet.classList.add('dgt-fleet');
+                });
             }
         }
     }
