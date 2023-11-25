@@ -27,7 +27,7 @@ function loadResource(element) {
 
 function getVersion() {
   if (localStorage.getItem('js-version')) return JSON.parse(localStorage.getItem('js-version')).value;
-  else return 'v2.0.6';
+  else return 'v2.0.7';
 }
 
 function loadSetups(windowURL) {
@@ -35,7 +35,7 @@ function loadSetups(windowURL) {
 
   loadResource({
     tagName: 'script',
-    src: 'https://cdn.jsdelivr.net/gh/vberezan/dg-toolbox@development/dev-unstable/parts/dgt-toolbox-setup-dgt-placeholders.12.js',
+    src: 'https://cdn.jsdelivr.net/gh/vberezan/dg-toolbox@development/dev-unstable/parts/dgt-toolbox-setup-dgt-placeholders.20.js',
     rel: 'text/javascript'
   }).onload = function () {
     setupPlaceHolders(windowURL);
@@ -47,7 +47,7 @@ function loadCustomStyling(windowURL) {
 
   loadResource({
     tagName: 'script',
-    src: 'https://cdn.jsdelivr.net/gh/vberezan/dg-toolbox@development/dev-unstable/parts/dg-toolbox-custom-styling.90.js',
+    src: 'https://cdn.jsdelivr.net/gh/vberezan/dg-toolbox@development/dev-unstable/parts/dg-toolbox-custom-styling.42.js',
     rel: 'text/javascript'
   }).onload = function () {
     applyCustomStyling(windowURL);
@@ -62,7 +62,7 @@ function loadCustomStyling(windowURL) {
 
     loadResource({
       tagName: 'script',
-      src: 'https://cdn.jsdelivr.net/gh/vberezan/dg-toolbox@development/dev-unstable/parts/dg-toolbox-replace-icons-with-images.31.js',
+      src: 'https://cdn.jsdelivr.net/gh/vberezan/dg-toolbox@development/dev-unstable/parts/dg-toolbox-replace-icons-with-images.32.js',
       rel: 'text/javascript'
     }).onload = function () {
       replaceIconsWithImages();
@@ -107,7 +107,7 @@ function loadAngular() {
     rel: 'module'
   }, {
     tagName: 'script',
-    src: 'https://cdn.jsdelivr.net/gh/vberezan/dg-toolbox@development/angular/toolbox-app/dist/toolbox-app/main.45e10262c309a191.js',
+    src: 'https://cdn.jsdelivr.net/gh/vberezan/dg-toolbox@development/angular/toolbox-app/dist/toolbox-app/main.1f6540edb3956901.js',
     rel: 'module'
   }];
 
@@ -127,7 +127,7 @@ function loadGlobalAngularStyling() {
 
   let angular = [{
     tagName: 'link',
-    href: 'https://cdn.jsdelivr.net/gh/vberezan/dg-toolbox@development/angular/toolbox-app/dist/toolbox-app/styles.db7e58f73a10560a.css',
+    href: 'https://cdn.jsdelivr.net/gh/vberezan/dg-toolbox@development/angular/toolbox-app/dist/toolbox-app/styles.5dd0a0650f6ddaf3.css',
     rel: 'stylesheet'
   }];
 
