@@ -391,11 +391,11 @@ function applyCustomStyling(windowURL) {
 
         if (grouped.has(i)) {
           grouped.get(i).forEach((fleet) => {
-            if (earliestAllied < 0 && (fleet.classList.contains('allied-fleet') || fleet.classList.contains('friendly-fleet'))) {
+            if (earliestAllied < 0 && fleet.querySelectorAll('tr').length > 0 && (fleet.classList.contains('allied-fleet') || fleet.classList.contains('friendly-fleet'))) {
               earliestAllied = i;
             }
 
-            if (earliestHostile < 0 && fleet.classList.contains('hostile-fleet')) {
+            if (earliestHostile < 0 && fleet.querySelectorAll('tr').length > 0 && fleet.classList.contains('hostile-fleet')) {
               earliestHostile = i;
             }
 
