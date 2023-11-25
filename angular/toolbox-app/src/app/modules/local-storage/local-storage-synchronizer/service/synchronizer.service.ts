@@ -171,7 +171,12 @@ export class SynchronizerService {
               if (player.querySelector('div.name') != null) {
                 allianceMember.name = player.querySelector('div.name').childNodes[0].textContent.trim();
                 allianceMember.stats = playerStats.find((playerStat: PlayerStats): boolean => playerStat.name.toLowerCase() === allianceMember.name.toLowerCase());
-                allianceMember.dgtVersion = userStats.find((userStatus: UserStatus): boolean => userStatus.name.toLowerCase() === allianceMember.name.toLowerCase()).version || "-";
+                const userStatus: UserStatus = userStats.find((userStat: UserStatus): boolean => userStat.name.toLowerCase() === allianceMember.name.toLowerCase());
+
+                if (userStatus) {
+                  allianceMember.dgtVersion = userStatus.version;
+                }
+
                 cache.push(allianceMember);
               }
             });
