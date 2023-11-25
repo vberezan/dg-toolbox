@@ -147,6 +147,7 @@ export class SynchronizerService {
       query(userStatusPath)
     ).subscribe((item: DocumentData[]): void => {
       const userStats: any = Object.assign([], item);
+      console.log(userStats);
 
       if (!dom.querySelector('[action="/alliances/join/"]')) {
 
