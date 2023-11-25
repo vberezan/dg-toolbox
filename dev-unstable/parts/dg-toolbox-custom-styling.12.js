@@ -410,7 +410,7 @@ function applyCustomStyling(windowURL) {
           if (lineBreak === 3) {
             line.forEach((wr) => {
               if (wr.classList.contains('dgt-empty')) {
-                wr.style.height = maxOffsetHeight + 2 + 'px';
+                wr.style.height = (maxOffsetHeight + 2) + 'px';
               } else {
                 wr.style.height = maxOffsetHeight + 'px';
               }
