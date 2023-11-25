@@ -47,6 +47,7 @@ export class ScanService implements OnDestroy {
       document.querySelectorAll('div.navigation div.planets').forEach((planet: any): void => {
         if (planet.querySelector('.allianceName') && planet.querySelector('.allianceName').textContent.toLowerCase().trim() === '[sol]') {
           planet.classList.add('nap');
+          planet.classList.remove('hostile');
         }
 
         let planetLocation: string = planet.querySelector('div.coords > span').textContent.trim();

@@ -227,6 +227,10 @@ span.hostile {
   color: #df4a4a !important;
 }
 
+span.nap {
+  background: #b9b916 !important;
+}
+
 #content {
   width: 944px !important;
 }
@@ -619,6 +623,14 @@ a.right.navigation:hover svg {
 .navigation .row .planets.hostile {
   background: #4b2b2b;
 }
+
+.navigation .row > .nap {
+  border: 1px solid #b9b916 !important;
+}
+.navigation .row .planets.nap {
+  background: #b9b916;
+}
+
 
 .navigation .row .planets {
   float: left;
