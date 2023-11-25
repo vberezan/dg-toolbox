@@ -367,6 +367,8 @@ function applyCustomStyling(windowURL) {
         }
       });
 
+      console.log(grouped);
+
       for (let i = 1; i < 48; i++) {
         if (grouped.has(i)) {
           grouped.get(i).forEach((fleet) => {
