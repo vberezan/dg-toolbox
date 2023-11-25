@@ -2564,6 +2564,21 @@ dgt-scans-collector {
   border-radius: 5px !important;
 }
 
+#planet-scan-additional > .hostile-fleet {
+  background: #4b2b2b !important;
+  border: 1px solid #df4a4a !important;
+}
+
+#planet-scan-additional > .friendly-fleet {
+    background: #3f4b2f !important;
+    border: 1px solid #79ba1a !important;
+}
+
+#planet-scan-additional > .allied-fleet {
+  background: #18354b !important;
+  border: 1px solid #08BAFF !important;
+}
+
 /********************/
 
 .playerRankingsList {
