@@ -44,12 +44,8 @@ export class LocalStorageSynchronizerComponent implements AfterViewInit {
 
     this.synchronizerService.updatesEmitter.subscribe((updateNumber: number): void => {
       switch (updateNumber) {
-        case -2: {
-          this.synchronizerService.loadRankings(this.dgAPI.gameTurn(), this.dgAPI.getCountDownMinutes());
-          break;
-        }
         case -1: {
-          this.synchronizerService.loadRankings(this.dgAPI.gameTurn(), this.dgAPI.getCountDownMinutes(), true);
+          this.synchronizerService.loadRankings(this.dgAPI.gameTurn(), this.dgAPI.getCountDownMinutes());
           break;
         }
         case 0:

@@ -84,15 +84,13 @@ export class SynchronizerService {
       let remoteMetadata: Metadata = this.localStorageService.remoteMetadata();
       localMetadata.planetsTurn.turn = remoteMetadata.planetsTurn.turn;
       localMetadata.planetsTurn.version = remoteMetadata.planetsTurn.version;
-
+      localMetadata.playersRankingsTurn.turn = 0;
       localMetadata.dgtVersion = remoteMetadata.dgtVersion;
 
       this.localStorageService.cache(LocalStorageKeys.LOCAL_METADATA, localMetadata);
-      this._updatesEmitter.emit(-1);
-    } else {
-      this._updatesEmitter.emit(-2);
     }
 
+    this._updatesEmitter.emit(-1);
   }
 
   loadRankings(turn: number, countDownMinutes: number, @Optional() force: boolean = false): void {
