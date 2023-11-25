@@ -430,7 +430,14 @@ function applyCustomStyling(windowURL) {
             fightContainer.classList.add('dgt-fight-simulation-container');
 
             fightContainer.innerHTML =
-              '<div class="dgt-fight-simulation-info"></div>' +
+              '<div class="dgt-fight-simulation-info">' +
+                '<span class="dgt-fight-simulation-info-text">Battle Simulator</span>' +
+                '<span class="dgt-fight-simulation-info-text">Allied ETA: <b>' + earliestAllied + '</b></span>' +
+                '<span class="dgt-fight-simulation-info-text">Hostile ETA: <b>' + earliestHostile + '</b></span>' +
+                '<span class="dgt-fight-simulation-info-text">This is just a simulation based on Speed Games data mining. Results should not be seen as the actual result of the battle!</span>' +
+                '<span class="dgt-fight-simulation-info-text"><b>Attack</b> and <b>Defence</b> bonuses are <b>not</b> applied</span>' +
+                '<span class="dgt-fight-simulation-info-text"><b>Holo</b> ships are <b>not</b> supported</span>' +
+              '</div>' +
               '<div class="dgt-fight-simulation">' +
                 '<table class="dgt-fight-simulator-by-rof">' +
                     '<tr class="top-header">' +
