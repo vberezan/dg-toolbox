@@ -28,11 +28,11 @@
 .g1,
 .inner,
 .outer {
-  width: 50px;
+  width: 75px;
 }
 
 .empty {
-  width: 75px;
+  width: 50px;
 }
 
 .combined,
