@@ -636,7 +636,7 @@ a.right.navigation:hover svg {
 }
 
 .navigation .row > .neutral {
-  border: 1px solid #fff !important;
+  border: 1px solid #5e5e5e !important;
 }
 .navigation .row .planets.neutral {
   background: #3b3b3b;

@@ -190,7 +190,7 @@ function applyCustomStyling(windowURL) {
       });
     }
 
-    document.querySelectorAll('.navigation .row .planets').forEach((planet) => {
+    document.querySelectorAll('.navigation .row .planets.hostile').forEach((planet) => {
       const allianceName = planet.querySelector('.allianceName') && planet.querySelector('.allianceName').textContent.trim().toLowerCase();
       if (planet.querySelector('.allianceName') && allianceName === '[sol]') {
         planet.classList.add('nap');
