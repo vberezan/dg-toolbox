@@ -401,6 +401,7 @@ function applyCustomStyling(windowURL) {
         planetScanAdditional.querySelectorAll('.dgt-fleet, .dgt-empty').forEach((wrapper) => {
           if (maxOffsetHeight < wrapper.offsetHeight) {
             maxOffsetHeight = wrapper.offsetHeight;
+            console.log(maxOffsetHeight);
           }
 
           line.push(wrapper);
