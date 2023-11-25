@@ -7,38 +7,38 @@
         <th class="rank">#</th>
         <th class="alliance">Tag</th>
         <th class="name">Player</th>
-        <th class="planets">
+        <th class="planets" [ngClass]="{'selected':sortKey === 'planets'}">
           <a (click)="orderBy('planets')" href="javascript:void(0);">Planets</a>
           <svg *ngIf="sortOrder === 'desc' && sortKey === 'planets'" xmlns="http://www.w3.org/2000/svg" height="1em" viewBox="0 0 384 512"><!--! Font Awesome Free 6.4.2 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license (Commercial License) Copyright 2023 Fonticons, Inc. --><path d="M169.4 470.6c12.5 12.5 32.8 12.5 45.3 0l160-160c12.5-12.5 12.5-32.8 0-45.3s-32.8-12.5-45.3 0L224 370.8 224 64c0-17.7-14.3-32-32-32s-32 14.3-32 32l0 306.7L54.6 265.4c-12.5-12.5-32.8-12.5-45.3 0s-12.5 32.8 0 45.3l160 160z" style="/*! line-height: 22px !important; *//*! margin-top: 10px !important; */"></path></svg>
           <svg *ngIf="sortOrder === 'asc' && sortKey === 'planets'" xmlns="http://www.w3.org/2000/svg" height="1em" viewBox="0 0 384 512"><!--! Font Awesome Free 6.4.2 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license (Commercial License) Copyright 2023 Fonticons, Inc. --><path d="M214.6 41.4c-12.5-12.5-32.8-12.5-45.3 0l-160 160c-12.5 12.5-12.5 32.8 0 45.3s32.8 12.5 45.3 0L160 141.2V448c0 17.7 14.3 32 32 32s32-14.3 32-32V141.2L329.4 246.6c12.5 12.5 32.8 12.5 45.3 0s12.5-32.8 0-45.3l-160-160z"/></svg>
         </th>
-        <th class="g1">
+        <th class="g1" [ngClass]="{'selected':sortKey === 'g1'}">
           <a (click)="orderBy('g1Total')" href="javascript:void(0);">G1</a>
           <svg *ngIf="sortOrder === 'desc' && sortKey === 'g1Total'" xmlns="http://www.w3.org/2000/svg" height="1em" viewBox="0 0 384 512"><!--! Font Awesome Free 6.4.2 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license (Commercial License) Copyright 2023 Fonticons, Inc. --><path d="M169.4 470.6c12.5 12.5 32.8 12.5 45.3 0l160-160c12.5-12.5 12.5-32.8 0-45.3s-32.8-12.5-45.3 0L224 370.8 224 64c0-17.7-14.3-32-32-32s-32 14.3-32 32l0 306.7L54.6 265.4c-12.5-12.5-32.8-12.5-45.3 0s-12.5 32.8 0 45.3l160 160z" style="/*! line-height: 22px !important; *//*! margin-top: 10px !important; */"></path></svg>
           <svg *ngIf="sortOrder === 'asc' && sortKey === 'g1Total'" xmlns="http://www.w3.org/2000/svg" height="1em" viewBox="0 0 384 512"><!--! Font Awesome Free 6.4.2 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license (Commercial License) Copyright 2023 Fonticons, Inc. --><path d="M214.6 41.4c-12.5-12.5-32.8-12.5-45.3 0l-160 160c-12.5 12.5-12.5 32.8 0 45.3s32.8 12.5 45.3 0L160 141.2V448c0 17.7 14.3 32 32 32s32-14.3 32-32V141.2L329.4 246.6c12.5 12.5 32.8 12.5 45.3 0s12.5-32.8 0-45.3l-160-160z"/></svg>
         </th>
-        <th class="inner">
+        <th class="inner" [ngClass]="{'selected':sortKey === 'g213Total'}">
           <a (click)="orderBy('g213Total')" href="javascript:void(0);">Inner</a>
           <svg *ngIf="sortOrder === 'desc' && sortKey === 'g213Total'" xmlns="http://www.w3.org/2000/svg" height="1em" viewBox="0 0 384 512"><!--! Font Awesome Free 6.4.2 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license (Commercial License) Copyright 2023 Fonticons, Inc. --><path d="M169.4 470.6c12.5 12.5 32.8 12.5 45.3 0l160-160c12.5-12.5 12.5-32.8 0-45.3s-32.8-12.5-45.3 0L224 370.8 224 64c0-17.7-14.3-32-32-32s-32 14.3-32 32l0 306.7L54.6 265.4c-12.5-12.5-32.8-12.5-45.3 0s-12.5 32.8 0 45.3l160 160z" style="/*! line-height: 22px !important; *//*! margin-top: 10px !important; */"></path></svg>
           <svg *ngIf="sortOrder === 'asc' && sortKey === 'g213Total'" xmlns="http://www.w3.org/2000/svg" height="1em" viewBox="0 0 384 512"><!--! Font Awesome Free 6.4.2 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license (Commercial License) Copyright 2023 Fonticons, Inc. --><path d="M214.6 41.4c-12.5-12.5-32.8-12.5-45.3 0l-160 160c-12.5 12.5-12.5 32.8 0 45.3s32.8 12.5 45.3 0L160 141.2V448c0 17.7 14.3 32 32 32s32-14.3 32-32V141.2L329.4 246.6c12.5 12.5 32.8 12.5 45.3 0s12.5-32.8 0-45.3l-160-160z"/></svg>
         </th>
-        <th class="outer">
+        <th class="outer" [ngClass]="{'selected':sortKey === 'g1449Total'}">
           <a (click)="orderBy('g1449Total')" href="javascript:void(0);">Outer</a>
           <svg *ngIf="sortOrder === 'desc' && sortKey === 'g1449Total'" xmlns="http://www.w3.org/2000/svg" height="1em" viewBox="0 0 384 512"><!--! Font Awesome Free 6.4.2 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license (Commercial License) Copyright 2023 Fonticons, Inc. --><path d="M169.4 470.6c12.5 12.5 32.8 12.5 45.3 0l160-160c12.5-12.5 12.5-32.8 0-45.3s-32.8-12.5-45.3 0L224 370.8 224 64c0-17.7-14.3-32-32-32s-32 14.3-32 32l0 306.7L54.6 265.4c-12.5-12.5-32.8-12.5-45.3 0s-12.5 32.8 0 45.3l160 160z" style="/*! line-height: 22px !important; *//*! margin-top: 10px !important; */"></path></svg>
           <svg *ngIf="sortOrder === 'asc' && sortKey === 'g1449Total'" xmlns="http://www.w3.org/2000/svg" height="1em" viewBox="0 0 384 512"><!--! Font Awesome Free 6.4.2 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license (Commercial License) Copyright 2023 Fonticons, Inc. --><path d="M214.6 41.4c-12.5-12.5-32.8-12.5-45.3 0l-160 160c-12.5 12.5-12.5 32.8 0 45.3s32.8 12.5 45.3 0L160 141.2V448c0 17.7 14.3 32 32 32s32-14.3 32-32V141.2L329.4 246.6c12.5 12.5 32.8 12.5 45.3 0s12.5-32.8 0-45.3l-160-160z"/></svg>
         </th>
         <th class="empty"></th>
-        <th class="combat">
+        <th class="combat" [ngClass]="{'selected':sortKey === 'combatScore'}">
           <a (click)="orderBy('combatScore')" href="javascript:void(0);">Combat</a>
           <svg *ngIf="sortOrder === 'desc' && sortKey === 'combatScore'" xmlns="http://www.w3.org/2000/svg" height="1em" viewBox="0 0 384 512"><!--! Font Awesome Free 6.4.2 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license (Commercial License) Copyright 2023 Fonticons, Inc. --><path d="M169.4 470.6c12.5 12.5 32.8 12.5 45.3 0l160-160c12.5-12.5 12.5-32.8 0-45.3s-32.8-12.5-45.3 0L224 370.8 224 64c0-17.7-14.3-32-32-32s-32 14.3-32 32l0 306.7L54.6 265.4c-12.5-12.5-32.8-12.5-45.3 0s-12.5 32.8 0 45.3l160 160z" style="/*! line-height: 22px !important; *//*! margin-top: 10px !important; */"></path></svg>
           <svg *ngIf="sortOrder === 'asc' && sortKey === 'combatScore'" xmlns="http://www.w3.org/2000/svg" height="1em" viewBox="0 0 384 512"><!--! Font Awesome Free 6.4.2 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license (Commercial License) Copyright 2023 Fonticons, Inc. --><path d="M214.6 41.4c-12.5-12.5-32.8-12.5-45.3 0l-160 160c-12.5 12.5-12.5 32.8 0 45.3s32.8 12.5 45.3 0L160 141.2V448c0 17.7 14.3 32 32 32s32-14.3 32-32V141.2L329.4 246.6c12.5 12.5 32.8 12.5 45.3 0s12.5-32.8 0-45.3l-160-160z"/></svg>
         </th>
-        <th class="score">
+        <th class="score" [ngClass]="{'selected':sortKey === 'score'}">
           <a (click)="orderBy('score')" href="javascript:void(0);">Score</a>
           <svg *ngIf="sortOrder === 'desc' && sortKey === 'score'" xmlns="http://www.w3.org/2000/svg" height="1em" viewBox="0 0 384 512"><!--! Font Awesome Free 6.4.2 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license (Commercial License) Copyright 2023 Fonticons, Inc. --><path d="M169.4 470.6c12.5 12.5 32.8 12.5 45.3 0l160-160c12.5-12.5 12.5-32.8 0-45.3s-32.8-12.5-45.3 0L224 370.8 224 64c0-17.7-14.3-32-32-32s-32 14.3-32 32l0 306.7L54.6 265.4c-12.5-12.5-32.8-12.5-45.3 0s-12.5 32.8 0 45.3l160 160z" style="/*! line-height: 22px !important; *//*! margin-top: 10px !important; */"></path></svg>
           <svg *ngIf="sortOrder === 'asc' && sortKey === 'score'" xmlns="http://www.w3.org/2000/svg" height="1em" viewBox="0 0 384 512"><!--! Font Awesome Free 6.4.2 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license (Commercial License) Copyright 2023 Fonticons, Inc. --><path d="M214.6 41.4c-12.5-12.5-32.8-12.5-45.3 0l-160 160c-12.5 12.5-12.5 32.8 0 45.3s32.8 12.5 45.3 0L160 141.2V448c0 17.7 14.3 32 32 32s32-14.3 32-32V141.2L329.4 246.6c12.5 12.5 32.8 12.5 45.3 0s12.5-32.8 0-45.3l-160-160z"/></svg>
         </th>
-        <th class="combined">
+        <th class="combined" [ngClass]="{'selected':sortKey === 'combinedScore'}">
           <a (click)="orderBy('combinedScore')" href="javascript:void(0);">Combined</a>
           <svg *ngIf="sortOrder === 'desc' && sortKey === 'combinedScore'" xmlns="http://www.w3.org/2000/svg" height="1em" viewBox="0 0 384 512"><!--! Font Awesome Free 6.4.2 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license (Commercial License) Copyright 2023 Fonticons, Inc. --><path d="M169.4 470.6c12.5 12.5 32.8 12.5 45.3 0l160-160c12.5-12.5 12.5-32.8 0-45.3s-32.8-12.5-45.3 0L224 370.8 224 64c0-17.7-14.3-32-32-32s-32 14.3-32 32l0 306.7L54.6 265.4c-12.5-12.5-32.8-12.5-45.3 0s-12.5 32.8 0 45.3l160 160z" style="/*! line-height: 22px !important; *//*! margin-top: 10px !important; */"></path></svg>
           <svg *ngIf="sortOrder === 'asc' && sortKey === 'combinedScore'" xmlns="http://www.w3.org/2000/svg" height="1em" viewBox="0 0 384 512"><!--! Font Awesome Free 6.4.2 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license (Commercial License) Copyright 2023 Fonticons, Inc. --><path d="M214.6 41.4c-12.5-12.5-32.8-12.5-45.3 0l-160 160c-12.5 12.5-12.5 32.8 0 45.3s32.8 12.5 45.3 0L160 141.2V448c0 17.7 14.3 32 32 32s32-14.3 32-32V141.2L329.4 246.6c12.5 12.5 32.8 12.5 45.3 0s12.5-32.8 0-45.3l-160-160z"/></svg>
@@ -57,14 +57,14 @@
         <td class="rank">{{player.rank}}</td>
         <td class="alliance">{{player.alliance}}</td>
         <td class="name">{{player.name}}</td>
-        <td class="planets"><a href="javascript:void(0);">{{player.planets}}</a></td>
-        <td class="g1"><a href="javascript:void(0);">{{player.g1Total}}</a></td>
-        <td class="inner"><a href="javascript:void(0);">{{player.g213Total}}</a></td>
-        <td class="outer"><a href="javascript:void(0);">{{player.g1449Total}}</a></td>
+        <td class="planets" [ngClass]="{'selected':sortKey === 'planets'}"><a href="javascript:void(0);">{{player.planets}}</a></td>
+        <td class="g1" [ngClass]="{'selected':sortKey === 'g1'}"><a href="javascript:void(0);">{{player.g1Total}}</a></td>
+        <td class="inner" [ngClass]="{'selected':sortKey === 'g213Total'}"><a href="javascript:void(0);">{{player.g213Total}}</a></td>
+        <td class="outer" [ngClass]="{'selected':sortKey === 'g1449Total'}"><a href="javascript:void(0);">{{player.g1449Total}}</a></td>
         <td class="empty"></td>
-        <td class="combat">{{player.combatScore | number:'1.0':'en-US'}}</td>
-        <td class="score">{{player.score | number:'1.0':'en-US'}}</td>
-        <td class="combined">{{player.combinedScore | number:'1.0':'en-US'}}</td>
+        <td class="combat" [ngClass]="{'selected':sortKey === 'combatScore'}">{{player.combatScore | number:'1.0':'en-US'}}</td>
+        <td class="score" [ngClass]="{'selected':sortKey === 'score'}">{{player.score | number:'1.0':'en-US'}}</td>
+        <td class="combined" [ngClass]="{'selected':sortKey === 'combinedScore'}">{{player.combinedScore | number:'1.0':'en-US'}}</td>
       </tr>
       </tbody>
     </table>

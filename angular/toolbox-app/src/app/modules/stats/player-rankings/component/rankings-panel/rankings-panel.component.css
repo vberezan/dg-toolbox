@@ -138,3 +138,8 @@ th svg {
   margin-left: 3px;
   fill: #72bde0;
 }
+
+th.selected,
+td.selected {
+  background: #3b3b3b !important;
+}
