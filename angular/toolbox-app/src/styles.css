@@ -2558,6 +2558,8 @@ dgt-scans-collector {
 
 #planet-scan-additional {
   border: none !important;
+  border-bottom-right-radius: 5px;
+  border-bottom-left-radius: 5px;
 }
 
 #planet-scan-additional > .left.ofHidden.lightBorder {
