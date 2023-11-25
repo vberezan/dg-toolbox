@@ -53,7 +53,8 @@ export class AllianceMember {
       name: this.name,
       dgId: this.dgId,
       kickEta: this.kickEta,
-      stats: this.stats
+      stats: this.stats,
+      dgtVersion: this.dgtVersion
     }
   }
 }
