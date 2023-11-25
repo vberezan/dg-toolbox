@@ -359,7 +359,7 @@ function applyCustomStyling(windowURL) {
         let eta = fleet.querySelector('.ofHidden:first-child > .right');
         if (eta) {
           fleet.eta = parseInt(fleet.querySelector('.ofHidden:first-child > .right').textContent.trim().match(/\d+/)[0]);
-          eta.innerHTML = 'ETA ' + eta;
+          eta.innerHTML = 'ETA ' + fleet.eta;
         } else {
           fleet.eta = 0;
         }
