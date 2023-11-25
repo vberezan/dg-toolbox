@@ -88,15 +88,10 @@ export class SynchronizerService {
       localMetadata.dgtVersion = remoteMetadata.dgtVersion;
 
       this.localStorageService.cache(LocalStorageKeys.LOCAL_METADATA, localMetadata);
-
-      this._updatesEmitter.emit(-1);
-    } else {
-      const isNewTurn: boolean = (turn > localMetadata.playersRankingsTurn.turn) && (countDownMinutes > 5 && countDownMinutes < 57);
-
-      if (isNewTurn) {
-        this._updatesEmitter.emit(-1);
-      }
     }
+
+    this._updatesEmitter.emit(-1);
+
   }
 
   loadRankings(turn: number, countDownMinutes: number, @Optional() force: boolean = false): void {
