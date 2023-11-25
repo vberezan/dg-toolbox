@@ -4,6 +4,8 @@ import {PlanetSummary} from "../../../shared/model/planets/planet-summary.planet
 import {PlanetScanExtractorService} from "./planet-scan.extractor.service";
 import {PlanetScanEvent} from "../../../shared/model/scans/planet-scan-event.model";
 import {NavigationSystemPlanetsExtractorService} from "./navigation-system-planets.extractor.service";
+import {FleetScanExtractorService} from "./fleet-scan.extractor.service";
+import {Fleet} from "../../../shared/model/fleet/fleet.model";
 
 @Injectable({
   providedIn: 'platform'
@@ -13,6 +15,7 @@ export class DarkgalaxyApiService {
   private planetListExtractor: PlanetListExtractorService = inject(PlanetListExtractorService);
   private planetScanExtractor: PlanetScanExtractorService = inject(PlanetScanExtractorService);
   private navigationSystemPlanetsExtractor: NavigationSystemPlanetsExtractorService = inject(NavigationSystemPlanetsExtractorService);
+  private fleetScanExtractor: FleetScanExtractorService = inject(FleetScanExtractorService);
 
   private cachedUsername: string = null;
 
@@ -22,6 +25,10 @@ export class DarkgalaxyApiService {
 
   planetScan(): PlanetScanEvent {
     return this.planetScanExtractor.extract();
+  }
+
+  fleetScan(): Fleet[] {
+    return this.fleetScanExtractor.extract();
   }
 
   navigationSystemPlanets(): PlanetSummary[] {

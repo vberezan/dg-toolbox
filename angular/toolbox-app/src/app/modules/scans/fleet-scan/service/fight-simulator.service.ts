@@ -12,8 +12,6 @@ export class FightSimulatorService {
   simulateFight(fleet1: Fleet, fleet2: Fleet): number {
     let requiredTurns: number = 0;
 
-    console.log('Starting the battle');
-
     while (!this.isFleetDestroyed(fleet1) && !this.isFleetDestroyed(fleet2)) {
       let copyF1 = JSON.parse(JSON.stringify(fleet1));
       let copyF2 = JSON.parse(JSON.stringify(fleet2));

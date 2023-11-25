@@ -3,6 +3,7 @@ import {FightSimulatorService} from "../../service/fight-simulator.service";
 import {Fleet} from "../../../../../shared/model/fleet/fleet.model";
 import {ShipType} from "../../../../../shared/model/fleet/ship-type";
 import {NameQuantity} from "../../../../../shared/model/name-quantity.model";
+import {DarkgalaxyApiService} from "../../../../darkgalaxy-ui-parser/service/darkgalaxy-api.service";
 
 @Component({
   selector: 'dgt-fleet-scan-details',
@@ -11,10 +12,13 @@ import {NameQuantity} from "../../../../../shared/model/name-quantity.model";
 })
 export class FleetScanDetailsComponent {
   private fightSimulatorService: FightSimulatorService = inject(FightSimulatorService);
+  private dgAPI: DarkgalaxyApiService = inject(DarkgalaxyApiService);
 
   url: string = "https://helloweenpt.com/darkgalaxy/combat-simulator";
 
   constructor() {
+    console.log(this.dgAPI.fleetScan());
+
     let fleet1: Fleet = new Fleet();
     let fleet2: Fleet = new Fleet();
 

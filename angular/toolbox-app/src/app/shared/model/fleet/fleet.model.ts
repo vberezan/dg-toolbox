@@ -5,9 +5,26 @@ export class Fleet {
   private _owner: string;
   private _alliance: string;
   private _eta: number;
-  private hostile: boolean = false;
-  private allied: boolean = false;
+  private _hostile: boolean = false;
+  private _allied: boolean = false;
   private _mine: boolean = false;
+
+
+  get hostile(): boolean {
+    return this._hostile;
+  }
+
+  set hostile(value: boolean) {
+    this._hostile = value;
+  }
+
+  get allied(): boolean {
+    return this._allied;
+  }
+
+  set allied(value: boolean) {
+    this._allied = value;
+  }
 
   get mine(): boolean {
     return this._mine;
