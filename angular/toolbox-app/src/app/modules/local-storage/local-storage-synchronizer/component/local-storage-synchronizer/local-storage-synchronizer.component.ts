@@ -49,14 +49,7 @@ export class LocalStorageSynchronizerComponent implements AfterViewInit {
           break;
         }
         case 0:
-          this.delay(500).then((): void => {
-            this.dgtUpdatingModel.nativeElement.classList.add('hide');
-            this.dgtUpdatingModel.nativeElement.classList.remove('show');
-            this.rankingsLoadModal.nativeElement.classList.add('hide');
-            this.rankingsLoadModal.nativeElement.classList.remove('show');
-            document.body.classList.remove('dgt-overlay-open');
-            window.location.reload();
-          });
+          window.location.reload();
           break;
         case 1:
           this.rankingsLoadModal.nativeElement.classList.add('hide');

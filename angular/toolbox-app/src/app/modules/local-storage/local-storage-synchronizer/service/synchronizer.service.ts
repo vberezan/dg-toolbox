@@ -115,7 +115,6 @@ export class SynchronizerService {
     const isTurnGreaterThanAllianceMembersTurn: boolean = turn > localMetadata.allianceMembersTurn.turn;
 
     if (playerStats && (!allianceMembers || isAllianceMembersTurnZero || isTurnGreaterThanAllianceMembersTurn)) {
-      this._updatesEmitter.emit(0);
       this.loadAllianceMembers(turn).then((): void => {
         this._updatesEmitter.emit(0);
       }).catch((error: any): void => console.log(error));
