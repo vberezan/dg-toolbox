@@ -2633,6 +2633,12 @@ dgt-scans-collector {
   display: none;
 }
 
+#dgt-fight-simulation td,
+#dgt-fight-simulation th {
+  border: 1px solid #5e5e5e !important;
+  min-width: 75px;
+}
+
 /********************/
 
 .playerRankingsList {

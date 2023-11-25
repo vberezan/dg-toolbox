@@ -437,7 +437,7 @@ function applyCustomStyling(windowURL) {
                       '<th colspan="2">Hostile</th>' +
                     '</tr>' +
                     '<tr>' +
-                      '<th colspan="1">Before</th>' +
+                      '<th colspan="2">Before</th>' +
                       '<th colspan="1">After</th>' +
                       '<th colspan="1">Before</th>' +
                       '<th colspan="1">After</th>' +
