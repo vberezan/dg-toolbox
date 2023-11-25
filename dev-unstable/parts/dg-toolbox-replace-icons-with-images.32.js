@@ -25,6 +25,8 @@ function replaceIconsWithImages() {
 
     replaceImgWithImg('/images/units/small/planets.png', 'https://i.imgur.com/Biq82rs.png');
 
+    replaceImgWithImg('/images/buttons/fleets.png', 'https://i.imgur.com/5Byl54Z.png');
+
     replaceImgWithImgByQuery('#fleetQueue .header img', 'https://i.imgur.com/4ClCtQl.png');
     replaceImgWithImgByQuery('#queue-actions-left .fleetLeftInner .header img', 'https://i.imgur.com/HcC4l22.png');
     replaceImgWithImgByQuery('#queue-actions-left form .header img', 'https://i.imgur.com/3r7Evsy.png');
