@@ -351,6 +351,8 @@ function applyCustomStyling(windowURL) {
   if (windowURL[1] === 'planet' && (windowURL.length === 5 && windowURL[3]) === 'comms') {
     let planetScanAdditional = document.querySelector('#planetScanAdditional');
 
+    console.log(planetScanAdditional);
+
     if (planetScanAdditional) {
       let fleets = planetScanAdditional.querySelectorAll('.dgt-fleet');
 
