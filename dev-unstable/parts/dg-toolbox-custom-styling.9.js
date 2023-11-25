@@ -371,9 +371,7 @@ function applyCustomStyling(windowURL) {
         }
       });
 
-      console.log(grouped);
-
-      for (let i = 1; i < 48; i++) {
+      for (let i = 0; i < 48; i++) {
         let lineBreak = 0;
 
         if (grouped.has(i)) {
@@ -410,7 +408,11 @@ function applyCustomStyling(windowURL) {
           lineBreak++;
           if (lineBreak === 3) {
             line.forEach((wr) => {
-              wr.style.height = maxOffsetHeight + 'px';
+              if (wr.classList.contains('dgt-empty')) {
+                wr.style.height = maxOffsetHeight + 2 + 'px';
+              } else {
+                wr.style.height = maxOffsetHeight + 'px';
+              }
             });
 
             lineBreak = 0;
