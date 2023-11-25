@@ -2633,27 +2633,33 @@ dgt-scans-collector {
   display: none;
 }
 
-#dgt-fight-simulator-by-rof {
+.dgt-fight-simulation,
+.dgt-fight-simulation-info {
+  width: 50% !important;
+  float: left;
+}
+
+.dgt-fight-simulator-by-rof {
   border-collapse: collapse;
 }
 
-#dgt-fight-simulator-by-rof td,
-#dgt-fight-simulator-by-rof th {
+.dgt-fight-simulator-by-rof td,
+.dgt-fight-simulator-by-rof th {
   border: 1px solid #5e5e5e;
   min-width: 75px;
   padding: 5px;
 }
 
-#dgt-fight-simulator-by-rof .invisible {
+.dgt-fight-simulator-by-rof .invisible {
   border-right: none !important;
 }
 
-#dgt-fight-simulator-by-rof .after-invisible {
+.dgt-fight-simulator-by-rof .after-invisible {
   border-left: none !important;
 }
 
 
-#dgt-fight-simulator-by-rof .top-header th {
+.dgt-fight-simulator-by-rof .top-header th {
   text-align: center;
 }
 
