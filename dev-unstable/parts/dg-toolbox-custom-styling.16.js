@@ -369,6 +369,16 @@ function applyCustomStyling(windowURL) {
         } else {
           grouped.set(fleet.eta, [detach(fleet)]);
         }
+
+        if (fl.querySelector('span.friendly')) {
+          fleet.classList.add('friendly-fleet');
+        }
+        if (fl.querySelector('span.allied')) {
+          fleet.classList.add('allied-fleet');
+        }
+        if (fl.querySelector('span.hostile')) {
+          fleet.classList.add('hostile-fleet');
+        }
       });
 
       for (let i = 0; i < 48; i++) {
