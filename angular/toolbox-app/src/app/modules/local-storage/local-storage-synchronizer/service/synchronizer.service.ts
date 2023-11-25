@@ -105,19 +105,24 @@ export class SynchronizerService {
     const isPlayerRankingsTurnZero: boolean = localMetadata.playersRankingsTurn.turn === 0;
     const isNewTurn: boolean = (turn > localMetadata.playersRankingsTurn.turn) && (countDownMinutes > 5 && countDownMinutes < 57);
 
-    if (!playerStats || isPlayerRankingsTurnZero || isNewTurn || force) {
-      this._updatesEmitter.emit(2);
-      this.loadPlayersRankings(this._playersRankingsEmitter);
+    if (!playerStats || playerStats.length == 0 || isPlayerRankingsTurnZero || isNewTurn || force) {
+      if (window.location.pathname.indexOf('/rankings/players') !== -1 || window.location.pathname.indexOf('/alliances') !== -1) {
+        this._updatesEmitter.emit(2);
+        this.loadPlayersRankings(this._playersRankingsEmitter);
+      }
     }
 
-    const allianceMembers = this.localStorageService.get(LocalStorageKeys.ALLIANCE_MEMBERS);
+    const allianceMembers: AllianceMember[] = this.localStorageService.get(LocalStorageKeys.ALLIANCE_MEMBERS);
     const isAllianceMembersTurnZero: boolean = localMetadata.allianceMembersTurn.turn === 0;
     const isTurnGreaterThanAllianceMembersTurn: boolean = turn > localMetadata.allianceMembersTurn.turn;
 
-    if (playerStats && (!allianceMembers || isAllianceMembersTurnZero || isTurnGreaterThanAllianceMembersTurn)) {
-      this.loadAllianceMembers(turn).then((): void => {
-        this._updatesEmitter.emit(0);
-      }).catch((error: any): void => console.log(error));
+    if (playerStats && (!allianceMembers || allianceMembers.length == 0 || isAllianceMembersTurnZero || isTurnGreaterThanAllianceMembersTurn)) {
+      if (window.location.pathname.indexOf('/alliances') !== -1) {
+        this._updatesEmitter.emit(1);
+        this.loadAllianceMembers(turn).then((): void => {
+          this._updatesEmitter.emit(0);
+        }).catch((error: any): void => console.log(error));
+      }
     }
   }
 
