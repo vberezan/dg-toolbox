@@ -2648,6 +2648,7 @@ dgt-scans-collector {
 .dgt-fight-simulation-info-text {
   float: left;
   width: 100%;
+  padding: 5px;
 }
 
 .dgt-fight-simulator-by-rof {
