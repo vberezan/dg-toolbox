@@ -621,7 +621,7 @@ a.right.navigation:hover svg {
 }
 
 .navigation .row > .hostile {
-  border: 1px solid #ad3636 !important;
+  border: 1px solid #8b2c2c !important;
 }
 
 .navigation .row .planets.hostile {
@@ -2568,7 +2568,7 @@ dgt-scans-collector {
 
 #planet-scan-additional > .hostile-fleet {
   background: #4b2b2b !important;
-  border: 1px solid #ad3636 !important;
+  border: 1px solid #8b2c2c !important;
 }
 
 #planet-scan-additional > .friendly-fleet {
@@ -2590,7 +2590,7 @@ dgt-scans-collector {
 #planet-scan-additional .dgt-fleet,
 #planet-scan-additional .dgt-empty {
   padding: 5px !important;
-  width: 291px !important;
+  width: 214.5px !important;
 }
 
 #planet-scan-additional .dgt-fleet > .ofHidden {
@@ -2599,7 +2599,7 @@ dgt-scans-collector {
 }
 
 #planet-scan-additional .hostile-fleet > .ofHidden {
-  border-bottom: 1px solid #ad3636 !important;
+  border-bottom: 1px solid #8b2c2c !important;
 }
 
 #planet-scan-additional .friendly-fleet > .ofHidden {
