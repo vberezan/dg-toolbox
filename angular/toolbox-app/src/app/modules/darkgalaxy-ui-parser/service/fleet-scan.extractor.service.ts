@@ -13,6 +13,8 @@ export class FleetScanExtractorService implements DataExtractor {
     let result: Fleet[] = [];
 
     if (document.querySelector('#planet-scan-additional')) {
+      console.log('x');
+
       const fleets: NodeListOf<Element> = document.querySelectorAll('#planet-scan-additional > div.left');
 
       fleets.forEach((fl: Element): void => {
