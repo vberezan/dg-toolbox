@@ -188,16 +188,16 @@ function applyCustomStyling(windowURL) {
       document.querySelectorAll('.navigation .row').forEach((row) => {
         row.style.paddingLeft = '120px';
       });
-
-      document.querySelectorAll('.navigation .row .planets').forEach((planet) => {
-        if (planet.querySelector('.allianceName') && planet.querySelector('.allianceName').textContent.toLowerCase().trim() === '[sol]') {
-          planet.classList.add('nap');
-          planet.classList.remove('hostile');
-          planet.querySelector('.allianceName').parentElement.classList.add('nap');
-          planet.querySelector('.allianceName').parentElement.classList.remove('hostile');
-        }
-      });
     }
+
+    document.querySelectorAll('.navigation .row .planets').forEach((planet) => {
+      if (planet.querySelector('.allianceName') && planet.querySelector('.allianceName').textContent.toLowerCase().trim() === '[sol]') {
+        planet.classList.add('nap');
+        planet.classList.remove('hostile');
+        planet.querySelector('.allianceName').parentElement.classList.add('nap');
+        planet.querySelector('.allianceName').parentElement.classList.remove('hostile');
+      }
+    });
   }
 
 
