@@ -11,7 +11,7 @@
         <span class="score stats">Score: <span class="value">{{member.stats.score | number:'1.0':'en-US'}}</span></span>
         <span class="combat-score stats">Combat: <span class="value">{{member.stats.combatScore | number:'1.0':'en-US'}}</span></span>
         <span class="planets stats">Planets: <span class="value">{{member.stats.planets}}</span></span>
-        <span *ngIf="userRole === UserRole.TEAM_LEADER || userRole === UserRole.ADMIN" class="dgt-version stats">DGT: <span class="value">{{member.dgtVersion}}</span></span>
+        <span *ngIf="member.dgtVersion !== '-' && (userRole === UserRole.TEAM_LEADER || userRole === UserRole.ADMIN)" class="dgt-version stats">DGT: <span class="value">{{member.dgtVersion}}</span></span>
         <div *ngIf="member.kickEta == null && userRole === UserRole.ADMIN" class="dgt-alliance-members-kick">
           <form (ngSubmit)="onSubmitKickMember($event)" #f="ngForm" action="/alliances/kick/" method="post">
             <input type="hidden" name="{{member.dgId | kickMemberFormatter}}" value="Kick Member"/>
