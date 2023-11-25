@@ -2579,6 +2579,12 @@ dgt-scans-collector {
   border: 1px solid #08BAFF !important;
 }
 
+.dgt-fleet .opacBackground,
+.dgt-fleet .opacLightBackground {
+  background: transparent !important;
+  border: none !important;
+}
+
 /********************/
 
 .playerRankingsList {
