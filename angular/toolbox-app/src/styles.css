@@ -2648,6 +2648,11 @@ dgt-scans-collector {
   border-right: none !important;
 }
 
+#dgt-fight-simulator-by-rof .after-invisible {
+  border-left: none !important;
+}
+
+
 #dgt-fight-simulator-by-rof .top-header th {
   text-align: center;
 }
