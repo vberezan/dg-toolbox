@@ -372,10 +372,26 @@ function applyCustomStyling(windowURL) {
       console.log(grouped);
 
       for (let i = 1; i < 48; i++) {
+        let lineBreak = 0;
         if (grouped.has(i)) {
           grouped.get(i).forEach((fleet) => {
+            lineBreak++;
             planetScanAdditional.append(fleet);
+
+            if (lineBreak === 3) {
+              lineBreak = 0;
+            }
           });
+
+          if (lineBreak > 0) {
+            for (let j = 0; j < 3 - lineBreak; j++) {
+              let empty = document.createElement('div');
+              empty.classList.add('dgt-empty');
+              empty.style.width = '301px';
+              empty.style.margin = '3px;';
+              planetScanAdditional.append(empty);
+            }
+          }
         }
       }
     }
