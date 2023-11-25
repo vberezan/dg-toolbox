@@ -231,6 +231,10 @@ span.nap {
   color: #b9b916 !important;
 }
 
+span.neutral {
+  color: #fff !important;
+}
+
 #content {
   width: 944px !important;
 }
@@ -629,6 +633,13 @@ a.right.navigation:hover svg {
 }
 .navigation .row .planets.nap {
   background: #4e4e17;
+}
+
+.navigation .row > .neutral {
+  border: 1px solid #fff !important;
+}
+.navigation .row .planets.neutral {
+  background: #3b3b3b;
 }
 
 
