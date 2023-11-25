@@ -7,7 +7,7 @@ export class Fleet {
   private _eta: number;
   private _hostile: boolean = false;
   private _allied: boolean = false;
-  private _mine: boolean = false;
+  private _friendly: boolean = false;
 
 
   get hostile(): boolean {
@@ -26,12 +26,12 @@ export class Fleet {
     this._allied = value;
   }
 
-  get mine(): boolean {
-    return this._mine;
+  get friendly(): boolean {
+    return this._friendly;
   }
 
-  set mine(value: boolean) {
-    this._mine = value;
+  set friendly(value: boolean) {
+    this._friendly = value;
   }
 
   get ships(): NameQuantity[] {
@@ -74,7 +74,7 @@ export class Fleet {
       ships: this.ships,
       hostile: this.hostile,
       allied: this.allied,
-      mine: this.mine
+      friendly: this.friendly
     }
   }
 }

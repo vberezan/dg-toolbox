@@ -1,4 +1,4 @@
-import {Injectable} from '@angular/core';
+import {Injectable, Optional} from '@angular/core';
 import {Fleet} from "../../../../shared/model/fleet/fleet.model";
 import {ShipType} from "../../../../shared/model/fleet/ship-type";
 import {NameQuantity} from "../../../../shared/model/name-quantity.model";
@@ -8,6 +8,75 @@ import {KillRate} from "../../../../shared/model/fleet/kill-rate.model";
   providedIn: 'root'
 })
 export class FightSimulatorService {
+
+  alliedFleet(scannedFleet: Fleet[], @Optional() eta: number = 0): Fleet {
+    let result: Fleet = new Fleet();
+
+    for (let fleet of scannedFleet) {
+      if (fleet.allied || fleet.friendly) {
+        if ((eta === 0) || (eta > 0 && fleet.eta <= eta)) {
+          // combine fleets
+          for (const ship of fleet.ships) {
+            let existingShip: NameQuantity = this.getShips(result, ship.name);
+
+            if (existingShip) {
+              existingShip.quantity += ship.quantity;
+            } else {
+              result.ships.push(new NameQuantity(ship.name, ship.quantity));
+            }
+          }
+        }
+      }
+    }
+
+    return result;
+  }
+
+  friendlyFleet(scannedFleet: Fleet[], @Optional() eta: number = 0): Fleet {
+    let result: Fleet = new Fleet();
+
+    for (let fleet of scannedFleet) {
+      if (fleet.friendly) {
+        if ((eta === 0) || (eta > 0 && fleet.eta <= eta)) {
+          // combine fleets
+          for (const ship of fleet.ships) {
+            let existingShip: NameQuantity = this.getShips(result, ship.name);
+
+            if (existingShip) {
+              existingShip.quantity += ship.quantity;
+            } else {
+              result.ships.push(new NameQuantity(ship.name, ship.quantity));
+            }
+          }
+        }
+      }
+    }
+
+    return result;
+  }
+
+  hostileFleet(scannedFleet: Fleet[], @Optional() eta: number = 0): Fleet {
+    let result: Fleet = new Fleet();
+
+    for (let fleet of scannedFleet) {
+      if (fleet.hostile) {
+        if ((eta === 0) || (eta > 0 && fleet.eta <= eta)) {
+          // combine fleets
+          for (const ship of fleet.ships) {
+            let existingShip: NameQuantity = this.getShips(result, ship.name);
+
+            if (existingShip) {
+              existingShip.quantity += ship.quantity;
+            } else {
+              result.ships.push(new NameQuantity(ship.name, ship.quantity));
+            }
+          }
+        }
+      }
+    }
+
+    return result;
+  }
 
   simulateFight(fleet1: Fleet, fleet2: Fleet): number {
     let requiredTurns: number = 0;

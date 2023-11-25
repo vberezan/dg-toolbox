@@ -19,7 +19,7 @@ export class FleetScanExtractorService implements DataExtractor {
       fleets.forEach((fl: Element): void => {
         let fleet: Fleet = new Fleet();
 
-        fleet.mine = fl.querySelector('span.friendly') ? true : false;
+        fleet.friendly = fl.querySelector('span.friendly') ? true : false;
         fleet.allied = fl.querySelector('span.allied') ? true : false;
         fleet.hostile = fl.querySelector('span.hostile') ? true : false;
 
@@ -28,25 +28,23 @@ export class FleetScanExtractorService implements DataExtractor {
         fleet.eta =  parseInt(fl.querySelector('.ofHidden:first-child > .right').textContent.trim().match(/\d+/)[0]);
 
         let fleetShips: NodeListOf<Element> = fl.querySelectorAll('table tr');
-        fleetShips.forEach((fs: Element): void => {
-          let ship: string = fs.querySelector('td:first-child').textContent.trim().toLowerCase();
-          let amount: number = parseInt(fs.querySelector('td:last-child').textContent.trim().match(/\d+/)[0]);
 
-          if (Object.values(ShipType).includes(ship as ShipType)) {
-            fleet.ships.push(new NameQuantity(ship, amount));
+        if (fleetShips.length > 0) {
+          fleetShips.forEach((fs: Element): void => {
+            let ship: string = fs.querySelector('td:first-child').textContent.trim().toLowerCase();
+            let amount: number = parseInt(fs.querySelector('td:last-child').textContent.trim().match(/\d+/)[0]);
+
+            if (Object.values(ShipType).includes(ship as ShipType)) {
+              fleet.ships.push(new NameQuantity(ship, amount));
+            }
+          });
+
+          if (fleet.ships.length > 0) {
+            result.push(fleet);
           }
-        });
-
-        console.log(fleet);
-
-        if (fleet.ships.length > 0) {
-          result.push(fleet);
         }
       });
     }
-
-
-    console.log(result);
 
     return result;
   }
