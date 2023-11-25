@@ -17,7 +17,7 @@ export class FleetScanDetailsComponent {
   url: string = "https://helloweenpt.com/darkgalaxy/combat-simulator";
 
   constructor() {
-    this.dgAPI.fleetScan();
+    // this.dgAPI.fleetScan();
 
     let fleet1: Fleet = new Fleet();
     let fleet2: Fleet = new Fleet();
