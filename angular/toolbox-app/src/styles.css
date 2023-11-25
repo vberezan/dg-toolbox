@@ -2613,11 +2613,12 @@ dgt-scans-collector {
 #planet-scan-additional .dgt-fleet > .ofHidden .right {
   font-size: 11px !important;
   margin-right: 5px !important;
+  color: #ffd46f;
 }
 
 #planet-scan-additional .dgt-fleet tr td {
   padding: 0 !important;
-  line-height: 19px;
+  line-height: 20px;
 }
 
 #planet-scan-additional .dgt-eta-separator {

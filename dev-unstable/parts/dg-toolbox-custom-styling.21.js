@@ -356,11 +356,14 @@ function applyCustomStyling(windowURL) {
 
       let grouped = new Map();
       fleets.forEach((fleet) => {
-        if (fleet.querySelector('.ofHidden:first-child > .right')) {
+        let eta = fleet.querySelector('.ofHidden:first-child > .right');
+        if (eta) {
           fleet.eta = parseInt(fleet.querySelector('.ofHidden:first-child > .right').textContent.trim().match(/\d+/)[0]);
+          eta.innerHTML = 'ETA ' + eta;
         } else {
           fleet.eta = 0;
         }
+
 
         if (grouped.has(fleet.eta)) {
           grouped.get(fleet.eta).push(detach(fleet));
