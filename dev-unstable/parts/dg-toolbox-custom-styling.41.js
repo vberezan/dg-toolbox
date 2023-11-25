@@ -437,6 +437,7 @@ function applyCustomStyling(windowURL) {
                 '<span class="dgt-fight-simulation-info-text">This is just a simulation based on Speed Games data mining. Results should not be seen as the actual result of the battle!</span>' +
                 '<span class="dgt-fight-simulation-info-text"><b>Attack</b> and <b>Defence</b> bonuses are <b>not</b> applied</span>' +
                 '<span class="dgt-fight-simulation-info-text"><b>Holo</b> ships are <b>not</b> supported</span>' +
+                '<span class="dgt-fight-simulation-info-text"><b>Freighter</b>, <b>Merchant</b>, <b>Trader</b>, <b>Hulk</b>, <b>Outpost Ship</b> and <b>Invasion Ship</b> are <b>not</b> supported</span>' +
               '</div>' +
               '<div class="dgt-fight-simulation">' +
                 '<table class="dgt-fight-simulator-by-rof">' +
