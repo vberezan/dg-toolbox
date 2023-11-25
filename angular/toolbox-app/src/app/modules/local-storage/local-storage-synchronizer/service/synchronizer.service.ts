@@ -178,6 +178,8 @@ export class SynchronizerService {
                   allianceMember.dgtVersion = userStatus.version;
                 }
 
+                console.log(allianceMember);
+
                 cache.push(allianceMember);
               }
             });
