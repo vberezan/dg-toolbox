@@ -179,6 +179,7 @@ export class SynchronizerService {
                 }
 
                 cache.push(allianceMember);
+                console.log(allianceMember);
               }
             });
           }
