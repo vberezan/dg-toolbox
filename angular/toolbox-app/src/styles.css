@@ -2585,6 +2585,25 @@ dgt-scans-collector {
   border: none !important;
 }
 
+#planet-scan-additional .dgt-fleet,
+#planet-scan-additional .dgt-empty {
+  padding: 5px !important;
+}
+
+#planet-scan-additional .dgt-fleet > .ofHidden {
+  padding: 0 !important;
+}
+
+#planet-scan-additional .dgt-fleet > .ofHidden .right {
+  font-size: 11px !important;
+  margin-right: 5px !important;
+}
+
+#planet-scan-additional .dgt-fleet tr td {
+  padding: 0 !important;
+  line-height: 17px;
+}
+
 /********************/
 
 .playerRankingsList {
