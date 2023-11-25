@@ -2618,6 +2618,18 @@ dgt-scans-collector {
   line-height: 19px;
 }
 
+#planet-scan-additional .dgt-eta-separator {
+  width: 100%;
+  height: 5px !important;
+  border-bottom: 1px solid #5e5e5e;
+  float: left;
+  margin-bottom: 5px;
+}
+
+#planet-scan-additional .dgt-eta-separator:last-child {
+  display: none;
+}
+
 /********************/
 
 .playerRankingsList {

@@ -402,12 +402,12 @@ function applyCustomStyling(windowURL) {
               planetScanAdditional.append(empty);
             }
           }
+
+          planetScanAdditional.append(etaSeparator);
         }
 
         let etaSeparator = document.createElement('div');
         etaSeparator.classList.add('dgt-eta-separator');
-
-        planetScanAdditional.append(etaSeparator);
       }
 
       let lineBreak = 0;
