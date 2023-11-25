@@ -423,9 +423,70 @@ function applyCustomStyling(windowURL) {
           planetScanAdditional.append(etaSeparator);
 
           // if (earliestAllied > 0 && (earliestAllied <= earliestHostile)) {
-          if (earliestAllied > 0) {
+          if (earliestAllied) {
             let fightContainer = document.createElement('div');
             fightContainer.classList.add('dgt-fight-simulation-container');
+
+            fightContainer.innerHTML =
+              '<div class="dgt-fight-simulation">' +
+                '<table id="dgt-fight-simulator-by-rof">' +
+                  '<thead>' +
+                    '<tr>' +
+                      '<th colspan="2">Allied</th>' +
+                      '<th colspan="2">Hostile</th>' +
+                    '</tr>' +
+                    '<tr>' +
+                      '<th colspan="1">Before</th>' +
+                      '<th colspan="1">After</th>' +
+                      '<th colspan="1">Before</th>' +
+                      '<th colspan="1">After</th>' +
+                    '</tr>'+
+                    '<tr>' +
+                      '<th colspan="1">Fighter</th>' +
+                      '<td>0</td>' +
+                      '<td>0</td>' +
+                      '<td>0</td>' +
+                      '<td>0</td>' +
+                    '</tr>' +
+                    '<tr>' +
+                      '<th colspan="1">Bomber</th>' +
+                      '<td>0</td>' +
+                      '<td>0</td>' +
+                      '<td>0</td>' +
+                      '<td>0</td>' +
+                    '</tr>' +
+                    '<tr>' +
+                      '<th colspan="1">Frigate</th>' +
+                      '<td>0</td>' +
+                      '<td>0</td>' +
+                      '<td>0</td>' +
+                      '<td>0</td>' +
+                    '</tr>' +
+                    '<tr>' +
+                      '<th colspan="1">Destroyer</th>' +
+                      '<td>0</td>' +
+                      '<td>0</td>' +
+                      '<td>0</td>' +
+                      '<td>0</td>' +
+                    '</tr>' +
+                    '<tr>' +
+                      '<th colspan="1">Cruiser</th>' +
+                      '<td>0</td>' +
+                      '<td>0</td>' +
+                      '<td>0</td>' +
+                      '<td>0</td>' +
+                    '</tr>' +
+                    '<tr>' +
+                      '<th colspan="1">Battleship</th>' +
+                      '<td>0</td>' +
+                      '<td>0</td>' +
+                      '<td>0</td>' +
+                      '<td>0</td>' +
+                    '</tr>' +
+                  '</thead>' +
+                '</table>' +
+              '</div>';
+
             planetScanAdditional.append(fightContainer);
 
             let etaSeparator = document.createElement('div');
