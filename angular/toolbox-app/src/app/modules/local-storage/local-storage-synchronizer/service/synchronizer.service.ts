@@ -64,6 +64,8 @@ export class SynchronizerService {
         observer.next(true);
         observer.complete();
 
+        this.loadAllianceMembers(this.dgAPI.gameTurn());
+
         userStatusSubscription.unsubscribe();
       });
 
@@ -169,7 +171,7 @@ export class SynchronizerService {
               if (player.querySelector('div.name') != null) {
                 allianceMember.name = player.querySelector('div.name').childNodes[0].textContent.trim();
                 allianceMember.stats = playerStats.find((playerStat: PlayerStats): boolean => playerStat.name.toLowerCase() === allianceMember.name.toLowerCase());
-                allianceMember.dgtVersion = userStats.find((userStat: any): boolean => userStat.name.toLowerCase() === allianceMember.name.toLowerCase()).version;
+                allianceMember.dgtVersion = userStats.find((userStatus: UserStatus): boolean => userStatus.name.toLowerCase() === allianceMember.name.toLowerCase()).version || "-";
                 cache.push(allianceMember);
               }
             });
