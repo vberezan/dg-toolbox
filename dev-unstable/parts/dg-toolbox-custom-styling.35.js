@@ -429,8 +429,7 @@ function applyCustomStyling(windowURL) {
             fightContainer.classList.add('dgt-fight-simulation-container');
 
             fightContainer.innerHTML =
-              '<div class="dgt-fight-simulation-info" ' +
-              '</div>' +
+              '<div class="dgt-fight-simulation-info"></div>' +
               '<div class="dgt-fight-simulation">' +
                 '<table class="dgt-fight-simulator-by-rof">' +
                     '<tr class="top-header">' +
