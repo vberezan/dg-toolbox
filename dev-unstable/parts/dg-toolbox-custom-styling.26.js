@@ -422,7 +422,8 @@ function applyCustomStyling(windowURL) {
           etaSeparator.classList.add('dgt-eta-separator');
           planetScanAdditional.append(etaSeparator);
 
-          if (earliestAllied > 0 && (earliestAllied <= earliestHostile)) {
+          // if (earliestAllied > 0 && (earliestAllied <= earliestHostile)) {
+          if (earliestAllied > 0) {
             let fightContainer = document.createElement('div');
             fightContainer.classList.add('dgt-fight-simulation-container');
             planetScanAdditional.append(fightContainer);
