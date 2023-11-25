@@ -384,11 +384,21 @@ function applyCustomStyling(windowURL) {
         }
       });
 
+      let earliestAllied = -1;
+      let earliestHostile = -1;
       for (let i = 0; i < 48; i++) {
         let lineBreak = 0;
 
         if (grouped.has(i)) {
           grouped.get(i).forEach((fleet) => {
+            if (earliestAllied < 0 && (fleet.classList.contains('allied-fleet') || fleet.classList.contains('friendly-fleet'))) {
+              earliestAllied = i;
+            }
+
+            if (earliestHostile < 0 && fleet.classList.contains('hostile-fleet')) {
+              earliestHostile = i;
+            }
+
             lineBreak++;
             planetScanAdditional.append(fleet);
 
@@ -411,6 +421,16 @@ function applyCustomStyling(windowURL) {
           let etaSeparator = document.createElement('div');
           etaSeparator.classList.add('dgt-eta-separator');
           planetScanAdditional.append(etaSeparator);
+
+          if (earliestAllied > 0 && (earliestAllied <= earliestHostile)) {
+            let fightContainer = document.createElement('div');
+            fightContainer.classList.add('dgt-fight-simulation-container');
+            planetScanAdditional.append(fightContainer);
+
+            let etaSeparator = document.createElement('div');
+            etaSeparator.classList.add('dgt-eta-separator');
+            planetScanAdditional.append(etaSeparator);
+          }
         }
       }
 
