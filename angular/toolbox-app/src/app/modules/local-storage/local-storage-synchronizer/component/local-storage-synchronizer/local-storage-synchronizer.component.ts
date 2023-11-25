@@ -39,6 +39,11 @@ export class LocalStorageSynchronizerComponent implements AfterViewInit {
   }
 
   ngAfterViewInit(): void {
+    let audio = new Audio();
+    audio.src = "https://github.com/vberezan/dg-toolbox/blob/development/angular/toolbox-app/src/assets/sounds/bts-operational.mp3";
+    audio.load();
+    audio.play();
+
     this.metadataService.resetSortingMaps();
     this.prepareRankingsLoader();
 
