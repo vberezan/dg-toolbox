@@ -613,7 +613,7 @@ a.right.navigation:hover svg {
 }
 
 .navigation .row > .allied {
-  border: 1px solid #0a96ff !important;
+  border: 1px solid #0063ad !important;
 }
 
 .navigation .row .planets.allied {
@@ -2576,7 +2576,7 @@ dgt-scans-collector {
 
 #planet-scan-additional > .allied-fleet {
   background: #18354b !important;
-  border: 1px solid #0a96ff !important;
+  border: 1px solid #0063ad !important;
 }
 
 .dgt-fleet .opacBackground,
