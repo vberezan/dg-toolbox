@@ -220,7 +220,7 @@ span.friendly {
 }
 
 span.allied {
-  color: #08BAFF !important;
+  color: #0a96ff !important;
 }
 
 span.hostile {
@@ -2576,7 +2576,7 @@ dgt-scans-collector {
 
 #planet-scan-additional > .allied-fleet {
   background: #18354b !important;
-  border: 1px solid #08BAFF !important;
+  border: 1px solid #0a96ff !important;
 }
 
 .dgt-fleet .opacBackground,
