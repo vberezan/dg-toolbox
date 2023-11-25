@@ -422,6 +422,7 @@ function applyCustomStyling(windowURL) {
           etaSeparator.classList.add('dgt-eta-separator');
           planetScanAdditional.append(etaSeparator);
 
+
           // if (earliestAllied > 0 && (earliestAllied <= earliestHostile)) {
           if (earliestAllied) {
             let fightContainer = document.createElement('div');
@@ -478,6 +479,30 @@ function applyCustomStyling(windowURL) {
                     '</tr>' +
                     '<tr>' +
                       '<th colspan="1">Battleship</th>' +
+                      '<td>0</td>' +
+                      '<td>0</td>' +
+                      '<td>0</td>' +
+                      '<td>0</td>' +
+                    '</tr>' +
+                    '<tr>' +
+                      '<th colspan="5">Resources Cost (2 metal = 3 mineral)</th>' +
+                    '</tr>' +
+                    '<tr>' +
+                      '<th colspan="1">Metal</th>' +
+                      '<td>0</td>' +
+                      '<td>0</td>' +
+                      '<td>0</td>' +
+                      '<td>0</td>' +
+                    '</tr>' +
+                    '<tr>' +
+                      '<th colspan="1">Mineral</th>' +
+                      '<td>0</td>' +
+                      '<td>0</td>' +
+                      '<td>0</td>' +
+                      '<td>0</td>' +
+                    '</tr>' +
+                    '<tr>' +
+                      '<th colspan="1">Total</th>' +
                       '<td>0</td>' +
                       '<td>0</td>' +
                       '<td>0</td>' +
