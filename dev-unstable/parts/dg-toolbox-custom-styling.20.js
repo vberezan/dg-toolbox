@@ -403,11 +403,10 @@ function applyCustomStyling(windowURL) {
             }
           }
 
+          let etaSeparator = document.createElement('div');
+          etaSeparator.classList.add('dgt-eta-separator');
           planetScanAdditional.append(etaSeparator);
         }
-
-        let etaSeparator = document.createElement('div');
-        etaSeparator.classList.add('dgt-eta-separator');
       }
 
       let lineBreak = 0;
