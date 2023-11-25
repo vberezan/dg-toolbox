@@ -605,7 +605,7 @@ a.right.navigation:hover svg {
 }
 
 .navigation .row > .friendly {
-  border: 1px solid #79ba1a !important;
+  border: 1px solid #4c760f !important;
 }
 
 .navigation .row .planets.friendly {
@@ -621,7 +621,7 @@ a.right.navigation:hover svg {
 }
 
 .navigation .row > .hostile {
-  border: 1px solid #df4a4a !important;
+  border: 1px solid #ad3636 !important;
 }
 
 .navigation .row .planets.hostile {
@@ -629,7 +629,7 @@ a.right.navigation:hover svg {
 }
 
 .navigation .row > .nap {
-  border: 1px solid #b9b916 !important;
+  border: 1px solid #81810c !important;
 }
 .navigation .row .planets.nap {
   background: #4e4e17;
@@ -2566,12 +2566,12 @@ dgt-scans-collector {
 
 #planet-scan-additional > .hostile-fleet {
   background: #4b2b2b !important;
-  border: 1px solid #df4a4a !important;
+  border: 1px solid #ad3636 !important;
 }
 
 #planet-scan-additional > .friendly-fleet {
     background: #3f4b2f !important;
-    border: 1px solid #79ba1a !important;
+    border: 1px solid #4c760f !important;
 }
 
 #planet-scan-additional > .allied-fleet {
