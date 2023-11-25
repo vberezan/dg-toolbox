@@ -99,10 +99,6 @@ export class SynchronizerService {
     const isPlayerRankingsTurnZero: boolean = localMetadata.playersRankingsTurn.turn === 0;
     const isNewTurn: boolean = (turn > localMetadata.playersRankingsTurn.turn) && (countDownMinutes > 5 && countDownMinutes < 57);
 
-    console.log('loadRankings', turn, countDownMinutes, isPlayerRankingsTurnZero, isNewTurn, force);
-    console.log('loadRankings', window.location.pathname.indexOf('/rankings/players'));
-    console.log('loadRankings', window.location.pathname.indexOf('/alliances'));
-
     if (!playerStats || playerStats.length == 0 || isPlayerRankingsTurnZero || isNewTurn || force) {
       if (window.location.pathname.indexOf('/rankings/players') !== -1 || window.location.pathname.indexOf('/alliances') !== -1) {
         this._updatesEmitter.emit(2);
