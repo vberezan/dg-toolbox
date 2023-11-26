@@ -34,6 +34,8 @@ export class FleetScanDetailsComponent {
     fleet2.ships.push(new NameQuantity(ShipType.BATTLESHIP, 75));
 
     // this.fightSimulatorService.simulateFight(fleet1, fleet2);
+
+    this.fightSimulatorService.createSimulation();
   }
 
 }

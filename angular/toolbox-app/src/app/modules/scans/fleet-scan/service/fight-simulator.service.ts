@@ -11,8 +11,50 @@ import {DarkgalaxyApiService} from "../../../darkgalaxy-ui-parser/service/darkga
 export class FightSimulatorService {
   private dgAPI: DarkgalaxyApiService = inject(DarkgalaxyApiService);
 
-  createSimulation() {
-    
+  createSimulation(): void {
+    const fightSimulation: Element = document.querySelector('.dgt-fight-simulation');
+    if (!fightSimulation) {
+      return;
+    }
+
+    const eta: number = parseInt(fightSimulation.attributes.getNamedItem('eta').value);
+    const fleets: Fleet[] = this.dgAPI.fleetScan();
+
+    const groupedFleets: Map<string, Fleet[]> = new Map<string, Fleet[]>();
+    const totalFleets: Map<string, Fleet> = new Map<string, Fleet>();
+
+    fleets.forEach((fleet: Fleet): void => {
+      const key: string = fleet.friendly ? 'friendly' : fleet.hostile ? 'hostile' : 'allied';
+
+      if (fleet.eta <= eta) {
+        groupedFleets.has(key) ? groupedFleets.get(key).push(fleet) : groupedFleets.set(key, [fleet]);
+      }
+    });
+
+    groupedFleets.forEach((fleetGroup: Fleet[], key: string): void => {
+      totalFleets.set(key, this.totalFleet(fleetGroup));
+    });
+
+    console.log(totalFleets.get('hostile'));
+  }
+
+  private totalFleet(scannedFleet: Fleet[]): Fleet {
+    let result: Fleet = new Fleet();
+
+    for (let fleet of scannedFleet) {
+      // combine fleets
+      for (const ship of fleet.ships) {
+        let existingShip: NameQuantity = this.getShips(result, ship.name);
+
+        if (existingShip) {
+          existingShip.quantity += ship.quantity;
+        } else {
+          result.ships.push(new NameQuantity(ship.name, ship.quantity));
+        }
+      }
+    }
+
+    return result;
   }
 
   private alliedFleet(scannedFleet: Fleet[], @Optional() eta: number = 0): Fleet {
@@ -129,7 +171,7 @@ export class FightSimulatorService {
   }
 
   private fightersAttack(fleetFighters: number, enemyFleet: Fleet): void {
-    const damageTable: KillRate[]  = [
+    const damageTable: KillRate[] = [
       new KillRate(ShipType.BOMBER, 0.33333),
       new KillRate(ShipType.FIGHTER, 0.91),
       new KillRate(ShipType.FRIGATE, 0.025),
@@ -212,7 +254,7 @@ export class FightSimulatorService {
 
       if (enemyShipGroup.quantity > 0 && attackingUnits > 0) {
         const killedUnits: number = Math.min(enemyShipGroup.quantity, Math.floor(rate * attackingUnits));
-        console.log(Math.floor( killedUnits / rate) + " " + attacker + " killed " + killedUnits + " " + killRate.target);
+        console.log(Math.floor(killedUnits / rate) + " " + attacker + " killed " + killedUnits + " " + killRate.target);
 
         enemyShipGroup.quantity = Math.max(0, enemyShipGroup.quantity - killedUnits);
         attackingUnits = Math.max(0, attackingUnits - Math.ceil(killedUnits / rate));
