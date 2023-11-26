@@ -197,7 +197,7 @@ function applyCustomStyling(windowURL) {
         planet.classList.remove('hostile');
         planet.querySelector('.allianceName').parentElement.classList.add('nap');
         planet.querySelector('.allianceName').parentElement.classList.remove('hostile');
-      } else if (planet.querySelector('.allianceName') && allianceName !== '[wp]' && allianceName !== '[skol]' ) {
+      } else if (planet.querySelector('.allianceName') && allianceName !== '[wp]' && allianceName !== '[skol]' && allianceName !== '[gog]') {
         planet.classList.add('peaceful');
         planet.classList.remove('hostile');
         planet.querySelector('.allianceName').parentElement.classList.add('peaceful');

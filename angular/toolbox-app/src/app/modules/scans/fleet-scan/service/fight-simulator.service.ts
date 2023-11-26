@@ -150,9 +150,6 @@ export class FightSimulatorService {
   private simulateFight(fleet1: Fleet, fleet2: Fleet, @Optional() turns:number = 1): Map<string, Fleet> {
     let requiredTurns: number = 0;
 
-    console.log(fleet1);
-    console.log(fleet2);
-
     while (!this.isFleetDestroyed(fleet1) && !this.isFleetDestroyed(fleet2) && requiredTurns < turns) {
       let copyF1 = JSON.parse(JSON.stringify(fleet1));
       let copyF2 = JSON.parse(JSON.stringify(fleet2));
