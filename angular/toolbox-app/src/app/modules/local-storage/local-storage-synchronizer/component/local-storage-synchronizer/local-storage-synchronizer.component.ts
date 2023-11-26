@@ -31,11 +31,6 @@ export class LocalStorageSynchronizerComponent implements AfterViewInit {
   protected playersPercentage: number = 0;
 
   constructor() {
-    let audio: HTMLAudioElement = new Audio();
-    audio.src = 'https://www.dropbox.com/scl/fi/kn5rrhile2ibz51o9wmi2/bts-operational.mp3';
-    audio.load();
-    audio.play();
-
     this.authService.authState.subscribe((state: AuthState): void => {
       this.authenticated = state.status;
     });
