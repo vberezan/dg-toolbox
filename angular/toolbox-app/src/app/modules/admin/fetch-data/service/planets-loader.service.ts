@@ -80,7 +80,7 @@ export class PlanetsLoaderService {
 
     cancelSubscription.unsubscribe();
 
-    await this.delay(scanDelay);
+    await this.delay(3000);
   }
 
   private mergeAlliancePlanets(alliancePlanets: Map<string, AlliancePlanets>): void {
