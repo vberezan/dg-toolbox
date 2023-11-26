@@ -430,7 +430,7 @@ function applyCustomStyling(windowURL) {
             fightContainer.classList.add('dgt-fight-simulation-container');
 
             fightContainer.innerHTML =
-              '<div class="dgt-fight-simulation-info" eta="' + (earliestAllied > earliestHostile ? earliestAllied : earliestHostile) +'">' +
+              '<div class="dgt-fight-simulation-info">' +
                 '<span class="dgt-fight-simulation-info-text">Battle Simulator</span>' +
                 '<span class="dgt-fight-simulation-info-text">Allied ETA: <b>' + earliestAllied + '</b></span>' +
                 '<span class="dgt-fight-simulation-info-text">Hostile ETA: <b>' + earliestHostile + '</b></span>' +
@@ -439,7 +439,7 @@ function applyCustomStyling(windowURL) {
                 '<span class="dgt-fight-simulation-info-text"><b>Holo Ships</b> are <b>not</b> supported</span>' +
                 '<span class="dgt-fight-simulation-info-text"><b>Transporter Ships</b> and <b>Invasion Ship</b> are <b>not</b> supported</span>' +
               '</div>' +
-              '<div class="dgt-fight-simulation">' +
+              '<div class="dgt-fight-simulation" eta="' + (earliestAllied > earliestHostile ? earliestAllied : earliestHostile) +'">' +
                 '<table class="dgt-fight-simulator-by-rof">' +
                     '<tr class="top-header">' +
                       '<th colspan="1" class="invisible"></th>' +
