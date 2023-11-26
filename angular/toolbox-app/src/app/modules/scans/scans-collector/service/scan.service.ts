@@ -106,13 +106,13 @@ export class ScanService {
         {
           responseType: 'text',
           headers: {
-            Accept: 'text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,*/*;q=0.8',
-            Content_Type: 'application/x-www-form-urlencoded',
-            Sec_Fetch_Dest: 'document',
-            Sec_Fetch_Mode: 'navigate',
-            Sec_Fetch_Site: 'same-origin',
-            Sec_Fetch_User: '?1',
-            Upgrade_Insecure_Requests: '1'
+            'Accept': 'text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,*/*;q=0.8',
+            'Content-Type': 'application/x-www-form-urlencoded',
+            'Sec-Fetch-Dest': 'document',
+            'Sec-Fetch-Mode': 'navigate',
+            'Sec-Fetch-Site': 'same-origin',
+            'Sec-Fetch-User': '?1',
+            'Upgrade-Insecure-Requests': '1'
           }
         })
       );
