@@ -19,10 +19,10 @@ export class FightSimulatorService {
 
     const eta: number = parseInt(fightSimulation.attributes.getNamedItem('eta').value);
     const fleets: Fleet[] = this.dgAPI.fleetScan();
-
     const groupedFleets: Map<string, Fleet[]> = new Map<string, Fleet[]>();
     const totalFleets: Map<string, Fleet> = new Map<string, Fleet>();
 
+    // -- group fleets by type
     fleets.forEach((fleet: Fleet): void => {
       const key: string = fleet.hostile ? 'hostile' : 'allied';
 
@@ -35,9 +35,24 @@ export class FightSimulatorService {
       totalFleets.set(key, this.totalFleet(fleetGroup));
     });
 
+
+    // -- merge fleets of the same type
     totalFleets.forEach((fleet: Fleet, key: string): void => {
+      fleet.hostile = key === 'hostile';
+      fleet.allied = key === 'allied';
+
       fleet.ships.forEach((ship: NameQuantity): void => {
         document.querySelector('.dgt-fight-simulator-by-rof tr.' + ship.name + ' td.before.' + key).innerHTML = ship.quantity.toString();
+      });
+    });
+
+    // -- simulate fight
+    const fightResult: Map<string, Fleet> = this.simulateFight(totalFleets.get('allied'), totalFleets.get('hostile'), 1);
+
+    // -- update table
+    fightResult.forEach((fleet: Fleet, key: string): void => {
+      fleet.ships.forEach((ship: NameQuantity): void => {
+        document.querySelector('.dgt-fight-simulator-by-rof tr.' + ship.name + ' td.after.' + key).innerHTML = ship.quantity.toString();
       });
     });
   }
@@ -130,10 +145,10 @@ export class FightSimulatorService {
     return result;
   }
 
-  private simulateFight(fleet1: Fleet, fleet2: Fleet): number {
+  private simulateFight(fleet1: Fleet, fleet2: Fleet, @Optional() turns:number = 1): Map<string, Fleet> {
     let requiredTurns: number = 0;
 
-    while (!this.isFleetDestroyed(fleet1) && !this.isFleetDestroyed(fleet2)) {
+    while (!this.isFleetDestroyed(fleet1) && !this.isFleetDestroyed(fleet2) && requiredTurns < turns) {
       let copyF1 = JSON.parse(JSON.stringify(fleet1));
       let copyF2 = JSON.parse(JSON.stringify(fleet2));
 
@@ -161,17 +176,10 @@ export class FightSimulatorService {
       this.battleShipAttack(this.getShips(copyF1, ShipType.BATTLESHIP).quantity, fleet2);
       this.battleShipAttack(this.getShips(copyF2, ShipType.BATTLESHIP).quantity, fleet1);
 
-      console.log("Fleet 1: " + fleet1.ships.map((nameQuantity: NameQuantity): string => nameQuantity.name + ": " + nameQuantity.quantity).join(", "));
-      console.log("Fleet 2: " + fleet2.ships.map((nameQuantity: NameQuantity): string => nameQuantity.name + ": " + nameQuantity.quantity).join(", "));
-
       requiredTurns++;
     }
 
-    console.log("Battle ended in " + requiredTurns + " turns:");
-    console.log("Fleet 1: " + fleet1.ships.map((nameQuantity: NameQuantity): string => nameQuantity.name + ": " + nameQuantity.quantity).join(", "));
-    console.log("Fleet 2: " + fleet2.ships.map((nameQuantity: NameQuantity): string => nameQuantity.name + ": " + nameQuantity.quantity).join(", "));
-
-    return requiredTurns;
+    return new Map<string, Fleet>([fleet1.hostile ? ['hostile', fleet1] : ['allied', fleet1], fleet2.hostile ? ['hostile', fleet2] : ['allied', fleet2]]);
   }
 
   private fightersAttack(fleetFighters: number, enemyFleet: Fleet): void {
