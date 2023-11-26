@@ -430,7 +430,7 @@ function applyCustomStyling(windowURL) {
             fightContainer.classList.add('dgt-fight-simulation-container');
 
             fightContainer.innerHTML =
-              '<div class="dgt-fight-simulation-info">' +
+              '<div class="dgt-fight-simulation-info" eta="' + (earliestAllied > earliestHostile ? earliestAllied : earliestHostile) +'">' +
                 '<span class="dgt-fight-simulation-info-text">Battle Simulator</span>' +
                 '<span class="dgt-fight-simulation-info-text">Allied ETA: <b>' + earliestAllied + '</b></span>' +
                 '<span class="dgt-fight-simulation-info-text">Hostile ETA: <b>' + earliestHostile + '</b></span>' +

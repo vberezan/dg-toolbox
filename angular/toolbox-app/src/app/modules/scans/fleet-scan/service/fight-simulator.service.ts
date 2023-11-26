@@ -1,15 +1,21 @@
-import {Injectable, Optional} from '@angular/core';
+import {inject, Injectable, Optional} from '@angular/core';
 import {Fleet} from "../../../../shared/model/fleet/fleet.model";
 import {ShipType} from "../../../../shared/model/fleet/ship-type";
 import {NameQuantity} from "../../../../shared/model/name-quantity.model";
 import {KillRate} from "../../../../shared/model/fleet/kill-rate.model";
+import {DarkgalaxyApiService} from "../../../darkgalaxy-ui-parser/service/darkgalaxy-api.service";
 
 @Injectable({
   providedIn: 'root'
 })
 export class FightSimulatorService {
+  private dgAPI: DarkgalaxyApiService = inject(DarkgalaxyApiService);
 
-  alliedFleet(scannedFleet: Fleet[], @Optional() eta: number = 0): Fleet {
+  createSimulation() {
+    
+  }
+
+  private alliedFleet(scannedFleet: Fleet[], @Optional() eta: number = 0): Fleet {
     let result: Fleet = new Fleet();
 
     for (let fleet of scannedFleet) {
@@ -32,7 +38,7 @@ export class FightSimulatorService {
     return result;
   }
 
-  friendlyFleet(scannedFleet: Fleet[], @Optional() eta: number = 0): Fleet {
+  private friendlyFleet(scannedFleet: Fleet[], @Optional() eta: number = 0): Fleet {
     let result: Fleet = new Fleet();
 
     for (let fleet of scannedFleet) {
@@ -55,7 +61,7 @@ export class FightSimulatorService {
     return result;
   }
 
-  hostileFleet(scannedFleet: Fleet[], @Optional() eta: number = 0): Fleet {
+  private hostileFleet(scannedFleet: Fleet[], @Optional() eta: number = 0): Fleet {
     let result: Fleet = new Fleet();
 
     for (let fleet of scannedFleet) {
@@ -78,7 +84,7 @@ export class FightSimulatorService {
     return result;
   }
 
-  simulateFight(fleet1: Fleet, fleet2: Fleet): number {
+  private simulateFight(fleet1: Fleet, fleet2: Fleet): number {
     let requiredTurns: number = 0;
 
     while (!this.isFleetDestroyed(fleet1) && !this.isFleetDestroyed(fleet2)) {

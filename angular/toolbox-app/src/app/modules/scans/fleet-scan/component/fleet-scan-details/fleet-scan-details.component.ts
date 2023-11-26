@@ -12,13 +12,10 @@ import {DarkgalaxyApiService} from "../../../../darkgalaxy-ui-parser/service/dar
 })
 export class FleetScanDetailsComponent {
   private fightSimulatorService: FightSimulatorService = inject(FightSimulatorService);
-  private dgAPI: DarkgalaxyApiService = inject(DarkgalaxyApiService);
 
   url: string = "https://helloweenpt.com/darkgalaxy/combat-simulator";
 
   constructor() {
-    console.log(this.dgAPI.fleetScan());
-
     let fleet1: Fleet = new Fleet();
     let fleet2: Fleet = new Fleet();
 
