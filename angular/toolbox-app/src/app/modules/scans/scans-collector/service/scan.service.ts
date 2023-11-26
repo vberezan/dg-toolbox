@@ -103,10 +103,12 @@ export class ScanService {
           'coordinate.2': '1',
           'coordinate.3': '1'
         },
-        {responseType: 'text'}));
+        {responseType: 'text'})
+      );
 
-      console.log(source);
       let dom: Document = new DOMParser().parseFromString(source, 'text/html');
+
+      console.log(dom.querySelector('.metal.data'));
     }
 
     return result;
