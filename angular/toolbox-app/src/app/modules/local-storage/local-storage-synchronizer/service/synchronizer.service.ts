@@ -71,7 +71,7 @@ export class SynchronizerService {
     });
   }
 
-  async loadPlanets(turn: number, countDownMinutes: number): Promise<void> {
+  async loadPlanets(): Promise<void> {
     let localMetadata: Metadata = this.localStorageService.localMetadata();
     const remoteMetadata: Metadata = this.localStorageService.get(LocalStorageKeys.REMOTE_METADATA);
     const isLocalTurnZero: boolean = localMetadata.planetsTurn.turn === 0;
@@ -93,11 +93,11 @@ export class SynchronizerService {
     this._updatesEmitter.emit(-1);
   }
 
-  loadRankings(turn: number, countDownMinutes: number, @Optional() force: boolean = false): void {
+  loadRankings(turn: number, @Optional() force: boolean = false): void {
     const localMetadata: Metadata = this.localStorageService.localMetadata();
     const playerStats: PlayerStats[] = this.localStorageService.get(LocalStorageKeys.PLAYERS_STATS);
     const isPlayerRankingsTurnZero: boolean = localMetadata.playersRankingsTurn.turn === 0;
-    const isNewTurn: boolean = (turn > localMetadata.playersRankingsTurn.turn) && (countDownMinutes > 5 && countDownMinutes < 57);
+    const isNewTurn: boolean = turn > localMetadata.playersRankingsTurn.turn;
 
     if (!playerStats || playerStats.length == 0 || isPlayerRankingsTurnZero || isNewTurn || force) {
       if (window.location.pathname.indexOf('/rankings/players') !== -1 || window.location.pathname.indexOf('/alliances') !== -1) {
