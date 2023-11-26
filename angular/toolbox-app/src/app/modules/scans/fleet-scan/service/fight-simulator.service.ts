@@ -49,8 +49,6 @@ export class FightSimulatorService {
     // -- simulate fight
     const fightResult: Map<string, Fleet> = this.simulateFight(totalFleets.get('allied'), totalFleets.get('hostile'), 1);
 
-    console.log(fightResult.get('allied'));
-
     // -- update table
     fightResult.forEach((fleet: Fleet, key: string): void => {
       fleet.ships.forEach((ship: NameQuantity): void => {
@@ -180,6 +178,9 @@ export class FightSimulatorService {
 
       requiredTurns++;
     }
+
+    console.log(fleet1);
+    console.log(fleet2);
 
     return new Map<string, Fleet>([fleet1.hostile ? ['hostile', fleet1] : ['allied', fleet1], fleet2.hostile ? ['hostile', fleet2] : ['allied', fleet2]]);
   }
