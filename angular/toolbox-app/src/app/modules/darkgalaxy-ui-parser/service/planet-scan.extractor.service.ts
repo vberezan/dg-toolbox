@@ -13,6 +13,8 @@ import {Owner} from "../../../shared/model/scans/scan-owner.model";
 })
 export class PlanetScanExtractorService implements DataExtractor {
   extract(@Optional() dom: Document = document): PlanetScanEvent {
+    console.log(dom.querySelector('body'));
+
     // -- no scan
     if (dom.querySelectorAll('#contentBox #planetHeader').length <= 1) {
       return null;

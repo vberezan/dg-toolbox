@@ -111,8 +111,6 @@ export class ScanService {
       result.push(this.dgAPI.planetScan(dom));
     }
 
-    console.log(result);
-
     return result;
   }
 
