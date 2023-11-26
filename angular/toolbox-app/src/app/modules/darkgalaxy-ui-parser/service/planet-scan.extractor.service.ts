@@ -1,4 +1,4 @@
-import {Injectable, Optional} from '@angular/core';
+import {Injectable} from '@angular/core';
 import {DataExtractor} from "./data-extractor";
 import {PlanetScan} from "../../../shared/model/scans/planet-scan.model";
 import {ScanType} from "../../../shared/model/scans/scan-type";
@@ -12,17 +12,17 @@ import {Owner} from "../../../shared/model/scans/scan-owner.model";
   providedIn: 'platform'
 })
 export class PlanetScanExtractorService implements DataExtractor {
-  extract(@Optional() dom: Document = document): PlanetScanEvent {
+  extract(): PlanetScanEvent {
     // -- no scan
-    if (dom.querySelectorAll('#contentBox #planetHeader').length <= 1) {
+    if (document.querySelectorAll('#contentBox #planetHeader').length <= 1) {
       return null;
     }
 
     let planetScan: PlanetScan = new PlanetScan();
-    let base: Element = dom.querySelectorAll('#contentBox #planetHeader')[1];
+    let base: Element = document.querySelectorAll('#contentBox #planetHeader')[1];
     let scanType: ScanType;
 
-    dom.querySelectorAll('input[name="scanId"]').forEach((input: Element, index: number): void => {
+    document.querySelectorAll('input[name="scanId"]').forEach((input: Element, index: number): void => {
       if (input.hasAttribute('checked')) {
         switch (index) {
           case 0: {
@@ -46,7 +46,7 @@ export class PlanetScanExtractorService implements DataExtractor {
     let result: PlanetScanEvent = new PlanetScanEvent(planetScan, scanType);
 
     if (scanType !== ScanType.UNKNOWN) {
-      result.planetScan.turn = parseInt(dom.querySelector('#turnNumber').textContent.trim().replace(/,/g, ''));
+      result.planetScan.turn = parseInt(document.querySelector('#turnNumber').textContent.trim().replace(/,/g, ''));
 
       let ownerAlliance: string = base.querySelectorAll('.planetHeadSection .opacBackground>.left>span')[1] ?
         base.querySelectorAll('.planetHeadSection .opacBackground>.left>span')[1].textContent.trim() : '[-]';

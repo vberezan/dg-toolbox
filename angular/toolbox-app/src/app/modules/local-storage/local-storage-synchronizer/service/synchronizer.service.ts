@@ -1,5 +1,5 @@
 import {EventEmitter, inject, Injectable, Optional} from '@angular/core';
-import {collection, collectionData, doc, docData, Firestore, limit, query, setDoc, updateDoc, where} from "@angular/fire/firestore";
+import {collection, collectionData, doc, docData, Firestore, query, setDoc, updateDoc} from "@angular/fire/firestore";
 import {LocalStorageService} from "../../local-storage-manager/service/local-storage.service";
 import {firstValueFrom, Subscriber, Subscription} from "rxjs";
 import {DocumentData} from "@angular/fire/compat/firestore";

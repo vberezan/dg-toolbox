@@ -1,4 +1,4 @@
-import {AfterViewInit, Component, inject, OnDestroy, OnInit} from '@angular/core';
+import {AfterViewInit, Component, inject, OnDestroy} from '@angular/core';
 import {ScanService} from "../../service/scan.service";
 import {AuthService} from "../../../../authentication/service/auth.service";
 import {AuthState} from "../../../../../shared/model/authentication/auth-state.model";
@@ -35,8 +35,6 @@ export class ScanCollectorComponent implements AfterViewInit, OnDestroy {
         document.querySelector('dgt-scans-collector .dgt-spinner-container').classList.remove('show');
       }
     });
-
-    // this.scanService.scanSystem();
 
     this.authService.checkLoginValidity();
   }

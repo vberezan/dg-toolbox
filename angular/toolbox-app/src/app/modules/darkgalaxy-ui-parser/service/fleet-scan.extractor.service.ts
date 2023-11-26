@@ -1,4 +1,4 @@
-import { Injectable } from '@angular/core';
+import {Injectable} from '@angular/core';
 import {DataExtractor} from "./data-extractor";
 import {Fleet} from "../../../shared/model/fleet/fleet.model";
 import {NameQuantity} from "../../../shared/model/name-quantity.model";

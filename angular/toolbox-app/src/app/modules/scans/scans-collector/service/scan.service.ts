@@ -6,8 +6,7 @@ import {ScanType} from "../../../../shared/model/scans/scan-type";
 import {Resource} from "../../../../shared/model/planets/resource.model";
 import {collection, collectionData, doc, Firestore, limit, query, setDoc, updateDoc, where} from "@angular/fire/firestore";
 import firebase from "firebase/compat";
-import {firstValueFrom, Subscription} from "rxjs";
-import {HttpClient} from "@angular/common/http";
+import {Subscription} from "rxjs";
 import DocumentData = firebase.firestore.DocumentData;
 
 @Injectable({
@@ -16,18 +15,9 @@ import DocumentData = firebase.firestore.DocumentData;
 export class ScanService {
   private firestore: Firestore = inject(Firestore);
   private dgAPI: DarkgalaxyApiService = inject(DarkgalaxyApiService);
-  private httpClient: HttpClient = inject(HttpClient);
 
   extractScan(): PlanetScanEvent {
     return this.dgAPI.planetScan();
-  }
-
-  async scanSystem(): Promise<void> {
-    const scans: PlanetScanEvent[] = await this.extractSystemScan();
-
-    scans.forEach((scanEvent: PlanetScanEvent): void => {
-      this.updateScan(scanEvent);
-    });
   }
 
   updateScan(scanEvent: PlanetScanEvent): void {
@@ -89,41 +79,4 @@ export class ScanService {
       subscription.unsubscribe();
     });
   }
-
-  private async extractSystemScan(): Promise<PlanetScanEvent[]> {
-    let result: PlanetScanEvent[] = [];
-
-    for (let i = 1; i <= 12; i++) {
-      await this.delay(500);
-      let source: string = await firstValueFrom(this.httpClient.post(window.location.href + 'scan/',
-        {
-          'scanId': '191',
-          'coordinate.0': '1',
-          'coordinate.1': '1',
-          'coordinate.2': '1',
-          'coordinate.3': i.toString(),
-        },
-        {
-          responseType: 'text',
-          headers: {
-            'Accept': 'text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,*/*;q=0.8',
-            'Content-Type': 'application/x-www-form-urlencoded',
-            'Sec-Fetch-Dest': 'document',
-            'Sec-Fetch-Mode': 'navigate',
-            'Sec-Fetch-Site': 'same-origin',
-            'Sec-Fetch-User': '?1',
-            'Upgrade-Insecure-Requests': '1'
-          }
-        })
-      );
-
-      let dom: Document = new DOMParser().parseFromString(source, 'text/html');
-
-      result.push(this.dgAPI.planetScan(dom));
-    }
-
-    return result;
-  }
-
-  private delay = async (ms: number): Promise<unknown> => new Promise(res => setTimeout(res, ms));
 }
