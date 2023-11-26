@@ -97,7 +97,7 @@ export class ScanService {
       await this.delay(1000);
       let source: string = await firstValueFrom(this.httpClient.post(window.location.href + 'scan/',
         {
-          'scanId': '191',
+          'scanId': '192',
           'coordinate.0': '1',
           'coordinate.1': '1',
           'coordinate.2': '1',
@@ -108,7 +108,7 @@ export class ScanService {
 
       let dom: Document = new DOMParser().parseFromString(source, 'text/html');
 
-      console.log(dom.querySelector('.metal.data'));
+      console.log(dom.querySelector('.metal.data').textContent.trim());
     }
 
     return result;
