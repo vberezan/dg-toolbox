@@ -22,8 +22,6 @@ export class PlanetScanExtractorService implements DataExtractor {
     let base: Element = dom.querySelectorAll('#contentBox #planetHeader')[1];
     let scanType: ScanType;
 
-    console.log(base);
-
     dom.querySelectorAll('input[name="scanId"]').forEach((input: Element, index: number): void => {
       if (input.hasAttribute('checked')) {
         switch (index) {
