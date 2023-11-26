@@ -148,6 +148,9 @@ export class FightSimulatorService {
   private simulateFight(fleet1: Fleet, fleet2: Fleet, @Optional() turns:number = 1): Map<string, Fleet> {
     let requiredTurns: number = 0;
 
+    console.log(fleet1);
+    console.log(fleet2);
+
     while (!this.isFleetDestroyed(fleet1) && !this.isFleetDestroyed(fleet2) && requiredTurns < turns) {
       let copyF1 = JSON.parse(JSON.stringify(fleet1));
       let copyF2 = JSON.parse(JSON.stringify(fleet2));
@@ -178,9 +181,6 @@ export class FightSimulatorService {
 
       requiredTurns++;
     }
-
-    console.log(fleet1);
-    console.log(fleet2);
 
     return new Map<string, Fleet>([fleet1.hostile ? ['hostile', fleet1] : ['allied', fleet1], fleet2.hostile ? ['hostile', fleet2] : ['allied', fleet2]]);
   }
@@ -269,7 +269,6 @@ export class FightSimulatorService {
 
       if (enemyShipGroup.quantity > 0 && attackingUnits > 0) {
         const killedUnits: number = Math.min(enemyShipGroup.quantity, Math.floor(rate * attackingUnits));
-        console.log(Math.floor(killedUnits / rate) + " " + attacker + " killed " + killedUnits + " " + killRate.target);
 
         enemyShipGroup.quantity = Math.max(0, enemyShipGroup.quantity - killedUnits);
         attackingUnits = Math.max(0, attackingUnits - Math.ceil(killedUnits / rate));
