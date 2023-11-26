@@ -23,8 +23,8 @@ export class DarkgalaxyApiService {
     return this.planetListExtractor.extract();
   }
 
-  planetScan(): PlanetScanEvent {
-    return this.planetScanExtractor.extract();
+  planetScan(@Optional() dom: Document = document): PlanetScanEvent {
+    return this.planetScanExtractor.extract(dom);
   }
 
   fleetScan(): Fleet[] {

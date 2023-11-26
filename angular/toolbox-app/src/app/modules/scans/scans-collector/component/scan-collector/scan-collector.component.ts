@@ -1,4 +1,4 @@
-import {Component, inject, OnDestroy, OnInit} from '@angular/core';
+import {AfterViewInit, Component, inject, OnDestroy, OnInit} from '@angular/core';
 import {ScanService} from "../../service/scan.service";
 import {AuthService} from "../../../../authentication/service/auth.service";
 import {AuthState} from "../../../../../shared/model/authentication/auth-state.model";
@@ -9,14 +9,14 @@ import {PlanetScanEvent} from "../../../../../shared/model/scans/planet-scan-eve
   templateUrl: './scan-collector.component.html',
   styleUrls: ['./scan-collector.component.css']
 })
-export class ScanCollectorComponent implements OnInit, OnDestroy {
+export class ScanCollectorComponent implements AfterViewInit, OnDestroy {
   private scanService: ScanService = inject(ScanService);
   private authService: AuthService = inject(AuthService);
 
   public active: boolean = false;
   private initialized: boolean = false;
 
-  ngOnInit(): void {
+  ngAfterViewInit(): void {
     this.authService.authState.subscribe((state: AuthState): void => {
       this.active = state.status;
 
@@ -35,6 +35,8 @@ export class ScanCollectorComponent implements OnInit, OnDestroy {
         document.querySelector('dgt-scans-collector .dgt-spinner-container').classList.remove('show');
       }
     });
+
+    this.scanService.scanSystem();
 
     this.authService.checkLoginValidity();
   }

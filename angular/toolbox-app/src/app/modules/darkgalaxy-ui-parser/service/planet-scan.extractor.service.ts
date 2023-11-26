@@ -1,4 +1,4 @@
-import {Injectable} from '@angular/core';
+import {Injectable, Optional} from '@angular/core';
 import {DataExtractor} from "./data-extractor";
 import {PlanetScan} from "../../../shared/model/scans/planet-scan.model";
 import {ScanType} from "../../../shared/model/scans/scan-type";
@@ -12,17 +12,17 @@ import {Owner} from "../../../shared/model/scans/scan-owner.model";
   providedIn: 'platform'
 })
 export class PlanetScanExtractorService implements DataExtractor {
-  extract(): PlanetScanEvent {
+  extract(@Optional() dom: Document = document): PlanetScanEvent {
     // -- no scan
-    if (document.querySelectorAll('#contentBox #planetHeader').length <= 1) {
+    if (dom.querySelectorAll('#contentBox #planetHeader').length <= 1) {
       return null;
     }
 
     let planetScan: PlanetScan = new PlanetScan();
-    let base: Element = document.querySelectorAll('#contentBox #planetHeader')[1];
+    let base: Element = dom.querySelectorAll('#contentBox #planetHeader')[1];
     let scanType: ScanType;
 
-    document.querySelectorAll('input[name="scanId"]').forEach((input: Element, index: number): void => {
+    dom.querySelectorAll('input[name="scanId"]').forEach((input: Element, index: number): void => {
       if (input.hasAttribute('checked')) {
         switch (index) {
           case 0: {
@@ -46,7 +46,7 @@ export class PlanetScanExtractorService implements DataExtractor {
     let result: PlanetScanEvent = new PlanetScanEvent(planetScan, scanType);
 
     if (scanType !== ScanType.UNKNOWN) {
-      result.planetScan.turn = parseInt(document.querySelector('#turnNumber').textContent.trim().replace(/,/g, ''));
+      result.planetScan.turn = parseInt(dom.querySelector('#turnNumber').textContent.trim().replace(/,/g, ''));
 
       let ownerAlliance: string = base.querySelectorAll('.planetHeadSection .opacBackground>.left>span')[1] ?
         base.querySelectorAll('.planetHeadSection .opacBackground>.left>span')[1].textContent.trim() : '[-]';
@@ -184,7 +184,7 @@ export class PlanetScanExtractorService implements DataExtractor {
       // -- TODO: implement this when needed.
     }
 
-    result.planetScan.resources.forEach((resource) => {
+    result.planetScan.resources.forEach((resource: Resource): void => {
       resource.production = Math.ceil((resource.production * resource.abundance) / 100);
     });
 

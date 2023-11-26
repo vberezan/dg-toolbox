@@ -6,7 +6,8 @@ import {ScanType} from "../../../../shared/model/scans/scan-type";
 import {Resource} from "../../../../shared/model/planets/resource.model";
 import {collection, collectionData, doc, Firestore, limit, query, setDoc, updateDoc, where} from "@angular/fire/firestore";
 import firebase from "firebase/compat";
-import {Subscription} from "rxjs";
+import {firstValueFrom, Subscription} from "rxjs";
+import {HttpClient} from "@angular/common/http";
 import DocumentData = firebase.firestore.DocumentData;
 
 @Injectable({
@@ -15,9 +16,18 @@ import DocumentData = firebase.firestore.DocumentData;
 export class ScanService {
   private firestore: Firestore = inject(Firestore);
   private dgAPI: DarkgalaxyApiService = inject(DarkgalaxyApiService);
+  private httpClient: HttpClient = inject(HttpClient);
 
   extractScan(): PlanetScanEvent {
     return this.dgAPI.planetScan();
+  }
+
+  async scanSystem(): Promise<void> {
+    const scans: PlanetScanEvent[] = await this.extractSystemScan();
+
+    scans.forEach((scanEvent: PlanetScanEvent): void => {
+      this.updateScan(scanEvent);
+    });
   }
 
   updateScan(scanEvent: PlanetScanEvent): void {
@@ -79,4 +89,28 @@ export class ScanService {
       subscription.unsubscribe();
     });
   }
+
+  private async extractSystemScan(): Promise<PlanetScanEvent[]> {
+    let result: PlanetScanEvent[] = [];
+
+    for (let i = 1; i <= 12; i++) {
+      await this.delay(1000);
+      let source: string = await firstValueFrom(this.httpClient.post(window.location.href,
+        {
+          'scanId': '191',
+          'coordinate.0': '1',
+          'coordinate.1': '1',
+          'coordinate.2': '1',
+          'coordinate.3': '1'
+        },
+        {responseType: 'text'}));
+
+      console.log(source);
+      let dom: Document = new DOMParser().parseFromString(source, 'text/html');
+    }
+
+    return result;
+  }
+
+  private delay = async (ms: number): Promise<unknown> => new Promise(res => setTimeout(res, ms));
 }

@@ -1,4 +1,5 @@
+
 export interface DataExtractor {
-  extract(): any;
+  extract(dom?: Document): any;
   cleanAfterExtract(): void;
 }
