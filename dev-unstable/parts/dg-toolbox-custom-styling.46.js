@@ -572,6 +572,7 @@ function applyCustomStyling(windowURL) {
 
       let scanButton = document.createElement('button');
       let scanAndNextButton = document.createElement('button');
+      let scanSystemButton = document.createElement('button');
 
       scanButton.onmousedown = () => {
         localStorage.removeItem('next-scan');
