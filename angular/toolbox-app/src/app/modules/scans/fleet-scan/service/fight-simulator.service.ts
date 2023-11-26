@@ -24,7 +24,7 @@ export class FightSimulatorService {
     const totalFleets: Map<string, Fleet> = new Map<string, Fleet>();
 
     fleets.forEach((fleet: Fleet): void => {
-      const key: string = fleet.friendly ? 'friendly' : fleet.hostile ? 'hostile' : 'allied';
+      const key: string = fleet.hostile ? 'hostile' : 'allied';
 
       if (fleet.eta <= eta) {
         groupedFleets.has(key) ? groupedFleets.get(key).push(fleet) : groupedFleets.set(key, [fleet]);
@@ -35,7 +35,11 @@ export class FightSimulatorService {
       totalFleets.set(key, this.totalFleet(fleetGroup));
     });
 
-
+    totalFleets.forEach((fleet: Fleet, key: string): void => {
+      fleet.ships.forEach((ship: NameQuantity): void => {
+        document.querySelector('.dgt-fight-simulator-by-rof tr.' + ship.name + ' td.before.' + key).innerHTML = ship.quantity.toString();
+      });
+    });
   }
 
   private totalFleet(scannedFleet: Fleet[]): Fleet {
