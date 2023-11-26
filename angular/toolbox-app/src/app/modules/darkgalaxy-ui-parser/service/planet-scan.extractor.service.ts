@@ -13,8 +13,6 @@ import {Owner} from "../../../shared/model/scans/scan-owner.model";
 })
 export class PlanetScanExtractorService implements DataExtractor {
   extract(@Optional() dom: Document = document): PlanetScanEvent {
-    console.log(dom.querySelector('#contentBox #planetHeader'));
-
     // -- no scan
     if (dom.querySelectorAll('#contentBox #planetHeader').length <= 1) {
       return null;
@@ -189,6 +187,8 @@ export class PlanetScanExtractorService implements DataExtractor {
     result.planetScan.resources.forEach((resource: Resource): void => {
       resource.production = Math.ceil((resource.production * resource.abundance) / 100);
     });
+
+    console.log(result);
 
     return result;
   }
