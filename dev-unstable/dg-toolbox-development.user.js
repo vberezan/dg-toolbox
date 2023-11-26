@@ -27,7 +27,7 @@ function loadResource(element) {
 
 function getVersion() {
   if (localStorage.getItem('js-version')) return JSON.parse(localStorage.getItem('js-version')).value;
-  else return 'v2.0.8';
+  else return 'v2.0.9';
 }
 
 function loadSetups(windowURL) {
@@ -47,7 +47,7 @@ function loadCustomStyling(windowURL) {
 
   loadResource({
     tagName: 'script',
-    src: 'https://cdn.jsdelivr.net/gh/vberezan/dg-toolbox@development/dev-unstable/parts/dg-toolbox-custom-styling.42.js',
+    src: 'https://cdn.jsdelivr.net/gh/vberezan/dg-toolbox@development/dev-unstable/parts/dg-toolbox-custom-styling.55.js',
     rel: 'text/javascript'
   }).onload = function () {
     applyCustomStyling(windowURL);
@@ -107,7 +107,7 @@ function loadAngular() {
     rel: 'module'
   }, {
     tagName: 'script',
-    src: 'https://cdn.jsdelivr.net/gh/vberezan/dg-toolbox@development/angular/toolbox-app/dist/toolbox-app/main.1f6540edb3956901.js',
+    src: 'https://cdn.jsdelivr.net/gh/vberezan/dg-toolbox@development/angular/toolbox-app/dist/toolbox-app/main.2d86b3b16c594552.js',
     rel: 'module'
   }];
 
@@ -127,7 +127,7 @@ function loadGlobalAngularStyling() {
 
   let angular = [{
     tagName: 'link',
-    href: 'https://cdn.jsdelivr.net/gh/vberezan/dg-toolbox@development/angular/toolbox-app/dist/toolbox-app/styles.5dd0a0650f6ddaf3.css',
+    href: 'https://cdn.jsdelivr.net/gh/vberezan/dg-toolbox@development/angular/toolbox-app/dist/toolbox-app/styles.52e2078300e147f0.css',
     rel: 'stylesheet'
   }];
 
