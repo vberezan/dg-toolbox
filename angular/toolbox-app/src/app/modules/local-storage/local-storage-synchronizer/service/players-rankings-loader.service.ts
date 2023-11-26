@@ -162,6 +162,7 @@ export class PlayersRankingsLoaderService {
       this.localStorageService.cache(LocalStorageKeys.PLAYERS_STATS, cache);
       let localMetadata: Metadata = this.localStorageService.localMetadata();
       localMetadata.playersRankingsTurn = new UpdateMetadata(this.dgAPI.gameTurn(), 0);
+      localMetadata.allianceMembersTurn.turn = 0;
       this.localStorageService.cache(LocalStorageKeys.LOCAL_METADATA, localMetadata);
     });
   }
