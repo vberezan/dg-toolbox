@@ -35,7 +35,7 @@ export class FightSimulatorService {
       totalFleets.set(key, this.totalFleet(fleetGroup));
     });
 
-    console.log(totalFleets.get('hostile'));
+
   }
 
   private totalFleet(scannedFleet: Fleet[]): Fleet {

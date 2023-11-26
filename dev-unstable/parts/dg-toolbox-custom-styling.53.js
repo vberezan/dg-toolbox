@@ -453,47 +453,47 @@ function applyCustomStyling(windowURL) {
                       '<th colspan="1">Before</th>' +
                       '<th colspan="1">After</th>' +
                     '</tr>'+
-                    '<tr class="fleet-row">' +
+                    '<tr class="fleet-row fighter">' +
                       '<th colspan="1">Fighter</th>' +
-                      '<td>0</td>' +
-                      '<td>0</td>' +
-                      '<td>0</td>' +
-                      '<td>0</td>' +
+                      '<td class="allied before">0</td>' +
+                      '<td class="allied after">0</td>' +
+                      '<td class="hostile before">0</td>' +
+                      '<td class="hostile after">0</td>' +
                     '</tr>' +
-                    '<tr class="fleet-row">' +
+                    '<tr class="fleet-row bomber">' +
                       '<th colspan="1">Bomber</th>' +
-                      '<td>0</td>' +
-                      '<td>0</td>' +
-                      '<td>0</td>' +
-                      '<td>0</td>' +
+                      '<td class="allied before">0</td>' +
+                      '<td class="allied after">0</td>' +
+                      '<td class="hostile before">0</td>' +
+                      '<td class="hostile after">0</td>' +
                     '</tr>' +
-                    '<tr class="fleet-row">' +
+                    '<tr class="fleet-row frigate">' +
                       '<th colspan="1">Frigate</th>' +
-                      '<td>0</td>' +
-                      '<td>0</td>' +
-                      '<td>0</td>' +
-                      '<td>0</td>' +
+                      '<td class="allied before">0</td>' +
+                      '<td class="allied after">0</td>' +
+                      '<td class="hostile before">0</td>' +
+                      '<td class="hostile after">0</td>' +
                     '</tr>' +
-                    '<tr class="fleet-row">' +
+                    '<tr class="fleet-row destroyer">' +
                       '<th colspan="1">Destroyer</th>' +
-                      '<td>0</td>' +
-                      '<td>0</td>' +
-                      '<td>0</td>' +
-                      '<td>0</td>' +
+                      '<td class="allied before">0</td>' +
+                      '<td class="allied after">0</td>' +
+                      '<td class="hostile before">0</td>' +
+                      '<td class="hostile after">0</td>' +
                     '</tr>' +
-                    '<tr class="fleet-row">' +
+                    '<tr class="fleet-row cruiser">' +
                       '<th colspan="1">Cruiser</th>' +
-                      '<td>0</td>' +
-                      '<td>0</td>' +
-                      '<td>0</td>' +
-                      '<td>0</td>' +
+                      '<td class="allied before">0</td>' +
+                      '<td class="allied after">0</td>' +
+                      '<td class="hostile before">0</td>' +
+                      '<td class="hostile after">0</td>' +
                     '</tr>' +
-                    '<tr class="fleet-row">' +
+                    '<tr class="fleet-row battleship">' +
                       '<th colspan="1">Battleship</th>' +
-                      '<td>0</td>' +
-                      '<td>0</td>' +
-                      '<td>0</td>' +
-                      '<td>0</td>' +
+                      '<td class="allied before">0</td>' +
+                      '<td class="allied after">0</td>' +
+                      '<td class="hostile before">0</td>' +
+                      '<td class="hostile after">0</td>' +
                     '</tr>' +
                     '<tr class="top-header">' +
                       '<th colspan="5">Resources Lost [1 metal = 0.75 unit | 1 mineral = 1 unit]</th>' +
