@@ -392,11 +392,13 @@ function applyCustomStyling(windowURL) {
 
         if (grouped.has(i)) {
           grouped.get(i).forEach((fleet) => {
-            if (earliestAllied < 0 && fleet.querySelectorAll('tr').length > 0 && (fleet.classList.contains('allied-fleet') || fleet.classList.contains('friendly-fleet'))) {
+            const warFleet = fleet.innerText.toLowerCase().indexOf('battleship') > - 1 || fleet.innerText.toLowerCase().indexOf('fighter') > - 1 || fleet.innerText.toLowerCase().indexOf('bomber') > - 1 || fleet.innerText.toLowerCase().indexOf('frigate') > - 1 || fleet.innerText.toLowerCase().indexOf('destroyer') > - 1 || fleet.innerText.toLowerCase().indexOf('cruiser') > - 1;
+
+            if (earliestAllied < 0 && warFleet && (fleet.classList.contains('allied-fleet') || fleet.classList.contains('friendly-fleet'))) {
               earliestAllied = i;
             }
 
-            if (earliestHostile < 0 && fleet.querySelectorAll('tr').length > 0 && fleet.classList.contains('hostile-fleet')) {
+            if (earliestHostile < 0 && warFleet && fleet.classList.contains('hostile-fleet')) {
               earliestHostile = i;
             }
 
