@@ -93,15 +93,20 @@ export class ScanService {
   private async extractSystemScan(): Promise<PlanetScanEvent[]> {
     let result: PlanetScanEvent[] = [];
 
-    for (let i = 1; i <= 12; i++) {
+    for (let i = 1; i <= 2; i++) {
       await this.delay(1000);
-      let source: string = await firstValueFrom(this.httpClient.post(window.location.href + 'scan/',
+      let source: string = await firstValueFrom(this.httpClient.post('https://andromeda.darkgalaxy.com/planet/1231/production/queue/add/',
         {
-          'scanId': '192',
-          'coordinate.0': '1',
-          'coordinate.1': '1',
-          'coordinate.2': '1',
-          'coordinate.3': '1'
+          'token': '03AFcWeA5H3UwYEHqdA0CWLKDV01h0T9ywurVmzCXoOdER5X3LOURPrXNCfRNIHInZXH-Sj0Tzz_Sd__4VbUun6C4EKWMJTGi5YPZC08te2zDksM4ocmaTE78bHPalPDL4O-NjSUKnC0apB6jAycqTWKl_Wpkp0r1h85wWUamkKOUhJW0ZRokRnp-_X_G4dBqTBsEqD2kCoSngAFqoqIItX4QfMUaryANs6GiPZ1gLFISZ0ePyji7QZUJNZTJ_dzNKsoMMkAFcujUOv9S-03AFcWeA6k_30qq1WPOeR-LbRXyTOvZEX--E95kq2IE2wQ_OaHJAqbUEZxKdqQtGN3QWxubdmWbPVShEyKYPWVOnZFjDWu82HoXDSmvilcZPFdu4BTg1QWUdju6NCoP4riRkITjdZmM0gQbM42YwcIRdNEj-kWGq3oj_W79zQTdc4ChCmr2jfqmFc-yV93NOunTCdz8NFvlwGifxrapAyva8tFKEcwpNZFSBXyHwS0bUMKEaB_cXiyX9aknat8ky_oxSaR8Nofbn5tMNceE6J2J4DUfeQudxBUoA-Kwng5x6lMdgmVfdY6vIJhVVIIneRLALaMfNMAtO5LkJ1FGU4nxPN6MigzwisGBzamlaD3nxGJYv8GyCYbEVYQoPTKfnzQg0Kf66pUFMe5xTtabkDIqqz8OUtIVPzF9QeLWHls330bhW3cyoGSA5ppH22Qkz3HXUTDOM6f8dOl-Jd6Suc--BjWT4f5HEs2KYNKMg6YQJ0H3gXhDfVn6Xq9hHmYfqldZYmoKbdDmED4jD9AWHe_3J1UAB8AvOk3i48f-lrlR74TNI8EkjzS9qwV_8EUNQpQEc7LSLymu-SHp61piBQmXev3nPnIF4xApQ',
+          'submit': 'Add+to+Queue',
+          'action': 'queueAdd',
+          'unitMap.109': '',
+          'unitMap.110': '',
+          'unitMap.111': '10',
+          'unitMap.115': '',
+          'unitMap.117': '',
+          'unitMap.118': ''
+
         },
         {responseType: 'text'})
       );
