@@ -89,6 +89,7 @@ span.planet-counter {
 }
 
 .load-example .usage-warning {
+  width: 100%;
   float: left;
 }
 
