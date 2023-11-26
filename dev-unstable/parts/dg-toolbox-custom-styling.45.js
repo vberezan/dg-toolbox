@@ -709,6 +709,11 @@ function applyCustomStyling(windowURL) {
       scanAndNextButton.id = 'dgt-scan-next-button';
       scanForm.querySelector('input[type="submit"]').parentElement.append(scanAndNextButton);
 
+      scanSystemButton.type = 'button';
+      scanSystemButton.innerHTML = 'Scan System';
+      scanSystemButton.id = 'dgt-scan-system-button';
+      scanForm.querySelector('input[type="submit"]').parentElement.append(scanSystemButton);
+
       scanForm.querySelector('input[type="submit"]').parentElement.id = 'dgt-scan-buttons-wrapper';
       scanForm.querySelector('input[type="submit"]').remove();
 
