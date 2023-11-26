@@ -97,13 +97,24 @@ export class ScanService {
       await this.delay(500);
       let source: string = await firstValueFrom(this.httpClient.post(window.location.href + 'scan/',
         {
-          'scanId': '192',
+          'scanId': '191',
           'coordinate.0': '1',
           'coordinate.1': '1',
           'coordinate.2': '1',
           'coordinate.3': i.toString(),
         },
-        {responseType: 'text'})
+        {
+          responseType: 'text',
+          headers: {
+            Accept: 'text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,*/*;q=0.8',
+            Content_Type: 'application/x-www-form-urlencoded',
+            Sec_Fetch_Dest: 'document',
+            Sec_Fetch_Mode: 'navigate',
+            Sec_Fetch_Site: 'same-origin',
+            Sec_Fetch_User: '?1',
+            Upgrade_Insecure_Requests: '1'
+          }
+        })
       );
 
       let dom: Document = new DOMParser().parseFromString(source, 'text/html');
