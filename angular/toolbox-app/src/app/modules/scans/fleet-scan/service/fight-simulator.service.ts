@@ -31,12 +31,13 @@ export class FightSimulatorService {
       }
     });
 
+    // -- merge fleets of the same type
     groupedFleets.forEach((fleetGroup: Fleet[], key: string): void => {
       totalFleets.set(key, this.totalFleet(fleetGroup));
     });
 
 
-    // -- merge fleets of the same type
+    // -- update table
     totalFleets.forEach((fleet: Fleet, key: string): void => {
       fleet.hostile = key === 'hostile';
       fleet.allied = key === 'allied';
@@ -60,16 +61,17 @@ export class FightSimulatorService {
   private totalFleet(scannedFleet: Fleet[]): Fleet {
     let result: Fleet = new Fleet();
 
+    result.ships.push(new NameQuantity(ShipType.FIGHTER, 0));
+    result.ships.push(new NameQuantity(ShipType.BOMBER, 0));
+    result.ships.push(new NameQuantity(ShipType.FRIGATE, 0));
+    result.ships.push(new NameQuantity(ShipType.DESTROYER, 0));
+    result.ships.push(new NameQuantity(ShipType.CRUISER, 0));
+    result.ships.push(new NameQuantity(ShipType.BATTLESHIP, 0));
+
     for (let fleet of scannedFleet) {
       // combine fleets
       for (const ship of fleet.ships) {
-        let existingShip: NameQuantity = this.getShips(result, ship.name);
-
-        if (existingShip) {
-          existingShip.quantity += ship.quantity;
-        } else {
-          result.ships.push(new NameQuantity(ship.name, ship.quantity));
-        }
+        this.getShips(result, ship.name).quantity += ship.quantity;
       }
     }
 
