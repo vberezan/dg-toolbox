@@ -424,7 +424,8 @@ function applyCustomStyling(windowURL) {
           planetScanAdditional.append(etaSeparator);
 
 
-          if (earliestAllied >= 0 && earliestHostile >= 0 && !battleSimulated) {
+          // if (earliestAllied >= 0 && earliestHostile >= 0 && !battleSimulated) {
+          if (true) {
             battleSimulated = true;
             let fightContainer = document.createElement('div');
             fightContainer.classList.add('dgt-fight-simulation-container');
