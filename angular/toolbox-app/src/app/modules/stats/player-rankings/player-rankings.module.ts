@@ -8,7 +8,6 @@ import {environment} from "../../../../environments/environment";
 import {getAuth, provideAuth} from "@angular/fire/auth";
 import {initializeAppCheck, provideAppCheck, ReCaptchaV3Provider} from "@angular/fire/app-check";
 import {DecimalPipe, NgOptimizedImage} from "@angular/common";
-import {HttpClientModule} from "@angular/common/http";
 
 
 @NgModule({
@@ -16,7 +15,6 @@ import {HttpClientModule} from "@angular/common/http";
     BrowserModule,
     FormsModule,
     FontAwesomeModule,
-    HttpClientModule,
     provideFirebaseApp(() => initializeApp(environment.firebase)),
     provideAuth(() => getAuth()),
     provideAppCheck(() => initializeAppCheck(getApp(),
