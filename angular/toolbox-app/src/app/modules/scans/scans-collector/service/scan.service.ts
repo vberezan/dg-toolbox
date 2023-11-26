@@ -95,7 +95,7 @@ export class ScanService {
 
     for (let i = 1; i <= 12; i++) {
       await this.delay(1000);
-      let source: string = await firstValueFrom(this.httpClient.post(window.location.href,
+      let source: string = await firstValueFrom(this.httpClient.post(window.location.href + '/scan',
         {
           'scanId': '191',
           'coordinate.0': '1',
