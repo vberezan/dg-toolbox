@@ -36,7 +36,7 @@ export class ScanCollectorComponent implements AfterViewInit, OnDestroy {
       }
     });
 
-    this.scanService.scanSystem();
+    // this.scanService.scanSystem();
 
     this.authService.checkLoginValidity();
   }
