@@ -557,6 +557,10 @@ function applyCustomStyling(windowURL) {
         if (lineBreak === 5) {
           line.forEach((wr) => {
             let rows = wr.querySelectorAll('tr').length;
+            if (rows === 0) {
+              wr.classList.add('dgt-empty-fleet');
+            }
+
             if (rows < maxLines && rows > 0) {
               for (let i = 0; i < maxLines - rows; i++) {
                 let empty = document.createElement('tr');
