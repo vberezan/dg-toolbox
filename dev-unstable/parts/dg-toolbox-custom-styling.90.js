@@ -352,18 +352,12 @@ function applyCustomStyling(windowURL) {
     let planetScanAdditional = document.querySelector('#planet-scan-additional');
     if (planetScanAdditional) { // -- surface or fleet scan
 
-      console.log(planetScanAdditional);
-
       if (planetScanAdditional.querySelector('.header').innerText.toLowerCase().trim().indexOf('structure list') > -1) { // -- surface scan
         let requiredForInvasion = document.createElement('div');
         requiredForInvasion.classList.add('dgt-required-for-invasion','right');
         requiredForInvasion.innerHTML = '<span class="dgt-required-for-invasion-label">Required for invasion:</span><span class="dgt-required-for-invasion-value">0</span>';
-
-        console.log(requiredForInvasion);
-
         document.querySelector('#scanned-planet-wrapper .planetHeadSection:nth-child(3) > .ofHidden').append(requiredForInvasion);
 
-        console.log(document.querySelector('#scanned-planet-wrapper .planetHeadSection:nth-child(3) > .ofHidden'));
       } else { // -- fleet scan
 
         let fleets = planetScanAdditional.querySelectorAll('.dgt-fleet');
@@ -375,8 +369,8 @@ function applyCustomStyling(windowURL) {
             ([1e7] + -1e3 + -4e3 + -8e3 + -1e11).replace(/[018]/g, c => (c ^ crypto.getRandomValues(new Uint8Array(1))[0] & 15 >> c / 4).toString(16));
 
           let eta = fleet.querySelector('.ofHidden:first-child > .right');
-          if (eta) {
-            fleet.eta = parseInt(fleet.querySelector('.ofHidden:first-child > .right').textContent.trim().match(/\d+/)[0]);
+          if (eta != null) {
+            fleet.eta = parseInt(eta.textContent.trim().match(/\d+/)[0]);
             eta.innerHTML = 'ETA ' + fleet.eta;
           } else {
             let etaN = document.createElement('div');
