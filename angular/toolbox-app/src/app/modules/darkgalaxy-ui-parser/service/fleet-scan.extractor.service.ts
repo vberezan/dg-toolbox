@@ -53,9 +53,6 @@ export class FleetScanExtractorService implements DataExtractor {
             let ship: string = fs.querySelector('td:first-child').textContent.trim().toLowerCase();
             let amount: number = parseInt(fs.querySelector('td:last-child').textContent.trim().match(/\d+/)[0]);
 
-            console.log(ship);
-            console.log(amount);
-
             if (Object.values(ShipType).includes(ship as ShipType)) {
               fleet.ships.push(new NameQuantity(ship, amount));
 

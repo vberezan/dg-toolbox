@@ -12,6 +12,8 @@ export class FleetScoreService {
     fleets.forEach((fleet: Fleet): void => {
       document.querySelector('.dgt-fleet[dgt-fleet-id="' + fleet.id + '"] .dgt-fleet-score-value').innerHTML =
         Math.ceil(fleet.score).toLocaleString('en-US', {maximumFractionDigits: 0, minimumFractionDigits: 0});
+
+      console.log(fleet.id);
     });
 
     document.querySelectorAll('.dgt-eta-score').forEach((etaScore: Element): void => {
