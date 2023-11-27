@@ -1,4 +1,4 @@
-import {ChangeDetectorRef, Component, ElementRef, inject, OnDestroy, ViewChild} from '@angular/core';
+import {AfterViewInit, ChangeDetectorRef, Component, ElementRef, inject, OnDestroy, ViewChild} from '@angular/core';
 import {Observable, Subscriber} from "rxjs";
 import {DarkgalaxyApiService} from "../../../darkgalaxy-ui-parser/service/darkgalaxy-api.service";
 import {AuthService} from "../../../authentication/service/auth.service";
@@ -11,7 +11,7 @@ import {ChangelogService} from "../../../changelog/service/changelog.service";
   templateUrl: './menu.component.html',
   styleUrls: ['./menu.component.css']
 })
-export class MenuComponent implements OnDestroy {
+export class MenuComponent implements OnDestroy, AfterViewInit {
   @ViewChild('updateNotification') updateNotification: ElementRef;
   @ViewChild('fleetSound') fleetSound: ElementRef;
   @ViewChild('fleetsTabButton') fleetsTabButton: ElementRef;
@@ -27,9 +27,6 @@ export class MenuComponent implements OnDestroy {
   private initialized: boolean = false;
 
   constructor() {
-    this.fleetsTabButton.nativeElement.onclick = (): void => {
-      this.fleetSound.nativeElement.play();
-    };
 
     let event: string[] = window.location.pathname.split('/');
 
@@ -60,6 +57,12 @@ export class MenuComponent implements OnDestroy {
     });
 
     this.authService.checkLoginValidity();
+  }
+
+  ngAfterViewInit() {
+    this.fleetsTabButton.nativeElement.onclick = (): void => {
+      this.fleetSound.nativeElement.play();
+    };
   }
 
   ngOnDestroy(): void {
