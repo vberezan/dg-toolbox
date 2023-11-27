@@ -2661,6 +2661,11 @@ dgt-scans-collector {
   display: none;
 }
 
+.dgt-empty-fleet-row td {
+  line-height: 20px !important;
+  height: 20px !important;
+}
+
 .dgt-fight-simulation-info,
 .dgt-fight-simulation {
   width: 50% !important;
