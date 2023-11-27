@@ -2684,7 +2684,7 @@ dgt-scans-collector {
   margin-right: 5px !important;
 }
 
-.dgt-eta-score-label {
+.dgt-eta-score-label.hostile {
   margin-left: 20px !important;
 }
 
