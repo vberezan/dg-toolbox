@@ -130,7 +130,10 @@ function setUpSharedScansCollector(windowURL) {
                         fleet.eta = 0;
                     }
                 });
-            } else {
+            }
+
+            if (document.querySelector('#planet-scan-additional .header') != null &&
+              document.querySelector('#planet-scan-additional .header').textContent.trim().toLowerCase() === 'structure list') {
                 let requiredForInvasion = document.createElement('div');
                 requiredForInvasion.classList.add('dgt-required-for-invasion','right');
                 requiredForInvasion.innerHTML = '<span class="dgt-required-for-invasion-label">Required for invasion:</span><span class="dgt-required-for-invasion-value">0</span>';
