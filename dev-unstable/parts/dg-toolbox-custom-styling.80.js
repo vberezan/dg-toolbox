@@ -440,7 +440,7 @@ function applyCustomStyling(windowURL) {
           if (etaHasWarFleet) {
             let etaScore = document.createElement('div');
             etaScore.classList.add('dgt-eta-score');
-            etaScore.attributes.setNamedItem('eta');
+            etaScore.attributes.setNamedItem(document.createAttribute('eta'));
             etaScore.attributes.getNamedItem('eta').value = i;
             etaScore.innerHTML = '<span class="dgt-eta-score-label">ETA Score</span>' +
               '<span class="allied dgt-eta-score-label">Allied</span><span class="allied dgt-eta-score-value">0</span>'+
