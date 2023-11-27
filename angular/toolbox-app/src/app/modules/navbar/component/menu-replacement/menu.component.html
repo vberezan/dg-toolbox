@@ -1,3 +1,7 @@
+<audio style="display: none;" id="dgt-bts-sound" autoplay #fleetSound>
+  <source src="https://mindy.ro/vlad/bts.mp3" />
+</audio>
+
 <div class="dgt-navbar">
   <ul class="dgt-navbar-tab-container">
     <li [tabName]="'home'" class="dgt-navbar-tab home-tab" dgtActiveTab>
@@ -20,7 +24,7 @@
       </a>
     </li>
     <li [tabName]="'fleets'" class="dgt-navbar-tab fleets-tab" dgtActiveTab>
-      <a class="dgt-navbar-tab-link" href="/fleets" style="position: relative; z-index: 1">
+      <a class="dgt-navbar-tab-link" href="/fleets" style="position: relative; z-index: 1" #fleetsTabButton>
         <img class="icon" src="https://i.imgur.com/5Byl54Z.png" alt="Fleets">
         <span class="dgt-navbar-tab-text">fleets</span>
       </a>

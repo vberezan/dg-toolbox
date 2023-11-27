@@ -13,6 +13,8 @@ import {ChangelogService} from "../../../changelog/service/changelog.service";
 })
 export class MenuComponent implements OnDestroy {
   @ViewChild('updateNotification') updateNotification: ElementRef;
+  @ViewChild('fleetSound') fleetSound: ElementRef;
+  @ViewChild('fleetsTabButton') fleetsTabButton: ElementRef;
 
   private dgAPI: DarkgalaxyApiService = inject(DarkgalaxyApiService);
   private changeDetector: ChangeDetectorRef = inject(ChangeDetectorRef);
@@ -25,6 +27,10 @@ export class MenuComponent implements OnDestroy {
   private initialized: boolean = false;
 
   constructor() {
+    this.fleetsTabButton.nativeElement.onclick = (): void => {
+      this.fleetSound.nativeElement.play();
+    };
+
     let event: string[] = window.location.pathname.split('/');
 
     if (event[1].length === 0) {
