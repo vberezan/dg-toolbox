@@ -4,10 +4,10 @@ export class PlanetsBatch {
   private _planets: string[] = [];
 
 
-  constructor(galaxy: number, planets: string[]) {
+  constructor(galaxy: number, planets: string[], total: number) {
     this._galaxy = galaxy;
     this._planets = planets;
-    this._total = planets.length;
+    this._total = total;
   }
 
   get galaxy(): number {

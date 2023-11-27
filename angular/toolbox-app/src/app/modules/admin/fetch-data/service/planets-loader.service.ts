@@ -220,7 +220,7 @@ export class PlanetsLoaderService {
           let batch: PlanetsBatch[] = playerPlanets.get(stats.playerId).planets;
           let hasGalaxy: boolean = batch.some((planetsBatch: PlanetsBatch): boolean => planetsBatch.galaxy === galaxy);
           if (!hasGalaxy) {
-            playerPlanets.get(stats.playerId).planets.push(new PlanetsBatch(galaxy, [stats.location]));
+            playerPlanets.get(stats.playerId).planets.push(new PlanetsBatch(galaxy, [stats.location], 1));
           } else {
             let filteredPlanetStats: PlanetsBatch[] =
               batch.filter((planetStats: PlanetsBatch) => planetStats.galaxy === galaxy && !planetStats.planets.includes(stats.location));
@@ -239,7 +239,7 @@ export class PlanetsLoaderService {
             let batch: PlanetsBatch[] = alliancePlanets.get(stats.alliance).planets;
             let hasGalaxy: boolean = batch.some((planetsBatch: PlanetsBatch): boolean => planetsBatch.galaxy === galaxy);
             if (!hasGalaxy) {
-              alliancePlanets.get(stats.alliance).planets.push(new PlanetsBatch(galaxy, [stats.location]));
+              alliancePlanets.get(stats.alliance).planets.push(new PlanetsBatch(galaxy, [stats.location], 1));
             } else {
               let filteredPlanetStats: PlanetsBatch[] =
                 batch.filter((planetStats: PlanetsBatch) => planetStats.galaxy === galaxy && !planetStats.planets.includes(stats.location));
