@@ -37,8 +37,6 @@ export class FleetScanExtractorService implements DataExtractor {
         if (fl.querySelector('.ofHidden:first-child > .right') != null) {
           const eta: string[] = fl.querySelector('.ofHidden:first-child > .right').textContent.trim().match(/\d+/) || [];
 
-          console.log(eta);
-
           if (eta.length > 0) {
             fleet.eta = parseInt(eta[0]);
           } else {
@@ -54,6 +52,9 @@ export class FleetScanExtractorService implements DataExtractor {
           fleetShips.forEach((fs: Element): void => {
             let ship: string = fs.querySelector('td:first-child').textContent.trim().toLowerCase();
             let amount: number = parseInt(fs.querySelector('td:last-child').textContent.trim().match(/\d+/)[0]);
+
+            console.log(ship);
+            console.log(amount);
 
             if (Object.values(ShipType).includes(ship as ShipType)) {
               fleet.ships.push(new NameQuantity(ship, amount));
