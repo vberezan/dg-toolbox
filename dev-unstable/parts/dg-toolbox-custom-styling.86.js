@@ -350,14 +350,14 @@ function applyCustomStyling(windowURL) {
   // -- scan
   if (windowURL[1] === 'planet' && (windowURL.length === 5 && windowURL[3]) === 'comms') {
     let planetScanAdditional = document.querySelector('#planet-scan-additional');
-    if (planetScanAdditional) {
+    if (planetScanAdditional) { // -- surface or fleet scan
 
-      if (document.querySelector('#planet-scan-additional .header').innerText.toLowerCase().trim().indexOf('structure list') > -1) { // -- surface scan
+      if (planetScanAdditional.querySelector('.header').innerText.toLowerCase().trim().indexOf('structure list') > -1) { // -- surface scan
         let requiredForInvasion = document.createElement('div');
         requiredForInvasion.classList.add('dgt-required-for-invasion','right');
         requiredForInvasion.innerHTML = '<span class="dgt-required-for-invasion-label">Required for invasion:</span><span class="dgt-required-for-invasion-value">0</span>';
 
-        planetScanAdditional.querySelector('.planetHeadSection > div').append(requiredForInvasion);
+        document.querySelector('#scanned-planet-wrapper').querySelector('.planetHeadSection:nth-child(3) > .ofHidden').append(requiredForInvasion);
       } else { // -- fleet scan
 
         let fleets = planetScanAdditional.querySelectorAll('.dgt-fleet');
