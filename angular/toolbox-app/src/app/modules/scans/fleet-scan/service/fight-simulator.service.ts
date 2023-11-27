@@ -1,24 +1,21 @@
-import {inject, Injectable, Optional} from '@angular/core';
+import {Injectable, Optional} from '@angular/core';
 import {Fleet} from "../../../../shared/model/fleet/fleet.model";
 import {ShipType} from "../../../../shared/model/fleet/ship-type";
 import {NameQuantity} from "../../../../shared/model/name-quantity.model";
 import {KillRate} from "../../../../shared/model/fleet/kill-rate.model";
-import {DarkgalaxyApiService} from "../../../darkgalaxy-ui-parser/service/darkgalaxy-api.service";
 
 @Injectable({
   providedIn: 'root'
 })
 export class FightSimulatorService {
-  private dgAPI: DarkgalaxyApiService = inject(DarkgalaxyApiService);
 
-  createSimulation(): void {
+  createSimulation(fleets: Fleet[]): void {
     const fightSimulation: Element = document.querySelector('.dgt-fight-simulation');
     if (!fightSimulation) {
       return;
     }
 
     const eta: number = parseInt(fightSimulation.attributes.getNamedItem('eta').value);
-    const fleets: Fleet[] = this.dgAPI.fleetScan();
     const groupedFleets: Map<string, Fleet[]> = new Map<string, Fleet[]>();
     const totalFleets: Map<string, Fleet> = new Map<string, Fleet>();
 
@@ -78,7 +75,7 @@ export class FightSimulatorService {
     return result;
   }
 
-  private simulateFight(fleet1: Fleet, fleet2: Fleet, @Optional() turns:number = 1): Map<string, Fleet> {
+  private simulateFight(fleet1: Fleet, fleet2: Fleet, @Optional() turns: number = 1): Map<string, Fleet> {
     let requiredTurns: number = 0;
 
     while (!this.isFleetDestroyed(fleet1) && !this.isFleetDestroyed(fleet2) && requiredTurns < turns) {

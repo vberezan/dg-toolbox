@@ -9,7 +9,16 @@ export class Fleet {
   private _allied: boolean = false;
   private _friendly: boolean = false;
   private _score: number = 0;
+  private _id: string;
 
+
+  get id(): string {
+    return this._id;
+  }
+
+  set id(value: string) {
+    this._id = value;
+  }
 
   get score(): number {
     return this._score;
@@ -84,7 +93,8 @@ export class Fleet {
       hostile: this.hostile,
       allied: this.allied,
       friendly: this.friendly,
-      score: this.score
+      score: this.score,
+      id: this.id
     }
   }
 }

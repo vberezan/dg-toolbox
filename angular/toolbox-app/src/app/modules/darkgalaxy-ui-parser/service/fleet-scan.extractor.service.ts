@@ -3,6 +3,8 @@ import {DataExtractor} from "./data-extractor";
 import {Fleet} from "../../../shared/model/fleet/fleet.model";
 import {NameQuantity} from "../../../shared/model/name-quantity.model";
 import {ShipType} from "../../../shared/model/fleet/ship-type";
+import {ResourceScore} from "../../../shared/model/stats/resource-score";
+import {ShipScore} from "../../../shared/model/fleet/ship-score";
 
 @Injectable({
   providedIn: 'platform'
@@ -19,6 +21,7 @@ export class FleetScanExtractorService implements DataExtractor {
       fleets.forEach((fl: Element): void => {
         let fleet: Fleet = new Fleet();
 
+        fleet.id = fl.attributes.getNamedItem('data-fleet-id').value;
         fleet.friendly = fl.querySelector('span.friendly') ? true : false;
         fleet.allied = fl.querySelector('span.allied') ? true : false;
         fleet.hostile = fl.querySelector('span.hostile') ? true : false;
@@ -44,6 +47,29 @@ export class FleetScanExtractorService implements DataExtractor {
 
             if (Object.values(ShipType).includes(ship as ShipType)) {
               fleet.ships.push(new NameQuantity(ship, amount));
+
+              switch (ship as ShipType) {
+                case ShipType.FIGHTER:
+                  fleet.score += amount * ShipScore.FIGHTER;
+                  break;
+                case ShipType.BOMBER:
+                  fleet.score += amount * ShipScore.BOMBER;
+                  break;
+                case ShipType.FRIGATE:
+                  fleet.score += amount * ShipScore.FRIGATE;
+                  break;
+                case ShipType.DESTROYER:
+                  fleet.score += amount * ShipScore.DESTROYER;
+                  break;
+                case ShipType.CRUISER:
+                  fleet.score += amount * ShipScore.CRUISER;
+                  break;
+                case ShipType.BATTLESHIP:
+                  fleet.score += amount * ShipScore.BATTLESHIP;
+                  break;
+                default:
+                  break;
+              }
             }
           });
 
