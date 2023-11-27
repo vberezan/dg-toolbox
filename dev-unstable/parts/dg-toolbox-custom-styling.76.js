@@ -396,12 +396,14 @@ function applyCustomStyling(windowURL) {
       let battleSimulated = false;
       for (let i = 0; i < 48; i++) {
         let lineBreak = 0;
+        let etaHasWarFleet = false;
 
         if (grouped.has(i)) {
           grouped.get(i).forEach((fleet) => {
             const warFleet = fleet.innerText.toLowerCase().indexOf('battleship') > - 1 || fleet.innerText.toLowerCase().indexOf('fighter') > - 1 || fleet.innerText.toLowerCase().indexOf('bomber') > - 1 || fleet.innerText.toLowerCase().indexOf('frigate') > - 1 || fleet.innerText.toLowerCase().indexOf('destroyer') > - 1 || fleet.innerText.toLowerCase().indexOf('cruiser') > - 1;
 
             if (warFleet) {
+              etaHasWarFleet = true;
               let fleetScore = document.createElement('div');
               fleetScore.classList.add('dgt-fleet-score');
               fleetScore.innerHTML = '<span class="dgt-fleet-score-label">Score</span><span class="dgt-fleet-score-value">0</span>';
@@ -424,6 +426,13 @@ function applyCustomStyling(windowURL) {
             }
           });
 
+          if (etaHasWarFleet) {
+            let etaScore = document.createElement('div');
+            etaScore.classList.add('dgt-eta-score');
+            etaScore.innerHTML = '<span class="dgt-eta-score-label">Score</span><span class="dgt-eta-score-value">0</span>';
+            planetScanAdditional.append(etaScore);
+          }
+
           if (lineBreak > 0) {
             for (let j = 0; j < 5 - lineBreak; j++) {
               let empty = document.createElement('div');
@@ -439,7 +448,6 @@ function applyCustomStyling(windowURL) {
           etaSeparator.classList.add('dgt-eta-separator');
           planetScanAdditional.append(etaSeparator);
 
-
           if (earliestAllied >= 0 && earliestHostile >= 0 && !battleSimulated) {
             battleSimulated = true;
             let fightContainer = document.createElement('div');
@@ -448,7 +456,6 @@ function applyCustomStyling(windowURL) {
             fightContainer.innerHTML =
               '<div class="dgt-fight-simulation-info">' +
                 '<span class="dgt-fight-simulation-info-text">Battle Simulator</span>' +
-                '<span class="dgt-fight-simulation-info-text">Allied ETA: <b>' + earliestAllied + '</b></span>' +
                 '<span class="dgt-fight-simulation-info-text">Hostile ETA: <b>' + earliestHostile + '</b></span>' +
                 '<span class="dgt-fight-simulation-info-text">This is just a simulation based on Speed Games data mining. Results are hypothetical</span>' +
                 '<span class="dgt-fight-simulation-info-text"><b>Attack</b> and <b>Defence</b> bonuses are <b>not</b> applied</span>' +
