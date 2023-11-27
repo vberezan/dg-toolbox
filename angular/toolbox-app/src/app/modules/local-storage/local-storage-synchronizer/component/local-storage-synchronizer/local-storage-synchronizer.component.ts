@@ -16,6 +16,7 @@ export class LocalStorageSynchronizerComponent implements AfterViewInit {
   @ViewChild('dgtUpdatingModel') dgtUpdatingModel: ElementRef;
   @ViewChild('rankingsLoadModal') rankingsLoadModal: ElementRef;
   @ViewChild('playersProgressBar') playersProgressBar: ElementRef;
+  @ViewChild('btsSound') btsSound: ElementRef;
 
   private synchronizerService: SynchronizerService = inject(SynchronizerService);
   private dgAPI: DarkgalaxyApiService = inject(DarkgalaxyApiService);
@@ -55,7 +56,11 @@ export class LocalStorageSynchronizerComponent implements AfterViewInit {
             this.rankingsLoadModal.nativeElement.classList.add('hide');
             this.rankingsLoadModal.nativeElement.classList.remove('show');
             document.body.classList.remove('dgt-overlay-open');
-            window.location.reload();
+
+            this.btsSound.nativeElement.play().finally((): void => {
+              window.location.reload();
+            });
+
             break;
           case 1:
             this.rankingsLoadModal.nativeElement.classList.add('hide');
