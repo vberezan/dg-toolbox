@@ -1,7 +1,7 @@
 import {EventEmitter, inject, Injectable, Optional} from '@angular/core';
 import {firstValueFrom, Subscription} from "rxjs";
 import {HttpClient} from "@angular/common/http";
-import {collection, doc, docData, Firestore, setDoc, updateDoc} from "@angular/fire/firestore";
+import {collection, collectionData, doc, docData, Firestore, query, setDoc, updateDoc} from "@angular/fire/firestore";
 import {PlanetStats} from "../../../../shared/model/stats/planet-stats.model";
 import {DarkgalaxyApiService} from "../../../darkgalaxy-ui-parser/service/darkgalaxy-api.service";
 import {PlayerPlanets} from "../../../../shared/model/stats/player-planets-stats.model";
@@ -72,6 +72,7 @@ export class PlanetsLoaderService {
         }
       }
 
+      this.cleanUpPlanets(g);
       this.mergePlayerPlanets(playerPlanets);
       this.mergeAlliancePlanets(alliancePlanets);
       await this.delay(scanDelay);
@@ -81,6 +82,29 @@ export class PlanetsLoaderService {
     cancelSubscription.unsubscribe();
 
     await this.delay(3000);
+  }
+
+  private cleanUpPlanets(galaxy: number): void {
+    const playerPlanetsPath: any = collection(this.firestore, 'players-planets');
+
+    let subscription: Subscription = collectionData(
+      query(playerPlanetsPath)
+    ).subscribe((item: DocumentData[]): void => {
+      let playerPlanets: PlayerPlanets[] = Object.assign([], item);
+
+      playerPlanets.forEach((player: PlayerPlanets): void => {
+        player.planets = player.planets.filter((batch: PlanetsBatch): boolean => batch.galaxy !== galaxy);
+        player.total = 0;
+        player.planets.forEach((batch: PlanetsBatch): void => {
+          player.total += batch.total;
+        });
+
+        updateDoc(doc(playerPlanetsPath, player.playerId.toString()), JSON.parse(JSON.stringify(player)))
+          .catch((error): void => console.log(error));
+      });
+
+      subscription.unsubscribe();
+    });
   }
 
   private mergeAlliancePlanets(alliancePlanets: Map<string, AlliancePlanets>): void {

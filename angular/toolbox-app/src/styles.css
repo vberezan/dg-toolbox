@@ -1205,11 +1205,12 @@ label.queueDestroyButton:hover {
 }
 
 .dgt-required-for-invasion-value {
-  margin-left: 5px;
+  padding: 5px;
   color: #ffd46f;
 }
 
 .dgt-required-for-invasion-label {
+  padding: 5px 0 5px 5px;
   color: #ffd46f;
 }
 
