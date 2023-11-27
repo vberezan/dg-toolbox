@@ -2582,6 +2582,32 @@ dgt-scans-collector {
   border: 1px solid #0063ad !important;
 }
 
+.dgt-fleet-score {
+  display: block;
+  margin-top: 5px;
+  padding-top: 5px;
+}
+
+.dgt-fleet-score span {
+  color: #ffd46f;
+}
+
+.dgt-fleet-score span-label {
+  width: 120px;
+}
+
+#planet-scan-additional > .allied-fleet .dgt-fleet-score {
+  border-top: 1px solid #0063ad;
+}
+
+#planet-scan-additional > .friendly-fleet .dgt-fleet-score {
+  border-top: 1px solid #4c760f;
+}
+
+#planet-scan-additional > .hostile-fleet .dgt-fleet-score {
+  border-top: 1px solid #8b2c2c;
+}
+
 .dgt-fleet .opacBackground,
 .dgt-fleet .opacLightBackground {
   background: transparent !important;

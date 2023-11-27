@@ -360,7 +360,7 @@ function applyCustomStyling(windowURL) {
 
         let fleetScore = document.createElement('div');
         fleetScore.classList.add('dgt-fleet-score');
-        fleetScore.innerHTML = '<span class="dgt-fleet-score-label">Fleet Score</span><span class="dgt-fleet-score-value">0</span>';
+        fleetScore.innerHTML = '<span class="dgt-fleet-score-label">Score</span><span class="dgt-fleet-score-value">0</span>';
         fleet.append(fleetScore);
 
         let eta = fleet.querySelector('.ofHidden:first-child > .right');

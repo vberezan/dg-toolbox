@@ -8,7 +8,16 @@ export class Fleet {
   private _hostile: boolean = false;
   private _allied: boolean = false;
   private _friendly: boolean = false;
+  private _score: number = 0;
 
+
+  get score(): number {
+    return this._score;
+  }
+
+  set score(value: number) {
+    this._score = value;
+  }
 
   get hostile(): boolean {
     return this._hostile;
@@ -74,7 +83,8 @@ export class Fleet {
       ships: this.ships,
       hostile: this.hostile,
       allied: this.allied,
-      friendly: this.friendly
+      friendly: this.friendly,
+      score: this.score
     }
   }
 }
