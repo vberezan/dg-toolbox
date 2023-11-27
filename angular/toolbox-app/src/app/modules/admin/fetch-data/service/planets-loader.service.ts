@@ -224,7 +224,10 @@ export class PlanetsLoaderService {
           } else {
             let filteredPlanetStats: PlanetsBatch[] =
               batch.filter((planetStats: PlanetsBatch) => planetStats.galaxy === galaxy && !planetStats.planets.includes(stats.location));
-            filteredPlanetStats.forEach((planetStats: PlanetsBatch) => planetStats.planets.push(stats.location));
+            filteredPlanetStats.forEach((planetStats: PlanetsBatch): void => {
+              planetStats.planets.push(stats.location);
+              planetStats.total++;
+            });
           }
 
           playerPlanets.get(stats.playerId).name = stats.owner;
@@ -243,7 +246,10 @@ export class PlanetsLoaderService {
             } else {
               let filteredPlanetStats: PlanetsBatch[] =
                 batch.filter((planetStats: PlanetsBatch) => planetStats.galaxy === galaxy && !planetStats.planets.includes(stats.location));
-              filteredPlanetStats.forEach((planetStats: PlanetsBatch) => planetStats.planets.push(stats.location));
+              filteredPlanetStats.forEach((planetStats: PlanetsBatch): void => {
+                planetStats.planets.push(stats.location);
+                planetStats.total++;
+              });
             }
 
             alliancePlanets.get(stats.alliance).tag = stats.alliance;
