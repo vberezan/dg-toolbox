@@ -12,7 +12,6 @@ import {LocalStorageService} from "../../local-storage-manager/service/local-sto
 import {Metadata} from "../../../../shared/model/local-storage/metadata.model";
 import {DarkgalaxyApiService} from "../../../darkgalaxy-ui-parser/service/darkgalaxy-api.service";
 import {UpdateMetadata} from "../../../../shared/model/stats/update-metadata.model";
-import {ShipType} from "../../../../shared/model/fleet/ship-type";
 import {EnemyList} from "../../../../shared/model/enemy-list";
 
 @Injectable({

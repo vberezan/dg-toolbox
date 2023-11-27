@@ -5,7 +5,6 @@ import {Fleet} from "../../../../../shared/model/fleet/fleet.model";
 import {FleetScoreService} from "../../service/fleet-score.service";
 import {AuthService} from "../../../../authentication/service/auth.service";
 import {AuthState} from "../../../../../shared/model/authentication/auth-state.model";
-import {PlanetScanEvent} from "../../../../../shared/model/scans/planet-scan-event.model";
 
 @Component({
   selector: 'dgt-fleet-scan-details',

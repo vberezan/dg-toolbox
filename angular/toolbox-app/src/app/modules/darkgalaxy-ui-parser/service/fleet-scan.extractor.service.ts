@@ -3,7 +3,6 @@ import {DataExtractor} from "./data-extractor";
 import {Fleet} from "../../../shared/model/fleet/fleet.model";
 import {NameQuantity} from "../../../shared/model/name-quantity.model";
 import {ShipType} from "../../../shared/model/fleet/ship-type";
-import {ResourceScore} from "../../../shared/model/stats/resource-score";
 import {ShipScore} from "../../../shared/model/fleet/ship-score";
 
 @Injectable({
