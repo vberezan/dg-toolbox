@@ -2661,6 +2661,33 @@ dgt-scans-collector {
   display: none;
 }
 
+.dgt-eta-score {
+  float: left;
+  margin: 5px 3px;
+  padding: 5px;
+  border: 1px solid #5e5e5e;
+  border-radius: 5px;
+  width: calc(100% - 18px);
+  background: rgb(75,75,75);
+}
+
+.dgt-eta-score span {
+  color: #ffd46f !important;
+}
+
+.dgt-eta-score-label {
+  margin-right: 50px;
+}
+
+.dgt-eta-score-label.hostile,
+.dgt-eta-score-label.allied {
+  margin-right: 5px !important;
+}
+
+.dgt-eta-score-label {
+  margin-left: 20px !important;
+}
+
 .dgt-empty-fleet-row td {
   line-height: 20px !important;
   height: 20px !important;
