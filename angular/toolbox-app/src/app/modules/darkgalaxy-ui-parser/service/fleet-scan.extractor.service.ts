@@ -35,7 +35,7 @@ export class FleetScanExtractorService implements DataExtractor {
           fleet.eta = 0;
         }
 
-        let fleetShips: NodeListOf<Element> = fl.querySelectorAll('table tr');
+        let fleetShips: NodeListOf<Element> = fl.querySelectorAll('table tr:not(.dgt-empty-fleet-row)');
 
         if (fleetShips.length > 0) {
           fleetShips.forEach((fs: Element): void => {
