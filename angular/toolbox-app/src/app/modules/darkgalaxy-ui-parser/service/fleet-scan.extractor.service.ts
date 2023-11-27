@@ -21,7 +21,7 @@ export class FleetScanExtractorService implements DataExtractor {
         let fleet: Fleet = new Fleet();
         const fleetId: Attr = fl.attributes.getNamedItem('dgt-fleet-id');
 
-        if (fleetId) {
+        if (fleetId != null) {
           fleet.id = fleetId.value;
         }
         fleet.friendly = fl.querySelector('span.friendly') ? true : false;
