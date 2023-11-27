@@ -557,7 +557,7 @@ function applyCustomStyling(windowURL) {
                 let empty = document.createElement('tr');
                 empty.classList.add('dgt-empty-fleet-row');
                 empty.innerHTML = '<td colspan="2" class="padding"></td>';
-                wr.querySelector('table').append(empty);
+                wr.querySelector('table tbody').append(empty);
               }
             }
 
