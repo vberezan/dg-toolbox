@@ -2626,15 +2626,15 @@ dgt-scans-collector {
   margin-bottom: 5px !important;
 }
 
-#planet-scan-additional .hostile-fleet > .ofHidden {
+#planet-scan-additional .hostile-fleet:not(.dgt-empty-fleet) > .ofHidden {
   border-bottom: 1px solid #8b2c2c !important;
 }
 
-#planet-scan-additional .friendly-fleet > .ofHidden {
+#planet-scan-additional .friendly-fleet:not(.dgt-empty-fleet) > .ofHidden {
   border-bottom: 1px solid #4c760f !important;
 }
 
-#planet-scan-additional .allied-fleet > .ofHidden {
+#planet-scan-additional .allied-fleet:not(.dgt-empty-fleet) > .ofHidden {
   border-bottom: 1px solid #0063ad !important;
 }
 
