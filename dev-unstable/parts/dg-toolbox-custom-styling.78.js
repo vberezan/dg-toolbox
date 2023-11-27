@@ -426,13 +426,6 @@ function applyCustomStyling(windowURL) {
             }
           });
 
-          if (etaHasWarFleet) {
-            let etaScore = document.createElement('div');
-            etaScore.classList.add('dgt-eta-score');
-            etaScore.innerHTML = '<span class="dgt-eta-score-label">Score</span><span class="dgt-eta-score-value">0</span>';
-            planetScanAdditional.append(etaScore);
-          }
-
           if (lineBreak > 0) {
             for (let j = 0; j < 5 - lineBreak; j++) {
               let empty = document.createElement('div');
@@ -442,6 +435,15 @@ function applyCustomStyling(windowURL) {
               empty.style.float = 'left';
               planetScanAdditional.append(empty);
             }
+          }
+
+          if (etaHasWarFleet) {
+            let etaScore = document.createElement('div');
+            etaScore.classList.add('dgt-eta-score');
+            etaScore.innerHTML = '<span class="dgt-eta-score-label">ETA Score</span>' +
+              '<span class="allied dgt-eta-score-label">Allied</span><span class="allied dgt-eta-score-value">0</span>'+
+              '<span class="hostile dgt-eta-score-label">Hostile</span><span class="hostile dgt-eta-score-value">0</span>';
+            planetScanAdditional.append(etaScore);
           }
 
           let etaSeparator = document.createElement('div');
