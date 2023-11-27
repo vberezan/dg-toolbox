@@ -2672,17 +2672,22 @@ dgt-scans-collector {
 }
 
 .dgt-eta-score span {
-  color: #ffd46f;
+  color: #ffd46f !important;
 }
 
 .dgt-eta-score-label {
   margin-right: 20px;
-  color: #fff !important;
 }
 
 .dgt-eta-score-label.hostile,
 .dgt-eta-score-label.allied {
   margin-right: 5px !important;
+  color: #fff !important;
+}
+
+.dgt-eta-score-value.hostile,
+.dgt-eta-score-value.allied {
+  color: #fff !important;
 }
 
 .dgt-eta-score-value {

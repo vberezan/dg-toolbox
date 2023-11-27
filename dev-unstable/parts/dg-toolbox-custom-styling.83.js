@@ -442,7 +442,7 @@ function applyCustomStyling(windowURL) {
             etaScore.classList.add('dgt-eta-score');
             etaScore.attributes.setNamedItem(document.createAttribute('eta'));
             etaScore.attributes.getNamedItem('eta').value = i;
-            etaScore.innerHTML = '<span class="dgt-eta-score-label">ETA Score</span>' +
+            etaScore.innerHTML = '<span class="dgt-eta-score-label">ETA ' + i + 'Score</span>' +
               '<span class="allied dgt-eta-score-label">Allied:</span><span class="allied dgt-eta-score-value">0</span>'+
               '<span class="hostile dgt-eta-score-label">Hostile:</span><span class="hostile dgt-eta-score-value">0</span>';
             planetScanAdditional.append(etaScore);
