@@ -21,7 +21,7 @@ export class FleetScanExtractorService implements DataExtractor {
       fleets.forEach((fl: Element): void => {
         let fleet: Fleet = new Fleet();
 
-        fleet.id = fl.attributes.getNamedItem('data-fleet-id').value;
+        fleet.id = fl.attributes.getNamedItem('dgt-fleet-id').value;
         fleet.friendly = fl.querySelector('span.friendly') ? true : false;
         fleet.allied = fl.querySelector('span.allied') ? true : false;
         fleet.hostile = fl.querySelector('span.hostile') ? true : false;
