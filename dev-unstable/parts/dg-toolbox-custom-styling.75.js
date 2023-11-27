@@ -369,7 +369,7 @@ function applyCustomStyling(windowURL) {
           let etaN = document.createElement('div');
           etaN.classList.add('right');
           etaN.innerHTML = 'Planet orbit';
-          eta.parentNode.prepend(etaN);
+          fleet.querySelector('.ofHidden:first-child').prepend(etaN);
           fleet.eta = 0;
         }
 
