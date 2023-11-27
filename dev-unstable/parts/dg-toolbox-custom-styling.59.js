@@ -358,10 +358,10 @@ function applyCustomStyling(windowURL) {
       fleets.forEach((fleet) => {
         fleet.style.width = '168px';
 
-        let fleetScore = document.createElement('tr');
+        let fleetScore = document.createElement('div');
         fleetScore.classList.add('dgt-fleet-score');
-        fleetScore.innerHTML = '<td class="dgt-fleet-score-label">Fleet Score</td><td class="dgt-fleet-score-value">0</td>';
-        fleet.querySelector('table tbody').append(fleetScore);
+        fleetScore.innerHTML = '<span class="dgt-fleet-score-label">Fleet Score</span><span class="dgt-fleet-score-value">0</span>';
+        fleet.append(fleetScore);
 
         let eta = fleet.querySelector('.ofHidden:first-child > .right');
         if (eta) {
