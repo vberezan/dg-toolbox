@@ -2644,6 +2644,18 @@ dgt-scans-collector {
   color: #ffd46f;
 }
 
+#planet-scan-additional .dgt-fleet > .ofHidden .left {
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  max-width: 130px;
+  display: block;
+}
+
+#planet-scan-additional .dgt-fleet > .ofHidden b {
+  font-weight: normal !important;
+}
+
 #planet-scan-additional .dgt-fleet tr td {
   padding: 0 !important;
   line-height: 20px;
