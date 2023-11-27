@@ -2590,6 +2590,7 @@ dgt-scans-collector {
 
 .dgt-fleet-score span {
   color: #ffd46f;
+  float: left;
 }
 
 .dgt-fleet-score-label {
