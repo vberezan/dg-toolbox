@@ -562,9 +562,9 @@ function applyCustomStyling(windowURL) {
             }
 
             if (wr.classList.contains('dgt-empty')) {
-              wr.style.height = (maxOffsetHeight + 2) + 'px';
+              wr.style.height = (maxOffsetHeight + 8) + 'px';
             } else {
-              wr.style.height = maxOffsetHeight + 'px';
+              wr.style.height = (maxOffsetHeight - 10) + 'px';
             }
           });
 
