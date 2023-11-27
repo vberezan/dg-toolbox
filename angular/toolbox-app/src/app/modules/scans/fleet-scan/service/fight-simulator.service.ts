@@ -40,7 +40,7 @@ export class FightSimulatorService {
       fleet.allied = key === 'allied';
 
       fleet.ships.forEach((ship: NameQuantity): void => {
-        document.querySelector('.dgt-fight-simulator-by-rof tr.' + ship.name + ' td.before.' + key).innerHTML = ship.quantity.toString();
+        document.querySelector('.dgt-fight-simulator-by-rof tr.' + ship.name + ' td.before.' + key).innerHTML = ship.quantity.toLocaleString('en-US', {maximumFractionDigits: 0, minimumFractionDigits: 0});
       });
     });
 
@@ -50,7 +50,7 @@ export class FightSimulatorService {
     // -- update table
     fightResult.forEach((fleet: Fleet, key: string): void => {
       fleet.ships.forEach((ship: NameQuantity): void => {
-        document.querySelector('.dgt-fight-simulator-by-rof tr.' + ship.name + ' td.after.' + key).innerHTML = ship.quantity.toString();
+        document.querySelector('.dgt-fight-simulator-by-rof tr.' + ship.name + ' td.after.' + key).innerHTML = ship.quantity.toLocaleString('en-US', {maximumFractionDigits: 0, minimumFractionDigits: 0});
       });
     });
   }
