@@ -35,7 +35,7 @@ export class ChangelogService {
     dgtUpdatingModel.nativeElement.classList.remove('hide');
     document.body.classList.add('dgt-overlay-open');
 
-    this.delay(2000).then((): void => {
+    this.delay(2000).finally((): void => {
       let localMetadata: Metadata = this.localStorageService.localMetadata();
       localMetadata.dgtVersion = this.localStorageService.remoteMetadata().dgtVersion;
       const user = this.localStorageService.get(LocalStorageKeys.USER);

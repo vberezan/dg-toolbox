@@ -128,7 +128,7 @@ export class AuthService implements OnDestroy {
     }
 
     auth.signOut()
-      .then((): void => {
+      .finally((): void => {
         window.location.reload();
       })
       .catch((error): void => {

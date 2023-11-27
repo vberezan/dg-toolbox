@@ -18,11 +18,11 @@ import {FleetScanModule} from "./app/modules/scans/fleet-scan/fleet-scan.module"
 
 const platform: PlatformRef = platformBrowserDynamic();
 let windowURL: string[] = window.location.pathname.split(/\//g);
-platform.bootstrapModule(LocalStorageManagerModule).then((): void => {
-  platform.bootstrapModule(DarkgalaxyUiParserModule).then((): void => {
-    platform.bootstrapModule(AuthenticationModule).then((): void => {
-      platform.bootstrapModule(LocalStorageSynchronizerModule).then((): void => {
-        platform.bootstrapModule(NavbarModule).then((): void => {
+platform.bootstrapModule(LocalStorageManagerModule).finally((): void => {
+  platform.bootstrapModule(DarkgalaxyUiParserModule).finally((): void => {
+    platform.bootstrapModule(AuthenticationModule).finally((): void => {
+      platform.bootstrapModule(LocalStorageSynchronizerModule).finally((): void => {
+        platform.bootstrapModule(NavbarModule).finally((): void => {
           loadTier2Modules(windowURL);
         }).catch(err => console.error("Error loading NavbarModule: " + err));
       }).catch(err => console.error("Error loading LocalStorageSynchronizerModule: " + err));

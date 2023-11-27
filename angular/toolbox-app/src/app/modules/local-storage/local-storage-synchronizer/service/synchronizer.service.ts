@@ -12,6 +12,7 @@ import {PlayersRankingsLoaderService} from "./players-rankings-loader.service";
 import {PageAction} from "../../../../shared/model/stats/page-action.model";
 import {UserStatus} from "../../../../shared/model/local-storage/user-status.model";
 import {DarkgalaxyApiService} from "../../../darkgalaxy-ui-parser/service/darkgalaxy-api.service";
+import {meta} from "@typescript-eslint/parser";
 
 @Injectable({
   providedIn: 'root'
@@ -114,7 +115,7 @@ export class SynchronizerService {
     if (playerStats && (!allianceMembers || allianceMembers.length == 0 || isAllianceMembersTurnZero || isTurnGreaterThanAllianceMembersTurn)) {
       if (window.location.pathname.indexOf('/alliances') !== -1) {
         this._updatesEmitter.emit(1);
-        this.loadAllianceMembers(turn).then((): void => {
+        this.loadAllianceMembers(turn).finally((): void => {
           this._updatesEmitter.emit(0);
         }).catch((error: any): void => console.log(error));
       }
@@ -122,9 +123,9 @@ export class SynchronizerService {
   }
 
   private loadPlayersRankings(playersRankingsEmitter: EventEmitter<PageAction>): void {
-    this.playersRankingsLoaderService.scanPlayersRankingsScreens(playersRankingsEmitter).then((): void => {
+    this.playersRankingsLoaderService.scanPlayersRankingsScreens(playersRankingsEmitter).finally((): void => {
       this._updatesEmitter.emit(1);
-      this.loadAllianceMembers(this.localStorageService.localMetadata().playersRankingsTurn.turn).then((): void => {
+      this.loadAllianceMembers(this.localStorageService.localMetadata().playersRankingsTurn.turn).finally((): void => {
         this._updatesEmitter.emit(0);
       });
     });

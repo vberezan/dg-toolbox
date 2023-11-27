@@ -160,7 +160,7 @@ export class PlayersRankingsLoaderService {
       }, ++delay * 5);
     });
 
-    await this.delay(10 * ++delay).then((): void => {
+    await this.delay(10 * ++delay).finally((): void => {
       this.localStorageService.cache(LocalStorageKeys.PLAYERS_STATS, cache);
       let localMetadata: Metadata = this.localStorageService.localMetadata();
       localMetadata.playersRankingsTurn = new UpdateMetadata(this.dgAPI.gameTurn(), 0);
