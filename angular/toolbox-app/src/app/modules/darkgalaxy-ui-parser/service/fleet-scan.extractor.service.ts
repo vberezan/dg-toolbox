@@ -35,7 +35,8 @@ export class FleetScanExtractorService implements DataExtractor {
           fleet.alliance = fl.querySelector('.allianceName').textContent.toLowerCase().trim().replace(/\[/g, '').replace(/]/g, '');
         }
 
-        if (fl.querySelector('.ofHidden:first-child > .right')) {
+        const eta: string[] = fl.querySelector('.ofHidden:first-child > .right').textContent.trim().match(/\d+/);
+        if (eta.length > 0) {
           fleet.eta = parseInt(fl.querySelector('.ofHidden:first-child > .right').textContent.trim().match(/\d+/)[0]);
         } else {
           fleet.eta = 0;
