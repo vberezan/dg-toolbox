@@ -361,11 +361,6 @@ function applyCustomStyling(windowURL) {
         fleet.attributes.getNamedItem('dgt-fleet-id').value =
           ([1e7] + -1e3 + -4e3 + -8e3 + -1e11).replace(/[018]/g, c => (c ^ crypto.getRandomValues(new Uint8Array(1))[0] & 15 >> c / 4).toString(16));
 
-        let fleetScore = document.createElement('div');
-        fleetScore.classList.add('dgt-fleet-score');
-        fleetScore.innerHTML = '<span class="dgt-fleet-score-label">Score</span><span class="dgt-fleet-score-value">0</span>';
-        fleet.append(fleetScore);
-
         let eta = fleet.querySelector('.ofHidden:first-child > .right');
         if (eta) {
           fleet.eta = parseInt(fleet.querySelector('.ofHidden:first-child > .right').textContent.trim().match(/\d+/)[0]);
@@ -401,6 +396,13 @@ function applyCustomStyling(windowURL) {
         if (grouped.has(i)) {
           grouped.get(i).forEach((fleet) => {
             const warFleet = fleet.innerText.toLowerCase().indexOf('battleship') > - 1 || fleet.innerText.toLowerCase().indexOf('fighter') > - 1 || fleet.innerText.toLowerCase().indexOf('bomber') > - 1 || fleet.innerText.toLowerCase().indexOf('frigate') > - 1 || fleet.innerText.toLowerCase().indexOf('destroyer') > - 1 || fleet.innerText.toLowerCase().indexOf('cruiser') > - 1;
+
+            if (warFleet) {
+              let fleetScore = document.createElement('div');
+              fleetScore.classList.add('dgt-fleet-score');
+              fleetScore.innerHTML = '<span class="dgt-fleet-score-label">Score</span><span class="dgt-fleet-score-value">0</span>';
+              fleet.append(fleetScore);
+            }
 
             if (earliestAllied < 0 && warFleet && (fleet.classList.contains('allied-fleet') || fleet.classList.contains('friendly-fleet'))) {
               earliestAllied = i;
