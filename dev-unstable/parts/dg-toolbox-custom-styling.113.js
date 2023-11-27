@@ -350,263 +350,237 @@ function applyCustomStyling(windowURL) {
   // -- scan
   if (windowURL[1] === 'planet' && (windowURL.length === 5 && windowURL[3]) === 'comms') {
     let planetScanAdditional = document.querySelector('#planet-scan-additional');
-    if (planetScanAdditional) { // -- surface or fleet scan
+    if (planetScanAdditional) {
 
-      if (planetScanAdditional.querySelector('.header').innerText.toLowerCase().trim().indexOf('structure list') > -1) { // -- surface scan
-        let requiredForInvasion = document.createElement('div');
-        requiredForInvasion.classList.add('dgt-required-for-invasion','right');
-        requiredForInvasion.innerHTML = '<span class="dgt-required-for-invasion-label">Required for invasion:</span><span class="dgt-required-for-invasion-value">0</span>';
-        document.querySelector('#scanned-planet-wrapper .planetHeadSection:nth-child(3) > .ofHidden').append(requiredForInvasion);
+      let fleets = planetScanAdditional.querySelectorAll('.dgt-fleet');
+      let grouped = new Map();
+      fleets.forEach((fleet) => {
+        fleet.style.width = '168px';
 
-      } else { // -- fleet scan
-
-        let fleets = planetScanAdditional.querySelectorAll('.dgt-fleet');
-        let grouped = new Map();
-        fleets.forEach((fleet) => {
-          fleet.style.width = '168px';
-          fleet.attributes.setNamedItem(document.createAttribute('dgt-fleet-id'));
-          fleet.attributes.getNamedItem('dgt-fleet-id').value =
-            ([1e7] + -1e3 + -4e3 + -8e3 + -1e11).replace(/[018]/g, c => (c ^ crypto.getRandomValues(new Uint8Array(1))[0] & 15 >> c / 4).toString(16));
-
-          let eta = fleet.querySelector('.ofHidden:first-child > .right');
-
-          if (eta != null) {
-            fleet.eta = parseInt(eta.textContent.trim().match(/\d+/)[0]);
-            eta.innerHTML = 'ETA ' + fleet.eta;
-          } else {
-            let etaN = document.createElement('div');
-            etaN.classList.add('right');
-            etaN.innerHTML = 'Planet orbit';
-            fleet.querySelector('.ofHidden:first-child').prepend(etaN);
-            fleet.eta = 0;
-          }
-
-
-          if (grouped.has(fleet.eta)) {
-            grouped.get(fleet.eta).push(detach(fleet));
-          } else {
-            grouped.set(fleet.eta, [detach(fleet)]);
-          }
-
-          if (fleet.querySelector('span.friendly')) {
-            fleet.classList.add('friendly-fleet');
-          }
-          if (fleet.querySelector('span.allied')) {
-            fleet.classList.add('allied-fleet');
-          }
-          if (fleet.querySelector('span.hostile')) {
-            fleet.classList.add('hostile-fleet');
-          }
-        });
-
-        let earliestAllied = -1;
-        let earliestHostile = -1;
-        let battleSimulated = false;
-        for (let i = 0; i < 48; i++) {
-          let lineBreak = 0;
-          let etaHasWarFleet = false;
-
-          if (grouped.has(i)) {
-            grouped.get(i).forEach((fleet) => {
-              const warFleet = fleet.innerText.toLowerCase().indexOf('battleship') > -1 || fleet.innerText.toLowerCase().indexOf('fighter') > -1 || fleet.innerText.toLowerCase().indexOf('bomber') > -1 || fleet.innerText.toLowerCase().indexOf('frigate') > -1 || fleet.innerText.toLowerCase().indexOf('destroyer') > -1 || fleet.innerText.toLowerCase().indexOf('cruiser') > -1;
-
-              if (warFleet) {
-                etaHasWarFleet = true;
-                let fleetScore = document.createElement('div');
-                fleetScore.classList.add('dgt-fleet-score');
-                fleetScore.innerHTML = '<span class="dgt-fleet-score-label">Score</span><span class="dgt-fleet-score-value">0</span>';
-                fleet.append(fleetScore);
-              }
-
-              if (earliestAllied < 0 && warFleet && (fleet.classList.contains('allied-fleet') || fleet.classList.contains('friendly-fleet'))) {
-                earliestAllied = i;
-              }
-
-              if (earliestHostile < 0 && warFleet && fleet.classList.contains('hostile-fleet')) {
-                earliestHostile = i;
-              }
-
-              lineBreak++;
-              planetScanAdditional.append(fleet);
-
-              if (lineBreak === 5) {
-                lineBreak = 0;
-              }
-            });
-
-            if (lineBreak > 0) {
-              for (let j = 0; j < 5 - lineBreak; j++) {
-                let empty = document.createElement('div');
-                empty.classList.add('dgt-empty');
-                empty.style.width = '168px';
-                empty.style.margin = '3px';
-                empty.style.float = 'left';
-                planetScanAdditional.append(empty);
-              }
-            }
-
-            if (etaHasWarFleet) {
-              let etaScore = document.createElement('div');
-              etaScore.classList.add('dgt-eta-score');
-              etaScore.attributes.setNamedItem(document.createAttribute('eta'));
-              etaScore.attributes.getNamedItem('eta').value = i;
-              etaScore.innerHTML = '<span class="dgt-eta-score-label">ETA ' + i + ' score</span>' +
-                '<span class="allied dgt-eta-score-label">Allied:</span><span class="allied dgt-eta-score-value">0</span>' +
-                '<span class="hostile dgt-eta-score-label">Hostile:</span><span class="hostile dgt-eta-score-value">0</span>';
-              planetScanAdditional.append(etaScore);
-            }
-
-            if (earliestAllied >= 0 && earliestHostile >= 0 && !battleSimulated) {
-              battleSimulated = true;
-              let fightContainer = document.createElement('div');
-              fightContainer.classList.add('dgt-fight-simulation-container');
-
-              fightContainer.innerHTML =
-                '<div class="dgt-fight-simulation-info">' +
-                '<span class="dgt-fight-simulation-info-text">Battle Simulator</span>' +
-                '<span class="dgt-fight-simulation-info-text">Hostile ETA: <b>' + earliestHostile + '</b></span>' +
-                '<span class="dgt-fight-simulation-info-text">This is just a simulation based on Speed Games data mining. Results are hypothetical</span>' +
-                '<span class="dgt-fight-simulation-info-text"><b>Attack</b> and <b>Defence</b> bonuses are <b>not</b> applied</span>' +
-                '<span class="dgt-fight-simulation-info-text"><b>Holo Ships</b> are <b>not</b> supported</span>' +
-                '<span class="dgt-fight-simulation-info-text"><b>Transporter Ships</b> and <b>Invasion Ship</b> are <b>not</b> supported</span>' +
-                '</div>' +
-                '<div class="dgt-fight-simulation" eta="' + (earliestAllied > earliestHostile ? earliestAllied : earliestHostile) + '">' +
-                '<table class="dgt-fight-simulator-by-rof">' +
-                '<tr class="top-header">' +
-                '<th colspan="1" class="invisible"></th>' +
-                '<th colspan="2" class="after-invisible">Allied</th>' +
-                '<th colspan="2">Hostile</th>' +
-                '</tr>' +
-                '<tr class="top-header">' +
-                '<th colspan="1" class="invisible"></th>' +
-                '<th colspan="1" class="after-invisible">Before</th>' +
-                '<th colspan="1">After</th>' +
-                '<th colspan="1">Before</th>' +
-                '<th colspan="1">After</th>' +
-                '</tr>' +
-                '<tr class="fleet-row fighter">' +
-                '<th colspan="1">Fighter</th>' +
-                '<td class="allied before">0</td>' +
-                '<td class="allied after">0</td>' +
-                '<td class="hostile before">0</td>' +
-                '<td class="hostile after">0</td>' +
-                '</tr>' +
-                '<tr class="fleet-row bomber">' +
-                '<th colspan="1">Bomber</th>' +
-                '<td class="allied before">0</td>' +
-                '<td class="allied after">0</td>' +
-                '<td class="hostile before">0</td>' +
-                '<td class="hostile after">0</td>' +
-                '</tr>' +
-                '<tr class="fleet-row frigate">' +
-                '<th colspan="1">Frigate</th>' +
-                '<td class="allied before">0</td>' +
-                '<td class="allied after">0</td>' +
-                '<td class="hostile before">0</td>' +
-                '<td class="hostile after">0</td>' +
-                '</tr>' +
-                '<tr class="fleet-row destroyer">' +
-                '<th colspan="1">Destroyer</th>' +
-                '<td class="allied before">0</td>' +
-                '<td class="allied after">0</td>' +
-                '<td class="hostile before">0</td>' +
-                '<td class="hostile after">0</td>' +
-                '</tr>' +
-                '<tr class="fleet-row cruiser">' +
-                '<th colspan="1">Cruiser</th>' +
-                '<td class="allied before">0</td>' +
-                '<td class="allied after">0</td>' +
-                '<td class="hostile before">0</td>' +
-                '<td class="hostile after">0</td>' +
-                '</tr>' +
-                '<tr class="fleet-row battleship">' +
-                '<th colspan="1">Battleship</th>' +
-                '<td class="allied before">0</td>' +
-                '<td class="allied after">0</td>' +
-                '<td class="hostile before">0</td>' +
-                '<td class="hostile after">0</td>' +
-                '</tr>' +
-                '<tr class="top-header">' +
-                '<th colspan="5">Resources Lost [1 metal = 0.75 unit | 1 mineral = 1 unit]</th>' +
-                '</tr>' +
-                '<tr class="resource-row">' +
-                '<th colspan="1">Metal</th>' +
-                '<td>0</td>' +
-                '<td>0</td>' +
-                '<td>0</td>' +
-                '<td>0</td>' +
-                '</tr>' +
-                '<tr class="resource-row">' +
-                '<th colspan="1">Mineral</th>' +
-                '<td>0</td>' +
-                '<td>0</td>' +
-                '<td>0</td>' +
-                '<td>0</td>' +
-                '</tr>' +
-                '<tr class="resource-row">' +
-                '<th colspan="1">Total Lost</th>' +
-                '<td colspan="2">0</td>' +
-                '<td colspan="2">0</td>' +
-                '</tr>' +
-                '</table>' +
-                '</div>';
-
-              planetScanAdditional.append(fightContainer);
-
-              let etaSeparator = document.createElement('div');
-              etaSeparator.classList.add('dgt-eta-separator');
-              planetScanAdditional.append(etaSeparator);
-            } else {
-              let etaSeparator = document.createElement('div');
-              etaSeparator.classList.add('dgt-eta-separator');
-              planetScanAdditional.append(etaSeparator);
-            }
-          }
+        if (grouped.has(fleet.eta)) {
+          grouped.get(fleet.eta).push(detach(fleet));
+        } else {
+          grouped.set(fleet.eta, [detach(fleet)]);
         }
 
+        if (fleet.querySelector('span.friendly')) {
+          fleet.classList.add('friendly-fleet');
+        }
+        if (fleet.querySelector('span.allied')) {
+          fleet.classList.add('allied-fleet');
+        }
+        if (fleet.querySelector('span.hostile')) {
+          fleet.classList.add('hostile-fleet');
+        }
+      });
+
+      let earliestAllied = -1;
+      let earliestHostile = -1;
+      let battleSimulated = false;
+      for (let i = 0; i < 48; i++) {
         let lineBreak = 0;
-        let line = [];
-        let maxOffsetHeight = 0;
-        let maxLines = 0;
-        planetScanAdditional.querySelectorAll('.dgt-fleet, .dgt-empty').forEach((wrapper) => {
-          if (maxOffsetHeight < wrapper.offsetHeight) {
-            maxOffsetHeight = wrapper.offsetHeight;
-            maxLines = wrapper.querySelectorAll('tr').length;
+        let etaHasWarFleet = false;
+
+        if (grouped.has(i)) {
+          grouped.get(i).forEach((fleet) => {
+            const warFleet = fleet.innerText.toLowerCase().indexOf('battleship') > -1 || fleet.innerText.toLowerCase().indexOf('fighter') > -1 || fleet.innerText.toLowerCase().indexOf('bomber') > -1 || fleet.innerText.toLowerCase().indexOf('frigate') > -1 || fleet.innerText.toLowerCase().indexOf('destroyer') > -1 || fleet.innerText.toLowerCase().indexOf('cruiser') > -1;
+
+            if (warFleet) {
+              etaHasWarFleet = true;
+              let fleetScore = document.createElement('div');
+              fleetScore.classList.add('dgt-fleet-score');
+              fleetScore.innerHTML = '<span class="dgt-fleet-score-label">Score</span><span class="dgt-fleet-score-value">0</span>';
+              fleet.append(fleetScore);
+            }
+
+            if (earliestAllied < 0 && warFleet && (fleet.classList.contains('allied-fleet') || fleet.classList.contains('friendly-fleet'))) {
+              earliestAllied = i;
+            }
+
+            if (earliestHostile < 0 && warFleet && fleet.classList.contains('hostile-fleet')) {
+              earliestHostile = i;
+            }
+
+            lineBreak++;
+            planetScanAdditional.append(fleet);
+
+            if (lineBreak === 5) {
+              lineBreak = 0;
+            }
+          });
+
+          if (lineBreak > 0) {
+            for (let j = 0; j < 5 - lineBreak; j++) {
+              let empty = document.createElement('div');
+              empty.classList.add('dgt-empty');
+              empty.style.width = '168px';
+              empty.style.margin = '3px';
+              empty.style.float = 'left';
+              planetScanAdditional.append(empty);
+            }
           }
 
-          line.push(wrapper);
-
-          lineBreak++;
-          if (lineBreak === 5) {
-            line.forEach((wr) => {
-              let rows = wr.querySelectorAll('tr').length;
-              if (rows === 0) {
-                wr.classList.add('dgt-empty-fleet');
-              }
-
-              if (rows < maxLines && rows > 0) {
-                for (let i = 0; i < maxLines - rows; i++) {
-                  let empty = document.createElement('tr');
-                  empty.classList.add('dgt-empty-fleet-row');
-                  empty.innerHTML = '<td colspan="2" class="padding"></td>';
-                  wr.querySelector('table tbody').append(empty);
-                }
-              }
-
-              if (wr.classList.contains('dgt-empty')) {
-                wr.style.height = (maxOffsetHeight - 8) + 'px';
-              } else {
-                wr.style.height = (maxOffsetHeight - 10) + 'px';
-              }
-            });
-
-            line = [];
-            lineBreak = 0;
-            maxOffsetHeight = 0;
-            maxLines = 0;
+          if (etaHasWarFleet) {
+            let etaScore = document.createElement('div');
+            etaScore.classList.add('dgt-eta-score');
+            etaScore.attributes.setNamedItem(document.createAttribute('eta'));
+            etaScore.attributes.getNamedItem('eta').value = i;
+            etaScore.innerHTML = '<span class="dgt-eta-score-label">ETA ' + i + ' score</span>' +
+              '<span class="allied dgt-eta-score-label">Allied:</span><span class="allied dgt-eta-score-value">0</span>' +
+              '<span class="hostile dgt-eta-score-label">Hostile:</span><span class="hostile dgt-eta-score-value">0</span>';
+            planetScanAdditional.append(etaScore);
           }
-        });
+
+          if (earliestAllied >= 0 && earliestHostile >= 0 && !battleSimulated) {
+            battleSimulated = true;
+            let fightContainer = document.createElement('div');
+            fightContainer.classList.add('dgt-fight-simulation-container');
+
+            fightContainer.innerHTML =
+              '<div class="dgt-fight-simulation-info">' +
+              '<span class="dgt-fight-simulation-info-text">Battle Simulator</span>' +
+              '<span class="dgt-fight-simulation-info-text">Hostile ETA: <b>' + earliestHostile + '</b></span>' +
+              '<span class="dgt-fight-simulation-info-text">This is just a simulation based on Speed Games data mining. Results are hypothetical</span>' +
+              '<span class="dgt-fight-simulation-info-text"><b>Attack</b> and <b>Defence</b> bonuses are <b>not</b> applied</span>' +
+              '<span class="dgt-fight-simulation-info-text"><b>Holo Ships</b> are <b>not</b> supported</span>' +
+              '<span class="dgt-fight-simulation-info-text"><b>Transporter Ships</b> and <b>Invasion Ship</b> are <b>not</b> supported</span>' +
+              '</div>' +
+              '<div class="dgt-fight-simulation" eta="' + (earliestAllied > earliestHostile ? earliestAllied : earliestHostile) + '">' +
+              '<table class="dgt-fight-simulator-by-rof">' +
+              '<tr class="top-header">' +
+              '<th colspan="1" class="invisible"></th>' +
+              '<th colspan="2" class="after-invisible">Allied</th>' +
+              '<th colspan="2">Hostile</th>' +
+              '</tr>' +
+              '<tr class="top-header">' +
+              '<th colspan="1" class="invisible"></th>' +
+              '<th colspan="1" class="after-invisible">Before</th>' +
+              '<th colspan="1">After</th>' +
+              '<th colspan="1">Before</th>' +
+              '<th colspan="1">After</th>' +
+              '</tr>' +
+              '<tr class="fleet-row fighter">' +
+              '<th colspan="1">Fighter</th>' +
+              '<td class="allied before">0</td>' +
+              '<td class="allied after">0</td>' +
+              '<td class="hostile before">0</td>' +
+              '<td class="hostile after">0</td>' +
+              '</tr>' +
+              '<tr class="fleet-row bomber">' +
+              '<th colspan="1">Bomber</th>' +
+              '<td class="allied before">0</td>' +
+              '<td class="allied after">0</td>' +
+              '<td class="hostile before">0</td>' +
+              '<td class="hostile after">0</td>' +
+              '</tr>' +
+              '<tr class="fleet-row frigate">' +
+              '<th colspan="1">Frigate</th>' +
+              '<td class="allied before">0</td>' +
+              '<td class="allied after">0</td>' +
+              '<td class="hostile before">0</td>' +
+              '<td class="hostile after">0</td>' +
+              '</tr>' +
+              '<tr class="fleet-row destroyer">' +
+              '<th colspan="1">Destroyer</th>' +
+              '<td class="allied before">0</td>' +
+              '<td class="allied after">0</td>' +
+              '<td class="hostile before">0</td>' +
+              '<td class="hostile after">0</td>' +
+              '</tr>' +
+              '<tr class="fleet-row cruiser">' +
+              '<th colspan="1">Cruiser</th>' +
+              '<td class="allied before">0</td>' +
+              '<td class="allied after">0</td>' +
+              '<td class="hostile before">0</td>' +
+              '<td class="hostile after">0</td>' +
+              '</tr>' +
+              '<tr class="fleet-row battleship">' +
+              '<th colspan="1">Battleship</th>' +
+              '<td class="allied before">0</td>' +
+              '<td class="allied after">0</td>' +
+              '<td class="hostile before">0</td>' +
+              '<td class="hostile after">0</td>' +
+              '</tr>' +
+              '<tr class="top-header">' +
+              '<th colspan="5">Resources Lost [1 metal = 0.75 unit | 1 mineral = 1 unit]</th>' +
+              '</tr>' +
+              '<tr class="resource-row">' +
+              '<th colspan="1">Metal</th>' +
+              '<td>0</td>' +
+              '<td>0</td>' +
+              '<td>0</td>' +
+              '<td>0</td>' +
+              '</tr>' +
+              '<tr class="resource-row">' +
+              '<th colspan="1">Mineral</th>' +
+              '<td>0</td>' +
+              '<td>0</td>' +
+              '<td>0</td>' +
+              '<td>0</td>' +
+              '</tr>' +
+              '<tr class="resource-row">' +
+              '<th colspan="1">Total Lost</th>' +
+              '<td colspan="2">0</td>' +
+              '<td colspan="2">0</td>' +
+              '</tr>' +
+              '</table>' +
+              '</div>';
+
+            planetScanAdditional.append(fightContainer);
+
+            let etaSeparator = document.createElement('div');
+            etaSeparator.classList.add('dgt-eta-separator');
+            planetScanAdditional.append(etaSeparator);
+          } else {
+            let etaSeparator = document.createElement('div');
+            etaSeparator.classList.add('dgt-eta-separator');
+            planetScanAdditional.append(etaSeparator);
+          }
+        }
       }
+
+      let lineBreak = 0;
+      let line = [];
+      let maxOffsetHeight = 0;
+      let maxLines = 0;
+      planetScanAdditional.querySelectorAll('.dgt-fleet, .dgt-empty').forEach((wrapper) => {
+        if (maxOffsetHeight < wrapper.offsetHeight) {
+          maxOffsetHeight = wrapper.offsetHeight;
+          maxLines = wrapper.querySelectorAll('tr').length;
+        }
+
+        line.push(wrapper);
+
+        lineBreak++;
+        if (lineBreak === 5) {
+          line.forEach((wr) => {
+            let rows = wr.querySelectorAll('tr').length;
+            if (rows === 0) {
+              wr.classList.add('dgt-empty-fleet');
+            }
+
+            if (rows < maxLines && rows > 0) {
+              for (let i = 0; i < maxLines - rows; i++) {
+                let empty = document.createElement('tr');
+                empty.classList.add('dgt-empty-fleet-row');
+                empty.innerHTML = '<td colspan="2" class="padding"></td>';
+                wr.querySelector('table tbody').append(empty);
+              }
+            }
+
+            if (wr.classList.contains('dgt-empty')) {
+              wr.style.height = (maxOffsetHeight - 8) + 'px';
+            } else {
+              wr.style.height = (maxOffsetHeight - 10) + 'px';
+            }
+          });
+
+          line = [];
+          lineBreak = 0;
+          maxOffsetHeight = 0;
+          maxLines = 0;
+        }
+      });
     }
 
     let scanForm = document.querySelector('.opacBackground .opacDarkBackground>form');

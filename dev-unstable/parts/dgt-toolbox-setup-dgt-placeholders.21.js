@@ -114,7 +114,27 @@ function setUpSharedScansCollector(windowURL) {
 
                 document.querySelectorAll('#planet-scan-additional > .left.ofHidden').forEach((fleet) => {
                    fleet.classList.add('dgt-fleet');
+                    fleet.attributes.setNamedItem(document.createAttribute('dgt-fleet-id'));
+                    fleet.attributes.getNamedItem('dgt-fleet-id').value =
+                      ([1e7] + -1e3 + -4e3 + -8e3 + -1e11).replace(/[018]/g, c => (c ^ crypto.getRandomValues(new Uint8Array(1))[0] & 15 >> c / 4).toString(16));
+                    let eta = fleet.querySelector('.ofHidden:first-child > .right');
+
+                    if (eta != null) {
+                        fleet.eta = parseInt(eta.textContent.trim().match(/\d+/)[0]);
+                        eta.innerHTML = 'ETA ' + fleet.eta;
+                    } else {
+                        let etaN = document.createElement('div');
+                        etaN.classList.add('right');
+                        etaN.innerHTML = 'Planet orbit';
+                        fleet.querySelector('.ofHidden:first-child').prepend(etaN);
+                        fleet.eta = 0;
+                    }
                 });
+            } else {
+                let requiredForInvasion = document.createElement('div');
+                requiredForInvasion.classList.add('dgt-required-for-invasion','right');
+                requiredForInvasion.innerHTML = '<span class="dgt-required-for-invasion-label">Required for invasion:</span><span class="dgt-required-for-invasion-value">0</span>';
+                document.querySelector('#scanned-planet-wrapper .planetHeadSection:nth-child(3) > .ofHidden').append(requiredForInvasion);
             }
         }
     }
