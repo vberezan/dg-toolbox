@@ -1,11 +1,13 @@
 export class PlanetsBatch {
   private _galaxy: number;
+  private _total: number;
   private _planets: string[] = [];
 
 
   constructor(galaxy: number, planets: string[]) {
     this._galaxy = galaxy;
     this._planets = planets;
+    this._total = planets.length;
   }
 
   get galaxy(): number {
@@ -24,10 +26,19 @@ export class PlanetsBatch {
     this._planets = value;
   }
 
+  get total(): number {
+    return this._total;
+  }
+
+  set total(value: number) {
+    this._total = value;
+  }
+
   toJSON(): any {
     return {
       galaxy: this.galaxy,
-      planets: this.planets
+      planets: this.planets,
+      total: this.total
     };
   }
 }

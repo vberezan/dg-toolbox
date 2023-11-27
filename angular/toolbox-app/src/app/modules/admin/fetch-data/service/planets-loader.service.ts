@@ -105,7 +105,7 @@ export class PlanetsLoaderService {
 
           alliance.total = 0;
           alliance.planets.forEach((batch: PlanetsBatch): void => {
-            alliance.total += batch.planets.length;
+            alliance.total += batch.total;
           });
 
           updateDoc(doc(alliancePlanetsPath, alliance.tag), JSON.parse(JSON.stringify(alliance)))
@@ -113,7 +113,7 @@ export class PlanetsLoaderService {
         } else {
           alliance.total = 0;
           alliance.planets.forEach((batch: PlanetsBatch): void => {
-            alliance.total += batch.planets.length;
+            alliance.total += batch.total;
           });
 
           setDoc(doc(alliancePlanetsPath, alliance.tag), JSON.parse(JSON.stringify(alliance)))

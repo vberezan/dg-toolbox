@@ -42,7 +42,7 @@ export class ChangelogService {
 
       this.localStorageService.clearAll();
       this.localStorageService.cache(LocalStorageKeys.USER, user);
-      this.localStorageService.cache(LocalStorageKeys.JS_VERSION, localMetadata.dgtVersion);
+      // this.localStorageService.cache(LocalStorageKeys.JS_VERSION, localMetadata.dgtVersion);
       this.localStorageService.cache(LocalStorageKeys.LOCAL_METADATA, localMetadata);
 
       dgtUpdatingModel.nativeElement.classList.add('hide');
