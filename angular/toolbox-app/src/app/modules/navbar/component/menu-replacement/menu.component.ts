@@ -13,8 +13,6 @@ import {ChangelogService} from "../../../changelog/service/changelog.service";
 })
 export class MenuComponent implements OnDestroy, AfterViewInit {
   @ViewChild('updateNotification') updateNotification: ElementRef;
-  @ViewChild('fleetSound') fleetSound: ElementRef;
-  @ViewChild('playSound') playSound: ElementRef;
 
   private dgAPI: DarkgalaxyApiService = inject(DarkgalaxyApiService);
   private changeDetector: ChangeDetectorRef = inject(ChangeDetectorRef);
@@ -60,11 +58,6 @@ export class MenuComponent implements OnDestroy, AfterViewInit {
   }
 
   ngAfterViewInit() {
-    this.playSound.nativeElement.onclick = (): void => {
-      this.fleetSound.nativeElement.play();
-    };
-
-    this.playSound.nativeElement.click();
   }
 
   ngOnDestroy(): void {
