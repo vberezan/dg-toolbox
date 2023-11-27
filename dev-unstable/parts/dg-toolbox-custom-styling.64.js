@@ -564,6 +564,7 @@ function applyCustomStyling(windowURL) {
         }
 
         let rows = wrapper.querySelectorAll('tr').length;
+        console.log(rows, maxLines);
         if (rows < maxLines && rows > 0) {
           for (let i = 0; i < maxLines - rows; i++) {
             let empty = document.createElement('tr');
