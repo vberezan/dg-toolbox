@@ -357,7 +357,7 @@ function applyCustomStyling(windowURL) {
         requiredForInvasion.classList.add('dgt-required-for-invasion','right');
         requiredForInvasion.innerHTML = '<span class="dgt-required-for-invasion-label">Required for invasion:</span><span class="dgt-required-for-invasion-value">0</span>';
 
-        document.querySelector('#scanned-planet-wrapper').querySelector('.planetHeadSection:nth-child(3) > .ofHidden').append(requiredForInvasion);
+        document.querySelector('#scanned-planet-wrapper .planetHeadSection:nth-child(3) > .ofHidden').append(requiredForInvasion);
       } else { // -- fleet scan
 
         let fleets = planetScanAdditional.querySelectorAll('.dgt-fleet');
