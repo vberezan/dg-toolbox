@@ -84,8 +84,9 @@ export class SynchronizerService {
       let remoteMetadata: Metadata = this.localStorageService.remoteMetadata();
       localMetadata.planetsTurn.turn = remoteMetadata.planetsTurn.turn;
       localMetadata.planetsTurn.version = remoteMetadata.planetsTurn.version;
+
       localMetadata.playersRankingsTurn.turn = 0;
-      localMetadata.dgtVersion = remoteMetadata.dgtVersion;
+      this.localStorageService.remove(LocalStorageKeys.PLAYERS_STATS);
 
       this.localStorageService.cache(LocalStorageKeys.LOCAL_METADATA, localMetadata);
     }

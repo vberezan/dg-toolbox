@@ -39,60 +39,62 @@ export class LocalStorageSynchronizerComponent implements AfterViewInit {
   }
 
   ngAfterViewInit(): void {
-    this.metadataService.resetSortingMaps();
-    this.prepareRankingsLoader();
+    if (this.authenticated) {
+      this.metadataService.resetSortingMaps();
+      this.prepareRankingsLoader();
 
-    this.synchronizerService.updatesEmitter.subscribe((updateNumber: number): void => {
-      switch (updateNumber) {
-        case -1: {
-          this.synchronizerService.loadRankings(this.dgAPI.gameTurn());
-          break;
+      this.synchronizerService.updatesEmitter.subscribe((updateNumber: number): void => {
+        switch (updateNumber) {
+          case -1: {
+            this.synchronizerService.loadRankings(this.dgAPI.gameTurn());
+            break;
+          }
+          case 0:
+            this.dgtUpdatingModel.nativeElement.classList.add('hide');
+            this.dgtUpdatingModel.nativeElement.classList.remove('show');
+            this.rankingsLoadModal.nativeElement.classList.add('hide');
+            this.rankingsLoadModal.nativeElement.classList.remove('show');
+            document.body.classList.remove('dgt-overlay-open');
+            window.location.reload();
+            break;
+          case 1:
+            this.rankingsLoadModal.nativeElement.classList.add('hide');
+            this.rankingsLoadModal.nativeElement.classList.remove('show');
+            document.body.classList.remove('dgt-overlay-open');
+
+            this.dgtUpdatingModel.nativeElement.classList.add('show');
+            this.dgtUpdatingModel.nativeElement.classList.remove('hide');
+            document.body.classList.add('dgt-overlay-open');
+
+            this.delay(500).then((): void => {
+            });
+            break;
+          case 2:
+            this.dgtUpdatingModel.nativeElement.classList.add('hide');
+            this.dgtUpdatingModel.nativeElement.classList.remove('show');
+            document.body.classList.remove('dgt-overlay-open');
+
+            this.playersProgressBar.nativeElement.style.width = '0%';
+            this.loadedRankings = 'Loading ranking pages';
+
+            this.rankingsLoadModal.nativeElement.classList.add('show');
+            this.rankingsLoadModal.nativeElement.classList.remove('hide');
+            document.body.classList.add('dgt-overlay-open');
+            break;
+          default:
+            break;
         }
-        case 0:
-          this.dgtUpdatingModel.nativeElement.classList.add('hide');
-          this.dgtUpdatingModel.nativeElement.classList.remove('show');
-          this.rankingsLoadModal.nativeElement.classList.add('hide');
-          this.rankingsLoadModal.nativeElement.classList.remove('show');
-          document.body.classList.remove('dgt-overlay-open');
-          window.location.reload();
-          break;
-        case 1:
-          this.rankingsLoadModal.nativeElement.classList.add('hide');
-          this.rankingsLoadModal.nativeElement.classList.remove('show');
-          document.body.classList.remove('dgt-overlay-open');
+      });
 
-          this.dgtUpdatingModel.nativeElement.classList.add('show');
-          this.dgtUpdatingModel.nativeElement.classList.remove('hide');
-          document.body.classList.add('dgt-overlay-open');
-
-          this.delay(500).then((): void => {
-          });
-          break;
-        case 2:
-          this.dgtUpdatingModel.nativeElement.classList.add('hide');
-          this.dgtUpdatingModel.nativeElement.classList.remove('show');
-          document.body.classList.remove('dgt-overlay-open');
-
-          this.playersProgressBar.nativeElement.style.width = '0%';
-          this.loadedRankings = 'Loading ranking pages';
-
-          this.rankingsLoadModal.nativeElement.classList.add('show');
-          this.rankingsLoadModal.nativeElement.classList.remove('hide');
-          document.body.classList.add('dgt-overlay-open');
-          break;
-        default:
-          break;
-      }
-    });
-
-    let subscription: Subscription = new Observable((observer: Subscriber<boolean>): void => {
-      this.synchronizerService.updateMetadata(observer);
-    }).subscribe((loaded: boolean): void => {
-      if (loaded) {
-        this.synchronizerService.loadPlanets().catch((error: any): void => console.log(error));
-        subscription.unsubscribe();
-      }
-    });
+      let subscription: Subscription = new Observable((observer: Subscriber<boolean>): void => {
+        this.synchronizerService.updateMetadata(observer);
+      }).subscribe((loaded: boolean): void => {
+        if (loaded) {
+          this.synchronizerService.loadPlanets().catch((error: any): void => console.log(error));
+          subscription.unsubscribe();
+        }
+      });
+    }
   }
 
   private prepareRankingsLoader(): void {
