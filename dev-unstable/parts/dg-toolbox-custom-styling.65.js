@@ -551,6 +551,16 @@ function applyCustomStyling(windowURL) {
         lineBreak++;
         if (lineBreak === 5) {
           line.forEach((wr) => {
+            let rows = wr.querySelectorAll('tr').length;
+            if (rows < maxLines && rows > 0) {
+              for (let i = 0; i < maxLines - rows; i++) {
+                let empty = document.createElement('tr');
+                empty.classList.add('dgt-empty-fleet-row');
+                empty.innerHTML = '<td colspan="2" class="padding"></td>';
+                wrapper.querySelector('table').append(empty);
+              }
+            }
+
             if (wr.classList.contains('dgt-empty')) {
               wr.style.height = (maxOffsetHeight + 2) + 'px';
             } else {
@@ -561,17 +571,7 @@ function applyCustomStyling(windowURL) {
           line = [];
           lineBreak = 0;
           maxOffsetHeight = 0;
-        }
-
-        let rows = wrapper.querySelectorAll('tr').length;
-        console.log(rows, maxLines);
-        if (rows < maxLines && rows > 0) {
-          for (let i = 0; i < maxLines - rows; i++) {
-            let empty = document.createElement('tr');
-            empty.classList.add('dgt-empty-fleet-row');
-            empty.innerHTML = '<td colspan="2" class="padding"></td>';
-            wrapper.querySelector('table').append(empty);
-          }
+          maxLines = 0;
         }
       });
     }
