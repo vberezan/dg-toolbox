@@ -1204,6 +1204,15 @@ label.queueDestroyButton:hover {
   padding: 1px !important;
 }
 
+.dgt-required-for-invasion-value {
+  margin-left: 5px;
+  color: #ffd46f;
+}
+
+.dgt-required-for-invasion-label {
+  color: #ffd46f;
+}
+
 .qtip-content .resourceName span,
 #completed .upkeepList span,
 #planetHeader .planetHeadSection .coords,
