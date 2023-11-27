@@ -352,6 +352,8 @@ function applyCustomStyling(windowURL) {
     let planetScanAdditional = document.querySelector('#planet-scan-additional');
     if (planetScanAdditional) { // -- surface or fleet scan
 
+      console.log(planetScanAdditional);
+
       if (planetScanAdditional.querySelector('.header').innerText.toLowerCase().trim().indexOf('structure list') > -1) { // -- surface scan
         let requiredForInvasion = document.createElement('div');
         requiredForInvasion.classList.add('dgt-required-for-invasion','right');
