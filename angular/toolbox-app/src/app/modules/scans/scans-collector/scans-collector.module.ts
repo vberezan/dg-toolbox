@@ -7,6 +7,7 @@ import {initializeAppCheck, provideAppCheck, ReCaptchaV3Provider} from "@angular
 import {getApp, initializeApp, provideFirebaseApp} from "@angular/fire/app";
 import {getFirestore, provideFirestore} from "@angular/fire/firestore";
 import {getAuth, provideAuth} from "@angular/fire/auth";
+import {DecimalPipe} from "@angular/common";
 
 
 @NgModule({
@@ -26,7 +27,8 @@ import {getAuth, provideAuth} from "@angular/fire/auth";
     ScanCollectorComponent
   ],
   providers: [
-    ScanService
+    ScanService,
+    DecimalPipe
   ],
   bootstrap: [ScanCollectorComponent]
 })

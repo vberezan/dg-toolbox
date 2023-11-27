@@ -8,6 +8,7 @@ import {collection, collectionData, doc, Firestore, limit, query, setDoc, update
 import firebase from "firebase/compat";
 import {Subscription} from "rxjs";
 import DocumentData = firebase.firestore.DocumentData;
+import {DecimalPipe} from "@angular/common";
 
 @Injectable({
   providedIn: 'root'
@@ -15,6 +16,7 @@ import DocumentData = firebase.firestore.DocumentData;
 export class ScanService {
   private firestore: Firestore = inject(Firestore);
   private dgAPI: DarkgalaxyApiService = inject(DarkgalaxyApiService);
+  private decimalPipe: DecimalPipe = inject(DecimalPipe);
 
   extractScan(): PlanetScanEvent {
     return this.dgAPI.planetScan();
@@ -61,6 +63,10 @@ export class ScanService {
         dbScan.workers = scanEvent.planetScan.workers;
         dbScan.soldiers = scanEvent.planetScan.soldiers;
         dbScan.structures = scanEvent.planetScan.structures;
+
+        let requiredForInvasion: number = ((dbScan.workers.currentNumber / 15) + (dbScan.soldiers * 1.5)) + 1;
+        document.querySelector('.dgt-required-for-invasion-value').textContent =
+          this.decimalPipe.transform(Math.ceil(requiredForInvasion), '1.0', 'en_US');
       }
 
       if (items.length == 0) {
