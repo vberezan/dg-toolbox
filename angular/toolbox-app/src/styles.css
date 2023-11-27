@@ -2623,7 +2623,7 @@ dgt-scans-collector {
 
 #planet-scan-additional .dgt-fleet > .ofHidden {
   padding: 0 0 10px 0 !important;
-  margin-bottom: 8px !important;
+  margin-bottom: 5px !important;
 }
 
 #planet-scan-additional .hostile-fleet > .ofHidden {

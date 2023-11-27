@@ -539,9 +539,11 @@ function applyCustomStyling(windowURL) {
       let lineBreak = 0;
       let line = [];
       let maxOffsetHeight = 0;
+      let maxLines = 0;
       planetScanAdditional.querySelectorAll('.dgt-fleet, .dgt-empty').forEach((wrapper) => {
         if (maxOffsetHeight < wrapper.offsetHeight) {
           maxOffsetHeight = wrapper.offsetHeight;
+          maxLines = wrapper.querySelectorAll('tr').length;
         }
 
         line.push(wrapper);
@@ -559,6 +561,16 @@ function applyCustomStyling(windowURL) {
           line = [];
           lineBreak = 0;
           maxOffsetHeight = 0;
+        }
+
+        let rows = wrapper.querySelectorAll('tr').length;
+        if (rows < maxLines) {
+          for (let i = 0; i < maxLines - rows; i++) {
+            let empty = document.createElement('tr');
+            empty.classList.add('dgt-empty-fleet-row');
+            empty.innerHTML = '<td colspan="2" class="padding"></td>';
+            wrapper.querySelector('table tbody').append(empty);
+          }
         }
       });
     }
