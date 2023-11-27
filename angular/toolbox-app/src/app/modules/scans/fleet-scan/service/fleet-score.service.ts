@@ -7,11 +7,11 @@ import {Fleet} from "../../../../shared/model/fleet/fleet.model";
 export class FleetScoreService {
 
   applyFleetScore(fleets: Fleet[]): void {
-    const groupedFleets: Map<string, Fleet[]> = new Map<string, Fleet[]>();
-
     fleets.forEach((fleet: Fleet): void => {
 
       const fleetDom: Element = document.querySelector('.dgt-fleet[dgt-fleet-id="' + fleet.id + '"]');
+
+      console.log(fleetDom, fleet.id, fleet.score);
 
       if (fleetDom != null) {
         fleetDom.querySelector('.dgt-fleet-score-value').innerHTML =
