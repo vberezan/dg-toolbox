@@ -23,17 +23,17 @@ export class FleetScoreService {
       if (fleetsByEta.length > 0) {
         fleetsByEta.forEach((fleet: Fleet): void => {
           if (fleet.hostile) {
-            totalHostile += fleet.score;
+            totalHostile += Math.ceil(fleet.score);
           } else {
-            totalAllied += fleet.score;
+            totalAllied += Math.ceil(fleet.score);
           }
         });
       }
 
       etaScore.querySelector('.hostile.dgt-eta-score-value').innerHTML =
-        totalHostile.toLocaleString('en-US', {maximumFractionDigits: 0, minimumFractionDigits: 0});
+        Math.ceil(totalHostile).toLocaleString('en-US', {maximumFractionDigits: 0, minimumFractionDigits: 0});
       etaScore.querySelector('.allied.dgt-eta-score-value').innerHTML =
-        totalAllied.toLocaleString('en-US', {maximumFractionDigits: 0, minimumFractionDigits: 0});
+        Math.ceil(totalAllied).toLocaleString('en-US', {maximumFractionDigits: 0, minimumFractionDigits: 0});
     });
   }
 }

@@ -2672,11 +2672,12 @@ dgt-scans-collector {
 }
 
 .dgt-eta-score span {
-  color: #ffd46f !important;
+  color: #ffd46f;
 }
 
 .dgt-eta-score-label {
-  margin-right: 50px;
+  margin-right: 20px;
+  color: #fff !important;
 }
 
 .dgt-eta-score-label.hostile,
@@ -2684,8 +2685,12 @@ dgt-scans-collector {
   margin-right: 5px !important;
 }
 
+.dgt-eta-score-value {
+  color: #fff !important;
+}
+
 .dgt-eta-score-label.hostile {
-  margin-left: 15px !important;
+  margin-left: 10px !important;
 }
 
 .dgt-empty-fleet-row td {
