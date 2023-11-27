@@ -31,9 +31,9 @@ export class FleetScoreService {
       }
 
       etaScore.querySelector('.hostile.dgt-eta-score-value').innerHTML =
-        Math.ceil(totalHostile).toLocaleString('en-US', {maximumFractionDigits: 0, minimumFractionDigits: 0});
+        totalHostile.toLocaleString('en-US', {maximumFractionDigits: 0, minimumFractionDigits: 0});
       etaScore.querySelector('.allied.dgt-eta-score-value').innerHTML =
-        Math.ceil(totalAllied).toLocaleString('en-US', {maximumFractionDigits: 0, minimumFractionDigits: 0});
+        totalAllied.toLocaleString('en-US', {maximumFractionDigits: 0, minimumFractionDigits: 0});
     });
   }
 }
