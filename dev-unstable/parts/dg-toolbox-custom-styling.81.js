@@ -448,10 +448,6 @@ function applyCustomStyling(windowURL) {
             planetScanAdditional.append(etaScore);
           }
 
-          let etaSeparator = document.createElement('div');
-          etaSeparator.classList.add('dgt-eta-separator');
-          planetScanAdditional.append(etaSeparator);
-
           if (earliestAllied >= 0 && earliestHostile >= 0 && !battleSimulated) {
             battleSimulated = true;
             let fightContainer = document.createElement('div');
@@ -549,6 +545,10 @@ function applyCustomStyling(windowURL) {
 
             planetScanAdditional.append(fightContainer);
 
+            let etaSeparator = document.createElement('div');
+            etaSeparator.classList.add('dgt-eta-separator');
+            planetScanAdditional.append(etaSeparator);
+          } else {
             let etaSeparator = document.createElement('div');
             etaSeparator.classList.add('dgt-eta-separator');
             planetScanAdditional.append(etaSeparator);
