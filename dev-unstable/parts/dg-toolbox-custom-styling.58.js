@@ -358,6 +358,11 @@ function applyCustomStyling(windowURL) {
       fleets.forEach((fleet) => {
         fleet.style.width = '168px';
 
+        let fleetScore = document.createElement('tr');
+        fleetScore.classList.add('dgt-fleet-score');
+        fleetScore.innerHTML = '<td class="dgt-fleet-score-label">Fleet Score</td><td class="dgt-fleet-score-value">0</td>';
+        fleet.querySelector('table tbody').append(fleetScore);
+
         let eta = fleet.querySelector('.ofHidden:first-child > .right');
         if (eta) {
           fleet.eta = parseInt(fleet.querySelector('.ofHidden:first-child > .right').textContent.trim().match(/\d+/)[0]);
