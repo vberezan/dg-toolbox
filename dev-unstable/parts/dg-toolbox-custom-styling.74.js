@@ -366,6 +366,10 @@ function applyCustomStyling(windowURL) {
           fleet.eta = parseInt(fleet.querySelector('.ofHidden:first-child > .right').textContent.trim().match(/\d+/)[0]);
           eta.innerHTML = 'ETA ' + fleet.eta;
         } else {
+          let etaN = document.createElement('div');
+          etaN.classList.add('right');
+          etaN.innerHTML = 'Planet orbit';
+          eta.parentNode.prepend(etaN);
           fleet.eta = 0;
         }
 
