@@ -96,6 +96,7 @@ function replaceShipsImages() {
       context.decodeAudioData(request.response, function(response) {
         source.buffer = response;
         source.start(0); //play audio immediately
+        console.log('playing');
         source.loop = false;
       }, function () { console.error('The request failed.'); } );
     }
