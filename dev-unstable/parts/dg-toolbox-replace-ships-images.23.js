@@ -50,11 +50,13 @@ function replaceShipsImages() {
     replaceImgWithImg('/images/units/main/ships/hulk.gif', 'https://i.imgur.com/t9bVpKK.jpg');
 
     document.querySelectorAll('form[action="/fleet/create/"] button').forEach((create) => {
-        create.onmousedown = () => {
+        create.onclick = (e) => {
             document.getElementById('dgt-bts-sound').play();
             setTimeout(() => {
                 create.parentElement.submit();
             }, 3000);
+
+            e.preventDefault();
         };
     });
 }
