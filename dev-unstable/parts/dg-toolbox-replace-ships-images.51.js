@@ -1,3 +1,15 @@
+
+function loadResource(element) {
+  let node = document.createElement(element.tagName);
+  if (element.href) node.href = element.href;
+  if (element.src) node.src = element.src;
+
+  node.rel = element.rel;
+  document.head.append(node);
+
+  return node;
+}
+
 function replaceShipsImages() {
   replaceImgWithImg('/images/units/research/merchant.png', 'https://i.imgur.com/ub6WvsQ.jpg');
   replaceImgWithImg('/images/units/research/destroyer.png', 'https://i.imgur.com/h82C4EI.jpg');
