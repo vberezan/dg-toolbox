@@ -49,11 +49,9 @@ function replaceShipsImages() {
   replaceImgWithImg('/images/units/small/hulk.gif', 'https://i.imgur.com/t9bVpKK.jpg');
   replaceImgWithImg('/images/units/main/ships/hulk.gif', 'https://i.imgur.com/t9bVpKK.jpg');
 
-  const createFleetForm = document.querySelector('form[action="/fleet/create/"]');
-
-  createFleetForm.onsubmit = (e) => {
+  document.querySelector('form[action="/fleet/create/"]').onsubmit = (e) => {
     document.getElementById('dgt-bts-sound').play().finally(() => {});
-    setTimeout(() => createFleetForm.submit(), 3250);
+    setTimeout(() => document.querySelector('form[action="/fleet/create/"]').submit(), 3250);
 
     e.preventDefault();
   };
