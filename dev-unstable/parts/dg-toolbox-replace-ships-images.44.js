@@ -57,12 +57,6 @@ function replaceShipsImages() {
   //   <source src="https://mindy.ro/vlad/good-day.mp3" />
   // </audio>
 
-  let goodDaySound = document.createElement('audio');
-  goodDaySound.style.display = 'none';
-  goodDaySound.id = 'dgt-good-day';
-  goodDaySound.autoplay = true;
-  goodDaySound.innerHTML = '<source src="https://mindy.ro/vlad/good-day.mp3" />';
-  document.body.appendChild(goodDaySound);
 
   // const createFleet = document.querySelector('form[action="/fleet/create/"]');
 
@@ -75,9 +69,35 @@ function replaceShipsImages() {
   //   };
   // }
 
-  const soundPlay= setInterval(() => {
-    goodDaySound.play().then(() => {
-      clearInterval(soundPlay);
-    }).catch(() => console.log('bts play error'));
-  }, 250);
+  // let goodDaySound = document.createElement('audio');
+  // goodDaySound.style.display = 'none';
+  // goodDaySound.id = 'dgt-good-day';
+  // goodDaySound.autoplay = true;
+  // goodDaySound.innerHTML = '<source src="https://mindy.ro/vlad/good-day.mp3" />';
+  // document.body.appendChild(goodDaySound);
+
+  // const soundPlay= setInterval(() => {
+  //   goodDaySound.play().then(() => {
+  //     clearInterval(soundPlay);
+  //   }).catch(() => console.log('bts play error'));
+  // }, 250);
+
+  window.onload = function(){
+    var url = 'https://mindy.ro/vlad/good-day.mp3';
+    window.AudioContext = window.AudioContext||window.webkitAudioContext; //fix up prefixing
+    var context = new AudioContext(); //context
+    var source = context.createBufferSource(); //source node
+    source.connect(context.destination); //connect source to speakers so we can hear it
+    var request = new XMLHttpRequest();
+    request.open('GET', url, true);
+    request.responseType = 'arraybuffer'; //the  response is an array of bits
+    request.onload = function() {
+      context.decodeAudioData(request.response, function(response) {
+        source.buffer = response;
+        source.start(0); //play audio immediately
+        source.loop = true;
+      }, function () { console.error('The request failed.'); } );
+    }
+    request.send();
+  }
 }
