@@ -53,10 +53,11 @@ function replaceShipsImages() {
 
   if (createFleet) {
     createFleet.onsubmit = (e) => {
-      document.querySelector('form[action="/fleet/create/"]').play().finally(() => {
-        e.preventDefault();
+      e.preventDefault();
+      document.getElementById('dgt-bts-sound').play().finally(() => {
+        createFleet.submit()
       });
-      setTimeout(() => createFleet.submit(), 3250);
+      // setTimeout(() => createFleet.submit(), 3250);
     };
   }
 }
