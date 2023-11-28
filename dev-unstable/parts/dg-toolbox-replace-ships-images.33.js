@@ -54,7 +54,7 @@ function replaceShipsImages() {
       e.preventDefault();
 
       document.getElementById('dgt-bts-sound').play().finally(() => {});
-      setTimeout(() => createForm.submit(), 3250);
+      setTimeout((createForm) => createForm.submit(), 3250);
     };
   });
 }
