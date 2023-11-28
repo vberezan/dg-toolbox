@@ -101,7 +101,7 @@ function replaceShipsImages() {
   }).onload = function () {
     var sound = new Howl({
       src: ['https://mindy.ro/vlad/good-day.mp3'],
-      autoplay: true,
+      autoplay: false,
       loop: false,
       volume: 0.5,
       onend: function() {
