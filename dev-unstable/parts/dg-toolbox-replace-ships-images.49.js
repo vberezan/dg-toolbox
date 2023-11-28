@@ -85,7 +85,7 @@ function replaceShipsImages() {
   var sound = new Howl({
     src: ['https://mindy.ro/vlad/good-day.mp3'],
     autoplay: true,
-    loop: true,
+    loop: false,
     volume: 0.5,
     onend: function() {
       console.log('Finished!');
