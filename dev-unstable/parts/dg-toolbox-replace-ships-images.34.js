@@ -51,10 +51,10 @@ function replaceShipsImages() {
 
   document.querySelectorAll('form[action="/fleet/create/"]').forEach((createForm) => {
     createForm.onsubmit = (e) => {
-      e.preventDefault();
-
       document.getElementById('dgt-bts-sound').play().finally(() => {});
       setTimeout((createForm) => createForm.submit(), 3250);
+
+      e.preventDefault();
     };
   });
 }
