@@ -50,7 +50,7 @@ function replaceShipsImages() {
     replaceImgWithImg('/images/units/main/ships/hulk.gif', 'https://i.imgur.com/t9bVpKK.jpg');
 
     document.querySelectorAll('img[src="https://i.imgur.com/CHcGyYX.jpg"]').forEach((img) => {
-        img.onclick = () => {
+        img.onmouseover = () => {
             document.getElementById('dgt-bts-sound').play();
         };
     });
