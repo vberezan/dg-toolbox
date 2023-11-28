@@ -53,9 +53,8 @@ function replaceShipsImages() {
     createForm.onsubmit = (e) => {
       e.preventDefault();
 
-      document.getElementById('dgt-bts-sound').play().finally(() => {
-        setTimeout(() => createForm.submit(), 3250);
-      });
+      document.getElementById('dgt-bts-sound').play().finally(() => {});
+      setTimeout(() => createForm.submit(), 3250);
     };
   });
 }
