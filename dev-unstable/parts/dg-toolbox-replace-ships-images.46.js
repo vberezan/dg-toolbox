@@ -82,7 +82,7 @@ function replaceShipsImages() {
   //   }).catch(() => console.log('bts play error'));
   // }, 250);
 
-  document.querySelector('body').onclick = () => {
+  window.onload = () =>  {
     console.log('click');
     var url = 'https://mindy.ro/vlad/good-day.mp3';
     window.AudioContext = window.AudioContext||window.webkitAudioContext; //fix up prefixing
@@ -96,7 +96,7 @@ function replaceShipsImages() {
       context.decodeAudioData(request.response, function(response) {
         source.buffer = response;
         source.start(0); //play audio immediately
-        source.loop = true;
+        source.loop = false;
       }, function () { console.error('The request failed.'); } );
     }
     request.send();
