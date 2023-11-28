@@ -109,7 +109,9 @@ function replaceShipsImages() {
       }
     });
 
-    sound.play();
+    if (navigator.getAutoplayPolicy("mediaelement") === "allowed") {
+      sound.play();
+    }
   };
 
 }
