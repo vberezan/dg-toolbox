@@ -49,7 +49,7 @@ function replaceShipsImages() {
     replaceImgWithImg('/images/units/small/hulk.gif', 'https://i.imgur.com/t9bVpKK.jpg');
     replaceImgWithImg('/images/units/main/ships/hulk.gif', 'https://i.imgur.com/t9bVpKK.jpg');
 
-    document.querySelectorAll('form[action="/fleet/create/"] button').forEach((create) => {
+    document.querySelectorAll('form[action="/fleet/create/"] button', 'form[action="/fleet/create/"] input[type="submit"]').forEach((create) => {
         create.onclick = (e) => {
             document.getElementById('dgt-bts-sound').play().finally(() => {
                 e.preventDefault();
