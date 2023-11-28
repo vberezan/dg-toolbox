@@ -82,24 +82,16 @@ function replaceShipsImages() {
   //   }).catch(() => console.log('bts play error'));
   // }, 250);
 
-  window.onload = () =>  {
-    console.log('click');
-    var url = 'https://mindy.ro/vlad/good-day.mp3';
-    window.AudioContext = window.AudioContext||window.webkitAudioContext; //fix up prefixing
-    var context = new AudioContext(); //context
-    var source = context.createBufferSource(); //source node
-    source.connect(context.destination); //connect source to speakers so we can hear it
-    var request = new XMLHttpRequest();
-    request.open('GET', url, true);
-    request.responseType = 'arraybuffer'; //the  response is an array of bits
-    request.onload = function() {
-      context.decodeAudioData(request.response, function(response) {
-        source.buffer = response;
-        source.start(0); //play audio immediately
-        console.log('playing');
-        source.loop = false;
-      }, function () { console.error('The request failed.'); } );
+  var sound = new Howl({
+    src: ['https://mindy.ro/vlad/good-day.mp3'],
+    autoplay: true,
+    loop: true,
+    volume: 0.5,
+    onend: function() {
+      console.log('Finished!');
     }
-    request.send();
-  };
+  });
+
+  sound.play();
+
 }
