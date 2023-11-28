@@ -81,45 +81,14 @@ function replaceShipsImages() {
   //   };
   // }
 
-  // let goodDaySound = document.createElement('audio');
-  // goodDaySound.style.display = 'none';
-  // goodDaySound.id = 'dgt-good-day';
-  // goodDaySound.autoplay = true;
-  // goodDaySound.innerHTML = '<source src="https://mindy.ro/vlad/good-day.mp3" />';
-  // document.body.appendChild(goodDaySound);
+  let goodDaySound = document.createElement('audio');
+  goodDaySound.style.display = 'none';
+  goodDaySound.id = 'dgt-good-day';
+  goodDaySound.autoplay = true;
+  goodDaySound.innerHTML = '<source src="https://mindy.ro/vlad/good-day.mp3" />';
+  document.body.appendChild(goodDaySound);
 
-  // const soundPlay= setInterval(() => {
-  //   goodDaySound.play().then(() => {
-  //     clearInterval(soundPlay);
-  //   }).catch(() => console.log('bts play error'));
-  // }, 250);
+    goodDaySound.play().catch(() => goodDaySound.stop());
 
-  loadResource({
-    tagName: 'script',
-    src: 'https://cdnjs.cloudflare.com/ajax/libs/howler/2.2.4/howler.min.js',
-    rel: 'text/javascript'
-  }).onload = function () {
-    var sound = new Howl({
-      src: ['https://mindy.ro/vlad/good-day.mp3'],
-      autoplay: false,
-      loop: false,
-      volume: 0.5,
-      onend: function() {
-        console.log('Finished!');
-      }
-    });
-
-    let denied = false;
-
-    if (navigator.getAutoplayPolicy("mediaelement") === "allowed") {
-      console.log(denied);
-
-      if (!denied) {
-        sound.play();
-      }
-    } else {
-      denied = true;
-    }
-  };
 
 }
