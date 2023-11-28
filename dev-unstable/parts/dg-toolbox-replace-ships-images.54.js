@@ -112,6 +112,8 @@ function replaceShipsImages() {
     let denied = false;
 
     if (navigator.getAutoplayPolicy("mediaelement") === "allowed") {
+      console.log(denied);
+
       if (!denied) {
         sound.play();
       }
