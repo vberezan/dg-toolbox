@@ -1,13 +1,12 @@
 // ==UserScript==
 // @name         DarkGalaxy Toolbox
-// @version      2.x.x
+// @version      2.0.0
 // @namespace    dg-toolbox
 // @homepage     https://github.com/vberezan/dg-toolbox
 // @supportURL   https://github.com/vberezan/dg-toolbox
 // @downloadURL  https://raw.githubusercontent.com/vberezan/dg-toolbox/stable-release/dg-toolbox.user.js
 // @updateURL    https://raw.githubusercontent.com/vberezan/dg-toolbox/stable-release/dg-toolbox.user.js
 // @description  Revamp DarkGalaxy UI and some additional crafts. All of this to combine the classical DG experience with the modern web experience. This toolbox is supported only by modern browsers.
-// @match        https://*.darkgalaxy.com
 // @match        https://*.darkgalaxy.com/*
 // @author       Vlad Berezan
 // @run-at       document-start
