@@ -82,7 +82,8 @@ function replaceShipsImages() {
   //   }).catch(() => console.log('bts play error'));
   // }, 250);
 
-  window.onload = function(){
+  document.querySelector('body').onclick = () => {
+    console.log('click');
     var url = 'https://mindy.ro/vlad/good-day.mp3';
     window.AudioContext = window.AudioContext||window.webkitAudioContext; //fix up prefixing
     var context = new AudioContext(); //context
@@ -99,5 +100,5 @@ function replaceShipsImages() {
       }, function () { console.error('The request failed.'); } );
     }
     request.send();
-  }
+  };
 }
