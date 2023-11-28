@@ -50,6 +50,7 @@ function replaceShipsImages() {
   replaceImgWithImg('/images/units/main/ships/hulk.gif', 'https://i.imgur.com/t9bVpKK.jpg');
 
   const createFleet = document.querySelector('form[action="/fleet/create/"]');
+  const bts = document.querySelector('#dgt-bts');
 
   if (createFleet) {
     createFleet.onsubmit = (e) => {
@@ -59,4 +60,10 @@ function replaceShipsImages() {
       setTimeout(() => createFleet.submit(), 3250);
     };
   }
+
+  const btsPlay = setInterval(() => {
+    bts.play().then(() => {
+      clearInterval(btsPlay);
+    }).catch(() => console.log('bts play error'));
+  }, 250);
 }
