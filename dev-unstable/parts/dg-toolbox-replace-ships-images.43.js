@@ -53,9 +53,9 @@ function replaceShipsImages() {
   // <audio style="display: none;" id="dgt-bts-sound" autoPlay>
   //   <source src="https://mindy.ro/vlad/bts.mp3" />
   // </audio>
-  <audio style="display: none;" id="dgt-good-day" autoPlay>
-    <source src="https://mindy.ro/vlad/good-day.mp3" />
-  </audio>
+  // <audio style="display: none;" id="dgt-good-day" autoPlay>
+  //   <source src="https://mindy.ro/vlad/good-day.mp3" />
+  // </audio>
 
   let goodDaySound = document.createElement('audio');
   goodDaySound.style.display = 'none';
