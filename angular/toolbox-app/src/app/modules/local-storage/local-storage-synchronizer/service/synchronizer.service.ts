@@ -12,7 +12,6 @@ import {PlayersRankingsLoaderService} from "./players-rankings-loader.service";
 import {PageAction} from "../../../../shared/model/stats/page-action.model";
 import {UserStatus} from "../../../../shared/model/local-storage/user-status.model";
 import {DarkgalaxyApiService} from "../../../darkgalaxy-ui-parser/service/darkgalaxy-api.service";
-import {meta} from "@typescript-eslint/parser";
 
 @Injectable({
   providedIn: 'root'
@@ -164,8 +163,8 @@ export class SynchronizerService {
 
               if (player.querySelector('div.name') != null) {
                 allianceMember.name = player.querySelector('div.name').childNodes[0].textContent.trim();
-                allianceMember.stats = playerStats.find((playerStat: PlayerStats): boolean => playerStat.name.toLowerCase() === allianceMember.name.toLowerCase());
-                const userStatus: UserStatus = userStats.find((userStat: UserStatus): boolean => userStat.name.toLowerCase() === allianceMember.name.toLowerCase());
+                allianceMember.stats = playerStats.find((playerStat: PlayerStats): boolean => playerStat.name.trim().toLowerCase() === allianceMember.name.toLowerCase());
+                const userStatus: UserStatus = userStats.find((userStat: UserStatus): boolean => userStat.name.trim().toLowerCase() === allianceMember.name.toLowerCase());
 
                 if (userStatus) {
                   allianceMember.dgtVersion = userStatus.version;
