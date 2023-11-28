@@ -82,16 +82,22 @@ function replaceShipsImages() {
   //   }).catch(() => console.log('bts play error'));
   // }, 250);
 
-  var sound = new Howl({
-    src: ['https://mindy.ro/vlad/good-day.mp3'],
-    autoplay: true,
-    loop: false,
-    volume: 0.5,
-    onend: function() {
-      console.log('Finished!');
-    }
-  });
+  loadResource({
+    tagName: 'script',
+    src: 'https://cdnjs.cloudflare.com/ajax/libs/howler/2.2.4/howler.min.js',
+    rel: 'text/javascript'
+  }).onload = function () {
+    var sound = new Howl({
+      src: ['https://mindy.ro/vlad/good-day.mp3'],
+      autoplay: true,
+      loop: false,
+      volume: 0.5,
+      onend: function() {
+        console.log('Finished!');
+      }
+    });
 
-  sound.play();
+    sound.play();
+  };
 
 }
