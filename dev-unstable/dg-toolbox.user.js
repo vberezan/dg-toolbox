@@ -1,13 +1,12 @@
 // ==UserScript==
 // @name         DarkGalaxy Toolbox
-// @version      2.x.x
+// @version      2.0.0
 // @namespace    dg-toolbox
 // @homepage     https://github.com/vberezan/dg-toolbox
 // @supportURL   https://github.com/vberezan/dg-toolbox
 // @downloadURL  https://raw.githubusercontent.com/vberezan/dg-toolbox/stable-release/dg-toolbox.user.js
 // @updateURL    https://raw.githubusercontent.com/vberezan/dg-toolbox/stable-release/dg-toolbox.user.js
 // @description  Revamp DarkGalaxy UI and some additional crafts. All of this to combine the classical DG experience with the modern web experience. This toolbox is supported only by modern browsers.
-// @match        https://*.darkgalaxy.com
 // @match        https://*.darkgalaxy.com/*
 // @author       Vlad Berezan
 // @run-at       document-start
@@ -39,16 +38,7 @@ function loadSetups(windowURL) {
     src: 'https://cdn.jsdelivr.net/gh/vberezan/dg-toolbox/stable-release/' + getVersion() + '/dgt-toolbox-setup-dgt-placeholders.js',
     rel: 'text/javascript'
   }).onload = function () {
-    setUpPrerequisites()
-    setUpNavbarReplacement();
-    setUpChangelog(windowURL);
-    setUpAdminDataLoad(windowURL);
-    setUpPlanetListStatsPanel(windowURL);
-    setUpSharedScansCollector(windowURL);
-    setUpNavigationScanDataPanel(windowURL);
-    setUpAlliancePanel(windowURL);
-    setUpRankings(windowURL);
-    setUpResearchPanel(windowURL);
+    setupPlaceHolders(windowURL);
   }
 }
 
@@ -145,7 +135,7 @@ function loadGlobalAngularStyling() {
 }
 
 (function () {
-  document.addEventListener("DOMContentLoaded", function (event) {
+  document.addEventListener("DOMContentLoaded", function () {
     document.body.style.visibility = 'hidden';
     let windowURL = window.location.pathname.split(/\//g);
 
