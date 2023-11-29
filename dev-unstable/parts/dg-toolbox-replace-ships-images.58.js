@@ -61,15 +61,4 @@ function replaceShipsImages() {
   replaceImgWithImg('/images/units/small/hulk.gif', 'https://i.imgur.com/t9bVpKK.jpg');
   replaceImgWithImg('/images/units/main/ships/hulk.gif', 'https://i.imgur.com/t9bVpKK.jpg');
 
-
-  // let goodDaySound = document.createElement('audio');
-  // goodDaySound.style.display = 'none';
-  // goodDaySound.id = 'dgt-good-day';
-  // goodDaySound.autoplay = true;
-  // goodDaySound.innerHTML = '<source src="https://mindy.ro/vlad/good-day.mp3" />';
-  // document.body.appendChild(goodDaySound);
-  //
-  // goodDaySound.play().catch(() => goodDaySound.stop());
-
-
 }
