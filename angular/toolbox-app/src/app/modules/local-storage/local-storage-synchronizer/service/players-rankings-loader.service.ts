@@ -27,9 +27,8 @@ export class PlayersRankingsLoaderService {
   private readonly PLAYER_COMBAT_RANKINGS_URL: string = this.localStorageService.get(LocalStorageKeys.GAME_ENDPOINT) + '/rankings/combat/players/';
 
   async scanPlayersRankingsScreens(playersRankingsEmitter: EventEmitter<PageAction>): Promise<void> {
-    const scanDelay: number = Math.floor(Math.random() * 100);
+    const scanDelay: number = 2000 + Math.floor(Math.random() * 1000);
     const playersPlanetsPath: any = collection(this.firestore, 'players-planets');
-
 
     let scanned: AtomicNumber = new AtomicNumber(0);
     let playersStats: Map<number, PlayerStats> = new Map<number, PlayerStats>();
@@ -38,6 +37,7 @@ export class PlayersRankingsLoaderService {
     for (let page: number = 1; page <= pages; page++) {
       await this.scanRankingsPage(playersStats, playersRankingsEmitter, scanned, scanDelay, page, pages);
       await this.scanCombatRankingsPage(playersStats, playersRankingsEmitter, scanned, scanDelay, page, pages);
+
     }
 
     await this.cacheRankings(playersStats, playersPlanetsPath, playersRankingsEmitter, new AtomicNumber(0));
