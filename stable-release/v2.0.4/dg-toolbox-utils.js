@@ -1,17 +1,1 @@
-function replaceImgWithImgByQuery(query, newImgSrc) {
-    document.querySelectorAll(query).forEach((img) => {
-        img.src = newImgSrc;
-    });
-}
-
-function replaceImgWithImg(originalImgSrc, newImgSrc) {
-    document.querySelectorAll('img[src="' + originalImgSrc + '"').forEach((img) => {
-        img.src = newImgSrc;
-    });
-}
-
-function replaceImgWithFontAwsome(imgSrc, fontAwsomeHTML) {
-    document.querySelectorAll('img[src="' + imgSrc + '"').forEach((img) => {
-        img.parentElement.innerHTML = fontAwsomeHTML;
-    });
-}
+function replaceImgWithImgByQuery(e,r){document.querySelectorAll(e).forEach(e=>{e.src=r})}function replaceImgWithImg(e,r){document.querySelectorAll('img[src="'+e+'"').forEach(e=>{e.src=r})}function replaceImgWithFontAwsome(e,r){document.querySelectorAll('img[src="'+e+'"').forEach(e=>{e.parentElement.innerHTML=r})}
