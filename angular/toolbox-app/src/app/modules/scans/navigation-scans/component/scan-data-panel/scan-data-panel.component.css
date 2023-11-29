@@ -6,6 +6,14 @@
   border-radius: 5px;
 }
 
+.component-warning {
+  color: #ffffffad;
+  background: #FF3B303B;
+  margin: 0;
+  padding: 5px;
+  border-radius: 5px;
+}
+
 .dgt-spinner-container {
   width: 100% !important;
   height: 58px;
