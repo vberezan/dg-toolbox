@@ -3,7 +3,8 @@
   background: #576740;
   margin: 0;
   padding: 5px;
-  border-radius: 5px;
+  border-bottom-left-radius: 5px;
+  border-bottom-right-radius: 5px;
 }
 
 .component-warning {
@@ -11,7 +12,8 @@
   background: #FF3B303B;
   margin: 0;
   padding: 5px;
-  border-radius: 5px;
+  border-top-left-radius: 5px;
+  border-top-right-radius: 5px;
 }
 
 .dgt-spinner-container {
