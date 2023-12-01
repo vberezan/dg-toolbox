@@ -74,14 +74,14 @@ export class FightSimulatorService {
               break;
           }
 
-          if (fleet.allied) {
-            alliedUnitsBefore += 1.5 * metalUnits + mineralUnits;
-          } else {
-            hostileUnitsBefore += 1.5 * metalUnits + mineralUnits;
-          }
-
           fightSimulationContainer.querySelector('.dgt-fight-simulator-by-rof tr.' + ship.name + ' td.before.' + key).innerHTML = ship.quantity.toLocaleString('en-US', {maximumFractionDigits: 0, minimumFractionDigits: 0});
         });
+
+        if (fleet.allied) {
+          alliedUnitsBefore += 1.5 * metalUnits + mineralUnits;
+        } else {
+          hostileUnitsBefore += 1.5 * metalUnits + mineralUnits;
+        }
 
         fightSimulationContainer.querySelector('.dgt-fight-simulator-by-rof tr.resource-row.metal td.before.' + key).innerHTML = metalUnits.toLocaleString('en-US', {maximumFractionDigits: 0, minimumFractionDigits: 0});
         fightSimulationContainer.querySelector('.dgt-fight-simulator-by-rof tr.resource-row.mineral td.before.' + key).innerHTML = mineralUnits.toLocaleString('en-US', {maximumFractionDigits: 0, minimumFractionDigits: 0});
@@ -125,21 +125,21 @@ export class FightSimulatorService {
               break;
           }
 
-          if (fleet.allied) {
-            alliedUnitsAfter += 1.5 * metalUnits + mineralUnits;
-          } else {
-            hostileUnitsAfter += 1.5 * metalUnits + mineralUnits;
-          }
-
           fightSimulationContainer.querySelector('.dgt-fight-simulator-by-rof tr.' + ship.name + ' td.after.' + key).innerHTML = ship.quantity.toLocaleString('en-US', {maximumFractionDigits: 0, minimumFractionDigits: 0});
         });
+
+        if (fleet.allied) {
+          alliedUnitsAfter += 1.5 * metalUnits + mineralUnits;
+        } else {
+          hostileUnitsAfter += 1.5 * metalUnits + mineralUnits;
+        }
 
         fightSimulationContainer.querySelector('.dgt-fight-simulator-by-rof tr.resource-row.metal td.after.' + key).innerHTML = metalUnits.toLocaleString('en-US', {maximumFractionDigits: 0, minimumFractionDigits: 0});
         fightSimulationContainer.querySelector('.dgt-fight-simulator-by-rof tr.resource-row.mineral td.after.' + key).innerHTML = mineralUnits.toLocaleString('en-US', {maximumFractionDigits: 0, minimumFractionDigits: 0});
       });
 
-      fightSimulationContainer.querySelector('.dgt-fight-simulator-by-rof tr.resource-row.total td.allied').innerHTML = (alliedUnitsBefore).toLocaleString('en-US', {maximumFractionDigits: 0, minimumFractionDigits: 0});
-      fightSimulationContainer.querySelector('.dgt-fight-simulator-by-rof tr.resource-row.total td.hostile').innerHTML = (hostileUnitsBefore).toLocaleString('en-US', {maximumFractionDigits: 0, minimumFractionDigits: 0});
+      fightSimulationContainer.querySelector('.dgt-fight-simulator-by-rof tr.resource-row.total td.allied').innerHTML = (alliedUnitsBefore - alliedUnitsAfter).toLocaleString('en-US', {maximumFractionDigits: 0, minimumFractionDigits: 0});
+      fightSimulationContainer.querySelector('.dgt-fight-simulator-by-rof tr.resource-row.total td.hostile').innerHTML = (hostileUnitsBefore - hostileUnitsAfter).toLocaleString('en-US', {maximumFractionDigits: 0, minimumFractionDigits: 0});
     });
   }
 
