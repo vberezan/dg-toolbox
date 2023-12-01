@@ -75,7 +75,7 @@ export class FightSimulatorService {
 
         fightSimulationContainer.querySelector('.dgt-fight-simulator-by-rof tr.resource-row.metal td.before.' + key).innerHTML = metalUnits.toLocaleString('en-US', {maximumFractionDigits: 0, minimumFractionDigits: 0});
         fightSimulationContainer.querySelector('.dgt-fight-simulator-by-rof tr.resource-row.mineral td.before.' + key).innerHTML = mineralUnits.toLocaleString('en-US', {maximumFractionDigits: 0, minimumFractionDigits: 0});
-        fightSimulationContainer.querySelector('.dgt-fight-simulator-by-rof tr.resource-row.total td.before.' + key).innerHTML = (metalUnits * 1.5 + mineralUnits).toLocaleString('en-US', {maximumFractionDigits: 0, minimumFractionDigits: 0});
+        fightSimulationContainer.querySelector('.dgt-fight-simulator-by-rof tr.resource-row.total td.before').innerHTML = (metalUnits * 1.5 + mineralUnits).toLocaleString('en-US', {maximumFractionDigits: 0, minimumFractionDigits: 0});
       });
 
       // -- simulate fight
