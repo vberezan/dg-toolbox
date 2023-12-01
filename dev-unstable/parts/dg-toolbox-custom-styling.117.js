@@ -431,7 +431,7 @@ function applyCustomStyling(windowURL) {
             planetScanAdditional.append(etaScore);
           }
 
-          if (earliestAllied >= 0 && earliestHostile >= 0) {
+          if (earliestAllied >= 0 && earliestHostile >= 0 && etaHasWarFleet) {
             battleSimulated = true;
             let fightContainer = document.createElement('div');
             fightContainer.classList.add('dgt-fight-simulation-container');
@@ -439,13 +439,13 @@ function applyCustomStyling(windowURL) {
             fightContainer.innerHTML =
               '<div class="dgt-fight-simulation-info">' +
                 '<span class="dgt-fight-simulation-info-text">Battle Simulator</span>' +
-                '<span class="dgt-fight-simulation-info-text">Hostile ETA: <b>' + earliestHostile + '</b></span>' +
+                '<span class="dgt-fight-simulation-info-text">ETA: <b>' + i + '</b></span>' +
                 '<span class="dgt-fight-simulation-info-text">This is just a simulation based on Speed Games data mining. Results are hypothetical</span>' +
                 '<span class="dgt-fight-simulation-info-text"><b>Attack</b> and <b>Defence</b> bonuses are <b>not</b> applied</span>' +
                 '<span class="dgt-fight-simulation-info-text"><b>Holo Ships</b> are <b>not</b> supported</span>' +
                 '<span class="dgt-fight-simulation-info-text"><b>Transporter Ships</b> and <b>Invasion Ship</b> are <b>not</b> supported</span>' +
               '</div>' +
-              '<div class="dgt-fight-simulation" eta="' + (earliestAllied > earliestHostile ? earliestAllied : earliestHostile) + '">' +
+              '<div class="dgt-fight-simulation" eta="' + i + '">' +
                 '<table class="dgt-fight-simulator-by-rof">' +
                   '<tr class="top-header">' +
                     '<th colspan="1" class="invisible"></th>' +
