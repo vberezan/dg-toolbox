@@ -10,47 +10,45 @@ import {KillRate} from "../../../../shared/model/fleet/kill-rate.model";
 export class FightSimulatorService {
 
   createSimulation(fleets: Fleet[]): void {
-    const fightSimulation: Element = document.querySelector('.dgt-fight-simulation');
-    if (!fightSimulation) {
-      return;
-    }
+    document.querySelectorAll('.dgt-fight-simulation').forEach((fightSimulation: Element): void => {
 
-    const eta: number = parseInt(fightSimulation.attributes.getNamedItem('eta').value);
-    const groupedFleets: Map<string, Fleet[]> = new Map<string, Fleet[]>();
-    const totalFleets: Map<string, Fleet> = new Map<string, Fleet>();
+      const eta: number = parseInt(fightSimulation.attributes.getNamedItem('eta').value);
+      const groupedFleets: Map<string, Fleet[]> = new Map<string, Fleet[]>();
+      const totalFleets: Map<string, Fleet> = new Map<string, Fleet>();
 
-    // -- group fleets by type
-    fleets.forEach((fleet: Fleet): void => {
-      const key: string = fleet.hostile ? 'hostile' : 'allied';
+      // -- group fleets by type
+      fleets.forEach((fleet: Fleet): void => {
+        const key: string = fleet.hostile ? 'hostile' : 'allied';
 
-      if (fleet.eta <= eta) {
-        groupedFleets.has(key) ? groupedFleets.get(key).push(fleet) : groupedFleets.set(key, [fleet]);
-      }
-    });
-
-    // -- merge fleets of the same type
-    groupedFleets.forEach((fleetGroup: Fleet[], key: string): void => {
-      totalFleets.set(key, this.totalFleet(fleetGroup));
-    });
-
-
-    // -- update table
-    totalFleets.forEach((fleet: Fleet, key: string): void => {
-      fleet.hostile = key === 'hostile';
-      fleet.allied = key === 'allied';
-
-      fleet.ships.forEach((ship: NameQuantity): void => {
-        document.querySelector('.dgt-fight-simulator-by-rof tr.' + ship.name + ' td.before.' + key).innerHTML = ship.quantity.toLocaleString('en-US', {maximumFractionDigits: 0, minimumFractionDigits: 0});
+        if (fleet.eta <= eta) {
+          groupedFleets.has(key) ? groupedFleets.get(key).push(fleet) : groupedFleets.set(key, [fleet]);
+        }
       });
-    });
 
-    // -- simulate fight
-    const fightResult: Map<string, Fleet> = this.simulateFight(totalFleets.get('allied'), totalFleets.get('hostile'), 1);
+      // -- merge fleets of the same type
+      groupedFleets.forEach((fleetGroup: Fleet[], key: string): void => {
+        totalFleets.set(key, this.totalFleet(fleetGroup));
+      });
 
-    // -- update table
-    fightResult.forEach((fleet: Fleet, key: string): void => {
-      fleet.ships.forEach((ship: NameQuantity): void => {
-        document.querySelector('.dgt-fight-simulator-by-rof tr.' + ship.name + ' td.after.' + key).innerHTML = ship.quantity.toLocaleString('en-US', {maximumFractionDigits: 0, minimumFractionDigits: 0});
+
+      // -- update table
+      totalFleets.forEach((fleet: Fleet, key: string): void => {
+        fleet.hostile = key === 'hostile';
+        fleet.allied = key === 'allied';
+
+        fleet.ships.forEach((ship: NameQuantity): void => {
+          document.querySelector('.dgt-fight-simulator-by-rof tr.' + ship.name + ' td.before.' + key).innerHTML = ship.quantity.toLocaleString('en-US', {maximumFractionDigits: 0, minimumFractionDigits: 0});
+        });
+      });
+
+      // -- simulate fight
+      const fightResult: Map<string, Fleet> = this.simulateFight(totalFleets.get('allied'), totalFleets.get('hostile'), 1);
+
+      // -- update table
+      fightResult.forEach((fleet: Fleet, key: string): void => {
+        fleet.ships.forEach((ship: NameQuantity): void => {
+          document.querySelector('.dgt-fight-simulator-by-rof tr.' + ship.name + ' td.after.' + key).innerHTML = ship.quantity.toLocaleString('en-US', {maximumFractionDigits: 0, minimumFractionDigits: 0});
+        });
       });
     });
   }
