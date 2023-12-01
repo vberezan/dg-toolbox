@@ -431,99 +431,99 @@ function applyCustomStyling(windowURL) {
             planetScanAdditional.append(etaScore);
           }
 
-          if (earliestAllied >= 0 && earliestHostile >= 0 && !battleSimulated) {
+          if (earliestAllied >= 0 && earliestHostile >= 0) {
             battleSimulated = true;
             let fightContainer = document.createElement('div');
             fightContainer.classList.add('dgt-fight-simulation-container');
 
             fightContainer.innerHTML =
               '<div class="dgt-fight-simulation-info">' +
-              '<span class="dgt-fight-simulation-info-text">Battle Simulator</span>' +
-              '<span class="dgt-fight-simulation-info-text">Hostile ETA: <b>' + earliestHostile + '</b></span>' +
-              '<span class="dgt-fight-simulation-info-text">This is just a simulation based on Speed Games data mining. Results are hypothetical</span>' +
-              '<span class="dgt-fight-simulation-info-text"><b>Attack</b> and <b>Defence</b> bonuses are <b>not</b> applied</span>' +
-              '<span class="dgt-fight-simulation-info-text"><b>Holo Ships</b> are <b>not</b> supported</span>' +
-              '<span class="dgt-fight-simulation-info-text"><b>Transporter Ships</b> and <b>Invasion Ship</b> are <b>not</b> supported</span>' +
+                '<span class="dgt-fight-simulation-info-text">Battle Simulator</span>' +
+                '<span class="dgt-fight-simulation-info-text">Hostile ETA: <b>' + earliestHostile + '</b></span>' +
+                '<span class="dgt-fight-simulation-info-text">This is just a simulation based on Speed Games data mining. Results are hypothetical</span>' +
+                '<span class="dgt-fight-simulation-info-text"><b>Attack</b> and <b>Defence</b> bonuses are <b>not</b> applied</span>' +
+                '<span class="dgt-fight-simulation-info-text"><b>Holo Ships</b> are <b>not</b> supported</span>' +
+                '<span class="dgt-fight-simulation-info-text"><b>Transporter Ships</b> and <b>Invasion Ship</b> are <b>not</b> supported</span>' +
               '</div>' +
               '<div class="dgt-fight-simulation" eta="' + (earliestAllied > earliestHostile ? earliestAllied : earliestHostile) + '">' +
-              '<table class="dgt-fight-simulator-by-rof">' +
-              '<tr class="top-header">' +
-              '<th colspan="1" class="invisible"></th>' +
-              '<th colspan="2" class="after-invisible">Allied</th>' +
-              '<th colspan="2">Hostile</th>' +
-              '</tr>' +
-              '<tr class="top-header">' +
-                '<th colspan="1" class="invisible"></th>' +
-                '<th colspan="1" class="after-invisible">Before</th>' +
-                '<th colspan="1">After</th>' +
-                '<th colspan="1">Before</th>' +
-                '<th colspan="1">After</th>' +
-              '</tr>' +
-              '<tr class="fleet-row fighter">' +
-                '<th colspan="1">Fighter</th>' +
-                '<td class="allied before">0</td>' +
-                '<td class="allied after">0</td>' +
-                '<td class="hostile before">0</td>' +
-                '<td class="hostile after">0</td>' +
-              '</tr>' +
-              '<tr class="fleet-row bomber">' +
-                '<th colspan="1">Bomber</th>' +
-                '<td class="allied before">0</td>' +
-                '<td class="allied after">0</td>' +
-                '<td class="hostile before">0</td>' +
-                '<td class="hostile after">0</td>' +
-              '</tr>' +
-              '<tr class="fleet-row frigate">' +
-                '<th colspan="1">Frigate</th>' +
-                '<td class="allied before">0</td>' +
-                '<td class="allied after">0</td>' +
-                '<td class="hostile before">0</td>' +
-                '<td class="hostile after">0</td>' +
-              '</tr>' +
-              '<tr class="fleet-row destroyer">' +
-                '<th colspan="1">Destroyer</th>' +
-                '<td class="allied before">0</td>' +
-                '<td class="allied after">0</td>' +
-                '<td class="hostile before">0</td>' +
-                '<td class="hostile after">0</td>' +
-              '</tr>' +
-              '<tr class="fleet-row cruiser">' +
-                '<th colspan="1">Cruiser</th>' +
-                '<td class="allied before">0</td>' +
-                '<td class="allied after">0</td>' +
-                '<td class="hostile before">0</td>' +
-                '<td class="hostile after">0</td>' +
-              '</tr>' +
-              '<tr class="fleet-row battleship">' +
-                '<th colspan="1">Battleship</th>' +
-                '<td class="allied before">0</td>' +
-                '<td class="allied after">0</td>' +
-                '<td class="hostile before">0</td>' +
-                '<td class="hostile after">0</td>' +
-              '</tr>' +
-              '<tr class="top-header">' +
-                '<th colspan="5">Resources Lost [1.5 metal = 1 score unit | 1 mineral = 1 score unit]</th>' +
-              '</tr>' +
-              '<tr class="resource-row metal">' +
-                '<th colspan="1">Metal</th>' +
-                '<td class="allied before">0</td>' +
-                '<td class="allied after">0</td>' +
-                '<td class="hostile before">0</td>' +
-                '<td class="hostile after">0</td>' +
-              '</tr>' +
-              '<tr class="resource-row mineral">' +
-                '<th colspan="1">Mineral</th>' +
-                '<td class="allied before">0</td>' +
-                '<td class="allied after">0</td>' +
-                '<td class="hostile before">0</td>' +
-                '<td class="hostile after">0</td>' +
-              '</tr>' +
-              '<tr class="resource-row total">' +
-                '<th colspan="1">Total Lost</th>' +
-                '<td class="allied total-score" colspan="2">0</td>' +
-                '<td class="hostile total-score" colspan="2">0</td>' +
-              '</tr>' +
-              '</table>' +
+                '<table class="dgt-fight-simulator-by-rof">' +
+                  '<tr class="top-header">' +
+                    '<th colspan="1" class="invisible"></th>' +
+                    '<th colspan="2" class="after-invisible">Allied</th>' +
+                    '<th colspan="2">Hostile</th>' +
+                  '</tr>' +
+                  '<tr class="top-header">' +
+                    '<th colspan="1" class="invisible"></th>' +
+                    '<th colspan="1" class="after-invisible">Before</th>' +
+                    '<th colspan="1">After</th>' +
+                    '<th colspan="1">Before</th>' +
+                    '<th colspan="1">After</th>' +
+                  '</tr>' +
+                  '<tr class="fleet-row fighter">' +
+                    '<th colspan="1">Fighter</th>' +
+                    '<td class="allied before">0</td>' +
+                    '<td class="allied after">0</td>' +
+                    '<td class="hostile before">0</td>' +
+                    '<td class="hostile after">0</td>' +
+                  '</tr>' +
+                  '<tr class="fleet-row bomber">' +
+                    '<th colspan="1">Bomber</th>' +
+                    '<td class="allied before">0</td>' +
+                    '<td class="allied after">0</td>' +
+                    '<td class="hostile before">0</td>' +
+                    '<td class="hostile after">0</td>' +
+                  '</tr>' +
+                  '<tr class="fleet-row frigate">' +
+                    '<th colspan="1">Frigate</th>' +
+                    '<td class="allied before">0</td>' +
+                    '<td class="allied after">0</td>' +
+                    '<td class="hostile before">0</td>' +
+                    '<td class="hostile after">0</td>' +
+                  '</tr>' +
+                  '<tr class="fleet-row destroyer">' +
+                    '<th colspan="1">Destroyer</th>' +
+                    '<td class="allied before">0</td>' +
+                    '<td class="allied after">0</td>' +
+                    '<td class="hostile before">0</td>' +
+                    '<td class="hostile after">0</td>' +
+                  '</tr>' +
+                  '<tr class="fleet-row cruiser">' +
+                    '<th colspan="1">Cruiser</th>' +
+                    '<td class="allied before">0</td>' +
+                    '<td class="allied after">0</td>' +
+                    '<td class="hostile before">0</td>' +
+                    '<td class="hostile after">0</td>' +
+                  '</tr>' +
+                  '<tr class="fleet-row battleship">' +
+                    '<th colspan="1">Battleship</th>' +
+                    '<td class="allied before">0</td>' +
+                    '<td class="allied after">0</td>' +
+                    '<td class="hostile before">0</td>' +
+                    '<td class="hostile after">0</td>' +
+                  '</tr>' +
+                  '<tr class="top-header">' +
+                    '<th colspan="5">Resources Lost [1.5 metal = 1 score unit | 1 mineral = 1 score unit]</th>' +
+                  '</tr>' +
+                  '<tr class="resource-row metal">' +
+                    '<th colspan="1">Metal</th>' +
+                    '<td class="allied before">0</td>' +
+                    '<td class="allied after">0</td>' +
+                    '<td class="hostile before">0</td>' +
+                    '<td class="hostile after">0</td>' +
+                  '</tr>' +
+                  '<tr class="resource-row mineral">' +
+                    '<th colspan="1">Mineral</th>' +
+                    '<td class="allied before">0</td>' +
+                    '<td class="allied after">0</td>' +
+                    '<td class="hostile before">0</td>' +
+                    '<td class="hostile after">0</td>' +
+                  '</tr>' +
+                  '<tr class="resource-row total">' +
+                    '<th colspan="1">Total Lost</th>' +
+                    '<td class="allied total-score" colspan="2">0</td>' +
+                    '<td class="hostile total-score" colspan="2">0</td>' +
+                  '</tr>' +
+                '</table>' +
               '</div>';
 
             planetScanAdditional.append(fightContainer);
