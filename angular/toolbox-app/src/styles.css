@@ -2658,7 +2658,7 @@ dgt-scans-collector {
   white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;
-  max-width: 130px;
+  max-width: 100px;
   display: block;
 }
 

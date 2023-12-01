@@ -453,75 +453,75 @@ function applyCustomStyling(windowURL) {
               '<th colspan="2">Hostile</th>' +
               '</tr>' +
               '<tr class="top-header">' +
-              '<th colspan="1" class="invisible"></th>' +
-              '<th colspan="1" class="after-invisible">Before</th>' +
-              '<th colspan="1">After</th>' +
-              '<th colspan="1">Before</th>' +
-              '<th colspan="1">After</th>' +
+                '<th colspan="1" class="invisible"></th>' +
+                '<th colspan="1" class="after-invisible">Before</th>' +
+                '<th colspan="1">After</th>' +
+                '<th colspan="1">Before</th>' +
+                '<th colspan="1">After</th>' +
               '</tr>' +
               '<tr class="fleet-row fighter">' +
-              '<th colspan="1">Fighter</th>' +
-              '<td class="allied before">0</td>' +
-              '<td class="allied after">0</td>' +
-              '<td class="hostile before">0</td>' +
-              '<td class="hostile after">0</td>' +
+                '<th colspan="1">Fighter</th>' +
+                '<td class="allied before">0</td>' +
+                '<td class="allied after">0</td>' +
+                '<td class="hostile before">0</td>' +
+                '<td class="hostile after">0</td>' +
               '</tr>' +
               '<tr class="fleet-row bomber">' +
-              '<th colspan="1">Bomber</th>' +
-              '<td class="allied before">0</td>' +
-              '<td class="allied after">0</td>' +
-              '<td class="hostile before">0</td>' +
-              '<td class="hostile after">0</td>' +
+                '<th colspan="1">Bomber</th>' +
+                '<td class="allied before">0</td>' +
+                '<td class="allied after">0</td>' +
+                '<td class="hostile before">0</td>' +
+                '<td class="hostile after">0</td>' +
               '</tr>' +
               '<tr class="fleet-row frigate">' +
-              '<th colspan="1">Frigate</th>' +
-              '<td class="allied before">0</td>' +
-              '<td class="allied after">0</td>' +
-              '<td class="hostile before">0</td>' +
-              '<td class="hostile after">0</td>' +
+                '<th colspan="1">Frigate</th>' +
+                '<td class="allied before">0</td>' +
+                '<td class="allied after">0</td>' +
+                '<td class="hostile before">0</td>' +
+                '<td class="hostile after">0</td>' +
               '</tr>' +
               '<tr class="fleet-row destroyer">' +
-              '<th colspan="1">Destroyer</th>' +
-              '<td class="allied before">0</td>' +
-              '<td class="allied after">0</td>' +
-              '<td class="hostile before">0</td>' +
-              '<td class="hostile after">0</td>' +
+                '<th colspan="1">Destroyer</th>' +
+                '<td class="allied before">0</td>' +
+                '<td class="allied after">0</td>' +
+                '<td class="hostile before">0</td>' +
+                '<td class="hostile after">0</td>' +
               '</tr>' +
               '<tr class="fleet-row cruiser">' +
-              '<th colspan="1">Cruiser</th>' +
-              '<td class="allied before">0</td>' +
-              '<td class="allied after">0</td>' +
-              '<td class="hostile before">0</td>' +
-              '<td class="hostile after">0</td>' +
+                '<th colspan="1">Cruiser</th>' +
+                '<td class="allied before">0</td>' +
+                '<td class="allied after">0</td>' +
+                '<td class="hostile before">0</td>' +
+                '<td class="hostile after">0</td>' +
               '</tr>' +
               '<tr class="fleet-row battleship">' +
-              '<th colspan="1">Battleship</th>' +
-              '<td class="allied before">0</td>' +
-              '<td class="allied after">0</td>' +
-              '<td class="hostile before">0</td>' +
-              '<td class="hostile after">0</td>' +
+                '<th colspan="1">Battleship</th>' +
+                '<td class="allied before">0</td>' +
+                '<td class="allied after">0</td>' +
+                '<td class="hostile before">0</td>' +
+                '<td class="hostile after">0</td>' +
               '</tr>' +
               '<tr class="top-header">' +
-              '<th colspan="5">Resources Lost [1 metal = 0.75 unit | 1 mineral = 1 unit]</th>' +
+                '<th colspan="5">Resources Lost [1.5 metal = 1 score unit | 1 mineral = 1 score unit]</th>' +
               '</tr>' +
-              '<tr class="resource-row">' +
-              '<th colspan="1">Metal</th>' +
-              '<td>0</td>' +
-              '<td>0</td>' +
-              '<td>0</td>' +
-              '<td>0</td>' +
+              '<tr class="resource-row metal">' +
+                '<th colspan="1">Metal</th>' +
+                '<td class="allied before">0</td>' +
+                '<td class="allied after">0</td>' +
+                '<td class="hostile before">0</td>' +
+                '<td class="hostile after">0</td>' +
               '</tr>' +
-              '<tr class="resource-row">' +
-              '<th colspan="1">Mineral</th>' +
-              '<td>0</td>' +
-              '<td>0</td>' +
-              '<td>0</td>' +
-              '<td>0</td>' +
+              '<tr class="resource-row mineral">' +
+                '<th colspan="1">Mineral</th>' +
+                '<td class="allied before">0</td>' +
+                '<td class="allied after">0</td>' +
+                '<td class="hostile before">0</td>' +
+                '<td class="hostile after">0</td>' +
               '</tr>' +
-              '<tr class="resource-row">' +
-              '<th colspan="1">Total Lost</th>' +
-              '<td colspan="2">0</td>' +
-              '<td colspan="2">0</td>' +
+              '<tr class="resource-row total">' +
+                '<th colspan="1">Total Lost</th>' +
+                '<td class="allied total-score" colspan="2">0</td>' +
+                '<td class="hostile total-score" colspan="2">0</td>' +
               '</tr>' +
               '</table>' +
               '</div>';
