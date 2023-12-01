@@ -519,7 +519,7 @@ function applyCustomStyling(windowURL) {
                     '<td class="hostile after">0</td>' +
                   '</tr>' +
                   '<tr class="resource-row total">' +
-                    '<th colspan="1">Total Lost</th>' +
+                    '<th colspan="1">Units Lost</th>' +
                     '<td class="allied total-score" colspan="2">0</td>' +
                     '<td class="hostile total-score" colspan="2">0</td>' +
                   '</tr>' +

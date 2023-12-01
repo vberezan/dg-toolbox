@@ -3,6 +3,7 @@ import {Fleet} from "../../../../shared/model/fleet/fleet.model";
 import {ShipType} from "../../../../shared/model/fleet/ship-type";
 import {NameQuantity} from "../../../../shared/model/name-quantity.model";
 import {KillRate} from "../../../../shared/model/fleet/kill-rate.model";
+import {meta} from "@typescript-eslint/parser";
 
 @Injectable({
   providedIn: 'root'
@@ -36,10 +37,45 @@ export class FightSimulatorService {
       totalFleets.forEach((fleet: Fleet, key: string): void => {
         fleet.hostile = key === 'hostile';
         fleet.allied = key === 'allied';
+        let metalUnits: number = 0;
+        let mineralUnits: number = 0;
 
         fleet.ships.forEach((ship: NameQuantity): void => {
+          switch (ship.name as ShipType) {
+            case ShipType.FIGHTER:
+              mineralUnits += 0;
+              metalUnits += ship.quantity * 2000;
+              break;
+            case ShipType.BOMBER:
+              mineralUnits += ship.quantity * 4000;
+              metalUnits += 0;
+              break;
+            case ShipType.FRIGATE:
+              metalUnits += ship.quantity * 12000;
+              mineralUnits += ship.quantity * 8000;
+              break;
+            case ShipType.DESTROYER:
+              metalUnits += ship.quantity * 40000;
+              mineralUnits += ship.quantity * 40000;
+              break;
+            case ShipType.CRUISER:
+              metalUnits += ship.quantity * 120000;
+              mineralUnits += ship.quantity * 60000;
+              break;
+            case ShipType.BATTLESHIP:
+              metalUnits += ship.quantity * 600000;
+              mineralUnits += ship.quantity * 400000;
+              break;
+            default:
+              break;
+          }
+
           fightSimulationContainer.querySelector('.dgt-fight-simulator-by-rof tr.' + ship.name + ' td.before.' + key).innerHTML = ship.quantity.toLocaleString('en-US', {maximumFractionDigits: 0, minimumFractionDigits: 0});
         });
+
+        fightSimulationContainer.querySelector('.dgt-fight-simulator-by-rof tr.resource-row.metal td.before.' + key).innerHTML = metalUnits.toLocaleString('en-US', {maximumFractionDigits: 0, minimumFractionDigits: 0});
+        fightSimulationContainer.querySelector('.dgt-fight-simulator-by-rof tr.resource-row.mineral td.before.' + key).innerHTML = mineralUnits.toLocaleString('en-US', {maximumFractionDigits: 0, minimumFractionDigits: 0});
+        fightSimulationContainer.querySelector('.dgt-fight-simulator-by-rof tr.resource-row.total td.before.' + key).innerHTML = (metalUnits * 1.5 + mineralUnits).toLocaleString('en-US', {maximumFractionDigits: 0, minimumFractionDigits: 0});
       });
 
       // -- simulate fight
