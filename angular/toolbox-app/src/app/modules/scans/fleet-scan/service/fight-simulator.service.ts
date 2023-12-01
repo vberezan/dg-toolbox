@@ -78,9 +78,9 @@ export class FightSimulatorService {
         });
 
         if (fleet.allied) {
-          alliedUnitsBefore += 1.5 * metalUnits + mineralUnits;
+          alliedUnitsBefore += metalUnits/1.5 + mineralUnits;
         } else {
-          hostileUnitsBefore += 1.5 * metalUnits + mineralUnits;
+          hostileUnitsBefore += metalUnits/1.5 + mineralUnits;
         }
 
         fightSimulationContainer.querySelector('.dgt-fight-simulator-by-rof tr.resource-row.metal td.before.' + key).innerHTML = metalUnits.toLocaleString('en-US', {maximumFractionDigits: 0, minimumFractionDigits: 0});
@@ -129,9 +129,9 @@ export class FightSimulatorService {
         });
 
         if (fleet.allied) {
-          alliedUnitsAfter += 1.5 * metalUnits + mineralUnits;
+          alliedUnitsAfter += metalUnits/1.5 + mineralUnits;
         } else {
-          hostileUnitsAfter += 1.5 * metalUnits + mineralUnits;
+          hostileUnitsAfter += metalUnits/1.5 + mineralUnits;
         }
 
         fightSimulationContainer.querySelector('.dgt-fight-simulator-by-rof tr.resource-row.metal td.after.' + key).innerHTML = metalUnits.toLocaleString('en-US', {maximumFractionDigits: 0, minimumFractionDigits: 0});

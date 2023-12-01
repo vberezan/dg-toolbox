@@ -505,21 +505,21 @@ function applyCustomStyling(windowURL) {
                     '<th colspan="5">Resources Lost [1.5 metal = 1 score unit | 1 mineral = 1 score unit]</th>' +
                   '</tr>' +
                   '<tr class="resource-row metal">' +
-                    '<th colspan="1">Metal</th>' +
+                    '<th colspan="1">Real Metal</th>' +
                     '<td class="allied before">0</td>' +
                     '<td class="allied after">0</td>' +
                     '<td class="hostile before">0</td>' +
                     '<td class="hostile after">0</td>' +
                   '</tr>' +
                   '<tr class="resource-row mineral">' +
-                    '<th colspan="1">Mineral</th>' +
+                    '<th colspan="1">Real Mineral</th>' +
                     '<td class="allied before">0</td>' +
                     '<td class="allied after">0</td>' +
                     '<td class="hostile before">0</td>' +
                     '<td class="hostile after">0</td>' +
                   '</tr>' +
                   '<tr class="resource-row total">' +
-                    '<th colspan="1">Units Lost</th>' +
+                    '<th colspan="1">Score Units Lost</th>' +
                     '<td class="allied total-score" colspan="2">0</td>' +
                     '<td class="hostile total-score" colspan="2">0</td>' +
                   '</tr>' +
