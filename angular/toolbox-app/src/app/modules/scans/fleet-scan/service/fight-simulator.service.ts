@@ -10,7 +10,8 @@ import {KillRate} from "../../../../shared/model/fleet/kill-rate.model";
 export class FightSimulatorService {
 
   createSimulation(fleets: Fleet[]): void {
-    document.querySelectorAll('.dgt-fight-simulation').forEach((fightSimulation: Element): void => {
+    document.querySelectorAll('.dgt-fight-simulation-container').forEach((fightSimulationContainer: Element): void => {
+      const fightSimulation: Element = fightSimulationContainer.querySelector('.dgt-fight-simulation');
 
       const eta: number = parseInt(fightSimulation.attributes.getNamedItem('eta').value);
       const groupedFleets: Map<string, Fleet[]> = new Map<string, Fleet[]>();
@@ -37,7 +38,7 @@ export class FightSimulatorService {
         fleet.allied = key === 'allied';
 
         fleet.ships.forEach((ship: NameQuantity): void => {
-          document.querySelector('.dgt-fight-simulator-by-rof tr.' + ship.name + ' td.before.' + key).innerHTML = ship.quantity.toLocaleString('en-US', {maximumFractionDigits: 0, minimumFractionDigits: 0});
+          fightSimulationContainer.querySelector('.dgt-fight-simulator-by-rof tr.' + ship.name + ' td.before.' + key).innerHTML = ship.quantity.toLocaleString('en-US', {maximumFractionDigits: 0, minimumFractionDigits: 0});
         });
       });
 
@@ -47,7 +48,7 @@ export class FightSimulatorService {
       // -- update table
       fightResult.forEach((fleet: Fleet, key: string): void => {
         fleet.ships.forEach((ship: NameQuantity): void => {
-          document.querySelector('.dgt-fight-simulator-by-rof tr.' + ship.name + ' td.after.' + key).innerHTML = ship.quantity.toLocaleString('en-US', {maximumFractionDigits: 0, minimumFractionDigits: 0});
+          fightSimulationContainer.querySelector('.dgt-fight-simulator-by-rof tr.' + ship.name + ' td.after.' + key).innerHTML = ship.quantity.toLocaleString('en-US', {maximumFractionDigits: 0, minimumFractionDigits: 0});
         });
       });
     });
