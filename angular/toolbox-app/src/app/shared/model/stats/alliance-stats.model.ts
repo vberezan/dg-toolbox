@@ -2,13 +2,25 @@ import {AllianceStatsPlanetsBatch} from "./alliance-stats-planets-batch.model";
 
 export class AllianceStats {
   private _score: number;
+  private _avgScore: number;
   private _combatScore: number;
   private _combinedScore: number;
-  private _planets: AllianceStatsPlanetsBatch[] = [];
+  private _planets: number = 1;
+  private _g1Total: number = 0;
+  private _g213Total: number = 0;
+  private _g1449Total: number = 0;
+  private _relation: string = 'neutral';
   private _tag: string;
   private _rank: number;
-  private _alliance: string;
+  private _name: string;
 
+  get avgScore(): number {
+    return this._avgScore;
+  }
+
+  set avgScore(value: number) {
+    this._avgScore = value;
+  }
 
   get tag(): string {
     return this._tag;
@@ -50,20 +62,52 @@ export class AllianceStats {
     this._combinedScore = value;
   }
 
-  get alliance(): string {
-    return this._alliance;
+  get name(): string {
+    return this._name;
   }
 
-  set alliance(value: string) {
-    this._alliance = value;
+  set name(value: string) {
+    this._name = value;
   }
 
-  get planets(): AllianceStatsPlanetsBatch[] {
+  get planets(): number {
     return this._planets;
   }
 
-  set planets(value: AllianceStatsPlanetsBatch[]) {
+  set planets(value: number) {
     this._planets = value;
+  }
+
+  get g1Total(): number {
+    return this._g1Total;
+  }
+
+  set g1Total(value: number) {
+    this._g1Total = value;
+  }
+
+  get g213Total(): number {
+    return this._g213Total;
+  }
+
+  set g213Total(value: number) {
+    this._g213Total = value;
+  }
+
+  get g1449Total(): number {
+    return this._g1449Total;
+  }
+
+  set g1449Total(value: number) {
+    this._g1449Total = value;
+  }
+
+  get relation(): string {
+    return this._relation;
+  }
+
+  set relation(value: string) {
+    this._relation = value;
   }
 
   toJSON(): any {
@@ -71,10 +115,15 @@ export class AllianceStats {
       score: this.score,
       combatScore: this.combatScore,
       combinedScore: this.combinedScore,
-      planets: this.planets,
       tag: this.tag,
       rank: this.rank,
-      alliance: this.alliance
+      name: this.name,
+      avgScore: this.avgScore,
+      planets: this.planets,
+      g1Total: this.g1Total,
+      g213Total: this.g213Total,
+      g1449Total: this.g1449Total,
+      relation: this.relation
     }
   }
 }
