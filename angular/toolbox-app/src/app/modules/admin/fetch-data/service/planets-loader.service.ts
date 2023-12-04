@@ -110,6 +110,8 @@ export class PlanetsLoaderService {
             const scansPath: any = collection(this.firestore, 'scans-g' + batch.galaxy);
 
             batch.planets.forEach((planet: string): void => {
+              console.log('scans-g' + batch.galaxy + '/' + planet);
+
               let scanSubscription: Subscription = docData(
                 doc(scansPath, planet)
               ).subscribe((item: DocumentData): void => {
@@ -136,6 +138,29 @@ export class PlanetsLoaderService {
           alliance.total = 0;
           alliance.planets.forEach((batch: PlanetsBatch): void => {
             alliance.total += batch.total;
+            const scansPath: any = collection(this.firestore, 'scans-g' + batch.galaxy);
+
+            batch.planets.forEach((planet: string): void => {
+              console.log('scans-g' + batch.galaxy + '/' + planet);
+
+              let scanSubscription: Subscription = docData(
+                doc(scansPath, planet)
+              ).subscribe((item: DocumentData): void => {
+                if (item) {
+                  let dbScan: PlanetScan = Object.assign(new PlanetScan(), item);
+
+                  batch.metalProduction += dbScan.resources[0].production;
+                  batch.mineralProduction += dbScan.resources[1].production;
+                  batch.foodProduction += dbScan.resources[2].production;
+
+                  alliance.totalMetalProduction += dbScan.resources[0].production;
+                  alliance.totalMineralProduction += dbScan.resources[1].production;
+                  alliance.totalFoodProduction += dbScan.resources[2].production;
+                }
+
+                scanSubscription.unsubscribe();
+              });
+            });
           });
 
           setDoc(doc(alliancePlanetsPath, alliance.tag), JSON.parse(JSON.stringify(alliance)))
