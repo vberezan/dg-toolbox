@@ -1,7 +1,7 @@
 import {EventEmitter, inject, Injectable, Optional} from '@angular/core';
 import {firstValueFrom, Subscription} from "rxjs";
 import {HttpClient} from "@angular/common/http";
-import {collection, collectionData, doc, docData, Firestore, query, setDoc, updateDoc} from "@angular/fire/firestore";
+import {collection, collectionData, doc, docData, Firestore, setDoc, updateDoc} from "@angular/fire/firestore";
 import {PlanetStats} from "../../../../shared/model/stats/planet-stats.model";
 import {DarkgalaxyApiService} from "../../../darkgalaxy-ui-parser/service/darkgalaxy-api.service";
 import {PlayerPlanets} from "../../../../shared/model/stats/player-planets-stats.model";
@@ -72,6 +72,23 @@ export class PlanetsLoaderService {
           }
         }
       }
+
+      const scansPath: any = collection(this.firestore, 'scans-g' + g);
+      let scanSubscription: Subscription = collectionData(scansPath).subscribe((items: DocumentData[]): void => {
+        let maxMetal: number = 0;
+        let maxMetalLocation: string = '';
+        const dbScan: PlanetScan[] = Object.assign([], items);
+        dbScan.forEach((scan: PlanetScan): void => {
+          if (maxMetal < scan.resources[0].production) {
+            maxMetal = scan.resources[0].production;
+            maxMetalLocation = scan.location;
+          }
+        });
+
+        setDoc(doc( collection(this.firestore, 'max-stats'), 'max-metal-g' + g), JSON.parse(JSON.stringify({location: maxMetalLocation})));
+
+        scanSubscription.unsubscribe();
+      });
 
       // -- FIXME: extract dbscans here
 
@@ -160,24 +177,10 @@ export class PlanetsLoaderService {
 
   private mergePlayerPlanets(playerPlanets: Map<number, PlayerPlanets>): void {
     const playersPlanetsPath: any = collection(this.firestore, 'players-planets');
-    let metalStats: Map<number, { 'location': string, 'production': number }> = new Map<number, { 'location': string, 'production': number }>();
-
-    let maxMineral: number = 0;
-    let maxFood: number = 0;
-    let maxMetalMineral: number = 0;
-    let maxAll: number = 0;
-    let maxMineralLocation: string = '';
-    let maxFoodLocation: string = '';
-    let maxMetalMineralLocation: string = '';
-    let maxAllLocation: string = '';
 
     playerPlanets.forEach((player: PlayerPlanets, playerId: number): void => {
       player.planets.forEach((batch: PlanetsBatch): void => {
         const scansPath: any = collection(this.firestore, 'scans-g' + batch.galaxy);
-
-        if (!metalStats.has(batch.galaxy)) {
-          metalStats.set(batch.galaxy, {'location': '', 'production': 0});
-        }
 
         batch.planets.forEach((planet: string): void => {
           let scanSubscription: Subscription = docData(
@@ -190,34 +193,6 @@ export class PlanetsLoaderService {
               batch.mineralProduction += dbScan.resources[1].production;
               batch.foodProduction += dbScan.resources[2].production;
               batch.requiredSoldiers += Math.ceil(((dbScan.workers.currentNumber / 15) + (dbScan.soldiers * 1.5))) + 1;
-
-              if (metalStats.get(batch.galaxy).production < dbScan.resources[0].production) {
-                metalStats.set(batch.galaxy, {'location': dbScan.location, 'production': dbScan.resources[0].production});
-              }
-
-              if (maxMineral < dbScan.resources[1].production) {
-                maxMineral = dbScan.resources[1].production;
-                maxMineralLocation = dbScan.location;
-                console.log("Best Mineral planet: " + maxMineralLocation + " - " + maxMineral);
-              }
-
-              if (maxFood < dbScan.resources[2].production) {
-                maxFood = dbScan.resources[2].production;
-                maxFoodLocation = dbScan.location;
-                console.log("Best Food planet: " + maxFoodLocation + " - " + maxFood);
-              }
-
-              if (maxMetalMineral < (dbScan.resources[0].production + dbScan.resources[1].production * 1.5)) {
-                maxMetalMineral = dbScan.resources[0].production + dbScan.resources[1].production * 5;
-                maxMetalMineralLocation = dbScan.location;
-                console.log("Best Metal + Mineral planet score: " + maxMetalMineralLocation + " - " + maxMetalMineral);
-              }
-
-              if (maxAll < (dbScan.resources[0].production + (dbScan.resources[1].production * 1.5) + dbScan.resources[2].production)) {
-                maxAll = dbScan.resources[0].production + (dbScan.resources[1].production * 1.5) + dbScan.resources[2].production;
-                maxAllLocation = dbScan.location;
-                console.log("Best All planet score: " + maxAllLocation + " - " + maxAll);
-              }
             }
             scanSubscription.unsubscribe();
           });
@@ -269,19 +244,6 @@ export class PlanetsLoaderService {
         subscription.unsubscribe();
       });
     });
-
-
-    let maxMetal: number = 0;
-    let maxMetalLocation: string = '';
-    metalStats.forEach((value: { 'location': string, 'production': number }, galaxy: number): void => {
-      if (maxMetal < value.production) {
-        maxMetal = value.production;
-        maxMetalLocation = value.location;
-      }
-    });
-
-    console.log("Best Metal planet: " + maxMetalLocation + " - " + maxMetal);
-
   }
 
   private async parseAndSave(galaxy: number,
