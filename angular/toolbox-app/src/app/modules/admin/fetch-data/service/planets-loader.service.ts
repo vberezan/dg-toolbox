@@ -187,12 +187,12 @@ export class PlanetsLoaderService {
               batch.foodProduction += dbScan.resources[2].production;
               batch.requiredSoldiers += Math.ceil(((dbScan.workers.currentNumber / 15) + (dbScan.soldiers * 1.5))) + 1;
 
-              console.log(dbScan.location + " - " + dbScan.resources[0].production + " - " + dbScan.resources[1].production + " - " + dbScan.resources[2].production);
-
               if (maxMetal < dbScan.resources[0].production) {
                 maxMetal = dbScan.resources[0].production;
                 maxMetalLocation = dbScan.location;
               }
+
+              console.log(maxMetal);
 
               if (maxMineral < dbScan.resources[1].production) {
                 maxMineral = dbScan.resources[1].production;
