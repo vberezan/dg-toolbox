@@ -133,6 +133,7 @@ export class PlanetsLoaderService {
             alliance.totalMetalProduction += batch.metalProduction
             alliance.totalMineralProduction += batch.mineralProduction;
             alliance.totalFoodProduction += batch.foodProduction;
+            alliance.totalRequiredSoldiers += batch.requiredSoldiers;
           });
 
           updateDoc(doc(alliancePlanetsPath, alliance.tag), JSON.parse(JSON.stringify(alliance)))
