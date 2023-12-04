@@ -99,15 +99,11 @@ export class PlanetsLoaderService {
             if (item) {
               let dbScan: PlanetScan = Object.assign(new PlanetScan(), item);
 
-              console.log(dbScan);
-
               batch.metalProduction += dbScan.resources[0].production;
               batch.mineralProduction += dbScan.resources[1].production;
               batch.foodProduction += dbScan.resources[2].production;
 
-              alliance.totalMetalProduction += dbScan.resources[0].production;
-              alliance.totalMineralProduction += dbScan.resources[1].production;
-              alliance.totalFoodProduction += dbScan.resources[2].production;
+              console.log(batch);
             }
 
             scanSubscription.unsubscribe();
@@ -135,6 +131,9 @@ export class PlanetsLoaderService {
           alliance.total = 0;
           alliance.planets.forEach((batch: PlanetsBatch): void => {
             alliance.total += batch.total;
+            alliance.totalMetalProduction += batch.metalProduction
+            alliance.totalMineralProduction += batch.mineralProduction;
+            alliance.totalFoodProduction += batch.foodProduction;
           });
 
           updateDoc(doc(alliancePlanetsPath, alliance.tag), JSON.parse(JSON.stringify(alliance)))
@@ -143,6 +142,9 @@ export class PlanetsLoaderService {
           alliance.total = 0;
           alliance.planets.forEach((batch: PlanetsBatch): void => {
             alliance.total += batch.total;
+            alliance.totalMetalProduction += batch.metalProduction
+            alliance.totalMineralProduction += batch.mineralProduction;
+            alliance.totalFoodProduction += batch.foodProduction;
           });
 
           setDoc(doc(alliancePlanetsPath, alliance.tag), JSON.parse(JSON.stringify(alliance)))
