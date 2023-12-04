@@ -9,6 +9,42 @@ export class PlayerPlanets {
   private _g1Total: number = 0;
   private _g213Total: number = 0;
   private _g1449Total: number = 0;
+  private _totalMetalProduction: number = 0;
+  private _totalMineralProduction: number = 0;
+  private _totalFoodProduction: number = 0;
+  private _totalRequiredSoldiers: number = 0;
+
+  get totalMetalProduction(): number {
+    return this._totalMetalProduction;
+  }
+
+  set totalMetalProduction(value: number) {
+    this._totalMetalProduction = value;
+  }
+
+  get totalMineralProduction(): number {
+    return this._totalMineralProduction;
+  }
+
+  set totalMineralProduction(value: number) {
+    this._totalMineralProduction = value;
+  }
+
+  get totalFoodProduction(): number {
+    return this._totalFoodProduction;
+  }
+
+  set totalFoodProduction(value: number) {
+    this._totalFoodProduction = value;
+  }
+
+  get totalRequiredSoldiers(): number {
+    return this._totalRequiredSoldiers;
+  }
+
+  set totalRequiredSoldiers(value: number) {
+    this._totalRequiredSoldiers = value;
+  }
 
   get turn(): number {
     return this._turn;
@@ -83,7 +119,10 @@ export class PlayerPlanets {
       total: this.total,
       g1Total: this.g1Total,
       g213Total: this.g213Total,
-      g1449Total: this.g1449Total
+      g1449Total: this.g1449Total,
+      totalMetalProduction: this.totalMetalProduction,
+      totalMineralProduction: this.totalMineralProduction,
+      totalFoodProduction: this.totalFoodProduction
     };
   }
 }

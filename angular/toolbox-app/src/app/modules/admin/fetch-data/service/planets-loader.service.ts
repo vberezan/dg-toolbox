@@ -73,6 +73,8 @@ export class PlanetsLoaderService {
         }
       }
 
+      // -- FIXME: extract dbscans here
+
       this.mergePlayerPlanets(playerPlanets);
       this.mergeAlliancePlanets(alliancePlanets);
       await this.delay(scanDelay);
@@ -109,7 +111,6 @@ export class PlanetsLoaderService {
           });
         });
       });
-
 
       let subscription: Subscription = docData(
         doc(alliancePlanetsPath, allianceTag)
@@ -161,6 +162,27 @@ export class PlanetsLoaderService {
     const playersPlanetsPath: any = collection(this.firestore, 'players-planets');
 
     playerPlanets.forEach((player: PlayerPlanets, playerId: number): void => {
+      player.planets.forEach((batch: PlanetsBatch): void => {
+        const scansPath: any = collection(this.firestore, 'scans-g' + batch.galaxy);
+        batch.planets.forEach((planet: string): void => {
+
+          let scanSubscription: Subscription = docData(
+            doc(scansPath, planet)
+          ).subscribe((item: DocumentData): void => {
+            if (item) {
+              let dbScan: PlanetScan = Object.assign(new PlanetScan(), item);
+
+              batch.metalProduction += dbScan.resources[0].production;
+              batch.mineralProduction += dbScan.resources[1].production;
+              batch.foodProduction += dbScan.resources[2].production;
+              batch.requiredSoldiers += Math.ceil(((dbScan.workers.currentNumber / 15) + (dbScan.soldiers * 1.5))) + 1;
+            }
+
+            scanSubscription.unsubscribe();
+          });
+        });
+      });
+
       let subscription: Subscription = docData(
         doc(playersPlanetsPath, playerId.toString())
       ).subscribe((item: DocumentData): void => {
@@ -186,6 +208,11 @@ export class PlanetsLoaderService {
           } else {
             player.g1449Total += batch.planets.length;
           }
+
+          player.totalMetalProduction += batch.metalProduction
+          player.totalMineralProduction += batch.mineralProduction;
+          player.totalFoodProduction += batch.foodProduction;
+          player.totalRequiredSoldiers += batch.requiredSoldiers;
 
           player.total += batch.planets.length;
         });
