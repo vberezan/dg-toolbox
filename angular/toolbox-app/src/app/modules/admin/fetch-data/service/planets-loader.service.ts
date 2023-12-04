@@ -92,13 +92,14 @@ export class PlanetsLoaderService {
       alliance.planets.forEach((batch: PlanetsBatch): void => {
         const scansPath: any = collection(this.firestore, 'scans-g' + batch.galaxy);
         batch.planets.forEach((planet: string): void => {
-          console.log('scans-g' + batch.galaxy + '/' + planet);
 
           let scanSubscription: Subscription = docData(
             doc(scansPath, planet)
           ).subscribe((item: DocumentData): void => {
             if (item) {
               let dbScan: PlanetScan = Object.assign(new PlanetScan(), item);
+
+              console.log(dbScan);
 
               batch.metalProduction += dbScan.resources[0].production;
               batch.mineralProduction += dbScan.resources[1].production;
