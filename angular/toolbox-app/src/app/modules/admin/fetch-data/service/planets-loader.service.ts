@@ -190,28 +190,31 @@ export class PlanetsLoaderService {
               if (maxMetal < dbScan.resources[0].production) {
                 maxMetal = dbScan.resources[0].production;
                 maxMetalLocation = dbScan.location;
+                console.log("Best Metal planet: " + maxMetalLocation + " - " + maxMetal);
               }
-
-              console.log(maxMetal);
 
               if (maxMineral < dbScan.resources[1].production) {
                 maxMineral = dbScan.resources[1].production;
                 maxMineralLocation = dbScan.location;
+                console.log("Best Mineral planet: " + maxMineralLocation + " - " + maxMineral);
               }
 
               if (maxFood < dbScan.resources[2].production) {
                 maxFood = dbScan.resources[2].production;
                 maxFoodLocation = dbScan.location;
+                console.log("Best Food planet: " + maxFoodLocation + " - " + maxFood);
               }
 
               if (maxMetalMineral < (dbScan.resources[0].production + dbScan.resources[1].production * 1.5)) {
                 maxMetalMineral = dbScan.resources[0].production + dbScan.resources[1].production * 5;
                 maxMetalMineralLocation = dbScan.location;
+                console.log("Best Metal + Mineral planet score: " + maxMetalMineralLocation + " - " + maxMetalMineral);
               }
 
               if (maxAll < (dbScan.resources[0].production + (dbScan.resources[1].production * 1.5) + dbScan.resources[2].production)) {
                 maxAll = dbScan.resources[0].production + (dbScan.resources[1].production * 1.5) + dbScan.resources[2].production;
                 maxAllLocation = dbScan.location;
+                console.log("Best All planet score: " + maxAllLocation + " - " + maxAll);
               }
             }
             scanSubscription.unsubscribe();
@@ -264,12 +267,6 @@ export class PlanetsLoaderService {
         subscription.unsubscribe();
       });
     });
-
-    console.log("Best Metal planet: " + maxMetalLocation + " - " + maxMetal);
-    console.log("Best Mineral planet: " + maxMineralLocation + " - " + maxMineral);
-    console.log("Best Food planet: " + maxFoodLocation + " - " + maxFood);
-    console.log("Best Metal + Mineral planet score: " + maxMetalMineralLocation + " - " + maxMetalMineral);
-    console.log("Best All planet score: " + maxAllLocation + " - " + maxAll);
   }
 
   private async parseAndSave(galaxy: number,
