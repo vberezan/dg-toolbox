@@ -73,25 +73,9 @@ export class PlanetsLoaderService {
         }
       }
 
-      const scansPath: any = collection(this.firestore, 'scans-g' + validGalaxies[g]);
-      let scanSubscription: Subscription = collectionData(scansPath).subscribe((items: DocumentData[]): void => {
-        let maxMetal: number = 0;
-        let maxMetalLocation: string = '';
-        const dbScan: PlanetScan[] = Object.assign([], items);
-        dbScan.forEach((scan: PlanetScan): void => {
-          if (maxMetal < scan.resources[0].production) {
-            maxMetal = scan.resources[0].production;
-            maxMetalLocation = scan.location;
-          }
-        });
-
-        setDoc(doc( collection(this.firestore, 'max-stats'), 'max-metal-g' + validGalaxies[g]), JSON.parse(JSON.stringify({location: maxMetalLocation, value: maxMetal})));
-
-        scanSubscription.unsubscribe();
-      });
-
       // -- FIXME: extract dbscans here
 
+      this.calculateMaxStats(validGalaxies[g]);
       this.mergePlayerPlanets(playerPlanets);
       this.mergeAlliancePlanets(alliancePlanets);
       await this.delay(scanDelay);
@@ -101,6 +85,72 @@ export class PlanetsLoaderService {
     cancelSubscription.unsubscribe();
 
     await this.delay(3000);
+  }
+
+  private calculateMaxStats(galaxy: number): void {
+    const scansPath: any = collection(this.firestore, 'scans-g' + galaxy);
+    let scanSubscription: Subscription = collectionData(scansPath).subscribe((items: DocumentData[]): void => {
+      let maxMetal: number = 0;
+      let maxMineral: number = 0;
+      let maxFood: number = 0;
+      let maxMM: number = 0;
+      let maxMMF: number = 0;
+      let maxMetalLocation: string = '';
+      let maxMineralLocation: string = '';
+      let maxFoodLocation: string = '';
+      let maxMMLocation: string = '';
+      let maxMMFLocation: string = '';
+      const dbScan: PlanetScan[] = Object.assign([], items);
+      dbScan.forEach((scan: PlanetScan): void => {
+        if (maxMetal < scan.resources[0].production) {
+          maxMetal = scan.resources[0].production;
+          maxMetalLocation = scan.location;
+        }
+
+        if (maxMineral < scan.resources[1].production) {
+          maxMineral = scan.resources[1].production;
+          maxMineralLocation = scan.location;
+        }
+
+        if (maxFood < scan.resources[2].production) {
+          maxFood = scan.resources[2].production;
+          maxFoodLocation = scan.location;
+        }
+
+        if (maxMM < scan.resources[0].production + scan.resources[1].production * 1.5) {
+          maxMM = scan.resources[0].production + scan.resources[1].production * 1.5;
+          maxMMLocation = scan.location;
+        }
+
+        if (maxMMF < scan.resources[0].production + scan.resources[1].production * 1.5 + scan.resources[2].production) {
+          maxMMF = scan.resources[0].production + scan.resources[1].production * 1.5 + scan.resources[2].production;
+          maxMMFLocation = scan.location;
+        }
+      });
+
+      setDoc(doc(collection(this.firestore, 'max-stats'), 'max-metal-g' + galaxy), JSON.parse(JSON.stringify({
+        location: maxMetalLocation,
+        value: maxMetal
+      }))).catch((error): void => console.log(error));
+      setDoc(doc(collection(this.firestore, 'max-stats'), 'max-mineral-g' + galaxy), JSON.parse(JSON.stringify({
+        location: maxMineralLocation,
+        value: maxMineral
+      }))).catch((error): void => console.log(error));
+      setDoc(doc(collection(this.firestore, 'max-stats'), 'max-food-g' + galaxy), JSON.parse(JSON.stringify({
+        location: maxFoodLocation,
+        value: maxFood
+      }))).catch((error): void => console.log(error));
+      setDoc(doc(collection(this.firestore, 'max-stats'), 'max-metal-mineral-g' + galaxy), JSON.parse(JSON.stringify({
+        location: maxMMLocation,
+        value: maxMM
+      }))).catch((error): void => console.log(error));
+      setDoc(doc(collection(this.firestore, 'max-stats'), 'max-all-g' + galaxy), JSON.parse(JSON.stringify({
+        location: maxMMFLocation,
+        value: maxMMF
+      }))).catch((error): void => console.log(error));
+
+      scanSubscription.unsubscribe();
+    });
   }
 
   private mergeAlliancePlanets(alliancePlanets: Map<string, AlliancePlanets>): void {
