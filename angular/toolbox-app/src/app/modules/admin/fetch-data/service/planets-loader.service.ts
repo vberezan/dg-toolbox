@@ -13,6 +13,7 @@ import {LocalStorageKeys} from "../../../../shared/model/local-storage/local-sto
 import {LocalStorageService} from "../../../local-storage/local-storage-manager/service/local-storage.service";
 import {AlliancePlanets} from "../../../../shared/model/stats/alliance-planets-stats.model";
 import {PlanetScan} from "../../../../shared/model/scans/planet-scan.model";
+import {AtomicNumber} from "../../../../shared/model/atomic-number.model";
 
 
 @Injectable({
@@ -160,11 +161,11 @@ export class PlanetsLoaderService {
 
   private mergePlayerPlanets(playerPlanets: Map<number, PlayerPlanets>): void {
     const playersPlanetsPath: any = collection(this.firestore, 'players-planets');
-    let maxMetal: number = 0;
-    let maxMineral: number = 0;
-    let maxFood: number = 0;
-    let maxMetalMineral: number = 0;
-    let maxAll: number = 0;
+    let maxMetal: AtomicNumber = new AtomicNumber(0);
+    let maxMineral: AtomicNumber = new AtomicNumber(0);
+    let maxFood: AtomicNumber = new AtomicNumber(0);
+    let maxMetalMineral: AtomicNumber = new AtomicNumber(0);
+    let maxAll: AtomicNumber = new AtomicNumber(0);
     let maxMetalLocation: string = '';
     let maxMineralLocation: string = '';
     let maxFoodLocation: string = '';
@@ -187,34 +188,34 @@ export class PlanetsLoaderService {
               batch.foodProduction += dbScan.resources[2].production;
               batch.requiredSoldiers += Math.ceil(((dbScan.workers.currentNumber / 15) + (dbScan.soldiers * 1.5))) + 1;
 
-              if (maxMetal < dbScan.resources[0].production) {
-                maxMetal = dbScan.resources[0].production;
+              if (maxMetal.number < dbScan.resources[0].production) {
+                maxMetal.number = dbScan.resources[0].production;
                 maxMetalLocation = dbScan.location;
-                console.log("Best Metal planet: " + maxMetalLocation + " - " + maxMetal);
+                console.log("Best Metal planet: " + maxMetalLocation + " - " + maxMetal.number);
               }
 
-              if (maxMineral < dbScan.resources[1].production) {
-                maxMineral = dbScan.resources[1].production;
+              if (maxMineral.number < dbScan.resources[1].production) {
+                maxMineral.number = dbScan.resources[1].production;
                 maxMineralLocation = dbScan.location;
-                console.log("Best Mineral planet: " + maxMineralLocation + " - " + maxMineral);
+                console.log("Best Mineral planet: " + maxMineralLocation + " - " + maxMineral.number);
               }
 
-              if (maxFood < dbScan.resources[2].production) {
-                maxFood = dbScan.resources[2].production;
+              if (maxFood.number < dbScan.resources[2].production) {
+                maxFood.number = dbScan.resources[2].production;
                 maxFoodLocation = dbScan.location;
-                console.log("Best Food planet: " + maxFoodLocation + " - " + maxFood);
+                console.log("Best Food planet: " + maxFoodLocation + " - " + maxFood.number);
               }
 
-              if (maxMetalMineral < (dbScan.resources[0].production + dbScan.resources[1].production * 1.5)) {
-                maxMetalMineral = dbScan.resources[0].production + dbScan.resources[1].production * 5;
+              if (maxMetalMineral.number < (dbScan.resources[0].production + dbScan.resources[1].production * 1.5)) {
+                maxMetalMineral.number = dbScan.resources[0].production + dbScan.resources[1].production * 5;
                 maxMetalMineralLocation = dbScan.location;
-                console.log("Best Metal + Mineral planet score: " + maxMetalMineralLocation + " - " + maxMetalMineral);
+                console.log("Best Metal + Mineral planet score: " + maxMetalMineralLocation + " - " + maxMetalMineral.number);
               }
 
-              if (maxAll < (dbScan.resources[0].production + (dbScan.resources[1].production * 1.5) + dbScan.resources[2].production)) {
-                maxAll = dbScan.resources[0].production + (dbScan.resources[1].production * 1.5) + dbScan.resources[2].production;
+              if (maxAll.number < (dbScan.resources[0].production + (dbScan.resources[1].production * 1.5) + dbScan.resources[2].production)) {
+                maxAll.number = dbScan.resources[0].production + (dbScan.resources[1].production * 1.5) + dbScan.resources[2].production;
                 maxAllLocation = dbScan.location;
-                console.log("Best All planet score: " + maxAllLocation + " - " + maxAll);
+                console.log("Best All planet score: " + maxAllLocation + " - " + maxAll.number);
               }
             }
             scanSubscription.unsubscribe();
