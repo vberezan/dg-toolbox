@@ -73,7 +73,7 @@ export class PlanetsLoaderService {
         }
       }
 
-      const scansPath: any = collection(this.firestore, 'scans-g' + g);
+      const scansPath: any = collection(this.firestore, 'scans-g' + validGalaxies[g]);
       let scanSubscription: Subscription = collectionData(scansPath).subscribe((items: DocumentData[]): void => {
         let maxMetal: number = 0;
         let maxMetalLocation: string = '';
@@ -85,7 +85,7 @@ export class PlanetsLoaderService {
           }
         });
 
-        setDoc(doc( collection(this.firestore, 'max-stats'), 'max-metal-g' + g), JSON.parse(JSON.stringify({location: maxMetalLocation})));
+        setDoc(doc( collection(this.firestore, 'max-stats'), 'max-metal-g' + validGalaxies[g]), JSON.parse(JSON.stringify({location: maxMetalLocation, value: maxMetal})));
 
         scanSubscription.unsubscribe();
       });
