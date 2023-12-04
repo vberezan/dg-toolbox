@@ -131,7 +131,7 @@ export class PlanetScanExtractorService implements DataExtractor {
             break;
           }
           case Structures.MINERAL_EXTRACTOR: {
-            result.planetScan.resources[1].production += structure.quantity * 200;
+            result.planetScan.resources[1].production += structure.quantity * 200 ;
             break;
           }
           case Structures.FARM: {
@@ -184,6 +184,7 @@ export class PlanetScanExtractorService implements DataExtractor {
       // -- TODO: implement this when needed.
     }
 
+    // -- apply abundance
     result.planetScan.resources.forEach((resource: Resource): void => {
       resource.production = Math.ceil((resource.production * resource.abundance) / 100);
     });

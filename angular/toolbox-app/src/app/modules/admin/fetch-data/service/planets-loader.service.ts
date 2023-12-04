@@ -12,6 +12,7 @@ import {MetadataService} from "../../../local-storage/local-storage-synchronizer
 import {LocalStorageKeys} from "../../../../shared/model/local-storage/local-storage-keys";
 import {LocalStorageService} from "../../../local-storage/local-storage-manager/service/local-storage.service";
 import {AlliancePlanets} from "../../../../shared/model/stats/alliance-planets-stats.model";
+import {PlanetScan} from "../../../../shared/model/scans/planet-scan.model";
 
 
 @Injectable({
@@ -106,6 +107,27 @@ export class PlanetsLoaderService {
           alliance.total = 0;
           alliance.planets.forEach((batch: PlanetsBatch): void => {
             alliance.total += batch.total;
+            const scansPath: any = collection(this.firestore, 'scans-g' + batch.galaxy);
+
+            batch.planets.forEach((planet: string): void => {
+              let scanSubscription: Subscription = docData(
+                doc(scansPath, planet)
+              ).subscribe((item: DocumentData): void => {
+                if (item) {
+                  let dbScan: PlanetScan = Object.assign(new PlanetScan(), item);
+
+                  batch.metalProduction += dbScan.resources[0].production;
+                  batch.mineralProduction += dbScan.resources[1].production;
+                  batch.foodProduction += dbScan.resources[2].production;
+
+                  alliance.totalMetalProduction += dbScan.resources[0].production;
+                  alliance.totalMineralProduction += dbScan.resources[1].production;
+                  alliance.totalFoodProduction += dbScan.resources[2].production;
+                }
+
+                scanSubscription.unsubscribe();
+              });
+            });
           });
 
           updateDoc(doc(alliancePlanetsPath, alliance.tag), JSON.parse(JSON.stringify(alliance)))

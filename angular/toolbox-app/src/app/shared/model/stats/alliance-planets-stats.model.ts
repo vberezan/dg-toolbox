@@ -5,6 +5,33 @@ export class AlliancePlanets {
   private _turn: number;
   private _total: number;
   private _tag: string;
+  private _totalMetalProduction: number;
+  private _totalMineralProduction: number;
+  private _totalFoodProduction: number;
+
+  get totalMetalProduction(): number {
+    return this._totalMetalProduction;
+  }
+
+  set totalMetalProduction(value: number) {
+    this._totalMetalProduction = value;
+  }
+
+  get totalMineralProduction(): number {
+    return this._totalMineralProduction;
+  }
+
+  set totalMineralProduction(value: number) {
+    this._totalMineralProduction = value;
+  }
+
+  get totalFoodProduction(): number {
+    return this._totalFoodProduction;
+  }
+
+  set totalFoodProduction(value: number) {
+    this._totalFoodProduction = value;
+  }
 
   get tag(): string {
     return this._tag;
@@ -43,7 +70,10 @@ export class AlliancePlanets {
       tag: this.tag,
       planets: this.planets,
       turn: this.turn,
-      total: this.total
+      total: this.total,
+      totalMetalProduction: this.totalMetalProduction,
+      totalMineralProduction: this.totalMineralProduction,
+      totalFoodProduction: this.totalFoodProduction
     };
   }
 }

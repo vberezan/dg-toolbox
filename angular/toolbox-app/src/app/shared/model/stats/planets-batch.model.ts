@@ -2,12 +2,40 @@ export class PlanetsBatch {
   private _galaxy: number;
   private _total: number;
   private _planets: string[] = [];
+  private _metalProduction: number;
+  private _mineralProduction: number;
+  private _foodProduction: number;
 
 
   constructor(galaxy: number, planets: string[], total: number) {
     this._galaxy = galaxy;
     this._planets = planets;
     this._total = total;
+  }
+
+
+  get metalProduction(): number {
+    return this._metalProduction;
+  }
+
+  set metalProduction(value: number) {
+    this._metalProduction = value;
+  }
+
+  get mineralProduction(): number {
+    return this._mineralProduction;
+  }
+
+  set mineralProduction(value: number) {
+    this._mineralProduction = value;
+  }
+
+  get foodProduction(): number {
+    return this._foodProduction;
+  }
+
+  set foodProduction(value: number) {
+    this._foodProduction = value;
   }
 
   get galaxy(): number {
@@ -38,7 +66,10 @@ export class PlanetsBatch {
     return {
       galaxy: this.galaxy,
       planets: this.planets,
-      total: this.total
+      total: this.total,
+      metalProduction: this.metalProduction,
+      mineralProduction: this.mineralProduction,
+      foodProduction: this.foodProduction
     };
   }
 }
