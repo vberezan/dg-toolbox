@@ -102,7 +102,7 @@ export class PlanetsLoaderService {
               batch.metalProduction += dbScan.resources[0].production;
               batch.mineralProduction += dbScan.resources[1].production;
               batch.foodProduction += dbScan.resources[2].production;
-              batch.requiredSoldiers += ((dbScan.workers.currentNumber / 15) + (dbScan.soldiers * 1.5)) + 1;
+              batch.requiredSoldiers += Math.ceil(((dbScan.workers.currentNumber / 15) + (dbScan.soldiers * 1.5))) + 1;
             }
 
             scanSubscription.unsubscribe();
