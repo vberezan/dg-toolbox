@@ -53,10 +53,10 @@ export class PlanetScanExtractorService implements DataExtractor {
 
       let owner: string = base.querySelectorAll('.planetHeadSection .opacBackground>.left>span')[0].textContent.trim();
 
-      if (owner === 'This planet is unoccupied.') {
-        result.planetScan.owner = new Owner(owner.split('Owner:')[1].trim(), '-');
+      if (owner.toLowerCase().indexOf('this planet is unoccupied') < 0) {
+        result.planetScan.owner = new Owner(owner.split('Owner:')[1].trim(), ownerAlliance.substring(1, ownerAlliance.length - 1));
       } else {
-        result.planetScan.owner = new Owner('Uninhabited Planet', ownerAlliance.substring(1, ownerAlliance.length - 1));
+        result.planetScan.owner = new Owner('Uninhabited Planet', '');
       }
 
       result.planetScan.location = base.querySelectorAll('.planetHeadSection .coords')[0].textContent.trim().replace(/\s+/, '');
