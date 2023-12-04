@@ -2,9 +2,9 @@ export class PlanetsBatch {
   private _galaxy: number;
   private _total: number;
   private _planets: string[] = [];
-  private _metalProduction: number;
-  private _mineralProduction: number;
-  private _foodProduction: number;
+  private _metalProduction: number = 0;
+  private _mineralProduction: number = 0;
+  private _foodProduction: number = 0;
 
 
   constructor(galaxy: number, planets: string[], total: number) {

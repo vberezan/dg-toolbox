@@ -5,9 +5,9 @@ export class AlliancePlanets {
   private _turn: number;
   private _total: number;
   private _tag: string;
-  private _totalMetalProduction: number;
-  private _totalMineralProduction: number;
-  private _totalFoodProduction: number;
+  private _totalMetalProduction: number = 0;
+  private _totalMineralProduction: number = 0;
+  private _totalFoodProduction: number = 0;
 
   get totalMetalProduction(): number {
     return this._totalMetalProduction;
