@@ -13,7 +13,6 @@ import {LocalStorageKeys} from "../../../../shared/model/local-storage/local-sto
 import {LocalStorageService} from "../../../local-storage/local-storage-manager/service/local-storage.service";
 import {AlliancePlanets} from "../../../../shared/model/stats/alliance-planets-stats.model";
 import {PlanetScan} from "../../../../shared/model/scans/planet-scan.model";
-import {AtomicNumber} from "../../../../shared/model/atomic-number.model";
 
 
 @Injectable({
@@ -161,12 +160,12 @@ export class PlanetsLoaderService {
 
   private mergePlayerPlanets(playerPlanets: Map<number, PlayerPlanets>): void {
     const playersPlanetsPath: any = collection(this.firestore, 'players-planets');
-    let maxMetal: AtomicNumber = new AtomicNumber(0);
-    let maxMineral: AtomicNumber = new AtomicNumber(0);
-    let maxFood: AtomicNumber = new AtomicNumber(0);
-    let maxMetalMineral: AtomicNumber = new AtomicNumber(0);
-    let maxAll: AtomicNumber = new AtomicNumber(0);
-    let maxMetalLocation: string = '';
+    let metalStats: Map<number, { 'location': string, 'production': number }> = new Map<number, { 'location': string, 'production': number }>();
+
+    let maxMineral: number = 0;
+    let maxFood: number = 0;
+    let maxMetalMineral: number = 0;
+    let maxAll: number = 0;
     let maxMineralLocation: string = '';
     let maxFoodLocation: string = '';
     let maxMetalMineralLocation: string = '';
@@ -175,8 +174,12 @@ export class PlanetsLoaderService {
     playerPlanets.forEach((player: PlayerPlanets, playerId: number): void => {
       player.planets.forEach((batch: PlanetsBatch): void => {
         const scansPath: any = collection(this.firestore, 'scans-g' + batch.galaxy);
-        batch.planets.forEach((planet: string): void => {
 
+        if (!metalStats.has(batch.galaxy)) {
+          metalStats.set(batch.galaxy, {'location': '', 'production': 0});
+        }
+
+        batch.planets.forEach((planet: string): void => {
           let scanSubscription: Subscription = docData(
             doc(scansPath, planet)
           ).subscribe((item: DocumentData): void => {
@@ -188,34 +191,32 @@ export class PlanetsLoaderService {
               batch.foodProduction += dbScan.resources[2].production;
               batch.requiredSoldiers += Math.ceil(((dbScan.workers.currentNumber / 15) + (dbScan.soldiers * 1.5))) + 1;
 
-              if (maxMetal.number < dbScan.resources[0].production) {
-                maxMetal.number = dbScan.resources[0].production;
-                maxMetalLocation = dbScan.location;
-                console.log("Best Metal planet: " + maxMetalLocation + " - " + maxMetal.number);
+              if (metalStats.get(batch.galaxy).production < dbScan.resources[0].production) {
+                metalStats.set(batch.galaxy, {'location': dbScan.location, 'production': dbScan.resources[0].production});
               }
 
-              if (maxMineral.number < dbScan.resources[1].production) {
-                maxMineral.number = dbScan.resources[1].production;
+              if (maxMineral < dbScan.resources[1].production) {
+                maxMineral = dbScan.resources[1].production;
                 maxMineralLocation = dbScan.location;
-                console.log("Best Mineral planet: " + maxMineralLocation + " - " + maxMineral.number);
+                console.log("Best Mineral planet: " + maxMineralLocation + " - " + maxMineral);
               }
 
-              if (maxFood.number < dbScan.resources[2].production) {
-                maxFood.number = dbScan.resources[2].production;
+              if (maxFood < dbScan.resources[2].production) {
+                maxFood = dbScan.resources[2].production;
                 maxFoodLocation = dbScan.location;
-                console.log("Best Food planet: " + maxFoodLocation + " - " + maxFood.number);
+                console.log("Best Food planet: " + maxFoodLocation + " - " + maxFood);
               }
 
-              if (maxMetalMineral.number < (dbScan.resources[0].production + dbScan.resources[1].production * 1.5)) {
-                maxMetalMineral.number = dbScan.resources[0].production + dbScan.resources[1].production * 5;
+              if (maxMetalMineral < (dbScan.resources[0].production + dbScan.resources[1].production * 1.5)) {
+                maxMetalMineral = dbScan.resources[0].production + dbScan.resources[1].production * 5;
                 maxMetalMineralLocation = dbScan.location;
-                console.log("Best Metal + Mineral planet score: " + maxMetalMineralLocation + " - " + maxMetalMineral.number);
+                console.log("Best Metal + Mineral planet score: " + maxMetalMineralLocation + " - " + maxMetalMineral);
               }
 
-              if (maxAll.number < (dbScan.resources[0].production + (dbScan.resources[1].production * 1.5) + dbScan.resources[2].production)) {
-                maxAll.number = dbScan.resources[0].production + (dbScan.resources[1].production * 1.5) + dbScan.resources[2].production;
+              if (maxAll < (dbScan.resources[0].production + (dbScan.resources[1].production * 1.5) + dbScan.resources[2].production)) {
+                maxAll = dbScan.resources[0].production + (dbScan.resources[1].production * 1.5) + dbScan.resources[2].production;
                 maxAllLocation = dbScan.location;
-                console.log("Best All planet score: " + maxAllLocation + " - " + maxAll.number);
+                console.log("Best All planet score: " + maxAllLocation + " - " + maxAll);
               }
             }
             scanSubscription.unsubscribe();
@@ -268,6 +269,19 @@ export class PlanetsLoaderService {
         subscription.unsubscribe();
       });
     });
+
+
+    let maxMetal: number = 0;
+    let maxMetalLocation: string = '';
+    metalStats.forEach((value: { 'location': string, 'production': number }, galaxy: number): void => {
+      if (maxMetal < value.production) {
+        maxMetal = value.production;
+        maxMetalLocation = value.location;
+      }
+    });
+
+    console.log("Best Metal planet: " + maxMetalLocation + " - " + maxMetal);
+
   }
 
   private async parseAndSave(galaxy: number,
