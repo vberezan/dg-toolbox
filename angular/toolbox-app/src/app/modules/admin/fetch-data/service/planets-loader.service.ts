@@ -102,8 +102,7 @@ export class PlanetsLoaderService {
               batch.metalProduction += dbScan.resources[0].production;
               batch.mineralProduction += dbScan.resources[1].production;
               batch.foodProduction += dbScan.resources[2].production;
-
-              console.log(batch);
+              batch.requiredSoldiers += ((dbScan.workers.currentNumber / 15) + (dbScan.soldiers * 1.5)) + 1;
             }
 
             scanSubscription.unsubscribe();
@@ -145,6 +144,7 @@ export class PlanetsLoaderService {
             alliance.totalMetalProduction += batch.metalProduction
             alliance.totalMineralProduction += batch.mineralProduction;
             alliance.totalFoodProduction += batch.foodProduction;
+            alliance.totalRequiredSoldiers += batch.requiredSoldiers;
           });
 
           setDoc(doc(alliancePlanetsPath, alliance.tag), JSON.parse(JSON.stringify(alliance)))

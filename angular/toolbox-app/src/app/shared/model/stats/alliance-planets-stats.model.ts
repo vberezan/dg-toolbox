@@ -8,6 +8,15 @@ export class AlliancePlanets {
   private _totalMetalProduction: number = 0;
   private _totalMineralProduction: number = 0;
   private _totalFoodProduction: number = 0;
+  private _totalRequiredSoldiers: number = 0;
+
+  get totalRequiredSoldiers(): number {
+    return this._totalRequiredSoldiers;
+  }
+
+  set totalRequiredSoldiers(value: number) {
+    this._totalRequiredSoldiers = value;
+  }
 
   get totalMetalProduction(): number {
     return this._totalMetalProduction;
@@ -73,7 +82,8 @@ export class AlliancePlanets {
       total: this.total,
       totalMetalProduction: this.totalMetalProduction,
       totalMineralProduction: this.totalMineralProduction,
-      totalFoodProduction: this.totalFoodProduction
+      totalFoodProduction: this.totalFoodProduction,
+      totalRequiredSoldiers: this.totalRequiredSoldiers
     };
   }
 }
