@@ -13,6 +13,7 @@ import {LocalStorageKeys} from "../../../../shared/model/local-storage/local-sto
 import {LocalStorageService} from "../../../local-storage/local-storage-manager/service/local-storage.service";
 import {AlliancePlanets} from "../../../../shared/model/stats/alliance-planets-stats.model";
 import {PlanetScan} from "../../../../shared/model/scans/planet-scan.model";
+import {DecimalPipe} from "@angular/common";
 
 
 @Injectable({
@@ -30,6 +31,7 @@ export class PlanetsLoaderService {
   private dgAPI: DarkgalaxyApiService = inject(DarkgalaxyApiService);
   private metadataService: MetadataService = inject(MetadataService);
   private localStorageService: LocalStorageService = inject(LocalStorageService);
+  private decimalPipe: any = inject(DecimalPipe);
 
   private _systemScanEmitter: EventEmitter<PageAction> = new EventEmitter<PageAction>();
   private _planetScanEmitter: EventEmitter<string> = new EventEmitter<string>();
@@ -136,7 +138,11 @@ export class PlanetsLoaderService {
         }
 
         if (scan.resources[0].stored + scan.resources[1].stored >= 10000000) {
-          console.log(scan.location + ": " + scan.resources[0].stored + " " + scan.resources[1].stored);
+          console.log(scan.location +
+            " [Metal: " + this.decimalPipe.transform(scan.resources[0].stored,'1.0', 'en_US') +
+            ", Mineral: " + this.decimalPipe.transform(scan.resources[1].stored,'1.0', 'en_US') +
+            ", Food:" + this.decimalPipe.transform(scan.resources[2].stored,'1.0', 'en_US') + "] - " +
+            "Owner: " + scan.owner.name + " - Alliance: " + scan.owner.alliance);
         }
       });
 

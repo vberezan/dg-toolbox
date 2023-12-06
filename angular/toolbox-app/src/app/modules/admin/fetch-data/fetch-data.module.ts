@@ -10,6 +10,7 @@ import {getAuth, provideAuth} from "@angular/fire/auth";
 import {getFirestore, provideFirestore} from "@angular/fire/firestore";
 import {initializeAppCheck, provideAppCheck, ReCaptchaV3Provider} from "@angular/fire/app-check";
 import {MetadataService} from "../../local-storage/local-storage-synchronizer/service/metadata.service";
+import {DecimalPipe} from "@angular/common";
 
 @NgModule({
   imports: [
@@ -27,6 +28,7 @@ import {MetadataService} from "../../local-storage/local-storage-synchronizer/se
     ),
   ],
   providers: [
+    DecimalPipe,
     MetadataService // -- contains reference to firestore
   ],
   declarations: [
