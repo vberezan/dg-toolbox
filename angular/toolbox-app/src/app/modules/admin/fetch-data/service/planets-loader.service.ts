@@ -100,6 +100,9 @@ export class PlanetsLoaderService {
       let maxFoodLocation: string = '';
       let maxMMLocation: string = '';
       let maxMMFLocation: string = '';
+      let maxStoredMetalMineral: number = 0;
+      let maxStoredMetalMineralLocation: string = '';
+
       const dbScan: PlanetScan[] = Object.assign([], items);
       dbScan.forEach((scan: PlanetScan): void => {
         if (maxMetal < scan.resources[0].production) {
@@ -126,6 +129,11 @@ export class PlanetsLoaderService {
           maxMMF = scan.resources[0].production + scan.resources[1].production * 1.5 + scan.resources[2].production;
           maxMMFLocation = scan.location;
         }
+
+        if (maxStoredMetalMineral < scan.resources[0].stored + scan.resources[1].stored) {
+          maxStoredMetalMineral = scan.resources[0].stored + scan.resources[1].stored;
+          maxStoredMetalMineralLocation = scan.location;
+        }
       });
 
       setDoc(doc(collection(this.firestore, 'max-stats'), 'max-metal-g' + galaxy), JSON.parse(JSON.stringify({
@@ -147,6 +155,10 @@ export class PlanetsLoaderService {
       setDoc(doc(collection(this.firestore, 'max-stats'), 'max-all-g' + galaxy), JSON.parse(JSON.stringify({
         location: maxMMFLocation,
         value: maxMMF
+      }))).catch((error): void => console.log(error));
+      setDoc(doc(collection(this.firestore, 'max-stats'), 'max-stored-metal-mineral-g' + galaxy), JSON.parse(JSON.stringify({
+        location: maxStoredMetalMineralLocation,
+        value: maxStoredMetalMineral
       }))).catch((error): void => console.log(error));
 
       scanSubscription.unsubscribe();
