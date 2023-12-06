@@ -139,10 +139,10 @@ export class PlanetsLoaderService {
 
         if (scan.resources[0].stored + scan.resources[1].stored >= 10000000) {
           console.log(scan.location +
-            " [Metal: " + this.decimalPipe.transform(scan.resources[0].stored,'1.0', 'en_US') +
+            ": [Metal: " + this.decimalPipe.transform(scan.resources[0].stored,'1.0', 'en_US') +
             ", Mineral: " + this.decimalPipe.transform(scan.resources[1].stored,'1.0', 'en_US') +
-            ", Food:" + this.decimalPipe.transform(scan.resources[2].stored,'1.0', 'en_US') + "] - " +
-            "Owner: " + scan.owner.name + " - Alliance: " + scan.owner.alliance);
+            ", Food:" + this.decimalPipe.transform(scan.resources[2].stored,'1.0', 'en_US') + "] | " +
+            "Owner: " + scan.owner.name + " | Alliance: " + scan.owner.alliance);
         }
       });
 
