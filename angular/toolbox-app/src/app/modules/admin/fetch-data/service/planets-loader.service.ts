@@ -134,6 +134,10 @@ export class PlanetsLoaderService {
           maxStoredMetalMineral = scan.resources[0].stored + scan.resources[1].stored;
           maxStoredMetalMineralLocation = scan.location;
         }
+
+        if (scan.resources[0].stored + scan.resources[1].stored >= 10000000) {
+          console.log(scan.location + ": " + scan.resources[0].stored + " " + scan.resources[1].stored);
+        }
       });
 
       setDoc(doc(collection(this.firestore, 'max-stats'), 'max-metal-g' + galaxy), JSON.parse(JSON.stringify({
