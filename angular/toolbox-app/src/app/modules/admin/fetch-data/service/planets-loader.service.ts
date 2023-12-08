@@ -137,11 +137,11 @@ export class PlanetsLoaderService {
           maxStoredMetalMineralLocation = scan.location;
         }
 
-        if (scan.resources[0].stored + scan.resources[1].stored >= 10000000) {
+        if (scan.workers.maximumNumber >= 20000) {
           console.log(scan.location +
-            ": [Metal: " + this.decimalPipe.transform(scan.resources[0].stored,'1.0', 'en_US') +
-            ", Mineral: " + this.decimalPipe.transform(scan.resources[1].stored,'1.0', 'en_US') +
-            ", Food:" + this.decimalPipe.transform(scan.resources[2].stored,'1.0', 'en_US') + "] | " +
+            ": [Workers: " + this.decimalPipe.transform(scan.workers.currentNumber,'1.0', 'en_US') +
+            ", Soldiers: " + this.decimalPipe.transform(scan.soldiers,'1.0', 'en_US') +
+            ", Required for invasion:" + this.decimalPipe.transform(Math.ceil(((scan.workers.currentNumber / 15) + (scan.soldiers * 1.5))) + 1,'1.0', 'en_US') + "] | " +
             "Owner: " + scan.owner.name + " | Alliance: " + scan.owner.alliance);
         }
       });
