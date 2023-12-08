@@ -137,7 +137,7 @@ export class PlanetsLoaderService {
           maxStoredMetalMineralLocation = scan.location;
         }
 
-        if (scan.workers.maximumNumber >= 20000) {
+        if (scan.workers.maximumNumber >= 1500000) {
           console.log(scan.location +
             ": [Workers: " + this.decimalPipe.transform(scan.workers.currentNumber,'1.0', 'en_US') +
             ", Soldiers: " + this.decimalPipe.transform(scan.soldiers,'1.0', 'en_US') +
