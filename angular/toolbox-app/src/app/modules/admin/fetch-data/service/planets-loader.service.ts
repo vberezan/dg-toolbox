@@ -90,7 +90,7 @@ export class PlanetsLoaderService {
   }
 
   private calculateMaxStats(galaxy: number): void {
-    let req1: number, req2: number, req3: number, req4: number, req5: number = 0;
+    let req1: number = 0, req2: number = 0, req3: number = 0, req4: number = 0, req5: number = 0;
     const scansPath: any = collection(this.firestore, 'scans-g' + galaxy);
     let scanSubscription: Subscription = collectionData(scansPath).subscribe((items: DocumentData[]): void => {
       let maxMetal: number = 0;
@@ -155,13 +155,13 @@ export class PlanetsLoaderService {
         if (scan.location.startsWith('13.5.') && scan.owner.alliance.toLowerCase() === 'wolfpack') {
           req5 += required;
         }
-
-        console.log('13.1: ' + req1);
-        console.log('13.2: ' + req2);
-        console.log('13.3: ' + req3);
-        console.log('13.4: ' + req4);
-        console.log('13.5: ' + req5);
       });
+
+      console.log('13.1: ' + req1);
+      console.log('13.2: ' + req2);
+      console.log('13.3: ' + req3);
+      console.log('13.4: ' + req4);
+      console.log('13.5: ' + req5);
 
       setDoc(doc(collection(this.firestore, 'max-stats'), 'max-metal-g' + galaxy), JSON.parse(JSON.stringify({
         location: maxMetalLocation,
