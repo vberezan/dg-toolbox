@@ -137,13 +137,31 @@ export class PlanetsLoaderService {
           maxStoredMetalMineralLocation = scan.location;
         }
 
-        if (scan.workers.maximumNumber >= 1000000 && scan.owner.alliance.toLowerCase() === 'wolfpack') {
-          console.log(scan.location +
-            ": [Maximum workers: " + this.decimalPipe.transform(scan.workers.maximumNumber,'1.0', 'en_US') +
-            ", Soldiers: " + this.decimalPipe.transform(scan.soldiers,'1.0', 'en_US') +
-            ", Required for invasion:" + this.decimalPipe.transform(Math.ceil(((scan.workers.maximumNumber / 15) + (scan.soldiers * 1.5))) + 1,'1.0', 'en_US') + "] | " +
-            "Owner: " + scan.owner.name + " | Alliance: " + scan.owner.alliance);
+        let required: number = Math.ceil(((scan.workers.maximumNumber / 15) + (scan.soldiers * 1.5)));
+
+        let req1: number, re2: number, req3: number, req4: number, req5: number = 0;
+
+        if (scan.location.startsWith('13.1.') && scan.owner.alliance.toLowerCase() === 'wolfpack') {
+          req1 += required;
         }
+        if (scan.location.startsWith('13.2.') && scan.owner.alliance.toLowerCase() === 'wolfpack') {
+          re2 += required;
+        }
+        if (scan.location.startsWith('13.3.') && scan.owner.alliance.toLowerCase() === 'wolfpack') {
+          req3 += required;
+        }
+        if (scan.location.startsWith('13.4.') && scan.owner.alliance.toLowerCase() === 'wolfpack') {
+          req4 += required;
+        }
+        if (scan.location.startsWith('13.5.') && scan.owner.alliance.toLowerCase() === 'wolfpack') {
+          req5 += required;
+        }
+
+        console.log('13.1: ' + req1);
+        console.log('13.2: ' + re2);
+        console.log('13.3: ' + req3);
+        console.log('13.4: ' + req4);
+        console.log('13.5: ' + req5);
       });
 
       setDoc(doc(collection(this.firestore, 'max-stats'), 'max-metal-g' + galaxy), JSON.parse(JSON.stringify({
