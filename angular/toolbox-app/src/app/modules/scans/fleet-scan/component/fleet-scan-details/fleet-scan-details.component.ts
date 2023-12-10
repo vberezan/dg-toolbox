@@ -24,14 +24,6 @@ export class FleetScanDetailsComponent implements AfterViewInit {
       if (state.status && !this.initialized) {
         const fleets: Fleet[] = this.dgAPI.fleetScan();
 
-        fleets.forEach((fleet: Fleet): void => {
-          if (fleet.allied || fleet.friendly) {
-            for (let i = 0; i < fleet.ships.length; i++) {
-              fleet.ships[i].quantity += Math.ceil(fleet.ships[i].quantity / 4);
-            }
-          }
-        });
-
         this.fleetScoreService.applyFleetScore(fleets);
         this.fightSimulatorService.createSimulation(fleets);
 
