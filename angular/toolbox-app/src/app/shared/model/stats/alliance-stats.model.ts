@@ -1,10 +1,10 @@
 import {AllianceStatsPlanetsBatch} from "./alliance-stats-planets-batch.model";
 
 export class AllianceStats {
-  private _score: number;
-  private _avgScore: number;
-  private _combatScore: number;
-  private _combinedScore: number;
+  private _score: number = 0;
+  private _avgScore: number = 0;
+  private _combatScore: number = 0;
+  private _combinedScore: number = 0;
   private _planets: number = 1;
   private _g1Total: number = 0;
   private _g213Total: number = 0;

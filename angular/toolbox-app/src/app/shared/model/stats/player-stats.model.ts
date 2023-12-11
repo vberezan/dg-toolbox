@@ -1,8 +1,8 @@
 export class PlayerStats {
   private _playerId: number;
-  private _score: number;
-  private _combatScore: number;
-  private _combinedScore: number;
+  private _score: number = 0;
+  private _combatScore: number = 0;
+  private _combinedScore: number = 0;
   private _planets: number = 1;
   private _g1Total: number = 0;
   private _g213Total: number = 0;
