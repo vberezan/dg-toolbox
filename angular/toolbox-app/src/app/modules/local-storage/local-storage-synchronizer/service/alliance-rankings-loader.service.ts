@@ -157,10 +157,10 @@ export class AllianceRankingsLoaderService {
 
           subscription.unsubscribe();
         });
-      }, ++delay * 10);
+      }, ++delay * 15);
     });
 
-    await this.delay(10 * ++delay).finally((): void => {
+    await this.delay(15 * ++delay).finally((): void => {
       this.localStorageService.cache(LocalStorageKeys.ALLIANCES_STATS, cache);
       let localMetadata: Metadata = this.localStorageService.localMetadata();
       this.localStorageService.cache(LocalStorageKeys.LOCAL_METADATA, localMetadata);
