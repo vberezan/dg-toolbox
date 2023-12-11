@@ -45,26 +45,26 @@
       </tr>
       </thead>
       <tbody>
-      <tr *ngFor="let player of rankings.values()"
-          [ngClass]="{
-          'neutral':player.relation === 'neutral',
-          'hostile':player.relation === 'hostile',
-          'allied':player.relation === 'allied',
-          'self':player.relation === 'self',
-          'nap':player.relation === 'nap'
-        }">
-        <td class="rank">{{player.rank}}</td>
-        <td class="alliance">{{player.alliance}}</td>
-        <td class="name">{{player.name}}</td>
-        <td class="planets" [ngClass]="{'selected':sortKey === 'planets'}"><a href="javascript:void(0);">{{player.planets}}</a></td>
-        <td class="g1" [ngClass]="{'selected':sortKey === 'g1Total'}"><a href="javascript:void(0);">{{player.g1Total}}</a></td>
-        <td class="inner" [ngClass]="{'selected':sortKey === 'g213Total'}"><a href="javascript:void(0);">{{player.g213Total}}</a></td>
-        <td class="outer" [ngClass]="{'selected':sortKey === 'g1449Total'}"><a href="javascript:void(0);">{{player.g1449Total}}</a></td>
-        <td class="empty"></td>
-        <td class="combat" [ngClass]="{'selected':sortKey === 'combatScore'}">{{player.combatScore | number:'1.0':'en-US'}}</td>
-        <td class="score" [ngClass]="{'selected':sortKey === 'score'}">{{player.score | number:'1.0':'en-US'}}</td>
-        <td class="combined" [ngClass]="{'selected':sortKey === 'combinedScore'}">{{player.combinedScore | number:'1.0':'en-US'}}</td>
-      </tr>
+        <tr *ngFor="let player of rankings.values()"
+            [ngClass]="{
+            'neutral':player.relation === 'neutral',
+            'hostile':player.relation === 'hostile',
+            'allied':player.relation === 'allied',
+            'self':player.relation === 'self',
+            'nap':player.relation === 'nap'
+          }">
+          <td class="rank">{{player.rank}}</td>
+          <td class="alliance">{{player.alliance}}</td>
+          <td class="name">{{player.name}}</td>
+          <td class="planets" [ngClass]="{'selected':sortKey === 'planets'}"><a href="javascript:void(0);">{{player.planets}}</a></td>
+          <td class="g1" [ngClass]="{'selected':sortKey === 'g1Total'}"><a href="javascript:void(0);">{{player.g1Total}}</a></td>
+          <td class="inner" [ngClass]="{'selected':sortKey === 'g213Total'}"><a href="javascript:void(0);">{{player.g213Total}}</a></td>
+          <td class="outer" [ngClass]="{'selected':sortKey === 'g1449Total'}"><a href="javascript:void(0);">{{player.g1449Total}}</a></td>
+          <td class="empty"></td>
+          <td class="combat" [ngClass]="{'selected':sortKey === 'combatScore'}">{{player.combatScore | number:'1.0':'en-US'}}</td>
+          <td class="score" [ngClass]="{'selected':sortKey === 'score'}">{{player.score | number:'1.0':'en-US'}}</td>
+          <td class="combined" [ngClass]="{'selected':sortKey === 'combinedScore'}">{{player.combinedScore | number:'1.0':'en-US'}}</td>
+        </tr>
       </tbody>
     </table>
   </div>
