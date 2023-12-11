@@ -87,7 +87,7 @@ export class SynchronizerService {
       localMetadata.planetsTurn.turn = remoteMetadata.planetsTurn.turn;
       localMetadata.planetsTurn.version = remoteMetadata.planetsTurn.version;
 
-      localMetadata.rankingsTurn.turn = 0;
+      localMetadata.playersRankingsTurn.turn = 0;
       localMetadata.allianceMembersTurn.turn = 0;
       this.localStorageService.remove(LocalStorageKeys.PLAYERS_STATS);
 
@@ -101,8 +101,8 @@ export class SynchronizerService {
     const localMetadata: Metadata = this.localStorageService.localMetadata();
     const playerStats: PlayerStats[] = this.localStorageService.get(LocalStorageKeys.PLAYERS_STATS);
     const allianceStats: PlayerStats[] = this.localStorageService.get(LocalStorageKeys.ALLIANCES_STATS);
-    const isRankingsTurnZero: boolean = localMetadata.rankingsTurn.turn === 0;
-    const isNewTurn: boolean = turn > localMetadata.rankingsTurn.turn;
+    const isRankingsTurnZero: boolean = localMetadata.playersRankingsTurn.turn === 0;
+    const isNewTurn: boolean = turn > localMetadata.playersRankingsTurn.turn;
 
     if (!playerStats || !allianceStats || playerStats.length == 0 || allianceStats.length == 0 || isRankingsTurnZero || isNewTurn || force) {
       if (window.location.pathname.indexOf('/rankings') !== -1 || window.location.pathname.indexOf('/alliances') !== -1) {
@@ -130,7 +130,7 @@ export class SynchronizerService {
       this._updatesEmitter.emit(2);
       this.allianceRankingsLoaderService.scanAlliancesRankingsScreens(alliancesRankingsEmitter).finally((): void => {
         this._updatesEmitter.emit(1);
-        this.loadAllianceMembers(this.localStorageService.localMetadata().rankingsTurn.turn).finally((): void => {
+        this.loadAllianceMembers(this.localStorageService.localMetadata().playersRankingsTurn.turn).finally((): void => {
           this._updatesEmitter.emit(0);
         });
       });

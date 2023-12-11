@@ -2,7 +2,7 @@ import {UpdateMetadata} from "../stats/update-metadata.model";
 
 export class Metadata {
   private _dgtVersion: string;
-  private _rankingsTurn: UpdateMetadata;
+  private _playersRankingsTurn: UpdateMetadata;
   private _allianceMembersTurn: UpdateMetadata;
   private _planetsTurn: UpdateMetadata;
 
@@ -15,12 +15,12 @@ export class Metadata {
     this._dgtVersion = value;
   }
 
-  get rankingsTurn(): UpdateMetadata {
-    return this._rankingsTurn;
+  get playersRankingsTurn(): UpdateMetadata {
+    return this._playersRankingsTurn;
   }
 
-  set rankingsTurn(value: UpdateMetadata) {
-    this._rankingsTurn = value;
+  set playersRankingsTurn(value: UpdateMetadata) {
+    this._playersRankingsTurn = value;
   }
 
   get allianceMembersTurn(): UpdateMetadata {
@@ -42,7 +42,7 @@ export class Metadata {
   toJSON(): any {
     return {
       dgtVersion: this.dgtVersion,
-      playersRankingsTurn: this.rankingsTurn,
+      playersRankingsTurn: this.playersRankingsTurn,
       planetsTurn: this.planetsTurn
     }
   }
