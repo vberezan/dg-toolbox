@@ -22,8 +22,6 @@ export class AllianceRankingsService {
     const cachedStats: AllianceStats[] = this.localStorageService.get(LocalStorageKeys.ALLIANCES_STATS);
     if (cachedStats === null) return orderedRankings;
 
-    console.log(cachedStats);
-
     for (let i: number = 0; i < cachedStats.length - 1; i++) {
       for (let j: number = i + 1; j < cachedStats.length; j++) {
         let sortCondition: boolean = false;

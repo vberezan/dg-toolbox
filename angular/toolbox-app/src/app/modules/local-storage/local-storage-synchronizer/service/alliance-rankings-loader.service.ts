@@ -122,6 +122,8 @@ export class AllianceRankingsLoaderService {
 
       alliance.combatScore = parseInt(row.querySelector('.score').textContent.trim().replace(/,/g, ''));
       alliance.combinedScore = alliance.combatScore + alliance.score;
+
+      console.log(alliance);
     });
 
     scanned.number += await this.atomicIncrement();
