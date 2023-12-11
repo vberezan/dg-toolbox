@@ -63,7 +63,7 @@ export class PlayerRankingsService {
       }
     }
 
-    if (clear) {
+    if (clear && document.querySelector('.playerRankingsList')) {
       document.querySelector('.playerRankingsList').remove();
     }
 
