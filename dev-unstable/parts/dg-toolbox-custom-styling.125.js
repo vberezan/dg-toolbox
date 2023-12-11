@@ -10,6 +10,9 @@ function applyCustomStyling(windowURL) {
   if (document.getElementById('home-stats')) {
     document.querySelector('#home-stats>div:nth-child(2)>div>div:nth-child(2)').remove();
     document.querySelector('#home-stats>div:nth-child(2)>div>div:nth-child(2)').remove();
+    document.querySelector('#home-stats>div:nth-child(2)>div>div:nth-child(2)').remove();
+    document.querySelector('#home-stats>div:nth-child(2)>div>div:nth-child(4)').remove();
+    document.querySelector('#home-stats>div:nth-child(2)>div>div:nth-child(4)').remove();
   }
 
   if (document.querySelector('#queue .researchTitle')) {
