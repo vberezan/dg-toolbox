@@ -26,7 +26,7 @@ function loadResource(element) {
 
 function getVersion() {
   if (localStorage.getItem('js-version')) return JSON.parse(localStorage.getItem('js-version')).value;
-  else return 'v2.0.12';
+  else return 'v2.0.13';
 }
 
 function loadSetups(windowURL) {
@@ -46,7 +46,7 @@ function loadCustomStyling(windowURL) {
 
   loadResource({
     tagName: 'script',
-    src: 'https://cdn.jsdelivr.net/gh/vberezan/dg-toolbox@development/dev-unstable/parts/dg-toolbox-custom-styling.113.js',
+    src: 'https://cdn.jsdelivr.net/gh/vberezan/dg-toolbox@development/dev-unstable/parts/dg-toolbox-custom-styling.126.js',
     rel: 'text/javascript'
   }).onload = function () {
     applyCustomStyling(windowURL);
@@ -85,7 +85,7 @@ function loadCustomStyling(windowURL) {
 
     loadResource({
       tagName: 'script',
-      src: 'https://cdn.jsdelivr.net/gh/vberezan/dg-toolbox@development/dev-unstable/parts/dg-toolbox-replace-ships-images.17.js',
+      src: 'https://cdn.jsdelivr.net/gh/vberezan/dg-toolbox@development/dev-unstable/parts/dg-toolbox-replace-ships-images.58.js',
       rel: 'text/javascript'
     }).onload = function () {
       replaceShipsImages();
@@ -106,7 +106,7 @@ function loadAngular() {
     rel: 'module'
   }, {
     tagName: 'script',
-    src: 'https://cdn.jsdelivr.net/gh/vberezan/dg-toolbox@development/angular/toolbox-app/dist/toolbox-app/main.d79743ba315828b9.js',
+    src: 'https://cdn.jsdelivr.net/gh/vberezan/dg-toolbox@development/angular/toolbox-app/dist/toolbox-app/main.882a68b5a8694ac1.js',
     rel: 'module'
   }];
 
@@ -126,7 +126,7 @@ function loadGlobalAngularStyling() {
 
   let angular = [{
     tagName: 'link',
-    href: 'https://cdn.jsdelivr.net/gh/vberezan/dg-toolbox@development/angular/toolbox-app/dist/toolbox-app/styles.f0254f9b50c408e9.css',
+    href: 'https://cdn.jsdelivr.net/gh/vberezan/dg-toolbox@development/angular/toolbox-app/dist/toolbox-app/styles.1fa1c3d2d7339a31.css',
     rel: 'stylesheet'
   }];
 
