@@ -44,7 +44,6 @@ export class SynchronizerService {
 
       cache.dgtVersion = metadata[0].version;
       cache.planetsTurn = metadata[1];
-      cache.playersRankingsTurn = metadata[2];
 
       this.localStorageService.cache(LocalStorageKeys.REMOTE_METADATA, cache);
 
@@ -89,6 +88,7 @@ export class SynchronizerService {
       localMetadata.planetsTurn.version = remoteMetadata.planetsTurn.version;
 
       localMetadata.playersRankingsTurn.turn = 0;
+      localMetadata.allianceMembersTurn.turn = 0;
       this.localStorageService.remove(LocalStorageKeys.PLAYERS_STATS);
 
       this.localStorageService.cache(LocalStorageKeys.LOCAL_METADATA, localMetadata);
@@ -100,11 +100,12 @@ export class SynchronizerService {
   loadRankings(turn: number, @Optional() force: boolean = false): void {
     const localMetadata: Metadata = this.localStorageService.localMetadata();
     const playerStats: PlayerStats[] = this.localStorageService.get(LocalStorageKeys.PLAYERS_STATS);
-    const isPlayerRankingsTurnZero: boolean = localMetadata.playersRankingsTurn.turn === 0;
-    const isNewTurn: boolean = turn > localMetadata.playersRankingsTurn.turn;
+    const allianceStats: PlayerStats[] = this.localStorageService.get(LocalStorageKeys.ALLIANCES_STATS);
+    const isRankingsTurnZero: boolean = localMetadata.playersRankingsTurn.turn === 0 || localMetadata.alliancesRankingsTurn.turn === 0;
+    const isNewTurn: boolean = turn > localMetadata.playersRankingsTurn.turn || turn > localMetadata.alliancesRankingsTurn.turn;
 
-    if (!playerStats || playerStats.length == 0 || isPlayerRankingsTurnZero || isNewTurn || force) {
-      if (window.location.pathname.indexOf('/rankings/players') !== -1 || window.location.pathname.indexOf('/alliances') !== -1) {
+    if (!playerStats || !allianceStats || playerStats.length == 0 || allianceStats.length == 0 || isRankingsTurnZero || isNewTurn || force) {
+      if (window.location.pathname.indexOf('/rankings') !== -1 || window.location.pathname.indexOf('/alliances') !== -1) {
         this._updatesEmitter.emit(2);
         this.loadAllRankings(this._playersRankingsEmitter, this._alliancesRankingsEmitter);
       }

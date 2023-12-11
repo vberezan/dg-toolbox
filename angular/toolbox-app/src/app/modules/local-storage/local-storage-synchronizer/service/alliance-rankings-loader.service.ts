@@ -34,8 +34,6 @@ export class AllianceRankingsLoaderService {
     let alliancesStats: Map<string, AllianceStats> = new Map<string, AllianceStats>();
     let pages: number = await this.getNumberOfPages();
 
-    console.log('pages: ' + pages);
-
     for (let page: number = 1; page <= pages; page++) {
       await this.scanRankingsPage(alliancesStats, alliancesRankingsEmitter, scanned, scanDelay, page, pages);
       await this.scanCombatRankingsPage(alliancesStats, alliancesRankingsEmitter, scanned, scanDelay, page, pages);
@@ -63,7 +61,7 @@ export class AllianceRankingsLoaderService {
     let dom: Document = new DOMParser().parseFromString(source, 'text/html');
 
     dom.querySelectorAll('.rankingsList .entry').forEach((row: any): void => {
-      const tag: string = row.querySelector('.tag').textContent.trim().replace(/\[/g, '').replace(/]/g, '');
+      const tag: string = row.querySelector('.tag').textContent.trim().replace(/\[/g, '').replace(/]/g, '').toLowerCase();
 
       if (!alliancesStats.has(tag)) {
         alliancesStats.set(tag, new AllianceStats());
