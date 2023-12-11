@@ -10,7 +10,6 @@ import {firstValueFrom, Subscription} from "rxjs";
 import {EnemyList} from "../../../../shared/model/enemy-list";
 import {DocumentData} from "@angular/fire/compat/firestore";
 import {Metadata} from "../../../../shared/model/local-storage/metadata.model";
-import {UpdateMetadata} from "../../../../shared/model/stats/update-metadata.model";
 import {AllianceStats} from "../../../../shared/model/stats/alliance-stats.model";
 import {AlliancePlanets} from "../../../../shared/model/stats/alliance-planets-stats.model";
 
@@ -164,9 +163,6 @@ export class AllianceRankingsLoaderService {
     await this.delay(10 * ++delay).finally((): void => {
       this.localStorageService.cache(LocalStorageKeys.ALLIANCES_STATS, cache);
       let localMetadata: Metadata = this.localStorageService.localMetadata();
-      localMetadata.alliancesRankingsTurn = new UpdateMetadata(this.dgAPI.gameTurn(), 0);
-      localMetadata.allianceMembersTurn.turn = 0;
-      this.localStorageService.remove(LocalStorageKeys.ALLIANCE_MEMBERS);
       this.localStorageService.cache(LocalStorageKeys.LOCAL_METADATA, localMetadata);
     });
   }
