@@ -1,6 +1,5 @@
 import {inject, Injectable, Optional} from '@angular/core';
 import {LocalStorageService} from "../../../local-storage/local-storage-manager/service/local-storage.service";
-import {PlayerStats} from "../../../../shared/model/stats/player-stats.model";
 import {LocalStorageKeys} from "../../../../shared/model/local-storage/local-storage-keys";
 import {AllianceStats} from "../../../../shared/model/stats/alliance-stats.model";
 

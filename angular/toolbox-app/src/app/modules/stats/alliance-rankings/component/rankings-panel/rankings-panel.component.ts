@@ -1,10 +1,10 @@
 import {AfterViewInit, ChangeDetectorRef, Component, inject, Optional} from '@angular/core';
-import {PlayerRankingsService} from "../../../player-rankings/service/player-rankings.service";
 import {AuthService} from "../../../../authentication/service/auth.service";
 import {LocalStorageService} from "../../../../local-storage/local-storage-manager/service/local-storage.service";
-import {PlayerStats} from "../../../../../shared/model/stats/player-stats.model";
 import {AuthState} from "../../../../../shared/model/authentication/auth-state.model";
 import {LocalStorageKeys} from "../../../../../shared/model/local-storage/local-storage-keys";
+import {AllianceRankingsService} from "../../service/alliance-rankings.service";
+import {AllianceStats} from "../../../../../shared/model/stats/alliance-stats.model";
 
 @Component({
   selector: 'dgt-alliance-rankings',
@@ -12,13 +12,13 @@ import {LocalStorageKeys} from "../../../../../shared/model/local-storage/local-
   styleUrls: ['./rankings-panel.component.css']
 })
 export class RankingsPanelComponent implements AfterViewInit {
-  private playerRankingsService: PlayerRankingsService = inject(PlayerRankingsService);
+  private allianceRankingsService: AllianceRankingsService = inject(AllianceRankingsService);
   private authService: AuthService = inject(AuthService);
   private localStorageService: LocalStorageService = inject(LocalStorageService);
   private changeDetector: ChangeDetectorRef = inject(ChangeDetectorRef);
   private readonly page: number;
 
-  protected rankings: Map<number, PlayerStats> = new Map<number, PlayerStats>();
+  protected rankings: Map<string, AllianceStats> = new Map<string, AllianceStats>();
   protected authenticated: boolean = false;
   protected readonly Math = Math;
   protected sortOrder: string = 'desc';
@@ -52,7 +52,7 @@ export class RankingsPanelComponent implements AfterViewInit {
     });
 
     this.authService.checkLoginValidity();
-    //this.playerRankingsService.fixPaginationDisplay(this.page);
+    this.allianceRankingsService.fixPaginationDisplay(this.page);
   }
 
   ngAfterViewInit(): void {
@@ -69,7 +69,7 @@ export class RankingsPanelComponent implements AfterViewInit {
     if (switchOrder) sortOrder = sortOrder === 'desc' ? 'asc' : 'desc';
     sort = sortKey.concat(':', sortOrder);
 
-    this.rankings = this.playerRankingsService.fetchAndClear(sortKey, sortOrder, this.page, 100);
+    this.rankings = this.allianceRankingsService.fetchAndClear(sortKey, sortOrder, this.page, 100);
 
     this.sortKey = sortKey;
     this.sortOrder = sortOrder;
