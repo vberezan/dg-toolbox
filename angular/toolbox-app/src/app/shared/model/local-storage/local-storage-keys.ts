@@ -8,5 +8,6 @@ export enum LocalStorageKeys {
   REMOTE_METADATA = 'remote-metadata',
   JS_VERSION = 'js-version',
 
-  PLAYERS_RANKINGS_SORT = 'players-rankings-sort'
+  PLAYERS_RANKINGS_SORT = 'players-rankings-sort',
+  ALLIANCES_RANKINGS_SORT = 'alliances-rankings-sort'
 }

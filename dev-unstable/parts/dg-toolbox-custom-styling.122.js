@@ -761,7 +761,7 @@ function applyCustomStyling(windowURL) {
   }
 
   // -- rankings
-  if (windowURL[1] === 'rankings' && (windowURL.length >= 4 && windowURL[2]) === 'players') {
+  if (windowURL[1] === 'rankings' && (windowURL.length >= 4 && (windowURL[2] === 'players') || windowURL[2] === 'alliances')) {
     document.querySelectorAll('span.allied').forEach((allied => {
       allied.parentElement.parentElement.classList.add('allied-bg', 'rank-row');
     }));
