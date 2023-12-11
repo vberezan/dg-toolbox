@@ -30,8 +30,6 @@ export class AllianceRankingsLoaderService {
     const scanDelay: number = 250 + Math.floor(Math.random() * 250);
     const alliancesPlanetsPath: any = collection(this.firestore, 'alliances-planets');
 
-    console.log('abracadabra');
-
     let scanned: AtomicNumber = new AtomicNumber(0);
     let alliancesStats: Map<string, AllianceStats> = new Map<string, AllianceStats>();
     let pages: number = await this.getNumberOfPages();
@@ -59,6 +57,8 @@ export class AllianceRankingsLoaderService {
                                  pages: number): Promise<void> {
     let source: string = await firstValueFrom(this.httpClient.get(this.ALLIANCE_RANKINGS_URL + page, {responseType: 'text'}));
     let dom: Document = new DOMParser().parseFromString(source, 'text/html');
+
+    console.log(dom);
 
     dom.querySelectorAll('.rankingsList .entry').forEach((row: any): void => {
       const tag: string = row.querySelector('.tag').textContent.trim().replace(/\[/g, '').replace(/]/g, '');
@@ -111,6 +111,8 @@ export class AllianceRankingsLoaderService {
                                        pages: number): Promise<void> {
     let source: string = await firstValueFrom(this.httpClient.get(this.ALLIANCE_COMBAT_RANKINGS_URL + page, {responseType: 'text'}));
     let dom: Document = new DOMParser().parseFromString(source, 'text/html');
+
+    console.log(dom);
 
     dom.querySelectorAll('.rankingsList .entry').forEach((row: any): void => {
       const tag: string = row.querySelector('.tag').textContent.trim().replace(/\[/g, '').replace(/]/g, '');
