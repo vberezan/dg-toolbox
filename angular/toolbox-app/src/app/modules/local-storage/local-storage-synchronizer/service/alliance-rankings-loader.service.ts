@@ -112,9 +112,7 @@ export class AllianceRankingsLoaderService {
     let dom: Document = new DOMParser().parseFromString(source, 'text/html');
 
     dom.querySelectorAll('.rankingsList .entry').forEach((row: any): void => {
-      const tag: string = row.querySelector('.tag').textContent.trim().replace(/\[/g, '').replace(/]/g, '');
-
-      alert(tag);
+      const tag: string = row.querySelector('.tag').textContent.trim().replace(/\[/g, '').replace(/]/g, '').toLowerCase();
 
       if (!alliancesStats.has(tag)) {
         alliancesStats.set(tag, new AllianceStats());
@@ -124,8 +122,6 @@ export class AllianceRankingsLoaderService {
 
       alliance.combatScore = parseInt(row.querySelector('.score').textContent.trim().replace(/,/g, ''));
       alliance.combinedScore = alliance.combatScore + alliance.score;
-
-      alert(alliance.combatScore);
     });
 
     scanned.number += await this.atomicIncrement();

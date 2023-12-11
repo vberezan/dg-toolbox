@@ -69,7 +69,7 @@ export class RankingsPanelComponent implements AfterViewInit {
     if (switchOrder) sortOrder = sortOrder === 'desc' ? 'asc' : 'desc';
     sort = sortKey.concat(':', sortOrder);
 
-    this.rankings = this.allianceRankingsService.fetchAndClear(sortKey, sortOrder, this.page, 100);
+    this.rankings = this.allianceRankingsService.fetchAndClear(sortKey, sortOrder, this.page, 100, true);
 
     this.sortKey = sortKey;
     this.sortOrder = sortOrder;
