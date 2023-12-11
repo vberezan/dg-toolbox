@@ -30,6 +30,8 @@ export class AllianceRankingsLoaderService {
     const scanDelay: number = 250 + Math.floor(Math.random() * 250);
     const alliancesPlanetsPath: any = collection(this.firestore, 'alliances-planets');
 
+    console.log('abracadabra');
+
     let scanned: AtomicNumber = new AtomicNumber(0);
     let alliancesStats: Map<string, AllianceStats> = new Map<string, AllianceStats>();
     let pages: number = await this.getNumberOfPages();
