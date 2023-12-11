@@ -160,7 +160,7 @@ export class PlayersRankingsLoaderService {
 
           subscription.unsubscribe();
         });
-      }, ++delay * 15);
+      }, ++delay * 10);
     });
 
     await this.delay(15 * ++delay).finally((): void => {
