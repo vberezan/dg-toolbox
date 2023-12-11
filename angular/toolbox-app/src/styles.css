@@ -2766,6 +2766,7 @@ dgt-scans-collector {
 
 /********************/
 
+.alliancesRankingsList,
 .playerRankingsList {
   display: none !important;
   border-radius: 5px !important;
