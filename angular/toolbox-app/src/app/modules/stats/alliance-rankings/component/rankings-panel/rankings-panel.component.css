@@ -54,16 +54,24 @@
   padding-right: 10px;
 }
 
+th.combined,
+th.combat,
+th.score,
+th.avgScore,
 .members,
-.combined,
-.combat,
-.score,
-.avgScore,
 .planets,
 .g1,
 .inner,
 .outer {
   text-align: center;
+}
+
+td.combined,
+td.combat,
+td.score,
+td.avgScore {
+  text-align: right !important;
+  padding-right: 10px;
 }
 
 .hostile .alliance,
