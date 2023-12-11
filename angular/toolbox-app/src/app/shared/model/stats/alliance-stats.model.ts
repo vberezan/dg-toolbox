@@ -13,6 +13,25 @@ export class AllianceStats {
   private _tag: string;
   private _rank: number;
   private _name: string;
+  private _membersCount: number = 0;
+  private _avatar: string;
+
+
+  get avatar(): string {
+    return this._avatar;
+  }
+
+  set avatar(value: string) {
+    this._avatar = value;
+  }
+
+  get membersCount(): number {
+    return this._membersCount;
+  }
+
+  set membersCount(value: number) {
+    this._membersCount = value;
+  }
 
   get avgScore(): number {
     return this._avgScore;
@@ -123,7 +142,9 @@ export class AllianceStats {
       g1Total: this.g1Total,
       g213Total: this.g213Total,
       g1449Total: this.g1449Total,
-      relation: this.relation
+      relation: this.relation,
+      membersCount: this.membersCount,
+      avatar: this.avatar
     }
   }
 }

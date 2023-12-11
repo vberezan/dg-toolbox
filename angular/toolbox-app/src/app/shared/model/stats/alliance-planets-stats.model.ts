@@ -4,11 +4,38 @@ export class AlliancePlanets {
   private _planets: PlanetsBatch[] = [];
   private _turn: number;
   private _total: number;
+  private _g1Total: number = 0;
+  private _g213Total: number = 0;
+  private _g1449Total: number = 0;
   private _tag: string;
   private _totalMetalProduction: number = 0;
   private _totalMineralProduction: number = 0;
   private _totalFoodProduction: number = 0;
   private _totalRequiredSoldiers: number = 0;
+
+  get g1Total(): number {
+    return this._g1Total;
+  }
+
+  set g1Total(value: number) {
+    this._g1Total = value;
+  }
+
+  get g213Total(): number {
+    return this._g213Total;
+  }
+
+  set g213Total(value: number) {
+    this._g213Total = value;
+  }
+
+  get g1449Total(): number {
+    return this._g1449Total;
+  }
+
+  set g1449Total(value: number) {
+    this._g1449Total = value;
+  }
 
   get totalRequiredSoldiers(): number {
     return this._totalRequiredSoldiers;
@@ -83,7 +110,10 @@ export class AlliancePlanets {
       totalMetalProduction: this.totalMetalProduction,
       totalMineralProduction: this.totalMineralProduction,
       totalFoodProduction: this.totalFoodProduction,
-      totalRequiredSoldiers: this.totalRequiredSoldiers
+      totalRequiredSoldiers: this.totalRequiredSoldiers,
+      g1Total: this.g1Total,
+      g213Total: this.g213Total,
+      g1449Total: this.g1449Total
     };
   }
 }

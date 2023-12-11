@@ -248,6 +248,14 @@ export class PlanetsLoaderService {
         } else {
           alliance.total = 0;
           alliance.planets.forEach((batch: PlanetsBatch): void => {
+            if (batch.galaxy === 1) {
+              alliance.g1Total += batch.planets.length;
+            } else if (batch.galaxy > 1 && batch.galaxy < 14) {
+              alliance.g213Total += batch.planets.length;
+            } else {
+              alliance.g1449Total += batch.planets.length;
+            }
+
             alliance.total += batch.total;
             alliance.totalMetalProduction += batch.metalProduction
             alliance.totalMineralProduction += batch.mineralProduction;
