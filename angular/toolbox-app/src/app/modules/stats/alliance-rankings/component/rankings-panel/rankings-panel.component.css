@@ -19,7 +19,7 @@
 }
 
 .name {
-  width: 150px;
+  width: 200px;
   text-transform: capitalize;
   padding-left: 10px !important;
 }
@@ -51,6 +51,7 @@
 .alliance {
   width: 50px;
   padding-left: 10px;
+  padding-right: 10px;
 }
 
 .members,
