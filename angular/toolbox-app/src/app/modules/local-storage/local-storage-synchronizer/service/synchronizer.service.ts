@@ -12,6 +12,7 @@ import {PlayersRankingsLoaderService} from "./players-rankings-loader.service";
 import {PageAction} from "../../../../shared/model/stats/page-action.model";
 import {UserStatus} from "../../../../shared/model/local-storage/user-status.model";
 import {DarkgalaxyApiService} from "../../../darkgalaxy-ui-parser/service/darkgalaxy-api.service";
+import {AllianceRankingsLoaderService} from "./alliance-rankings-loader.service";
 
 @Injectable({
   providedIn: 'root'
@@ -21,12 +22,14 @@ export class SynchronizerService {
   private firestore: Firestore = inject(Firestore);
   private localStorageService: LocalStorageService = inject(LocalStorageService);
   private playersRankingsLoaderService: PlayersRankingsLoaderService = inject(PlayersRankingsLoaderService);
+  private allianceRankingsLoaderService: AllianceRankingsLoaderService = inject(AllianceRankingsLoaderService);
   private dgAPI: DarkgalaxyApiService = inject(DarkgalaxyApiService);
   private _updatesEmitter: EventEmitter<number> = new EventEmitter<number>();
 
   private readonly ALLIANCES_URL: string = this.localStorageService.get(LocalStorageKeys.GAME_ENDPOINT) + '/alliances/';
 
   private _playersRankingsEmitter: EventEmitter<PageAction> = new EventEmitter<PageAction>();
+  private _alliancesRankingsEmitter: EventEmitter<PageAction> = new EventEmitter<PageAction>();
 
   updateMetadata(observer: Subscriber<boolean>): void {
     const metadataPath: any = collection(this.firestore, 'metadata');
@@ -103,7 +106,7 @@ export class SynchronizerService {
     if (!playerStats || playerStats.length == 0 || isPlayerRankingsTurnZero || isNewTurn || force) {
       if (window.location.pathname.indexOf('/rankings/players') !== -1 || window.location.pathname.indexOf('/alliances') !== -1) {
         this._updatesEmitter.emit(2);
-        this.loadPlayersRankings(this._playersRankingsEmitter);
+        this.loadAllRankings(this._playersRankingsEmitter, this._alliancesRankingsEmitter);
       }
     }
 
@@ -121,14 +124,18 @@ export class SynchronizerService {
     }
   }
 
-  private loadPlayersRankings(playersRankingsEmitter: EventEmitter<PageAction>): void {
+  private loadAllRankings(playersRankingsEmitter: EventEmitter<PageAction>, alliancesRankingsEmitter: EventEmitter<PageAction>): void {
     this.playersRankingsLoaderService.scanPlayersRankingsScreens(playersRankingsEmitter).finally((): void => {
       this._updatesEmitter.emit(1);
-      this.loadAllianceMembers(this.localStorageService.localMetadata().playersRankingsTurn.turn).finally((): void => {
-        this._updatesEmitter.emit(0);
+      this.allianceRankingsLoaderService.scanAlliancesRankingsScreens(alliancesRankingsEmitter).finally((): void => {
+        this._updatesEmitter.emit(1);
+        this.loadAllianceMembers(this.localStorageService.localMetadata().playersRankingsTurn.turn).finally((): void => {
+          this._updatesEmitter.emit(0);
+        });
       });
     });
   }
+
 
   private async loadAllianceMembers(turn: number): Promise<void> {
     const source: string = await firstValueFrom(this.httpClient.get(this.ALLIANCES_URL, {responseType: 'text'}));
@@ -193,5 +200,9 @@ export class SynchronizerService {
 
   get playersRankingsEmitter(): EventEmitter<PageAction> {
     return this._playersRankingsEmitter;
+  }
+
+  get alliancesRankingsEmitter(): EventEmitter<PageAction> {
+    return this._alliancesRankingsEmitter;
   }
 }

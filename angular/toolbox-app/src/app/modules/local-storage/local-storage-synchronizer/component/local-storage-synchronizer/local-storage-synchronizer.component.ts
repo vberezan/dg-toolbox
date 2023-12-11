@@ -15,7 +15,7 @@ import {MetadataService} from "../../service/metadata.service";
 export class LocalStorageSynchronizerComponent implements AfterViewInit {
   @ViewChild('dgtUpdatingModel') dgtUpdatingModel: ElementRef;
   @ViewChild('rankingsLoadModal') rankingsLoadModal: ElementRef;
-  @ViewChild('playersProgressBar') playersProgressBar: ElementRef;
+  @ViewChild('progressBar') progressBar: ElementRef;
 
   private synchronizerService: SynchronizerService = inject(SynchronizerService);
   private dgAPI: DarkgalaxyApiService = inject(DarkgalaxyApiService);
@@ -23,12 +23,13 @@ export class LocalStorageSynchronizerComponent implements AfterViewInit {
   private changeDetection: ChangeDetectorRef = inject(ChangeDetectorRef);
   private metadataService: MetadataService = inject(MetadataService);
 
-  private rankingsCountSubscription: Subscription;
+  private playersRankingsCountSubscription: Subscription;
+  private alliancesRankingsCountSubscription: Subscription;
 
   public authenticated: boolean = false;
 
   protected loadedRankings: string;
-  protected playersPercentage: number = 0;
+  protected percentage: number = 0;
 
   constructor() {
     this.authService.authState.subscribe((state: AuthState): void => {
@@ -76,7 +77,7 @@ export class LocalStorageSynchronizerComponent implements AfterViewInit {
             this.dgtUpdatingModel.nativeElement.classList.remove('show');
             document.body.classList.remove('dgt-overlay-open');
 
-            this.playersProgressBar.nativeElement.style.width = '0%';
+            this.progressBar.nativeElement.style.width = '0%';
             this.loadedRankings = 'Loading ranking pages';
 
             this.rankingsLoadModal.nativeElement.classList.add('show');
@@ -100,23 +101,50 @@ export class LocalStorageSynchronizerComponent implements AfterViewInit {
   }
 
   private prepareRankingsLoader(): void {
-    this.rankingsCountSubscription = this.synchronizerService.playersRankingsEmitter.subscribe((value: PageAction): void => {
+    this.playersRankingsCountSubscription = this.synchronizerService.playersRankingsEmitter.subscribe((value: PageAction): void => {
       switch (value.action) {
         case 'load': {
           this.loadedRankings = 'Loading ' + value.page + '/' + value.total + ' ranking page';
           this.changeDetection.detectChanges();
-          this.playersPercentage = Math.floor((value.page * 100) / value.total);
-          this.playersProgressBar.nativeElement.style.width = this.playersPercentage + '%';
+          this.percentage = Math.floor((value.page * 100) / value.total);
+          this.progressBar.nativeElement.style.width = this.percentage + '%';
           break;
         }
         case 'save': {
           this.loadedRankings = 'Caching ' + value.page + '/' + value.total + ' players';
           this.changeDetection.detectChanges();
-          this.playersPercentage = Math.floor((value.page * 100) / value.total);
-          this.playersProgressBar.nativeElement.style.width = this.playersPercentage + '%';
+          this.percentage = Math.floor((value.page * 100) / value.total);
+          this.progressBar.nativeElement.style.width = this.percentage + '%';
 
           if (value.page == value.total) {
-            this.rankingsCountSubscription.unsubscribe();
+            this.playersRankingsCountSubscription.unsubscribe();
+          }
+
+          break;
+        }
+        default : {
+          break;
+        }
+      }
+    });
+
+    this.alliancesRankingsCountSubscription = this.synchronizerService.alliancesRankingsEmitter.subscribe((value: PageAction): void => {
+      switch (value.action) {
+        case 'load': {
+          this.loadedRankings = 'Loading ' + value.page + '/' + value.total + ' ranking page';
+          this.changeDetection.detectChanges();
+          this.percentage = Math.floor((value.page * 100) / value.total);
+          this.progressBar.nativeElement.style.width = this.percentage + '%';
+          break;
+        }
+        case 'save': {
+          this.loadedRankings = 'Caching ' + value.page + '/' + value.total + ' alliances';
+          this.changeDetection.detectChanges();
+          this.percentage = Math.floor((value.page * 100) / value.total);
+          this.progressBar.nativeElement.style.width = this.percentage + '%';
+
+          if (value.page == value.total) {
+            this.alliancesRankingsCountSubscription.unsubscribe();
           }
 
           break;
