@@ -66,7 +66,7 @@ export class AllianceRankingsService {
     }
 
     if (clear) {
-      document.querySelector('.playerRankingsList').remove();
+      document.querySelector('.alliancesRankingsList').remove();
     }
 
     return orderedRankings;
