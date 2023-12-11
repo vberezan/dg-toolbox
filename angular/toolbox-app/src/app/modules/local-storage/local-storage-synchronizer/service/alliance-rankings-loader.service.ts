@@ -74,7 +74,7 @@ export class AllianceRankingsLoaderService {
       alliance.score = parseInt(row.querySelector('.score').textContent.trim().replace(/,/g, ''));
       alliance.combinedScore = alliance.combatScore + alliance.score;
       alliance.membersCount = parseInt(row.querySelector('.members').textContent.trim().replace(/,/g, ''));
-      alliance.avgScore = alliance.score / alliance.membersCount;
+      alliance.avgScore = Math.ceil(alliance.score / alliance.membersCount);
       alliance.avatar = row.querySelector('.avatar img').attributes['src'].value.trim();
 
 
