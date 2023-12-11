@@ -74,9 +74,11 @@ export class PlayerRankingsService {
     if (this.localStorageService.get(LocalStorageKeys.PLAYERS_STATS) === null) return;
     const size: number = this.localStorageService.get(LocalStorageKeys.PLAYERS_STATS).length;
 
-    document.querySelector('#ranking-navigation > div:nth-child(2)').innerHTML = 'Page ' + page + ' / ' + Math.ceil(size / 100);
-    if (page === Math.ceil(size / 100)) {
-      document.querySelector('#ranking-navigation > div:nth-child(1)').remove();
+    if (document.querySelector('#ranking-navigation')) {
+      document.querySelector('#ranking-navigation > div:nth-child(2)').innerHTML = 'Page ' + page + ' / ' + Math.ceil(size / 100);
+      if (page === Math.ceil(size / 100)) {
+        document.querySelector('#ranking-navigation > div:nth-child(1)').remove();
+      }
     }
   }
 }

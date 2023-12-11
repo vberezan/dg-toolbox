@@ -2,6 +2,7 @@ import {inject, Injectable, Optional} from '@angular/core';
 import {LocalStorageService} from "../../../local-storage/local-storage-manager/service/local-storage.service";
 import {LocalStorageKeys} from "../../../../shared/model/local-storage/local-storage-keys";
 import {AllianceStats} from "../../../../shared/model/stats/alliance-stats.model";
+import {dom} from "@fortawesome/fontawesome-svg-core";
 
 @Injectable({
   providedIn: 'root'
@@ -75,9 +76,11 @@ export class AllianceRankingsService {
     if (this.localStorageService.get(LocalStorageKeys.ALLIANCES_STATS) === null) return;
     const size: number = this.localStorageService.get(LocalStorageKeys.ALLIANCES_STATS).length;
 
-    document.querySelector('#ranking-navigation > div:nth-child(2)').innerHTML = 'Page ' + page + ' / ' + Math.ceil(size / 100);
-    if (page === Math.ceil(size / 100)) {
-      document.querySelector('#ranking-navigation > div:nth-child(1)').remove();
+    if (document.querySelector('#ranking-navigation')) {
+      document.querySelector('#ranking-navigation > div:nth-child(2)').innerHTML = 'Page ' + page + ' / ' + Math.ceil(size / 100);
+      if (page === Math.ceil(size / 100)) {
+        document.querySelector('#ranking-navigation > div:nth-child(1)').remove();
+      }
     }
   }
 }
