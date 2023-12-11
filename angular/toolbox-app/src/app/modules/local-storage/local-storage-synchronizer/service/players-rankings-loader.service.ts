@@ -46,6 +46,9 @@ export class PlayersRankingsLoaderService {
   private async getNumberOfPages(): Promise<number> {
     let source: string = await firstValueFrom(this.httpClient.get(this.PLAYER_RANKINGS_URL, {responseType: 'text'}));
     let dom: Document = new DOMParser().parseFromString(source, 'text/html');
+
+    if (dom.querySelector('.right.lightBorder.opacDarkBackground.padding') == null) return 1;
+
     return parseInt(dom.querySelector('.right.lightBorder.opacDarkBackground.padding').textContent.trim().split('of')[dom.querySelector('.right.lightBorder.opacDarkBackground.padding').textContent.trim().split('of').length - 1].trim());
   }
 

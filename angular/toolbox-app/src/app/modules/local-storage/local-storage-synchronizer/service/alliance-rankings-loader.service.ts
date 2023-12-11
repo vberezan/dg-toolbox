@@ -34,6 +34,8 @@ export class AllianceRankingsLoaderService {
     let alliancesStats: Map<string, AllianceStats> = new Map<string, AllianceStats>();
     let pages: number = await this.getNumberOfPages();
 
+    console.log('pages: ' + pages);
+
     for (let page: number = 1; page <= pages; page++) {
       await this.scanRankingsPage(alliancesStats, alliancesRankingsEmitter, scanned, scanDelay, page, pages);
       await this.scanCombatRankingsPage(alliancesStats, alliancesRankingsEmitter, scanned, scanDelay, page, pages);
@@ -46,6 +48,8 @@ export class AllianceRankingsLoaderService {
   private async getNumberOfPages(): Promise<number> {
     let source: string = await firstValueFrom(this.httpClient.get(this.ALLIANCE_RANKINGS_URL, {responseType: 'text'}));
     let dom: Document = new DOMParser().parseFromString(source, 'text/html');
+    if (dom.querySelector('.right.lightBorder.opacDarkBackground.padding') == null) return 1;
+
     return parseInt(dom.querySelector('.right.lightBorder.opacDarkBackground.padding').textContent.trim().split('of')[dom.querySelector('.right.lightBorder.opacDarkBackground.padding').textContent.trim().split('of').length - 1].trim());
   }
 
@@ -57,8 +61,6 @@ export class AllianceRankingsLoaderService {
                                  pages: number): Promise<void> {
     let source: string = await firstValueFrom(this.httpClient.get(this.ALLIANCE_RANKINGS_URL + page, {responseType: 'text'}));
     let dom: Document = new DOMParser().parseFromString(source, 'text/html');
-
-    console.log(dom);
 
     dom.querySelectorAll('.rankingsList .entry').forEach((row: any): void => {
       const tag: string = row.querySelector('.tag').textContent.trim().replace(/\[/g, '').replace(/]/g, '');
@@ -111,8 +113,6 @@ export class AllianceRankingsLoaderService {
                                        pages: number): Promise<void> {
     let source: string = await firstValueFrom(this.httpClient.get(this.ALLIANCE_COMBAT_RANKINGS_URL + page, {responseType: 'text'}));
     let dom: Document = new DOMParser().parseFromString(source, 'text/html');
-
-    console.log(dom);
 
     dom.querySelectorAll('.rankingsList .entry').forEach((row: any): void => {
       const tag: string = row.querySelector('.tag').textContent.trim().replace(/\[/g, '').replace(/]/g, '');
