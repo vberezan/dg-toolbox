@@ -126,7 +126,7 @@ export class SynchronizerService {
 
   private loadAllRankings(playersRankingsEmitter: EventEmitter<PageAction>, alliancesRankingsEmitter: EventEmitter<PageAction>): void {
     this.playersRankingsLoaderService.scanPlayersRankingsScreens(playersRankingsEmitter).finally((): void => {
-      this._updatesEmitter.emit(1);
+      this._updatesEmitter.emit(2);
       this.allianceRankingsLoaderService.scanAlliancesRankingsScreens(alliancesRankingsEmitter).finally((): void => {
         this._updatesEmitter.emit(1);
         this.loadAllianceMembers(this.localStorageService.localMetadata().playersRankingsTurn.turn).finally((): void => {
