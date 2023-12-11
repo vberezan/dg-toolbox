@@ -157,12 +157,6 @@ export class PlanetsLoaderService {
         }
       });
 
-      console.log('13.1: ' + req1);
-      console.log('13.2: ' + req2);
-      console.log('13.3: ' + req3);
-      console.log('13.4: ' + req4);
-      console.log('13.5: ' + req5);
-
       setDoc(doc(collection(this.firestore, 'max-stats'), 'max-metal-g' + galaxy), JSON.parse(JSON.stringify({
         location: maxMetalLocation,
         value: maxMetal
@@ -233,36 +227,29 @@ export class PlanetsLoaderService {
               alliance.planets.push(batch);
             }
           });
+        }
 
-          alliance.total = 0;
-          alliance.planets.forEach((batch: PlanetsBatch): void => {
-            alliance.total += batch.total;
-            alliance.totalMetalProduction += batch.metalProduction
-            alliance.totalMineralProduction += batch.mineralProduction;
-            alliance.totalFoodProduction += batch.foodProduction;
-            alliance.totalRequiredSoldiers += batch.requiredSoldiers;
-          });
+        alliance.total = 0;
+        alliance.planets.forEach((batch: PlanetsBatch): void => {
+          if (batch.galaxy === 1) {
+            alliance.g1Total += batch.planets.length;
+          } else if (batch.galaxy > 1 && batch.galaxy < 14) {
+            alliance.g213Total += batch.planets.length;
+          } else {
+            alliance.g1449Total += batch.planets.length;
+          }
 
+          alliance.total += batch.total;
+          alliance.totalMetalProduction += batch.metalProduction
+          alliance.totalMineralProduction += batch.mineralProduction;
+          alliance.totalFoodProduction += batch.foodProduction;
+          alliance.totalRequiredSoldiers += batch.requiredSoldiers;
+        });
+
+        if (item) {
           updateDoc(doc(alliancePlanetsPath, alliance.tag), JSON.parse(JSON.stringify(alliance)))
             .catch((error): void => console.log(error));
         } else {
-          alliance.total = 0;
-          alliance.planets.forEach((batch: PlanetsBatch): void => {
-            if (batch.galaxy === 1) {
-              alliance.g1Total += batch.planets.length;
-            } else if (batch.galaxy > 1 && batch.galaxy < 14) {
-              alliance.g213Total += batch.planets.length;
-            } else {
-              alliance.g1449Total += batch.planets.length;
-            }
-
-            alliance.total += batch.total;
-            alliance.totalMetalProduction += batch.metalProduction
-            alliance.totalMineralProduction += batch.mineralProduction;
-            alliance.totalFoodProduction += batch.foodProduction;
-            alliance.totalRequiredSoldiers += batch.requiredSoldiers;
-          });
-
           setDoc(doc(alliancePlanetsPath, alliance.tag), JSON.parse(JSON.stringify(alliance)))
             .catch((error): void => console.log(error));
         }
