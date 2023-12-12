@@ -90,7 +90,8 @@ export class SynchronizerService {
       localMetadata.playersRankingsTurn.turn = 0;
       localMetadata.allianceMembersTurn.turn = 0;
       this.localStorageService.remove(LocalStorageKeys.PLAYERS_STATS);
-
+      this.localStorageService.remove(LocalStorageKeys.ALLIANCES_STATS);
+      this.localStorageService.remove(LocalStorageKeys.ALLIANCE_MEMBERS);
       this.localStorageService.cache(LocalStorageKeys.LOCAL_METADATA, localMetadata);
     }
 
