@@ -90,6 +90,9 @@ export class AllianceRankingsLoaderService {
         alliance.relation = 'nap';
       }
 
+      if (alliance.tag === 'rof') {
+        alliance.name = 'romanian federation';
+      }
 
       if (Object.values(EnemyList).includes(alliance.tag as EnemyList)) {
         alliance.relation = 'hostile';
