@@ -77,7 +77,6 @@ export class AllianceRankingsLoaderService {
       alliance.avgScore = Math.ceil(alliance.score / alliance.membersCount);
       alliance.avatar = row.querySelector('.avatar img').attributes['src'].value.trim();
 
-
       if (row.classList.contains('myRow')) {
         alliance.relation = 'self';
       } else if (row.querySelector('.hostile')) {
@@ -151,6 +150,7 @@ export class AllianceRankingsLoaderService {
             allianceStats.g1Total = alliancePlanets.g1Total;
             allianceStats.g213Total = alliancePlanets.g213Total;
             allianceStats.g1449Total = alliancePlanets.g1449Total;
+            allianceStats.economy = Math.ceil(alliancePlanets.totalFoodProduction + alliancePlanets.totalMetalProduction + alliancePlanets.totalMineralProduction * 1.5);
           } else {
             allianceStats.planets = 1;
           }

@@ -15,7 +15,15 @@ export class AllianceStats {
   private _name: string;
   private _membersCount: number = 0;
   private _avatar: string;
+  private _economy: number = 0;
 
+  get economy(): number {
+    return this._economy;
+  }
+
+  set economy(value: number) {
+    this._economy = value;
+  }
 
   get avatar(): string {
     return this._avatar;
@@ -144,7 +152,8 @@ export class AllianceStats {
       g1449Total: this.g1449Total,
       relation: this.relation,
       membersCount: this.membersCount,
-      avatar: this.avatar
+      avatar: this.avatar,
+      economy: this._economy
     }
   }
 }

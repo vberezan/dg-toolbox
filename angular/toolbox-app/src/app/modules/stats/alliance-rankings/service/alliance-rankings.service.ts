@@ -27,6 +27,7 @@ export class AllianceRankingsService {
         let sortCondition: boolean = false;
 
         switch (key) {
+          case 'economy':
           case 'combinedScore':
           case 'combatScore':
           case 'avgScore':
