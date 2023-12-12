@@ -1,12 +1,12 @@
 #dgt-load-planets-overlay-modal .dgt-display-info{
-  height: 70px;
+  height: 80px;
 }
 
 .dgt-display-info {
   margin: auto;
   width: 300px;
   left: calc(50% - 150px);
-  top: calc(50% - 35px);
+  top: calc(50% - 40px);
   border: 1px solid #364a36;
   border-radius: 5px;
   padding: 10px;
