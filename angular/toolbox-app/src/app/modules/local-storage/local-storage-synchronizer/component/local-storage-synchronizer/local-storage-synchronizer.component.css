@@ -2,7 +2,7 @@
   margin: auto;
   width: 300px;
   left: calc(50% - 150px);
-  top: calc(50% - 25px);
+  top: calc(50% - 30px);
   border-radius: 5px;
   padding: 10px;
   vertical-align: middle;
@@ -34,7 +34,7 @@
 }
 
 #dgt-load-rankings-overlay-modal .dgt-display-info {
-  height: 50px;
+  height: 60px;
 }
 
 .dgt-display-info {

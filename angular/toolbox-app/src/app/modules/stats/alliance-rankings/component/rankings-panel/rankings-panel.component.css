@@ -54,6 +54,7 @@
   padding-right: 10px;
 }
 
+th.economy,
 th.combined,
 th.combat,
 th.score,
@@ -66,6 +67,7 @@ th.avgScore,
   text-align: center;
 }
 
+td.economy,
 td.combined,
 td.combat,
 td.score,
