@@ -150,7 +150,10 @@ export class AllianceRankingsLoaderService {
             allianceStats.g1Total = alliancePlanets.g1Total;
             allianceStats.g213Total = alliancePlanets.g213Total;
             allianceStats.g1449Total = alliancePlanets.g1449Total;
-            allianceStats.economy = Math.ceil(alliancePlanets.totalFoodProduction + alliancePlanets.totalMetalProduction + alliancePlanets.totalMineralProduction * 1.5);
+
+            allianceStats.economy = Math.ceil(alliancePlanets.totalFoodProduction +
+              (alliancePlanets.totalMetalProduction + (alliancePlanets.totalMetalProduction / 20)) +
+              ((alliancePlanets.totalMineralProduction + (alliancePlanets.totalMineralProduction / 25)) * 1.5));
           } else {
             allianceStats.planets = 1;
           }
