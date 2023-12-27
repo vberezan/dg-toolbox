@@ -138,11 +138,6 @@ function loadGlobalAngularStyling() {
     document.body.style.visibility = 'hidden';
     let windowURL = window.location.pathname.split(/\//g);
 
-    if (localStorage.getItem('hotfix') !== '2.0.14') {
-      localStorage.clear();
-      localStorage.setItem('hotfix', '2.0.14');
-    }
-
     loadGlobalAngularStyling();
 
     loadResource({

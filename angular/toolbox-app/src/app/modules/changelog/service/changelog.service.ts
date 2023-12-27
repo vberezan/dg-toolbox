@@ -47,7 +47,7 @@ export class ChangelogService {
       dgtUpdatingModel.nativeElement.classList.add('hide');
       dgtUpdatingModel.nativeElement.classList.remove('show');
       document.body.classList.remove('dgt-overlay-open');
-    }).finally(() => {
+    }).finally((): void => {
       window.location.reload();
     });
 
