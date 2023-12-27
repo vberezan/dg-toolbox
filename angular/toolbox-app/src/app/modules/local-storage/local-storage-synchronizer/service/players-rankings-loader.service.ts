@@ -84,19 +84,15 @@ export class PlayersRankingsLoaderService {
       if (row.classList.contains('myRow')) {
         player.relation = 'self';
       } else if (row.querySelector('.hostile')) {
-        player.relation = 'neutral';
+        player.relation = 'hostile';
       } else if (row.querySelector('.allied')) {
         player.relation = 'allied';
       }
 
-      if (player.alliance === 'sol') {
-        player.relation = 'nap';
-      }
 
-
-      if (Object.values(EnemyList).includes(player.alliance as EnemyList)) {
-        player.relation = 'hostile';
-      }
+      // if (Object.values(EnemyList).includes(player.alliance as EnemyList)) {
+      //   player.relation = 'hostile';
+      // }
 
     });
 

@@ -80,22 +80,18 @@ export class AllianceRankingsLoaderService {
       if (row.classList.contains('myRow')) {
         alliance.relation = 'self';
       } else if (row.querySelector('.hostile')) {
-        alliance.relation = 'neutral';
+        alliance.relation = 'hostile';
       } else if (row.querySelector('.allied')) {
         alliance.relation = 'allied';
-      }
-
-      if (alliance.tag === 'sol') {
-        alliance.relation = 'nap';
       }
 
       if (alliance.tag === 'rof') {
         alliance.name = 'romanian federation';
       }
 
-      if (Object.values(EnemyList).includes(alliance.tag as EnemyList)) {
-        alliance.relation = 'hostile';
-      }
+      // if (Object.values(EnemyList).includes(alliance.tag as EnemyList)) {
+      //   alliance.relation = 'hostile';
+      // }
 
     });
 

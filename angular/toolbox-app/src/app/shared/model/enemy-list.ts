@@ -1,3 +1,4 @@
 export enum EnemyList {
-  WP = 'wp'
+  WP = 'wp',
+  BRC = 'brc'
 }

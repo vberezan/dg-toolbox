@@ -193,20 +193,20 @@ function applyCustomStyling(windowURL) {
       });
     }
 
-    document.querySelectorAll('.navigation .row .planets.hostile').forEach((planet) => {
-      const allianceName = planet.querySelector('.allianceName') && planet.querySelector('.allianceName').textContent.trim().toLowerCase();
-      if (planet.querySelector('.allianceName') && allianceName === '[sol]') {
-        planet.classList.add('nap');
-        planet.classList.remove('hostile');
-        planet.querySelector('.allianceName').parentElement.classList.add('nap');
-        planet.querySelector('.allianceName').parentElement.classList.remove('hostile');
-      } else if (planet.querySelector('.allianceName') && allianceName !== '[wp]') {
-        planet.classList.add('peaceful');
-        planet.classList.remove('hostile');
-        planet.querySelector('.allianceName').parentElement.classList.add('peaceful');
-        planet.querySelector('.allianceName').parentElement.classList.remove('hostile');
-      }
-    });
+    // document.querySelectorAll('.navigation .row .planets.hostile').forEach((planet) => {
+    //   const allianceName = planet.querySelector('.allianceName') && planet.querySelector('.allianceName').textContent.trim().toLowerCase();
+    //   if (planet.querySelector('.allianceName') && allianceName === '[sol]') {
+    //     planet.classList.add('nap');
+    //     planet.classList.remove('hostile');
+    //     planet.querySelector('.allianceName').parentElement.classList.add('nap');
+    //     planet.querySelector('.allianceName').parentElement.classList.remove('hostile');
+    //   } else if (planet.querySelector('.allianceName') && allianceName !== '[wp]') {
+    //     planet.classList.add('peaceful');
+    //     planet.classList.remove('hostile');
+    //     planet.querySelector('.allianceName').parentElement.classList.add('peaceful');
+    //     planet.querySelector('.allianceName').parentElement.classList.remove('hostile');
+    //   }
+    // });
   }
 
 
