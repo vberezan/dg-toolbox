@@ -83,6 +83,8 @@ export class AllianceRankingsLoaderService {
         alliance.relation = 'hostile';
       } else if (row.querySelector('.allied')) {
         alliance.relation = 'allied';
+      } else {
+        alliance.relation = 'hostile';
       }
 
       if (alliance.tag === 'rof') {
