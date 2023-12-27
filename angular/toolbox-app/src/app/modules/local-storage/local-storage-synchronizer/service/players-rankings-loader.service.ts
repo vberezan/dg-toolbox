@@ -156,10 +156,10 @@ export class PlayersRankingsLoaderService {
 
           subscription.unsubscribe();
         });
-      }, ++delay * 10);
+      }, ++delay * 25);
     });
 
-    await this.delay(15 * ++delay).finally((): void => {
+    await this.delay(50 * ++delay).finally((): void => {
       this.localStorageService.cache(LocalStorageKeys.PLAYERS_STATS, cache);
       let localMetadata: Metadata = this.localStorageService.localMetadata();
       localMetadata.playersRankingsTurn = new UpdateMetadata(this.dgAPI.gameTurn(), 0);
