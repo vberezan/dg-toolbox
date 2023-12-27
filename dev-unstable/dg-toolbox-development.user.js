@@ -26,7 +26,7 @@ function loadResource(element) {
 
 function getVersion() {
   if (localStorage.getItem('js-version')) return JSON.parse(localStorage.getItem('js-version')).value;
-  else return 'v2.0.13';
+  else return 'v2.0.14';
 }
 
 function loadSetups(windowURL) {
@@ -138,9 +138,9 @@ function loadGlobalAngularStyling() {
     document.body.style.visibility = 'hidden';
     let windowURL = window.location.pathname.split(/\//g);
 
-    if (localStorage.getItem('hotfix') !== '2.0.13') {
+    if (localStorage.getItem('hotfix') !== '2.0.14') {
       localStorage.clear();
-      localStorage.setItem('hotfix', '2.0.13');
+      localStorage.setItem('hotfix', '2.0.14');
     }
 
     loadGlobalAngularStyling();
