@@ -42,7 +42,11 @@ export class MetadataService {
 
   resetSortingMaps(): void {
     if (window.location.pathname.indexOf('/rankings/players') === -1) {
-      this.localStorageService.remove(LocalStorageKeys.PLAYERS_RANKINGS_SORT)
+      this.localStorageService.remove(LocalStorageKeys.PLAYERS_RANKINGS_SORT);
+    }
+
+    if (window.location.pathname.indexOf('/rankings/alliances') === -1) {
+      this.localStorageService.remove(LocalStorageKeys.ALLIANCES_RANKINGS_SORT);
     }
   }
 }

@@ -42,13 +42,12 @@ export class ChangelogService {
 
       this.localStorageService.clearAll();
       this.localStorageService.cache(LocalStorageKeys.USER, user);
-      // this.localStorageService.cache(LocalStorageKeys.JS_VERSION, localMetadata.dgtVersion);
       this.localStorageService.cache(LocalStorageKeys.LOCAL_METADATA, localMetadata);
 
       dgtUpdatingModel.nativeElement.classList.add('hide');
       dgtUpdatingModel.nativeElement.classList.remove('show');
       document.body.classList.remove('dgt-overlay-open');
-
+    }).finally(() => {
       window.location.reload();
     });
 
