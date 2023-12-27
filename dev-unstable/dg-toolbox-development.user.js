@@ -46,7 +46,7 @@ function loadCustomStyling(windowURL) {
 
   loadResource({
     tagName: 'script',
-    src: 'https://cdn.jsdelivr.net/gh/vberezan/dg-toolbox@development/dev-unstable/parts/dg-toolbox-custom-styling.126.js',
+    src: 'https://cdn.jsdelivr.net/gh/vberezan/dg-toolbox@development/dev-unstable/parts/dg-toolbox-custom-styling.127.js',
     rel: 'text/javascript'
   }).onload = function () {
     applyCustomStyling(windowURL);
@@ -106,7 +106,7 @@ function loadAngular() {
     rel: 'module'
   }, {
     tagName: 'script',
-    src: 'https://cdn.jsdelivr.net/gh/vberezan/dg-toolbox@development/angular/toolbox-app/dist/toolbox-app/main.882a68b5a8694ac1.js',
+    src: 'https://cdn.jsdelivr.net/gh/vberezan/dg-toolbox@development/angular/toolbox-app/dist/toolbox-app/main.80372542d9ebf319.js',
     rel: 'module'
   }];
 
