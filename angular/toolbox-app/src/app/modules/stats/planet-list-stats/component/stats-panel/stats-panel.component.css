@@ -17,6 +17,7 @@
 
 .dgt-stats-totals-table {
   padding: 5px !important;
+  font-size: 12px !important;
 }
 
 .dgt-stats-totals-table th {
@@ -88,6 +89,7 @@
   float: right;
   padding-left: 4px;
   line-height: 23px;
+  font-size: 12px;
 }
 
 .dgt-resource fa-icon {
