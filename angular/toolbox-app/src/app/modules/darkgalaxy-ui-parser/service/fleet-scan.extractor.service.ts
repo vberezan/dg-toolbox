@@ -75,6 +75,21 @@ export class FleetScanExtractorService implements DataExtractor {
                 case ShipType.BATTLESHIP:
                   fleet.score += amount * ShipScore.BATTLESHIP;
                   break;
+                case ShipType.INVASION:
+                  fleet.score += amount * ShipScore.INVASION;
+                  break;
+                case ShipType.FREIGHTER:
+                  fleet.score += amount * ShipScore.FREIGHTER;
+                  break;
+                case ShipType.MERCHANT:
+                  fleet.score += amount * ShipScore.MERCHANT;
+                  break;
+                case ShipType.TRADER:
+                  fleet.score += amount * ShipScore.TRADER;
+                  break;
+                case ShipType.HULK:
+                  fleet.score += amount * ShipScore.HULK;
+                  break;
                 default:
                   break;
               }
