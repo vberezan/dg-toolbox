@@ -202,6 +202,7 @@ export class FightSimulatorService {
 
   private fightersAttack(fleetFighters: number, enemyFleet: Fleet): void {
     const damageTable: KillRate[] = [
+      new KillRate(ShipType.HULK, 0.002),
       new KillRate(ShipType.BOMBER, 0.33333),
       new KillRate(ShipType.FIGHTER, 0.90999),
       new KillRate(ShipType.FRIGATE, 0.02532),
@@ -215,6 +216,7 @@ export class FightSimulatorService {
 
   private bombersAttack(fleetBombers: number, enemyFleet: Fleet): void {
     const damageTable: KillRate[] = [
+      new KillRate(ShipType.HULK, 0.005),
       new KillRate(ShipType.DESTROYER, 0.05),
       new KillRate(ShipType.FRIGATE, 0.25),
       new KillRate(ShipType.BATTLESHIP, 0.0025),
@@ -227,10 +229,11 @@ export class FightSimulatorService {
 
   private frigateAttack(fleetFrigates: number, enemyFleet: Fleet): void {
     const damageTable: KillRate[] = [
-      new KillRate(ShipType.CRUISER, 0.08332),
+      new KillRate(ShipType.HULK, 0.024),
       new KillRate(ShipType.FIGHTER, 12.11999),
-      new KillRate(ShipType.DESTROYER, 0.66666),
       new KillRate(ShipType.BOMBER, 0.69999),
+      new KillRate(ShipType.CRUISER, 0.08332),
+      new KillRate(ShipType.DESTROYER, 0.66666),
       new KillRate(ShipType.FRIGATE, 0.5),
       new KillRate(ShipType.BATTLESHIP, 0.004)
     ];
@@ -240,6 +243,7 @@ export class FightSimulatorService {
 
   private destroyerAttack(fleetDestroyers: number, enemyFleet: Fleet): void {
     const damageTable: KillRate[] = [
+      new KillRate(ShipType.HULK, 0.1),
       new KillRate(ShipType.BATTLESHIP, 0.1),
       new KillRate(ShipType.CRUISER, 0.32999),
       new KillRate(ShipType.DESTROYER, 0.59999),
@@ -266,6 +270,7 @@ export class FightSimulatorService {
 
   private battleShipAttack(fleetBattleships: number, enemyFleet: Fleet): void {
     const damageTable: KillRate[] = [
+      new KillRate(ShipType.HULK, 1.2),
       new KillRate(ShipType.FRIGATE, 43.99472),
       new KillRate(ShipType.CRUISER, 4),
       new KillRate(ShipType.BATTLESHIP, 0.32999),

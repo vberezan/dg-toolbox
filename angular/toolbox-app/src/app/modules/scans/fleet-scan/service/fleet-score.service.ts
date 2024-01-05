@@ -11,7 +11,7 @@ export class FleetScoreService {
 
       const fleetDom: Element = document.querySelector('.dgt-fleet[dgt-fleet-id="' + fleet.id + '"]');
 
-      if (fleetDom != null) {
+      if (fleetDom != null && fleetDom.querySelector('.dgt-fleet-score-value') != null) {
         fleetDom.querySelector('.dgt-fleet-score-value').innerHTML =
           Math.ceil(fleet.score).toLocaleString('en-US', {maximumFractionDigits: 0, minimumFractionDigits: 0});
       }
